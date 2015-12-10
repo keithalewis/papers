@@ -26,7 +26,7 @@ reverse order?
 
 You could define f;g (or your favorite binary operator symbol
 instead of ;) to be g o f. Or just write the arrows backwards.
-Let's drop the ' o ' and write gf instead.
+Let's agree to drop the ' o ' and write gf instead.
 
 ## Identity Arrow
 
@@ -44,23 +44,34 @@ in category theory. The associative law is (hg)f = h(gf).
 
 It is impossible to understand Category Theory without understanding
 examples of categories. That is its raison d'etre. Many seemingly
-dissimilar constructs can be unified a la mode de Category Theory.
+disparate constructs can be unified a la mode de chez Category Theory.
 
 The primary example of a category is _Set_. The objects are sets and
 the arrows are functions. People tried to come up with a purely
-category theory notion of set and ended up with _topos_ theory.
+category theory notion of Set and ended up with _topos_ theory.
 One does not simply consider 'elements' of a 'set'. Long story.
 
-Then there is _Par_, the category of partial functions, and _Rel_
-the category of relations.
+Then there is _Par_, the category of partial functions. It gets no respect.
+Most functions are actually partial functions. The function x -> 1/x
+is not a function from the real numbers to the real numbers.
 
+_Rel_ is the category of relations. It generalizes _Set_ and _Par_.
 Given sets A and B, a _relation_ is a subset of the cartesian product A x B.
-Composition of R, contained in A x B, and S contained in B x C is
+
+A function, f, is a relation with the property that for every a in A
+there exists a unique b in B such that (a,b) in f.
+
+A partial function, g, is a relation with the property that for every a in A
+there exists at most one b in B such that (a,b) in f.
+
+Composition of the relation R, contained in A x B, and the relation S
+contained in B x C is
 SR = {(a,c) in A x C : there is a b in B with (a,b) in R and (b,c) in S}
 
 Exercise: Show the identity 1_A = {(a,a) : a in A} and that composition is associative.
 
-There are a slew of examples of categories where the objects are sets 'with structure'
-and the arrows are functions that preserve that structure.
+There are a slew of examples of categories where the objects are sets
+'with structure' and the arrows are functions that preserve that structure.
 
-_Grp_ is the category of groups: the objects are groups 
+_Grp_ is the category of groups: the objects are groups and the arrows
+are _homomorphisms_ (functions) that preserve the group structure.
