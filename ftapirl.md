@@ -6,8 +6,8 @@ He wanted a title so I came up with 'FTAP IRL'
 
 He replied 'ROFL', but IRL doesn't stand for In Real Life.
 
-[It does, I use it to implment software. That runs on a computer.
-And give results business people find useful.]
+[It does, I use it to implment software that runs on a computer
+and give meaningful results to traders.]
 
 It means the Fundamental Theorem of Asset Pricing Is Really Lame.
 
@@ -35,7 +35,7 @@ What is arbitrage?
 What is a hedge?
 
 (Charlie Sanford Bankers Trust copper Hunt brothers
-I thought you had it hedged!)
+"I thought you had it hedged!")
 
 How do we come up with a theory people who use it to run a business
 can understand?

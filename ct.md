@@ -35,10 +35,19 @@ If f: A -> B then the identity arrows 1_A and 1_B satisfy
 f 1_A = f = 1_B f. Or maybe only somewhat more interesing.
 You can always throw in identity arrows if they don't exist.
 
+### Exercises
+
+1. If e: A -> A has the property fe = f for all f: A -> B
+then e = 1_A.
+
+2. If e: B -> B has the property ef = f for all f: A -> B
+then e = 1_B.
+
 ## Associative Law
 
 If f: A -> B, g: B -> C, and h: C -> D then hgf is unambiguous
 in category theory. The associative law is (hg)f = h(gf).
+
 
 ## Examples
 
