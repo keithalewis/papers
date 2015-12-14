@@ -5,7 +5,7 @@ _identity arrow_, _associative law_.
 
 ## Objects and Arrows
 
-f: A -> B is an _arrow_, f, from object A to object B.
+`f: A -> B` is an _arrow_, `f`, from object `A` to object `B`.
 
 A is the _domain_ of f and B is the _codomain_ of f,
 aka _range_, _target_, or _but_ if you parlez Francais,
