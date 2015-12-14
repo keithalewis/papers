@@ -37,8 +37,8 @@ You can always throw in identity arrows if they don't exist.
 
 ### Exercises
 
-1. If `e: A -> A` has the property `fe = f` for all `f: A -> B`
-then `e = 1_A`.
+1. _If `e: A -> A` has the property `fe = f` for all `f: A -> B`
+then `e = 1_A`_.
 
 2. If `e: B -> B` has the property `ef = f` for all `f: A -> B`
 then `e = 1_B`.
