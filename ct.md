@@ -7,7 +7,7 @@ _identity arrow_, _associative law_.
 
 `f: A -> B` is an _arrow_, `f`, from object `A` to object `B`.
 
-A is the _domain_ of f and B is the _codomain_ of f,
+`A` is the _domain_ of `f` and `B` is the _codomain_ of `f`,
 aka _range_, _target_, or _but_ if you parlez Francais,
 but codomain is more apropos when we get to 'opposite day' furthur on.
 
@@ -17,41 +17,41 @@ not, and, or, implies, but why make things more difficult?
 
 ## Composition
 
-If f: A -> B and g: B -> C then there exists an arrow
-g o f: A -> C, the _composition_ of f with g.
+If `f: A -> B` and `g: B -> C` then there exists an arrow
+`g o f: A -> C`, the _composition_ of `f` with `g`.
 
-Or maybe the composition of g with f. Some people get caught
-up with trivialities. How come f and g get written in the
+Or maybe the composition of `g` with `f`. Some people get caught
+up with trivialities. How come `f` and `g` get written in the
 reverse order?
 
-You could define f;g (or your favorite binary operator symbol
-instead of ;) to be g o f. Or just write the arrows backwards.
-Let's agree to drop the ' o ' and write gf instead.
+You could define `f;g` (or your favorite binary operator symbol
+instead of `;`) to be `g o f`. Or just write the arrows backwards.
+Let's agree to drop the ' o ' and write `gf` instead.
 
 ## Identity Arrow
 
 On to more interesting things. Every object has an _identity arrow_.
-If f: A -> B then the identity arrows 1_A and 1_B satisfy
-f 1_A = f = 1_B f. Or maybe only somewhat more interesing.
+If `f: A -> B` then the identity arrows `1_A` and `1_B` satisfy
+`f 1_A = f = 1_B f`. Or maybe only somewhat more interesing.
 You can always throw in identity arrows if they don't exist.
 
 ### Exercises
 
-1. If e: A -> A has the property fe = f for all f: A -> B
-then e = 1_A.
+1. If `e: A -> A` has the property `fe = f` for all `f: A -> B`
+then `e = 1_A`.
 
-2. If e: B -> B has the property ef = f for all f: A -> B
-then e = 1_B.
+2. If `e: B -> B` has the property `ef = f` for all `f: A -> B`
+then `e = 1_B`.
 
 ### Proof
 
-1. Taking f = 1_A, 1_A e = 1_A. By the definition of 1_A, 1_A e = e, hence 1_A = e.
-2. Taking f = 1_B, e 1_B = 1_B. By the definition of 1_B, e 1_B = e, hence 1_B = e.
+1. Taking `f = 1_A`, `1_A e = 1_A`. By the definition of `1_A`, `1_A e = e`, hence `1_A = e`.
+2. Taking `f = 1_B`, `e 1_B = 1_B`. By the definition of `1_B`, `e 1_B = e`, hence `1_B = e`.
 
 ## Associative Law
 
-If f: A -> B, g: B -> C, and h: C -> D then hgf is unambiguous
-in category theory. The associative law is (hg)f = h(gf).
+If `f: A -> B`, `g: B -> C`, and `h: C -> D` then `hgf` is unambiguous
+in category theory. The associative law is `(hg)f = h(gf)`.
 
 
 ## Examples
@@ -66,23 +66,23 @@ category theory notion of Set and ended up with _topos_ theory.
 One does not simply consider 'elements' of a 'set'. Long story.
 
 Then there is _Par_, the category of partial functions. It gets no respect.
-Most functions are actually partial functions. The function x -> 1/x
-is not a function from the real numbers to the real numbers.
+Most functions are actually partial functions. The function `x -> 1/x`
+is only a partial function from the real numbers to the real numbers.
 
 _Rel_ is the category of relations. It generalizes _Set_ and _Par_.
-Given sets A and B, a _relation_ is a subset of the cartesian product A x B.
+Given sets `A` and `B`, a _relation_ is a subset of the cartesian product `A x B`.
 
-A function, f, is a relation with the property that for every a in A
-there exists a unique b in B such that (a,b) in f.
+A function, `f`, is a relation with the property that for every `a in A`
+there exists a unique `b` in `B` such that `(a,b) in f`.
 
-A partial function, g, is a relation with the property that for every a in A
-there exists at most one b in B such that (a,b) in f.
+A partial function, `g`, is a relation with the property that for every `a in A`
+there exists at most one `b in B` such that `(a,b) in g`.
 
-Composition of the relation R, contained in A x B, and the relation S
-contained in B x C is
-SR = {(a,c) in A x C : there is a b in B with (a,b) in R and (b,c) in S}
+Composition of the relation `R`, contained in `A x B`, and the relation `S`
+contained in `B x C` is
+`SR = {(a,c) in A x C : there is a b in B with (a,b) in R and (b,c) in S}`
 
-Exercise 3. Show the identity arrow of _Set_ is 1_A = {(a,a) in A x A : a in A}.
+Exercise 3. Show the identity arrow of _Set_ is `1_A = {(a,a) in A x A : a in A}`.
 Exercise 4. Show that composition is associative in _Set_.
 
 There are a slew of examples of categories where the objects are sets
