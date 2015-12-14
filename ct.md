@@ -83,6 +83,7 @@ contained in `B x C` is
 `SR = {(a,c) in A x C : there is a b in B with (a,b) in R and (b,c) in S}`
 
 Exercise 3. Show the identity arrow of _Set_ is `1_A = {(a,a) in A x A : a in A}`.
+
 Exercise 4. Show that composition is associative in _Set_.
 
 There are a slew of examples of categories where the objects are sets
