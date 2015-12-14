@@ -43,6 +43,10 @@ then e = 1_A.
 2. If e: B -> B has the property ef = f for all f: A -> B
 then e = 1_B.
 
+### Proof
+
+1. Taking f = e: A -> A, ee = e. Taking f = 1_A, 1_A e = 1_A
+
 ## Associative Law
 
 If f: A -> B, g: B -> C, and h: C -> D then hgf is unambiguous
