@@ -45,7 +45,8 @@ then e = 1_B.
 
 ### Proof
 
-1. Taking f = e: A -> A, ee = e. Taking f = 1_A, 1_A e = 1_A
+1. Taking f = 1_A, 1_A e = 1_A. By the definition of 1_A, 1_A e = e, hence 1_A = e.
+2. Taking f = 1_B, e 1_B = 1_B. By the definition of 1_B, e 1_B = e, hence 1_B = e.
 
 ## Associative Law
 
