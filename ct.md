@@ -40,8 +40,8 @@ You can always throw in identity arrows if they don't exist.
 1. _If `e: A -> A` has the property `fe = f` for all `f: A -> B`
 then `e = 1_A`_.
 
-2. If `e: B -> B` has the property `ef = f` for all `f: A -> B`
-then `e = 1_B`.
+2. _If `e: B -> B` has the property `ef = f` for all `f: A -> B`
+then `e = 1_B`_.
 
 ### Proof
 
@@ -82,9 +82,9 @@ Composition of the relation `R`, contained in `A x B`, and the relation `S`
 contained in `B x C` is
 `SR = {(a,c) in A x C : there is a b in B with (a,b) in R and (b,c) in S}`
 
-Exercise 3. Show the identity arrow of _Set_ is `1_A = {(a,a) in A x A : a in A}`.
+Exercise 3. _Show the identity arrow of _Set_ is `1_A = {(a,a) in A x A : a in A}`_.
 
-Exercise 4. Show that composition is associative in _Set_.
+Exercise 4. _Show that composition is associative in_ Set.
 
 There are a slew of examples of categories where the objects are sets
 'with structure' and the arrows are functions that preserve that structure.
