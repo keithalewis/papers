@@ -82,7 +82,7 @@ Composition of the relation `R`, contained in `A x B`, and the relation `S`
 contained in `B x C` is
 `SR = {(a,c) in A x C : there is a b in B with (a,b) in R and (b,c) in S}`
 
-Exercise 3. _Show the identity arrow of _Set_ is `1_A = {(a,a) in A x A : a in A}`_.
+Exercise 3. _Show the identity arrow of_ Set _is `1_A = {(a,a) in A x A : a in A}`_.
 
 Exercise 4. _Show that composition is associative in_ Set.
 
