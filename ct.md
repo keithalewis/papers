@@ -91,3 +91,18 @@ There are a slew of examples of categories where the objects are sets
 
 _Grp_ is the category of groups: the objects are groups and the arrows
 are _homomorphisms_ (functions) that preserve the group structure.
+
+_Vec_ is the category of vector spaces: the objects are vector spaces
+and the arrows are linear transformations.
+
+Rings, fields, and algebras provide more examples. The theme of category
+theory is how to provide a unified treatment of various mathematical notions.
+
+A _Preset_ is a set wtih a relation `<=` that is reflexive and transitive.
+The notion predates Category Theory, but this maps perfectly into the
+the definition of a category. The objects are elements of the set and
+there is an arrow `x -> y` if and only if `x <= y`.
+
+The identity arrow is the relexive property and composition is the transitive law. 
+Putting on your category theory goggles lets you see things that would not
+be obvious otherwise. 
