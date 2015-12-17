@@ -1,22 +1,46 @@
 # FTAP IRL
 
-Always happy to talk when Bruno asks.
+Bruno asked for the title of the talk.
 
-He wanted a title so I came up with 'FTAP IRL'
+Me: 'FTAP IRL'
 
-He replied 'ROFL', but IRL doesn't stand for In Real Life.
+Bruno: 'ROFL'
 
-[It does, I use it to implment software that runs on a computer
-and give meaningful results to traders.]
+But IRL doesn't stand for In Real Life.
 
-It means the Fundamental Theorem of Asset Pricing Is Really Lame.
+The Fundamental Theorem of Asset Pricing Is Really Lame.
 
 It took 5 months to explain this to Peter Carr, so there is no way to
-explain it in 5min. All I can do is whet your appetite.
+explain it in 5min. All I can do is whet your appetite, give you
+references and let you know where I live.
 
-References and you know where I live.
+I don't have a Nobel prize, but I know when a theory is wrong.
 
-I don't have a Nobel prize, but I know when shit stinks.
+## Second Touch Barrier Options.
+
+IRL, a trader asked me how to price a barrier option that
+knocked in the _second_ time the barrier was hit.
+
+I knew the answer. I studied Brownian Motion in grad school
+and the Black-Scholes/Merton theory at my dining room table
+after long days of getting beaten up on the trading floor.
+
+It has exactly the same price!
+
+As a matter of fact...
+
+A barrier option that knocks in the millionth time the barrier
+is hit has exactly the same price!!!
+
+You see, Brownian Motion has this very interesting infinite
+oscillatory behavior.
+On any finite interval it is almost surely not of bounded variation...
+
+The trader looked at me as if I had lost my mind.
+
+That is the answer the theory gives. And it is obviously wrong.
+
+He didn't talk to me again for 3 months.
 
 In physics, when theory is contradicted by observation it is time to
 come up with a new theory.
@@ -24,21 +48,23 @@ come up with a new theory.
 In mathematical finance, the solution seems to be to come up with
 a more obfuscated theory that practitioners cannot possibly understand.
 
-Delbaen - Schachermeyer. Shave my eyebrows if you can even state the theorem.
+Delbaen - Schachermeyer.
 
-Impressed by Emanuel Derman's talk about Spinoza.
+"If you need a PhD in math to understand a trade, you probably
+shouldn't be doing it." --Deane Yang
 
-Fischer Black (no Nobel for dead guys) vocabulary.
+I wanted a theory people who use it to run a business
+can comprehend and can be implmented on a computer
+to give results they find useful.
 
-What is arbitrage?
+So I came up with one.
 
-What is a hedge?
+It is a rigorous mathematical theory that can be applied to
+valuing, hedging, and assessing the risk of any instrument.
 
-(Charlie Sanford Bankers Trust copper Hunt brothers
-"I thought you had it hedged!")
+It is simpler to implement on a computer than the classical theory.
 
-How do we come up with a theory people who use it to run a business
-can understand?
+It can be taught in Mathematical Finance programs.
 
-If you need a PhD in math to understand a trade, you probably
-shouldn't be doing it. --Deane Yang
+It provides knobs required for IRL application.
+
