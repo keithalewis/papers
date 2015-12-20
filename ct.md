@@ -26,33 +26,27 @@ reverse order?
 
 You could define `f;g` (or your favorite binary operator symbol
 instead of `;`) to be `g o f`. Or just write the arrows backwards.
-Let's agree to drop the ' o ' and write `gf` instead.
+Let's agree to drop the `'o'` symbol and write `gf` instead.
 
 ## Identity Arrow
 
 On to more interesting things. Every object has an _identity arrow_.
-If `f: A -> B` then the identity arrows `1_A` and `1_B` satisfy
-`f 1_A = f = 1_B f`. Or maybe only somewhat more interesing.
+If `f: A -> B` then the identity arrows `1_A: A -> A` and `1_B: B -> B` 
+satisfy `f 1_A = f = 1_B f`. Or maybe only somewhat more interesing.
 You can always throw in identity arrows if they don't exist.
 
 ### Exercises
 
-1. _If `e: A -> A` has the property `fe = f` for all `f: A -> B`
+_Exercise 1. If `e: A -> A` has the property `fe = f` for all `f: A -> B`
 then `e = 1_A`_.
 
-2. _If `e: B -> B` has the property `ef = f` for all `f: A -> B`
+_Exercise 2. If `e: B -> B` has the property `ef = f` for all `f: A -> B`
 then `e = 1_B`_.
-
-### Proof
-
-1. Taking `f = 1_A`, `1_A e = 1_A`. By the definition of `1_A`, `1_A e = e`, hence `1_A = e`.
-2. Taking `f = 1_B`, `e 1_B = 1_B`. By the definition of `1_B`, `e 1_B = e`, hence `1_B = e`.
 
 ## Associative Law
 
 If `f: A -> B`, `g: B -> C`, and `h: C -> D` then `hgf` is unambiguous
 in category theory. The associative law is `(hg)f = h(gf)`.
-
 
 ## Examples
 
@@ -112,17 +106,20 @@ be obvious otherwise.
 _Exercise 1. If `e: A -> A` has the property `fe = f` for all `f: A -> B`
 then `e = 1_A`_.
 
-*Solution.* Taking `f = 1_A`, `1_A e = 1_A`. By the definition of `1_A`, `1_A e = e`, hence `1_A = e`.
+**Solution.** Taking `f = 1_A`, `1_A e = 1_A`. By the definition of `1_A`, `1_A e = e`, hence `1_A = e`.
 
 _Exercise 2. If `e: B -> B` has the property `ef = f` for all `f: A -> B`
 then `e = 1_B`_.
 
-*Solution* Taking `f = 1_B`, `e 1_B = 1_B`. By the definition of `1_B`, `e 1_B = e`, hence `1_B = e`.
+**Solution** Taking `f = 1_B`, `e 1_B = 1_B`. By the definition of `1_B`, `e 1_B = e`, hence `1_B = e`.
 
 _Exercise 3. Show the identity arrows of_ Set _are `1_A = {(a,a) in A x A : a in A}`_.
 
-*Solution* Let `R: A -> B` be a relation. The following are equivalent:
-> (a, b) in 1_A R
-> There exists a' in A with (a, a') in 1_A and (a', b) in R
+**Solution** Let `R: A -> B` be a relation. The following are equivalent:
+> `(a, b) in 1_A R`
+> There exists `a' in A` with `(a, a') in 1_A` and `(a', b) in R`.
+> `(a, a) in 1_A` and `(a, b) in R`
+> `(a, b) in R`
+The proof of `R 1_B = R` is similar.
 
 _Exercise 4. Show that composition is associative in_ Set.
