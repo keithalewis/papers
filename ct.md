@@ -118,10 +118,10 @@ then `e = 1_B`_.
 _Exercise 3. Show the identity arrows of_ Set _are `1_A = {(a,a) in A x A : a in A}`_.
 
 **Solution** Let `R: A -> B` be a relation. The following are equivalent:
-> `(a, b) in 1_A R`
-> There exists `a' in A` with `(a, a') in 1_A` and `(a', b) in R`.
-> `(a, a) in 1_A` and `(a, b) in R`
-> `(a, b) in R`
+> `(a, b) in 1_A R`  
+> There exists `a' in A` with `(a, a') in 1_A` and `(a', b) in R`.  
+> `(a, a) in 1_A` and `(a, b) in R`  
+> `(a, b) in R`  
 The proof of `R 1_B = R` is similar.
 
 _Exercise 4. Show that composition is associative in_ Set.
