@@ -80,6 +80,8 @@ _Exercise 3. Show the identity arrows of_ Set _are `1_A = {(a,a) in A x A : a in
 
 _Exercise 4. Show that composition is associative in_ Set.
 
+Proof of Exercise 3.
+
 There are a slew of examples of categories where the objects are sets
 'with structure' and the arrows are functions that preserve that structure.
 
