@@ -82,9 +82,9 @@ Composition of the relation `R`, contained in `A x B`, and the relation `S`
 contained in `B x C` is
 `SR = {(a,c) in A x C : there is a b in B with (a,b) in R and (b,c) in S}`
 
-Exercise 3. _Show the identity arrows of_ Set _are `1_A = {(a,a) in A x A : a in A}`_.
+_Exercise 3. Show the identity arrows of_ Set _are `1_A = {(a,a) in A x A : a in A}`_.
 
-Exercise 4. _Show that composition is associative in_ Set.
+_Exercise 4. Show that composition is associative in_ Set.
 
 There are a slew of examples of categories where the objects are sets
 'with structure' and the arrows are functions that preserve that structure.
@@ -106,3 +106,23 @@ there is an arrow `x -> y` if and only if `x <= y`.
 The identity arrow is the relexive property and composition is the transitive law. 
 Putting on your category theory goggles lets you see things that would not
 be obvious otherwise. 
+
+## Answers to Excercises
+
+_Exercise 1. If `e: A -> A` has the property `fe = f` for all `f: A -> B`
+then `e = 1_A`_.
+
+*Solution.* Taking `f = 1_A`, `1_A e = 1_A`. By the definition of `1_A`, `1_A e = e`, hence `1_A = e`.
+
+_Exercise 2. If `e: B -> B` has the property `ef = f` for all `f: A -> B`
+then `e = 1_B`_.
+
+*Solution* Taking `f = 1_B`, `e 1_B = 1_B`. By the definition of `1_B`, `e 1_B = e`, hence `1_B = e`.
+
+_Exercise 3. Show the identity arrows of_ Set _are `1_A = {(a,a) in A x A : a in A}`_.
+
+*Solution* Let `R: A -> B` be a relation. The following are equivalent:
+> (a, b) in 1_A R
+> There exists a' in A with (a, a') in 1_A and (a', b) in R
+
+_Exercise 4. Show that composition is associative in_ Set.

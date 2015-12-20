@@ -1,0 +1,405 @@
+<!doctype html> <html lang='en-GB'>
+<head>
+<meta charset='utf-8'>
+<title>Normal Jarrow-Rudd</title>
+<link rel="stylesheet" type="text/css" href="njr.css">
+</head>
+<body>
+<div id="kalx">kal@kalx.net</div>
+<h1>Normal Jarrow-Rudd</h1>
+<div class="para">
+<p>
+The Jarrow-Rudd model perturbs the cumulants of a
+lognormal distribution.
+</p>
+</div>
+<div class="para">
+<p>
+Cumulants of a normal distribution are much easier to work
+with because all but the first two are zero.
+</p>
+</div>
+<div class="para">
+<p>
+The third and fourth cumulant are better versions of skew and kurtosis.
+</p>
+</div>
+<h2>Put Value</h2>
+<div class="para">
+<p>
+A put with strike \(k\) and forward \(F\) at expiration has
+forward value
+\[
+E (k - F)^+ = \E (k - F)1(F\le k)
+= kP(F\le k) - fP^*(F\le k),
+\]
+where \(f = \E F\) and \(dP^*/dP = F/f\) is the Esscher transform.
+</p>
+</div>
+<div class="para">
+<p>
+We derive formulas for \(P(F\le k)\) and \(P^*(F\le k)\) that
+can be efficiently computed.
+</p>
+</div>
+<div class="para">
+<p>
+Let \(F = fe^{-\kappa(s) + sX}\) where
+the <i>cumulant</i> \(\kappa(s) = \log \E e^{sX}\), so \(\E F = f\).
+</p>
+</div>
+<div class="para">
+<p>
+The forward value is \(E(k - F)^+ = kP(X\le x) - fP^*(X\le x)\)
+where \(x = (\kappa(s) + \log k/f)/s\).
+</p>
+</div>
+<h2>Cumulants</h2>
+<div class="para">
+<p>
+The <i>cumulants</i>, \((\kappa_n)\), are defined by
+\[
+\kappa(s) = \sum_{n=1}^\infty \kappa_n s^n/n!
+\]
+</p>
+</div>
+<div class="para">
+<p>
+Cumulants are homogeneous of order \(n\):
+\(\kappa_n^{aX} = a^n\kappa_n^X\)
+and \(\kappa_n^{X+Y} = \kappa_n^X + \kappa_n^Y\)
+if \(X\) and \(Y\) are independent.
+</p>
+</div>
+<div class="para">
+<p>
+Note \(\kappa_1 = \kappa'(0) = \E X\)
+and \(\kappa_2 = \kappa''(0) = \Var(X)\).
+</p>
+</div>
+<div class="para">
+<p>
+If \(X\) is normal, \(\E e^{sX}
+= e^{\E(sX) + \Var (sX)/2}\)
+so \(\kappa(s) = \E(X)s + \Var (X)s^2/2\)
+and \(\kappa_n = 0\) for \(n\gt 2\).
+</p>
+</div>
+<div class="para">
+<p>
+This is why it is better to consider perturbations of
+the normal distribution rather than lognormal.
+</p>
+</div>
+
+<h2>Bell Polynomials</h2>
+<div class="para">
+<p>
+\[
+\E e^{sX} = e^{\kappa(s)}
+= e^{\sum_{n=1}^\infty \kappa_n s^n/n!}
+= \sum_{n=0}^\infty B_n(\kappa_1,\dots,\kappa_n) s^n/n!,
+\]
+where \(B_n\) is the \(n\)-th complete Bell polynomial.
+</p>
+</div>
+<div class="para">
+<p>
+Clearly \(B_0 = 1\). They satisfy the recursive formula
+\[
+B_{n+1}(\kappa_1,\dots,\kappa_{n+1})
+= \sum_{k=0}^n \binom{n}{k} B_{n-k}(\kappa_1,\dots,\kappa_{n-k})\kappa_{k+1}.
+\]
+</p>
+</div>
+
+<h2>Edgeworth Expansion</h2>
+<div class="para">
+<p>
+Let \(F\) be the cumulative distribution function of \(X\).
+The Fourier transform of \(F\) is \(\hat{F}(u) = \E e^{iuX}\).
+If \(Y\) is any random variable
+\[
+\E e^{iuY - iuX}
+= \sum_{n=0}^\infty B_n(\Delta\kappa_1,\dots,\Delta\kappa_n) (iu)^n/n!,
+\]
+where \(\Delta\kappa_n\) is the difference of the cumulants.
+</p>
+</div>
+<div class="para">
+<p>
+If \(Y\) is independent of \(X\) then
+\[
+\hat{G}(u) = \hat{F}(u)
+\sum_{n=0}^\infty B_n(\Delta\kappa_1,\dots,\Delta\kappa_n) (iu)^n/n!,
+\]
+</p>
+</div>
+<div class="para">
+<p>
+Let \(G\) be the cumulative distribution function of \(Y\).
+Since the Fourier transform of the \(n\)-th derivative
+of \(F\) is \((-iu)^n\hat{F}(u)\) we have
+\[
+G(x) = \sum_{n=0}^\infty
+(-1)^n
+B_n(\Delta\kappa_1,\dots,\Delta\kappa_n)
+F^{(n)}(x)/n!
+\]
+</p>
+</div>
+
+<h2>Hermite Polynomials</h2>
+<div class="para">
+<p>
+Hermite polynomials are defined by
+\[
+H_n(x) = (-1)^ne^{x^2/2}\frac{d^n}{dx^n}e^{-x^2/2}
+\]
+and satisfy the recurrence \(H_0(x) = 1\), \(H_1(x) = x\), and
+\[
+H_{n+1}(x) = x H_n(x) - n H_{n-1}(x).
+\]
+</p>
+</div>
+<div class="para">
+<p>
+so \(F^{(n)}(x) = (-1)^{n-1}e^{-x^2/2}H_{n-1}(x)/\sqrt{2\pi}\)
+where \(F\) is the standard normal cumulative distribution.
+</p>
+</div>
+<div class="para">
+<p>
+Putting it all together...
+</p>
+</div>
+<div class="para">
+<p id="pat">
+\[
+G(x) = F(x) - \sum_{n=1}^\infty
+B_n(\Delta\kappa_1,\dots,\Delta\kappa_n) e^{-x^2/2}H_{n-1}(x)/
+n!\sqrt{2\pi}
+\]
+</p>
+</div>
+
+<h2>Esscher Transform</h2>
+<div class="para">
+<p>
+Recall \(dP^*/dP = F/f = e^{-\kappa(s) + sY}\) so
+\[
+\log E^*e^{uY} = \log \E e^{uY} e^{-\kappa(s) + sY} 
+= \kappa(u+s) -\kappa(s).
+\]
+</p>
+</div>
+<div class="para">
+<p>
+A simple calculation shows the cumulants of \(Y^*\)
+are \(\kappa_n^* = \sum_{k=1}^\infty \kappa_{n+k}s^k/k!\).
+</p>
+</div>
+
+<h2>Examples</h2>
+<h3>Normal</h3>
+<div class="para">
+<p>
+\(f(x) = e^{-x^2/2}/\sqrt{2\pi}\), \(-\infty\lt x\lt \infty\),
+\(\kappa(s) = s^2/2\),
+\(\kappa_n = \delta_{2n}\),
+\(\kappa_n^* = s\delta_{1n} + \delta_{2n}\)
+</p>
+</div>
+<h3>Exponential</h3>
+
+<div class="para">
+\(f(x) = e^{-x/\mu}/\mu\), \(x\ge0\),
+\(\kappa(s) = -\log(1-\mu s)\),
+\(\kappa_n = (n-1)!\mu^n\),
+\(\kappa_n^*= (n-1)!(\mu/(1 - s))^n\)
+<p>
+</div>
+
+<h3>Gamma</h3>
+<div class="para">
+<p>
+\(f(x) = x^{\alpha - 1} e^{-\beta x}\beta^\alpha/\Gamma(\alpha)\),
+\(x\ge0\),
+\(\kappa(s) = -\alpha\log(1-x/\beta)\),
+\(\kappa_n = (n-1)!\alpha/\beta^n\),
+\(\kappa_n^*= (n-1)!\alpha/(\beta/(1 - s))^n\)
+</p>
+</div>
+
+<h3>Poisson</h3>
+<div class="para">
+<p>
+\(P(X = k) = e^{-\mu k}\mu^k/k!\), \(k\ge0\),
+\(\kappa(s) = \mu(e^s - 1)\),
+\(\kappa_n = \mu\),
+\(\kappa_n^* = \mu e^s\)
+</p>
+</div>
+<h2>L&eacute;vy Processes</h2>
+<div class="para">
+<p>
+If \((X_t)\) is L&eacute;vy, then \(X = X_1\) is infinitely divisible
+and \(\kappa^{X_t}(s) = t\kappa^{X_1}(s)\).
+</p>
+</div>
+<div class="para">
+<p>If \(X\) has finite variance (Kolmogorov)
+\[
+\log Ee^{sX} = \gamma s + \int_{-\infty}^\infty K_u(x)\,dG(x),
+\]
+</div>
+<div class="para">
+where \(K_s(x) = (e^{sx} - 1 - sx)/x^2 = \sum_{n=2}^\infty s^n x^{n-2}/n!\).
+</p>
+<div class="para">
+<p>
+Note \(K_s(0) = s^2/2\) and \(K_s(a) = (e^{as} - 1 - as)/a^2\) so this
+says infinitely divisible distributions are a limit
+of a normal plus independent Poissons.
+</p>
+</div>
+<div class="para">
+<p>
+We have \(\kappa_1 = \gamma\) and
+\(\kappa_n = \int_{-\infty}^\infty x^{n-2}\,dG(x)\), \(n\ge 2\).
+</p>
+</div>
+<div class="para">
+<p>
+The Hamburger moment problem says \(X\) exists if
+the Hankel matrix \([\kappa_{i+j}]_{i,j\ge 2}\) is positive definite.
+</p>
+</div>
+<h2>References</h2>
+<div class="para">
+<p>
+Full write-up at <a href ="http://kalx.net/njr.pdf">http://kalx.net/njr.pdf</a>.
+</p>
+</div>
+<div class="para">
+<p>
+Portable C++ implementation <a href ="https://fmsgjr.codeplex.com">
+https://fmsgjr.codeplex.com</a>.
+</p>
+</div>
+<div class="para">
+<p>
+Excel add-in <a href="https://xllgjr.codeplex.com">
+https://xllgjr.codeplex.com</a>.
+</p>
+</div>
+
+<span>
+<button id='leftArrow' type='button' onclick='leftArrow()'>&lt;</button>
+</span>
+<span>
+<button id='toggleInterval' type='button' onclick='toggleInterval()'>x</button>
+</span>
+<span>
+<button id='rightArrow'type='button' onclick='rightArrow()'>&gt;</button>
+</span>
+
+
+  <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <script type="text/javascript" src="mathjax.js"></script>
+  <script language='javascript'>
+
+var vendors = ['-moz-','-webkit-','-o-','-ms-','-khtml-',''];
+function toCamelCase(str){
+return str.toLowerCase().replace(/(\-[a-z])/g, function($1){
+            return $1.toUpperCase().replace('-','');
+        });
+    };
+function setCss3Style(el,prop,val){
+    for(var i=0,l=vendors.length;i<l;i++)
+        {
+            var p = toCamelCase(vendors[i] + prop);
+            if(p in el.style)
+                el.style[p] = val;
+        }
+};
+
+var counter = 0;
+var interval;
+var pause = 10;
+
+function rightArrow() {
+var pi = document.getElementById('para' + counter);
+pi.style.visibility = 'visible';
+pi.style.display = 'block';
+pi.style.opacity = 1;
+setCss3Style(pi,'transition','visibility 1s');
+setCss3Style(pi,'transition','opacity 1s linear');
+pi.scrollIntoView(false);
+window.scrollBy(0,30);
+++counter;
+document.getElementById('toggleInterval').innerHTML = counter;
+}
+function leftArrow() {
+if (counter > 0)
+--counter;
+document.getElementById('toggleInterval').innerHTML = counter;
+var pi = document.getElementById('para' + counter);
+pi.style.visibility = 'hidden';
+pi.style.display = 'none';
+pi.style.opacity = 0;
+setCss3Style(pi,'transition','visibility 1s');
+setCss3Style(pi,'transition','opacity 1s');
+pi.scrollIntoView(true);
+window.scrollBy(0,-30);
+//window.scrollTo(0,document.body.scrollHeight);
+}
+
+function pauseInterval() {
+clearInterval(interval);
+document.getElementById('toggleInterval').innerHTML = counter;
+interval = null
+}
+function resumeInterval() {
+rightArrow();
+interval = setInterval(rightArrow, pause);
+document.getElementById('toggleInterval').innerHTML = counter;
+}
+function toggleInterval() {
+if (interval) {
+pauseInterval();
+}
+else {
+resumeInterval();
+}
+}
+
+var db = document.body;
+db.addEventListener('keydown', function(evt) {
+if (evt.keyCode == 39) { // right arrow
+rightArrow();
+document.getElementById('count').innerHTML = counter;
+}
+if (evt.keyCode == 37 && counter > 0) { // left arrow
+leftArrow();
+}
+});
+// add ids and hide all paragraphs
+window.onload = function (e) {
+var p = document.getElementsByClassName('para');
+for (i = 0; i < p.length; ++i) {
+p[i].id = 'para' + i;
+p[i].style.visibility = 'hidden';
+p[i].style.display = 'none';
+p[i].style.opacity = 0;
+}
+pause = 4*60*1000/p.length;
+//alert(pause);
+alert('Click OK to continue.');
+resumeInterval();
+};
+  </script>
+</body>
+</html>
