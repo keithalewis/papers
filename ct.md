@@ -121,14 +121,15 @@ a preorder. It is also a _Poset_: a preorder that is also _anti-symmetric_.
 If `x <= y` and `y <= x` then `x = y`. The relation is called a _partial order_.
 
 A preorder satisfying `x <= y` implies `y <= x` is an _equivalence relation_. 
-It is more common to use the notation `x ~ y` for equivalence relations. 
+It is more common to use the notation `x ~ y` for equivalence relations
+and say `x` and `y` belong to the same _equivalence class_. 
 
 For any relation `R:A -> B` define `R*:B -> A` by `(b, a) in R*` if
 and only if `(a, b) in R`.
 
-In the following exerises, let `R:A -> A` be a relation.
+In the following exercises, let `R:A -> A` be a relation.
 
-_Exercise 5. Show `R` is reflexive if and only if `1\_A` is a subset of `R`_.
+_Exercise 5. Show `R` is reflexive if and only if `1_A` is a subset of `R`_.
 
 _Exercise 6. Show `R` is transitive if and only if `RR` is a subset of `R`_.
 
@@ -138,7 +139,21 @@ _Exercise 7. Show `R` is anti-symmetric if and only if the intersection of
 A _partition_ of a set is a collection of disjoint subsets whos union equals the set.
 
 _Execise 8_. If `R` is an equivalence relation, then the equivalence classes
-form a partion of `A`.
+form a partion of `A`-.
+
+## Arrow Vocabulary
+
+Every function in _Set_ `f:A -> B` determines an equivalence relation on `A`.
+For `x, y in A`, define `x ~ y` iff `f(x) = f(y)`. 
+The _kernel_ of `f` is the partition of equivalence classes and is written 
+`A/~` or `A/ker f`. 
+The function `f/~` takes elements of `A` to the equivalence class it belongs to
+`(f/~)(x) = {y in A : y ~ x}`.
+
+_Exercise n. Show `f/~:A -> A/~` is a function_.
+
+an be factored as `f~:A -> A/ker f` and
+`f:A/ker f -> B`.
 
 ## Answers to Exercises
 
