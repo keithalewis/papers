@@ -1,7 +1,7 @@
 # Category Theory
 
 Vocabulary: _object_, _arrow_, _composition_,
-_identity arrow_, _associative law_.
+_identity arrow_, _associative law_, _homset_.
 
 ## Objects and Arrows
 
@@ -15,10 +15,21 @@ We could do away with objects using domain and codomain,
 just as it is possible to use nand to define the logical operators
 not, and, or, implies, but why make things more difficult?
 
+The "set" of arrows from `A` to `B` is called `Hom(A,B)`. 
+The scare quotes indicate this is not necessarily a set
+but standard terminology is _homset_.
+
+Math is all about following your nose and thinking rigorously,
+but it gets difficult very quickly. Most people come to the
+conclusion it is much ado about nothing. It is definitely much ado,
+but it is your call whether it is worth your trouble.
+
 ## Composition
 
 If `f: A -> B` and `g: B -> C` then there exists an arrow
-`g o f: A -> C`, the _composition_ of `f` with `g`.
+`g o f: A -> C`, the _composition_ of `f` with `g`. One of
+the axioms of Category Theory is that if the codomain of `f`
+is the same as the domain of `g`, then the composition exists.
 
 Or maybe the composition of `g` with `f`. Some people get caught
 up with trivialities. How come `f` and `g` get written in the
@@ -46,7 +57,7 @@ then `e = 1_B`_.
 ## Associative Law
 
 If `f: A -> B`, `g: B -> C`, and `h: C -> D` then `hgf` is unambiguous
-in category theory. The associative law is `(hg)f = h(gf)`.
+in category theory. The associative law states `(hg)f = h(gf)`.
 
 ## Examples
 
@@ -92,16 +103,19 @@ _Vec_ is the category of vector spaces: the objects are vector spaces
 and the arrows are linear transformations.
 
 Rings, fields, and algebras provide more examples. The theme of category
-theory is how to provide a unified treatment of various mathematical notions.
+theory is to provide a unified treatment of various mathematical notions.
 
-A _Preset_ is a set wtih a relation `<=` that is reflexive and transitive.
+A _Preorder_ is a set wtih a relation `<=` that is reflexive and transitive.
 The notion predates Category Theory, but this maps perfectly into the
 the definition of a category. The objects are elements of the set and
 there is an arrow `x -> y` if and only if `x <= y`.
 
-The identity arrow is the relexive property and composition is the transitive law. 
-Putting on your category theory goggles lets you see things that would not
-be obvious otherwise. 
+The identity arrow is the relexive property and composition is the transitive law.
+Preorders have the property that hom sets have at most one arrow.
+
+The category _Set_ with arrows `f: A -> B` if `A` is a subset of `B` is
+a preorder. It is also a _Poset_: a preorder that is also _anti-symmetric_.
+If `x <= y` and it is not the case that `y <= x` then `x = y`. 
 
 ## Answers to Exercises
 
@@ -134,4 +148,4 @@ are equivalent:
 > There exists `b in B` and there exists `c in C` with `(a, b) in R` and `(b, c) in S` and `(c, d) in T`.    
 > There exists `c in C` and there exists `b in B` with `(a, b) in R` and `(b, c) in S` and `(c, d) in T`.    
 > There exists `c in C` with `(a, c) in SR` and `(c, d) in T`.    
-> `(a, d) in T(RS)`.
+> `(a, d) in T(SR)`.
