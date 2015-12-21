@@ -93,6 +93,8 @@ _Exercise 4. Show that composition is associative in_ Set.
 
 Proof of Exercise 3.
 
+### Sets with Structure
+
 There are a slew of examples of categories where the objects are sets
 'with structure' and the arrows are functions that preserve that structure.
 
@@ -105,7 +107,8 @@ and the arrows are linear transformations.
 Rings, fields, and algebras provide more examples. The theme of category
 theory is to provide a unified treatment of various mathematical notions.
 
-A _Preorder_ is a set wtih a relation `<=` that is reflexive and transitive.
+A _Preset_ is a set wtih a relation `<=` that is reflexive and transitive.
+The relation is called a _preorder_.
 The notion predates Category Theory, but this maps perfectly into the
 the definition of a category. The objects are elements of the set and
 there is an arrow `x -> y` if and only if `x <= y`.
@@ -115,7 +118,27 @@ Preorders have the property that hom sets have at most one arrow.
 
 The category _Set_ with arrows `f: A -> B` if `A` is a subset of `B` is
 a preorder. It is also a _Poset_: a preorder that is also _anti-symmetric_.
-If `x <= y` and it is not the case that `y <= x` then `x = y`. 
+If `x <= y` and `y <= x` then `x = y`. The relation is called a _partial order_.
+
+A preorder satisfying `x <= y` implies `y <= x` is an _equivalence relation_. 
+It is more common to use the notation `x ~ y` for equivalence relations. 
+
+For any relation `R:A -> B` define `R*:B -> A` by `(b, a) in R*` if
+and only if `(a, b) in R`.
+
+In the following exerises, let `R:A -> A` be a relation.
+
+_Exercise 5. Show `R` is reflexive if and only if `1\_A` is a subset of `R`_.
+
+_Exercise 6. Show `R` is transitive if and only if `RR` is a subset of `R`_.
+
+_Exercise 7. Show `R` is anti-symmetric if and only if the intersection of
+`R` and `R*` contains `1_A`_.
+
+A _partition_ of a set is a collection of disjoint subsets whos union equals the set.
+
+_Execise 8_. If `R` is an equivalence relation, then the equivalence classes
+form a partion of `A`.
 
 ## Answers to Exercises
 
