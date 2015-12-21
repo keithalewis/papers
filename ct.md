@@ -103,7 +103,7 @@ The identity arrow is the relexive property and composition is the transitive la
 Putting on your category theory goggles lets you see things that would not
 be obvious otherwise. 
 
-## Answers to Excercises
+## Answers to Exercises
 
 _Exercise 1. If `e: A -> A` has the property `fe = f` for all `f: A -> B`
 then `e = 1_A`_.
@@ -125,3 +125,19 @@ _Exercise 3. Show the identity arrows of_ Set _are `1_A = {(a,a) in A x A : a in
 The proof of `R 1_B = R` is similar.
 
 _Exercise 4. Show that composition is associative in_ Set.
+
+**Solution** Let `R: A -> B`, `S: B -> C` and `T:C -> D`. The following
+are equivalent:
+> `(a, d) in (TS)R`.  
+> There exists `b in B` with `(a, b) in R`  
+>   and `(b, d) in (TS)`.  
+> There exists `b in B` with `(a, b) in R`  
+>   and there exists `c in C` with `(b, c) in S`  
+>   and `(c, d) in T`.  
+> There exists `b in B` and there exists `c in C`  
+>   with `(a, b) in R` and `(b, c) in S` and `(c, d) in T`.    
+> There exists `c in C` and there exists `b in B`  
+>   with `(a, b) in R` and `(b, c) in S` and `(c, d) in T`.    
+> There exists `c in C` with `(a, c) in SR`  
+>   and `(c, d) in T`.    
+> `(a, d) in T(RS)`.
