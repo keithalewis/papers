@@ -129,15 +129,9 @@ _Exercise 4. Show that composition is associative in_ Set.
 **Solution** Let `R: A -> B`, `S: B -> C` and `T:C -> D`. The following
 are equivalent:
 > `(a, d) in (TS)R`.  
-> There exists `b in B` with `(a, b) in R`  
->   and `(b, d) in (TS)`.  
-> There exists `b in B` with `(a, b) in R`  
->   and there exists `c in C` with `(b, c) in S`  
->   and `(c, d) in T`.  
-> There exists `b in B` and there exists `c in C`  
->   with `(a, b) in R` and `(b, c) in S` and `(c, d) in T`.    
-> There exists `c in C` and there exists `b in B`  
->   with `(a, b) in R` and `(b, c) in S` and `(c, d) in T`.    
-> There exists `c in C` with `(a, c) in SR`  
->   and `(c, d) in T`.    
+> There exists `b in B` with `(a, b) in R` and `(b, d) in (TS)`.  
+> There exists `b in B` with `(a, b) in R` and there exists `c in C` with `(b, c) in S` and `(c, d) in T`.  
+> There exists `b in B` and there exists `c in C` with `(a, b) in R` and `(b, c) in S` and `(c, d) in T`.    
+> There exists `c in C` and there exists `b in B` with `(a, b) in R` and `(b, c) in S` and `(c, d) in T`.    
+> There exists `c in C` with `(a, c) in SR` and `(c, d) in T`.    
 > `(a, d) in T(RS)`.
