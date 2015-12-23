@@ -1,5 +1,13 @@
 # Category Theory
 
+I was looking up a David Hilbert quote and came across this:
+> Besides it is an error to believe that rigour is the enemy of simplicity. 
+> On the contrary we find it confirmed by numerous examples that the rigorous 
+> method is at the same time the simpler and the more easily comprehended. 
+> The very effort for rigor forces us to find out simpler methods of proof. 
+
+
+— David Hilbert
 Vocabulary: _object_, _arrow_, _composition_,
 _identity arrow_, _associative law_, _homset_.
 
@@ -138,10 +146,8 @@ _Exercise 7. Show `R` is anti-symmetric if and only if the intersection of
 
 A _partition_ of a set is a collection of disjoint subsets whos union equals the set.
 
-_Execise 8_. If `R` is an equivalence relation, then the equivalence classes
-form a partion of `A`-.
-
-## Arrow Vocabulary
+_Execise 8. If `R` is an equivalence relation, then the equivalence classes
+form a partion of `A`_.
 
 Every function in _Set_ `f:A -> B` determines an equivalence relation on `A`.
 For `x, y in A`, define `x ~ y` iff `f(x) = f(y)`. 
@@ -154,6 +160,9 @@ _Exercise n. Show `f/~:A -> A/~` is a function_.
 
 an be factored as `f~:A -> A/ker f` and
 `f:A/ker f -> B`.
+
+## Arrow Vocabulary
+
 
 ## Answers to Exercises
 
