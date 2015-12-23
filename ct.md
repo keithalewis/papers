@@ -46,7 +46,7 @@ but standard terminology is _homset_.
 Math is all about following your nose and thinking rigorously,
 but it gets difficult very quickly. Most people come to the
 conclusion it is much ado about nothing. It is definitely much ado,
-but it is your call whether it is worth your trouble.
+but it is your call whether it is something.
 
 ## Composition
 
