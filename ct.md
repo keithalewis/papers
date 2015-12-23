@@ -6,8 +6,24 @@ I was looking up a David Hilbert quote and came across this:
 > method is at the same time the simpler and the more easily comprehended. 
 > The very effort for rigor forces us to find out simpler methods of proof. 
 
+It reminded me of Alex Stepanov's and Paul McJones _Elements of Programming_.
+And Bjarne Stroupstup's battles against the original _Concepts_ proposals.
+He fought passionatly to get _Concepts Lite_ in and the measure of his victory
+is that everyone has forgotten how horribly complicated the original proposals
+were and the _Lite_ has been dropped. Don't get me started on _Ranges v3_.
 
-— David Hilbert
+Hilbert figured out Euclid was missing a few axioms from geometry. For
+example, the notion a point was _between_ two other points that determine
+a line. Vocabulary is how human beings communicate, but the quote I was
+looking for is
+> The elements, such as point, line, plane, and others, could be substituted
+> by tables, chairs, glasses of beer and other such objects
+
+He revise his attempts at axiomatizing geometry several times prior
+to realizing this. Maybe this is old hat these days, but this is what math is
+about now. The names don't really matter, only the relationships
+they satify.
+
 Vocabulary: _object_, _arrow_, _composition_,
 _identity arrow_, _associative law_, _homset_.
 
