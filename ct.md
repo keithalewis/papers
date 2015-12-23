@@ -8,9 +8,9 @@ I was looking up a David Hilbert quote and came across this:
 
 It reminded me of Alex Stepanov's and Paul McJones _Elements of Programming_.
 And Bjarne Stroupstup's battles against the original _Concepts_ proposals.
-He fought passionatly to get _Concepts Lite_ in and the measure of his victory
+He fought passionately to get _Concepts Lite_ in and the measure of his victory
 is that everyone has forgotten how horribly complicated the original proposals
-were and the _Lite_ has been dropped. Don't get me started on _Ranges v3_.
+were and the _Lite_ has been dropped. 
 
 Hilbert figured out Euclid was missing a few axioms from geometry. For
 example, the notion a point was _between_ two other points that determine
@@ -22,7 +22,7 @@ looking for is
 He revise his attempts at axiomatizing geometry several times prior
 to realizing this. Maybe this is old hat these days, but this is what math is
 about now. The names don't really matter, only the relationships
-they satify.
+they satify. Welcome to Category Theory.
 
 Vocabulary: _object_, _arrow_, _composition_,
 _identity arrow_, _associative law_, _homset_.
@@ -138,7 +138,7 @@ the definition of a category. The objects are elements of the set and
 there is an arrow `x -> y` if and only if `x <= y`.
 
 The identity arrow is the relexive property and composition is the transitive law.
-Preorders have the property that hom sets have at most one arrow.
+Preorders have the property that homsets have at most one arrow.
 
 The category _Set_ with arrows `f: A -> B` if `A` is a subset of `B` is
 a preorder. It is also a _Poset_: a preorder that is also _anti-symmetric_.
