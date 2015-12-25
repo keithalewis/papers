@@ -23,8 +23,8 @@ looking for is
 
 He revised his attempts at axiomatizing geometry several times prior
 to realizing this. Maybe this is old hat these days, but this is what math is
-about now. The names don't really matter, only the relationships
-they satify. Welcome to Category Theory.
+about. The names don't really matter, only the relationships
+they satify.
 
 Vocabulary: _object_, _arrow_, _composition_,
 _identity arrow_, _associative law_, _homset_.
@@ -36,11 +36,7 @@ _identity arrow_, _associative law_, _homset_.
 `A` is the _domain_ of `f` and `B` is the _codomain_ of `f`,
 aka _range_, _target_, or _but_ if you parlez Francais,
 but codomain is more apropos when we get to 'opposite day' furthur on.
-
-I remember the visceral reaction from my math colleagues when
-I told them I was looking into Category Theory. "It doesn't
-**do** anything." 
-
+ 
 We could do away with objects using domain and codomain,
 just as it is possible to use nand to define the logical operators
 not, and, or, implies, but why make things more difficult?
