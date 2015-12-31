@@ -193,7 +193,7 @@ in the old school, and _bijective_ by
 ### Properties of Arrows
 
 It is not always the case that arrows in a category can be factored
-in the same way.
+in a similar way.
 
 A surjective function, `f:A -> B` has the property that for any functions
 `g,h:B -> C` if `fg = fh` then `g = h`. In category theory such `f` are
@@ -202,6 +202,8 @@ called _epimorphisms_.
 An injective function, `f:A -> B` has the property that for any functions
 `g,h:C -> A` if `gf = hf` then `g = h`. In category theory such `f` are
 called _monomorphisms_.
+
+Functions that satisfy both properties are called _isomorphisms_.
 
 ## Arrow Vocabulary
 
