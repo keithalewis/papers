@@ -165,17 +165,41 @@ A _partition_ of a set is a collection of disjoint subsets whos union equals the
 _Execise 8. If `R` is an equivalence relation, then the equivalence classes
 form a partion of `A`_.
 
+#### Some Properties of _Set_
+
 Every function in _Set_ `f:A -> B` determines an equivalence relation on `A`.
 For `x, y in A`, define `x ~ y` iff `f(x) = f(y)`. 
-The _kernel_ of `f` is the partition of equivalence classes and is written 
-`A/~` or `A/ker f`. 
 The function `f/~` takes elements of `A` to the equivalence class it belongs to
-`(f/~)(x) = {y in A : y ~ x}`.
+`(f/~)(x) = x/~ = {y in A : y ~ x}`.
 
-_Exercise n. Show `f/~:A -> A/~` is a function_.
+_Exercise 9. Show `f/~:A -> A/~` is a function_.
 
-an be factored as `f~:A -> A/ker f` and
-`f:A/ker f -> B`.
+There exists a function `g:A/~ -> B` defined by `g(x/~) = f(x)`.
+
+_Excercise 10. Show `g` is a function_.
+
+The function `f/~` is _onto_, or _surjective_. For every element in its
+codomain there exists an element in its domain that the function maps to.
+
+The function `g` is _1-to-1_, or _injective_. No two elements in the
+domain get mapped to the same element in the codomain.
+
+Functions that satisfy both properties are called 1-to-1 and onto
+in the old school, and _bijective_ by 
+[Nicolas Bourbaki](https://en.wikipedia.org/wiki/Nicolas_Bourbaki).
+
+### Properties of Arrows
+
+It is not always the case that arrows in a category can be factored
+in the same way.
+
+A surjective function, `f:A -> B` has the property that for any functions
+`g,h:B -> C` if `fg = fh` then `g = h`. In category theory such `f` are
+called _epimorphisms_. 
+
+An injective function, `f:A -> B` has the property that for any functions
+`g,h:C -> A` if `gf = hf` then `g = h`. In category theory such `f` are
+called _monomorphisms_.
 
 ## Arrow Vocabulary
 
