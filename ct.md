@@ -1,6 +1,7 @@
 # Category Theory
 
 I was looking up a David Hilbert quote and came across this:
+
 > Besides it is an error to believe that rigour is the enemy of simplicity. 
 > On the contrary we find it confirmed by numerous examples that the rigorous 
 > method is at the same time the simpler and the more easily comprehended. 
@@ -10,19 +11,20 @@ It reminded me of Alex Stepanov's and Paul McJones _Elements of Programming_.
 And Bjarne Stroupstup's battles against the original _Concepts_ proposals.
 He fought passionately to get _Concepts Lite_ in and the measure of his victory
 is that everyone has forgotten how horribly complicated the original proposals
-were and the _Lite_ has been dropped. 
+were and the _Lite_ has now been dropped. 
 
 Hilbert figured out Euclid was missing a few axioms from geometry. For
 example, the notion a point was _between_ two other points that determine
-a line. Vocabulary is how human beings communicate, but the quote I was
+a line. Vocabulary is how human beings communicate. The quote I was
 looking for is
+
 > The elements, such as point, line, plane, and others, could be substituted
 > by tables, chairs, glasses of beer and other such objects
 
-He revise his attempts at axiomatizing geometry several times prior
+He revised his attempts at axiomatizing geometry several times prior
 to realizing this. Maybe this is old hat these days, but this is what math is
-about now. The names don't really matter, only the relationships
-they satify. Welcome to Category Theory.
+about. The names don't really matter, only the relationships
+they satify.
 
 Vocabulary: _object_, _arrow_, _composition_,
 _identity arrow_, _associative law_, _homset_.
@@ -34,7 +36,7 @@ _identity arrow_, _associative law_, _homset_.
 `A` is the _domain_ of `f` and `B` is the _codomain_ of `f`,
 aka _range_, _target_, or _but_ if you parlez Francais,
 but codomain is more apropos when we get to 'opposite day' furthur on.
-
+ 
 We could do away with objects using domain and codomain,
 just as it is possible to use nand to define the logical operators
 not, and, or, implies, but why make things more difficult?
