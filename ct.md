@@ -239,27 +239,27 @@ are equivalent:
 _Exercise 5. Show `R` is reflexive if and only if `1_A` is a subset of `R`_.
 
 **Solution** The following statements are equivalent:  
-> `R` is reflexive
-> `a <= a` for all `a in A`
-> `(a, a) in R` for all `a in A`
-> `1_A` is a subset of `R`
+> `R` is reflexive  
+> `a <= a` for all `a in A`  
+> `(a, a) in R` for all `a in A`  
+> `1_A` is a subset of `R`  
 
 _Exercise 6. Show `R` is transitive if and only if `RR` is a subset of `R`_.
 
 **Solution** The following statements are equivalent:  
-> `R` is transitive
-> `a <= b` and `b <= c` imply `a <= c`
-> `(a, b) in R` and `(b, c) in R` imply `(a, c) in R`
-> `(a, c) in RR` implies `(a, c) in R` 
-> `RR` is a subset of `R`
+> `R` is transitive  
+> `a <= b` and `b <= c` imply `a <= c`  
+> `(a, b) in R` and `(b, c) in R` imply `(a, c) in R`  
+> `(a, c) in RR` implies `(a, c) in R`  
+> `RR` is a subset of `R`  
 
 _Exercise 7. Show `R` is anti-symmetric if and only if the intersection of
 `R` and `R*` is contained `1_A`_.
 
 **Solution** The following statements are equivalent:  
-> `R` is anti-symmetric
-> `a <= b` and `b <= a` imply `a = b`
-> `(a, b) in R` and `(b, a) in R` imply `a = b`
-> `(a, b) in R` and `(a, b) in R*` imply `a = b`
-> `(a, b) in R intersect R*` imply `(a, b) in 1_A` 
-> The intersection of `R` and `R*` is contained `1_A`.
+> `R` is anti-symmetric  
+> `a <= b` and `b <= a` imply `a = b`  
+> `(a, b) in R` and `(b, a) in R` imply `a = b`  
+> `(a, b) in R` and `(a, b) in R*` imply `a = b`  
+> `(a, b) in R intersect R*` imply `(a, b) in 1_A`   
+> The intersection of `R` and `R*` is contained `1_A`  
