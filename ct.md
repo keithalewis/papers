@@ -128,6 +128,8 @@ and the arrows are linear transformations.
 Rings, fields, and algebras provide more examples. The theme of category
 theory is to provide a unified treatment of various mathematical notions.
 
+### Orders 
+
 A _Preset_ is a set wtih a relation `<=` that is reflexive and transitive.
 The relation is called a _preorder_.
 The notion predates Category Theory, but this maps perfectly into the
@@ -155,12 +157,20 @@ _Exercise 5. Show `R` is reflexive if and only if `1_A` is a subset of `R`_.
 _Exercise 6. Show `R` is transitive if and only if `RR` is a subset of `R`_.
 
 _Exercise 7. Show `R` is anti-symmetric if and only if the intersection of
-`R` and `R*` contains `1_A`_.
+`R` and `R*` is contained in `1_A`_.
 
 A _partition_ of a set is a collection of disjoint subsets whos union equals the set.
 
 _Exercise 8. If `R` is an equivalence relation, then the equivalence classes
 form a partion of `A`_.
+
+### The Category _Cat_
+
+A _functor_ from category _C_ to category _D_ takes object of _C_
+to objects of _D_ and arrows of _C_ to arrows of _D_ with the properties  
+
+(1) if `f: A -> B` in _C_ then `F(f): F(A) -> F(B)` in _D_.   
+(2) if `g: A -> B` and `h: B -> C` in _C_ then `F(hg) = F(h)F(g)` in _D_.  
 
 #### Some Properties of _Set_
 
@@ -254,7 +264,7 @@ _Exercise 6. Show `R` is transitive if and only if `RR` is a subset of `R`_.
 > `RR` is a subset of `R`  
 
 _Exercise 7. Show `R` is anti-symmetric if and only if the intersection of
-`R` and `R*` is contained `1_A`_.
+`R` and `R*` is contained in `1_A`_.
 
 **Solution** The following statements are equivalent:  
 > `R` is anti-symmetric  
@@ -262,4 +272,4 @@ _Exercise 7. Show `R` is anti-symmetric if and only if the intersection of
 > `(a, b) in R` and `(b, a) in R` imply `a = b`  
 > `(a, b) in R` and `(a, b) in R*` imply `a = b`  
 > `(a, b) in R intersect R*` imply `(a, b) in 1_A`   
-> The intersection of `R` and `R*` is contained `1_A`  
+> The intersection of `R` and `R*` is contained in `1_A`  
