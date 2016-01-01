@@ -169,7 +169,7 @@ form a partion of `A`_.
 A _functor_ from category _C_ to category _D_ takes object of _C_
 to objects of _D_ and arrows of _C_ to arrows of _D_ with the properties  
 
- i. If `f: A -> B` in _C_ then `F(f): F(A) -> F(B)` in _D_.   
+  i. If `f: A -> B` in _C_ then `F(f): F(A) -> F(B)` in _D_.   
  ii. If `g: A -> B` and `h: B -> C` in _C_ then `F(hg) = F(h)F(g)` in _D_.  
 
 #### Some Properties of _Set_
