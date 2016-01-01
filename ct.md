@@ -27,7 +27,7 @@ about. The names don't really matter, only the relationships
 they satify.
 
 Vocabulary: _object_, _arrow_, _composition_,
-_identity arrow_, _associative law_, _homset_.
+_identity arrow_, _associative law_.
 
 ## Objects and Arrows
 
@@ -45,11 +45,6 @@ The "set" of arrows from `A` to `B` is called `Hom(A,B)`.
 The scare quotes indicate this is not necessarily a set
 but standard terminology is _homset_.
 
-Math is all about following your nose and thinking rigorously,
-but it gets difficult very quickly. Most people come to the
-conclusion it is much ado about nothing. It is definitely much ado,
-but it is your call whether it is something.
-
 ## Composition
 
 If `f: A -> B` and `g: B -> C` then there exists an arrow
@@ -62,8 +57,9 @@ up with trivialities. How come `f` and `g` get written in the
 reverse order?
 
 You could define `f;g` (or your favorite binary operator symbol
-instead of `;`) to be `g o f`. Or just write the arrows backwards.
-Let's agree to drop the `'o'` symbol and write `gf` instead.
+instead of `;`) to be `g o f`. Or just write the arrows backwards:
+`g: C <- B` and `f: B <- A`.
+Let's agree to drop the `'o'` symbol and simply write `gf`.
 
 ## Identity Arrow
 
@@ -96,7 +92,8 @@ the arrows are functions. People tried to come up with a purely
 category theory notion of Set and ended up with _topos_ theory.
 One does not simply consider 'elements' of a 'set'. Long story.
 
-Then there is _Par_, the category of partial functions. It gets no respect.
+Then there is _Par_, the category of partial functions. It does not
+get the respect it deserves.
 Most functions are actually partial functions. The function `x -> 1/x`
 is only a partial function from the real numbers to the real numbers.
 
@@ -111,13 +108,11 @@ there exists at most one `b in B` such that `(a,b) in g`.
 
 Composition of the relation `R`, contained in `A x B`, and the relation `S`
 contained in `B x C` is
-`SR = {(a,c) in A x C : there is a b in B with (a,b) in R and (b,c) in S}`
+`SR = {(a,c) in A x C : `there is a` b in B `with` (a,b) in R `and` (b,c) in S}`
 
 _Exercise 3. Show the identity arrows of_ Set _are `1_A = {(a,a) in A x A : a in A}`_.
 
 _Exercise 4. Show that composition is associative in_ Set.
-
-Proof of Exercise 3.
 
 ### Sets with Structure
 
@@ -164,7 +159,7 @@ _Exercise 7. Show `R` is anti-symmetric if and only if the intersection of
 
 A _partition_ of a set is a collection of disjoint subsets whos union equals the set.
 
-_Execise 8. If `R` is an equivalence relation, then the equivalence classes
+_Exercise 8. If `R` is an equivalence relation, then the equivalence classes
 form a partion of `A`_.
 
 #### Some Properties of _Set_
