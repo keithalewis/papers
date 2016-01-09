@@ -1,5 +1,23 @@
 # Category Theory
 
+Monads are all the rage lately. Google `monad` to gauge how popular.
+You will come across the wags repeating Saunders Mac Clane's definition
+
+> A monad is a monoid in the category of endfuctors.
+
+There is more to mathematics than statements that are either true or false.
+
+Don't ask me how I happen to have a copy of _Categories for the Working Mathematician_ 
+with an enscription to Samuel Eilenberg.  
+> To Sammy,
+> Who was right there at the start
+> and who _is_ a working mathematician with my admiration.
+> Saunders 
+My wife told me I can't tell you the truth.
+
+What he actually said, among other things people are too busy/distracted
+to read.
+
 I was looking up a David Hilbert quote and came across this:
 
 > Besides it is an error to believe that rigour is the enemy of simplicity. 
@@ -24,7 +42,7 @@ looking for is
 He revised his attempts at axiomatizing geometry several times prior
 to realizing this. Maybe this is old hat these days, but this is what math is
 about. The names don't really matter, only the relationships
-they satify.
+they satisfy.
 
 Vocabulary: _object_, _arrow_, _composition_,
 _identity arrow_, _associative law_.
@@ -35,7 +53,7 @@ _identity arrow_, _associative law_.
 
 `A` is the _domain_ of `f` and `B` is the _codomain_ of `f`,
 aka _range_, _target_, or _but_ if you parlez Francais,
-but codomain is more apropos when we get to 'opposite day' furthur on.
+but codomain is more apropos when we get to 'opposite day' further on.
  
 We could do away with objects using domain and codomain,
 just as it is possible to use nand to define the logical operators
@@ -139,8 +157,9 @@ there is an arrow `x -> y` if and only if `x <= y`.
 The identity arrow is the relexive property and composition is the transitive law.
 Preorders have the property that homsets have at most one arrow.
 
-The category _Set_ with arrows `f: A -> B` if `A` is a subset of `B` is
-a preorder. It is also a _Poset_: a preorder that is also _anti-symmetric_.
+The category _Set_ can be viewed as a preset. The objects are sets
+and the arrows are `f: A -> B` if `A` is a subset of `B`.
+It is also a _Poset_: a preorder that is _anti-symmetric_.
 If `x <= y` and `y <= x` then `x = y`. The relation is called a _partial order_.
 
 A preorder satisfying `x <= y` implies `y <= x` is an _equivalence relation_. 
@@ -171,6 +190,17 @@ to objects of _D_ and arrows of _C_ to arrows of _D_ with the properties
 
   i. If `f: A -> B` in _C_ then `F(f): F(A) -> F(B)` in _D_.   
  ii. If `g: A -> B` and `h: B -> C` in _C_ then `F(hg) = F(h)F(g)` in _D_.  
+ 
+The category _Cat_ has categories as objects and functors as arrows.
+
+_Exercise 9. What is the identity functor?_
+
+_Exercise 10. Show composition of functors is associative_.
+
+You may now be wondering is there is a category of category
+of categories. There is. The objects are functors and the
+arrows are _natural transformations_, but we are getting ahead
+of ourselves.
 
 #### Some Properties of _Set_
 
@@ -179,11 +209,11 @@ For `x, y in A`, define `x ~ y` iff `f(x) = f(y)`.
 The function `f/~` takes elements of `A` to the equivalence class it belongs to
 `(f/~)(x) = x/~ = {y in A : y ~ x}`.
 
-_Exercise 9. Show `f/~:A -> A/~` is a function_.
+_Exercise 11. Show `f/~:A -> A/~` is a function_.
 
 There exists a function `g:A/~ -> B` defined by `g(x/~) = f(x)`.
 
-_Excercise 10. Show `g` is a function_.
+_Excercise 12. Show `g` is a function_.
 
 The function `f/~` is _onto_, or _surjective_. For every element in its
 codomain there exists an element in its domain that the function maps to.
