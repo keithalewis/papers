@@ -22,9 +22,9 @@ looking for is
 > by tables, chairs, glasses of beer and other such objects
 
 He revised his attempts at axiomatizing geometry several times prior
-to realizing this. Maybe this is old hat these days, but this is what math is
+to realizing this. Maybe it is old hat these days, but this is what math is
 about. The names don't really matter, only the relationships
-they satify.
+they satify. But vocabulary is how people communicate.
 
 Vocabulary: _object_, _arrow_, _composition_,
 _identity arrow_, _associative law_.
@@ -98,7 +98,8 @@ Most functions are actually partial functions. The function `x -> 1/x`
 is only a partial function from the real numbers to the real numbers.
 
 _Rel_ is the category of relations. It generalizes _Set_ and _Par_.
-Given sets `A` and `B`, a _relation_ is a subset of the cartesian product `A x B`.
+Given sets `A` and `B`, a _relation_ is a subset of the cartesian product
+`A x B`.
 
 A function, `f`, is a relation with the property that for every `a in A`
 there exists a unique `b` in `B` such that `(a,b) in f`.
@@ -136,12 +137,14 @@ The notion predates Category Theory, but this maps perfectly into the
 the definition of a category. The objects are elements of the set and
 there is an arrow `x -> y` if and only if `x <= y`.
 
-The identity arrow is the relexive property and composition is the transitive law.
+The identity arrow is the relexive property and composition is the
+transitive law.
 Preorders have the property that homsets have at most one arrow.
 
-The category _Set_ with arrows `f: A -> B` if `A` is a subset of `B` is
-a preorder. It is also a _Poset_: a preorder that is also _anti-symmetric_.
-If `x <= y` and `y <= x` then `x = y`. The relation is called a _partial order_.
+The category with arrows `f: A -> B` if `A` is a subset of `B` is
+a preorder. It is also a _Poset_: a preorder that is _anti-symmetric_.
+If `x <= y` and `y <= x` then `x = y`.
+The relation is called a _partial order_.
 
 A preorder satisfying `x <= y` implies `y <= x` is an _equivalence relation_. 
 It is more common to use the notation `x ~ y` for equivalence relations
