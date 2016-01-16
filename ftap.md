@@ -12,7 +12,7 @@ and _cash flows_ $C_t\colon\AA_t\to\RR^I$ that are
 bounded functions that depend only on the information
 available at time $t$.
 
-A _trading strategy_ is a set of times $(\tau_j)$ and
+A _trading strategy_ is a set of increasing times $(\tau_j)$ and
 _trades_ $\Gamma_j\colon\AA_{\tau_j}\to\RR^I$.
 Trades accumulate into a _position_
 $\Delta_t = \sum_{\tau_j < t} \Gamma_j$.
