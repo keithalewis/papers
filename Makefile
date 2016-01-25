@@ -5,6 +5,7 @@ FLAGS += --mathjax
 FLAGS += --css ftap.css
 FLAGS += --section-divs
 FLAGS += -H header.html
+FLAGS += -A footer.html
 FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
 
 all: ftap.html
@@ -17,3 +18,5 @@ rsync: $(HTML)
 
 clean:
 	rm -f $(HTML)
+
+ftap.html: ftap.md ftap.css header.html footer.html view.js

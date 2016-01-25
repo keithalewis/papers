@@ -1,17 +1,117 @@
-# The Fundamental Theorem of Asset Pricing
+# Unified Derivatives
 
-Let $\Omega$ be the set of possible outcomes and
-$(\AA_t)_{t\in T}$ be algebras on $\Omega$
-indexed by trading times $T$. The algebra
-$\AA_t$ represents the information available at time $t$
-and we assume $\AA_t \subseteq \AA_u$ if $t < u$.
+This note suggests a rigourous mathematical theory for pricing, hedging,
+and quantifying the risk of _any_ derivative security assuming a single
+currency and perfect liquidity. 
 
-Let $I$ be the set of market traded instruments.
-A _model_ consists of _prices_ $X_t\colon\AA_t\to\RR^I$
-and _cash flows_ $C_t\colon\AA_t\to\RR^I$ that are
-bounded functions that depend only on the information
-available at time $t$.
+## Mathematical Preliminaries
 
+Mathematical finance involves mathematics.
+Our unified approach requires far less mathematics than
+the standard theory. A complete review of what is
+required follows.
+
+### Outcomes
+
+The _outcomes_ that can happen are modeled by
+a set, $\Omega$. In the Black-Scholes/Merton model
+$\Omega = C[0,\infty)$, the set of continuous functions
+from now into the future. They model the possible future
+stock price movements.
+
+The set of possible outcomes can contain historical information
+and data other than prices. Many models involving
+trading stategies do. 
+
+### Algebras
+An _algebra_, $\AA$, is a collection of subsets of $\Omega$ closed under
+complement and union. Elements of $\AA$ are called _events_. It
+is customary to assume the empty set belongs to an algebra.
+An _atom_, $A\in\AA$ has the property $B\subseteq A$ and
+$B\in\AA$ implies $B = \emptyset$ or $B = A$.
+
+**Lemma.**
+_If an algebra is finite then the atoms form a_ partition.
+
+A _partition_ is a collection of disjoint subsets having
+union equal to the entire set. Every outcome $\omega\in\Omega$
+belongs to an atom $A_\omega = \cap\{A\in\AA:\omega\in A\}$.
+Let $\{A_j\}$ be the set
+of atoms. Since $A_j\cap A_k\subseteq A_j$ then
+either $A_j\cap A_k = \emptyset$ or $A_j\cap A_k = A_j$.
+If the sets are not disjoint, then $A_j\subseteq A_k$.
+Since $A_j$ is not empty, $A_j = A_k$.
+
+Partitions are how _partial information_ is modeled. Knowing
+which $\omega\in\Omega$ occurs is complete information. Knowing
+only which atom $\omega$ belongs to is partial information.
+The partition of all singleton sets corresponds to complete
+information. The partition consisting of the set $\Omega$
+represents total lack of information.
+
+### Measurable Functions
+
+A function $X\colon\Omega\to\RR$ is _$\AA$-measurable_ 
+if $X^{-1}((-\infty,x]) = \{\omega\in\Omega:X(\omega)\le x\}$
+belongs to $\AA$ for all $x\in\RR$. If $\AA$ is finite,
+a function is measurable if and only if it is constant on
+atoms. We use the notation $X\colon\AA\to\RR$ to indicate
+$X$ is $\AA$-measurable.
+
+### Measures
+A (finitely additive) _measure_ is a function $\Pi\colon\AA\to\RR$
+such that $\Pi(A\cup B) = \Pi(A) + \Pi(B) - \Pi(A\cap B)$.  Note
+$\Pi(\emptyset\cup\emptyset) = 2\Pi(\emptyset)$ so $\Pi(\emptyset) =
+0$ and $\Pi(A\cup B) = \Pi(A) + \Pi(B)$ if $A\cap B = \emptyset$. The
+_integral_ of $X\colon\AA\to\RR$, $\int_\Omega X\,d\Pi$, is defined in
+the same way as for standard Lebesgue theory.
+Proving theorems about interchange of limits is more difficult
+than for countable additive measures, but we have no need for
+those results. 
+
+Let $B(\Omega,\AA)$ be the vector space of bounded linear $\AA$-measurable
+functions on $\Omega$. The space of bounded linear functionals,
+$B(\Omega,\AA)^*, can be identified with the space of finitely additive
+measures, $ba(\Omega,\AA)$.  We use the notation $\langle X,\pi\rangle =
+\int_\Omega X\,d\Pi$ for the _dual pairing_.
+
+Given $X\in B(\Omega,\AA)$ and $\Pi\in ba(\Omega,\AA)$ we can
+define the measure $X\Pi$ by $\langle Y,X\Pi\rangle
+= \langle YX,\Pi\rangle$ for $Y\in B(\Omega,\AA)$. This defines
+a linear functional hence can be identified with a finitely
+additive measure.
+
+If $P$ is a positive measure with $P(\Omega) = 1$ it is customary to
+write $E[X]$ for $\langle X,P\rangle$.  If $\BB$ is a subalgebra of
+$\AA$ then $Y$ is the _conditional expectation_ of $X$ given $\BB$ if
+and only if $Y$ is $\BB$ measurable and $\int_B Y\,dP = \int_B X\,dP$
+for all $B\in\BB$. We write $Y = E[X|\BB]$.
+
+**Lemma.** _$Y = E[X|\BB]$ if and only if $Y$ is $\BB$-measurable and
+$YP|_\BB = XP|_\BB$._
+
+$\Pi|_\BB$ is the measure $\Pi$ _restricted_
+to the algebra $\BB$. The following statements are equivalent:
+$\int_B Y\,dP = \int_B X\,dP$ for all $B\in\BB$.
+$\langle 1_BY,P\rangle = \langle 1_BX,P\rangle$ for all $B\in\BB$.
+$\langle 1_B,YP\rangle = \langle 1_B,XP\rangle$ for all $B\in\BB$.
+$YP|_\BB = XP|_\BB$.
+
+### Filtrations
+Let $T$ be the times at which trading can occur.  A collection
+$(\AA_t)_{t\in T}$ with  $\AA_t \subseteq \AA_u$ if $t < u$ is a
+_filtration_. It models information revealed over time.
+
+### Prices and Cash Flows
+Let $I$ be the set of market traded instruments.  A _model_ consists
+of bounded, vector-valued functions $X_t\colon\AA_t\to\RR^I$ and
+$C_t\colon\AA_t\to\RR^I$ that represent _prices_ and _cash flows_.
+The price is assumed to be in a given currency and every instrument
+can be bought or sold in any quantity at that price.  Cash flows are
+payments associated with holding an instrument, e.g., coupons for bonds
+and dividends for stocks.
+
+### Trades and Position
 A _trading strategy_ is a set of increasing times $(\tau_j)$ and
 _trades_ $\Gamma_j\colon\AA_{\tau_j}\to\RR^I$.
 Trades accumulate into a _position_
@@ -22,14 +122,86 @@ If we define $\Gamma_t = \Gamma_j\delta_{t_j}(t)$
 where $\delta_{t_j}(t) = 1$ if $t_j = t$ and $0$ otherwise,
 then $\Delta_t = \sum_{s < t} \Gamma_s$.
 
+### Account and Value
 Trades result in numbers showing up in your _account_.
 At time $t$ your account statement will be
 $A_t = \Delta_t \cdot C_t - \Gamma_t\cdot X_t$.
 You receive all the cash flows from your existing position
 and pay for the trades you do based on market prices.
 
-The _value_ of your trades is $V_t = (\Delta_t + \Gamma_t)\cdot X_t$.
-This is also called _market-to-market_.
+The (marked-to-market) _value_ of your trades at time $t$
+is $V_t = (\Delta_t + \Gamma_t)\cdot X_t$. It represents
+the amount you would get from unwinding your current
+position and the trades you just did.
+
+### Arbitrage
+_Arbitrage_ exists if there are trades with $\sum \Gamma_j = 0$,
+$A_{\tau_0} > 0$, and $A_t\ge0$ for $t > \tau_0$.
+In words, there is a trading strategy that eventually closes out,
+makes money on the first trade, and never loses thereafter.
+
+Note that this definition does not involve measures. 
+It is not satisfactory in practice since
+$A_{\tau_0} = -\Gamma_0\cdot X_{\tau_0}$ may be arbitrarily
+small compared to $|\Gamma_0|\cdot |X_{\tau_0}|$.
+The latter is a measure of the amount of capital required
+to place the initial trade.
+
+### Pricing Measures
+_Pricing measures_ are positive (finitely additive) measures
+$\Pi_t\colon\AA_t\to\RR$ such that
+$$
+X_t\Pi_t = (\sum_{t<s\le u} C_s\Pi_s + X_u\Pi_u)|_{\AA_t}
+$$
+
+If $T = \{t_j\}$ is discrete, then
+$$
+X_j \Pi_j = (C_{j+1} + X_{j+1})\Pi_{j+1}|_{\AA_j}\tag{1}
+$$
+where $X_j = X_{t_j}$, etc. We have
+\begin{align*}
+V_j \Pi_j &= (\Delta_j + \Gamma_j)\cdot X_j\Pi_j\\
+&= \Delta_{j+1}\cdot X_j\Pi_j\\
+&= \Delta_{j+1}\cdot (C_{j+1} + X_{j+1})\Pi_{j+1}|_{\AA_j}\\
+&= (A_{j+1} + \Gamma_{j+1}\cdot X_{j+1}
++ \Delta_{j+1}\cdot X_{j+1})\Pi_{j+1}|_{\AA_j}\\
+&= (A_{j+1} + V_{j+1})\Pi_{j+1}|_{\AA_j}\\
+\end{align*}
+The equation
+$$
+V_j \Pi_j= (A_{j+1} + V_{j+1})\Pi_{j+1}|_{\AA_j}\tag{2}
+$$
+is the skeleton key to understanding derivative securities.
+Note how $V$ and $A$ in equation (2) correspond to
+$X$ and $C$ in equation (1). Trading strategies make it
+possible to create synthetic instruments.
+
+A _derivative security_ is a contract between a _buyer_
+and a _seller_ to exchange instruments in the future.
+The Fundamental Theorem of Asset Pricing provides a mathematical
+basis for determining the value of the contract. It requires
+a bit more work to understand the associated hedge and
+risk involved in the transaction.
+
+We only consider _cash settled_ derivatves. An European call option on
+a stock that expires in-the-money does not pay one share of stock in
+exchange for the strike. It pays the the difference of the
+share price and the strike if that is positive.
+
+A derivative contract specifies amounts, $A_j$, to be paid at
+times $t_j$. The buyer receives $A_j$ if $A_j > 0$ and pays
+$-A_j$ to the seller if $A_j < 0$.
+
+An European option has only one payment at expiration $u$.
+If we can find trades $\Gamma_j$ at $\tau_j$ such that
+$A_t = 0$ for $0 < t < u$ and $A_u$ is the option payoff,
+then the cost of setting up the initial hedge, $V_0$,
+is the value of the option. (Assuming $\tau_0 = 0$ and
+$\tau_n = u$.)
+
+## The Fundamental Theorem of Asset Pricing
+**Fundamental Theorem of Asset Pricing**. _A model is arbitrge
+free if and only if pricing measures exist._
 
 ## Zero Coupon Bonds
 
