@@ -14,7 +14,7 @@ $(HTML): %.html: %.md
 	pandoc $(FLAGS) $< -o $@
 
 rsync: $(HTML)
-	rsync $(HTML) kal@web69.webfaction.com:webapps/kalx/html
+	rsync $(HTML) ftap.css kal@web69.webfaction.com:webapps/kalx/html
 
 clean:
 	rm -f $(HTML)

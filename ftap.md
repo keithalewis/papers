@@ -71,7 +71,7 @@ those results.
 
 Let $B(\Omega,\AA)$ be the vector space of bounded linear $\AA$-measurable
 functions on $\Omega$. The space of bounded linear functionals,
-$B(\Omega,\AA)^*, can be identified with the space of finitely additive
+$B(\Omega,\AA)^*$, can be identified with the space of finitely additive
 measures, $ba(\Omega,\AA)$.  We use the notation $\langle X,\pi\rangle =
 \int_\Omega X\,d\Pi$ for the _dual pairing_.
 
@@ -120,17 +120,26 @@ The inequality is strict because trades don't instantly
 show up in your account.
 If we define $\Gamma_t = \Gamma_j\delta_{t_j}(t)$
 where $\delta_{t_j}(t) = 1$ if $t_j = t$ and $0$ otherwise,
-then $\Delta_t = \sum_{s < t} \Gamma_s$.
+then
+$$
+\Delta_t = \sum_{s < t} \Gamma_s.
+$$
 
 ### Account and Value
 Trades result in numbers showing up in your _account_.
 At time $t$ your account statement will be
-$A_t = \Delta_t \cdot C_t - \Gamma_t\cdot X_t$.
+$$
+A_t = \Delta_t \cdot C_t - \Gamma_t\cdot X_t.
+$$
 You receive all the cash flows from your existing position
 and pay for the trades you do based on market prices.
 
 The (marked-to-market) _value_ of your trades at time $t$
-is $V_t = (\Delta_t + \Gamma_t)\cdot X_t$. It represents
+is
+$$
+V_t = (\Delta_t + \Gamma_t)\cdot X_t.
+$$
+It represents
 the amount you would get from unwinding your current
 position and the trades you just did.
 
@@ -177,11 +186,9 @@ $X$ and $C$ in equation (1). Trading strategies make it
 possible to create synthetic instruments.
 
 A _derivative security_ is a contract between a _buyer_
-and a _seller_ to exchange instruments in the future.
+and a _seller_ to make future exchanges.
 The Fundamental Theorem of Asset Pricing provides a mathematical
-basis for determining the value of the contract. It requires
-a bit more work to understand the associated hedge and
-risk involved in the transaction.
+basis for determining the value of the contract.
 
 We only consider _cash settled_ derivatves. An European call option on
 a stock that expires in-the-money does not pay one share of stock in
@@ -202,6 +209,29 @@ $\tau_n = u$.)
 ## The Fundamental Theorem of Asset Pricing
 **Fundamental Theorem of Asset Pricing**. _A model is arbitrge
 free if and only if pricing measures exist._
+
+One direction is easy. If pricing meaures exist, then
+$V_0\Pi_0 = \sum_{j>0} A_j\Pi_j|_{\AA_0}$. If $A_j\ge 0$ for $j > 0$
+then $V_0\Pi_0 \ge 0$. Since $V_0 = \Gamma_0\cdot X_0
+= -A_0$ it follows that $-A_0\Pi_0\ge 0$ and $A_0\le 0$
+if $\Pi_0 > 0$. This shows no arbitrage exists.
+
+Stephen Ross was the first to use the Hahn-Banach theorem to
+show no arbitrage implies the existence of pricing measures. This set off
+a cottage industry of academics attempting to provide a mathematically
+correct version of his pioneering result.
+
+What they overlooked is that this is unnecessary. It is quite easy
+to produce pricing measures by simply writing them down. No need
+to use the Hahn-Banach theorem to prove they exist.
+
+Given a filtration $(\AA_t)$ on $\Omega$ and a positive measure, $P$,
+with $P(\Omega) = 1$, pick any $\RR^I$-valued martingale $(M_t)$ and
+any adapted positive scalar function $(D_t)$, then
+$$
+X_t = (M_t - \sum_{s<t}C_sD_s)/D_t,\quad\Pi_t = D_tP|_{\AA_t}
+$$
+is an arbitrage free model.
 
 ## Zero Coupon Bonds
 
