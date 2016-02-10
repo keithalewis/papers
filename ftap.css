@@ -5,11 +5,14 @@ html {
 	color: #333;
 }
 h1 {
-	color: #444;
+	color: #888;
 }
 h2 {
-	color: #066;
+	color: #666;
 }
 h3 {
-	color: #088;
+	color: #444;
+}
+h4 {
+	color: #222;
 }

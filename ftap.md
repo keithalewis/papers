@@ -35,7 +35,7 @@ _If an algebra is finite then the atoms form a_ partition.
 
 A _partition_ is a collection of disjoint subsets having
 union equal to the entire set. Every outcome $\omega\in\Omega$
-belongs to an atom $A_\omega = \cap\{A\in\AA:\omega\in A\}$.
+belongs to the atom $A_\omega = \cap\{A\in\AA:\omega\in A\}$.
 Let $\{A_j\}$ be the set
 of atoms. Since $A_j\cap A_k\subseteq A_j$ then
 either $A_j\cap A_k = \emptyset$ or $A_j\cap A_k = A_j$.
@@ -60,19 +60,18 @@ $X$ is $\AA$-measurable.
 
 ### Measures
 A (finitely additive) _measure_ is a function $\Pi\colon\AA\to\RR$
-such that $\Pi(A\cup B) = \Pi(A) + \Pi(B) - \Pi(A\cap B)$.  Note
-$\Pi(\emptyset\cup\emptyset) = 2\Pi(\emptyset)$ so $\Pi(\emptyset) =
-0$ and $\Pi(A\cup B) = \Pi(A) + \Pi(B)$ if $A\cap B = \emptyset$. The
-_integral_ of $X\colon\AA\to\RR$, $\int_\Omega X\,d\Pi$, is defined in
+such that $\Pi(A\cup B) = \Pi(A) + \Pi(B) - \Pi(A\cap B)$.  
+Don't count things in both sets twice.
+The _integral_ of $X\colon\AA\to\RR$, $\int_\Omega X\,d\Pi$, is defined in
 the same way as for standard Lebesgue theory.
 Proving theorems about interchange of limits is more difficult
-than for countable additive measures, but we have no need for
+than for countably additive measures, but we have no need for
 those results. 
 
 Let $B(\Omega,\AA)$ be the vector space of bounded linear $\AA$-measurable
 functions on $\Omega$. The space of bounded linear functionals,
 $B(\Omega,\AA)^*$, can be identified with the space of finitely additive
-measures, $ba(\Omega,\AA)$.  We use the notation $\langle X,\pi\rangle =
+measures, $ba(\Omega,\AA)$.  We use the notation $\langle X,\Pi\rangle =
 \int_\Omega X\,d\Pi$ for the _dual pairing_.
 
 Given $X\in B(\Omega,\AA)$ and $\Pi\in ba(\Omega,\AA)$ we can
@@ -98,26 +97,30 @@ $\langle 1_B,YP\rangle = \langle 1_B,XP\rangle$ for all $B\in\BB$.
 $YP|_\BB = XP|_\BB$.
 
 ### Filtrations
-Let $T$ be the times at which trading can occur.  A collection
-$(\AA_t)_{t\in T}$ with  $\AA_t \subseteq \AA_u$ if $t < u$ is a
-_filtration_. It models information revealed over time.
+Let $T$ be the times at which trading can occur.  A collection of
+algebras $(\AA_t)_{t\in T}$ with  $\AA_t \subseteq \AA_u$ if $t < u$
+is a _filtration_. Filtrations model information revealed over time.
 
 ### Prices and Cash Flows
 Let $I$ be the set of market traded instruments.  A _model_ consists
 of bounded, vector-valued functions $X_t\colon\AA_t\to\RR^I$ and
-$C_t\colon\AA_t\to\RR^I$ that represent _prices_ and _cash flows_.
+$C_t\colon\AA_t\to\RR^I$ that represent _prices_ and _cash flows_
+at time $t\in T$.
 The price is assumed to be in a given currency and every instrument
 can be bought or sold in any quantity at that price.  Cash flows are
 payments associated with holding an instrument, e.g., coupons for bonds
-and dividends for stocks.
+or dividends for stocks.
 
-### Trades and Position
+### Trading Strategy and Position
 A _trading strategy_ is a set of increasing times $(\tau_j)$ and
 _trades_ $\Gamma_j\colon\AA_{\tau_j}\to\RR^I$.
 Trades accumulate into a _position_
 $\Delta_t = \sum_{\tau_j < t} \Gamma_j$.
-The inequality is strict because trades don't instantly
-show up in your account.
+The inequality is strict because it takes some time for a trade
+to execute. The times can be _stopping times_: $\tau\colon\Omega\to\RR$
+where $\{\omega\in\Omega:\tau(\omega)\le t\}$ is $\AA_t$
+measurable.
+
 If we define $\Gamma_t = \Gamma_j\delta_{t_j}(t)$
 where $\delta_{t_j}(t) = 1$ if $t_j = t$ and $0$ otherwise,
 then
@@ -129,13 +132,12 @@ $$
 Trades result in numbers showing up in your _account_.
 At time $t$ your account statement will be
 $$
-A_t = \Delta_t \cdot C_t - \Gamma_t\cdot X_t.
+A_t = - \Gamma_t\cdot X_t.  \Delta_t \cdot C_t
 $$
-You receive all the cash flows from your existing position
-and pay for the trades you do based on market prices.
+You pay for the trades you do based on market prices and
+receive all the cash flows from your existing position
 
-The (marked-to-market) _value_ of your trades at time $t$
-is
+The (marked-to-market) _value_ of your trades at time $t$ is
 $$
 V_t = (\Delta_t + \Gamma_t)\cdot X_t.
 $$
@@ -150,14 +152,9 @@ In words, there is a trading strategy that eventually closes out,
 makes money on the first trade, and never loses thereafter.
 
 Note that this definition does not involve measures. 
-It is not satisfactory in practice since
-$A_{\tau_0} = -\Gamma_0\cdot X_{\tau_0}$ may be arbitrarily
-small compared to $|\Gamma_0|\cdot |X_{\tau_0}|$.
-The latter is a measure of the amount of capital required
-to place the initial trade.
 
 ### Pricing Measures
-_Pricing measures_ are positive (finitely additive) measures
+_Pricing measures_ are positive measures
 $\Pi_t\colon\AA_t\to\RR$ such that
 $$
 X_t\Pi_t = (\sum_{t<s\le u} C_s\Pi_s + X_u\Pi_u)|_{\AA_t}
@@ -203,18 +200,18 @@ An European option has only one payment at expiration $u$.
 If we can find trades $\Gamma_j$ at $\tau_j$ such that
 $A_t = 0$ for $0 < t < u$ and $A_u$ is the option payoff,
 then the cost of setting up the initial hedge, $V_0$,
-is the value of the option. (Assuming $\tau_0 = 0$ and
-$\tau_n = u$.)
+is the value of the option (assuming $\tau_0 = 0$ and
+$\tau_n = u$).
 
 ## The Fundamental Theorem of Asset Pricing
 **Fundamental Theorem of Asset Pricing**. _A model is arbitrge
-free if and only if pricing measures exist._
+free if and only if a pricing measure exists._
 
 One direction is easy. If pricing meaures exist, then
 $V_0\Pi_0 = \sum_{j>0} A_j\Pi_j|_{\AA_0}$. If $A_j\ge 0$ for $j > 0$
 then $V_0\Pi_0 \ge 0$. Since $V_0 = \Gamma_0\cdot X_0
-= -A_0$ it follows that $-A_0\Pi_0\ge 0$ and $A_0\le 0$
-if $\Pi_0 > 0$. This shows no arbitrage exists.
+= -A_0$ it follows that $-A_0\Pi_0\ge 0$ and $A_0\le 0$.
+This shows there is no arbitrage.
 
 Stephen Ross was the first to use the Hahn-Banach theorem to
 show no arbitrage implies the existence of pricing measures. This set off
@@ -225,29 +222,92 @@ What they overlooked is that this is unnecessary. It is quite easy
 to produce pricing measures by simply writing them down. No need
 to use the Hahn-Banach theorem to prove they exist.
 
+### Arbitrage Free Models
+
 Given a filtration $(\AA_t)$ on $\Omega$ and a positive measure, $P$,
 with $P(\Omega) = 1$, pick any $\RR^I$-valued martingale $(M_t)$ and
-any adapted positive scalar function $(D_t)$, then
+any adapted positive scalar stochastic process $(D_t)$, then
+$X_t = M_t/D_t$, $C_t = 0$, $\Pi_t = D_tP|_{\AA_t}$ is an arbitrage
+free model.
+
+In this case we can write equation (1) as
 $$
-X_t = (M_t - \sum_{s<t}C_sD_s)/D_t,\quad\Pi_t = D_tP|_{\AA_t}
+X_tD_t = E[\sum_{t<s\le u} C_sD_s + X_uD_u|\AA_t]
 $$
-is an arbitrage free model.
+This reduces to the statement
+$X_tD_t$ is a _martingale_ in the case of zero cash flows.
 
-## Zero Coupon Bonds
+More generally, $X_t = (M_t - \sum_{s\le t}C_sD_s)/D_t$
+is an arbitrage free model having cash flows $(C_t)$ since
+\begin{align*}
+E[\sum_{t<s\le u} C_sD_s + X_uD_u|\AA_t]
+&= E[\sum_{t<s\le u} C_sD_s + M_u - \sum_{s\le u}C_sD_s|\AA_t]\\
+&= E[M_u - \sum_{s\le t}C_sD_s|\AA_t]\\
+&= M_t - \sum_{s\le t}C_sD_s\\
+&= X_tD_t\\
+\end{align*}
 
-A _zero coupon bond_, $D(u)$, maturing at time $u$ has cash flow
-$C_u = 1$. Its price at time $t < u$ satisfies
-$X^{D(u)}_t\Pi_t = \Pi_u|_{\AA_t}$. We use the notation
-$D_t(u) = X^{D(u)}_t$.
+As we will see later, every model has this form.
 
-$D_t(t + \Delta t) = R_t = \exp(f_t\,\Delta t)$.
-$R_t$ is the _instantanious realized return_ and
-$f_t$ is the _instantanious forward rate_.
+For example, The Black-Scholes/Merton model is $M_t = (r,se^{-\sigma^2t/2
++ \sigma B_t})$ and $D_t = e^{-\rho t}$ where $(B_t)$ is standard
+Brownian motion.  Fixed dividends correspond to $C_t = sd$ at dividend
+dates and proportional dividends to $C_t = S_td$.
 
-Define $D_t = \Pi_{s<t} R_s = \exp(\sum_{s<t} f_s\,\Delta s)$.
+### Delta Hedging
 
-Lemma. $XP|_\AA = YP|_\AA$ and $X$ is $\AA$ measurable
-is equvalent to $X = E[Y|\AA]$.
+Assuming we can can find trades that can replicate the amounts
+specified in a derivative securities contract, the first trade is easy to
+find. Since $V_0 = \Gamma_0\cdot X_0$ we have $\Gamma_0 = dV_0/dX_0$.
+We can compute $V_0$ from $V_0\Pi_0 = \sum_{j>0} A_j\Pi_j(\Omega)$
+given the contract payments and pricing measure.
+
+The subsequent trades are just as easy to find if you make the mistake
+of assuming continuous time trading and avoid the hard problem.
+
+Traders need to decide when to rehedge their position. One of their
+aphorisms is "Hedge when you can, not when you have to."  They don't
+seem to find the current theory of mathematical finance useful for that.
+
+## Canonical Pricing Measure
+
+There is an obvious choice for a pricing measure.
+
+### Short Realized Return
+
+Assuming discrete times $T = \{t_j\}$, the _short realized return_ is
+a market instrument having price $X_j = 1$ and cash flow
+$C_{j+1} = R_j$, where $R_j$ is $\AA_j$ measurable.
+Define $D_j = \prod_{i<j}R_j^{-1}$. Since
+$1D_j = E[R_jD_{j+1}|\AA_j]$, this model is arbitrage free.
+Let's agree to call $D_jP|_{\AA_j}$ the _canonical pricing measure_.
+
+This mathematical assumption is not far from reality.
+Repurchase agreements agreements are used for this.
+
+### Zero Coupon Bonds
+A _zero coupon bond_, $D(u)$, has a single cash flow
+$C^{D(u)}_u = 1$ at time $u$. Its price at time $t < u$ satisfies
+$X^{D(u)}_t\Pi_t = \Pi_u|_{\AA_t}$. We use the helpfully confusing
+notation $D_t(u) = X^{D(u)}_t$ so $D_t(u)D_t = E[D_u|\AA_t]$.
+
+### Forward Rate Agreements
+
+A _forward rate agreement_, $F^\delta(u,v)$,
+has cash flows $C_u = -1$ and $C_v = 1 + \delta(u,v) F_t^\delta(u,v)$
+When issued at time $t$ with price $X^{F^\delta(u,v)}_t = 0$.
+$\delta(u,v)$ is the _day count
+fraction_ (approximately equal to $v - u$ in years.)
+
+Since $0 = (-\Pi_u + (1 + \delta F_t(u,v))\Pi_v)|_{\AA_t}$
+we have $F_t^\delta(u,v) = (D_t(u)/D_t(v) - 1)/\delta(u,v)$.
+
+### Floating Swap Leg
+
+A _floating swap leg_, $F^\delta(t_0,\dots,t_n)$, 
+has cash flows $C_{t_j} = F_{t_{j-1}}$, $0 < j \le n$.
+
+A _swap_, $S^\delta
 
 ## Risky Assets
 
@@ -303,13 +363,6 @@ of default, or default has not occured ($T > t$) and only
 that $T\in(t,\infty)$. The algebra describing this information
 contains every subset of $[0,t]$ and the set $(t,\infty)$.
 
-## Zero Coupon Bonds
-
-A _zero coupon bond_, $D(u)$, has a
-single cash flow $C_u = 1$. Its price at time $t$
-satisfies $X_t\Pi_t = \Pi_u|_{\AA_t}$ so the price at time $t$ satisfies
-$D_t(u) = E[D_u|\AA_t]/D_t$.
-
 ### Risky Zero Coupon Bonds
 
 A risky bond, $D^{T,R}(u)$, has the cash flow $C_u = 1(T > u) + R1(T \le u)$.
@@ -319,18 +372,6 @@ $$
 D_0^{T,R}(u) = D_0(u)(P(T > u) + RP(T\le u))
 = D_0(u)(R + (1 - R)P(T>u)).
 $$
-
-## Forward Rate Agreements
-
-A _forward rate agreement_ issued at time $t$ over the
-interval $[u,v]$ has price $X_t = 0$ at time $t$ and
-cash flows $C_u = -1$ and $C_v = 1 + \delta F_t(u,v)$,
-where $F_t(u,v)$ is the par rate quoted for the contract
-at time $t$ and $\delta = \delta(u,v)$ is the _day count
-fraction_ (approximately equal to $v - u$ in years.)
-
-Since $0 = (-\Pi_u + (1 + \delta F_t(u,v))\Pi_v)|_{\AA_t}$
-we have $F_t(u,v) = (D_t(u)/D_t(v) - 1)/\delta$.
 
 ### Risky Forward Rate Agreements
 
