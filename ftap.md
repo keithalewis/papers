@@ -165,6 +165,7 @@ $$
 X_j \Pi_j = (C_{j+1} + X_{j+1})\Pi_{j+1}|_{\AA_j}\tag{1}
 $$
 where $X_j = X_{t_j}$, etc. We have
+
 \begin{align*}
 V_j \Pi_j &= (\Delta_j + \Gamma_j)\cdot X_j\Pi_j\\
 &= \Delta_{j+1}\cdot X_j\Pi_j\\
@@ -173,6 +174,7 @@ V_j \Pi_j &= (\Delta_j + \Gamma_j)\cdot X_j\Pi_j\\
 + \Delta_{j+1}\cdot X_{j+1})\Pi_{j+1}|_{\AA_j}\\
 &= (A_{j+1} + V_{j+1})\Pi_{j+1}|_{\AA_j}\\
 \end{align*}
+
 The equation
 $$
 V_j \Pi_j= (A_{j+1} + V_{j+1})\Pi_{j+1}|_{\AA_j}\tag{2}
@@ -239,6 +241,7 @@ $X_tD_t$ is a _martingale_ in the case of zero cash flows.
 
 More generally, $X_t = (M_t - \sum_{s\le t}C_sD_s)/D_t$
 is an arbitrage free model having cash flows $(C_t)$ since
+
 \begin{align*}
 E[\sum_{t<s\le u} C_sD_s + X_uD_u|\AA_t]
 &= E[\sum_{t<s\le u} C_sD_s + M_u - \sum_{s\le u}C_sD_s|\AA_t]\\
@@ -287,30 +290,95 @@ Repurchase agreements agreements are used for this.
 
 ### Zero Coupon Bonds
 A _zero coupon bond_, $D(u)$, has a single cash flow
-$C^{D(u)}_u = 1$ at time $u$. Its price at time $t < u$ satisfies
-$X^{D(u)}_t\Pi_t = \Pi_u|_{\AA_t}$. We use the helpfully confusing
-notation $D_t(u) = X^{D(u)}_t$ so $D_t(u)D_t = E[D_u|\AA_t]$.
+$C^{D(u)}_u = 1$ at time $u$.
+Its price at time $t < u$ satisfies
+$X^{D(u)}_t\Pi_t = \Pi_u|_{\AA_t}$, or equivalently
+$X^{D(u)}_t D_t = E[D_u|{\AA_t}]$. We use the helpfully confusing
+notation $D_t(u) = X^{D(u)}_t$ so $D_t(u) = E[D_u|\AA_t]/D_t$.
+
+Suppose an instrument has a single cash flow
+$C_u^{F(u)} = F(u)$ at time $u$, where $F(u)$ is $\AA_u$-measurable.
+Its price at time $t < u$ satisfies
+$X_t^{F(u)} D_t = E[C_u D_u|\AA_t]$ so
+\begin{align*}
+F_t(u) &= E[F(u)D_u|\AA_t]/D_t\\
+	&= \bigl(E[F(u)|\AA_t]E[D_u|\AA_t] + \Cov(F(u),D_u|\AA_t\bigr)/D_t\\
+	&= E[F(u)|\AA_t]D_t(u) + \Cov(F(u),D_u|\AA_t)/D_t\\
+\end{align*}
+The _conditional covariance_ is defined by
+$\Cov(X,Y|\AA) = E[XY|\AA] - E[X|\AA]E[Y|\AA]$.
+
+### Forwards
+A _forward_, $F(u)$, has a single cash flow $C_u^{F(u)} = F(u) - f$
+at time $u$ where the fixed cash flow $f$ is determined when the
+forward is issued. 
+Its price at time $t$ satisfies
+$X_t^{F(u)} D_t = E[(F(u) - f)D_u|\AA_t$ so
+$X_t^{F(u)} = E[F(u)D_u|\AA_t]/D_t - fD_t(u)
+= (F_t(u) - f)D_t(u)$. The price of a forward is zero at
+time $t$ when the fixed cash flow is the _par forward_, $F_t(u)$.
+
+If $F$ is a market instrument with no cash flows then
+$F_tD_t = E[F_uD_u|\AA_u]$ so a forward indexed
+on $F$ satisfies $F_t(u) = F_t/D(t,u)$.
+This formula is called _cost of carry_.
+
+### Futures
+
+A _futures_, $\Phi(u)$, always has price zero and cash flows
+$C_{t_j}^{\Phi(u)} = \Phi_{t_j} - \Phi_{t_{j-1}}$ at time $t_j$
+where $\Phi_t(u)$ is the futures _quote_ at time $t$.
+The quote $\Phi_u(u) = \Phi(u)$ at _expiration_ $u$. No cash flows
+occur after expiration.
+The quote at time $t_j$ satisfies
+\begin{align*}
+0 &= E[(\Phi_{t_{j+1}} - \Phi_{t_j})D_{t_{j+1}}|\AA_{t_j}]\\
+  &= E[\Phi_{t_{j+1}} - \Phi_{t_j}|\AA_{t_j}]D_{t_{j+1}}\\
+\end{align*}
+since $D_{t_{j+1}}$ is $\AA_{t_j}$ measurable.
+Hence $\Phi_{t_j} = E[\Phi_{t_{j+1}}|\AA_{t_j}]$ and
+$(\Phi_{t_j})_j$ is a martingale.
 
 ### Forward Rate Agreements
 
 A _forward rate agreement_, $F^\delta(u,v)$,
 has cash flows $C_u = -1$ and $C_v = 1 + \delta(u,v) F_t^\delta(u,v)$
-When issued at time $t$ with price $X^{F^\delta(u,v)}_t = 0$.
+when issued at time $t$ with price $X^{F^\delta(u,v)}_t = 0$ where
 $\delta(u,v)$ is the _day count
 fraction_ (approximately equal to $v - u$ in years.)
 
-Since $0 = (-\Pi_u + (1 + \delta F_t(u,v))\Pi_v)|_{\AA_t}$
+Since $0 = \bigl(-\Pi_u + (1 + \delta(u,v) F_t^\delta(u,v))\Pi_v\bigr)|_{\AA_t}$
 we have $F_t^\delta(u,v) = (D_t(u)/D_t(v) - 1)/\delta(u,v)$.
+
+In particular, $F_u^\delta(u,v) = (1/D_u(v) - 1)/\delta(u,v)$ so
+$\delta(u,v) F_u^\delta(u,v)D_u(v) = D_u - E[D_v|\AA_u]$.
 
 ### Floating Swap Leg
 
 A _floating swap leg_, $F^\delta(t_0,\dots,t_n)$, 
-has cash flows $C_{t_j} = F_{t_{j-1}}$, $0 < j \le n$.
+has cash flows
+$C_{t_j} = \delta(t_{j-1}, t_j)F_{t_{j-1}} =\delta_j F_j$
+at $t_j$, $0 < j \le n$.
+Its value at time $t$ is determined by
 
-A _swap_, $S^\delta
+\begin{align*}
+X_t D_t &= E\bigl[\sum_{j=1}^n \delta_j F_j\Pi_{t_j}|\AA_t\bigr]\\
+&= E\bigl[\sum_{j=1}^n D_{t_{j-1}} - E[D_{t_j}|\AA_{t_j}]|\AA_t\bigr]\\
+&= E[\sum_{j=1}^n D_{t_{j-1}} - D_{t_j}|\AA_t]\\
+&= E[D_{t_0} - D_{t_n}|\AA_t]\\
+&= (D_t(t_0) - D_t(t_n))D_t\\
+\end{align*}
+
+Note this is the same value as being long the zero coupon bond
+$D(t_0)$ and short $D(t_n)$.
+
+### Remarks
+Note how all prices are determined by the short realized returns.
+
+Future = Forward + convextiy
 
 ## Risky Assets
-
+<!--
 Death and taxes are the only guarantees in life. When two
 counterparties enter into a legal contract for the exchange
 of cash flows, one or the other might not be able to make
@@ -351,7 +419,7 @@ X_t\Pi_t = (\sum_{t<s\le u} C_s\Pi_s + X_u\Pi_u)|_{\AA_t}
 $$
 for $t < u$. We assume there exist instruments at each time, $t$,
 having price $X_t = 1$ and paying a cash flow
-$C_{t+dt} = 1 + f_t\,dt = \exp(f_t\dt)$. We call $(f_t)$ the
+$C_{t+dt} = 1 + f_t\,dt = \exp(f_t\,dt)$. We call $(f_t)$ the
 _short rate process_. Let $D_t = \exp(-\int_0^t f_s\,ds)$ be
 the _stochastic discount_. 
 
@@ -385,10 +453,4 @@ $$
 As a back of the envelope calculation, let's assume $D_t = e^{-rt}$
 and $P(T > t) = e^{-\lambda t}$. The difference between a risky
 and a risk-free forward is then
-$$
-\begin{align*}
-F_t^{T,R}(u,v) - F_t(u,v)
-&= (D_t^{T,R}(u)/D_t^{T,R}(v) - D_t(u)/D_t(v))/\delta\\
-&= (. - e^{r(v - u)})/\delta\\
-\end{align*}
-$$
+-->
