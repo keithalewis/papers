@@ -2,7 +2,7 @@
 
 [TypeScript](http://www.typescriptlang.org)
 is a strict superset of ECMAScript 2015 that allows you to express type
-constraints using interfaces and classes and create
+constraints using interfaces and classes, and create
 static or dynamically loadable modules.
 It generates portable, and readable,
 JavaScript (EC3 or EC5) code.
@@ -11,26 +11,24 @@ It can also be used with existing code to ensure type safety.
 [DefinitelyTyped](http://definitelytyped.org/) maintains
 definition files for many popular JavaScript packages.
 
-Anders Hejlsberg was involved with creating TypeScript at Microsoft so
-you will see C# influnences. 
-This short note is meant for experienced developers and is not a
-substitute for the excellennt
+Anders Hejlsberg was involved with creating TypeScript at Microsoft
+so you will see C# influnences.  This short note is meant for
+experienced developers and is not a substitute for the excelent
 [Tutorial](http://www.typescriptlang.org/docs/tutorial.html).
 
 ## Types
 
-Types are first-class objects in TypeScript.
+Types are first class objects in TypeScript.
 The expression `name:T` indicates variable `name` has type `T`.
-The _basic types_ are `number`, `string`, `boolean`,
+The _primitive types_ are `number`, `string`, `boolean`,
 `array`, `any`, `void`, and `enum`.
 
 _Object types_ are syntactically similar
 to JSON objects with keys being variable names and values
-being types. They can be recursive, just like JSON objects,
-and optional variables are denoted by `name?:T`.
-Object types are compared _structurally_, which is just
-a fancy way of saying duck typing. A subtype contains
-all the variable names and corresponding types that are in the supertype.
+being types. They can be recursive, just like JSON objects.
+Optional variables are denoted by `name?:T`.
+Object types are compared _structurally_.  A subtype contains all the
+variable names and corresponding types that are in the supertype.
 
 ## Interface and Class
 An `interface` is a named object type. A `class` that `implements` an
@@ -72,5 +70,3 @@ the set of all sets however. It is the set of all values that
 can be represented in JavaScript.
 
 Union and intersection types.
-
-

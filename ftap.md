@@ -7,6 +7,16 @@ currency and perfect liquidity.
 ## Mathematical Preliminaries
 
 Mathematical finance involves mathematics.
+The Black-Scholes/Merton theory uses the connection between
+Brownian motion and partial differential equations that
+Kakutani and Ito showed.
+
+Math finance programs.
+
+Lack of connection to the real world.
+
+Importance of technology.
+
 Our unified approach requires far less mathematics than
 the standard theory. A complete review of what is
 required follows.
@@ -376,59 +386,11 @@ X_t D_t &= E\bigl[\sum_{j=1}^n \delta_j F_j\Pi_{t_j}|\AA_t\bigr]\\
 Note this is the same value as being long the zero coupon bond
 $D(t_0)$ and short $D(t_n)$.
 
-## American Options
-
-The unified framework can also handle American options.
-
-### Stopping Times
-
-An American option expiring at time $T$ allows the holder to
-exercise the option at any time, $\tau$, prior to expiration for
-a cash flow $\phi(X_\tau)$ where $\phi$ is a function
-specified in the option contract.
-E.g., $\phi(x) = \max{k - x,0}$ for a put option with stike $k$.
-
-We assume $\tau$ is a stopping time, i.e., a random variable
-$\tau\colon\Omega\to [0,T]$ such that
-$\{\tau \le t\}$ is $\AA_t$ measurable for all $t$.
-As always, we can represent $\tau$ using
-$\tau'\colon [0,T]\to[0,T]$ by $\tau'(t) = t$
-and $P(\tau'\le t) = P(\tau\le t)$.
-Let $\TT_t$ be the algebra $\{E:E\subseteq [0,t]\}
-\cup\{E\times(t,T]:E\subseteq[0,t]\}$.
-It represents the information that at time $t$ if the option
-has been already execised, we know exactly when it was
-exercised, and if not, we have no information other than
-exercise will occur sometime after $t$.
-
-Given an arbitrage-free model $(X,C,\Pi)$ let $X^{O}_t = O_t$ be
-the price of an American option at time $t$.
-It has a single cash flow $C^O_t = C_t^O = \phi(X_t)\delta_\tau(t)$.
-
-We augment the model for an American option expiring at time $T$
-to include the exercise time by $\Omega' = \Omega\times [0,T]$ and
-algebras $\AA'_t = \AA_t\times\TT_t$.
-The prices and cash flows are
-$X'_t = (X_t, O_t)$, and $C'_t = (X_t, C_t)$.
-
-We need to extend the measure by specifying
-$P'(E\times E')$ for $E\subset\Omega$ and $E'\subset[0,T]$
-so that $X'_t\Pi'_t = (\sum_{t<s\le u}C'_s\Pi'_s + X'_u\Pi'_u)|_{\AA'_t}$.
-
-### Remarks
-Note how all prices are determined by the short realized returns.
-
-Although it can be considered to be a stochastic process, 
-it is really a bunch of instruments.
-
-Future = Forward + convextiy
-
 ## Risky Assets
-<!--
-Death and taxes are the only guarantees in life. When two
-counterparties enter into a legal contract for the exchange
-of cash flows, one or the other might not be able to make
-good on the agreement.
+
+When two counterparties enter into a legal contract for the exchange
+of cash flows, one or the other might not be able to make good on the
+agreement.
 
 Let $T$ be a random variable indicating the time of default of the
 seller and $R$ be a random variable taking values between 0 and 1
@@ -501,4 +463,53 @@ $$
 As a back of the envelope calculation, let's assume $D_t = e^{-rt}$
 and $P(T > t) = e^{-\lambda t}$. The difference between a risky
 and a risk-free forward is then
+
+
+### Remarks
+Note how all prices are determined by the short realized returns.
+
+Although it can be considered to be a stochastic process, 
+it is really a bunch of instruments.
+
+Future = Forward + convextiy
+
+<!--
+## American Options
+
+The unified framework can also handle American options.
+
+### Stopping Times
+
+An American option expiring at time $T$ allows the holder to
+exercise the option at any time, $\tau$, prior to expiration for
+a cash flow $\phi(X_\tau)$ where $\phi$ is a function
+specified in the option contract.
+E.g., $\phi(x) = \max{k - x,0}$ for a put option with stike $k$.
+
+We assume $\tau$ is a stopping time, i.e., a random variable
+$\tau\colon\Omega\to [0,T]$ such that
+$\{\tau \le t\}$ is $\AA_t$ measurable for all $t$.
+As always, we can represent $\tau$ using
+$\tau'\colon [0,T]\to[0,T]$ by $\tau'(t) = t$
+and $P(\tau'\le t) = P(\tau\le t)$.
+Let $\TT_t$ be the algebra $\{E:E\subseteq [0,t]\}
+\cup\{E\times(t,T]:E\subseteq[0,t]\}$.
+It represents the information that at time $t$ if the option
+has been already execised, we know exactly when it was
+exercised, and if not, we have no information other than
+exercise will occur sometime after $t$.
+
+Given an arbitrage-free model $(X,C,\Pi)$ let $X^{O}_t = O_t$ be
+the price of an American option at time $t$.
+It has a single cash flow $C^O_t = C_t^O = \phi(X_t)\delta_\tau(t)$.
+
+We augment the model for an American option expiring at time $T$
+to include the exercise time by $\Omega' = \Omega\times [0,T]$ and
+algebras $\AA'_t = \AA_t\times\TT_t$.
+The prices and cash flows are
+$X'_t = (X_t, O_t)$, and $C'_t = (X_t, C_t)$.
+
+We need to extend the measure by specifying
+$P'(E\times E')$ for $E\subset\Omega$ and $E'\subset[0,T]$
+so that $X'_t\Pi'_t = (\sum_{t<s\le u}C'_s\Pi'_s + X'_u\Pi'_u)|_{\AA'_t}$.
 -->
