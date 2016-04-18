@@ -160,7 +160,9 @@ $$
 V_t = (\Delta_t + \Gamma_t)\cdot X_t.
 $$
 It represents the amount you would get from unwinding your current
-position and the trades you just did.
+position and the trades you just did. If you have a large
+position in illiquid instruments this is mathematical assumption
+that does not reflect reality.
 
 ### Arbitrage
 _Arbitrage_ exists if there are trades with $\sum \Gamma_j = 0$,

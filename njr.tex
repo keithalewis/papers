@@ -1,0 +1,394 @@
+% gjr.tex
+\documentclass[11pt]{article}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % support the \includegraphics command and optio
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+\newcommand{\Var}{\mathop{\rm{Var}}}
+\newcommand{\Cov}{\mathop{\rm{Cov}}}
+\theoremstyle{definition}
+\newtheorem*{example}{}
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+\title{Normal Jarrow-Rudd}
+\author{Keith A. Lewis}
+\date{\today}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+The Black-Scholes/Merton model has been Nobel prize winning successful,
+but parameterizing models that fit volatility smiles at even a single
+maturity for European options has been a remarkably
+intractable problem.
+
+Instead of working with the difference of the cumulants from a lognormal
+distribution as in Jarrow-Rudd \cite{JarRud1982} we work with the
+difference of the cumulants from a normal distribution.  This is more
+natural since all but the first two cumulants of a normal distribution
+are zero. For other distributions, the third and fourth cumulant are closely
+related to the skew and kurtosis.
+
+The mathematics involved is fairly elementary and a software
+implementation is available for you to try out your ideas
+on how this can be used.
+\end{abstract}
+
+\section{Outline}
+The forward value of an European put option having strike \(k\)
+and forward $F$ at expiration is
+\[
+E\max\{k - F, 0\} = E(k - F)1(F \le k) = kP(F\le k) - fP^*(F\le k)
+\]
+where $f = EF$ and $dP^*/dP = F/f$
+is the {\em Esscher transform}\cite{Ess1932}.
+We derive formulas for
+\(P(F\le k)\) and \(P^*(F\le k)\) that can be computed
+efficiently when $\log F$ is approximately normal.
+
+This generalizes the Black formula
+\(E\max\{k - F,0\} = k\Phi(-d_2) - f\Phi(-d_1)\)
+where \(F = fe^{-\sigma^2t/2 + \sigma B_t}\), \((B_t)\) is
+standard Brownian motion, \(\Phi\) is the standard normal cumulative
+distribution function, \(d_1 = (\sigma^2 t/2
++ \log f/k)/\sigma\sqrt{t}\) and \(d_2 = d_1 - \sigma\sqrt{t}\).
+
+In section 2 we recall some basic facts about cumulants.  Section 3 uses
+an Edgeworth expansion and Bell polynomials to show their relationship
+to moments.
+The third section describes how Hermite polynomials
+give an explicit formula for the cumulative
+distribution function of the perturbed distribution.  Option valuation
+is considered in section 4 where we show how the Esscher transform can be
+calculated using the method in section 3. The last section
+collects some general remarks.
+
+\section{Cumulants}
+
+The {\em cumulant} of the random variable \(X\)
+is \(\kappa(s) = \log Ee^{sX}\).
+The {\em cumulants}, \((\kappa_n)\),
+are defined by
+\[
+\kappa(s) = \sum_{n=1}^\infty \kappa_n \frac{s^n}{n!}
+\]
+Since \((d/ds)^n\kappa(s)|_{s = 0} = \kappa_n\) it is easy to
+work out that
+\(\kappa_1 = EX\) and \(\kappa_2 = \Var(X)\). Higher order
+cumulants are less intuitive but the third and fourth are
+related to skew and kurtosis.
+
+The cumulants of a random variable plus a constant are the 
+same except the first cumulant is increased by the constant.
+More generally, the cumulants of the sum of two independent 
+random variables are the sums of their cumulants.
+They scale homogeneously, the \(n\)-th cumulant of a constant
+times a random variable is
+\(\kappa_n(cX) = c^n\kappa_n(X)\).
+
+The relationship between cumulants and moments, \(m_n = EX^n\),
+involves Bell
+polynomials\cite{Bel1934}.
+\[
+Ee^{sX} = \sum_{n=0}^\infty m_n \frac{s^n}{n!}
+ = \exp(\sum_{n=1}^\infty \kappa_n \frac{s^n}{n!})
+= \sum_{n=0}^\infty B_n(\kappa_1,\dots,\kappa_n) \frac{s^n}{n!}
+\]
+where \(B_n(\kappa_1,\dots,\kappa_n)\) is the \(n\)-th complete
+Bell polynomial.
+This is just a special case of the
+Fa\`a di Bruno formula first proved by Louis Fran\c{c}ois Antoine
+Arborgast in 1800\cite{Arb1800}.
+Bell polynomials satisfy the recurrence \cite{Com1974} \(B_0 = 1\) and
+\[
+B_{n+1}(x_1,\dots,x_{n+1}) = \sum_{k=0}^n \binom{n}{k}
+B_{n - k}(x_1,\dots, x_{n - k}) x_{k+1}.
+\]
+
+\section{Edgeworth Expansion}
+Given random
+variables \(X\) and \(Y\), we have
+\[\log E e^{iuY} - \log E e^{iuX} = \sum_{n=1}^\infty \Delta\kappa_n (iu)^n/n!\]
+where \((\Delta\kappa_n)\) are the differences of the cumulants 
+of \(X\) and \(Y\), so
+\[
+Ee^{iuY} = Ee^{iuX}\sum_{n=0}^\infty B_n(\Delta\kappa_1,...,\Delta\kappa_n)(iu)^n/n!.
+\]
+
+Let \(F\) and \(G\) be the cumulative distribution functions of
+\(X\) and \(Y\) respectively. Furthur assume they have density
+functions \(f\) and \(g\).
+The Fourier transform, \(\hat{f}(u) = Ee^{iuX}\),
+of \(f'\) is \(-iu \hat f(u)\) so
+the Fourier transform of the \(n\)-th derivative
+\(f^{(n)}\) is \((-iu)^n\hat f(u)\) hence
+\[
+	g(x) = \sum_{n=0}^\infty (-1)^n B_n(\Delta\kappa_1,...,\Delta\kappa_n)
+	f^{(n)}(x)/n!
+\]
+
+\subsection{Hermite Polynomials}
+The derivatives of the standard normal cumulative distribution 
+can be computed using Hermite polynomials\cite{AbrSte1964}
+pp. 793--801.
+One definition is
+\[
+H_n(x) = (-1)^n e^{x^2/2}\frac{d^n}{dx^n}e^{-x^2/2}.
+\]
+They satisfy the recurrence \(H_0(x) = 1\), \(H_1(x) = x\) and
+\[
+H_{n+1}(x) = xH_n(x) - n H_{n-1}(x).
+\]
+Note some authors use \(He_n(x)\) instead of \(H_n(x)\).
+
+Integrating both sides of the formula for the density
+functions and using Hermite polynomials yields
+\[
+G(x) = F(x) - \sum_{n=1}^\infty
+B_n(\Delta\kappa_1,\dots,\Delta\kappa_n) H_{n-1}(x)
+e^{-x^2/2}/n!\sqrt{2\pi}
+\]
+
+\section{The Esscher Transform}
+
+If \(X\) is standard normal then
+\(P^*(X\le z) = Ee^{-s^2/2 + sX} 1(X\le z)) = P(X + s\le z)
+= \Phi(z - s)\)
+where we use the fact
+\[
+Ee^M f(N) = Ee^M Ef(N + \Cov(M,N))
+\]
+if \(M\) and \(N\) are
+jointly normal. Here \(M = -s^2/2 + sX\), \(N = X\), and \(f(x) = 1(x\le z)\).
+
+If \(Y\) is a pertubation of \(X\) then
+for \(G(z) = P(Y\le z)\), we need to compute
+\[
+G^*(z) = P^*(Y\le z) = Ee^{-\kappa(s) + sY}1(Y\le z).
+\]
+The cumulants of \(Y^*\) can be found from
+\begin{align*}
+\log E e^{uY^*} &= \log E e^{-\kappa(s) + s Y} e^{uY}\\
+&= -\kappa(s) + \kappa(s + u)\\
+&= \sum_{n=1}^\infty -\kappa_n \frac{s^n}{n!} 
+	+ \kappa_n \frac{(u + s)^n}{n!}\\
+&= \sum_{n=1}^\infty \sum_{k=0}^{n-1} \kappa_n \binom{n}{k}
+	\frac{s^{n - k}u^k}{n!}\\
+&= \sum_{k=1}^\infty \sum_{n=k + 1}^\infty \kappa_n 
+	\binom{n}{k}\frac{s^{n - k}u^k}{n!}\\
+&= \sum_{k=1}^\infty \sum_{n=k + 1}^\infty \kappa_n \frac{s^{n-k}}{(n-k)!}
+	\frac{u^k}{k!}\\
+&= \sum_{k=1}^\infty 
+	\bigl(\sum_{n=1}^\infty \kappa_{n+k} \frac{s^n}{n!}\bigr)
+	\frac{u^k}{k!}\\
+\end{align*}
+This shows the cumulants of \(Y^*\) are 
+\(\kappa^*_n = \sum_{k=1}^\infty \kappa_{n + k}s^k/k!\)
+so we can also compute \(G^*(z) = P(Y^* \le z)\) using the same
+technique as for \(G\).
+
+If \(G\) is standard normal then all cumulants vanish except \(\kappa_2 = 1\).
+The only nonzero cumulants of \(Y^*\) are \(\kappa_1 = s\)
+and \(\kappa_2 = 1\). The corresponding complete Bell polynomials
+are \(B_n = s^n/n!\) and we see the above formula is just
+the Taylor series expansion of \(G(z - s)\).
+%
+%The Edgeworth series expands the exponential in a power series.
+%\[\exp\bigl(\sum_{n=0}^\infty \Delta\kappa_n (iu)^n/n!\bigr)
+%= \sum_{k=0}^\infty (\sum_{n=0}^\infty \Delta\kappa_n (iu)^n/n!)^k/k!\]
+%
+
+%\subsection{Computations}
+%Explicit formulas the first few Bell polynomials:
+%\begin{align*}
+%B_0 &= 1\\
+%B_1 &= x_1\\
+%B_2 &= B_1 x_1 + B_0 x_2\\
+%&= x_1^2 + x_2\\
+%B_3 &= B_2 x_1 + 2B_1 x_2 + B_0 x_3\\
+%&= x_1^3 + x_1 x_2 + 2x_1 x_2 + x_3\\
+%&= x_1^3 + 3x_1 x_2 + x_3\\
+%B_4 &= B_3 x_1 + 3 B_2 x_2 + 3 B_1 x_3 + B_0 x_4\\
+%&= (x_1^3 + 3x_1 x_2 + x_3) x_1  + 3 (x_1^2 + x_2)x_2 + 3 x_1 x_3 + x_4\\
+%&= x_1^4 + 6x_1^2 x_2 + 4 x_1 x_3 + 3x_2^2 + x_4\\
+%\end{align*}
+%Explicit formulas for the first few Hermite polynomials:
+%\begin{align*}
+%H_0 &= 1\\
+%H_1 &= x\\
+%H_2 &= x^2 - 1\\
+%H_3 &= x^3 - x\\
+%H_4 &= x^4 - 6x^2 + 3\\
+%H_5 &= x^5 - 10x^3 + 15x\\
+%H_6 &= x^6 - 15x^4 + 45x^2 - 15\\
+%\end{align*}
+%
+%Assuming \(\kappa_1 = \kappa_2 = 0\) the first few terms of the Edgeworth expansion are:
+%\begin{align*}
+%G(x) &= \sum_{n=0}^\infty (-1)^n B_n F^{(n)}(x)/n!\\
+%&= F(x) - B_1 F'(x) + B_2F''(x)/2 - B_3F^{(3)}(x)/6 + B_4F^{(4)}/24\\
+%&= F(x) + (-\kappa_3 (x^2 - 1)/6 - \kappa_4 (x^3-x)/24)e^{-x^2/2}/\sqrt{2\pi}\\
+%\end{align*}
+%The distribution is unimodal if and only if the second derivative has exactly one root.
+%\begin{align*}
+%G''(x) &= \sum_{n=0}^\infty (-1)^n B_n F^{(n+1)}(x)/n!\\
+%&= F^{(2)}(x) - B_1 F^{(3)}(x) + B_2F^{(4)}(x)/2 - B_3F^{(5)}(x)/6 + B_4F^{(6)}/24\\
+%&= (-x - \kappa_3 (x^4 - 6x^2 + 3)/6
+%	 - \kappa_4 (x^5 - 10x^3 + 15x)/24)e^{-x^2/2}/\sqrt{2\pi}\\
+%\end{align*}
+%
+\subsection{Examples}
+\begin{example}[Normal]
+If \(X\) is normal with mean \(\mu\) and variance \(\sigma^2\) then
+\(\kappa(s) = \mu s + \sigma^2s^2/2\) so
+\(\kappa_1 = \mu\) and \(\kappa_2 = \sigma^2\) are the only non-zero
+cumulants. We also have \(\kappa_1^* = \mu + \sigma^2s\)
+and \(\kappa_2^* = \kappa_2\).
+
+If the cumulants of
+a random variable vanish after some some point, then it must
+be normal\cite{Luk1970} (Theorem 7.3.5).
+Something to keep in mind with computer
+implementations.
+\end{example}
+\begin{example}[Poisson]
+If \(X\) is Poisson
+with mean \(\mu\) then \(\kappa(s) = \mu(e^s - 1)\) so
+\(\kappa_n = \mu\) for all \(n\) and
+\(\kappa_n^* = \mu e^s\).
+\end{example}
+%\begin{example}[Compound Poisson]
+%If \(Y\) is Poisson with mean \(\mu\) and \(Z_j\) are
+%independent and identically distributed, define
+%\(X = \sum_{j=1}^{Y} Z_j\). The cumulants of \(X\)
+%are \(\kappa_n = ?\).
+%\end{example}
+%\begin{align*}
+%Ee^{uX} &= \sum_{k=0}^\infty Ee^{u(Z_1 + \cdots Z_k)}\mu^k/k!\,e^{-\mu}\\
+%&= \sum_{k=0}^\infty (Ee^{u Z_1})^k\mu^k/k!\,e^{-\mu}\\
+%&= \sum_{k=0}^\infty (Ee^{u Z_1}\mu)^k/k!\,e^{-\mu}\\
+%&= e^{\mu Ee^{u Z_1}}\,e^{-\mu}\\
+%&= e^{\mu (Ee^{u Z_1} - 1)}\\
+%\end{align*}
+%Define \(\lambda(u) = \log Ee^{uZ_1}\). Then
+%\(\log E e^{uX} = \mu(e^{\lambda(u)} -1)\).
+\begin{example}[Exponential]
+If \(X\) is exponential with mean \(\mu\) then
+\(\kappa(s) = -\log(1 - \mu s)\),
+\(\kappa_n = (n - 1)!\mu^n\) and
+\(\kappa_n^* = n!\mu^n(1/(1 - \mu s)^{n+1} - 1)\)
+% sum_k (n + k - 1)!\mu^(n+k)/k! =  
+since \(\sum_{k=0}^\infty (n + k - 1)!x^k/k!
+= (d/dx)^n(1 - x)^{-1} = n!/(1 - x)^{n + 1}\).
+\end{example}
+\begin{example}[Gamma]
+If \(X\) is gamma with mean \(\alpha/\beta\) and variance
+\(\alpha/\beta^2\) then
+\(\kappa(s) = -\alpha\log(1 - s/\beta)\) and
+\(\kappa_n = (n - 1)!\alpha/\beta^n\) so
+\(\kappa_n^* = (n - 1)!\alpha(\beta - s)^{-n}\).
+
+Note gamma is exponential when
+\(\alpha = 1\) and \(\beta = 1/\mu\).
+\end{example}
+%\begin{align*}
+%Ee^{uX} &= \int_0^\infty e^{ux} x^{\alpha-1} e^{-\beta x}
+%\frac{\beta^\alpha}{\Gamma(\alpha)}\,dx\\
+%&= \int_0^\infty x^{\alpha-1} e^{-(\beta -u) x}
+%\frac{\beta^\alpha}{\Gamma(\alpha)}\,dx\\
+%&= \frac{\Gamma(\alpha)}{(\beta - u)^\alpha} \frac{\beta^\alpha}{\Gamma(\alpha)}\\
+%&= (1 - u/\beta)^{-\alpha}\\
+%\end{align*}
+%so
+%\(
+%\log E e^{uX} = \alpha \sum_{n=1}^\infty (u/\beta)^n/n\).
+
+%At the money pricing ???
+%%F = fe^{-k(s) + s X}, x \le k(s)/s
+%
+%\begin{align*}
+%&P(F\le f) - P^*(F\le f) \\
+%&= P(Y\le \kappa(s)/s) - P^*(Y\le \kappa(s)/s) \\
+%&= G(\kappa(s)/s) - G^*(\kappa(s)/s) \\
+%&= \sum_{n=1}^\infty (-B_n(\Delta\kappa) + B_n(\Delta\kappa^*))
+%    e^{-(\kappa(s)/s)^2/2} H_{n-1}(\kappa(s)/s)/sqrt{2\pi} \\
+%& = \Phi(s/2) - \Phi(-s/2) \\
+%\end{align*}
+
+%\(\chi^2\) with \(r\) degrees of freedom \(\kappa_n = 2^{n-1}(n-1)!r\).
+
+
+\subsection{L\'evy Processes}
+
+%Let \(X = aN + bP + c\) where \(N\) is standard normal and \(P\)
+%is Poisson with mean \(\mu\).
+
+%\(EX = b\mu + c\) and \(\Var X = a^2 + b^2\). Taking
+%\(b = \sqrt{1 - a^2}\)
+
+Kolmogorov's precursor to the L\'evy-Khintchine theorem\cite{Kol1992}
+states that if a random variable \(X\) is infinitely divisible
+and has finite variance
+there exists a number \(\gamma\) and a non-decreasing function
+\(G\) defined on the real line such that
+\[
+\kappa(s) = \log Ee^{sX} = \gamma s + \int_{-\infty}^\infty K_s(x)\,dG(x),
+\]
+where \(K_s(x) = (e^{sx} - 1 - sx)/x^2 = \sum_{n=2}^\infty s^nx^{n-2}/n!\).
+Note the first cumulant of \(X\) is \(\gamma\) and for \(n\ge 2\),
+\(\kappa_n = \int_{-\infty}^\infty x^{n-2}\,dG(x)\).
+
+The Hamburger moment problem[cite?] provides the answer to
+what the allowable cumulants are: the Hankel matrix
+\([\kappa_{i+j}]_{i,j\ge 2}\) must be positive definite.
+
+Since \(K_s(0) = s^2/2\) is the cumulant of the standard normal
+distribution and \(a^2K_s(a) + as\) is the cumulant of a
+Poisson distrbution having mean \(a\),
+infinitely divisible random variables can be
+approximated by a normal plus a linear combination of
+independent Poisson distributions.
+
+%The K-model takes \(\gamma = 0\) and \(G\) of the form
+%\[
+%G(x) =
+%\begin{cases}
+%a e^{x/\alpha} &x < 0\\
+%1 - be^{-x/\beta} & x > 0\\
+%\end{cases}
+%\]
+%Note \(G\) jumps by \(1 - a - b\) at the origin. If \(a = b = 0\)
+%this reduces to a standard normal distribution.
+%
+%The cumulants are simple to compute: \(\kappa_1 = 0\), \(\kappa_2 = 1\),
+%and \(\kappa_{n+2} = (a(-\alpha)^n + b\beta^n)n!\) for \(n > 1\).
+
+\section{Remarks}
+The Gram-Charlier A series expands the quotients of cumulative
+distribution functions \(G/F\) using Hermite polynomials, but does not
+have asymptotic convergence, whereas the Edgeworth expansion involves
+the quotient of characteristic functions \(\hat G/\hat F\) in terms of
+cumulants and does have asymptotic convergence, ignoring some dainty
+facts \cite{Pet1975}.
+
+If \((X_t)\) is a L\'evy process then \(X_1\) is
+infinitely divisible and \(\log Ee^{sX_t} = t\kappa(s)\).
+A consequence is that the volatility smile at a single
+maturity determines the entire volatility surface, a fact that
+may indicate L\'evy processes are not appropriate for
+modeling stock prices.
+
+A software implementation in C++ is available at
+\url{https://fmsgjr.codeplex.com} and Excel add-ins
+at \url{https://xllgjr.codeplex.com} that require
+\url{https://xll.codeplex.com}.
+
+\bibliographystyle{amsplain}
+\bibliography{njr}
+
+\end{document}
