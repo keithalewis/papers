@@ -1,4 +1,4 @@
-% gjr.tex
+% njr.tex
 \documentclass[11pt]{article}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amsthm}
+\usepackage{authblk}
 
 \newcommand{\Var}{\mathop{\rm{Var}}}
 \newcommand{\Cov}{\mathop{\rm{Cov}}}
@@ -15,8 +16,11 @@
 
 % \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
 
-\title{Normal Jarrow-Rudd}
-\author{Keith A. Lewis}
+\title{A General Formula for Option Pricing}
+\author[1]{Peter Carr}
+\author[2]{Keith A. Lewis}
+\affil[1]{NYU Tandon School of Engineering}
+\affil[2]{KALX, LLC}
 \date{\today}
 
 \begin{document}
@@ -34,39 +38,63 @@ natural since all but the first two cumulants of a normal distribution
 are zero. For other distributions, the third and fourth cumulant are closely
 related to the skew and kurtosis.
 
-The mathematics involved is fairly elementary and a software
-implementation is available for you to try out your ideas
-on how this can be used.
+The mathematics involved is fairly elementary and gives an
+explicit formula for computing any model.
 \end{abstract}
 
 \section{Outline}
 The forward value of an European put option having strike \(k\)
-and forward $F$ at expiration is
+and strictly positive forward $F$ at expiration is
 \[
-E\max\{k - F, 0\} = E(k - F)1(F \le k) = kP(F\le k) - fP^*(F\le k)
+E\max\{k - F, 0\} = E(k - F)1(F \le k) = kQ(F\le k) - fQ^*(F\le k)
 \]
-where $f = EF$ and $dP^*/dP = F/f$
-is the {\em Esscher transform}\cite{Ess1932}.
+where $f = EF$ and $dQ^*/dQ = F/f$
+is the {\em Esscher transform}\cite{Ess1932} of the risk-neutral
+measure $Q$.
 We derive formulas for
-\(P(F\le k)\) and \(P^*(F\le k)\) that can be computed
+\(Q(F\le k)\) and \(Q^*(F\le k)\) that can be computed
 efficiently when $\log F$ is approximately normal.
 
-This generalizes the Black formula
-\(E\max\{k - F,0\} = k\Phi(-d_2) - f\Phi(-d_1)\)
-where \(F = fe^{-\sigma^2t/2 + \sigma B_t}\), \((B_t)\) is
-standard Brownian motion, \(\Phi\) is the standard normal cumulative
-distribution function, \(d_1 = (\sigma^2 t/2
-+ \log f/k)/\sigma\sqrt{t}\) and \(d_2 = d_1 - \sigma\sqrt{t}\).
+Let \(F = f\exp(-\kappa(s) + sX)\) where \(\kappa(s) = \log E \exp(sX)\)
+is the {\em cumulant} of \(X\).  Note \(EF = f\) and \(\Var\log F =
+s^2\Var X\). These can be obtained from market prices
+for the corresponding futures and variance swap
+respectively.
+
+The formula for a put can be expressed as
+\[
+E\max\{k - F, 0\} = kQ(X\le m) - fQ^*(X\le m)
+\]
+where \(m = (\kappa(s) + \log k/f)/s\) is the {\em moneyness}.
+
+If \(X\) is standard normal and \(s = \sigma\sqrt{t}\),
+then this is the Black\cite{Bla1976} formula. Recall
+\(
+E\exp(N) = \exp(E N + \Var(N)/2)
+\) 
+if \(N\) is
+normal, and 
+\(
+E \exp(N) f(M) = E\exp(N) Ef(M + \Cov(N,M))
+\)
+if \(N\) and \(M\) are jointly normal. We have
+\(\kappa(s) = \log E\exp(sX) = s^2/2\) and
+\(E^*f(X) = E\exp(-s^2/2 + sX) f(X)
+= E f(X + s)\). In the usual notation,
+\(m = -d_2 = (\sigma^2t/2 - \log f/k)/\sigma\sqrt{t}\)
+and \(Q^*(X \le m) = Q(X + \sigma\sqrt{t} \le -d_2)
+= Q(X \le -d_1)\) where \(d_1 = d_2 + \sigma\sqrt{t}\).
 
 In section 2 we recall some basic facts about cumulants.  Section 3 uses
-an Edgeworth expansion and Bell polynomials to show their relationship
-to moments.
-The third section describes how Hermite polynomials
-give an explicit formula for the cumulative
-distribution function of the perturbed distribution.  Option valuation
-is considered in section 4 where we show how the Esscher transform can be
-calculated using the method in section 3. The last section
-collects some general remarks.
+Bell polynomials,
+an Edgeworth expansion, and Hermite polynomials
+to get an explicit formula for the cumulative
+distrbution of the perturbed distribution.
+
+A formula for calculating the Esscher transform
+is developed in section 4 using the same technique
+as in the preceeding section. 
+The paper concludes with some general remarks.
 
 \section{Cumulants}
 
@@ -77,7 +105,9 @@ are defined by
 \[
 \kappa(s) = \sum_{n=1}^\infty \kappa_n \frac{s^n}{n!}
 \]
-Since \((d/ds)^n\kappa(s)|_{s = 0} = \kappa_n\) it is easy to
+Since the \(n\)-th derivative evaluated at \(0\)
+satisfies \(\kappa^{(n)}(s)|_{s = 0} = \kappa_n\) 
+it is easy to
 work out that
 \(\kappa_1 = EX\) and \(\kappa_2 = \Var(X)\). Higher order
 cumulants are less intuitive but the third and fourth are
@@ -91,12 +121,10 @@ They scale homogeneously, the \(n\)-th cumulant of a constant
 times a random variable is
 \(\kappa_n(cX) = c^n\kappa_n(X)\).
 
-The relationship between cumulants and moments, \(m_n = EX^n\),
-involves Bell
-polynomials\cite{Bel1934}.
+The exponential of the cumulant in terms of
+powers of \(s\) is
 \[
-Ee^{sX} = \sum_{n=0}^\infty m_n \frac{s^n}{n!}
- = \exp(\sum_{n=1}^\infty \kappa_n \frac{s^n}{n!})
+Ee^{sX} =  \exp(\sum_{n=1}^\infty \kappa_n \frac{s^n}{n!})
 = \sum_{n=0}^\infty B_n(\kappa_1,\dots,\kappa_n) \frac{s^n}{n!}
 \]
 where \(B_n(\kappa_1,\dots,\kappa_n)\) is the \(n\)-th complete
@@ -111,29 +139,41 @@ B_{n - k}(x_1,\dots, x_{n - k}) x_{k+1}.
 \]
 
 \section{Edgeworth Expansion}
-Given random
-variables \(X\) and \(Y\), we have
-\[\log E e^{iuY} - \log E e^{iuX} = \sum_{n=1}^\infty \Delta\kappa_n (iu)^n/n!\]
-where \((\Delta\kappa_n)\) are the differences of the cumulants 
-of \(X\) and \(Y\), so
+Let \(X = Z + \Delta Z\) where \(Z\) is standard
+normal and \(\Delta Z\) is independent of \(Z\).
+\[\log E e^{iuX} = \log E e^{iuZ} \sum_{n=1}^\infty \Delta\kappa_n (iu)^n/n!
+\]
+where \((\Delta\kappa_n)\) are the cumulants 
+of \(\Delta Z\) so
 \[
-Ee^{iuY} = Ee^{iuX}\sum_{n=0}^\infty B_n(\Delta\kappa_1,...,\Delta\kappa_n)(iu)^n/n!.
+Ee^{iuX}= Ee^{iuZ}\sum_{n=0}^\infty B_n(\Delta\kappa_1,...,\Delta\kappa_n)(iu)^n/n!.
 \]
 
-Let \(F\) and \(G\) be the cumulative distribution functions of
-\(X\) and \(Y\) respectively. Furthur assume they have density
-functions \(f\) and \(g\).
+Let \(\Phi\) and \(\Psi\) be the cumulative distribution functions of
+\(Z\) and \(X = Z + \Delta Z\) respectively. 
+Let \(\phi(x) = \exp(-x^2/2)/\sqrt{2\pi}\) denote
+the denisity function of a standard normal
+and assume \(X\) has density \(\psi\).
+
 The Fourier transform, \(\hat{f}(u) = Ee^{iuX}\),
 of \(f'\) is \(-iu \hat f(u)\) so
 the Fourier transform of the \(n\)-th derivative
 \(f^{(n)}\) is \((-iu)^n\hat f(u)\) hence
-\[
-	g(x) = \sum_{n=0}^\infty (-1)^n B_n(\Delta\kappa_1,...,\Delta\kappa_n)
-	f^{(n)}(x)/n!
-\]
+\begin{align*}
+	\hat{\psi}(x) &= \hat{\phi}(x)\sum_{n=0}^\infty 
+ B_n(\Delta\kappa_1,...,\Delta\kappa_n)
+	(iu)^n/n!\\
+&= \sum_{n=0}^\infty (-1)^n B_n(\Delta\kappa_1,...,\Delta\kappa_n)
+	\widehat{\phi^{(n)}}(x)/n!\\
+\end{align*}
+Taking inverse Fourier transforms and integrating both
+sides yields
+\begin{equation}
+\Psi(x) = \sum_{n=0}^\infty (-1)^n B_n(\Delta\kappa_1,...,\Delta\kappa_n) \Phi^{(n)}(x)/n!.
+\end{equation}
 
 \subsection{Hermite Polynomials}
-The derivatives of the standard normal cumulative distribution 
+The derivatives of the standard normal density 
 can be computed using Hermite polynomials\cite{AbrSte1964}
 pp. 793--801.
 One definition is
@@ -145,58 +185,46 @@ They satisfy the recurrence \(H_0(x) = 1\), \(H_1(x) = x\) and
 H_{n+1}(x) = xH_n(x) - n H_{n-1}(x).
 \]
 Note some authors use \(He_n(x)\) instead of \(H_n(x)\).
+This shows \(\phi^{(n)}(x) = (-1)^n\phi(x) H_n(x)\)
+so \(\Phi^{(n)} = (-1)^{n-1} H_{n-1}(x)\) for \(n > 0\).
 
-Integrating both sides of the formula for the density
-functions and using Hermite polynomials yields
-\[
-G(x) = F(x) - \sum_{n=1}^\infty
-B_n(\Delta\kappa_1,\dots,\Delta\kappa_n) H_{n-1}(x)
-e^{-x^2/2}/n!\sqrt{2\pi}
-\]
+We now have and explicit formula for the cumulative
+distibution function of \(X\):
+\begin{equation}
+\Psi(x) = \Phi(x) - \phi(x)\sum_{n=1}^\infty
+B_n(\Delta\kappa_1,\dots,\Delta\kappa_n) H_{n-1}(x)/n!
+\end{equation}
 
 \section{The Esscher Transform}
 
-If \(X\) is standard normal then
-\(P^*(X\le z) = Ee^{-s^2/2 + sX} 1(X\le z)) = P(X + s\le z)
-= \Phi(z - s)\)
-where we use the fact
-\[
-Ee^M f(N) = Ee^M Ef(N + \Cov(M,N))
-\]
-if \(M\) and \(N\) are
-jointly normal. Here \(M = -s^2/2 + sX\), \(N = X\), and \(f(x) = 1(x\le z)\).
-
-If \(Y\) is a pertubation of \(X\) then
-for \(G(z) = P(Y\le z)\), we need to compute
-\[
-G^*(z) = P^*(Y\le z) = Ee^{-\kappa(s) + sY}1(Y\le z).
-\]
-The cumulants of \(Y^*\) can be found from
+The Esscher Transform can also be computed using the above formula.
+Since
+\(\Psi^*(x) = Q^*(X\le x) = Ee^{-\kappa(s) + sX}1(X\le x)\)
+we have
 \begin{align*}
-\log E e^{uY^*} &= \log E e^{-\kappa(s) + s Y} e^{uY}\\
+\log E^* e^{uX} &= \log E e^{-\kappa(s) + s X} e^{uX}\\
 &= -\kappa(s) + \kappa(s + u)\\
 &= \sum_{n=1}^\infty -\kappa_n \frac{s^n}{n!} 
-	+ \kappa_n \frac{(u + s)^n}{n!}\\
-&= \sum_{n=1}^\infty \sum_{k=0}^{n-1} \kappa_n \binom{n}{k}
+	+ \kappa_n \frac{(s + u)^n}{n!}\\
+&= \sum_{n=1}^\infty \sum_{k=1}^{n} \kappa_n \binom{n}{k}
 	\frac{s^{n - k}u^k}{n!}\\
-&= \sum_{k=1}^\infty \sum_{n=k + 1}^\infty \kappa_n 
+&= \sum_{k=1}^\infty \sum_{n=k}^\infty \kappa_n 
 	\binom{n}{k}\frac{s^{n - k}u^k}{n!}\\
-&= \sum_{k=1}^\infty \sum_{n=k + 1}^\infty \kappa_n \frac{s^{n-k}}{(n-k)!}
+&= \sum_{k=1}^\infty \sum_{n=k}^\infty \kappa_n \frac{s^{n-k}}{(n-k)!}
 	\frac{u^k}{k!}\\
 &= \sum_{k=1}^\infty 
-	\bigl(\sum_{n=1}^\infty \kappa_{n+k} \frac{s^n}{n!}\bigr)
+	\bigl(\sum_{n=0}^\infty \kappa_{n+k} \frac{s^n}{n!}\bigr)
 	\frac{u^k}{k!}\\
 \end{align*}
-This shows the cumulants of \(Y^*\) are 
+This shows the cumulants are 
 \(\kappa^*_n = \sum_{k=1}^\infty \kappa_{n + k}s^k/k!\)
-so we can also compute \(G^*(z) = P(Y^* \le z)\) using the same
-technique as for \(G\).
+and we can use equation (2) to compute the Esscher transform.
 
-If \(G\) is standard normal then all cumulants vanish except \(\kappa_2 = 1\).
-The only nonzero cumulants of \(Y^*\) are \(\kappa_1 = s\)
-and \(\kappa_2 = 1\). The corresponding complete Bell polynomials
-are \(B_n = s^n/n!\) and we see the above formula is just
-the Taylor series expansion of \(G(z - s)\).
+If \(X\) is standard normal (i.e., \(\Delta Z = 0\)) then all cumulants vanish except \(\kappa_2 = 1\).
+The only nonzero cumulants are \(\kappa^*_1 = s\)
+and \(\kappa^*_2 = 1\). The corresponding complete Bell polynomials
+are \(B_n = s^n/n!\) and we see that formula (1) is just
+the Taylor series expansion of \(\Phi(x - s)\).
 %
 %The Edgeworth series expands the exponential in a power series.
 %\[\exp\bigl(\sum_{n=0}^\infty \Delta\kappa_n (iu)^n/n!\bigr)
