@@ -15,7 +15,7 @@ $(HTML): %.html: %.md
 	pandoc $(FLAGS) $< -o $@
 
 $(PDF): %.pdf: %.md
-	pandoc -H header.tex $< -o $@
+	pandoc -H header.tex $(FLAGS) $< -o $@
 
 rsync: $(HTML)
 	rsync $(HTML) ftap.css kal@web69.webfaction.com:webapps/kalx/html
