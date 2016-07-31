@@ -3,13 +3,13 @@ assistant professor at Brown where he pioneered the use of computers as a
 classroom tool in mathematics. He went on to work on Wall Street
 at Bankers Trust, Morgan Stanley, and Banc of America Securities. (That
 is not a typo. It was during the dregs end of the Glass-Steagall Act
-that forbid banks to traffic in stocks.)
+that forbade banks to traffic in stocks.)
 
-He and his team built equity derivative libraries and made the
+He and his team built their equity derivative libraries that made the
 numbers used to run the business available to the trading desk via
-high-performance Excel add-ins. Supporting spreadsheets traders use
-was an excellent way to elicit user needs and rapidly prototype
-products that resulted in production quality code.
+high-performance Excel add-ins. Supporting spreadsheets traders use was
+an excellent way to elicit user needs and rapidly prototype products
+that resulted in production quality code.
 
 Since 2002 Keith has been a consultant for hedge funds of various shapes
 and sizes building valuation models and tools for exploring, testing,
