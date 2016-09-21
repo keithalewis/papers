@@ -11,12 +11,6 @@ The Black-Scholes/Merton theory uses the connection between
 Brownian motion and partial differential equations that
 Kakutani and Ito showed.
 
-Math finance programs.
-
-Lack of connection to the real world.
-
-Importance of technology.
-
 Our unified approach requires far less mathematics than
 the standard theory. A complete review of what is
 required follows.
@@ -53,7 +47,7 @@ either $A_j\cap A_k = \emptyset$ or $A_j\cap A_k = A_j$.
 If the sets are not disjoint, then $A_j\subseteq A_k$.
 Since the intersection is not empty, $A_j = A_k$.
 
-Partitions are how _partial information_ is modeled. Knowing
+Partitions are how _partial information_ is modelled. Knowing
 which $\omega\in\Omega$ occurs is complete information. Knowing
 only which atom $\omega$ belongs to is partial information.
 The partition of all singleton sets corresponds to complete
@@ -271,8 +265,9 @@ E[\sum_{t<s\le u} C_sD_s + X_uD_u|\AA_t]
 
 As we will see later, every model has this form.
 
-For example, The Black-Scholes/Merton model is $M_t = (r,se^{-\sigma^2t/2
-+ \sigma B_t})$ and $D_t = e^{-\rho t}$ where $(B_t)$ is standard
+For example, The Black-Scholes/Merton model is $M_t = (R_t, S_t)
+= (r,se^{-\sigma^2t/2 + \sigma B_t})$
+and $D_t = e^{-\rho t}$ where $(B_t)$ is standard
 Brownian motion.  Fixed dividends correspond to $C_t = sd$ at dividend
 dates and proportional dividends to $C_t = S_td$.
 
@@ -320,7 +315,8 @@ at time $u$.  Its price at time $t < u$ satisfies $X^{D(u)}_t\Pi_t =
 \Pi_u|_{\AA_t}$, or equivalently $X^{D(u)}_t D_t = E[D_u|{\AA_t}]$.
 
 We will use the helpfully confusing notation $X_t^{D(u)} = D_t(u)$
-so $D_t(u)\Pi_t = \Pi_u|_{\AA_t}$ and $D_t(u)D_t = E[D_u|\AA_t]$.
+so $D_t(u)\Pi_t = \Pi_u|_{\AA_t}$ and so $D_t(u)D_t = E[D_u|\AA_t]$.
+The price at time $t$ maturing at $u$ is $D_t(u) = E[D_u|\AA_t]/D_t$.
 
 ### Forwards
 Let $S_t$ be the price of a stock with no dividends at time $t$.
