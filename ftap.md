@@ -1,15 +1,23 @@
+<div id="kalx"><a href="mailto:kal@kalx.net">kal@kalx.net</a></div>
 # Unified Derivatives
 
 This note suggests a rigorous mathematical theory for pricing, hedging,
 and quantifying the risk of _any_ derivative security assuming a single
-currency and perfect liquidity. 
+currency and perfect liquidity.
 
 ## Mathematical Preliminaries
 
 Mathematical finance involves mathematics.
-The Black-Scholes/Merton theory uses the connection between
-Brownian motion and partial differential equations that
-Kakutani and Ito showed.
+Black-Scholes/Merton used the mathematics developed by
+Kakutani and Ito involving Brownian motion to
+model stock prices. The latter two won Nobel prizes
+"for a new method to determine the value of derivatives."
+
+The value of a derivative is the cost of setting up the initial hedge. An
+unfortunate artifact of the mathematical theory is that their hedge requires
+continuous rebalancing. This is simply impossible in practice. Their
+theory offers no insight useful to practitioners who need to determine
+when to adjust their hedge.
 
 Our unified approach requires far less mathematics than
 the standard theory. A complete review of what is
@@ -25,7 +33,7 @@ stock price movements.
 
 The set of possible outcomes can contain historical information
 and data other than prices. Many models involving
-trading strategies do. 
+trading strategies do.
 
 ### Algebras
 An _algebra_, $\AA$, is a collection of subsets of $\Omega$ closed under
@@ -56,7 +64,7 @@ represents total lack of information.
 
 ### Measurable Functions
 
-A function $X\colon\Omega\to\RR$ is _$\AA$-measurable_ 
+A function $X\colon\Omega\to\RR$ is _$\AA$-measurable_
 if $X^{-1}((-\infty,x]) = \{\omega\in\Omega:X(\omega)\le x\}$
 belongs to $\AA$ for all $x\in\RR$. If $\AA$ is finite,
 a function is measurable if and only if it is constant on
@@ -65,15 +73,16 @@ $X$ is $\AA$-measurable. If $\AA$ is finite then $X$ _is_
 a function on the atoms of $\AA$.
 
 ### Measures
-A (finitely additive) _measure_ is a function $\Pi\colon\AA\to\RR$
+A finitely additive _measure_ is a function $\Pi\colon\AA\to\RR$
 such that $\Pi(A\cup B) = \Pi(A) + \Pi(B) - \Pi(A\cap B)$.  
 Measures don't count things in both sets twice.
 The _integral_ of $X\colon\AA\to\RR$, $\int_\Omega X\,d\Pi$, is defined in
 the same way as for standard Lebesgue theory.
 Proving theorems about interchange of limits is more difficult
 than for countably additive measures, but we have no need for
-those results. 
+those results.
 
+<!--
 Let $B(\Omega,\AA)$ be the vector space of bounded $\AA$-measurable
 functions on $\Omega$. The space of bounded linear functionals,
 $B(\Omega,\AA)^*$, can be identified with the space of finitely additive
@@ -91,16 +100,17 @@ write $E[X]$ for $\langle X,P\rangle$.  If $\BB$ is a subalgebra of
 $\AA$ then $Y$ is the _conditional expectation_ of $X$ given $\BB$ if
 and only if $Y$ is $\BB$ measurable and $\int_B Y\,dP = \int_B X\,dP$
 for all $B\in\BB$. We write $Y = E[X|\BB]$.
+-->
 
-**Lemma.** _$Y = E[X|\BB]$ if and only if $Y$ is $\BB$-measurable and
-$YP|_\BB = XP|_\BB$._
+**Lemma.** _$Y = E[X|\BB]$ if and only if $Y(P|_\BB) = (XP)|_\BB$._
 
-$\Pi|_\BB$ is the measure $\Pi$ _restricted_
-to the algebra $\BB$. The following statements are equivalent:
-$\int_B Y\,dP = \int_B X\,dP$ for all $B\in\BB$.
-$\langle 1_BY,P\rangle = \langle 1_BX,P\rangle$ for all $B\in\BB$.
-$\langle 1_B,YP\rangle = \langle 1_B,XP\rangle$ for all $B\in\BB$.
-$YP|_\BB = XP|_\BB$.
+The mathematical definition of $Y = E[X|\BB]$ is $Y$ is $\BB$ measurable
+and $\int_B Y\,dP = \int_B X\,dP$ for $B\in\BB$.  The integrals define
+how a function times a measure is a measure, e.g., $(XP)(B) = \int_B
+X\,dP$. The equality says $(YP)(B) = (XP)(B)$ for $B\in\BB$. Using the
+standard notation for restricting a function to a subset of its domain,
+$(YP)|_\BB = (XP)|_\BB$.  $(YP)|_\BB = Y(P|_\BB)$ if and only if $Y$
+is $\BB$ measureable.
 
 If $\BB$ is finite, then $E[X|\BB] = \sum_{B}1_B\int_B X\,dP/P(B)$
 where the sum is over the atoms of $\BB$.
@@ -144,7 +154,7 @@ $$
 Trades result in numbers showing up in your _account_.
 At time $t$ your account statement will be
 $$
-A_t = \Delta_t \cdot C_t - \Gamma_t\cdot X_t 
+A_t = \Delta_t \cdot C_t - \Gamma_t\cdot X_t
 $$
 You receive all the cash flows from your existing position
 and pay for the trades you do based on market prices.
@@ -155,7 +165,7 @@ V_t = (\Delta_t + \Gamma_t)\cdot X_t.
 $$
 It represents the amount you would get from unwinding your current
 position and the trades you just did. If you have a large
-position in illiquid instruments this is mathematical assumption
+position in illiquid instruments this mathematical assumption
 that does not reflect reality.
 
 ### Arbitrage
@@ -164,7 +174,7 @@ $A_{\tau_0} > 0$, and $A_t\ge0$ for $t > \tau_0$.
 In words, there is a trading strategy that eventually closes out,
 makes money on the first trade, and never loses thereafter.
 
-Note that this definition does not involve measures. 
+Note that this definition does not involve measures.
 
 ### Pricing Measures
 _Pricing measures_ are positive measures
@@ -202,9 +212,9 @@ and a _seller_ to make future exchanges.
 The Fundamental Theorem of Asset Pricing provides a mathematical
 basis for determining the value of the contract.
 
-We only consider _cash settled_ derivatves. An European call option on
+We only consider _cash settled_ derivatives. An European call option on
 a stock that expires in-the-money does not pay one share of stock in
-exchange for the strike. It pays the the difference (in the underlying
+exchange for the strike. It pays the difference (in the underlying
 currency) of the share price and the strike, if that is positive.
 
 A derivative contract specifies amounts, $A_j$, to be paid at
@@ -219,10 +229,10 @@ is the value of the option (assuming $\tau_0 = 0$ and
 $\tau_n = u$).
 
 ## The Fundamental Theorem of Asset Pricing
-**Fundamental Theorem of Asset Pricing**. _A model is arbitrge
+**Fundamental Theorem of Asset Pricing**. _A model is arbitrage
 free if and only if a pricing measure exists._
 
-One direction is easy. If pricing meaures exist, then
+One direction is easy. If pricing measures exist, then
 $V_0\Pi_0 = \sum_{j>0} A_j\Pi_j|_{\AA_0}$. If $A_j\ge 0$ for $j > 0$
 then $V_0\Pi_0 \ge 0$. Since $V_0 = \Gamma_0\cdot X_0
 = -A_0$ it follows that $-A_0\Pi_0\ge 0$ and $A_0\le 0$.
@@ -267,21 +277,29 @@ As we will see later, every model has this form.
 
 For example, The Black-Scholes/Merton model is $M_t = (R_t, S_t)
 = (r,se^{-\sigma^2t/2 + \sigma B_t})$
-and $D_t = e^{-\rho t}$ where $(B_t)$ is standard
-Brownian motion.  Fixed dividends correspond to $C_t = sd$ at dividend
-dates and proportional dividends to $C_t = S_td$.
+and $\Pi_t = e^{-\rho t}P|_{\AA_t}$ where $(B_t)$ is standard
+Brownian motion.
+
+No need for the Ito formula and partial differential equations. No need
+for a phony "real world" measure that gets immediately thrown out for
+a "risk neutral" measure. And no need for the inconvenient fact that the
+Hahn-Banach theorem requires the convex set has non-empty interior.
+
+Goodbye Ito formula. Goodbye PDE's. And good riddance Hahn-Banach.
+Your students will thank you for providing them an equivalent theory
+that does not require this baggage.
 
 ### Delta Hedging
 
-Assuming we can can find trades that can replicate the amounts
+Assuming we can find trades that can replicate the amounts
 specified in a derivative securities contract, the first trade is easy to
 find. Since $V_0 = \Gamma_0\cdot X_0$ we have $\Gamma_0 = dV_0/dX_0$.
 We can compute $V_0$ from $V_0\Pi_0 = \sum_{j>0} A_j\Pi_j(\Omega)$
 given the contract payments and pricing measure.
 
 The subsequent trades are just as easy to find if you make the mistake
-of assuming continuous time trading and avoid the hard problem: 
-traders need to decide when to rehedge their position. One of their
+of assuming continuous time trading and avoid the hard problem:
+traders need to decide when to re-hedge their position. One of their
 aphorisms is "Hedge when you can, not when you have to."  They don't
 seem to find the current theory of mathematical finance useful for that.
 
@@ -307,7 +325,7 @@ $1D_j = E[R_jD_{j+1}|\AA_j]$, this model is arbitrage free.
 Let's agree to call $D_jP|_{\AA_j}$ the _canonical pricing measure_.
 
 This mathematical assumption is not far from reality.
-Repurchase agreements agreements are used for this.
+Repurchase agreements are used for this.
 
 ### Zero Coupon Bonds
 A _zero coupon bond_, $D(u)$, has a single cash flow $C^{D(u)}_u = 1$
@@ -367,7 +385,7 @@ $F_u^\delta(u,v) = (1/D_u(v) - 1)/\delta(u,v)$.
 
 ### Floating Leg
 
-A _floating leg_, $F^\delta(t_0,\dots,t_n)$, 
+A _floating leg_, $F^\delta(t_0,\dots,t_n)$,
 has cash flows
 $C_{t_j} = \delta(t_{j-1}, t_j)F_{t_{j-1}} =\delta_j F_j$
 at $t_j$, $0 < j \le n$.
@@ -409,7 +427,7 @@ Another issue is what recovery applies to at the time of default. Is it
 the present value of future cash flows or a payout at default of the
 notional as in credit default swaps?
 
-In order to stumble under the street light I make the assumption that
+We make the standard (but not realistic) assumption that
 default time is independent of other factors and that recovery is a
 number that applies to cash flows at the times specified in the contract.
 This is similar to assuming recovery applies to the remaining present
@@ -427,13 +445,13 @@ for $t < u$. We assume there exist instruments at each time, $t$,
 having price $X_t = 1$ and paying a cash flow
 $C_{t+dt} = 1 + f_t\,dt = \exp(f_t\,dt)$. We call $(f_t)$ the
 _short rate process_. Let $D_t = \exp(-\int_0^t f_s\,ds)$ be
-the _stochastic discount_. 
+the _stochastic discount_.
 
 We can pick any probability measure $P$ on $\Omega$
 
 Our information at time $t$ about $T$ is either that default
 has already happened ($T \le t$) and we know the exact time
-of default, or default has not occured ($T > t$) and only
+of default, or default has not occurred ($T > t$) and only
 that $T\in(t,\infty)$. The algebra describing this information
 contains every subset of $[0,t]$ and the set $(t,\infty)$.
 
@@ -466,7 +484,7 @@ and a risk-free forward is then
 ### Remarks
 Note how all prices are determined by the short realized returns.
 
-Although it can be considered to be a stochastic process, 
+Although it can be considered to be a stochastic process,
 it is really a bunch of instruments.
 
 Future = Forward + convextiy

@@ -16,3 +16,13 @@ h3 {
 h4 {
 	color: #222;
 }
+#kalx {
+	font-family: "Courier";
+	font-weight: bold;
+	opacity: 20%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+	color: blue;
+}
