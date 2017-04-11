@@ -1,5 +1,10 @@
+---
+title: Unified Derivatives
+author: Keith A. Lewis
+institute: KALX, LLC
+classoption: fleqn
+---
 <div id="kalx"><a href="mailto:kal@kalx.net">kal@kalx.net</a></div>
-# Unified Derivatives
 
 This note suggests a rigorous mathematical theory for pricing, hedging,
 and quantifying the risk of _any_ derivative security assuming a single
@@ -13,33 +18,34 @@ Kakutani and Ito involving Brownian motion to
 model stock prices. The latter two won Nobel prizes
 "for a new method to determine the value of derivatives."
 
-The value of a derivative is the cost of setting up the initial hedge. An
-unfortunate artifact of the mathematical theory is that their hedge requires
-continuous rebalancing. This is simply impossible in practice. Their
-theory offers no insight useful to practitioners who need to determine
-when to adjust their hedge.
+The B-S/M value of a derivative is the cost of setting up the initial
+replicating hedge. An unfortunate artifact of the mathematical theory is
+that their hedge requires continuous rebalancing. This is not possible
+in practice and their theory offers no insight useful to practitioners
+who need to determine how and when to adjust their hedge.
 
-Our unified approach requires far less mathematics than
-the standard theory. A complete review of what is
-required follows.
+Our unified approach requires far less mathematics than the standard
+theory. It also highlights the important questions of how and when
+to hedge.
+
+A complete review of the prerequisite mathematics follows.
 
 ### Outcomes
 
-The _outcomes_ that can happen are modeled by
-a set, $\Omega$. In the Black-Scholes/Merton model
-$\Omega = C[0,\infty)$, the set of continuous functions
-from now into the future. They model the possible future
-stock price movements.
+The _outcomes_ that can happen are modeled by a set, $\Omega$. In the
+Black-Scholes/Merton model $\Omega = C[0,\infty)$, the set of continuous
+functions from now into the future. This models the (logarithm of)
+possible future stock price movements.
 
-The set of possible outcomes can contain historical information
-and data other than prices. Many models involving
-trading strategies do.
+The set of possible outcomes can contain historical information and data
+other than prices. Many models involving trading strategies do.
 
 ### Algebras
 An _algebra_, $\AA$, is a collection of subsets of $\Omega$ closed under
 complement and union. Elements of $\AA$ are called _events_. It
 is customary to assume the empty set, hence $\Omega$,
 belongs to an algebra.
+
 An _atom_, $A\in\AA$ has the property $B\subseteq A$ and
 $B\in\AA$ implies $B = \emptyset$ or $B = A$.
 
@@ -106,13 +112,13 @@ for all $B\in\BB$. We write $Y = E[X|\BB]$.
 
 The mathematical definition of $Y = E[X|\BB]$ is $Y$ is $\BB$ measurable
 and $\int_B Y\,dP = \int_B X\,dP$ for $B\in\BB$.  The integrals define
-how a function times a measure is a measure, e.g., $(XP)(B) = \int_B
+how a function times a measure is a measure, i.e., $(XP)(B) = \int_B
 X\,dP$. The equality says $(YP)(B) = (XP)(B)$ for $B\in\BB$. Using the
 standard notation for restricting a function to a subset of its domain,
-$(YP)|_\BB = (XP)|_\BB$.  $(YP)|_\BB = Y(P|_\BB)$ if and only if $Y$
-is $\BB$ measureable.
+$(YP)|_\BB = (XP)|_\BB$. If $Y$ is $\BB$ measurable then
+$(YP)|_\BB = Y(P|_\BB)$.
 
-If $\BB$ is finite, then $E[X|\BB] = \sum_{B}1_B\int_B X\,dP/P(B)$
+If $\BB$ is finite, then $E[X|\BB] = \sum_{B}(1_B/P(B))\int_B X\,dP$
 where the sum is over the atoms of $\BB$.
 Although restriction of a measure is mathematically equivalent, it is
 trivial to implement in software.
@@ -130,7 +136,7 @@ at time $t\in T$.
 The price is assumed to be in a given currency and every instrument
 can be bought or sold in any quantity at that price.  Cash flows are
 payments associated with holding an instrument, e.g., coupons for bonds
-or dividends for stocks. There are no bid-ask spread or liquidity
+or dividends for stocks. Note there are no bid-ask spread or liquidity
 issues for cash flows.
 
 ### Trading Strategy and Position
@@ -157,7 +163,7 @@ $$
 A_t = \Delta_t \cdot C_t - \Gamma_t\cdot X_t
 $$
 You receive all the cash flows from your existing position
-and pay for the trades you do based on market prices.
+and pay for the trades you do based on current market prices.
 
 The (marked-to-market) _value_ of your trades at time $t$ is
 $$
@@ -166,7 +172,7 @@ $$
 It represents the amount you would get from unwinding your current
 position and the trades you just did. If you have a large
 position in illiquid instruments this mathematical assumption
-that does not reflect reality.
+does not reflect reality.
 
 ### Arbitrage
 _Arbitrage_ exists if there are trades with $\sum \Gamma_j = 0$,
@@ -183,50 +189,45 @@ $$
 X_t\Pi_t = (\sum_{t<s\le u} C_s\Pi_s + X_u\Pi_u)|_{\AA_t}
 $$
 
-If $T = \{t_j\}$ is discrete, then
-$$
-X_j \Pi_j = (C_{j+1} + X_{j+1})\Pi_{j+1}|_{\AA_j}\tag{1}
-$$
-where $X_j = X_{t_j}$, etc. We have
+If $u$ is less than or equal to the first time greater than $t$
+such that $C_s\not=0)$ then 
+$X_t\Pi_t = (C_u + X_u)\Pi_u|_{\AA_t}$. Note that if $u$ is
+less than or equal to the first time greater than $t$ such
+that $A_u\not=0$ then $\Delta_t + \Gamma_t = \Delta_u$.
+We have
 
 \begin{align*}
-V_j \Pi_j &= (\Delta_j + \Gamma_j)\cdot X_j\Pi_j\\
-&= \Delta_{j+1}\cdot X_j\Pi_j\\
-&= \Delta_{j+1}\cdot (C_{j+1} + X_{j+1})\Pi_{j+1}|_{\AA_j}\\
-&= (A_{j+1} + \Gamma_{j+1}\cdot X_{j+1}
-+ \Delta_{j+1}\cdot X_{j+1})\Pi_{j+1}|_{\AA_j}\\
-&= (A_{j+1} + V_{j+1})\Pi_{j+1}|_{\AA_j}\\
+V_t \Pi_t &= (\Delta_t + \Gamma_t)\cdot X_t\Pi_t\\
+&= \Delta_u\cdot X_t\Pi_j\\
+&= \Delta_u\cdot (C_u + X_u)\Pi_u|_{\AA_t}\\
+&= (A_u + \Gamma_u\cdot X_u + \Delta_u\cdot X_u)\Pi_u|_{\AA_t}\\
+&= (A_u + V_u)\Pi_u|_{\AA_t}\\
 \end{align*}
 
-The equation
+By induction,
 $$
-V_j \Pi_j= (A_{j+1} + V_{j+1})\Pi_{j+1}|_{\AA_j}\tag{2}
+V_t\Pi_t = (\sum_{t<s\le u} A_s\Pi_s + V_u\Pi_u)|_{\AA_t}.
 $$
-is the skeleton key to understanding derivative securities.
+This equation is the skeleton key to understanding derivative securities.
 Note how $V$ and $A$ in equation (2) correspond to
 $X$ and $C$ in equation (1). Trading strategies make it
 possible to create synthetic instruments.
 
+## Derivative Securities
 A _derivative security_ is a contract between a _buyer_
 and a _seller_ to make future exchanges.
 The Fundamental Theorem of Asset Pricing provides a mathematical
 basis for determining the value of the contract.
 
-We only consider _cash settled_ derivatives. An European call option on
-a stock that expires in-the-money does not pay one share of stock in
-exchange for the strike. It pays the difference (in the underlying
+We only consider _cash settled_ derivatives. E.g., an European call option
+on a stock that expires in-the-money does not pay one share of stock
+in exchange for the strike. It pays the difference (in the underlying
 currency) of the share price and the strike, if that is positive.
 
 A derivative contract specifies amounts, $A_j$, to be paid at
-times $t_j$. The buyer receives $A_j$ if $A_j > 0$ and pays
+times $\tau_j$. The buyer receives $A_j$ if $A_j > 0$ and pays
 $-A_j$ to the seller if $A_j < 0$.
 
-An European option has only one payment at expiration $u$.
-If we can find trades $\Gamma_j$ at $\tau_j$ such that
-$A_t = 0$ for $0 < t < u$ and $A_u$ is the option payoff,
-then the cost of setting up the initial hedge, $V_0$,
-is the value of the option (assuming $\tau_0 = 0$ and
-$\tau_n = u$).
 
 ## The Fundamental Theorem of Asset Pricing
 **Fundamental Theorem of Asset Pricing**. _A model is arbitrage
@@ -247,6 +248,15 @@ What they overlooked is that this is unnecessary. It is quite easy
 to produce pricing measures by simply writing them down. No need
 to use the Hahn-Banach theorem to prove they exist.
 
+<!--
+An European option has only one payment at expiration $u$.
+If we can find trades $\Gamma_j$ at $\tau_j$ such that
+$A_t = 0$ for $0 < t < u$ and $A_u$ is the option payoff,
+then the cost of setting up the initial hedge, $V_0$,
+is the value of the option (assuming $\tau_0 = 0$ and
+$\tau_n = u$).
+-->
+
 ### Arbitrage Free Models
 
 Given a filtration $(\AA_t)$ on $\Omega$ and a positive measure, $P$,
@@ -257,10 +267,9 @@ free model.
 
 In this case we can write equation (1) as
 $$
-X_tD_t = E[X_uD_u|\AA_t]
+X_tD_t = E[X_uD_u|\AA_t],
 $$
-This reduces to the statement
-$X_tD_t$ is a _martingale_ in the case of zero cash flows.
+i.e, $X_tD_t$ is a _martingale_.
 
 More generally, $X_t = (M_t - \sum_{s\le t}C_sD_s)/D_t$
 is an arbitrage free model having cash flows $(C_t)$ since
@@ -273,17 +282,20 @@ E[\sum_{t<s\le u} C_sD_s + X_uD_u|\AA_t]
 &= X_tD_t\\
 \end{align*}
 
-As we will see later, every model has this form.
+(*)
+
+Every model has this form.
 
 For example, The Black-Scholes/Merton model is $M_t = (R_t, S_t)
 = (r,se^{-\sigma^2t/2 + \sigma B_t})$
 and $\Pi_t = e^{-\rho t}P|_{\AA_t}$ where $(B_t)$ is standard
-Brownian motion.
+Brownian motion and $P$ is Wiener measure.
 
-No need for the Ito formula and partial differential equations. No need
-for a phony "real world" measure that gets immediately thrown out for
-a "risk neutral" measure. And no need for the inconvenient fact that the
-Hahn-Banach theorem requires the convex set has non-empty interior.
+No need for the Ito formula. No need for partial differential
+equations. No need for a "real world" measure that gets immediately thrown
+out for a "risk neutral" measure. And no need for the inconvenient fact
+that the Hahn-Banach theorem requires the convex set to have a non-empty
+interior point.
 
 Goodbye Ito formula. Goodbye PDE's. And good riddance Hahn-Banach.
 Your students will thank you for providing them an equivalent theory
@@ -294,14 +306,21 @@ that does not require this baggage.
 Assuming we can find trades that can replicate the amounts
 specified in a derivative securities contract, the first trade is easy to
 find. Since $V_0 = \Gamma_0\cdot X_0$ we have $\Gamma_0 = dV_0/dX_0$.
-We can compute $V_0$ from $V_0\Pi_0 = \sum_{j>0} A_j\Pi_j(\Omega)$
+We can compute $V_0$ from $V_0\Pi_0 = \sum_{j>0} A_{\tau_j}\Pi_j(\Omega)$
 given the contract payments and pricing measure.
 
-The subsequent trades are just as easy to find if you make the mistake
-of assuming continuous time trading and avoid the hard problem:
+In general $V_t = \sum{u > t} A_uD_u/D_t$ and since
+$V_t = (\Delta_t + \Gamma_t)\cdot X_t$ the Fr\'echet derivative
+of $X_t \mapsto V_t$ is $\Delta_t + \Gamma_t$. Since $\Delta_t$ is
+known at time $t$, this tells us the value of $\Gamma_t$ to trade.
+
+(*)
+
+The fiction of continuous time trading avoids the hard problem:
 traders need to decide when to re-hedge their position. One of their
 aphorisms is "Hedge when you can, not when you have to."  They don't
-seem to find the current theory of mathematical finance useful for that.
+seem to find the current theory of mathematical finance useful for
+explicitly quantifying this.
 
 ## Canonical Pricing Measures
 
@@ -309,23 +328,31 @@ There is an obvious choice for pricing measures.
 
 ### Short Realized Returns
 
-Assuming discrete times $T = \{t_j\}$, the _short realized returns_
-are a collection of market instrument having prices $X_j = 1$ and cash flows
-$C_{j+1} = R_j$, where $R_j$ is $\AA_j$ measurable.
-Some people like to write $R_j = \exp(r_j \Delta t_j)$,
-where $\Delta t_j = t_{j+1} - t_j$,
-and call $(r_j)$ the _short rate process_.
-I prefer the notation $f_j = r_j$ and calling that the
-_instantaneous forward rate_.
+Assuming discrete times $T = \{t_j\}$, the _short realized returns_ are a
+collection of market instruments, $R_j$, having prices $X_j = 1$ and cash
+flows $C_{j+1} = R_j$, where $R_j$ is $\AA_j$ measurable.  Some people
+like to write $R_j = \exp(r_j \Delta t_j)$, where $\Delta t_j = t_{j+1}
+- t_j$, and call $(r_j)$ the _short rate process_.  I prefer the notation
+$f_j$ instead of $r_j$ and call that the _instantaneous forward rate_.
+
+<!--
 The LIBOR market model is a trivial consequence of this,
 as we will see later.
+-->
 
 Define $D_j = \prod_{i<j}R_j^{-1}$. Since
 $1D_j = E[R_jD_{j+1}|\AA_j]$, this model is arbitrage free.
 Let's agree to call $D_jP|_{\AA_j}$ the _canonical pricing measure_.
 
+(*)
+
 This mathematical assumption is not far from reality.
-Repurchase agreements are used for this.
+Repurchase agreements are used for this. Note that while $(R_j)$
+is a stochastic process, it corresponds to a collection of
+market instruments, one for each $j$.
+
+In the continuous time case we write $D_t = \exp(-\int_0^t f_s\,ds)$
+instead of $D_j = \exp(-\sum_{i < j} f_i\,\Delta t_i)$.
 
 ### Zero Coupon Bonds
 A _zero coupon bond_, $D(u)$, has a single cash flow $C^{D(u)}_u = 1$
@@ -333,13 +360,14 @@ at time $u$.  Its price at time $t < u$ satisfies $X^{D(u)}_t\Pi_t =
 \Pi_u|_{\AA_t}$, or equivalently $X^{D(u)}_t D_t = E[D_u|{\AA_t}]$.
 
 We will use the helpfully confusing notation $X_t^{D(u)} = D_t(u)$
-so $D_t(u)\Pi_t = \Pi_u|_{\AA_t}$ and so $D_t(u)D_t = E[D_u|\AA_t]$.
-The price at time $t$ maturing at $u$ is $D_t(u) = E[D_u|\AA_t]/D_t$.
+so $D_t(u)\Pi_t = \Pi_u|_{\AA_t}$ and $D_t(u)D_t = E[D_u|\AA_t]$.
+The price at time $t$ maturing at $u$ is
+$D_t(u) = E[D_u|\AA_t]/D_t = E_t[D_u]/D_t$.
 
 ### Forwards
 Let $S_t$ be the price of a stock with no dividends at time $t$.
 A _forward_ with _strike_ $f$ expiring at time $u$, denoted
-$F(u,f)$,
+F(u,f)$,
 has a single cash flow $C_u = S_u - f$ at time $u$.
 Its price at time $t$ satisfies
 $X_t^{F(u,f)} D_t = E[(S_u - f)D_u|\AA_t]$ so
@@ -368,27 +396,37 @@ since $D_{t_{j+1}}$ is $\AA_{t_j}$ measurable.
 Hence $\Phi_{t_j} = E[\Phi_{t_{j+1}}|\AA_{t_j}]$ and so
 the futures quotes $(\Phi_{t_j})_j$ always form a martingale.
 
+This shows the LIBOR Market Model is slightly silly. All you need to do
+is specify the forward rates at the expiration date over each interval.
+
 ### Forward Rate Agreements
 
-A _forward rate agreement_, $F^\delta(u,v)$,
-has cash flows $C_u = -1$ and $C_v = 1 + \delta(u,v) F_t^\delta(u,v)$
-when issued at time $t$ with price $X^{F^\delta(u,v)}_t = 0$ where
-$\delta(u,v)$ is the _day count
-fraction_ (approximately equal to $v - u$ in years.)
+A _forward rate agreement_, $F^\delta(u,v)$, has cash flows $C_u =
+-1$ and $C_v = 1 + \delta(u,v) F^\delta(u,v)$, where $\delta(u,v)$
+is the _day count fraction_ (approximately equal to $v - u$ in years.)
+The _par forward_ at time $t$, denoted $F_t^\delta(u,v)$, is the value
+making the price at time $t$ equal to zero.
 
 Since $0 = \bigl(-\Pi_u + (1 + \delta(u,v) F_t^\delta(u,v))\Pi_v\bigr)|_{\AA_t}$
 we have $F_t^\delta(u,v) = (D_t(u)/D_t(v) - 1)/\delta(u,v)$.
 
-For $t = u$ we have
-$\delta(u,v) F_u^\delta(u,v)D_u(v) = D_u - E[D_v|\AA_u]$ and
-$F_u^\delta(u,v) = (1/D_u(v) - 1)/\delta(u,v)$.
+For $t = u$ we have $\delta(u,v) F_u^\delta(u,v)D_u(v) = D_u -
+E[D_v|\AA_u]$ and $F_u^\delta(u,v) = (1/D_u(v) - 1)/\delta(u,v)$.
+
+A variant type of forward rate agreement, $\tilde{F}^{\delta(u,v)}$,
+has a single cash flow $C_v = \delta(u,v)(\tilde{F}_t^{\delta(u,v)} -
+F_u^{\delta(u,v)})$ and price zero at time $t$.
+
+**Lemma**. $\tilde{F}_t^{\delta(u,v)} = F_t^{\delta(u,v)}$.
+
+Both types contracts trade in the market. The first involves an
+exchange of principal, while the second does not. As we will
+see later, the above lemma no longer holds if there is default risk.
 
 ### Floating Leg
 
-A _floating leg_, $F^\delta(t_0,\dots,t_n)$,
-has cash flows
-$C_{t_j} = \delta(t_{j-1}, t_j)F_{t_{j-1}} =\delta_j F_j$
-at $t_j$, $0 < j \le n$.
+A _floating leg_, $F^\delta(t_0,\dots,t_n)$, has cash flows $C_{t_j} =
+\delta(t_{j-1}, t_j)F_{t_{j-1}} =\delta_j F_j$ at $t_j$, $0 < j \le n$.
 Its value at time $t$ is determined by
 
 \begin{align*}
@@ -399,8 +437,8 @@ X_t D_t &= E\bigl[\sum_{j=1}^n \delta_j F_j\Pi_{t_j}|\AA_t\bigr]\\
 &= (D_t(t_0) - D_t(t_n))D_t\\
 \end{align*}
 
-Note this is the same value as being long the zero coupon bond
-$D(t_0)$ and short $D(t_n)$.
+Note this has the same value as being long the zero coupon bond
+$D(t_0)$ and short the zero coupon bond $D(t_n)$.
 
 ## Risky Assets
 
@@ -408,52 +446,26 @@ When two counterparties enter into a legal contract for the exchange
 of cash flows, one or the other might not be able to make good on the
 agreement.
 
-Let $T$ be a random variable indicating the time of default of the
-seller and $R$ be a random variable taking values between 0 and 1
-indicating the fraction of the payments that will be recovered.
-
-Various attempts have been made at mapping the real world to
-mathematics. The default time is correlated with other events
-and so is recovery. The current literature ignores this in
-order to simplify the mathematics.
-
-It assumes the default time is not correlated with other
-important factors such as interest rates and that recovery
-is just a number. None of this is true, but it helps to
-scratch out a primitive theory that might be useful
-as a first approximation.
+Let $T$ be a random variable indicating the time of default of the seller
+and $R$ be a random variable taking values between 0 and 1 indicating
+the fraction of the payments that will be recovered.  The default time is
+correlated with other events and so is recovery. The current literature
+ignores this in order to simplify the mathematics and so shall we.
 
 Another issue is what recovery applies to at the time of default. Is it
 the present value of future cash flows or a payout at default of the
 notional as in credit default swaps?
 
 We make the standard (but not realistic) assumption that
-default time is independent of other factors and that recovery is a
-number that applies to cash flows at the times specified in the contract.
-This is similar to assuming recovery applies to the remaining present
-value of the trade at the time of default.
-
-A model of prices, $(X_t)_{t\in T}$, and cash flows, $(C_t)_{t\in T}$,
-are vector-valued stochastic processes on a set $\Omega$
-adapted to a filtration
-$(\AA_t)_{t\in T}$. It is arbitrage free if there exist positive scalar
-measures $(\Pi_t)_{t\in T}$ such that
-$$
-X_t\Pi_t = (\sum_{t<s\le u} C_s\Pi_s + X_u\Pi_u)|_{\AA_t}
-$$
-for $t < u$. We assume there exist instruments at each time, $t$,
-having price $X_t = 1$ and paying a cash flow
-$C_{t+dt} = 1 + f_t\,dt = \exp(f_t\,dt)$. We call $(f_t)$ the
-_short rate process_. Let $D_t = \exp(-\int_0^t f_s\,ds)$ be
-the _stochastic discount_.
-
-We can pick any probability measure $P$ on $\Omega$
+default time is independent of other factors and that recovery is
+a fraction of the outstanding present value of the trade at the
+time of default.
 
 Our information at time $t$ about $T$ is either that default
 has already happened ($T \le t$) and we know the exact time
-of default, or default has not occurred ($T > t$) and only
-that $T\in(t,\infty)$. The algebra describing this information
-contains every subset of $[0,t]$ and the set $(t,\infty)$.
+of default, or default has not occurred ($T > t$) and we know only
+that $T\in(t,\infty)$. The algebra describing this partial
+information contains every subset of $[0,t]$ and the set $(t,\infty)$.
 
 ### Risky Zero Coupon Bonds
 
@@ -467,6 +479,7 @@ $$
 We write $X_t^{D(u)} = D_t(u)$ so
 $D_t(u)\Pi_t = \Pi_u|_{\AA_t}$ and $D_t(u)D_t = E[D_u|\AA_t]$.
 
+<!---
 ### Risky Forward Rate Agreements
 
 A risky FRA has price $X_t = 0$ and cash flows
@@ -480,16 +493,16 @@ As a back of the envelope calculation, let's assume $D_t = e^{-rt}$
 and $P(T > t) = e^{-\lambda t}$. The difference between a risky
 and a risk-free forward is then
 
-
 ### Remarks
-Note how all prices are determined by the short realized returns.
+Note how all prices for fixed income instruments are determined by the
+short realized returns.
 
-Although it can be considered to be a stochastic process,
-it is really a bunch of instruments.
+Although the short realized return can be considered to be a stochastic
+process, it is really a bunch of instruments.
+
 
 Future = Forward + convextiy
 
-<!--
 ## American Options
 
 The unified framework can also handle American options.
