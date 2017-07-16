@@ -310,7 +310,7 @@ We can compute $V_0$ from $V_0\Pi_0 = \sum_{j>0} A_{\tau_j}\Pi_j(\Omega)$
 given the contract payments and pricing measure.
 
 In general $V_t = \sum{u > t} A_uD_u/D_t$ and since
-$V_t = (\Delta_t + \Gamma_t)\cdot X_t$ the Fr\'echet derivative
+$V_t = (\Delta_t + \Gamma_t)\cdot X_t$ the Frechet derivative
 of $X_t \mapsto V_t$ is $\Delta_t + \Gamma_t$. Since $\Delta_t$ is
 known at time $t$, this tells us the value of $\Gamma_t$ to trade.
 
