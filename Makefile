@@ -3,6 +3,7 @@ HTML = $(MKDN:.md=.html)
 #HTML = grassmann.html
 PDF = $(MKDN:.md=.pdf)
 FLAGS = -s # smart quotes
+#FLAGS += --katex
 FLAGS += --mathjax
 FLAGS += --css ftap.css
 FLAGS += --section-divs
