@@ -1,7 +1,9 @@
 MKDN = $(wildcard *.md)
 HTML = $(MKDN:.md=.html)
+#HTML = grassmann.html
 PDF = $(MKDN:.md=.pdf)
 FLAGS = -s # smart quotes
+#FLAGS += --katex
 FLAGS += --mathjax
 FLAGS += --css ftap.css
 FLAGS += --section-divs
@@ -22,7 +24,7 @@ rsync: $(HTML)
 	rsync $(HTML) ftap.css kal@web626.webfaction.com:webapps/kalx/html
 
 lsync:
-	rsync kal@web69.webfaction.com:webapps/kalx/ftapirl.html ftapi.html
+	rsync kal@web626.webfaction.com:webapps/kalx/ftapirl.html ftapi.html
 
 clean:
 	rm -f $(HTML)

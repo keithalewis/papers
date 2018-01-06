@@ -310,7 +310,7 @@ We can compute $V_0$ from $V_0\Pi_0 = \sum_{j>0} A_{\tau_j}\Pi_j(\Omega)$
 given the contract payments and pricing measure.
 
 In general $V_t = \sum{u > t} A_uD_u/D_t$ and since
-$V_t = (\Delta_t + \Gamma_t)\cdot X_t$ the Fr\'echet derivative
+$V_t = (\Delta_t + \Gamma_t)\cdot X_t$ the Frechet derivative
 of $X_t \mapsto V_t$ is $\Delta_t + \Gamma_t$. Since $\Delta_t$ is
 known at time $t$, this tells us the value of $\Gamma_t$ to trade.
 
@@ -344,12 +344,9 @@ Define $D_j = \prod_{i<j}R_j^{-1}$. Since
 $1D_j = E[R_jD_{j+1}|\AA_j]$, this model is arbitrage free.
 Let's agree to call $D_jP|_{\AA_j}$ the _canonical pricing measure_.
 
-(*)
-
-This mathematical assumption is not far from reality.
-Repurchase agreements are used for this. Note that while $(R_j)$
-is a stochastic process, it corresponds to a collection of
-market instruments, one for each $j$.
+This mathematical assumption is not far from reality.  Repurchase
+agreements are used for this. Note that $(R_j)$ is a collection of market
+instruments, one for each $j$.
 
 In the continuous time case we write $D_t = \exp(-\int_0^t f_s\,ds)$
 instead of $D_j = \exp(-\sum_{i < j} f_i\,\Delta t_i)$.
@@ -465,19 +462,32 @@ Our information at time $t$ about $T$ is either that default
 has already happened ($T \le t$) and we know the exact time
 of default, or default has not occurred ($T > t$) and we know only
 that $T\in(t,\infty)$. The algebra describing this partial
-information contains every subset of $[0,t]$ and the set $(t,\infty)$.
+information, $\AA_t$, contains every
+subset of $[0,t]$ and the set $(t,\infty)$.
+
+If $u > t$ the conditional expectation of $E_t 1(T > u)
+= P(T > u)/P(T > t)1(T > t)$. This is clearly $\AA_t$ measurable.
+If $A\subseteq [0,t]$, then $1_A 1(T > u) = 0$ 
+as is $1_A 1(T > t)$. We have $P(T > u, T > t) = P(T > u)$
+and $P(T > u)/P(T > t)P(T > t,T > t) = P(T >u)$.
+This shows $1(T > t)P|_{\AA_t} = (P(T > u)/P(T > t)1(T > t)P)_{\AA_t}$.
 
 ### Risky Zero Coupon Bonds
 
-A risky bond, $D^{T,R}(u)$, has the cash flow $C_u = 1(T > u) + R1(T \le u)$.
-Assume recovery is a number and default time is independent
-the price at time 0 is
+Consider a risky bond, $D^{T,R}(u)$, that has the cash flow
+$C_u = 1(T > u) + R1(T \le u)$, i.e., it pays recover at
+maturity instead of when the default occurs.
+Assuming recovery is a number and default time is independent
+of the deflator, the price at time 0 is
 $$
 D_0^{T,R}(u) = D_0(u)(P(T > u) + RP(T\le u))
 = D_0(u)(R + (1 - R)P(T>u)).
 $$
-We write $X_t^{D(u)} = D_t(u)$ so
-$D_t(u)\Pi_t = \Pi_u|_{\AA_t}$ and $D_t(u)D_t = E[D_u|\AA_t]$.
+
+More generally, the price at time $t$ is
+$$
+D_t^{T,R}(u) = D_t(u)(R + (1 - R)P(T>u)/P(T>t)1(T > t)).
+$$
 
 <!---
 ### Risky Forward Rate Agreements
