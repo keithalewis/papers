@@ -11,6 +11,9 @@ FLAGS += -H header.html
 #FLAGS += -A footer.html
 FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
 
+cme:
+	rcp kal@web626.webfaction.com:cme/stleqt/stleqt.20171109.tgz .
+
 $(HTML): %.html: %.md
 	pandoc $(FLAGS) $< -o $@
 
