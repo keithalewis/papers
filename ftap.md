@@ -156,7 +156,7 @@ $$
 \Delta_t = \sum_{s < t} \Gamma_s.
 $$
 
-### Account and Value
+### Amount and Value
 Trades result in numbers showing up in your _account_.
 At time $t$ your account statement will be
 $$
@@ -231,7 +231,7 @@ $-A_j$ to the seller if $A_j < 0$.
 
 ## The Fundamental Theorem of Asset Pricing
 **Fundamental Theorem of Asset Pricing**. _A model is arbitrage
-free if and only if a pricing measure exists._
+free if and only if a positive pricing measure exists._
 
 One direction is easy. If pricing measures exist, then
 $V_0\Pi_0 = \sum_{j>0} A_j\Pi_j|_{\AA_0}$. If $A_j\ge 0$ for $j > 0$
