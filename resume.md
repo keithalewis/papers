@@ -1,6 +1,7 @@
-# Keith A. Lewis (kal@kalx.net)[mailto:kal@kal.net]
+# Keith A. Lewis
+[kal@kalx.net](mailto:kal@kal.net)
 
-Top quant, expert technologist, business savvy. 
+Quant, Technologist, Businessman 
 
 ## Experience
 
