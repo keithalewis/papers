@@ -5,7 +5,7 @@ Quant, Technologist, Businessman
 
 ## Experience
 
-### _Bloomberg LP_ Senior Sofware Engineer
+### _Bloomberg LP_, Senior Sofware Engineer
 
 Responsible for developing core infrastructure used by all enterprise
 applications and supporting current products. Core components written
@@ -15,7 +15,7 @@ Designed and wrote APA for MiFID II using Java/Camel/kafka.
 
 Working familiarity with Hadoop, Spark, Avro.
 
-### **KALX LLC** Managing Member
+### _KALX LLC_, Managing Member
 
 KALX provides quantitative and technology solutions for small to medium
 sized hedge funds and other financial institutions.  We produce high
@@ -34,18 +34,14 @@ testing, and implementing real-time tick trading strategies.
 Analyzed large datasets of FX trades incorporating high frequency tick
 data in order to enhance alpha on the trade flow from a major ECN.
 
-### _Bloomberg LP_ Senior Software Engineer
-
-
-### _Banc of America Securities_ Principal
+### _Banc of America Securities_, Principal
 
 Developed the Equity Derivatives analytics library for the Equity
-Financial Products group. Delivered production quality libraries
-to the IT group.
-Built and supported the Excel add-in
-library used throughout the company. 
+Financial Products group. Delivered production quality libraries to the
+IT group.  Built and supported the Excel add-in library used throughout
+the company.
 
-### _Morgan Stanley Dean Witter &amp; Co._ Vice President
+### _Morgan Stanley Dean Witter &amp; Co._, Vice President
 
 Responsible for running the technical side of Morgan Stanley's AAA
 subsidiary. Primary responsibilities were to ensure correct capital
@@ -55,7 +51,7 @@ simulation system that was supported worldwide (New York, London, Tokyo,
 Hong Kong, and Sydney) using a multi-tier client/server architecture
 and parallelized compute engines.
 
-### _Bankers Trust_ Vice President
+### _Bankers Trust_, Vice President
 
 Member of Global Analytics group responsible for development and
 support of all analytics used for client business at Bankers
@@ -66,7 +62,7 @@ analytic libraries.  Integrated object oriented database with
 analytics and existing risk system framework in an Unix, NT, and
 VMS environment.
 
-### _Met Life_ Quantitative Analyst
+### _Met Life_, Quantitative Analyst
 
 Developed analytics for the MBS trading desk. Applications included
 portfolio targeting, MBS analytics, real-time data acquisition, and
@@ -90,10 +86,10 @@ Interest Rate Derivatives
 ### _New York University_ Adjunct Professor
 
 Derivative Securities.
+
 ### _Columbia University Executive MBA Program_ Adjunct
 
 Derivative Securities.
-
 
 ### _Brown University_ J. D. Tamarkin Assistant Professor
 
@@ -102,14 +98,6 @@ spaces. Taught classes including graduate level seminars and senior
 level courses in Probability, Statistics, PDE's, and Fourier Analysis.
 Used computers extensively for course work and research. 
 
-SKILLS
+### _University of Hawaii_ MA, PhD
 
-Thorough knowledge of mathematics, expert ability in
-C++, C#, Java, Excel, SQL Server, SSIS, SSAS, R,
-Mathematica, matlab, A+. Able to communicate effectively with
-business and technology to deliver high quality product in a 
-timely fashion.
-
-EDUCATION
-University of Hawaii MA Phd
-Arizona State University BA
+### _Arizona State University_, BA
