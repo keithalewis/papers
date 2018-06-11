@@ -3,7 +3,7 @@
 
 Quant, Technologist, Businessman 
 
-## Experience
+## Business
 
 ### _Bloomberg LP_, Senior Sofware Engineer
 
@@ -71,33 +71,33 @@ development environment for Unix (SunOS, AIX) network.
 
 ## Academia
 
-### _Columbia University_ Adjunct Professor
+### _Columbia University_, Adjunct Professor
 
 Computational and Quantitative Finance
 
-### _Cornell Financial Engineering Manhattan_ Adjunct Professor
+### _Cornell Financial Engineering Manhattan_, Adjunct Professor
 
 Equity Derivatives.
 
-### _Rutgers University_ Lecturer
+### _Rutgers University_, Lecturer
 
 Interest Rate Derivatives
 
-### _New York University_ Adjunct Professor
+### _New York University_, Adjunct Professor
 
 Derivative Securities.
 
-### _Columbia University Executive MBA Program_ Adjunct
+### _Columbia University Executive MBA Program_, Adjunct
 
 Derivative Securities.
 
-### _Brown University_ J. D. Tamarkin Assistant Professor
+### _Brown University_, J. D. Tamarkin Assistant Professor
 
 Research on invariant subspaces of bounded linear operators on Hilbert
 spaces. Taught classes including graduate level seminars and senior
 level courses in Probability, Statistics, PDE's, and Fourier Analysis.
 Used computers extensively for course work and research. 
 
-### _University of Hawaii_ MA, PhD
+### _University of Hawaii_, MA, PhD
 
 ### _Arizona State University_, BA
