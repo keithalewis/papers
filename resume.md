@@ -7,19 +7,20 @@ Quant, Technologist, Businessman
 
 ### _Bloomberg LP_ Senior Sofware Engineer
 
-Horizontal integration of all enterprise businesses. Core infrastructure
-written in C++ with python, Scala, Java, and JavaScript integration.
+Responsible for developing core infrastructure used by all enterprise
+applications and supporting current products. Core components written
+in C++ but interoperate with python, JavaScript, Java/Scala, and C#.
+
 Designed and wrote APA for MiFID II using Java/Camel/kafka.
 
-Working familiarity with Hadoop, Spark, Avro,
+Working familiarity with Hadoop, Spark, Avro.
 
-### _KALX LLC_ Managing Member
+### **KALX LLC** Managing Member
 
-KALX provides quantitative and technology solutions for small to
-medium sized hedge funds and other financial institutions.  We
-produce high quality software tools and analytic libraries that
-can outperform those written by large investment banks for trading
-and risk management.
+KALX provides quantitative and technology solutions for small to medium
+sized hedge funds and other financial institutions.  We produce high
+quality software tools and analytic libraries that can outperform those
+written by large investment banks for trading and risk management.
 
 Solutions provided for customers include modeling expected tax
 liabilities for municipal bond refunding, American option pricing
@@ -30,39 +31,12 @@ order placement based on real-time queue position estimation. KALX
 has also developed an Excel based suite of tools for modeling,
 testing, and implementing real-time tick trading strategies.
 
-Analyzed large datasets of FX trades
-incorporating high frequency tick data in order
-to enhance alpha on the trade flow from a major ECN.
-
-Trading
-
-## Academia
-
-### _Columbia University_ Adjunct Professor
-
-Computational and Quantitative Finance
-
-### _Cornell Financial Engineering Manhattan_ Adjunct Professor
-
-Equity Derivatives.
-
-### _Rutgers_ ????
-
-Interest Rate Derivatives
-
-### _New York University_ Adjunct Professor
-
-Derivative Securities.
-### _Columbia University Executive MBA Program_ Adjunct
-
-Derivative Securities.
+Analyzed large datasets of FX trades incorporating high frequency tick
+data in order to enhance alpha on the trade flow from a major ECN.
 
 ### _Bloomberg LP_ Senior Software Engineer
 
-Responsible for developing core infrastructure used by
-all enterprise applications and supporting current
-products. Core components written in C++ but interoperate
-with python, JavaScript, Java/Scala, and C#.
+
 ### _Banc of America Securities_ Principal
 
 Developed the Equity Derivatives analytics library for the Equity
@@ -100,6 +74,26 @@ integrating 3rd party products. Designed and configured
 development environment for Unix (SunOS, AIX) network. 
 
 ## Academia
+
+### _Columbia University_ Adjunct Professor
+
+Computational and Quantitative Finance
+
+### _Cornell Financial Engineering Manhattan_ Adjunct Professor
+
+Equity Derivatives.
+
+### _Rutgers University_ Lecturer
+
+Interest Rate Derivatives
+
+### _New York University_ Adjunct Professor
+
+Derivative Securities.
+### _Columbia University Executive MBA Program_ Adjunct
+
+Derivative Securities.
+
 
 ### _Brown University_ J. D. Tamarkin Assistant Professor
 
