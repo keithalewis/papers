@@ -2,7 +2,7 @@
 
 The study of _probability_ used to be a disreputable pursuit.  It had its
 origin in gambling where theoretical advances were immediately applied
-to lighten the wallets of anyone foolish enough to take up a challenge.
+to lighten the wallets of anyone foolish enough to take up the challenge.
 
 Cheval de Mere
 
