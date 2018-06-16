@@ -1,3 +1,5 @@
+<html>
+<xmp theme="spacelab" style="display:none;">
 # Keith A. Lewis
 [kal@kalx.net](mailto:kal@kal.net)
 
@@ -101,3 +103,7 @@ Used computers extensively for course work and research.
 ### _University of Hawaii_, MA, PhD
 
 ### _Arizona State University_, BA
+</xmp>
+
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>
