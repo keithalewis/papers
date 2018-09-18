@@ -2,6 +2,7 @@
 title: European Option Pricing using Cumulants
 author: Keith A. Lewis
 institution: KALX, LLC and Columbia University
+abstract: This is the abstract.
 classoption: fleqn
 ---
 
@@ -46,7 +47,8 @@ B_{n+1}(x_1,\dots,x_{n+1}) = \sum_{k=0}^n \binom{n}{k}
 B_{n - k}(x_1,\dots, x_{n - k}) x_{k+1}.
 $$
 
-This is not a deep result. Just ...
+This is not a deep result. Simply take the derivative of the
+previous equality and equate powers of $s$.
 
 Since the $n$-th derivative evaluated at $0$
 satisfies $\kappa^{(n)}(s)|_{s = 0} = \kappa_n$ 
@@ -60,7 +62,6 @@ If $N$ is normal, $\kappa^N(s) = \log E \exp(sN) = \mu s +
 \sigma^2 s^2/2$ where $\mu$ is the mean of $N$ and $\sigma$ is the
 standard deviation.
 
-<!--
 The cumulants of a random variable plus a constant are the 
 same except the first cumulant is increased by the constant.
 More generally, the cumulants of the sum of two independent 
@@ -69,6 +70,7 @@ They scale homogeneously, the $n$-th cumulant of a constant
 times a random variable is
 $\kappa_n(cX) = c^n\kappa_n(X)$.
 
+<!--
 ## Bell Polynomials
 The exponential of the cumulant in terms of
 powers of $s$ is
