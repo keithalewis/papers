@@ -3,11 +3,6 @@
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx} % support the \includegraphics command and optio
-%\usepackage[fleqn]{amsmath}
-%\usepackage{amssymb}
-%\usepackage{amsfonts}
-%\usepackage{amsthm}
-%\usepackage{authblk}
 
 \newcommand{\Var}{\mathop{\rm{Var}}}
 \newcommand{\Cov}{\mathop{\rm{Cov}}}
@@ -90,9 +85,9 @@ Bell polynomials satisfy the recurrence \cite{Com1974} \(B_0 = 1\) and
 B_{n+1}(\kappa_1,\dots,\kappa_{n+1}) = \sum_{k=0}^n \binom{n}{k}
 B_{n - k}(\kappa_1,\dots, \kappa_{n - k}) \kappa_{k+1}.
 \]
-This follows from (1) by differentiating with respect to \(s\) and equating powers of \(s\).
+This follows by differentiating equation (1) with respect to \(s\) and equating powers of \(s\).
 Note the second and third Bell polynomials are \(B_1(\kappa_1) = \kappa_1\), and
-\(B_2(\kappa_1, \kappa_2) = \kappa_1^2 + \kappa_2\).
+\(B_2(\kappa_1, \kappa_2) = \kappa_1^2 + \kappa_2\) so \(B_1(0) = 0\) and \(B_2(0,0) = 0\).
 %$B_3(x_1, x_2, x_3) =
 %= B2 x1 + 2 B1 x2 + B0 x3
 %= x1^3 +  x2 x1 + 2 x1 x2 + x3
@@ -105,13 +100,13 @@ Note the second and third Bell polynomials are \(B_1(\kappa_1) = \kappa_1\), and
 %x1^4 + 6 x_1^2 x_2 + 4 x_1 x_3 + 3 x_2^2  + x4$.
 
 \section{Edgeworth Expansion}
-The standard normal random variable \(Z\) has density function \(\phi(x) =e^{-x^2/2}/\sqrt{2\pi}\). 
+The standard normal random variable \(Z\) has cumulative distrbution \(\Phi(x) = \int_{-\infty}^x \phi(z)\,dz\) where \(\phi(z) =e^{-z^2/2}/\sqrt{2\pi}\). 
 For any normal random variable \(N\) we have \(Ee^N = e^{EN + \Var(N)/2}\)
 so the Fourier transform of \(Z\) is \(\hat{\phi}(u) = Ee^{-iuZ} = e^{-u^2/2}\).
 
-Let $\psi$ be the probability density of a random variable, $X$,
-having expected value 0 and mean 1.
-The the Fourier transform is
+Let $\Psi$ be the cumulative distribution function of a random variable, $X$,
+having expected value 0 and variance 1.
+If \(\psi = \Psi'\), its Fourier transform is
 
 \begin{align*}
 \hat{\psi}(u) &= E e^{-iuX} \\
@@ -153,13 +148,26 @@ Note some authors use \(He_n(x)\) instead of \(H_n(x)\).
 This shows \(\phi^{(n)}(x) = (-1)^n\phi(x) H_n(x)\)
 so \(\Phi^{(n)}(x) = (-1)^{n-1} H_{n-1}(x)\) for \(n > 0\).
 
-We now have an explicit formula for the cumulative
+Using equation (2) we now have an explicit formula for the cumulative
 distibution function of \(X\):
 \begin{equation}
-\Psi(x) = \Phi(x) - \phi(x)\sum_{n=1}^\infty
-B_n(\kappa_1,\dots,\kappa_n) H_{n-1}(x)/n!
+\Psi(x) = \Phi(x) - \phi(x)\sum_{n=3}^\infty
+B_n(0,0,\kappa_2,\dots,\kappa_n) H_{n-1}(x)/n!
 \end{equation}
 
+\(B_3(0,0,\kappa_3) = \kappa_3\).
+
+\(B_4(0,0,\kappa_3,\kappa_4) = \kappa_4\)
+
+\(B_5(0,0,\kappa_3,\kappa_4,\kappa_5) = \kappa_5\).
+
+\(B_6(0,0,\kappa_3,\kappa_4,\kappa_5,\kappa_6) = 10\kappa_3^2 + \kappa_6\).
+
+\(B_7(0,0,\kappa_3,\kappa_4,\kappa_5,\kappa_6,\kappa_7) = 35\kappa_3\kappa_4 + \kappa_7\).
+
+\(B_n(c\kappa_1, \ldots, c^n\kappa_n) = c^nB_n(\kappa_1, \ldots, \kappa_n)\)
+
+\(B_n(\kappa_1 + \kappa'_1, \ldots, \kappa_n + \kappa'_n) = \sum_{k=0}^n\binom{n}{k}B_k(\kappa_1,\ldots,\kappa_k) B_{n-k}(\kappa'_1,\ldots,\kappa'_{n-k})\) 
 \section{The Esscher Transform}
 
 Given any random variable, \(X\), and number \(s\), define
