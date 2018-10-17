@@ -20,8 +20,9 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-This paper shows how to calculate cumulative distribution functions
-of random variables using cumulants.
+This paper shows how to calculate the cumulative distribution
+of a random variable from its cumulants. The formula is
+elementary but has not appeared in the literature to date.
 \end{abstract}
 
 \section{Outline}
@@ -67,7 +68,7 @@ They scale homogeneously, the \(n\)-th cumulant of a constant
 times a random variable is
 \(\kappa^{cX}_n = c^n\kappa^X_n\).
 
-\section{Bell Polynomials}
+\subsection{Bell Polynomials}
 
 The exponential of the cumulant in terms of
 powers of \(s\) is
@@ -109,11 +110,11 @@ having expected value 0 and variance 1.
 If \(\psi = \Psi'\), its Fourier transform is
 
 \begin{align*}
-\hat{\psi}(u) &= E e^{-iuX} \\
-     &= e^{\sum_{n=1}^\infty \kappa_n (-iu)^n/n!}\\
-     &= e^{-u^2/2} e^{\sum_{n=3}^\infty \kappa_n (-iu)^n/n!}\\
-     &= e^{-u^2/2} \sum_{n=0}^\infty B_n(0, 0, \kappa_3,...,\kappa_n)(-iu)^n/n!.\\
-	  &= e^{-u^2/2} (1 + \sum_{n=3}^\infty B_n(0, 0, \kappa_3,...,\kappa_n)(-iu)^n/n!).\\
+\hat{\psi}(u) &= E \exp(-iuX) \\
+     &= \exp(\sum_{n=1}^\infty \kappa_n (-iu)^n/n!)\\
+     &= \exp(-u^2/2) \exp(\sum_{n=3}^\infty \kappa_n (-iu)^n/n!)\\
+    &= \exp(-u^2/2) \sum_{n=0}^\infty B_n(0, 0, \kappa_3,...,\kappa_n)(-iu)^n/n!.\\
+	  &= \exp(-u^2/2) (1 + \sum_{n=3}^\infty B_n(0, 0, \kappa_3,...,\kappa_n)(-iu)^n/n!).\\
 \end{align*}
 
 where \((\kappa_n)\) are the cumulants of \(X\).
@@ -152,8 +153,11 @@ Using equation (2) we now have an explicit formula for the cumulative
 distibution function of \(X\):
 \begin{equation}
 \Psi(x) = \Phi(x) - \phi(x)\sum_{n=3}^\infty
-B_n(0,0,\kappa_2,\dots,\kappa_n) H_{n-1}(x)/n!
+B_n(0,0,\kappa_3,\dots,\kappa_n) H_{n-1}(x)/n!
 \end{equation}
+
+Note \(B_n(0,0,\kappa_3,\ldots,\kappa_n) = \kappa_n$ for \(n = 3,4,5\) but
+\(B_6(0,0,\kappa_3,\ldots,\kappa_6) = 10\kappa_3^2 + \kappa_6\).
 
 \(B_3(0,0,\kappa_3) = \kappa_3\).
 
