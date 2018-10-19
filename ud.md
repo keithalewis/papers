@@ -6,6 +6,11 @@ classes. A unified theory provides a coherent foundation for real-time
 analysis and monitoring of all instruments. As with any model, tuning
 to market data is a challenging problem that is amenable to ML techniques.
 
+The value of software to a company is not in the bits running through
+a CPU, or in the source code that gets turned into that. The value
+of software is having employees who have a mental model of how humans
+before them pressed many keys on a keyboard to create value for a company.
+
 The _market_ is modelled by vector-valued _price_, $(X_t)$, and 
 _cash flow_, $(C_t)$ processes. The cash flow process represents
 discrete payments associated with owning instruments: dividends
