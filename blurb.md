@@ -22,6 +22,10 @@ give ML people something useful to do.
 
 Example: CVA. What about unwinds?
 
+The trajectory of the application of Mathematical Finance to the business
+world tends inexorably toward models incorporating more realistic features
+of how instruments and markets actually work.
+
 There is an inexorible trajectory to the application of Mathematical
 Finance to the business world.  Black-Scholes and Merton did Nobel Prize
 winning research that turned option pricing into a science. This has
