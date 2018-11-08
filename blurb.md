@@ -10,7 +10,7 @@ very hard problem otherwise it would have already been solve.
 
 advances in hardware and software engineering
 
-wholeistic approach involve the process
+holistic approach involve the process
 
 von Neumann big picture approach
 
@@ -26,29 +26,26 @@ The trajectory of the application of Mathematical Finance to the business
 world tends inexorably toward models incorporating more realistic features
 of how instruments and markets actually work.
 
-There is an inexorible trajectory to the application of Mathematical
-Finance to the business world.  Black-Scholes and Merton did Nobel Prize
-winning research that turned option pricing into a science. This has
-led to increasingly complicated models that incorporated more realistic
-features of how markets work.
+Black-Scholes and Merton did Nobel Prize winning research that turned
+option pricing into a science.  The theory progressed from simple stock
+options to more exotic options on a single stock. The next stage was
+Steve Ross showing how to model portfolios of arbitrary instruments
+over one period.  His work was ahead of its time and led to a cottage
+industry of papers trying to make the mathematical claims more rigorous
+and extend the theory to work for multiple period models.
 
-Technology is finally catching up to make real-time valuation, hedging, and risk management feasable.
+In the late 90's dollar denominated interest rate products with
+maturities up to 4 years began to be quoted to basis point bid/ask
+spreads.  After the Asian Crisis the first steps toward incorporating
+credit risk to large portfolios started.
 
-The theory progressed from simple stock options[cite] to more exotic
-options on a single stock[cite]. The next stage was Steve Ross showing
-how to model portfolios of arbitrary instruments over one period[cite].
-His work was ahead of its time and led to many papers trying to make
-the mathematical claims more rigourous and extend the theory to work
-for multiple period models.
+The financial crisis in 2008 provided stark illustration of the dangers
+of not having a complete picture of the correlation between every market
+instrument.  The ultimate goal is to make real-time valuation, hedging,
+and risk management of every instrument feasible.
 
-One of the triumphs of Mathematical Finance has been its application to
-Fixed Income securities. Dollar denominated swap products with maturities
-up to 4 years have been quoted to basis point bid/ask spread since the
-late 90's.
-
-The Asian Crisis at that time led to the first steps toward incorporating
-credit risk. 
-
-
-
-
+Technology has come to the point that it is now possible to do this.
+I am up-to-date with software state of the art and have been working
+for the past 10 years on the mathematical theory that allows a unified
+approach to this problem.  I am looking a company that thinks this is
+a project worth committing resources to.
