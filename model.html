@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="ftap.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+  for (var i=0; i < mathElements.length; i++)
+  {
+   var texText = mathElements[i].firstChild
+   katex.render(texText.data, mathElements[i])
+  }}
+  </script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="standard-market-model">Standard Market Model</h1>
+<p>Let <span class="math inline">\langle \Omega, P, (\mathcal{A}_t)_{t\in T}\rangle</span> be a triple of a sample space, probability measure, and a filtration where <span class="math inline">T</span> is the set of trading times.</p>
+<p>The <em>standard market model</em> consists of a vector-valued stochastic process of <em>prices</em>, <span class="math inline">(X_t)_{t\in T}</span>, that is adaped to the filtration and a corresponding vector-valued point process of <em>cash flows</em>, <span class="math inline">(C_t)_{t\in T}</span>. The vectors are indexed by market instruments. We assume markets are perfectly liquid: instruments can be bought or sold in any quantity at the given price. The cash flows are amounts associated with owning an instrument: stocks pay dividends, bonds pay coupons, futures involve margin adjustments.</p>
+<p>A <em>trading strategy</em> is a finite set <span class="math inline">(\tau_j, \Gamma_j)</span> where the <span class="math inline">\tau_j</span> are increasing stopping times and <span class="math inline">\Gamma_j</span> is a <span class="math inline">\mathcal{A}_{\tau_j}</span> measurable vector of the number of shares traded in each instrument.</p>
+<p>Trading results in a <em>position</em> <span class="math inline">\Delta_t = \sum_{\tau_j &lt; t} \Gamma_j = \sum_{s &lt; t} \Gamma_s</span> where <span class="math inline">\Gamma_s = \Gamma_j</span> if <span class="math inline">s = \tau_j</span>. Note that a trade done at time <span class="math inline">t</span> is not included in the postition. A trading strategy is <em>closed out</em> if <span class="math inline">\sum\Gamma_j = 0</span>.</p>
+<p>The <em>value</em>, or mark-to-market, of a trading strategy is <span class="math inline">V_t = (\Delta_t + \Gamma_t)\cdot X_t</span>.</p>
+<p>The <em>amount</em> associatied with a trading strategy at time <span class="math inline">t</span> is <span class="math inline">A_t = \Delta_t\cdot C_t - \Gamma_t\cdot X_t</span>: you get all the cash flows associated with your existing position and you have to pay market price for trades.</p>
+<p>A model is <em>arbitrage free</em> if there is no closed out trading strategy with <span class="math inline">A_{t_0} &gt; 0</span> and <span class="math inline">A_t\ge0</span> for <span class="math inline">t &gt; t_0</span>: you make money on the first trade and never lose money until the postion is closed.</p>
+<p>The Fundamental Theorem of Asset Pricing states that a model is arbitrage free if and only if there exists a positive, scalar, adapted process <span class="math inline">(D_t)_{t\in T}</span> such that</p>
+<p><span class="math display">\displaystyle 
+    X_t D_t = E[X_u D_u + \sum_{t &lt; s \le u} C_s D_s\mid\mathcal{A}_t].
+</span></p>
+<p>Note that if there are no cash flows this says <span class="math inline">(X_t D_t)_{t\in T}</span> is a martingale. We call such <span class="math inline">(D_t)_{t\in T}</span> a <em>stochastic discount</em>.</p>
+<p>Using the definition of <span class="math inline">V_t</span> and <span class="math inline">A_t</span>, it is easy to show</p>
+<p><span class="math display">\displaystyle 
+    V_t D_t = E[V_u D_u + \sum_{t &lt; s \le u} A_s D_s\mid\mathcal{A}_t].
+</span></p>
+<p>Trading strategies create synthetic instruments. Note how price corresponds to value and cash flow corresponds to amount.</p>
+<p>Since <span class="math inline">V_{\tau_0} D_{\tau_0} = E_{\tau_0} \sum_{t &gt; \tau_0} A_t D_t \ge 0</span> we must have <span class="math inline">V_{\tau_0}\ge0</span>. But <span class="math inline">V_{\tau_0} = \Gamma_{\tau_0}\cdot X_{\tau_0}</span> and <span class="math inline">A_{\tau_0} = -\Gamma_{\tau_0}\cdot X_{\tau_0}</span> so <span class="math inline">A_{\tau_0}\le0</span>.</p>
+<p>This proves the &quot;easy direction&quot; of the FTAP. Showing no arbitrage implies a stochastic discount exists is not trivial. What is trivial is to produce arbitrage free models.</p>
+<p>Let <span class="math inline">(D_t)_{t\in T}</span> be any positive, adapted process and let <span class="math inline">(M_t)_{t\in T}</span> be any vector-valued martingale, then</p>
+<p><span class="math display">\displaystyle 
+    X_t = (M_t - \sum_{s\le t} C_s D_s)/D_t
+</span></p>
+<p>is an arbitrage free model.</p>
+</body>
+</html>
