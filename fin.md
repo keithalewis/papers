@@ -1,8 +1,10 @@
 # Fixed Income Notation
 
 The price of all fixed income instruments is determined by the short
-rate process as defined in the [standard model](model.html). $E_t X =
-E[X\mid\mathcal{A}_t]$ denotes conditional expectation at time $t$.
+rate process as defined in the [standard model](model.html).
+In what follows $E_t X = E[X|\mathcal{A}_t]$ denotes conditional expectation at time $t$.
+
+## Repurchase Agreement
 
 A _repurchase agreement_ over time $t$ to $t + dt$ has price $X_t = 1$
 and a single cash flow $C_{t+dt} = \exp(f_t\,dt) \approx 1 + f_t\,dt$
@@ -12,6 +14,8 @@ Since $D_t = E_t \exp(f_t\,dt)D_{t + dt}$ we have $D_{t + dt}/D_t =
 Assuming $D_0 = 1$ then $D_t = \exp(-\int_0^t f_s\,ds)$.  Call this
 the _canonical stochastic discount_ and refer to the repo rate as the
 _(continuously compounded) instantaneous forward rate_.
+
+## Zero Coupon Bond
 
 A _zero coupon bond_ maturing at time $u$, denoted $D(u)$, has a single cash flow $C_u = 1$.
 Its value at time $t$, $D_t(u)$, satisfies $D_t(u)D_t = E_t D_u$ so $D_t(u) = E_t D_u/D_t$.
@@ -24,9 +28,13 @@ Write $f(u) = f_0(u)$ for the forward at time 0, or simply the _foward_.
 Note that $\lim_{t\nearrow u}f_t(u) = f_u$. ???
 -->
 
+## Cash Deposit
+
 A _cash deposit_ maturing at time $u$ having coupon $c$ and day count fraction $\delta$
 has a single cash flow $C_u = 1 + \delta c$. Its price at time $t$
-is $(1 + \delta c)D_t(u)$. If its price at time 0 is 1 then $c = (1/D(u) - 1)/delta$.
+is $(1 + \delta c)D_t(u)$. If its price at time 0 is 1 then $c = (1/D(u) - 1)/\delta$.
+
+## Forward Rate Agreement
 
 A _forward rate agreement_ with coupon $f$ over the interval from $u$
 to $v$ with day count basis $\delta$, denoted $F^\delta(u,v)$, has two cash flows,
@@ -34,23 +42,50 @@ $C_u = -1$ and $C_v = 1 + \delta(u,v) f$.
 The coupon value making the price at time $t$ equal to 0, $F_t^\delta(u,v)$,
 is called the _forward rate_ at time $t$. 
 It satisfies $0 = E_t -D_u + (1 + \delta(u,v)F_t^\delta(u,v))D_v$
-so $F_t^\delta(u,v) = (D_t(u)/D_t(v) - 1)/\delta(u,v)$.
+so
+
+$$
+F_t^\delta(u,v) = (D_t(u)/D_t(v) - 1)/\delta(u,v).
+$$
 
 <!--
 $\lim_{u\nearrow v} F_t(u,v) = f_t(v)$. ??? if $\delta(u,v) = v - u$.
 -->
 
-A _caplet_ $C_v = \delta(u,v)\max\{F^\delta_u(u,v) - k, 0\}$.
+## Caplet
 
-A _floorlet_ $C_v = \delta(u,v)\max\{k - F^\delta_u(u,v), 0\}$.
+A _caplet_ has a single cash flow $C_v = \delta(u,v)\max\{F^\delta_u(u,v) - k, 0\}$.
 
-An _interest rate swap_ $F^\delta(t_0,\dots,t_n)$.
+## Floorlet
+
+A _floorlet_ has a single cash flow $C_v = \delta(u,v)\max\{k - F^\delta_u(u,v), 0\}$.
+
+## Interest Rate Swap
+
+An _interest rate swap_ is specified by _calculation dates_, $t_0 <
+t_1 < \cdots < t_n$, a _coupon_, $c$, and a day count basis, $\delta$.
+It has cash flows
 $C_{t_0} = -1$,
-$C_{t_j} = \delta(t_{j-1},t_j)c$ for $0 < j < n$,
-$C_{t_n} = 1 + \delta(t_{n-1},t_n)$.
+$C_{t_j} = \delta(t_{j-1},t_j)c$ for $0 < j < n$, and
+$C_{t_n} = 1 + \delta(t_{n-1},t_n)c$.
+
+The coupon making the price at time $t$ equal to 0,
+$F_t^\delta(t_0,\ldots,t_n)$, is called the _par coupon_ at time $t$.
+It satisfies
+
+$$
+F_t^\delta(t_0,\ldots,t_n) = (D_t(t_0) - D_t(t_n))/\sum_{j=1}^n \delta(t_{j-1},t_j)D_t(t_j).
+$$
+
+
+## Cap
 
 A _cap_ is a sequence of caplets.
 
+## Floor
+
 A _floor_ is a sequence of floorlets.
+
+## Swaption
 
 A _swaption_ is an option on a swap.
