@@ -1,4 +1,10 @@
-# Fixed Income Notation
+---
+title: Fixed Income Notation
+author: Keith A. Lewis
+institute: KALX, LLC
+classoption: fleqn
+---
+<div id="kalx"><a href="mailto:kal@kalx.net">kal@kalx.net</a></div>
 
 The price of all fixed income instruments is determined by the short
 rate process as defined in the [standard model](model.html).
@@ -11,17 +17,31 @@ and a single cash flow $C_{t+dt} = \exp(f_t\,dt) \approx 1 + f_t\,dt$
 where $f_t$ is the _repo rate_.
 Since $D_t = E_t \exp(f_t\,dt)D_{t + dt}$ we have $D_{t + dt}/D_t =
 \exp(-f_t\,dt)$ if $D_t$ is predictable.  
-Assuming $D_0 = 1$ then $D_t = \exp(-\int_0^t f_s\,ds)$.  Call this
-the _canonical stochastic discount_ and refer to the repo rate as the
+Assuming $D_0 = 1$ then
+
+$$
+D_t = e^{-\int_0^t f_s\,ds}.
+$$
+
+Call this the _canonical stochastic discount_ and refer to the repo rate as the
 _(continuously compounded) instantaneous forward rate_.
 
 ## Zero Coupon Bond
 
 A _zero coupon bond_ maturing at time $u$, denoted $D(u)$, has a single cash flow $C_u = 1$.
-Its value at time $t$, $D_t(u)$, satisfies $D_t(u)D_t = E_t D_u$ so $D_t(u) = E_t D_u/D_t$.
+Its value at time $t$, $D_t(u)$, satisfies $D_t(u)D_t = E_t D_u$ so
+
+$$
+D_t(u) = E_t D_u/D_t.
+$$
+
 Its value at time $0$ is $D_0(u) = E D_u$ which we also denote by $D(u)$.
 
-Define the _forward_ at time $t$ by, $f_t(u)$, by $D_t(u) = \exp(-\int_t^u f_t(s)\,ds)$.
+Define the _forward_ at time $t$ by, $f_t(u)$, by 
+$$
+D_t(u) = e^{-\int_t^u f_t(s)\,ds}.
+$$
+
 Write $f(u) = f_0(u)$ for the forward at time 0, or simply the _foward_.
 
 <!--
@@ -41,12 +61,22 @@ to $v$ with day count basis $\delta$, denoted $F^\delta(u,v)$, has two cash flow
 $C_u = -1$ and $C_v = 1 + \delta(u,v) f$.
 The coupon value making the price at time $t$ equal to 0, $F_t^\delta(u,v)$,
 is called the _forward rate_ at time $t$. 
-It satisfies $0 = E_t -D_u + (1 + \delta(u,v)F_t^\delta(u,v))D_v$
+It satisfies $0 = E_t[-D_u + (1 + \delta(u,v)F_t^\delta(u,v))D_v]$
 so
 
 $$
 F_t^\delta(u,v) = (D_t(u)/D_t(v) - 1)/\delta(u,v).
 $$
+
+A useful formula is
+$$
+\begin{aligned}
+E_u[\delta(u,v) F^{\delta}(u,v) D_v] &= \delta(u,v) F^{\delta}(u,v) E_u[D_v] \\
+&= (1/D_u(v) - 1) D_u(v)D_u \\
+&= E_u[D_u - D_v] \\
+\end{aligned}
+$$
+
 
 <!--
 $\lim_{u\nearrow v} F_t(u,v) = f_t(v)$. ??? if $\delta(u,v) = v - u$.
@@ -77,6 +107,19 @@ $$
 F_t^\delta(t_0,\ldots,t_n) = (D_t(t_0) - D_t(t_n))/\sum_{j=1}^n \delta(t_{j-1},t_j)D_t(t_j).
 $$
 
+A _payer_ swap pays fixed amounts versus prevailing floating rates. It has cash flows
+$C_{t_j} = \delta(t_{j-1},t_j)[c - F^\delta_{t_{j-1}}(t_{j-1},t_j)]$, $0 < j \le n$.
+Note our useful formula shows
+
+$$
+\begin{aligned}
+E_t \sum_{j=1}^n \delta(t_{j-1},t_j) F^\delta_{t_{j-1}}(t_{j-1},t_j)  D_{t_j}
+&= E_t \sum_{j=1}^n E_{t_{j-1}}[D_{t_{j-1}} - D_{t_j}]\\
+&= E_t [\sum_{j=1}^n D_{t_{j-1}} - D_{t_j}]\\
+&= E_t [D_{t_0} - D_{t_n}]\\
+&= [D_t(t_0) - D_t(t_n)]D_t\\
+\end{aligned}
+$$
 
 ## Cap
 
