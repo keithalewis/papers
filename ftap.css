@@ -16,7 +16,7 @@ h3 {
 h4 {
 	color: #222;
 }
-.katex { font-size: 100%; }
+.katex { font-size: 100% !important; }
 #kalx {
     font-family: "Courier";
     font-weight: bold;

@@ -3,13 +3,14 @@ HTML = $(MKDN:.md=.html)
 #HTML = grassmann.html
 PDF = $(MKDN:.md=.pdf)
 FLAGS = -s # smart quotes
-#FLAGS += --katex
-FLAGS += --mathjax
+FLAGS += --katex
+FLAGS += -t html5
+#FLAGS += --mathjax
 FLAGS += --css ftap.css
-FLAGS += --section-divs
-FLAGS += -H header.html
+#FLAGS += --section-divs
+#FLAGS += -H header.html
 #FLAGS += -A footer.html
-FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
+#FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
 
 cme:
 	rcp kal@web626.webfaction.com:cme/stleqt/stleqt.20171109.tgz .
