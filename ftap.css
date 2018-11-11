@@ -1,8 +1,8 @@
 html {
-	margin: 3%;
 	font-family: Cambria, "Baskerville", "Palatino Linotype", "Book Antiqua", Palatino, serif;
 	font-size: large;
-	background-color: #FAFAFA;
+	background: #F0F0F0;
+	background: linear-gradient(to right, #FFF, #F0F0F0);
 	color: #565656;
 }
 h1 {

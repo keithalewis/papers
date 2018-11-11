@@ -8,7 +8,8 @@ classoption: fleqn
 
 The price of all fixed income instruments is determined by the short
 rate process as defined in the [standard model](model.html).
-In what follows $E_t X = E[X|\mathcal{A}_t]$ denotes conditional expectation at time $t$.
+In what follows $E_t X = E[X|\mathcal{A}_t]$ denotes conditional expectation
+with respect to the algebra of information available at time $t$.
 
 ## Repurchase Agreement
 
@@ -20,10 +21,10 @@ Since $D_t = E_t \exp(f_t\,dt)D_{t + dt}$ we have $D_{t + dt}/D_t =
 Assuming $D_0 = 1$ then
 
 $$
-D_t = e^{-\int_0^t f_s\,ds}.
+D_t = \exp(-\int_0^t f_s\,ds).
 $$
 
-Call this the _canonical stochastic discount_ and refer to the repo rate as the
+This is the _canonical stochastic discount_. The repo rate is the
 _(continuously compounded) instantaneous forward rate_.
 
 ## Zero Coupon Bond
@@ -32,14 +33,14 @@ A _zero coupon bond_ maturing at time $u$, denoted $D(u)$, has a single cash flo
 Its value at time $t$, $D_t(u)$, satisfies $D_t(u)D_t = E_t D_u$ so
 
 $$
-D_t(u) = E_t D_u/D_t.
+D_t(u) = E_t D_u/D_t = E_t exp(-\int_t^u f_s\,ds).
 $$
 
 Its value at time $0$ is $D_0(u) = E D_u$ which we also denote by $D(u)$.
 
 Define the _forward_ at time $t$ by, $f_t(u)$, by 
 $$
-D_t(u) = e^{-\int_t^u f_t(s)\,ds}.
+D_t(u) = \exp(-\int_t^u f_t(s)\,ds).
 $$
 
 Write $f(u) = f_0(u)$ for the forward at time 0, or simply the _foward_.
@@ -89,6 +90,18 @@ A _caplet_ has a single cash flow $C_v = \delta(u,v)\max\{F^\delta_u(u,v) - k, 0
 ## Floorlet
 
 A _floorlet_ has a single cash flow $C_v = \delta(u,v)\max\{k - F^\delta_u(u,v), 0\}$.
+$$
+\begin{aligned}
+E\delta\max\{k - F^\delta_u(u,v), 0\} D_v
+&= E E_u[\delta\max\{k - F^\delta_u(u,v), 0\} D_v]\\
+&= E \delta\max\{k - F^\delta_u(u,v), 0\} E_u[D_v]\\
+&= E \max\{\delta k - (1/D_u(v) - 1), 0\} D_u(v) D_u\\
+&= E \max\{\delta k D_u(v) - (1 - D_u(v)), 0\} D_u\\
+&= E \max\{(\delta k + 1)D_u(v) - 1, 0\} D_u\\
+&= D(u) E \max\{(1 + \delta k)D_u(v)e^\gamma - 1, 0\}\\
+\end{aligned}
+$$
+where $\gamma = \Cov(\log D_u(v), \log D_u)$.
 
 ## Interest Rate Swap
 
