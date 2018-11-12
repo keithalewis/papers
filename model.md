@@ -1,4 +1,10 @@
-# Standard Market Model
+---
+title: Standard Market Model
+author: Keith A. Lewis
+institute: KALX, LLC
+classoption: fleqn
+---
+<div id="kalx"><a href="mailto:kal@kalx.net">kal@kalx.net</a></div>
 
 Let $\langle \Omega, P, (\AA_t)_{t\in T}\rangle$ be a sample
 space, probability measure, and filtration where $T$ is the set of
@@ -18,7 +24,7 @@ bonds pay coupons, futures pay margin adjustments.
 ## Trading Strategy
 
 A _trading strategy_ is a finite set $(\tau_j, \Gamma_j)$ where
-the $\tau_j$ are increasing stopping times and $\Gamma_j$ is a
+$\tau_j$ are increasing stopping times and $\Gamma_j$ is a
 $\AA_{\tau_j}$ measurable vector of the shares traded in each
 instrument.
 
@@ -92,6 +98,6 @@ $$
 
 is an arbitrage free model. We call this the _Standard Market Model_.
 
-**Exercise**. Show $E[X_u D_u + \sum_{t<s\le u}C_s D_s|\AA_t] = X_t D_t$
+**Exercise**. Show $E_t[X_u D_u + \sum_{t<s\le u}C_s D_s|\AA_t] = X_t D_t$
 if $X_t$ is defined as above.
 

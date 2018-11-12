@@ -33,7 +33,7 @@ A _zero coupon bond_ maturing at time $u$, denoted $D(u)$, has a single cash flo
 Its value at time $t$, $D_t(u)$, satisfies $D_t(u)D_t = E_t D_u$ so
 
 $$
-D_t(u) = E_t D_u/D_t = E_t exp(-\int_t^u f_s\,ds).
+D_t(u) = E_t D_u/D_t = E_t \exp(-\int_t^u f_s\,ds).
 $$
 
 Its value at time $0$ is $D_0(u) = E D_u$ which we also denote by $D(u)$.
