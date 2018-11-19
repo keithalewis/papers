@@ -39,8 +39,9 @@ if $\sum\Gamma_j = 0$.
 ## Value
 
 The _value_, or _mark-to-market_, of a trading strategy is
-$V_t = (\Delta_t + \Gamma_t)\cdot X_t$ since the position does
-not include trades that were just executed.
+$V_t = (\Delta_t + \Gamma_t)\cdot X_t$: the amount you get
+when you liquidate your position at market price.
+The position does not include trades that were just executed so those must be added.
 
 ## Amount
 
