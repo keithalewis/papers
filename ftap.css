@@ -17,7 +17,12 @@ h3 {
 h4 {
 	color: #222;
 }
-.katex { font-size: 100% !important; }
+.katex {
+	font-size: 100% !important;
+	macros: {
+	    "\\RR": "\\mathbb{R}"
+	  }
+}
 #kalx {
     font-family: "Courier";
     font-weight: bold;
