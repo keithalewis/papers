@@ -49,7 +49,7 @@ stopping times, $\tau_{j}$, and trades,
 $\Gamma_{j}:\mathcal{A}_{\tau_{j}} \rightarrow \mathbb{R}^{I}$ indicating
 the number of shares to trade in each instrument. Trades accumulate to a
 *position*,
-$\Delta_{t} = \sum_{\tau_{j} < t}^{}\Gamma_{j} = \sum_{s < t}^{}\Gamma_{s}$
+$\Delta_{t} = \sum_{\tau_{j} < t}\Gamma_{j} = \sum_{s < t}\Gamma_{s}$
 where $\Gamma_{s} = \Gamma_{j}$ when $s = \tau_{j}$.
 
 The *value* (or *mark-to-market*) of a position at time $t$ is
@@ -65,7 +65,10 @@ A model is *arbitrage-free* if there is no trading strategy with
 $\sum_{j}^{}{\Gamma_{j} = 0}$, $A_{\tau_{0}} > 0$ and
 $A_{t} \geq 0$ for $t > \tau_{0}$: it is impossible to make money on
 the first trade and never lose until the strategy is closed out.
-The Fundamental Theorem of Asset
+
+A model is *arbitrage-free* if there is no trading strategy with
+$\sum_{j}{\Gamma_{j} = 0}$, $A_{\tau_{0}} > 0$ and
+$A_{t} \geq 0$ for $t > \tau_{0}$. The Fundamental Theorem of Asset
 Pricing states this is the case if and only if there exists a positive
 adapted process,
 $D_{t}:\mathcal{A}_{t} \rightarrow \left( 0,\infty \right)$, with
@@ -81,10 +84,14 @@ $$\begin{matrix}
 V_{t}D_{t} = (V_{u}D_{u} + \sum_{t < s \leq u}^{}{A_{s}D_{s}})|_{\mathcal{A}_{t}}\label{eq:2} \\
 \end{matrix}$$
 
-If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$ and
-$V_t D_t = (\Delta_t + \Gamma_t)\cdot X_t D_t = \Delta_u\cdot E_t[(X_u + C_u)D_u$.
+$$\begin{matrix}
+V_{t}D_{t} = (V_{u}D_{u} + \sum_{t < s \leq u}{A_{s}D_{s}})|_{\mathcal{A}_{t}}\#\left( 2 \right) \\
+\end{matrix}$$
+
+If $u > t$ is sufficiently small then $X_{t} D_{t} = E_t[(X_u + C_u) D_u]$ and
+$V_{t} D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t = \Delta_u\cdot E_{t}[(X_u + C_u)D_u$.
 Since $\Delta_u\cdot C_u = \Gamma_u\cdot X_u + A_u$ we have
-$V_t D_t = E_u[(\Delta_u\cdot X_u + \Gamma_u\cdot X_u + A_u) D_u] = E_u[(V_u + A_u)D_u]$. The
+$V_{t} D_t = E_u[(\Delta_u\cdot X_u + \Gamma_u\cdot X_u + A_u) D_u] = E_u[(V_u + A_u)D_u]$. The
 formula above follows by induction.
 
 For a strategy as above,
@@ -97,6 +104,9 @@ This prove the "easy" direction of the theorem.
 There is no need to prove the "hard" direction since we have a large supply of arbitrage free models:
 every model of the form
 $X_{t}D_{t} = M_{t} - \sum_{s \leq t}^{}{C_{s}D_{s}}$ where
+
+Every model of the form
+$X_{t}D_{t} = M_{t} - \sum_{s \leq t}{C_{s}D_{s}}$ where
 $M_{t}:\mathcal{A}_{t} \rightarrow \mathbb{R}^{I}$ is a martingale and
 $D_{t}:\mathcal{A}_{t} \rightarrow (0,\infty)$ is a positive adapted
 process is arbitrage-free. This is immediate by substituting
