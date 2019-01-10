@@ -3,9 +3,9 @@ HTML = $(MKDN:.md=.html)
 #HTML = grassmann.html
 PDF = $(MKDN:.md=.pdf)
 FLAGS = -s # smart quotes
-FLAGS += --katex
+#FLAGS += --katex
 FLAGS += -t html5
-#FLAGS += --mathjax
+FLAGS += --mathjax
 FLAGS += --css ftap.css
 #FLAGS += --section-divs
 FLAGS += -H header.html
