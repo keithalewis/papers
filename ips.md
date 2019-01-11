@@ -39,6 +39,8 @@ Geometry: Greeks introduce notion of proofs
 Many ways to prove a theorem.
 
 George Boole: Laws of Thought
+Reduce thought to algebra
+[undefined/unresolved terms?]
 
 Propositions.
 
@@ -49,3 +51,11 @@ Proof from axioms.
 Proof from trees.
 
 Students write notes during the course about what interests them. Use as fodder for project.
+
+Platonic solids
+Plane symmetries
+Math is truth
+
+## From IPS
+
+the lack of critical thinking, research skills and problem solving ability. 
