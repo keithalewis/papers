@@ -1,5 +1,7 @@
 # IPS Summer Program
 
+Emphasize critical thinking, research skills and problem solving ability. 
+
 People use advanced tools without understanding their foundation.
 
 Not only do they not understand when they are using them incorrectly, they are unable to understand
@@ -59,3 +61,5 @@ Math is truth
 ## From IPS
 
 the lack of critical thinking, research skills and problem solving ability. 
+
+I think for the course content, you could teach mathematics , also you could include some knowledge related to computer science if needed. And for the research topics, they could be applied mathematics, such as sub topics related to financial mathematics or other topics that you think that is hot in real world application. 
