@@ -113,8 +113,8 @@ write $D_t(u) = E_t D_u/D_t$ for its price at time $t$. In particular
 $D_0(u) = E D_u$.
 
 A _repurchase agreement_ quotes a rate, $f_t$, at time $t$. It has price $X^{f_t}_t = 1$ and cash flow
-$C^{f_t}_{t + dt} = e^{f_t\,dt}$. For any arbitrage free model $D_t = E_t[e^{f_t\,dt}D_{t+dt}$.
-Define the _canonnical deflator_ to be $D_t = \exp(-\int_0^t f_s\,ds)$.
+$C^{f_t}_{t + dt} = e^{f_t\,dt}$. For any arbitrage free model $D_t = E_t[e^{f_t\,dt}D_{t+dt}]$.
+The _canonnical deflator_ is $D_t = \exp(-\int_0^t f_s\,ds)$.
 
 Let $D_t = e^{-\rho t}$ and $M_t = (r, s e^{\sigma B_t - \sigma^2
 t/2})$. This is the Black-Merton/Scholes model. No need for self-financing
