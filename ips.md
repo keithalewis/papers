@@ -2,8 +2,7 @@
 
 People use advanced tools without understanding their foundation.
 
-Not only do they not understand when they are using them incorrectly, they are unable to understand
-how to use them.
+Not only do they not understand when they are using them incorrectly, they are unable to understand how to use them.
 
 More technically oriented to minimize language issues.
 
@@ -55,6 +54,16 @@ Students write notes during the course about what interests them. Use as fodder 
 Platonic solids
 Plane symmetries
 Math is truth
+
+## Syllabus
+
+Week 1: Logic
+
+Week 2: Lambda Caluclus
+
+Week 3: Category Theory
+
+Week 4: Implementation?
 
 ## From IPS
 
