@@ -32,7 +32,6 @@ Prawitz 1965: proof normalization
 
 Tait 1965-7: beta-reduction is strongly normalizing
 
-
 ## Notes
 
 Geometry: Greeks introduce notion of proofs
@@ -57,7 +56,29 @@ Platonic solids
 Plane symmetries
 Math is truth
 
+Use machine learning to find a truth table?
+
 ## Syllabus
+
+The Curry-Howard-Lambek isomorphism.
+
+There is a suprising connection between logic, computation, and category
+theory.  Three seemingly different things that arose independently turn
+out to be identical. Not just similar, or kind of the same: identical.
+The theories are in one-to-one correspondence. Mathematicians call this
+an isomorphism (lit. same shape).
+
+Logic is the foundation of mathematics and the current theory was
+promulgated by David Hilbert beginning in the late 19th century. In the
+1930's Alonzo Church proposed a universal model for computaton called the
+lambda-calculus. In the 1950's William Howard formalized an observation of
+Haskel Curry to show how a certain subset of logic was precisely the same
+as a certain fragment of lambda-calculus.  In the early 1970's Joachim
+Lambek showed how to model these using cartesian closed categories.
+
+While this may seem quite abstract, it has laid the foundation for some of the
+latest advances in computer science. Functional programming is more than
+just a fad, almost all machine learning algorithms are based on it.
 
 Week 1: Logic
 

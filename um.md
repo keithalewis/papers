@@ -114,7 +114,7 @@ $D_0(u) = E D_u$.
 
 A _repurchase agreement_ at time $t$, $R_t$, has price $X^{R_t}_t = 1$ and cash flow
 $C^{R_t}_{t + dt} = R_t$ so for any arbitrage free model $D_t = E_t[R_tD_{t+dt}]$.
-Define the _forward repo rate_ by $R_t = \exp(f_t\,dt)$
+Define the _forward repo rate_, $f_t$, by $R_t = \exp(f_t\,dt)$
 and the _canonnical deflator_ to be $D_t = \exp(-\int_0^t f_s\,ds)$.
 
 Let $D_t = e^{-\rho t}$ and $M_t = (r, s e^{\sigma B_t - \sigma^2
