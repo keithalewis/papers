@@ -36,6 +36,19 @@ Tait 1965-7: beta-reduction is strongly normalizing
 
 Geometry: Greeks introduce notion of proofs
 
+Euclid 300BC Alexandria (Egypt)
+Little is known biographically
+Euclidean algorithm for gcd. (TLA+ proof systems?)
+axioms vs postulates
+Invented the Axiomatic system.
+consistent, independent, complete
+
+Models. Used to show consistency and independence.
+
+Frege - sets
+Peano - integers
+? - real numbers
+
 Many ways to prove a theorem.
 
 George Boole: Laws of Thought
@@ -86,7 +99,7 @@ Week 2: Lambda Caluclus
 
 Week 3: Category Theory
 
-Week 4: Implementation?
+Week 4: Implementation/Projects
 
 ## From IPS
 
