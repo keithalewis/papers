@@ -106,3 +106,24 @@ Week 4: Implementation/Projects
 the lack of critical thinking, research skills and problem solving ability. 
 
 I think for the course content, you could teach mathematics , also you could include some knowledge related to computer science if needed. And for the research topics, they could be applied mathematics, such as sub topics related to financial mathematics or other topics that you think that is hot in real world application. 
+
+
+
+WFF's
+
+Be able to produce and recognize well formed formulas.
+
+Truth Tables
+
+complete given a WFF
+Involve axioms to get them used to seeing patterns.
+
+Proofs
+
+Using axioms and modus ponens.
+
+P => Q, P | Q
+
+Hilbert axioms.
+
+Tableau method. (Raymond Smulyan).
