@@ -15,7 +15,7 @@ If $\AA$ is finite then the
 of $\AA$ form a
 [partition](https://en.wikipedia.org/wiki/Partition_of_a_set)
 of $\Omega$ and being measurable is
-equivalent to being constant on atoms. In this case $X$ **is** a function
+equivalent to being constant on atoms. In this case $X$ is indeed a function
 on the atoms.
 
 If $X$ is $\AA$-measurable and $\BB$ is a subalgebra
@@ -24,13 +24,13 @@ of $\AA$ then the
 of $X$ given
 $\BB$ is defined by $Y = E\left\lbrack X \middle| \AA\right\rbrack$ if and only
 if $Y$ is $\BB$ measurable and $\int_B Y\,dP = \int_B X\,dP$
-for all $B\in\BB$. This is equivalent $Y(P|_\BB)
-= (XP)|_\BB$ where the vertical bar indicates restriction.
+for all $B\in\BB$. This is equivalent to $Y(P|_\BB)
+= (XP)|_\BB$ where the vertical bar indicates restriction of a measure to a subalgebra.
 
-A _filtration_ is a be a totally ordered set, $T$, and an increasing
+A _filtration_ on $T\subseteq [0,\infty)$ is an increasing
 collection of algebras, $(\AA_t)_{t\in T}$.  A process
 $M_{t}\colon\AA_{t} \rightarrow \mathbb{R}$, $t\in T$, is
-a *martingale* if $M_t P|_{\AA_t} = M_u P|_{\AA_t}$.  If $P$ is
+a *martingale* if $M_t P|_{\AA_t} = M_u P|_{\AA_t}$ for $t\le u$.  If $P$ is
 understood we write this as $M_t = M_u|_{\AA_t}$. The
 usual notation is $M_t = E\left\lbrack M_{u} \middle| \AA_t
 \right\rbrack = E_t\left\lbrack M_u\right\rbrack.$
@@ -87,11 +87,11 @@ If $u > t$ is sufficiently small then $X_{t} D_{t} = (X_u + C_u) D_u|_{\AA_t}$
 and $V_{t} D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t
 = \Delta_u\cdot (X_u + C_u)D_u|_{\AA_t}$.
 Since $\Delta_u\cdot C_u = \Gamma_u\cdot X_u + A_u$ we have
-$V_{t} D_t = (\Delta_u\cdot X_u + \Gamma_u\cdot X_u + A_u) D_u\_{\AA_t}
+$V_{t} D_t = (\Delta_u\cdot X_u + \Gamma_u\cdot X_u + A_u) D_u|_{\AA_t}
 = (V_u + A_u)D_u|_{\AA_t}$. The formula above follows by induction.
 
 For a strategy as above,
-$V_{\tau_{0}}D_{\tau_{0}} = (\sum_{t > \tau_{0}}^{}{A_{t}D_{t})|_{\AA_{\tau_{0}}} \geq 0}$.
+$V_{\tau_{0}}D_{\tau_{0}} = \sum_{t > \tau_{0}}{A_{t}D_{t}|_{\AA_{\tau_{0}}} \geq 0}$.
 Since $V_{0} = \Gamma_{0} \cdot X_{0}$,
 $A_{0} = - \Gamma_{0} \cdot X_{0}$, and $D_{0} > 0$ we have
 $A_{0} \leq 0$, where the 0 subscript denotes time $\tau_{0}$.
@@ -101,21 +101,25 @@ There is no need to prove the "hard" direction since we have a large supply of a
 every model of the form
 $X_{t}D_{t} = M_{t} - \sum_{s \leq t}{C_{s}D_{s}}$ where
 $M_{t}:\AA_{t} \rightarrow \mathbb{R}^{I}$ is a martingale and
-$D_{t}:\AA_{t} \rightarrow (0,\infty)$ is a positive adapted
+$D_{t}:\AA_{t} \rightarrow (0,\infty)$ is an adapted
 process is arbitrage-free. This is immediate by substituting
 $X_{u}D_{u}$ in the first displayed equation.
 
 ## Examples
 
-A _zero coupon bond_ maturing at time $u$, $D(u)$, has a single cash flow $C^{D(u)}_u = 1$ so
-its price at time $t$ satisfies $X^{D(u)}_t D_t = E_t 1 D_u$. We
-write $D_t(u) = E_t D_u/D_t$ for its price at time $t$. In particular
-$D_0(u) = E D_u$.
+A _zero coupon bond_ maturing at time $u$, $D(u)$, has a single cash flow
+$C^{D(u)}_u = 1$ so its price at time $t$ satisfies $X^{D(u)}_t D_t =
+E_t 1 D_u$. We write $D_t(u) = E_t D_u/D_t$ for its price at time $t$. In
+particular $D_0(u) = E D_u$. Likewise, instruments that are a portfolio of
+zero coupon bonds (e.g., cash deposits, forward rate agreements, swaps)
+have a price that is determined by the deflator. Also all options on
+such instruments have prices determined by the deflator.
 
 A _repurchase agreement_ at time $t$, $R_t$, has price $X^{R_t}_t = 1$ and cash flow
 $C^{R_t}_{t + dt} = R_t$ so for any arbitrage free model $D_t = E_t[R_tD_{t+dt}]$.
 Define the _forward repo rate_, $f_t$, by $R_t = \exp(f_t\,dt)$
 and the _canonnical deflator_ to be $D_t = \exp(-\int_0^t f_s\,ds)$.
+The repos are arbitrage free for any forward repo rate process.
 
 Let $D_t = e^{-\rho t}$ and $M_t = (r, s e^{\sigma B_t - \sigma^2
 t/2})$. This is the Black-Merton/Scholes model. No need for self-financing
