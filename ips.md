@@ -73,33 +73,54 @@ Use machine learning to find a truth table?
 
 ## Syllabus
 
-The Curry-Howard-Lambek isomorphism.
+Foundations of Artificial Intelligence and Machine Learning.
 
-There is a suprising connection between logic, computation, and category
-theory.  Three seemingly different things that arose independently turn
-out to be identical. Not just similar, or kind of the same: identical.
-The theories are in one-to-one correspondence. Mathematicians call this
-an isomorphism (lit. same shape).
+Everything comes from somewhere. Although AI and ML are cutting
+edge area now they have their foundation in logic and computation.
 
 Logic is the foundation of mathematics and the current theory was
-promulgated by David Hilbert beginning in the late 19th century. In the
+promulgated by David Hilbert an others beginning in the late 19th century. In the
 1930's Alonzo Church proposed a universal model for computaton called the
 lambda-calculus. In the 1950's William Howard formalized an observation of
 Haskel Curry to show how a certain subset of logic was precisely the same
 as a certain fragment of lambda-calculus.  In the early 1970's Joachim
 Lambek showed how to model these using cartesian closed categories.
 
-While this may seem quite abstract, it has laid the foundation for some of the
+While this may seem quite abstract, these are the foundation for some of the
 latest advances in computer science. Functional programming is more than
 just a fad, almost all machine learning algorithms are based on it.
 
 Week 1: Logic
 
-Week 2: Lambda Caluclus
+Mon: Well Formed Formulas
+Tue: Truth Tables
+Wed: Proofs
+Thu: Tableau Method
+Fri: Review, Quiz, Project preparation
 
-Week 3: Category Theory
+Week 2: Lambda Calculus
+
+Mon: Definition
+Tue: Examples
+Wed: Combinators
+Thu: Computer use
+Fri: Review, Quiz, Project preparation
+
+Week 3: Application
+
+Mon: Artificial Intelligence
+Tue: Playing games
+Wed: Machine Learning
+Thu: Automated Reasoning
+Fri: Review, Quiz, Project preparation
 
 Week 4: Implementation/Projects
+
+Mon:
+Tue:
+Wed:
+Thu:
+Fri:
 
 ## From IPS
 
