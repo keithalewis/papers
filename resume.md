@@ -1,5 +1,3 @@
-<html>
-<xmp theme="spacelab" style="display:none;">
 # Keith A. Lewis
 [kal@kalx.net](mailto:kal@kal.net)
 
@@ -7,7 +5,7 @@ Quant, Technologist, Businessman
 
 ## Business
 
-### _Bloomberg LP_, Senior Software Engineer
+### _Bloomberg LP_, Senior Software Engineer (2015&mdash;2017)
 
 Responsible for developing core infrastructure used by all enterprise
 applications and supporting current products. Core components written
@@ -17,7 +15,7 @@ Designed and wrote APA for MiFID II using Java/Camel/kafka.
 
 Working familiarity with Hadoop, Spark, Avro.
 
-### _KALX LLC_, Managing Member
+### _KALX LLC_, Managing Member (2002&mdash;present)
 
 KALX provides quantitative and technology solutions for small to medium
 sized hedge funds and other financial institutions.  We produce high
@@ -36,14 +34,14 @@ testing, and implementing real-time tick trading strategies.
 Analyzed large datasets of FX trades incorporating high frequency tick
 data in order to enhance alpha on the trade flow from a major ECN.
 
-### _Banc of America Securities_, Principal
+### _Banc of America Securities_, Principal (1999&mdash;2002)
 
 Developed the Equity Derivatives analytics library for the Equity
 Financial Products group. Delivered production quality libraries to the
 IT group.  Built and supported the Excel add-in library used throughout
 the company.
 
-### _Morgan Stanley Dean Witter &amp; Co._, Vice President
+### _Morgan Stanley Dean Witter &amp; Co._, Vice President (1996&mdash;1999)
 
 Responsible for running the technical side of Morgan Stanley's AAA
 subsidiary. Primary responsibilities were to ensure correct capital
@@ -53,7 +51,7 @@ simulation system that was supported worldwide (New York, London, Tokyo,
 Hong Kong, and Sydney) using a multi-tier client/server architecture
 and parallelized compute engines.
 
-### _Bankers Trust_, Vice President
+### _Bankers Trust_, Vice President (1993&mdash;1996)
 
 Member of Global Analytics group responsible for development and
 support of all analytics used for client business at Bankers
@@ -64,7 +62,7 @@ analytic libraries.  Integrated object oriented database with
 analytics and existing risk system framework in an Unix, NT, and
 VMS environment.
 
-### _Met Life_, Quantitative Analyst
+### _Met Life_, Quantitative Analyst (1991&mdash;1993)
 
 Developed analytics for the MBS trading desk. Applications included
 portfolio targeting, MBS analytics, real-time data acquisition, and
@@ -73,7 +71,7 @@ development environment for Unix (SunOS, AIX) network.
 
 ## Academia
 
-### _Columbia University_, Adjunct Professor
+### _Columbia University_, Adjunct Professor 
 
 Computational and Quantitative Finance
 
@@ -93,17 +91,9 @@ Derivative Securities.
 
 Derivative Securities.
 
-### _Brown University_, J. D. Tamarkin Assistant Professor
+### _Brown University_, J. D. Tamarkin Assistant Professor (1987&mdash;1991)
 
 Research on invariant subspaces of bounded linear operators on Hilbert
 spaces. Taught classes including graduate level seminars and senior
 level courses in Probability, Statistics, PDE's, and Fourier Analysis.
 Used computers extensively for course work and research. 
-
-### _University of Hawaii_, MA, PhD
-
-### _Arizona State University_, BA
-</xmp>
-
-<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
-</html>
