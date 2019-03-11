@@ -19,10 +19,10 @@ After the Asian Crisis in the late 90's the first steps toward
 incorporating credit risk to large portfolios appeared. The current XVA
 menagerie of calculations stem from that lesson.
 
-Technology has come to the point that it is now possible to build
-a system that can 
+There is still a lot of work to be done to build systems that have a
+unified approach to pricing, hedging, and managing the risk of portfolios
+across all asset classes. 
 
-first steps
-I am up-to-date with software state of the art and have been working
-for the past 10 years on the mathematical theory that allows a unified
-approach to this problem.  I am looking for a company that 
+Technology has reached the point where it is now possible to build this.
+I have been working for the past 10 years on the mathematical
+theory to underpin this. I am looking for a company that

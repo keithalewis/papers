@@ -9,11 +9,9 @@ Quant, Technologist, Businessman
 
 Responsible for developing core infrastructure used by all enterprise
 applications and supporting current products. Core components written
-in C++ but interoperate with python, JavaScript, Java/Scala, and C#.
+in C++ but interoperate with Python, JavaScript, Java/Scala, and C#.
 
-Designed and wrote APA for MiFID II using Java/Camel/kafka.
-
-Working familiarity with Hadoop, Spark, Avro.
+Designed and wrote MiFID II APA distribution using Java/Camel/Kafka.
 
 ### _KALX LLC_, Managing Member (2002&mdash;present)
 
