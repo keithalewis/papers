@@ -5,7 +5,7 @@ Quant, Technologist, Businessman
 
 ## Business
 
-### _Bloomberg LP_, Senior Software Engineer (2015&mdash;2017)
+### _Bloomberg LP_, Senior Software Engineer (2015&mdash;2018)
 
 Responsible for developing core infrastructure used by all enterprise
 applications and supporting current products. Core components written
