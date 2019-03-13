@@ -89,9 +89,19 @@ Derivative Securities.
 
 Derivative Securities.
 
-### _Brown University_, J. D. Tamarkin Assistant Professor (1987&mdash;1991)
+### _Brown University_, J. D. Tamarkin Assistant Professor (1988&mdash;1991)
 
 Research on invariant subspaces of bounded linear operators on Hilbert
 spaces. Taught classes including graduate level seminars and senior
 level courses in Probability, Statistics, PDE's, and Fourier Analysis.
 Used computers extensively for course work and research. 
+
+## Education
+
+### _University of Hawaii at Manoa_ MA (1983) PhD (1988) Mathematics
+
+Dissertation: _Functional Calculi M-Spectral Sets, and Invariant Subspaces_
+
+### _Arizona State University_ BA (1981) Mathematics
+
+Recipient:  _Charles Wexler Mathematics Prize_
