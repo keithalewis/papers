@@ -1,5 +1,6 @@
 # The Unified Model 
 
+
 There is a unified way to value derivative
 securities using market prices.
 
@@ -73,7 +74,7 @@ $A_{t} \geq 0$ for $t > \tau_{0}$: it is impossible to make money on
 the first trade and never lose until the strategy is closed out.
 
 The Fundamental Theorem of Asset Pricing states this is the case if
-and only if there exists an adapted process,
+and only if there exists a function,
 $D_{t}:\AA_{t} \rightarrow \left( 0,\infty \right)$, with
 
 $$\begin{matrix}
@@ -105,8 +106,8 @@ There is no need to prove the "hard" direction since we have a large supply of a
 every model of the form
 $X_{t}D_{t} = M_{t} - \sum_{s \leq t}{C_{s}D_{s}}$ where
 $M_{t}:\AA_{t} \rightarrow \mathbb{R}^{I}$ is a martingale and
-$D_{t}:\AA_{t} \rightarrow (0,\infty)$ is an adapted
-process is arbitrage-free. This is immediate by substituting
+$D_{t}:\AA_{t} \rightarrow (0,\infty)$ 
+is arbitrage-free. This is immediate by substituting
 $X_{u}D_{u}$ in the first displayed equation.
 
 ## Examples
@@ -119,13 +120,16 @@ zero coupon bonds (e.g., cash deposits, forward rate agreements, swaps)
 have a price that is determined by the deflator. All options on
 such instruments also have prices determined by the deflator.
 
-A _repurchase agreement_ at time $t$, $R_t$, has price $X^{R_t}_t = 1$ and cash flow
-$C^{R_t}_{t + dt} = R_t$ so for any arbitrage free model $D_t = E_t[R_tD_{t+dt}]$.
-Define the _forward repo rate_, $f_t$, by $R_t = \exp(f_t\,dt)$
-and the _canonical deflator_ to be $D_t = \exp(-\int_0^t f_s\,ds)$.
-The repos are arbitrage free for any forward repo rate process.
+A _repurchase agreement_ at time $t$, $R_t$, has price $X^{R_t}_t = 1$
+and cash flow $C^{R_t}_{t + dt} = R_t$ so for any arbitrage free model
+$D_t = E_t[R_tD_{t+dt}]$.  Define the _forward repo rate_, $f_t$,
+by $R_t = \exp(f_t\,dt)$ and the _canonical deflator_ to be $D_t =
+\exp(-\int_0^t f_s\,ds)$.  The repos are arbitrage free for any forward
+repo rate process.
 
 Let $D_t = e^{-\rho t}$ and $M_t = (r, s e^{\sigma B_t - \sigma^2
 t/2})$. This is the Black-Scholes/Merton model. No need for self-financing
 portfolios, Ito's Lemma, or partial differential equations when using
 the Unified Model.
+
+Keith A. Lewis [kal@kalx.net]
