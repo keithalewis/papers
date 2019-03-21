@@ -1,7 +1,7 @@
 # The Unified Model 
 
-There is a unified way to price every market instrument and derivative
-security using a single model.
+There is a unified way to value derivative
+securities using market prices.
 
 ## Notation
 

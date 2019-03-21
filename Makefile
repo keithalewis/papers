@@ -2,6 +2,7 @@ MKDN = $(wildcard *.md)
 HTML = $(MKDN:.md=.html)
 #HTML = grassmann.html
 PDF = $(MKDN:.md=.pdf)
+DOCX = $(MKDN:.md=.docx)
 FLAGS = -s # smart quotes
 #FLAGS += --katex
 FLAGS += -t html5
@@ -19,6 +20,9 @@ $(HTML): %.html: %.md
 	pandoc $(FLAGS) $< -o $@
 
 $(PDF): %.pdf: %.md
+	pandoc -H header.tex $< -o $@
+
+$(DOCX): %.docx: %.md
 	pandoc -H header.tex $< -o $@
 
 rsync: $(HTML)
