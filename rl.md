@@ -1,9 +1,9 @@
-# Reinfocement Learning
+# Reinforcement Learning
 
-Goal directed learning for an agent interacting with an evironment.
+Goal directed learning for an agent interacting with an environment.
 
 Beyond the agent and the environment, one can identify four main
-subelements of a reinforcement learning system: a policy, a reward signal,
+sub-elements of a reinforcement learning system: a policy, a reward signal,
 a value function, and, optionally, a model of the environment.
 
 ## Markov Decision Process
@@ -25,8 +25,9 @@ A _policy_, $\pi(a|s)$, specifies the probability of taking action $a$
 given the agent is in state $s$.
 
 The _state-value function_ for policy $\pi$ is $v_\pi(s) = E[G_t\mid
-S_t = s]$.  (Note that it does not depend on $t$.)  The _action-value
-function_ for $\pi$ is $q_\pi(s,a) = E[G_t\mid S_t = s, A_t = a]$.
+S_t = s]$.  (Note that it does not depend on $t$.)  
+
+The _action-value function_ for $\pi$ is $q_\pi(s,a) = E[G_t\mid S_t = s, A_t = a]$.
 
 Note
 $$
