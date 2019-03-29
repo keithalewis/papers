@@ -1,17 +1,15 @@
-# Reinfocement Learning
+# Reinforcement Learning
 
-Goal directed learning for an agent interacting with an evironment.
+Maximizing gains for an agent interacting with a model.
 
-Beyond the agent and the environment, one can identify four main
-subelements of a reinforcement learning system: a policy, a reward signal,
-a value function, and, optionally, a model of the environment.
+There is always a model and there is no canonical measure of gain.
 
 ## Markov Decision Process
 
 A MDP is defined by states, $S$, actions, $A$, rewards, $R\subseteq\bold{R}$,
 and transition probabilities, $p(s',r|s,a)
 = P(S_{t+1} = s', R_{t+1} = r\mid S_t = s, A_t = a)$,
-the probability of moving to state $s'$ and receive reward $r$ give
+the probability of moving to state $s'$ and receive reward $r$ given
 the agent is in state $s$ and takes action $a$.
 
 Some models specify $A_s\subseteq A$, $s\in S$,
