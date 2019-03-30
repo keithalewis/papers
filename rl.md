@@ -1,5 +1,9 @@
 # Reinforcement Learning
 
+Maximizing gains for an agent interacting with a model.
+
+There is always a model and there is no canonical measure of gain.
+=======
 Goal directed learning for an agent interacting with an environment.
 
 ## Markov Decision Process
@@ -7,6 +11,8 @@ Goal directed learning for an agent interacting with an environment.
 A MDP is defined by states, $S$, actions, $A$, rewards, $R\subseteq\bold{R}$,
 and transition probabilities, $p(s',r|s,a)
 = P(S_{t+1} = s', R_{t+1} = r\mid S_t = s, A_t = a)$,
+the probability of moving to state $s'$ and receive reward $r$ given
+the agent is in state $s$ and takes action $a$.
 the probability of moving to state $s'$ and receive reward $r$ give
 the agent is in state $s$ and takes action $a$ at time $t$.
 

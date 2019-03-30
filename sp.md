@@ -1,10 +1,17 @@
 # Stochastic Processes
 
-A _stochastic process_, $(X_t)_{t\in T}$, is a collection of
-random variables indexed by a totally ordered set $T$. 
+Let $S$ be a set of states and $T$ be a set of times that is totally
+ordered, e.g., the integers or real numbers, or some subset of either.
 
-It is determined by all finite joint distributions.
+Let $\Omega = S^T = \{\omega\colon T\to S\}$, all functions
+from $T$ to $S$: what states can happen at each time.
 
-$P_{t_1,\dots,t_n}(X_{t_1}\le x_1,\dots) = F_{t_t,\dots}(x1,\dots)$.
+Define $\Omega_t$ to be the equivalence relation on $\Omega$ by
+$\omega \equiv \omega'$ if and only if $\omega(s) = \omega'(s)$
+for $s\le t$.
 
-Stationary Process.
+Define a probability measure on ...
+
+If $T$ and $S$ are finite 
+
+Coherent...
