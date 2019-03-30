@@ -2,10 +2,6 @@
 
 Goal directed learning for an agent interacting with an environment.
 
-Beyond the agent and the environment, one can identify four main
-sub-elements of a reinforcement learning system: a policy, a reward signal,
-a value function, and, optionally, a model of the environment.
-
 ## Markov Decision Process
 
 A MDP is defined by states, $S$, actions, $A$, rewards, $R\subseteq\bold{R}$,
@@ -33,9 +29,9 @@ factor_.
 
 The _state-value function_ for policy $\pi$ is $v_\pi(s) = E[G_t\mid
 S_t = s]$.  (Note that it does not depend on $t$.)  We want to
-find $v^*(s) = \max_\pi v_\pi(s)$.
+find $v^*(s) = \max_\pi v_\pi(s)$. We always take $t = 0$ in what follows.
 
-The _action-value function_ for $\pi$ is $q_\pi(s,a) = E[G_t\mid S_t = s, A_t = a]$.
+The _action-value function_ for $\pi$ is $q_\pi(s,a) = E[G_0\mid S_0 = s, A_t = a]$.
 
 Note
 $$
@@ -47,3 +43,17 @@ for exponential decay.
 
 An $n$-armed bandit is a MDP with one state and $n$ actions. The general idea behind
 a solution is to _explore_ the $n$ available actions and _exploit_ the most promising.
+
+The $\epsilon$-greedy chooses the action 
+
+The $\epsilon$ first ...
+
+The Gittins index ...
+@BOOK{Git1989,
+	AUTHOR="Gittins, J.C.",
+	YEAR="1989",
+	TITLE="Multi-armed bandit allocation indices.",
+	SERIES="Wiley-Interscience Series in Systems and Optimization.",
+	PUBLISHER="Chichester: John Wiley & Sons, Ltd.",
+	ISBN="978-0-471-92059-5"
+}
