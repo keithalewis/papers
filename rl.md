@@ -1,23 +1,23 @@
 # Reinforcement Learning
 
-Maximizing gains for an agent interacting with a model using goal directed
-learning for an agent.  Note, there is always a model but there is no
-canonical measure of gain.
+Maximizing gains for an agent interacting with a model using goal
+directed learning.  There is always a model but there is no canonical
+measure of gain.
 
 ## Markov Decision Process
 
-A MDP is defined by states, $S$, actions, $A$, rewards, $R\subseteq\bold{R}$,
-and transition probabilities, $p(s',r'|s,a)
-= P(S_{t+1} = s', R_{t+1} = r'\mid S_t = s, A_t = a)$,
-the probability of moving to state $s'$ and receive reward $r'$ given
-the agent is in state $s$ and takes action $a$ at time $t$.
+A MDP is defined by states, $S$, actions, $A$, rewards,
+$R\subseteq\bold{R}$, and transition probabilities, $p(s',r'|s,a) =
+P(S_{t+1} = s', R_{t+1} = r'\mid S_t = s, A_t = a)$, the probability
+of moving to state $s'$ and receive reward $r'$ given the agent is in
+state $s$ and takes action $a$ at time $t$.
 
-Some models specify $A_s\subseteq A$, for $s\in S$,
-the set of possible actions when in state $s$.
+Some models specify $A_s\subseteq A$, for $s\in S$, the set of possible
+actions when in state $s$.
 
 At time $t$ the agent chooses an action $a$. This results in a new
 state, $s'$, and reward, $r'$, at time $t+1$ according to the transition
-probabilities. 
+probabilities.
 
 A _policy_, $\pi(a|s)$, specifies the probability of taking action $a$
 given the agent is in state $s$. This results in the sequence of random
@@ -47,13 +47,12 @@ for exponential decay.
 
 An $n$-armed bandit is a MDP with one state and $n$ actions. The general
 idea behind a solution is to _explore_ the $n$ available actions and
-_exploit_ the most promising. In this case the action-value function
-does not depend on the state.
-If we knew the reward distributions for each action then the optimal
-strategy would be to always select the action with the largest expected
-value.
+_exploit_ the most promising. In this case the action-value function does
+not depend on the state.  If we knew the reward distributions for each
+action then the optimal strategy would be to always select the action
+with the largest expected value.
 
-The _$\epsilon$-greedy_ strategy selects the action maximizing
-the current action-value function with probability $1-\epsilon$ and
-a random action with probability $\epsilon$. The action-value function
-is updated based on the observed reward.
+The _$\epsilon$-greedy_ strategy selects the action maximizing the current
+action-value function with probability $1-\epsilon$ and a random action
+with probability $\epsilon$. The action-value function is updated based
+on the observed reward.
