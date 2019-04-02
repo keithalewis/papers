@@ -1,0 +1,12 @@
+references:
+- type: book
+- id: Git1989
+- author:
+  - family: Gittins
+  - given: J.C.
+- issued: 1989
+- title: "Multi-armed bandit allocation indices."
+- series: "Wiley-Interscience Series in Systems and Optimization."
+- publisher: "John Wiley & Sons, Ltd."
+- city: "Chichester"
+- ISBN: 978-0-471-92059-5

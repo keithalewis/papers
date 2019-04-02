@@ -1,9 +1,8 @@
 # Reinforcement Learning
 
 Maximizing gains for an agent interacting with a model using goal directed
-learning for an agent.
-
-Note, there is always a model but there is no canonical measure of gain.
+learning for an agent.  Note, there is always a model but there is no
+canonical measure of gain.
 
 ## Markov Decision Process
 
@@ -40,7 +39,7 @@ $Q_\pi(s,a) = E[G_t\mid S_t = s, A_t = a]$.
 
 Note
 $$
-V_\pi(s) = \sum_a \pi(a|s) \sum_{s',r} p(s',r|s,a)[r + \gamma V_\pi(s')]
+V_\pi(s) = \sum_a \pi(a|s) \sum_{s',r'} p(s',r'|s,a)[r' + \gamma V_\pi(s')]
 $$
 for exponential decay.
 

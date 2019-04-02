@@ -17,7 +17,7 @@ cme:
 	rcp kal@web626.webfaction.com:cme/stleqt/stleqt.20171109.tgz .
 
 $(HTML): %.html: %.md
-	pandoc $(FLAGS) $< -o $@
+	pandoc $(FLAGS) --bibliography $*.yaml $< -o $@
 
 $(PDF): %.pdf: %.md
 	pandoc -H header.tex $< -o $@
