@@ -4,7 +4,7 @@ title: The Unified Model
 abstract: | 
   There is a unified way to value derivative
   securities using market prices.
-keywords: word1, word2, ...
+keywords: instrumet, price, cash flow, trading, position, value, amount, hedge
 ...
 
 There is a unified way to value derivative
@@ -28,18 +28,18 @@ on the atoms.
 If $X$ is $\mathcal{A}$-measurable and $\mathcal{B}$ is a subalgebra
 of $\mathcal{A}$ then the
 [_conditional expectation_](https://en.wikipedia.org/wiki/Conditional_expectation)
-of $X$ given
-$\mathcal{B}$ is defined by $Y = E\left\lbrack X \middle| \mathcal{A}\right\rbrack$ if and only
-if $Y$ is $\mathcal{B}$ measurable and $\int_B Y\,dP = \int_B X\,dP$
-for all $B\in\mathcal{B}$. This is equivalent to $Y(P|_\mathcal{B})
-= (XP)|_\mathcal{B}$ where the vertical bar indicates restriction of a measure to a subalgebra.
+of _$X$ given
+$\mathcal{A}$_ is defined by $Y = E\left\lbrack X \middle| \mathcal{A}\right\rbrack$ if and only
+if $Y$ is $\mathcal{A}$ measurable and $\int_A Y\,dP = \int_A X\,dP$
+for all $A\in\mathcal{A}$. This is equivalent to $Y(P|_\mathcal{A})
+= (XP)|_\mathcal{A}$ where the vertical bar indicates restriction of a measure to a subalgebra.
 
 A _filtration_ on $T\subseteq [0,\infty)$ is an increasing
 collection of algebras, $(\mathcal{A})_{t\in T}$.  A process
 $M_{t}\colon\mathcal{A}{t} \rightarrow \mathbb{R}$, $t\in T$, is
 a _martingale_ if $M_t P|_{\mathcal{A}} = M_u P|_{\mathcal{A}}$ for $t\le u$.  If $P$ is
 understood we write this as $M_t = M_u|_{\mathcal{A}}$. The
-usual notation is $M_t = E\left\lbrack M_{u} \middle| \mathcal{A}
+usual notation is $M_t = E\left\lbrack M_{u} \middle| \mathcal{A_t}
 \right\rbrack = E_t\left\lbrack M_u\right\rbrack.$
 
 ## Instruments
