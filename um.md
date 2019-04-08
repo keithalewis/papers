@@ -19,22 +19,19 @@ of $\Omega$ and being measurable is
 equivalent to being constant on atoms. In this case $X$ is indeed a function
 on the atoms.
 
-If $X$ is $\AA$-measurable and $\BB$ is a subalgebra
-of $\AA$ then the
+If $\AA$ is an algebra of sets,
+the
 [_conditional expectation_](https://en.wikipedia.org/wiki/Conditional_expectation)
 of $X$ given
-$\BB$ is defined by $Y = E\left\lbrack X \middle| \AA\right\rbrack$ if and only
-if $Y$ is $\BB$ measurable and $\int_B Y\,dP = \int_B X\,dP$
-for all $B\in\BB$. This is equivalent to $Y(P|_\BB)
-= (XP)|_\BB$ where the vertical bar indicates restriction of a measure to a subalgebra.
+$\AA$ is defined by $Y = E\left\lbrack X \mid \AA\right\rbrack$ if and only
+if $Y$ is $\AA$ measurable and $\int_A Y\,dP = \int_A X\,dP$
+for all $A\in\AA$. This is equivalent to $Y(P|_\AA)
+= (XP)|_\AA$ where the vertical bar indicates restriction of a measure.
 
-A _filtration_ on $T\subseteq [0,\infty)$ is an increasing
+A _filtration_ indexed by $T\subseteq [0,\infty)$ is an increasing
 collection of algebras, $(\AA_t)_{t\in T}$.  A process
 $M_{t}\colon\AA_{t} \rightarrow \mathbb{R}$, $t\in T$, is
-a _martingale_ if $M_t P|_{\AA_t} = M_u P|_{\AA_t}$ for $t\le u$.  If $P$ is
-understood we write this as $M_t = M_u|_{\AA_t}$. The
-usual notation is $M_t = E\left\lbrack M_{u} \middle| \AA_t
-\right\rbrack = E_t\left\lbrack M_u\right\rbrack.$
+a _martingale_ if $M_t = E[M_u\mid \AA_t] = E_t[M_u]$ for $t\le u$.
 
 ## Instruments
 
@@ -74,29 +71,31 @@ $A_{t} \geq 0$ for $t > \tau_{0}$: it is impossible to make money on
 the first trade and never lose until the strategy is closed out.
 
 The Fundamental Theorem of Asset Pricing states this is the case if
-and only if there exists a function,
+and only if there exists a _deflator_,
 $D_{t}:\AA_{t} \rightarrow \left( 0,\infty \right)$, with
 
 $$\begin{matrix}
-X_{t}D_{t} = {(X}_{v}D_{v} + \sum_{t < u \leq v}^{}{C_{u}D_{u}})|_{\AA_{t}}\label{eq:1} \\
+X_{t}D_{t} = E_t[X_v D_v + \sum_{t < u \leq v} C_u D_u]\label{eq:1} \\
 \end{matrix}$$
 
-Note that if $C_{t} = 0$ for all $t \in T$ this says $X_{t}D_{t}$ is a
-martingale. A consequence of the above and the definition of value and amount is
+Note that if $C_{t} = 0$ for all $t \in T$, this says $X_{t}D_{t}$ is a
+martingale. If the cash flows are eventually 0, this says the current
+price is the expected price of discounted future cash flows.
+A consequence of the above and the definition of value and amount is
 
 $$\begin{matrix}
-V_{t}D_{t} = (V_{v}D_{v} + \sum_{t < u \leq v}A_{u}D_{u})|_{\AA_{t}}\label{eq:2} \\
+V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u]\label{eq:2} \\
 \end{matrix}$$
 
-If $u > t$ is sufficiently small then $X_{t} D_{t} = (X_u + C_u) D_u|_{\AA_t}$
-and $V_{t} D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t
-= \Delta_u\cdot (X_u + C_u)D_u|_{\AA_t}$.
+If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
+and $V_t D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t
+= \Delta_u\cdot E_t[(X_u + C_u) D_u]$.
 Since $\Delta_u\cdot C_u = \Gamma_u\cdot X_u + A_u$ we have
-$V_{t} D_t = (\Delta_u\cdot X_u + \Gamma_u\cdot X_u + A_u) D_u|_{\AA_t}
-= (V_u + A_u)D_u|_{\AA_t}$. The formula above follows by induction.
+$V_t D_t = E_t[(\Delta_u\cdot X_u + \Gamma_u\cdot X_u + A_u) D_u]
+= E_t[(V_u + A_u)D_u]$. The formula above follows by induction.
 
 For a strategy as above,
-$V_{\tau_{0}}D_{\tau_{0}} = \sum_{t > \tau_{0}}{A_{t}D_{t}|_{\AA_{\tau_{0}}} \geq 0}$.
+$V_{\tau_0} D_{\tau_0} = E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$.
 Since $V_{0} = \Gamma_{0} \cdot X_{0}$,
 $A_{0} = - \Gamma_{0} \cdot X_{0}$, and $D_{0} > 0$ we have
 $A_{0} \leq 0$, where the 0 subscript denotes time $\tau_{0}$.
@@ -110,7 +109,9 @@ $D_{t}:\AA_{t} \rightarrow (0,\infty)$
 is arbitrage-free. This is immediate by substituting
 $X_{u}D_{u}$ in the first displayed equation.
 
-## Examples
+## Canonical Deflator
+
+There is a canonical choice for a deflator if repurchase agreements are available.
 
 A _zero coupon bond_ maturing at time $u$, $D(u)$, has a single cash flow
 $C^{D(u)}_u = 1$ so its price at time $t$ satisfies $X^{D(u)}_t D_t =
@@ -126,10 +127,5 @@ $D_t = E_t[R_tD_{t+dt}]$.  Define the _forward repo rate_, $f_t$,
 by $R_t = \exp(f_t\,dt)$ and the _canonical deflator_ to be $D_t =
 \exp(-\int_0^t f_s\,ds)$.  The repos are arbitrage free for any forward
 repo rate process.
-
-Let $D_t = e^{-\rho t}$ and $M_t = (r, s e^{\sigma B_t - \sigma^2
-t/2})$. This is the Black-Scholes/Merton model. No need for self-financing
-portfolios, Ito's Lemma, or partial differential equations when using
-the Unified Model.
 
 Keith A. Lewis [kal@kalx.net]
