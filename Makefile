@@ -4,9 +4,9 @@ HTML = $(MKDN:.md=.html)
 PDF = $(MKDN:.md=.pdf)
 DOCX = $(MKDN:.md=.docx)
 FLAGS = -s # smart quotes
-FLAGS += --katex
+#FLAGS += --katex
 FLAGS += -t html5
-#FLAGS += --mathjax
+FLAGS += --mathjax
 FLAGS += --css ftap.css
 #FLAGS += --section-divs
 FLAGS += -H header.html

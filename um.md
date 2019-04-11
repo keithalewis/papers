@@ -1,6 +1,5 @@
 # The Unified Model 
 
-
 There is a unified way to value derivative
 securities using market prices.
 
