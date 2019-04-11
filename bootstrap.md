@@ -56,7 +56,7 @@ $pv$ is the first sum, so $f = [\log c_m D(u)/(p - pv)]/(u_m - u)$.
 There is also an explicit solution when extending the curve using
 an instrument having exactly two cash flows and a price of 0, i.e.,
 an at-the-money forward rate agreement.  We have $0 = c_0 D(u_0) +
-c_1 D(u_1). If $u_0 \le u$ then there is exactly one cash flow past
+c_1 D(u_1)$. If $u_0 \le u$ then there is exactly one cash flow past
 the end of the curve and the previous case holds.
 If  $u_0 > u$ then $0 = c_0 D(u)\exp(-f(u_0 - u)) + c_1 D(u)\exp(-f(u_1 - u))$
 so $f = \log(-c_1/c_0)/(u_1 - u_0)$.
