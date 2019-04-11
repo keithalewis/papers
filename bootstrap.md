@@ -6,7 +6,7 @@ copyright: © 2019 Keith A. Lewis
 date: Apr 11 2019
 abstract: |
   Given a collection of fixed income instruments and corresponding prices
-  the bootstrap algorithm constructs a unique curve having piece-wise
+  the bootstrap algorithm constructs a unique curve having piecewise
   constant forward rates that reprices each instrument.
 ...
 
@@ -24,8 +24,7 @@ averaging smooths things out and taking derivatives can amplify small
 variations it is numerically more stable to work with forwards.
 
 A _fixed income instrument_ is specified by a set of cash flows, $(c_j)$,
-at times, $(u_j)$. Since the instrument is a portfolio of zero coupon bonds
-the present value is $pv = \sum_j c_j D(u_j)$.
+at times, $(u_j)$. The _present value_ is $pv = \sum_j c_j D(u_j)$.
 When the instrument _price_ equals its present value we say the
 curve "(re)prices" the instrument.
 
@@ -33,7 +32,7 @@ curve "(re)prices" the instrument.
 
 Given a set of fixed income instruments and their prices, we would like
 to find a discount curve that reprices all the instruments.  This problem
-is highly under-determined: there are an infinite number of curves that
+is highly under-determined: there are an uncountably infinite number of curves that
 will do the job.
 
 ### Bootstrap
@@ -54,7 +53,7 @@ there is an explicit solution. We have $p = pv + c_m D(u)\exp(-f(u_m - u))$ wher
 $pv$ is the first sum, so $f = [\log c_m D(u)/(p - pv)]/(u_m - u)$.
 
 There is also an explicit solution when extending the curve using
-an instrument having exactly two cash flows and a price of 0, i.e.,
+an instrument having exactly two cash flows and a price of 0, e.g.,
 an at-the-money forward rate agreement.  We have $0 = c_0 D(u_0) +
 c_1 D(u_1)$. If $u_0 \le u$ then there is exactly one cash flow past
 the end of the curve and the previous case holds.
@@ -63,7 +62,7 @@ so $f = \log(-c_1/c_0)/(u_1 - u_0)$.
 
 The bootstrap method orders the collection of instruments used to build
 the curve in order of increasing maturity. It then constructs the unique
-piece-wise constant forward using the above method.
+piecewise constant forward using the above method.
 
 ## Remarks
 
