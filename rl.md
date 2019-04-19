@@ -1,3 +1,11 @@
+---
+title: Reinforcement Learning 
+author: Keith A. Lewis
+copyright: © 2019 Keith A. Lewis
+date: Apr 14 2019
+abstract: |
+	Notes based on Sutton and Barto's book.
+...
 # Reinforcement Learning
 
 Maximizing gains for an agent interacting with a model using goal

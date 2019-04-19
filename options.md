@@ -47,7 +47,7 @@ $$
 $$
 for $n > 0$. They satisfy
 $$
-	e^{\sum_{n>0}\kappa_n s^n/n!} = \sum_{n\ge0} B_n(\kappa_1,\ldots,\kappa_n)
+	\exp(\sum_{n>0}\kappa_n s^n/n!) = \sum_{n\ge0} B_n(\kappa_1,\ldots,\kappa_n)
 		s^n/n!
 $$
 Differentiation both sides with respect to $s$
