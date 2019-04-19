@@ -24,7 +24,7 @@ its Radon-Nikodym derivative is $dP^*/dP = F/E[F]$.
 The _cumulant_ of a random variable $X$ is $\kappa^X(s) = \log E[\exp(sX)]$
 and the _cumulants_ are the coefficients in the power series expansion
 $\kappa(s) = \sum_{n>0} \kappa_n s^n/n!$, where we write $\kappa(s)$
-instead of $\kappa^X(s)$ when it is clear what random variable is being used.
+instead of $\kappa^X(s)$ when the random variable obvious.
 
 Note $\kappa(0) = 0$, $\kappa'(0) = \kappa_1 = E[X]$,
 and $\kappa''(0) = \kappa_2 = \Var X$.
@@ -53,7 +53,7 @@ $$
 Differentiation both sides with respect to $s$
 and and equating terms of equal power gives the recursive definition.
 
-Note $B_1(\kappa_1) = \kappa_1$ and $B_2(\kappa_1,\kappa_2) = \kappa_1^2 + \kappa_1$.
+Note $B_1(\kappa_1) = \kappa_1$ and $B_2(\kappa_1,\kappa_2) = \kappa_1^2 + \kappa_2$.
 
 The (probabalists') Hermite polynomials are defined by $H_0(x)
 = 1$, $H_1(x) = x$, and $H_{n+1}(x) = x H_n(x) - n H_{n-1}(x)$ for $n \ge 1$.
