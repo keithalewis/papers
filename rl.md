@@ -56,3 +56,9 @@ The _$\epsilon$-greedy_ strategy selects the action maximizing the current
 action-value function with probability $1-\epsilon$ and a random action
 with probability $\epsilon$. The action-value function is updated based
 on the observed reward.
+
+p(s',r'|s,a) s -- a/r' --> s'
+
+p(a|s) only works because Markov
+
+MDP is MAB conditioned on state
