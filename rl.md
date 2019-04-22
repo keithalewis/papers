@@ -37,10 +37,9 @@ $G_t = (1/k) \sum_{j=1}^k R_{t + j + 1}$ and exponential decay $G_t =
 \sum_{k\ge0} \gamma^k R_{t + k + 1}$, where $0<\gamma<1$ is the _discount
 factor_.
 
-The _state-value function_ for policy $\pi$ is $V_\pi(s) = E[G_t\mid
-S_t = s]$.  (Note that, by the Markov property, it does not depend on $t$.)
-We want to
-find $V^*(s) = \max_\pi V_\pi(s)$.
+The _state-value function_ for policy $\pi$ is $V_\pi(s) = E[G_t\mid S_t
+= s]$.  (Note that, by the Markov property, it does not depend on $t$.)
+We want to find $V^*(s) = \max_\pi V_\pi(s)$.
 
 The _action-value function_ for $\pi$ is
 $Q_\pi(s,a) = E[G_t\mid S_t = s, A_t = a]$.
