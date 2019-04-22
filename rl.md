@@ -81,3 +81,9 @@ Choose an initial state-value function $V(s)$. Generate a run using policy $\pi$
 state in the run $V(s)$ is the average of the returns following $s$.
 
 ## Temporal Distance Learning
+
+p(s',r'|s,a) s -- a/r' --> s'
+
+p(a|s) only works because Markov
+
+MDP is MAB conditioned on state
