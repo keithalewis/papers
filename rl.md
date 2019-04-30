@@ -41,15 +41,24 @@ The _state-value function_ for policy $\pi$ is $V_\pi(s) = E[G_t\mid
 S_t = s]$.  (Note that, by the Markov property, it does not depend on $t$.)
 We want to
 find $V^*(s) = \max_\pi V_\pi(s)$.
-
-The _action-value function_ for $\pi$ is
-$Q_\pi(s,a) = E[G_t\mid S_t = s, A_t = a]$.
-
 Note
 $$
 V_\pi(s) = \sum_a \pi(a|s) \sum_{s',r'} p(s',r'|s,a)[r' + \gamma V_\pi(s')]
 $$
-for exponential decay.
+for exponential decay and
+$$
+V^*(s) = \max_{a\in A_s} \sum_{s',r'} p(s',r'|s,a)[r + \gamma V^*(s')],
+$$
+the _Bellman optimality equation_.
+
+The _action-value function_ for $\pi$ is
+$Q_\pi(s,a) = E[G_t\mid S_t = s, A_t = a]$.
+We want to find $Q^*(s,a) = \max_\pi Q_\pi(s,a)$.
+Note
+$$
+Q^*(s,a) = E[R_{t+1} + \gamma V^*(S_{t+1})|S_t = s, A_t = a].
+$$
+gives the optimal value function.
 
 ### Bandits
 
@@ -64,6 +73,14 @@ The _$\epsilon$-greedy_ strategy selects the action maximizing the current
 action-value function with probability $1-\epsilon$ and a random action
 with probability $\epsilon$. The action-value function is updated based
 on the observed reward.
+
+### Monte Carlo Methods
+
+The _first visit_ Monte Carlo prediction approximates the state-value function for a given policy.
+Choose an initial state-value function $V(s)$. Generate a run using policy $\pi$. For each
+state in the run $V(s)$ is the average of the returns following $s$.
+
+## Temporal Distance Learning
 
 p(s',r'|s,a) s -- a/r' --> s'
 
