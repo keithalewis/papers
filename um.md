@@ -1,3 +1,10 @@
+---
+title: Fixed Income Notation
+author: Keith A. Lewis
+institution: KALX, LLC
+classoption: fleqn
+...
+
 # The Unified Model 
 
 There is a unified way to value derivative
