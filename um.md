@@ -147,5 +147,7 @@ dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
 know the position, $\Delta_t$, at time $t$ this determines the trades,
 $\Gamma_t$.
 
-This is just classical Black-Sholes/Merton delta hedging where delta is
-$\Delta$ and gamma is $\Gamma$.
+In the continuous time case, this is just classical Black-Sholes/Merton
+delta hedging where delta is $\Delta$ and gamma is $\Gamma$. In discrete
+time the "best" hedge needs to be defined and can be found using dynamic
+programming or other optimization techniques.
