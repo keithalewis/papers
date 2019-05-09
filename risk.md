@@ -67,5 +67,5 @@ $$
 
 If $R$ is random this becomes
 $$
-D_t^{T,R}(v) = \bigl\{\int_{t+}^v E_t[R|T=u] dP(T\le u) + P(T > v)\bigl\}1(T \ge t)/P(T\ge t).
+D_t^{T,R}(v) = \bigl\{\int_{t+}^v E_t[R|T=u]\,dP(T\le u) + P(T > v)\bigl\}1(T \ge t)/P(T\ge t).
 $$
