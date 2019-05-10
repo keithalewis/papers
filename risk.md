@@ -7,18 +7,17 @@ abstract: |
 	A simple model for the price of risky bonds.
 ...
 
-[Insert reprise of unified model...]
-
-The _unified model_ specifies _prices_
-$X_{t}:\AA_{t} \rightarrow \mathbb{R}^{I}$, and _cash flows_
+The _unified model_ specifies prices
+$X_{t}:\AA_{t} \rightarrow \mathbb{R}^{I}$, and cash flows
 $C_{t}:\AA_{t} \rightarrow \mathbb{R}^{I}$, where $I$ are the
-available market instruments.
-
-[...]
+available market instruments. It is arbitrage free if and
+only if there exists a deflator $D_t:\AA_t\rightarrow (0,\infty)$
+with $X_tD_t = E_t[X_vD_v + \sum_{t < u \le v} C_uD_u]$.
 
 Let $D(u)$ denote a zero coupon bond maturing at $u$. It has a unit cash
 flow at time $u$. Its value at time $t$, $D_t(u)$, is determined by 
-$D_t(u)D_t = E_t[D_u]$.
+$D_t(u)D_t = E_t[D_u]$ for $t\le u$. Since there are no cash flows
+after time $u$ we have $D_t(u) = 0$ for $t > u$.
 
 Let $D^{T,R}(u)$ denote a zero coupon bond
 maturing at $u$ issued by a company that defaults at time $T$ and pays
@@ -53,7 +52,7 @@ where $\AA$ is finite, we have $E_t[X](\omega) = \int_A X\,dP/P(A) =
 (XP)(A)/P(A)$ where $A$ is the atom of $\AA$ containing $\omega$. The
 conditional expectation is constant on the atom and we define $0/0 = 0$.
 
-Consider the terms $E_t[1(T=u)]$ and $E_t[1(T > v)]$.
+Consider the two terms $E_t[1(T=u)]$ and $E_t[1(T > v)]$ in the above equation.
 
 For  $s < t$,
 $$
