@@ -52,26 +52,19 @@ where $\AA$ is finite, we have $E_t[X](\omega) = \int_A X\,dP/P(A) =
 (XP)(A)/P(A)$ where $A$ is the atom of $\AA$ containing $\omega$. The
 conditional expectation is constant on the atom and we define $0/0 = 0$.
 
-Consider the two terms $E_t[1(T=u)]$ and $E_t[1(T > v)]$ in the above equation.
+Consider $E_t[\phi(T)]$. For $s < t$ we have
+$E_t[\phi(T)](s) = \phi(s)$ since $\{s\}$ is the atom containing $s$.
+For $s \ge t$ we have
+$E_t[\phi(T)](s) = \int_t^\infty \phi\,dP/P(T \ge t)$ since
+$[t,\infty)$ is the atom containing $s$.
 
-For  $s < t$,
-$$
-E_t[1(T = u)](s) = [1(T = u) P](\{s\})/P(\{s\}) = 0
-$$
-when $u \in (t, v]$,
-and if $s\ge t$ the atom containing $s$ is $[t,\infty)$ and
-$$
-E_t[1(T = u)](s) = [1(T = u) P]([t,\infty))/P([t,\infty)) = P(T = u)/P(T \ge t).
-$$
+If $\phi(t) = 1(T = t)$ then for $s < t$
+$E_t[1(T = u)](s) = 0$ and for $s \ge t$
+$E_t[1(T = u)](s) = P(T = u)/P(T \ge t)$.
 
-For  $s < t$,
-$$
-E_t[1(T > v)](s) = [1(T > v) P](\{s\})/P(\{s\}) = 0,
-$$
-and if $s\ge t$,
-$$
-E_t[1(T > v)](s) = [1(T > v)P]([t,\infty))/P([t,\infty)) = P(T > v)/P(T\ge t).
-$$
+If $\phi(t) = 1(T > u)$ then for $s < t$
+$E_t[1(T > v)](s) = 0$ and for $s \ge t$
+$E_t[1(T > v)](s) = P(T > v)/P(T\ge t)$.
 
 This shows
 $$
