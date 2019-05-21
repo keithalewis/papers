@@ -3,7 +3,6 @@ title: Bootstrapping Curves
 subtitle: Discount, Forward, and Spot 
 author: Keith A. Lewis
 copyright: © 2019 Keith A. Lewis
-date: Apr 11 2019
 abstract: |
   Given a collection of fixed income instruments and corresponding prices
   the bootstrap algorithm constructs a unique curve having piecewise

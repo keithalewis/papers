@@ -20,7 +20,7 @@ $(HTML): %.html: %.md
 	pandoc $(FLAGS) $< -o $@
 
 $(PDF): %.pdf: %.md
-	pandoc -H header.tex $< -o $@
+	pandoc -H header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
 
 $(DOCX): %.docx: %.md
 	pandoc -H header.tex $< -o $@

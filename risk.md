@@ -75,3 +75,19 @@ If $R$ is random this becomes
 $$
 D_t^{T,R}(v) = \bigl\{\int_{t+}^v E_t[R|T=u]\,dP(T\le u) + P(T > v)\bigl\}1(T \ge t)/P(T\ge t).
 $$
+
+For the case of stochastic short rate and the standard assumption rates are independent of default
+and recovery, we have
+$$
+D_t^{T,R}(v) = \bigl\{\int_{t+}^v D(t,u) E_t[R|T=u]\,dP(T\le u) + D(t,T) P(T > v)\bigl\}1(T \ge t)/P(T\ge t),
+$$
+where $D(t,u) = E_t D_u/D_t$ is the price at time $t$ of a zero coupon bond maturing at $u$.
+
+Given a _hazard rate_, $\lambda(t)$, such that $P(t < T < T + h|T > t) = \lambda(t)h + o(h)$ we get
+$P(T > t) = \exp(-\int_0^t \lambda(s)\,ds)$ so $dP(T \le t) = \lambda(s) P(T > t)$ is the density
+for the default time.
+
+If we assume piecewise constant forward and hazard rates the integral has a closed form solution.
+Taking the union of the knots for the forward and hazard we will need to compute integrals of
+the form $\int_a^b \exp(-f s) \lambda \exp(-\lambda s)\,ds
+= \lambda \int_a^b \exp(-(f + \lambda) s)\,ds = -(\lambda/(f + \lambda)) \exp(-(f + \lambda) s)|_a^b$.
