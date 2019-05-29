@@ -6,9 +6,15 @@ classoption: fleqn
 ---
 <div id="kalx"><a href="mailto:kal@kalx.net">kal@kalx.net</a></div>
 
-!!!Short explanatory blurb goes here...
+Algebras of sets are the mathematical model of _partial information_.
 
 ## Partition
+
+An _algebra_ on the set $\Omega$ is a collectiono f sets that is closed
+under complement and union, and contains the empty set. By De Morgan's
+laws, the algebra is closed under intersections and contains $\Omega$.
+
+For $\omega\in\Omega$ define $A_\omega = \cap\{B\colon \omega\in B, B\subseteq\Omega\}$.
 
 A _partition_ of a set $\Omega$ is a collection of sets that are
 mutually disjoint and contain every element of $\Omega$.  Mathematically,
