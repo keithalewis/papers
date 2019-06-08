@@ -4,30 +4,37 @@ author: Keith A. Lewis
 copyright: © 2019 Keith A. Lewis
 classoption: fleqn
 abstract: |
-	This note demonstrates a method for computing mixed partial derivatives to machine precision.
+	This short note demonstrates a method for computing mixed partial derivatives to machine precision.
 ...
 
-Functions on numbers can be extended to functions on linear operators using a _functional calculus_.
-If $T\colon V\to V$ is a linear operator on the vector space $V$, then $p(T)\colon V\to V$ can
-be defined in an obvious way for any polynomial $p$.
+Functions on numbers can be extended to functions on linear operators
+using a _functional calculus_.
 
-This can be extended to functions that are defined by a power series if
-$T$ belongs a Banach space.  If $f(x) = \sum_{n\ge0} f^{(n)}(0) x^n/n!$
-and $\|T\|$ is less than the radius of convergence of the series, then
-$f(T)$ is the limit of the power series.
+One way to extended functions is by a power series. If $T$ belongs a
+Banach space and $f$ is sufficiantly differentiable, $f(x) = \sum_{n\ge0}
+f^{(n)}(0) x^n/n!$ and $\|T\|$ is less than the radius of convergence
+of the series, then $f(T)$ is the limit of the power series.
 
 This can be used to calculate derivatives to machine precision when
 functions are implemented using generic numeric types.
 
 ## Prior work
 
-Difference quotients.
+### Difference Quotients
 
-Automatic Differentiation.
+Derivatives are defined mathematically as limits of difference quotients but
+when implementing them on a computer one runs up against the limited precision
+of computer arithmetic. There are techniques to improve the precison \cite{?}
+but they limited.
 
-Dual Numbers.
+### Automatic Differentiation.
 
-## Single Variable Derivatives
+If a function is defined by primitive... It is possible to use the AST to programatically ...
+
+Dual Numbers can be used to compute the first derivative of a function of a single variable.
+This paper shows how to extend them to compute any number of mixed derivatives.
+
+## Univariate Derivatives
 
 Suppose there were a "number" $\epsilon$ such that $\epsilon\not=0$ but
 $\epsilon^2 = 0$. If $f$ is differentiable at $x$ then, using the Taylor
@@ -51,7 +58,7 @@ to a function $f\colon\mathbf{R}^n\to\mathbf{R}^n$.
 Since $f(xI + \epsilon_n) = \sum_{k<n} f^{(k)}(x) \epsilon_n^k/k!$ we can
 calculate the derivatives of $f$ to order n$.
 
-## Multiple Variable Derivatives
+## Multivariat Derivatives
 
 It is also possible to compute mixed derivatives to machine precision.
 Suppose $f\colon\mathbf{R}^n\to\mathbf{R}$. The Taylor series expansion is
@@ -107,3 +114,6 @@ Apache Java math project and cite...
 http://commons.apache.org/proper/commons-math/
 
 http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math4/analysis/differentiation/DerivativeStructure.html
+
+
+Computer implemtation only involve $f(xI + \epsilon)$. The rest is taken care of by Toeplitz matrix mulitplication.
