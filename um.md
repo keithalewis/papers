@@ -96,7 +96,7 @@ price is the expected price of discounted future cash flows.
 A consequence of the above and the definition of value and amount is
 
 $$\begin{matrix}
-V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u]\label{eq:2} \\
+V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u].\label{eq:2} \\
 \end{matrix}$$
 
 If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$

@@ -1,7 +1,7 @@
 ---
 title: Machine Precision Derivatives
 author: Keith A. Lewis
-copyright: © 2019 Keith A. Lewis
+copyright: © 2019
 classoption: fleqn
 abstract: |
 	This short note demonstrates a method for computing mixed partial derivatives to machine precision.
@@ -10,22 +10,22 @@ abstract: |
 Functions on numbers can be extended to functions on linear operators
 using a _functional calculus_.
 
-One way to extended functions is by a power series. If $T$ belongs a
-Banach space and $f$ is sufficiantly differentiable, $f(x) = \sum_{n\ge0}
-f^{(n)}(0) x^n/n!$ and $\|T\|$ is less than the radius of convergence
-of the series, then $f(T)$ is the limit of the power series.
+One way to extended functions is by power series.  If $f$ is sufficiantly
+differentiable, $f(x) = \sum_{n\ge0} f^{(n)}(0) x^n/n!$. If $T$ is a
+linear operator on a Banach space and $\|T\|$ is less than the radius of
+convergence of the series, then $f(T)$ is the limit of the power series.
 
-This can be used to calculate derivatives to machine precision when
-functions are implemented using generic numeric types.
+Similar formulas can be used to calculate derivatives to machine precision for
+multivariate functions.
 
 ## Prior work
 
 ### Difference Quotients
 
-Derivatives are defined mathematically as limits of difference quotients but
-when implementing them on a computer one runs up against the limited precision
-of computer arithmetic. There are techniques to improve the precison \cite{?}
-but they limited.
+Derivatives are defined mathematically as limits of difference quotients
+but when implementing them on a computer one runs up against the limited
+precision of computer arithmetic. There are techniques to improve the
+precison \cite{?} but they limited.
 
 ### Automatic Differentiation.
 
@@ -48,17 +48,17 @@ so $f'(x) = 2x$.
 There is such a "number", the $2\times 2$ matrix $\epsilon =
 \begin{bmatrix}0&1\\0&0\end{bmatrix}$.
 
-Let $\epsilon_n$ be the $n\times n$ matrix having $i,j$
-entry $\delta_{i+1,j}$, where $\delta_{i,j}$ is the Kronecker delta.
-Using the definition of matrix multiplication, $\epsilon^k$ has
-$i,j$ entry $\delta_{i+k,j}$.
-It is true that $(\epsilon_n^k)$ are linearly independent for $0\le k < n$ and
-$\epsilon^k=0$ for $k\ge n$. Using the functional calculus we can extend $f$
-to a function $f\colon\mathbf{R}^n\to\mathbf{R}^n$.
-Since $f(xI + \epsilon_n) = \sum_{k<n} f^{(k)}(x) \epsilon_n^k/k!$ we can
-calculate the derivatives of $f$ to order n$.
+Let $\epsilon_n$ be the $n\times n$ matrix having $i,j$ entry
+$\delta_{i+1,j}$, where $\delta_{i,j}$ is the Kronecker delta function
+$\delta_{i,j} = 1$ if $i = j$ and 0 if not.  Using
+the definition of matrix multiplication, $\epsilon^k$ has $i,j$ entry
+$\delta_{i+k,j}$, so $(\epsilon_n^k)$ are linearly independent for $0\le
+k < n$ and $\epsilon^k=0$ for $k\ge n$. Using the functional calculus
+we can extend $f$ to a function $f\colon\mathbf{R}^n\to\mathbf{R}^n$.
+Since $f(xI + \epsilon_n) = \sum_{k<n} f^{(k)}(x) \epsilon_n^k/k!$
+we can calculate the derivatives of $f$ to order $n$.
 
-## Multivariat Derivatives
+## Multivariate Derivatives
 
 It is also possible to compute mixed derivatives to machine precision.
 Suppose $f\colon\mathbf{R}^n\to\mathbf{R}$. The Taylor series expansion is
@@ -73,19 +73,6 @@ $D^\alpha f(x) = \partial^{|\alpha|}f(x_1,\ldots,x_n)/\partial^{\alpha_1} x_1\cd
 $\alpha! = \alpha_1!\cdots\alpha_n!$,
 and $\epsilon^\alpha = \epsilon_1^{\alpha_1}\cdots\epsilon_n^{\alpha_n}$,
 a triumph of mathematical notation if there ever was one.
-
-To compute derivatives to order $k_i$ of $x_i$, $i = 1,\ldots, n$ define
-$\epsilon_{k_1,\ldots,k_n} = 
-\epsilon_{k_1}\oplus\cdots\oplus\epsilon_{k_n}$.
-This is a linear operator on the vector space $\mathbf{R}^{k_1}\oplus\cdots\oplus\mathbf{R}^{k_n}$.
-
-We can consider this
-to be a function on the direct sum of $n$ copies of $\mathbf{R}$, $\mathbf{R}\oplus \cdots \oplus\mathbf{R}$,
-by $f(x_1\oplus\cdots\oplus x_n) = f(x_1,\ldots,x_n)$.
-
-To compute the partial derivatives of $x_i$ below order $k_i$
-$\epsilon = \epsilon_{n_1}\oplus\cdots\oplus\epsilon_{n_k}$.
-
 
 ## Computer Implementaton
 
