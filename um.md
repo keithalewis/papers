@@ -87,10 +87,10 @@ and only if there exists a _deflator_,
 $D_{t}:\AA_{t} \rightarrow \left( 0,\infty \right)$, with
 
 $$\begin{matrix}
-X_{t}D_{t} = E_t[X_v D_v + \sum_{t < u \leq v} C_u D_u]\label{eq:1} \\
+X_{t}D_{t} = E_t[X_v D_v + \sum_{t < u \leq v} C_u D_u].\label{eq:1} \\
 \end{matrix}$$
 
-Note that if $C_{t} = 0$ for all $t \in T$, this says $X_{t}D_{t}$ is a
+Note that if $C_t = 0$ for all $t \in T$, this says $X_tD_t$ is a
 martingale. If the prices are eventually 0, this says the current
 price is the expected price of discounted future cash flows.
 A consequence of the above and the definition of value and amount is
@@ -106,11 +106,11 @@ Since $\Delta_u\cdot C_u = \Gamma_u\cdot X_u + A_u$ we have
 $V_t D_t = E_t[(\Delta_u\cdot X_u + \Gamma_u\cdot X_u + A_u) D_u]
 = E_t[(V_u + A_u)D_u]$. The formula above follows by induction.
 
-For a strategy as above,
+For a trading strategy that closes out,
 $V_{\tau_0} D_{\tau_0} = E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$.
-Since $V_{0} = \Gamma_{0} \cdot X_{0}$,
-$A_{0} = - \Gamma_{0} \cdot X_{0}$, and $D_{0} > 0$ we have
-$A_{0} \leq 0$, where the 0 subscript denotes time $\tau_{0}$.
+Since $V_0 = \Gamma_0 \cdot X_0$,
+$A_0 = - \Gamma_0 \cdot X_0$, and $D_0 > 0$ we have
+$A_0 \leq 0$, where the 0 subscript denotes time $\tau_0$.
 This proves the "easy" direction of the theorem.
 
 There is no need to prove the "hard" direction since we have a large supply of arbitrage free models:
@@ -137,17 +137,17 @@ repo rate process.
 Given a derivative contract paying amounts $A_j$ at times $\tau_j$,
 how does one value this? One way is to find a trading strategy that
 replicates the payments.  The value is just the cost to set up the
-initial trading strategy, $V_0 = \Gamma_0\cdot X_0$, since the initial
-position $\Delta_0 = 0$. The initial hedge is $\Gamma_0 = dV_0/dX_0$.
-From $V_0 = E_0 \sum_{\tau_j} A_j D_{\tau}j$ we can compute this in
+initial trading strategy, $V_0 = \Gamma_0\cdot X_0$.
+The initial hedge is $\Gamma_0 = dV_0/dX_0$.
+From $V_0 = E_0 \sum_{\tau_j} A_j D_{\tau_j}$ we can compute this in
 terms of the contract amounts and deflators.
 
 The trades at time $t$ are determined by $\Delta_t + \Gamma_t =
 dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
 know the position, $\Delta_t$, at time $t$ this determines the trades,
-$\Gamma_t$.
+$\Gamma_t = dV_t/dX_t - \Delta_t$.
 
-In the continuous time case, this is just classical Black-Sholes/Merton
+In the continuous time case, this becomes classical Black-Scholes/Merton
 delta hedging where delta is $\Delta$ and gamma is $\Gamma$. In discrete
 time the "best" hedge needs to be defined and can be found using dynamic
 programming or other optimization techniques.
