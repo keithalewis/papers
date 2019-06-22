@@ -15,8 +15,8 @@ differentiable, $f(x) = \sum_{n\ge0} f^{(n)}(0) x^n/n!$. If $T$ is a
 linear operator on a Banach space and $\|T\|$ is less than the radius of
 convergence of the series, then $f(T)$ is the limit of the power series.
 
-Similar formulas can be used to calculate derivatives to machine precision for
-multivariate functions.
+Similar formulas can be used to calculate derivatives to machine precision
+for multivariate functions.
 
 ## Prior work
 
@@ -40,8 +40,9 @@ Suppose there were a "number" $\epsilon$ such that $\epsilon\not=0$ but
 $\epsilon^2 = 0$. If $f$ is differentiable at $x$ then, using the Taylor
 series expansion,
 $$
-	f(x + \epsilon) = \sum_{k\ge0} \frac{f^{(k)}(x)}{k!}\epsilon^k  = f(x) + f'(x)\epsilon.
+	f(x + \epsilon) = \sum_{k\ge0} \frac{D^k f}(x)}{k!}\epsilon^k  = f(x) + f'(x)\epsilon,
 $$
+where $D^k f$ is the $k$-th derivative of $f$.
 For example, if $f(x) = x^2$ then $(x + \epsilon)^2 = x^2 + 2x\epsilon$
 so $f'(x) = 2x$.
 
@@ -92,6 +93,10 @@ In languages with generic \cite{?} functions we can...
 $\exp(\epsilon) = \sum_n \epsilon^n/n!$
 
 $\exp(\sum_k a_k\epsilon^k) = \sum_n (\sum_k a_k\epsilon^k)^n/n!$
+
+## Remarks
+
+If $f$ is _analytic_ in a neighborhood of $x$ and ...
 
 
 ## NOTES
