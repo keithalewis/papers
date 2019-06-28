@@ -7,47 +7,43 @@ abstract: |
 	This short note demonstrates a method for computing mixed partial derivatives to machine precision.
 ...
 
-Functions on numbers can be extended to functions on linear operators
-using a _functional calculus_.
-
-One way to extended functions is by power series.  If $f$ is sufficiantly
-differentiable, $f(x) = \sum_{n\ge0} f^{(n)}(0) x^n/n!$. If $T$ is a
-linear operator on a Banach space and $\|T\|$ is less than the radius of
-convergence of the series, then $f(T)$ is the limit of the power series.
-
-Similar formulas can be used to calculate derivatives to machine precision
-for multivariate functions.
-
-## Prior work
-
-### Difference Quotients
-
-Derivatives are defined mathematically as limits of difference quotients
-but when implementing them on a computer one runs up against the limited
-precision of computer arithmetic. There are techniques to improve the
-precison \cite{?} but they limited.
-
-### Automatic Differentiation.
-
-If a function is defined by primitive... It is possible to use the AST to programatically ...
-
-Dual Numbers can be used to compute the first derivative of a function of a single variable.
-This paper shows how to extend them to compute any number of mixed derivatives.
-
-## Univariate Derivatives
-
 Suppose there were a "number" $\epsilon$ such that $\epsilon\not=0$ but
 $\epsilon^2 = 0$. If $f$ is differentiable at $x$ then, using the Taylor
 series expansion,
 $$
-	f(x + \epsilon) = \sum_{k\ge0} \frac{D^k f}(x)}{k!}\epsilon^k  = f(x) + f'(x)\epsilon,
+	f(x + \epsilon) = f(x) + f'(x) \epsilon.
 $$
-where $D^k f$ is the $k$-th derivative of $f$.
 For example, if $f(x) = x^2$ then $(x + \epsilon)^2 = x^2 + 2x\epsilon$
 so $f'(x) = 2x$.
 
 There is such a "number", the $2\times 2$ matrix $\epsilon =
-\begin{bmatrix}0&1\\0&0\end{bmatrix}$.
+\begin{bmatrix}0&1\\0&0\end{bmatrix}$.  No need to compute limits of
+difference quotients\cite{?} or drag in Automatic Differentiation\cite{?} machinery.
+
+It is possible to compute arbitrary derivatives to machine precision, including
+mixed partial derivatives, using this method.
+
+## Functional Calculus
+
+Functions on numbers can be extended to functions on linear operators
+using a _functional calculus_. If $T\colon V\to V$ is a linear operator
+on the vector space $V$ and $p$ is a polynomial, then $p(T)$ can be
+defined in the obvious way. If $q$ is a polynomial and $q(T)$ is
+invertible, then we can define $(p/q)(T) = p(T)q(T)^{-1}$ for
+appropriate rational functons.
+
+If $V$ is a Banach space we can use power series.  If $f$ is sufficiently
+differentiable, $f(x) = \sum_{n\ge0} f^{(n)}(0) x^n/n!$ when $\|T\|$
+is less than the radius of convergence of the series.
+
+Similar formulas can be used to calculate derivatives to machine precision
+for multivariate functions.
+
+## Univariate Derivatives
+
+$$
+	f(x + \epsilon) = \sum_{k\ge0} \frac{D^k f(x)}{k!}\epsilon^k  = f(x) + f'(x)\epsilon,
+$$
 
 Let $\epsilon_n$ be the $n\times n$ matrix having $i,j$ entry
 $\delta_{i+1,j}$, where $\delta_{i,j}$ is the Kronecker delta function
@@ -76,6 +72,8 @@ and $\epsilon^\alpha = \epsilon_1^{\alpha_1}\cdots\epsilon_n^{\alpha_n}$,
 a triumph of mathematical notation if there ever was one.
 
 ## Computer Implementaton
+
+Map $f(xI + \epsilon)$ to $(f^{(n)}(x))$.
 
 Most computer languages have facilites for matrix multiplication
 but the special structure of our operators allow for a simple
@@ -106,6 +104,5 @@ Apache Java math project and cite...
 http://commons.apache.org/proper/commons-math/
 
 http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math4/analysis/differentiation/DerivativeStructure.html
-
 
 Computer implemtation only involve $f(xI + \epsilon)$. The rest is taken care of by Toeplitz matrix mulitplication.
