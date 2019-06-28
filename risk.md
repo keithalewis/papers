@@ -19,6 +19,8 @@ flow at time $u$. Its value at time $t$, $D_t(u)$, is determined by
 $D_t(u)D_t = E_t[D_u]$ for $t\le u$. Since there are no cash flows
 after time $u$ we have $D_t(u) = 0$ for $t > u$.
 
+## Risky Zero Coupon Bonds
+
 Let $D^{T,R}(u)$ denote a zero coupon bond
 maturing at $u$ issued by a company that defaults at time $T$ and pays
 (proportional) recovery $R$ at default.  It has a cash flow of $1$ at $u$
@@ -83,11 +85,38 @@ D_t^{T,R}(v) = \bigl\{\int_{t+}^v D(t,u) E_t[R|T=u]\,dP(T\le u) + D(t,T) P(T > v
 $$
 where $D(t,u) = E_t D_u/D_t$ is the price at time $t$ of a zero coupon bond maturing at $u$.
 
-Given a _hazard rate_, $\lambda(t)$, such that $P(t < T < T + h|T > t) = \lambda(t)h + o(h)$ we get
-$P(T > t) = \exp(-\int_0^t \lambda(s)\,ds)$ so $dP(T \le t) = \lambda(s) P(T > t)$ is the density
+It is convenient to factor the formula above into two components: a _fee leg_ and a _protection leg_.
+
+## Fee Legs
+
+A fee leg consists of a stream of fixed cash flows that stop at default. Assuming zero recovery,
+the present value of the stream $c_j$ and times $t_j$ is
+$$
+	E[\sum_j c_j D_{t_j} 1(T > t_j)] = \sum_j c_j D(t_j) P(T > t_j)
+$$
+assuming (as above) rates and defaults are independent.
+
+## Protection Legs
+
+A protection leg pay unit notional at time of default. The present value of the leg for protection
+over the period $[0,u]$ is
+$$
+	E[\int_0^u D_t P(T = t)\,dt] = \int_0^u D(t) f(t)\,dt
+$$
+where $f$ is the probability density function of the default time.
+
+## Possible Implementation
+
+Given a _hazard rate_, $\lambda(t)$, defined by $P(t < T < T + h|T > t) = \lambda(t)h + o(h)$ we get
+$P(T > t) = \exp(-\int_0^t \lambda(s)\,ds)$ so $dP(T \le t) = \lambda(t) P(T > t)$ is the density
 for the default time.
 
-If we assume piecewise constant forward and hazard rates the integral has a closed form solution.
-Taking the union of the knots for the forward and hazard we will need to compute integrals of
-the form $\int_a^b \exp(-f s) \lambda \exp(-\lambda s)\,ds
-= \lambda \int_a^b \exp(-(f + \lambda) s)\,ds = -(\lambda/(f + \lambda)) \exp(-(f + \lambda) s)|_a^b$.
+If we assume piecewise constant forward and hazard rates the integral
+for the protection leg has a closed form solution.  Taking the union of
+the knots for the forward and hazard we will need to compute integrals
+of the form
+$$
+\int_a^b \exp(-f s) \lambda \exp(-\lambda s)\,ds
+= \lambda \int_a^b \exp(-(f + \lambda) s)\,ds
+= -(\lambda/(f + \lambda)) \exp(-(f + \lambda) s)|_a^b.
+$$
