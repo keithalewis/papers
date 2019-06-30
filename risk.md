@@ -8,16 +8,56 @@ abstract: |
 ...
 
 The _unified model_ specifies prices
-$X_{t}:\AA_{t} \rightarrow \mathbb{R}^{I}$, and cash flows
-$C_{t}:\AA_{t} \rightarrow \mathbb{R}^{I}$, where $I$ are the
+$X_{t}\colon\AA_{t} \to \mathbb{R}^{I}$, and cash flows
+$C_{t}\colon\AA_{t} \to \mathbb{R}^{I}$, where $I$ are the
 available market instruments. It is arbitrage free if and
-only if there exists a deflator $D_t:\AA_t\rightarrow (0,\infty)$
-with $X_tD_t = E_t[X_vD_v + \sum_{t < u \le v} C_uD_u]$.
+only if there exists deflators $D_t\colon\AA_t\to (0,\infty)$
+with
+$$
+	X_t D_t = E_t[X_v D_v + \sum_{t < u \le v} C_u D_u].
+$$
+Since we can replace any deflators $(\hat{D}_t)$
+by $(\hat{D}_t/\hat{D}_0)$ we assume $D_0 = 1$.
+
+If there is a finite number of cash flows then the initial
+prices are
+$$
+	X_0 = E\sum_{t>0} C_t D_t.
+$$
+
+A _trading strategy_, $(\tau_j, \Gamma_j)$, is a set of strictly increasing
+stopping times and trades $\Gamma_j\colon\AA_{\tau_j}\to\mathbb{R}^{I}$.
+The _position_, $\Delta_t = \sum_{\tau_j < t} \Gamma_j
+= \sum{s < t} \Gamma_s$, is the accumulated trades to date.
+
+The _value_ of a trading stategy at $t$ is $V_t = (\Delta_t + \Gamma_t)\cdot X_t$:
+the amount of money you recieve for unwinding your existing position and
+the trade you just dit. The _amount_ of a trading strategy at $t$
+is $A_t = \Delta_t\cdot C_t - \Gamma_t\cdot X_t$: you get all cash flows proprtional
+to your position in each instrument and you pay the prevailing market price
+of every trade you execute.
+
+As simple consequence of the definition of value and amount is
+$$
+	V_t D_t = E_t[V_v D_v + \sum_{t < u \le v} A_u D_u].
+$$
+
+If a trading strategy closes out, i.e., the position is eventually 0,
+then the initial value is
+$$
+	V_0 = E\sum_{t>0} A_t D_t.
+$$
+
+## Zero Coupon Bonds
 
 Let $D(u)$ denote a zero coupon bond maturing at $u$. It has a unit cash
-flow at time $u$. Its value at time $t$, $D_t(u)$, is determined by 
+flow at time $u$. Its price at time $t$, $D_t(u)$, is determined by 
 $D_t(u)D_t = E_t[D_u]$ for $t\le u$. Since there are no cash flows
 after time $u$ we have $D_t(u) = 0$ for $t > u$.
+
+In particular, $D_t(u) = E_t D_u/D_t$ and $D_0(u) = E_t D_t$. We write
+$D(u)$ for $D_0(u)$ in order to usefully confuse it with the name of
+the zero coupon bond.
 
 ## Risky Zero Coupon Bonds
 
