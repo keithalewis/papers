@@ -8,8 +8,8 @@ abstract: |
 ...
 
 The _unified model_ specifies prices
-$X_{t}\colon\AA_{t} \to \mathbb{R}^{I}$, and cash flows
-$C_{t}\colon\AA_{t} \to \mathbb{R}^{I}$, where $I$ are the
+$X_{t}\colon\AA_{t} \to \mathbf{R}^{I}$, and cash flows
+$C_{t}\colon\AA_{t} \to \mathbf{R}^{I}$, where $I$ are the
 available market instruments. It is arbitrage free if and
 only if there exists deflators $D_t\colon\AA_t\to (0,\infty)$
 with
@@ -26,7 +26,7 @@ $$
 $$
 
 A _trading strategy_, $(\tau_j, \Gamma_j)$, is a set of strictly increasing
-stopping times and trades $\Gamma_j\colon\AA_{\tau_j}\to\mathbb{R}^{I}$.
+stopping times and trades $\Gamma_j\colon\AA_{\tau_j}\to\mathbf{R}^{I}$.
 The _position_, $\Delta_t = \sum_{\tau_j < t} \Gamma_j
 = \sum{s < t} \Gamma_s$, is the accumulated trades to date.
 
