@@ -14,7 +14,7 @@ abstract: |
 If $\AA$ is an
 [algebra](https://en.wikipedia.org/wiki/Algebra_of_sets)
 on the set $\Omega$ we write
-$X\colon\AA\to\mathbb{R}$ to indicate $X\colon\Omega\to\mathbb{R}$
+$X\colon\AA\to\mathbf{R}$ to indicate $X\colon\Omega\to\mathbf{R}$
 is $\AA$-[_measurable_](https://en.wikipedia.org/wiki/Measurable_function).
 If $\AA$ is finite then the
 [atoms](https://en.wikipedia.org/wiki/Atom_(measure_theory))
@@ -35,7 +35,7 @@ for all $A\in\AA$. This is equivalent to $Y(P|_\AA)
 
 A _filtration_ indexed by $T\subseteq [0,\infty)$ is an increasing
 collection of algebras, $(\AA_t)_{t\in T}$.  A process
-$M_{t}\colon\AA_{t} \rightarrow \mathbb{R}$, $t\in T$, is
+$M_{t}\colon\AA_{t} \rightarrow \mathbf{R}$, $t\in T$, is
 a _martingale_ if $M_t = E[M_u\mid \AA_t] = E_t[M_u]$ for $t\le u$.
 A _stopping time_ is a function $\tau\colon\Omega\to T$ such that
 $\{\omega\in\Omega\mid \tau(\omega) \le t\}$ belongs to $\AA_t$, $t\in T$.
@@ -50,15 +50,15 @@ are associated with owning an instrument: stocks have dividends, bonds
 have coupons, European options have exactly one cash flow at expiration.
 
 The _unified model_ specifies _prices_
-$X_{t}:\AA_{t} \rightarrow \mathbb{R}^{I}$, and _cash flows_
-$C_{t}:\AA_{t} \rightarrow \mathbb{R}^{I}$, where $I$ are the
+$X_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, and _cash flows_
+$C_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, where $I$ are the
 available market instruments.
 
 ## Trades, Values, Amounts
 
 A _trading strategy_ is a finite collection of strictly increasing
 stopping times, $\tau_{j}$, and trades, $\Gamma_{j}:\AA_{\tau_{j}}
-\rightarrow \mathbb{R}^{I}$ indicating the number of shares to trade
+\rightarrow \mathbf{R}^{I}$ indicating the number of shares to trade
 in each instrument. Trades accumulate to a _position_, $\Delta_{t} =
 \sum_{\tau_{j} < t}\Gamma_{j} = \sum_{s < t}\Gamma_{s}$ where $\Gamma_{s}
 = \Gamma_{j}$ when $s = \tau_{j}$.  Note the trade at time $t$ is not
@@ -112,7 +112,7 @@ the "easy" direction of the theorem.
 There is no need to prove the "hard" direction since we have a large supply of arbitrage free models:
 every model of the form
 $X_{t}D_{t} = M_{t} - \sum_{s \leq t}{C_{s}D_{s}}$ where
-$M_{t}:\AA_{t} \rightarrow \mathbb{R}^{I}$ is a martingale and
+$M_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$ is a martingale and
 $D_{t}:\AA_{t} \rightarrow (0,\infty)$ 
 is arbitrage-free. This is immediate by substituting
 $X_{v}D_{v}$ in the first displayed equation.
