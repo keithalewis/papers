@@ -2,7 +2,6 @@
 title: Option Pricing
 author: Keith A. Lewis
 copyright: © 2019 Keith A. Lewis
-date: Apr 19 2019
 abstract: |
 	There is a simple formula for pricing European puts and calls 
 	in terms of cumulants.
