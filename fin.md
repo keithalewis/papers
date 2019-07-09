@@ -6,18 +6,17 @@ classoption: fleqn
 ---
 <div id="kalx"><a href="mailto:kal@kalx.net">kal@kalx.net</a></div>
 
-A _repurchase agreement_ specifies the _repo rate_.  It is typically an
-overnight/weekend rate.  One of the beautiful facts about fixed income
-instruments is that their value is determined by this. Unlike other
-markets, this is the thread that ties together all
-instrument values.
+Fixed income instrument valuation is determined by the instantaneous
+forward rate. It is the thread that ties together all products: zero
+coupon bonds, cash deposits, forward rate agreements, swaps, caplets,
+floorlets, caps, floors, swaptions. Any interest rate instrument that
+does not involve credit risk. Everything is the LIBOR Market Model under
+appropriate parameterization.
 
-In what follows $E_t[X] = E[X|\mathcal{A}_t]$ denotes
-conditional expectation of the random variable $X$ with respect to
-the algebra, $\mathcal{A}_t$, of information available at time $t$.
-<!-- Note $Y = E[X|\mathcal{A}$] %if and only if $Y(P|_{\mathcal{A}}) = (XP)|_{\mathcal{A}}$.-->
+We are assuming the Unified Model...
 
 ## Repurchase Agreement
+
 
 A _repurchase agreement_ from time $t$ to $t + dt$ has price $X_t = 1$
 and a single cash flow $C_{t+dt} = \exp(f_t\,dt) = 1 + r_t\,\delta t$
