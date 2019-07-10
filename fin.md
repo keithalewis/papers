@@ -9,21 +9,18 @@ classoption: fleqn
 Fixed income instrument valuation is determined by the instantaneous
 forward rate. It is the thread that ties together all products: zero
 coupon bonds, cash deposits, forward rate agreements, swaps, caplets,
-floorlets, caps, floors, swaptions. Any interest rate instrument that
-does not involve credit risk. Everything is the LIBOR Market Model under
-appropriate parameterization.
+floorlets, caps, floors, swaptions... any interest rate instrument that
+does not involve credit risk.
 
 We are assuming the Unified Model...
 
 ## Repurchase Agreement
 
-
-A _repurchase agreement_ from time $t$ to $t + dt$ has price $X_t = 1$
-and a single cash flow $C_{t+dt} = \exp(f_t\,dt) = 1 + r_t\,\delta t$
-where $f_t$ is the continuously compounded forward rate and $r_t$ is
-the _repo rate_ associated with the _day count fraction_ $\delta t$.
-Since $D_t = E_t \exp(f_t\,dt)D_{t + dt}$ we have $D_{t + dt}/D_t =
-\exp(-f_t\,dt)$ if $D_t$ is predictable.  Assuming $D_0 = 1$
+A _repurchase agreement_, $R_j$, from time $t_j$ to $t_{j+1}$ has price $X_{t_j} = 1$
+and a single cash flow $C_{t_{j+1}} = R_j$. \exp(f_t\,\delta t)$
+where $f_t$ is the instantaneous forward rate.
+Since $D_t = E_t \exp(f_t\,\delta t)D_{t + \delta t}$ we have $D_{t + \delta t}/D_t =
+\exp(-f_t\,\delta t)$.  Assuming $D_0 = 1$
 
 $$
 D_t = \exp(-\int_0^t f_s\,ds).
