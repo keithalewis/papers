@@ -12,13 +12,13 @@ coupon bonds, cash deposits, forward rate agreements, swaps, caplets,
 floorlets, caps, floors, swaptions... any interest rate instrument that
 does not involve credit risk.
 
-We are assuming the Unified Model...
+We are assuming the Unified Model.
 
 ## Repurchase Agreement
 
 A _repurchase agreement_, $R_j$, from time $t_j$ to $t_{j+1}$ has price $X_{t_j} = 1$
-and a single cash flow $C_{t_{j+1}} = R_j$. \exp(f_t\,\delta t)$
-where $f_t$ is the instantaneous forward rate.
+and a single cash flow $C_{t_{j+1}} = R_j = \exp(f_t\,\delta t_j)$
+where $f_t$ is the instantaneous forward rate and $\delta t_j = t_{j+1} - t_j$.
 Since $D_t = E_t \exp(f_t\,\delta t)D_{t + \delta t}$ we have $D_{t + \delta t}/D_t =
 \exp(-f_t\,\delta t)$.  Assuming $D_0 = 1$
 
