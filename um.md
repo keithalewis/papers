@@ -40,21 +40,29 @@ a _martingale_ if $M_t = E[M_u\mid \AA_t] = E_t[M_u]$ for $t\le u$.
 A _stopping time_ is a function $\tau\colon\Omega\to T$ such that
 $\{\omega\in\Omega\mid \tau(\omega) \le t\}$ belongs to $\AA_t$, $t\in T$.
 
-## Instruments, Prices, Cash Flows
+## Market Model
 
-Every _instrument_ has a _price_, $X_t$, and a _cash flow_, $C_t$, at
-any trading time, $t\in T$, although cash flows are almost always 0.
-Instruments are assumed to be perfectly liquid:
+Every _instrument_ has a _price_, $X_t$, and a _cash flow_, $C_t$, at any
+trading time, $t\in T$.  Instruments are assumed to be perfectly liquid:
 they can be bought or sold at the given price in any amount. Cash flows
-are associated with owning an instrument: stocks have dividends, bonds
-have coupons, European options have exactly one cash flow at expiration.
+are associated with owning an instrument and are almost always 0: stocks
+have dividends, bonds have coupons, European options have exactly one
+cash flow at expiration.
 
 The _unified model_ specifies _prices_
 $X_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, and _cash flows_
 $C_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, where $I$ are the
 available market instruments.
 
-## Trades, Values, Amounts
+## Derivative Securities
+
+A _derivative security_ is a contract between two parties: I will give
+you this on these dates if you will give me that on those dates.
+They must have existed since before recorded history.
+
+The Nobel prize winning breakthrough of Black, Scholes, and Merton was
+to show how to synthesize derivatives by dynamically trading market
+instruments.
 
 A _trading strategy_ is a finite collection of strictly increasing
 stopping times, $\tau_{j}$, and trades, $\Gamma_{j}:\AA_{\tau_{j}}
@@ -97,6 +105,9 @@ $$\begin{matrix}
 V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u].\label{eq:2} \\
 \end{matrix}$$
 
+Note the similarity to the previous displayed equation. The value
+corresponds to price and the amount corresponds to cash flow.
+
 If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
 and $V_t D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t = \Delta_u\cdot
 E_t[(X_u + C_u) D_u]$.  Since $\Delta_u\cdot C_u = \Gamma_u\cdot X_u +
@@ -107,7 +118,7 @@ For a trading strategy that closes out, $V_{\tau_0} D_{\tau_0} =
 E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$.  Since $V_0 =
 \Gamma_0 \cdot X_0$, $A_0 = - \Gamma_0 \cdot X_0$, and $D_0 > 0$ we have
 $A_0 \leq 0$, where the 0 subscript denotes time $\tau_0$.  This proves
-the "easy" direction of the theorem.
+the "easy" direction of the FTAP.
 
 There is no need to prove the "hard" direction since we have a large supply of arbitrage free models:
 every model of the form
@@ -115,7 +126,7 @@ $X_{t}D_{t} = M_{t} - \sum_{s \leq t}{C_{s}D_{s}}$ where
 $M_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$ is a martingale and
 $D_{t}:\AA_{t} \rightarrow (0,\infty)$ 
 is arbitrage-free. This is immediate by substituting
-$X_{v}D_{v}$ in the first displayed equation.
+$X_{v}D_{v} = M_v - \sum_{s\le v} C_s D_s$ in the first displayed equation.
 
 ## Canonical Deflator
 
@@ -128,6 +139,12 @@ by $R_t = \exp(f_t\,dt)$ and the _canonical deflator_ to be $D_t =
 \exp(-\int_0^t f_s\,ds)$.  The repos are arbitrage free for any forward
 repo rate process.
 
+The fundamental theorem of asset pricing places constraints on prices
+and cash flow. A _zero coupon bond_ pays one unit at maturity $u$.
+An arbitrage free model requires the price at time $t$, $D_t(u)$, to
+satisfy $D_t(u)D_t = E_t D_u$.
+
+
 ## Hedging
 
 Given a derivative contract paying amounts $A_j$ at times $\tau_j$,
@@ -138,7 +155,7 @@ The initial hedge is $\Gamma_0 = dV_0/dX_0$.
 From $V_0 = E_0 \sum_{\tau_j} A_j D_{\tau_j}$ we can compute this in
 terms of the contract amounts and deflators.
 
-The trades at time $t$ are determined by $\Delta_t + \Gamma_t =
+The trades at time $t$ are similarly determined by $\Delta_t + \Gamma_t =
 dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
 know the position, $\Delta_t$, at time $t$ this determines the trades,
 $\Gamma_t = dV_t/dX_t - \Delta_t$.
