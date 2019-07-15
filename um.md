@@ -47,7 +47,7 @@ trading time, $t\in T$.  Instruments are assumed to be perfectly liquid:
 they can be bought or sold at the given price in any amount. Cash flows
 are associated with owning an instrument and are almost always 0: stocks
 have dividends, bonds have coupons, European options have exactly one
-cash flow at expiration.
+cash flow at expiration, futures always have price 0.
 
 The _unified model_ specifies _prices_
 $X_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, and _cash flows_
@@ -58,8 +58,7 @@ available market instruments.
 
 A _derivative security_ is a contract between two parties: I will give
 you this on these dates if you will give me that on those dates.
-They must have existed since before recorded history.
-
+Derivatives must have existed since before recorded history.
 The Nobel prize winning breakthrough of Black, Scholes, and Merton was
 to show how to synthesize derivatives by dynamically trading market
 instruments.
