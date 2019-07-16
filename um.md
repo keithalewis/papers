@@ -5,8 +5,9 @@ institution: KALX, LLC
 email: kal@kalx.net
 classoption: fleqn
 abstract: |
-	There is a unified way to value derivative
-	securities using models of market prices.
+	Every arbitrage-free model of prices and cash flows
+	is parameterized by a positive, adapted process and
+	a vector-valued martingale.
 ...
 
 ## Notation
