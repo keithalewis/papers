@@ -139,7 +139,8 @@ by $R_t = \exp(f_t\,dt)$ and the _canonical deflator_ to be $D_t =
 repo rate process.
 
 The fundamental theorem of asset pricing places constraints on prices
-and cash flow. A _zero coupon bond_ pays one unit at maturity $u$.
+and cash flows. A _zero coupon bond_ pays one unit at maturity $u$ so
+it has a cash flow of 1 unit at time $u$.
 An arbitrage free model requires the price at time $t$, $D_t(u)$, to
 satisfy $D_t(u)D_t = E_t D_u$.
 
