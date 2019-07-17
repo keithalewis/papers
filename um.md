@@ -7,8 +7,15 @@ classoption: fleqn
 abstract: |
 	Every arbitrage-free model of prices and cash flows
 	is parameterized by a positive, adapted process and
-	a vector-valued martingale.
+	a vector-valued martingale whose components are
+	indexed by market instruments.
 ...
+
+A _derivative security_ is a contract between two parties: I will
+give you this on these dates if you will give me that on those dates.
+Derivatives must have existed since before recorded history.  The Nobel
+prize winning breakthrough of Black, Scholes, and Merton was to show
+how to synthesize derivatives by dynamically trading market instruments.
 
 ## Notation
 
@@ -55,14 +62,7 @@ $X_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, and _cash flows_
 $C_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, where $I$ are the
 available market instruments.
 
-## Derivative Securities
-
-A _derivative security_ is a contract between two parties: I will give
-you this on these dates if you will give me that on those dates.
-Derivatives must have existed since before recorded history.
-The Nobel prize winning breakthrough of Black, Scholes, and Merton was
-to show how to synthesize derivatives by dynamically trading market
-instruments.
+## Trading
 
 A _trading strategy_ is a finite collection of strictly increasing
 stopping times, $\tau_{j}$, and trades, $\Gamma_{j}:\AA_{\tau_{j}}
@@ -83,13 +83,12 @@ just executed.
 
 ## Arbitrage
 
-A model is _arbitrage-free_ if there is no trading strategy with
-$\sum_{j}^{}{\Gamma_{j} = 0}$, $A_{\tau_{0}} > 0$ and $A_{t} \geq 0$
-for $t > \tau_{0}$: it is impossible to make money on the first trade
-and never lose until the strategy is closed out.
+Arbitrage is a trading strategy with $A_{\tau_{0}} > 0$, $A_{t} \geq 0$
+for $t > \tau_{0}$ and $\sum_{j}^{}{\Gamma_{j} = 0}$: you make money
+on the first trade and never lose until the strategy is closed out.
 
-The Fundamental Theorem of Asset Pricing states this is the case if and
-only if there exists a _deflator_, $D_{t}:\AA_{t} \rightarrow \left(
+The Fundamental Theorem of Asset Pricing is that there is no arbitrage
+if and only if there exists a _deflator_, $D_{t}:\AA_{t} \rightarrow \left(
 0,\infty \right)$, with
 
 $$\begin{matrix}
@@ -97,9 +96,9 @@ X_{t}D_{t} = E_t[X_v D_v + \sum_{t < u \leq v} C_u D_u].\label{eq:1} \\
 \end{matrix}$$
 
 Note that if $C_t = 0$ for all $t \in T$, this says $X_tD_t$ is a
-martingale. If the prices are eventually 0, this says the current
-price is the expected price of discounted future cash flows.
-A consequence of the above and the definition of value and amount is
+martingale. If the prices are eventually 0, this says the current price
+is the expected price of discounted future cash flows.  A consequence
+of the above and the definition of value and amount is
 
 $$\begin{matrix}
 V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u].\label{eq:2} \\

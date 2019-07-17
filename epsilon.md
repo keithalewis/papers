@@ -88,7 +88,8 @@ $\alpha! = \alpha_1!\cdots\alpha_n!$,
 and $\epsilon^\alpha = \epsilon_1^{\alpha_1}\cdots\epsilon_n^{\alpha_n}$,
 a triumph of mathematical notation if there ever was one.
 
-Let $\epsilon_1$, \dots, $\epsilon_n$ be
+In order to compute mixed derivatives of orders $m_j$ of $x_j$, $1\le j \le n,
+let $\epsilon = \oplus_{j=1}^n\epsilon_j$ be the direct sum of $\epsilon_j$ each having order $m_j$.
 
 ## Computer Implementaton
 
