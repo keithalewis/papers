@@ -17,6 +17,17 @@ Derivatives must have existed since before recorded history.  The Nobel
 prize winning breakthrough of Black, Scholes, and Merton was to show
 how to synthesize derivatives by dynamically trading market instruments.
 
+Their assumptions of perfect liquidity and continuous time trading were
+unrealistic. Prices not only have bid/ask spreads, they also depend on
+the amount being traded and the counterparties invovled. Continuous
+trading would lead to infinite losses.
+
+This short note provides a unified model for valuing, hedging, and
+understanding the risk of any derivative security. It shows how they can
+be synthesized by trading market instruments and illustrates problems
+not addressed by the classical theory.
+
+
 ## Notation
 
 If $\AA$ is an

@@ -3,14 +3,13 @@ title: Fixed Income Notation
 author: Keith A. Lewis
 institution: KALX, LLC
 classoption: fleqn
+abstract: |
+	Fixed income instrument valuation is determined by the instantaneous
+	forward rate. It is the thread that ties together all products: zero
+	coupon bonds, cash deposits, forward rate agreements, swaps, caplets,
+	floorlets, caps, floors, swaptions... any interest rate instrument that
+	does not involve credit risk.
 ---
-<div id="kalx"><a href="mailto:kal@kalx.net">kal@kalx.net</a></div>
-
-Fixed income instrument valuation is determined by the instantaneous
-forward rate. It is the thread that ties together all products: zero
-coupon bonds, cash deposits, forward rate agreements, swaps, caplets,
-floorlets, caps, floors, swaptions... any interest rate instrument that
-does not involve credit risk.
 
 We are assuming the Unified Model.
 
@@ -154,3 +153,4 @@ A _floor_ is a sequence of floorlets.
 ## Swaption
 
 A _swaption_ is an option on a swap.
+<div id="kalx"><a href="mailto:kal@kalx.net">kal@kalx.net</a></div>
