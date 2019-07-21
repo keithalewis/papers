@@ -1,5 +1,5 @@
 ---
-title: The Unified Model
+title: A Unified Model of Derivative Securities
 author: Keith A. Lewis
 institution: KALX, LLC
 email: kal@kalx.net
@@ -32,8 +32,7 @@ of $\Omega$ and being measurable is
 equivalent to being constant on atoms. In this case $X$ is indeed a function
 on the atoms.
 
-If $\AA$ is an algebra of sets,
-the
+If $\AA$ is an algebra of sets, the
 [_conditional expectation_](https://en.wikipedia.org/wiki/Conditional_expectation)
 of $X$ given
 $\AA$ is defined by $Y = E\left\lbrack X \mid \AA\right\rbrack$ if and only
@@ -45,6 +44,7 @@ A _filtration_ indexed by $T\subseteq [0,\infty)$ is an increasing
 collection of algebras, $(\AA_t)_{t\in T}$.  A process
 $M_{t}\colon\AA_{t} \rightarrow \mathbf{R}$, $t\in T$, is
 a _martingale_ if $M_t = E[M_u\mid \AA_t] = E_t[M_u]$ for $t\le u$.
+
 A _stopping time_ is a function $\tau\colon\Omega\to T$ such that
 $\{\omega\in\Omega\mid \tau(\omega) \le t\}$ belongs to $\AA_t$, $t\in T$.
 
@@ -57,7 +57,7 @@ are associated with owning an instrument and are almost always 0: stocks
 have dividends, bonds have coupons, European options have exactly one
 cash flow at expiration, futures always have price 0.
 
-The _unified model_ specifies _prices_
+A _market model_ specifies _prices_
 $X_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, and _cash flows_
 $C_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, where $I$ are the
 available market instruments.
@@ -114,10 +114,10 @@ A_u$ we have $V_t D_t = E_t[(\Delta_u\cdot X_u + \Gamma_u\cdot X_u +
 A_u) D_u] = E_t[(V_u + A_u)D_u]$. The formula above follows by induction.
 
 For a trading strategy that closes out, $V_{\tau_0} D_{\tau_0} =
-E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$.  Since $V_0 =
-\Gamma_0 \cdot X_0$, $A_0 = - \Gamma_0 \cdot X_0$, and $D_0 > 0$ we have
-$A_0 \leq 0$, where the 0 subscript denotes time $\tau_0$.  This proves
-the "easy" direction of the FTAP.
+E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$.  Since $V_{\tau_0} =
+\Gamma_{\tau_0} \cdot X_{\tau_0}$, $A_{\tau_0} = - \Gamma_{\tau_0} \cdot X_{\tau_0}$, and $D_{\tau_0} > 0$ we have
+$A_{\tau_0} \leq 0$.
+This proves the "easy" direction of the FTAP.
 
 There is no need to prove the "hard" direction since we have a large supply of arbitrage free models:
 every model of the form
@@ -126,6 +126,16 @@ $M_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$ is a martingale and
 $D_{t}:\AA_{t} \rightarrow (0,\infty)$ 
 is arbitrage-free. This is immediate by substituting
 $X_{v}D_{v} = M_v - \sum_{s\le v} C_s D_s$ in the first displayed equation.
+
+For example, the Black-Scholes/Merton model is specified by
+$M_t = (r, s\exp(\sigma B_t - \sigma^2t/2)$ and $D_t = \exp(-\rho t)$.
+No need for Ito's lemma or PDE's.
+
+The fundamental theorem of asset pricing places constraints on prices
+and cash flows. A _zero coupon bond_ pays one unit at maturity $u$ so
+it has a cash flow of 1 unit at time $u$.
+An arbitrage free model requires the price at time $t$, $D_t(u)$, to
+satisfy $D_t(u)D_t = E_t D_u$.
 
 ## Canonical Deflator
 
@@ -137,12 +147,6 @@ $D_t = E_t[R_tD_{t+dt}]$.  Define the _forward repo rate_, $f_t$,
 by $R_t = \exp(f_t\,dt)$ and the _canonical deflator_ to be $D_t =
 \exp(-\int_0^t f_s\,ds)$.  The repos are arbitrage free for any forward
 repo rate process.
-
-The fundamental theorem of asset pricing places constraints on prices
-and cash flows. A _zero coupon bond_ pays one unit at maturity $u$ so
-it has a cash flow of 1 unit at time $u$.
-An arbitrage free model requires the price at time $t$, $D_t(u)$, to
-satisfy $D_t(u)D_t = E_t D_u$.
 
 
 ## Hedging
@@ -160,7 +164,10 @@ dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
 know the position, $\Delta_t$, at time $t$ this determines the trades,
 $\Gamma_t = dV_t/dX_t - \Delta_t$.
 
-In the continuous time case, this becomes classical Black-Scholes/Merton
-delta hedging where delta is $\Delta$ and gamma is $\Gamma$. In discrete
-time the "best" hedge needs to be defined and can be found using dynamic
-programming or other optimization techniques.
+This will not replicate the derivative security. There is still
+significant research to be done on how to minimize the risk involved
+with this.
+
+In the continuous time case where stocks are modelled by geometric
+Brownian motion, this becomes classical Black-Scholes/Merton
+delta hedging where delta is $\Delta$ and gamma is $\Gamma$. 
