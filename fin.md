@@ -12,36 +12,31 @@ coupon bonds, cash deposits, forward rate agreements, swaps, caplets,
 floorlets, caps, floors, swaptions... any interest rate instrument that
 does not involve credit risk.
 
-We are assuming the Unified Model.
+We are assuming the Unified Model with discrete trading times $T = \{t_j\}$.
 
 ## Repurchase Agreement
 
 A _repurchase agreement_, $R_j$, from time $t_j$ to $t_{j+1}$ has price $X_{t_j} = 1$
-and a single cash flow $C_{t_{j+1}} = R_j = \exp(f_t\,\delta t_j)$
-where $f_t$ is the instantaneous forward rate and $\delta t_j = t_{j+1} - t_j$.
-Since $D_t = E_t \exp(f_t\,\delta t)D_{t + \delta t}$ we have $D_{t + \delta t}/D_t =
-\exp(-f_t\,\delta t)$.  Assuming $D_0 = 1$
-
+and a single cash flow $C_{t_{j+1}} = R_j$. Define the _forward rate_
+$f_j$ by $R_j = \exp(f_j\,\Delta t_j)$ where $\Delta t_j = t_{j+1} - t_j$.
+Since $D_{t_j} = E_{t_j} \exp(f_t\,\Delta t_j)D_{t_j + \Delta t_j}$ we have
+$D_{t_j + \Delta t_j}/D_{t_j} = \exp(-f_j\,\Delta t_j)$.  Assuming $D_0 = 1$
+$$
+D_{t_n} = \exp(-\sum_{j=0}^{n-1} f_j\,\Delta t_j),
+$$
+The continuous time analog is
 $$
 D_t = \exp(-\int_0^t f_s\,ds).
 $$
 
-This is the _canonical stochastic discount_. In discrete time
-$0 = t_0 < t_1 < \cdots < t_n = t$ and
-
-$$
-D_t = \exp(-\sum_{j=0}^{n-1} f_j\,\Delta t_j),
-$$
-where $\Delta t_j = t_{j+1} - t_j$.
-
 ## Zero Coupon Bond
 
-A _zero coupon bond_ maturing at time $u$, denoted $D(u)$, has a
-single cash flow $C_u = 1$.  Its value at time $t$, $D_t(u)$, satisfies
-$D_t(u)D_t = E_t D_u$ so
+A _zero coupon bond_ maturing at time $u$, denoted $Z(u)$, has a
+single cash flow $C_u = 1$.  Its value at time $t$, $Z_t(u)$, satisfies
+$Z_t(u)D_t = E_t D_u$ so
 
 $$
-D_t(u) = E_t D_u/D_t = E_t \exp(-\int_t^u f_s\,ds).
+Z_t(u) = E_t D_u/D_t = E_t \exp(-\int_t^u f_s\,ds).
 $$
 
 Its value at time $0$ is $D_0(u) = E D_u$.
@@ -54,15 +49,13 @@ $$
 
 Write $f(u) = f_0(u)$ for the forward at time 0, or simply the _forward_.
 
-<!--
 Note that $\lim_{t\nearrow u}f_t(u) = f_u$. ???
--->
 
 ## Cash Deposit
 
 A _cash deposit_ maturing at time $u$ having coupon $c$ and day count
 fraction $\delta$ has a single cash flow $C_u = 1 + \delta c$. Its price
-at time $t$ is $(1 + \delta c)D_t(u)$. If its price at time 0 is 1 then
+at time $t$ is $(1 + \delta c)Z_t(u)$. If its price at time 0 is 1 then
 $c = (1/D(u) - 1)/\delta$.
 
 ## Forward Rate Agreement
@@ -75,7 +68,7 @@ called the _forward rate_ at time $t$.  It satisfies $0 = E_t[-D_u +
 (1 + \delta(u,v)F_t^\delta(u,v))D_v]$ so
 
 $$
-F_t^\delta(u,v) = (D_t(u)/D_t(v) - 1)/\delta(u,v).
+F_t^\delta(u,v) = (Z_t(u)/Z_t(v) - 1)/\delta(u,v).
 $$
 
 A useful formula is
