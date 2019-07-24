@@ -5,28 +5,32 @@ institution: KALX, LLC
 email: kal@kalx.net
 classoption: fleqn
 abstract: |
+	Market instruments can be bought or sold at some price and entail cash flows
+	after they are purchased. 
 	Every arbitrage-free model of prices and cash flows
 	is parameterized by a positive, adapted process and
 	a vector-valued martingale whose components are
 	indexed by market instruments.
+	This can be used to value, hedge, and manage the
+	risk of derivative securities.
 ...
 
 A _derivative security_ is a contract between two parties: I will
 give you this on these dates if you will give me that on those dates.
 Derivatives must have existed since before recorded history.  The Nobel
 prize winning breakthrough of Black, Scholes, and Merton was to show
-how to synthesize derivatives by dynamically trading market instruments.
+how to synthesize derivatives by dynamically trading market instruments
+based only on the, so called, risk-free rate.
 
 Their assumptions of perfect liquidity and continuous time trading were
 unrealistic. Prices not only have bid/ask spreads, they also depend on
 the amount being traded and the counterparties invovled. Continuous
-trading would lead to infinite losses.
+time trading would lead to infinite losses.
 
 This short note provides a unified model for valuing, hedging, and
 understanding the risk of any derivative security. It shows how they can
-be synthesized by trading market instruments and illustrates problems
-not addressed by the classical theory.
-
+be synthesized by trading market instruments and turns the spotlight on
+the elephant in the room: when do you hedge if you can't do it continuously?
 
 ## Notation
 
