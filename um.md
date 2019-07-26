@@ -5,10 +5,8 @@ institution: KALX, LLC
 email: kal@kalx.net
 classoption: fleqn
 abstract: |
-	Market instruments can be bought or sold at a price and entail cash flows
-	after they are purchased. 
+	Market instruments can be bought or sold at a price and entail cash flows.
 	Every arbitrage-free model of prices and cash flows
-	in a single currency
 	is parameterized by a positive, adapted process and
 	a vector-valued martingale whose components are
 	indexed by market instruments.
@@ -21,12 +19,8 @@ give you this on these dates if you will give me that on those dates.
 Derivatives must have existed since before recorded history.  The Nobel
 prize winning breakthrough of Black, Scholes, and Merton was to show
 how to synthesize derivatives by dynamically trading market instruments
-based on the risk-free rate instead of trying to estimate the the
+based on the borrowing rate instead of trying to estimate the the
 actual growth rate of the underlying securities used for the hedge.
-
-Their assumptions of perfect liquidity and continuous time trading were
-unrealistic. Prices not only have bid/ask spreads, they also depend on
-the amount being traded and the counterparties invovled. 
 
 This short note provides a unified model for valuing, hedging, and
 understanding the risk of any derivative security. It shows how they can
@@ -123,6 +117,7 @@ V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u].\label{eq:2} \\
 
 Note the similarity to the previous displayed equation. The value
 corresponds to price and the amount corresponds to cash flow.
+This equation shows how dynamic trading creates synthetic market instruments.
 
 If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
 and $V_t D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t = \Delta_u\cdot
@@ -137,22 +132,17 @@ $A_{\tau_0} \leq 0$.
 This proves the "easy" direction of the FTAP.
 
 There is no need to prove the "hard" direction since we have a large supply of arbitrage free models:
-every model of the form
+every arbitrage-free model has the form
 $X_{t}D_{t} = M_{t} - \sum_{s \leq t}{C_{s}D_{s}}$ where
 $M_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$ is a martingale and
-$D_{t}:\AA_{t} \rightarrow (0,\infty)$ 
-is arbitrage-free. This is immediate by substituting
+$D_{t}:\AA_{t} \rightarrow (0,\infty)$.
+This is immediate by substituting
 $X_{v}D_{v} = M_v - \sum_{s\le v} C_s D_s$ in the first displayed equation.
 
 For example, the Black-Scholes/Merton model is specified by
 $M_t = (r, s\exp(\sigma B_t - \sigma^2t/2)$ and $D_t = \exp(-\rho t)$.
-No need for Ito's lemma or PDE's.
+No need for Ito's lemma, self-financing conditions, or PDE's.
 
-The fundamental theorem of asset pricing places constraints on prices
-and cash flows. A _zero coupon bond_ pays one unit at maturity $u$ so
-it has a cash flow of 1 unit at time $u$.
-An arbitrage free model requires the price at time $t$, $D_t(u)$, to
-satisfy $D_t(u)D_t = E_t D_u$.
 
 ## Canonical Deflator
 
@@ -161,10 +151,18 @@ There is a canonical choice for a deflator if repurchase agreements are availabl
 A _repurchase agreement_ at time $t$, $R_t$, has price $X^{R_t}_t = 1$
 and cash flow $C^{R_t}_{t + dt} = R_t$ so for any arbitrage free model
 $D_t = E_t[R_tD_{t+dt}]$.  Define the _forward repo rate_, $f_t$,
-by $R_t = \exp(f_t\,dt)$ and the _canonical deflator_ to be $D_t =
+by $R_t = \exp(f_t\,dt)$. The _canonical deflator_ is $D_t =
 \exp(-\int_0^t f_s\,ds)$.  The repos are arbitrage free for any forward
-repo rate process.
+repo rate process for this deflator.
 
+## Valuing
+
+The fundamental theorem of asset pricing places constraints on prices
+given cash flows. This is what makes valuing derivative securities possible.
+A _zero coupon bond_ pays one unit at maturity $u$ so
+it has a cash flow of 1 unit at time $u$.
+An arbitrage free model requires the price at time $t$, $D_t(u)$, to
+satisfy $D_t(u)D_t = E_t D_u$.
 
 ## Hedging
 
@@ -181,10 +179,26 @@ dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
 know the position, $\Delta_t$, at time $t$ this determines the trades,
 $\Gamma_t = dV_t/dX_t - \Delta_t$.
 
-This will not replicate the derivative security. There is still
-significant research to be done on how to minimize the risk involved
+This will not necessarily replicate the derivative security. There is still
+research to be done on how to minimize the risk involved
 with this.
 
 In the continuous time case where stocks are modelled by geometric
 Brownian motion, this becomes classical Black-Scholes/Merton
 delta hedging where delta is $\Delta$ and gamma is $\Gamma$. 
+
+## Remarks
+
+The price of an instrument is not a number. Not only does it
+depend on whether you are buying or selling, the amount being
+purchased, and the counterparties involved, determine the price.
+
+The atoms of finance are _exchanges_: $(t;a,i,c;a',i',c')$,
+where $t$ is the time of the exchange, $a$ is the amount
+of instrument $i$ the _buyer_, $c$, decides to obtain for the amount
+$a'$ in instrument $i'$ the _seller_, $c'$, charges.
+
+_Price_ is a function $X\colon T\times A\times I\times C\times I\times C\to \mathbf{R}$,
+where $T$ is the set of trading times, $A$ the set of amounts that can be traded,
+$I$ is the set of market instruments, and $C$ is the set of legal trading entities.
+

@@ -6,7 +6,7 @@ Esscher Transform
 
 EXY = E^YX EY
 
-Forward measure. EAD = E^DA ED.
+Forward measure. EAD = E^DA ED. E^D = E if D const.
 
 European forward value EA.
 
