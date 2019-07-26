@@ -25,7 +25,7 @@ actual growth rate of the underlying securities used for the hedge.
 This short note provides a unified model for valuing, hedging, and
 understanding the risk of any derivative security. It shows how they can
 be synthesized by trading market instruments and turns the spotlight on
-what may be the next Nobel prize winning question: when do you hedge if
+what may be the next Nobel prize winning question: how should you hedge if
 you can't do it continuously?
 
 ## Notation
@@ -202,3 +202,6 @@ _Price_ is a function $X\colon T\times A\times I\times C\times I\times C\to \mat
 where $T$ is the set of trading times, $A$ the set of amounts that can be traded,
 $I$ is the set of market instruments, and $C$ is the set of legal trading entities.
 
+There is no need for a probability measure. The _dual_ of the space of bounded
+functions on a set $\Omega$, $B(\Omega)$, is the space of finitely additive
+measures on $\Omega$, $ba(\Omega)$.
