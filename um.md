@@ -19,7 +19,7 @@ give you this on these dates if you will give me that on those dates.
 Derivatives must have existed since before recorded history.  The Nobel
 prize winning breakthrough of Black, Scholes, and Merton was to show
 how to synthesize derivatives by dynamically trading market instruments
-based on the borrowing rate instead of trying to estimate the the
+based on the borrowing cost instead of trying to estimate the the
 actual growth rate of the underlying securities used for the hedge.
 
 This short note provides a unified model for valuing, hedging, and
@@ -64,7 +64,7 @@ $\{\omega\in\Omega\mid \tau(\omega) \le t\}$ belongs to $\AA_t$, $t\in T$.
 Every _instrument_ has a _price_, $X_t$, and a _cash flow_, $C_t$, at any
 trading time, $t\in T$.  Instruments are assumed to be perfectly liquid:
 they can be bought or sold at the given price in any amount. Cash flows
-are associated with owning an instrument and are almost always 0: stocks
+are associated with owning an instrument and are almost always 0, e.g., stocks
 have dividends, bonds have coupons, European options have exactly one
 cash flow at expiration, futures always have price 0.
 
@@ -98,7 +98,7 @@ Arbitrage is a trading strategy with $A_{\tau_{0}} > 0$, $A_{t} \geq 0$
 for $t > \tau_{0}$ and $\sum_{j}^{}{\Gamma_{j} = 0}$: you make money
 on the first trade and never lose until the strategy is closed out.
 
-The Fundamental Theorem of Asset Pricing is that there is no arbitrage
+The Fundamental Theorem of Asset Pricing states there is no arbitrage
 if and only if there exists a _deflator_, $D_{t}:\AA_{t} \rightarrow \left(
 0,\infty \right)$, with
 
@@ -115,8 +115,8 @@ $$\begin{matrix}
 V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u].\label{eq:2} \\
 \end{matrix}$$
 
-Note the similarity to the previous displayed equation. The value
-corresponds to price and the amount corresponds to cash flow.
+Note the similarity to the previous displayed equation. Value
+corresponds to price and amount corresponds to cash flow.
 This equation shows how dynamic trading creates synthetic market instruments.
 
 If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
@@ -141,7 +141,8 @@ $X_{v}D_{v} = M_v - \sum_{s\le v} C_s D_s$ in the first displayed equation.
 
 For example, the Black-Scholes/Merton model is specified by
 $M_t = (r, s\exp(\sigma B_t - \sigma^2t/2)$ and $D_t = \exp(-\rho t)$.
-No need for Ito's lemma, self-financing conditions, or PDE's.
+No need for Ito's lemma, self-financing conditions, or PDE's, much less
+the Hahn-Banach theorem.
 
 
 ## Canonical Deflator
@@ -179,13 +180,13 @@ dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
 know the position, $\Delta_t$, at time $t$ this determines the trades,
 $\Gamma_t = dV_t/dX_t - \Delta_t$.
 
-This will not necessarily replicate the derivative security. There is still
-research to be done on how to minimize the risk involved
-with this.
-
 In the continuous time case where stocks are modelled by geometric
 Brownian motion, this becomes classical Black-Scholes/Merton
 delta hedging where delta is $\Delta$ and gamma is $\Gamma$. 
+Under their mathematical assumptions, the hedge perfectly replicates the derivative.
+
+In the real world, it is not possible to perfectly replicate the derivative security.
+There is still research to be done on how to mangage this risk.
 
 ## Remarks
 
