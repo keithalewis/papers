@@ -25,20 +25,20 @@ actual growth rate of the underlying securities used for the hedge.
 This short note provides a unified model for valuing, hedging, and
 understanding the risk of any derivative security. It shows how they can
 be synthesized by trading market instruments and turns the spotlight on
-what may be the next Nobel prize winning question: how should you hedge if
+what may be the next Nobel prize winning problem: how should you hedge if
 you can't do it continuously?
 
 ## Notation
 
 If $\AA$ is an
-[algebra](https://en.wikipedia.org/wiki/Algebra_of_sets)
+[_algebra_](https://en.wikipedia.org/wiki/Algebra_of_sets)
 on the set $\Omega$ we write
 $X\colon\AA\to\mathbf{R}$ to indicate $X\colon\Omega\to\mathbf{R}$
 is $\AA$-[_measurable_](https://en.wikipedia.org/wiki/Measurable_function).
 If $\AA$ is finite then the
-[atoms](https://en.wikipedia.org/wiki/Atom_(measure_theory))
+[_atoms_](https://en.wikipedia.org/wiki/Atom_(measure_theory))
 of $\AA$ form a
-[partition](https://en.wikipedia.org/wiki/Partition_of_a_set)
+[_partition_](https://en.wikipedia.org/wiki/Partition_of_a_set)
 of $\Omega$ and being measurable is
 equivalent to being constant on atoms. In this case $X$ is indeed a function
 on the atoms.
@@ -46,7 +46,7 @@ on the atoms.
 If $\AA$ is an algebra of sets, the
 [_conditional expectation_](https://en.wikipedia.org/wiki/Conditional_expectation)
 of $X$ given
-$\AA$ is defined by $Y = E\left\lbrack X \mid \AA\right\rbrack$ if and only
+$\AA$ is defined by $Y = E\left\lbrack X | \AA\right\rbrack$ if and only
 if $Y$ is $\AA$ measurable and $\int_A Y\,dP = \int_A X\,dP$
 for all $A\in\AA$. This is equivalent to $Y(P|_\AA)
 = (XP)|_\AA$ where the vertical bar indicates restriction of a measure.
@@ -54,7 +54,7 @@ for all $A\in\AA$. This is equivalent to $Y(P|_\AA)
 A _filtration_ indexed by $T\subseteq [0,\infty)$ is an increasing
 collection of algebras, $(\AA_t)_{t\in T}$.  A process
 $M_{t}\colon\AA_{t} \rightarrow \mathbf{R}$, $t\in T$, is
-a _martingale_ if $M_t = E[M_u\mid \AA_t] = E_t[M_u]$ for $t\le u$.
+a _martingale_ if $M_t = E[M_u | \AA_t] = E_t[M_u]$ for $t\le u$.
 
 A _stopping time_ is a function $\tau\colon\Omega\to T$ such that
 $\{\omega\in\Omega\mid \tau(\omega) \le t\}$ belongs to $\AA_t$, $t\in T$.
@@ -153,17 +153,29 @@ A _repurchase agreement_ at time $t$, $R_t$, has price $X^{R_t}_t = 1$
 and cash flow $C^{R_t}_{t + dt} = R_t$ so for any arbitrage free model
 $D_t = E_t[R_tD_{t+dt}]$.  Define the _forward repo rate_, $f_t$,
 by $R_t = \exp(f_t\,dt)$. The _canonical deflator_ is $D_t =
-\exp(-\int_0^t f_s\,ds)$.  The repos are arbitrage free for any forward
-repo rate process for this deflator.
+\exp(-\int_0^t f_s\,ds)$.  As we will see below, the prices of all
+(non-risky) fixed income
+securites are determined by the deflator.
 
 ## Valuing
 
 The fundamental theorem of asset pricing places constraints on prices
 given cash flows. This is what makes valuing derivative securities possible.
+
+### Zero Coupon Bond
+
 A _zero coupon bond_ pays one unit at maturity $u$ so
 it has a cash flow of 1 unit at time $u$.
-An arbitrage free model requires the price at time $t$, $D_t(u)$, to
-satisfy $D_t(u)D_t = E_t D_u$.
+An arbitrage free model requires the price at time $t$, $Z_t(u)$, to
+satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = \exp(-\int_t^u f_s\,ds)$.
+
+### Forward Rate Agreement
+
+A _forward rate agreement_ pays $-1$ unit at the _effective date_ $u$,
+and $1 + f\delta(u,v)$ at the _termination date_ $v$, where
+$\delta(u,v)$ is the [_day count fraction_](https://en.wikipedia.org/wiki/Day_count_convention)
+for the interval $[u,v]$.
+It is approximately equal to the time in years from $u$ to $v$.
 
 ## Hedging
 
