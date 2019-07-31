@@ -21,6 +21,13 @@ do not double count.
 
 A probability measure must also satisfy $P(\emptyset) = 0$ and $P(\Omega) = 1$.
 
+Exercise. If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$,
+show $(Q - a)/(b - a)$ is a probability measure.
+
+Excercise. Let $S$ be a finite set and let $f$ be any function defined on subsets of $S$.
+define $\phi f(T) = \sum_{Y\supseteq T} f(Y)$ and $\psi f(T) = \sum_{Y\supseteq T}
+(-1)^{|Y - T} f(T)$.2^{|Y - T} f(T)$. Show $\phi\psi f = f$ and $\psi\phi f = f$.
+
 ## Algebras of Sets
 
 An _algebra of sets_ on $\Omega$ is a collection of subsets, $\mathcal{A}$, that is
