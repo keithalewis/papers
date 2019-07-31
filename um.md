@@ -171,11 +171,13 @@ satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = \exp(-\int_t^u f_s\,ds)$.
 
 ### Forward Rate Agreement
 
-A _forward rate agreement_ pays $-1$ unit at the _effective date_ $u$,
-and $1 + f\delta(u,v)$ at the _termination date_ $v$, where
-$\delta(u,v)$ is the [_day count fraction_](https://en.wikipedia.org/wiki/Day_count_convention)
-for the interval $[u,v]$.
-It is approximately equal to the time in years from $u$ to $v$.
+A _forward rate agreement_ pays $-1$ unit at the
+_effective date_ $u$, and $1 + f\delta(u,v)$ at the
+_termination date_ $v$, where $\delta(u,v)$ is the [_day count
+fraction_](https://en.wikipedia.org/wiki/Day_count_convention) for the
+interval $[u,v]$.  It is approximately equal to the time in years from
+$u$ to $v$. The coupon, $f = F_t(u,v;\delta)$
+An arbitrage free model requires the price at time $t$,
 
 ## Hedging
 
