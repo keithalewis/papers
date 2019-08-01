@@ -144,40 +144,12 @@ $M_t = (r, s\exp(\sigma B_t - \sigma^2t/2)$ and $D_t = \exp(-\rho t)$.
 No need for Ito's lemma, self-financing conditions, or PDE's, much less
 the Hahn-Banach theorem.
 
-
-## Canonical Deflator
-
-There is a canonical choice for a deflator if repurchase agreements are available.
-
-A _repurchase agreement_ at time $t$, $R_t$, has price $X^{R_t}_t = 1$
-and cash flow $C^{R_t}_{t + dt} = R_t$ so for any arbitrage free model
-$D_t = E_t[R_tD_{t+dt}]$.  Define the _forward repo rate_, $f_t$,
-by $R_t = \exp(f_t\,dt)$. The _canonical deflator_ is $D_t =
-\exp(-\int_0^t f_s\,ds)$.  As we will see below, the prices of all
-(non-risky) fixed income
-securites are determined by the deflator.
-
 ## Valuing
 
 The fundamental theorem of asset pricing places constraints on prices
 given cash flows. This is what makes valuing derivative securities possible.
 
-### Zero Coupon Bond
-
-A _zero coupon bond_ pays one unit at maturity $u$ so
-it has a cash flow of 1 unit at time $u$.
-An arbitrage free model requires the price at time $t$, $Z_t(u)$, to
-satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = \exp(-\int_t^u f_s\,ds)$.
-
-### Forward Rate Agreement
-
-A _forward rate agreement_ pays $-1$ unit at the
-_effective date_ $u$, and $1 + f\delta(u,v)$ at the
-_termination date_ $v$, where $\delta(u,v)$ is the [_day count
-fraction_](https://en.wikipedia.org/wiki/Day_count_convention) for the
-interval $[u,v]$.  It is approximately equal to the time in years from
-$u$ to $v$. The coupon, $f = F_t(u,v;\delta)$
-An arbitrage free model requires the price at time $t$,
+The formula ...
 
 ## Hedging
 
@@ -201,6 +173,39 @@ Under their mathematical assumptions, the hedge perfectly replicates the derivat
 
 In the real world, it is not possible to perfectly replicate the derivative security.
 There is still research to be done on how to mangage this risk.
+
+## Examples
+
+
+## Canonical Deflator
+
+There is a canonical choice for a deflator if repurchase agreements are available.
+
+A _repurchase agreement_ at time $t$, $R_t$, has price $X^{R_t}_t = 1$
+and cash flow $C^{R_t}_{t + dt} = R_t$ so for any arbitrage free model
+$D_t = E_t[R_tD_{t+dt}]$.  Define the _forward repo rate_, $f_t$,
+by $R_t = \exp(f_t\,dt)$. The _canonical deflator_ is $D_t =
+\exp(-\int_0^t f_s\,ds)$.  As we will see below, the prices of all
+(non-risky) fixed income
+securites are determined by the deflator.
+
+### Zero Coupon Bond
+
+A _zero coupon bond_ pays one unit at maturity $u$ so
+it has a cash flow of 1 unit at time $u$.
+An arbitrage free model requires the price at time $t$, $Z_t(u)$, to
+satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = \exp(-\int_t^u f_s\,ds)$.
+
+### Forward Rate Agreement
+
+A _forward rate agreement_ pays $-1$ unit at the
+_effective date_ $u$, and $1 + f\delta(u,v)$ at the
+_termination date_ $v$, where $\delta(u,v)$ is the [_day count
+fraction_](https://en.wikipedia.org/wiki/Day_count_convention) for the
+interval $[u,v]$.  It is approximately equal to the time in years from
+$u$ to $v$. The coupon, $f = F_t(u,v;\delta)$
+An arbitrage free model requires the price at time $t$,
+
 
 ## Remarks
 
