@@ -176,6 +176,7 @@ Under their mathematical assumptions, the hedge perfectly replicates the derivat
 In the real world, it is not possible to perfectly replicate the derivative security.
 There is still research to be done on how to mangage this risk.
 
+## Examples
 
 ## Canonical Deflator
 
@@ -205,8 +206,6 @@ fraction_](https://en.wikipedia.org/wiki/Day_count_convention) for the
 interval $[u,v]$.  It is approximately equal to the time in years from
 $u$ to $v$. The coupon, $f = F_t(u,v;\delta)$
 An arbitrage free model requires the price at time $t$,
-
-
 
 ## Remarks
 
