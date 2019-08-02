@@ -19,14 +19,14 @@ give you this on these dates if you will give me that on those dates.
 Derivatives must have existed since before recorded history.  The Nobel
 prize winning breakthrough of Black, Scholes, and Merton was to show
 how to synthesize derivatives by dynamically trading market instruments
-based on the borrowing cost instead of trying to estimate the the
-actual growth rate of the underlying securities used for the hedge.
+based on the borrowing cost used to fund the hedge instead of trying to
+estimate the the actual growth rate of the underlying securities.
 
 This short note provides a unified model for valuing, hedging, and
 understanding the risk of any derivative security. It shows how they can
 be synthesized by trading market instruments and turns the spotlight on
-what may be the next Nobel prize winning problem: how should you hedge if
-you can't do it continuously?
+what may be the next Nobel prize winning problem: how should you hedge
+if you can't do it continuously?
 
 ## Notation
 
@@ -140,17 +140,13 @@ $D_{t}:\AA_{t} \rightarrow (0,\infty)$.
 This is immediate by substituting
 $X_{v}D_{v} = M_v - \sum_{s\le v} C_s D_s$ in the first displayed equation.
 
-For example, the Black-Scholes/Merton model is specified by
-$M_t = (r, s\exp(\sigma B_t - \sigma^2t/2)$ and $D_t = \exp(-\rho t)$.
-No need for Ito's lemma, self-financing conditions, or PDE's, much less
-the Hahn-Banach theorem.
-
 ## Valuing
 
-The fundamental theorem of asset pricing places constraints on prices
-given cash flows. This is what makes valuing derivative securities possible.
-The formula 
-$V_{\tau_0} D_{\tau_0} = E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$
+A derivative security is a contract. It specifies paying amounts $A_j$ at times $\tau_j$.
+If there is a hedge, $(\Gamma_t)_{t\in T}$, that replicates these amounts, the value
+of the derivative is the cost of setting up the initial hedge: $\Gamma_0\cdot X_0$.
+
+The formula $V_{\tau_0} D_{\tau_0} = E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$
 shows how to value derivative securities that can be hedged.
 
 ## Hedging
@@ -177,6 +173,11 @@ In the real world, it is not possible to perfectly replicate the derivative secu
 There is still research to be done on how to mangage this risk.
 
 ## Examples
+
+The Black-Scholes/Merton model is specified by
+$M_t = (r, s\exp(\sigma B_t - \sigma^2t/2)$ and $D_t = \exp(-\rho t)$.
+No need for Ito's lemma, self-financing conditions, or PDE's, much less
+the Hahn-Banach theorem.
 
 ## Canonical Deflator
 
