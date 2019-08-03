@@ -201,11 +201,31 @@ satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = \exp(-\int_t^u f_s\,ds)$.
 
 A _forward rate agreement_ pays $-1$ unit at the
 _effective date_ $u$, and $1 + f\delta(u,v)$ at the
-_termination date_ $v$, where $\delta(u,v)$ is the [_day count
+_termination date_ $v$, where $f$ is the _coupon_ and $\delta(u,v)$ is the [_day count
 fraction_](https://en.wikipedia.org/wiki/Day_count_convention) for the
-interval $[u,v]$.  It is approximately equal to the time in years from
-$u$ to $v$. The coupon, $f = F_t(u,v;\delta)$
-An arbitrage free model requires the price at time $t$,
+interval $[u,v]$.  The day count fraction is approximately equal to the time in years from
+$u$ to $v$ for any _day count basis_.
+
+The _par coupon_ at time $t$, $F_t(u,v;\delta)$ is the coupon that makes the price at
+time $t\le u$ equal to $0$, $0 = E_t -D_u + (1 + F_t\delta(u,v))D_v$.
+Hence $F_t(u,v;\delta) = (Z_t(u)/Z_t(v) - 1)/\delta(u,v)$ is determined by zero coupon
+bond prices. Note $F_t\delta E_t D_v = E_t D_u - D_v$.
+
+There are also forward rate agreements not involving the exchange of notional. A
+(fixed rate) _payer_ has the single cash flow $(f - F_u(u,v;\delta))\delta(u,v)$ at time $v$.
+A _receiver_ has the negative of this cash flow. The value at any time $t \le u$ is
+determined by
+
+\begin{align*}
+X_t D_t &= E_t (f - F_u(u,v;\delta))\delta(u,v) D_v \\
+        &= E_t f\delta(u,v) D_v + E_u(- D_u + D_v)  \\
+        &= E_t f\delta(u,v) D_v - D_u + D_v  \\
+        &= E_t -D_u + (1 + f\delta(u,v)) D_v \\
+\end{align*}
+
+which is the same as for a forward rate agreement that does exchange notional.
+These two types of FRAS's have very different risk characteristics.
+
 
 ## Remarks
 
