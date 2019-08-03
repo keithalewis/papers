@@ -209,7 +209,7 @@ $u$ to $v$ for any _day count basis_.
 The _par coupon_ at time $t$, $F_t(u,v;\delta)$ is the coupon that makes the price at
 time $t\le u$ equal to $0$, $0 = E_t -D_u + (1 + F_t\delta(u,v))D_v$.
 Hence $F_t(u,v;\delta) = (Z_t(u)/Z_t(v) - 1)/\delta(u,v)$ is determined by zero coupon
-bond prices. Note $F_t\delta E_t D_v = E_t D_u - D_v$.
+bond prices. Note $F_t\delta E_t D_v = E_t[D_u - D_v]$.
 
 There are also forward rate agreements not involving the exchange of notional. A
 (fixed rate) _payer_ has the single cash flow $(f - F_u(u,v;\delta))\delta(u,v)$ at time $v$.
@@ -218,7 +218,7 @@ determined by
 
 \begin{align*}
 X_t D_t &= E_t (f - F_u(u,v;\delta))\delta(u,v) D_v \\
-        &= E_t f\delta(u,v) D_v + E_u(- D_u + D_v)  \\
+        &= E_t f\delta(u,v) D_v - E_u[D_u - D_v]  \\
         &= E_t f\delta(u,v) D_v - D_u + D_v  \\
         &= E_t -D_u + (1 + f\delta(u,v)) D_v \\
 \end{align*}
