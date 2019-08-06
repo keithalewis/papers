@@ -142,22 +142,28 @@ $X_{v}D_{v} = M_v - \sum_{s\le v} C_s D_s$ in the first displayed equation.
 
 ## Valuing
 
-A derivative security is a contract. It specifies paying amounts $A_j$ at times $\tau_j$.
+A derivative security is a contract. Assuming all payments are cash settled at prevailing
+market prices, it specifies paying amounts $B_j$ at times $\upsilon_j$.
 If there is a hedge, $(\Gamma_t)_{t\in T}$, that replicates these amounts, the value
 of the derivative is the cost of setting up the initial hedge: $\Gamma_0\cdot X_0$.
+The hedge must satisfy $A_t = 0$ if $t\not=\upsilon_j$ for any $j$ and
+$A_t = B_j$ if $t = \upsilon_j$.
+
+Not only is it impossible to trade in continuous time, it leads to absured results.
+
+
+The value is the cost to set up the
+initial trading strategy, $V_0 = \Gamma_0\cdot X_0$.
+The initial hedge is $\Gamma_0 = dV_0/dX_0$.
+From $V_0 = E_0 \sum_{\tau_j} A_j D_{\tau_j}$ we can compute this in
+terms of the contract amounts and deflators.
+
 
 The formula $V_{\tau_0} D_{\tau_0} = E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$
 shows how to value derivative securities that can be hedged.
 
 ## Hedging
 
-Given a derivative contract paying amounts $A_j$ at times $\tau_j$,
-how does one value this? One way is to find a trading strategy that
-replicates the payments.  The value is just the cost to set up the
-initial trading strategy, $V_0 = \Gamma_0\cdot X_0$.
-The initial hedge is $\Gamma_0 = dV_0/dX_0$.
-From $V_0 = E_0 \sum_{\tau_j} A_j D_{\tau_j}$ we can compute this in
-terms of the contract amounts and deflators.
 
 The trades at time $t$ are similarly determined by $\Delta_t + \Gamma_t =
 dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
