@@ -23,7 +23,7 @@ based on the borrowing cost used to fund the hedge instead of trying to
 estimate the the actual growth rate of the underlying securities.
 
 This short note provides a unified model for valuing, hedging, and
-understanding the risk of any derivative security. It shows how they can
+managing the risk of any derivative security. It shows how they can
 be synthesized by trading market instruments and turns the spotlight on
 what may be the next Nobel prize winning problem: how should you hedge
 if you can't do it continuously?
@@ -106,6 +106,8 @@ $$\begin{matrix}
 X_{t}D_{t} = E_t[X_v D_v + \sum_{t < u \leq v} C_u D_u].\label{eq:1} \\
 \end{matrix}$$
 
+We can assume $D_0 = 1$. If $(D'_t)$ is a deflator then so is $(D'_t/D'_0)$.
+
 Note that if $C_t = 0$ for all $t \in T$, this says $X_tD_t$ is a
 martingale. If the prices are eventually 0, this says the current price
 is the expected price of discounted future cash flows.  A consequence
@@ -117,7 +119,7 @@ V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u].\label{eq:2} \\
 
 Note the similarity to the previous displayed equation. Value
 corresponds to price and amount corresponds to cash flow.
-This equation shows how dynamic trading creates synthetic market instruments.
+This equation is the skeleton key for valuing derivative securities.
 
 If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
 and $V_t D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t = \Delta_u\cdot
@@ -142,25 +144,23 @@ $X_{v}D_{v} = M_v - \sum_{s\le v} C_s D_s$ in the first displayed equation.
 
 ## Valuing
 
-A derivative security is a contract. Assuming all payments are cash settled at prevailing
-market prices, it specifies paying amounts $B_j$ at times $\upsilon_j$.
-If there is a hedge, $(\Gamma_t)_{t\in T}$, that replicates these amounts, the value
+If a derivative security pays amounts $B_j$ at times $\upsilon_j$ and there is
+a hedge, $(\Gamma_t)_{t\in T}$, that replicates these amounts, the value
 of the derivative is the cost of setting up the initial hedge: $\Gamma_0\cdot X_0$.
-The hedge must satisfy $A_t = 0$ if $t\not=\upsilon_j$ for any $j$ and
-$A_t = B_j$ if $t = \upsilon_j$.
+The hedge must satisfy $A_t = 0$ if $t\not=\upsilon_j$ for all $j$ (_self financing_)
+and $A_t = B_j$ if $t = \upsilon_j$ for some $j$.
 
-Not only is it impossible to trade in continuous time, it leads to absured results.
+The formula $V_0 = E[\sum_j B_j D_{\upsilon_j}]$ is the
+value of the initial hedge, $\Gamma_0\cdot X_0$. It can be computed using the
+derivative security payments and the deflator.
 
+An European option has a single payment, $B_T$, at a fixed time $T$
+and has value $V_0 = E B_T D_T$. Sometimes it is useful to compute this
+as $E B_T D_T = E^* B_T E D_T$, where $E^*$ is the expected value under
+the Esscher transform of the probability measure defined by $dP^*/dP =
+D_T/E D_T$. $P^*$ is called the _forward measure_.
 
-The value is the cost to set up the
-initial trading strategy, $V_0 = \Gamma_0\cdot X_0$.
-The initial hedge is $\Gamma_0 = dV_0/dX_0$.
-From $V_0 = E_0 \sum_{\tau_j} A_j D_{\tau_j}$ we can compute this in
-terms of the contract amounts and deflators.
-
-
-The formula $V_{\tau_0} D_{\tau_0} = E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$
-shows how to value derivative securities that can be hedged.
+The only problem with this is ... Not only is it impossible to trade in continuous time, it leads to absured results.
 
 ## Hedging
 
