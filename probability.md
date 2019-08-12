@@ -1,3 +1,13 @@
+---
+title: Probability
+author: Keith A. Lewis
+institution: KALX, LLC
+email: kal@kalx.net
+classoption: fleqn
+abstract: |
+	This short note collects salient facts about probability theory.
+...
+
 # Probability
 
 Probability is an extension of logic. Instead of propositions being

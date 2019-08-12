@@ -14,6 +14,7 @@ abstract: |
 	risk of derivative securities.
 ...
 
+
 A _derivative security_ is a contract between two parties: I will
 give you this on these dates if you will give me that on those dates.
 Derivatives must have existed since before recorded history.  The Nobel
@@ -113,9 +114,9 @@ martingale. If the prices are eventually 0, this says the current price
 is the expected price of discounted future cash flows.  A consequence
 of the above and the definition of value and amount is
 
-$$\begin{matrix}
+\begin{align*}
 V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u].\label{eq:2} \\
-\end{matrix}$$
+\end{align*}
 
 Note the similarity to the previous displayed equation. Value
 corresponds to price and amount corresponds to cash flow.
@@ -176,12 +177,12 @@ delta hedging where delta is $\Delta$ and gamma is $\Gamma$.
 Under their mathematical assumptions, the hedge perfectly replicates the derivative.
 
 In the real world, it is not possible to perfectly replicate the derivative security.
-There is still research to be done on how to mangage this risk.
+There is still research to be done on when to hedge and how to mangage this risk.
 
 ## Examples
 
 The Black-Scholes/Merton model is specified by
-$M_t = (r, s\exp(\sigma B_t - \sigma^2t/2)$ and $D_t = \exp(-\rho t)$.
+$M_t = (r, s\exp(\sigma B_t - \sigma^2t/2))$ and $D_t = \exp(-\rho t)$.
 No need for Ito's lemma, self-financing conditions, or PDE's, much less
 the Hahn-Banach theorem.
 
@@ -202,7 +203,7 @@ securites are determined by the deflator.
 A _zero coupon bond_ pays one unit at maturity $u$ so
 it has a cash flow of 1 unit at time $u$.
 An arbitrage free model requires the price at time $t$, $Z_t(u)$, to
-satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = \exp(-\int_t^u f_s\,ds)$.
+satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = E_t\exp(-\int_t^u f_s\,ds)$.
 
 ### Forward Rate Agreement
 
