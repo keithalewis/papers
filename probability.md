@@ -8,8 +8,6 @@ abstract: |
 	This short note collects salient facts about probability theory.
 ...
 
-# Probability
-
 Probability is an extension of logic. Instead of propositions being
 either true or false a degree of belief can be specified for events occuring.
 
@@ -33,7 +31,7 @@ A probability measure must also satisfy $P(\emptyset) = 0$ and $P(\Omega) = 1$.
 Exercise. If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$,
 show $(Q - a)/(b - a)$ is a probability measure.
 
-Exercise. Show $P(\cup_i A_k) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
+Exercise. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
 + \sum_{i < j < k} P(A_i\cap A_j\cap A_k) \cdots$.
 
 Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
@@ -59,7 +57,7 @@ either $B = A$ or $B$ is the empty set.
 
 Exercise. If an algebra on $\Omega$ is finite its atoms form a partition of $\Omega$.
 
-Recall a _partition_ of a set is a collection of pairwise disjoint subsets whos union is equal to the set.
+A _partition_ of a set is a collection of pairwise disjoint subsets whos union is equal to the set.
 
 Hint: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$, $\omega\in\Omega$, is an atom 
 
@@ -88,12 +86,18 @@ In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms
 
 ## Random Variables
 
+A random variable is a variable: a symbol that can be used in place of a
+number. It has additional information: the probability of the values it
+can take on. The _cumulative distribution function_ is $F(x) = P(X\le x)
+= P(\{\omega\in\Omega : X(\omega) \le x)$. It tells you everything there
+is to know about $X$.
+
 A _random variable_ is a function $X\colon\Omega\to\mathbf{R}$. Its
-_cumulative distribution function_ is $F(x) = P(X\le x)
-= P(\{\omega\in\Omega : X(\omega) \le x)$. It tells you everything
-there is to know about $X$. A random variable is a variable: a symbol
-that can be used in place of a number. It has additional information:
-the probability of the values it can take on.
+
+The _expected value_ of a random variable is defined by the
+[Riemann–Stieltjes integral](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral)
+$E X = \int_{-\infty}^\infty x\,dF(x)$. The expected value of any function of
+a random variable is $E f(X) = \int_{-\infty}^\infty f(x)\,dF(x)$.
 
 ### Moments
 
@@ -101,24 +105,54 @@ The _moments_ of a random variable, $X$, are $m_n = E[X^n]$, $n = 0,1,2,\ldots$.
 They don't necessarily exist for all $n$, except for $n = 0$.
 They also cannot be an arbitrary sequence of values.
 
-Suppose all moments of $X$ exist, then $0 \le E|\sum_i c_i X^i|^2 =
+Suppose all moments of $X$ exist, then for any numbers, $(c_i)$, $0 \le E|\sum_i c_i X^i|^2 =
 E\sum_{j,k} c_j\bar{c_k} X^{j+k} = \sum_{j,k} c_j \bar{c_k} m_{j+k}$.
-This says the Hankel matrix, $[m_{j+k}]_{j,k}$, is positive definite.
-The converse is true: if the Hankel matrix is positive definite there
+This says the Hankel matrix, $M = [m_{j+k}]_{j,k}$, is positive definite.
+The converse is sometimes true: if the Hankel matrix is positive definite there
 exists a random variable with the corresponding moments.
+
+This is a special case of interpolation. Suppose you have linear functionals on 
+a Hilbert space, $f_j\colon\mathcal{H}\to\mathbf{C}$...
  
-Define the linear operator $M:\ell^2\to\ell^2$ by ...
+Let $\ell^2$ be the vector space $\{(c_j): \sum_{j=0}^\infty |c_j|^2 < \infty\}$ where
+$c_j$ are complex numbers. It has a basis, $(e_j)$, where $(e_j)_k = \delta_{j,k}$.
+Define the unilateral shift operator $S:\ell^2\to\ell^2$ by $S(c_0,c_1,\ldots) = (0,c_0,c_1,\ldots)$.
 
 Spectral measure ...
 
 ### Cumulants
 
-The _cumulant_ of a random variable, $X$, is $\kappa(s) = \exp(sX)$.
+The _cumulant_ of a random variable, $X$, is $\kappa(s) = \kappa^X(s) = \exp(sX)$.
 The _cumulants_, $\kappa_n$, are defined by $\kappa(s) = \sum_{n>0}\kappa_n s^n/n!$.
+
+It is easy to see $\kappa_1 = E X$ and $\kappa_2 = \Var X$. The third and fourth cumulants
+are related to skew and kurtosis. We will see the exact relationship below.
+
+If $c$ is a constant then $\kappa^{cX}(s) = \kappa^X(cs)$ so $\kappa^{cX}_n = c^n\kappa^X_n$.
+If $X$ and $Y$ are independent then $\kappa^{X + Y}(s) = \kappa^X(s) + \kappa^Y(s)$ so
+$\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
+
+#### Examples
+
+If $X$ is normal then $E\exp(X) = \exp(EX + \Var(X)/2)$ so $\kappa_1 = EX$, $\kappa_2 = \Var(X)$,
+and $\kappa_n = 0$ for $n > 2$.
+
+If $X$ is Poisson with parameter $\lambda$ then 
+\begin{align*}
+Ee^{sX} &= \sum_{k=0}^\infty e^{sk} e^{-\lambda}\lambda^k/k!\\
+        &= \sum_{k=0}^\infty  (e^s\lambda)^ke^{-\lambda}/k!\\
+		&= \exp(\lambda(e^s - 1))
+\end{align*}
+so $\kappa(s) = \lambda(e^s - 1)$ and $\kappa_n = \lambda$ for all $n$.
 
 ### Bell Polynomials
 
 The relationship between moments and cumulants is given by Bell polynomials.
+
+In particular $m_1 = \kappa_1$ and $m_2 = \kappa_1^2 + \kappa_2$ so
+$\kappa_1$ is the mean and $\kappa_2$ is the variance. If the mean is 0 and
+the variance is 1, then $\kappa_3$ is the skew and $\kappa$ is the
+excess kurtosis.
 
 ## Examples
 ### Uniform
@@ -146,7 +180,6 @@ coincides with the definition of conditional expectation above.
 If we write this as $E[X|A]P(A) = E[X 1_A]$ then defining $E[X|\mathcal{A}]$ by
 $E[X|\mathcal{A}]P|_\mathcal{A} = (XP)_\mathcal{A}$ agrees on atoms of $\mathcal{A}$.
 
-## Random Variables
 
 moments, Hamberger moment problem.
 
