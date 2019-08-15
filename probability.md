@@ -99,7 +99,7 @@ symbol that can be used in place of a number, with additional information,
 the probability of the values it can take on. The _cumulative distribution
 function_ is $F(x) = F^X(x) = P(X\le x)$
 It tells you everything there is to know about $X$. For example,
-$P(a < X \le b) = F(b) - F(a)$.  In general, $P(X\in A) = E1_A = \int
+$P(a < X \le b) = F(b) - F(a)$.  In general, $P(X\in A) = E 1_A = \int
 1_A(x)\,dF(x)$ for sufficiently nice $A\subset\mathcal{R}$.
 Here we use the [Riemann–Stieltjes integral](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral).
 
@@ -114,7 +114,7 @@ $P(A) = \int 1_A(x)\,dF(x)$.
 Two random variables, $X$ and $Y$, are defined by their _joint distribution_,
 $F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.
 
-$P((X,Y) \in square).
+$P((X,Y) \in square)$.
 
 This is where the mathematician's definition is ???
 
