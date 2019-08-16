@@ -104,10 +104,12 @@ symbol that can be used in place of a number, with additional information,
 the probability of the values it can take on. The _cumulative distribution
 function_ is $F(x) = F^X(x) = P(X\le x)$
 It tells you everything there is to know about $X$. For example,
+<<<<<<< HEAD
 $P(a < X \le b) = F(b) - F(a)$. A nice subset of $\mathbf{R}$
 can be approximated by a disjoint union of intervals.
 
 In general, $P(X\in A) = E1_A = \int
+$P(a < X \le b) = F(b) - F(a)$.  In general, $P(X\in A) = E 1_A = \int
 1_A(x)\,dF(x)$ for sufficiently nice $A\subset\mathcal{R}$.
 Here we use the [Riemann–Stieltjes integral](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral).
 
@@ -124,6 +126,8 @@ distribution_, $F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.  For example $(X,Y)$
 in the square $(a,b]\times (c,d]$ with probability
 $P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
 A nice subset of $\mathbf{R}^2$ can be approximated by a disjoint union of squares.
+Two random variables, $X$ and $Y$, are defined by their _joint distribution_,
+$F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.
 
 This is where the mathematician's definition is ???
 
