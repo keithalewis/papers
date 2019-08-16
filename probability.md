@@ -19,7 +19,7 @@ The sample space is just a set of what can possibly happen: heads or tails as th
 of a coin toss, the numbers 1 through 6 as the outcomes of rolling a singled die,
 the set of all sequences of not more than 280 characters as a model of possible Twitter tweets.
 
-People seem to be surprised probabilities are modeled using a set.
+People seem to be surprised probabilities are modeled using sets.
 Sets have no structure, they are just a bag of things (_elements_). 
 
 An _event_ is a subset of a sample space. A _probability measure_ assigns
@@ -36,7 +36,11 @@ show $(Q - a)/(b - a)$ is a probability measure.
 
 Let $1_A(\omega) = 1$ if $\omega\in A$ and $= 0$ if $\omega\not\in A$.
 If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
-Define $EX = \sum_i a_i P(A_i)$.
+Define the _expected value_ of $X$ by $EX = \sum_i a_i P(A_i)$.
+
+Exercise. Show that if $\sum_i a_i A_i = 0$ then $\sum_i a_i P(A_i) = 0$.
+
+This shows expected value is [well-defined](https://en.wikipedia.org/wiki/Well-defined).
 
 Exercise. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
 + \sum_{i < j < k} P(A_i\cap A_j\cap A_k) \cdots$.
@@ -45,8 +49,9 @@ Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A
 
 Exercise. (Inclusion-Exclusion principal) Let $S$ be a finite set and
 let $f$ be any function defined on subsets of $S$.
-Define $\phi f(T) = \sum_{Y\supseteq T} f(Y)$ and
-$\psi g(T) = \sum_{Y\supseteq T} (-1)^{|Y| - |T|} g(T)$.
+Define $\phi f(T) = \sum_{U\supseteq T} f(U)$ and
+$\psi g(T) = \sum_{U\supseteq T} (-1)^{|U| - |T|} g(T)$.
+These are both operators from $2^S\to\mathbf{R}$.
 Show $\phi\psi g = g$ and $\psi\phi f = f$.
 
 Hint: Group the sum by $|Y| - |T|$.
@@ -55,8 +60,10 @@ Hint: Group the sum by $|Y| - |T|$.
 
 An _algebra of sets_ on $\Omega$ is a collection of subsets,
 $\mathcal{A}$, that is closed under complement and union. We also assume
-the empty set belongs to $\mathcal{A}$. By De Morgan's Law an algebra
+the empty set belongs to $\mathcal{A}$. By De Morgan's Laws an algebra
 is also closed under intersection and $\Omega$ belongs to $\mathcal{A}$.
+The _power set_ of $\Omega$, $2^\Omega = \{E\subseteq\Omega\}$, clearly
+satisfies these conditions.
 
 An _atom_ of an algebra is a member, $A$, of the algebra such that if
 $B\subseteq A$ and $B$ is in the algebra, then either $B = A$ or $B$
@@ -79,12 +86,10 @@ die is odd or even.
 The coarsest partition $\{\Omega\}$ corresponds to no knowledge while the finest partition
 $\{\{\omega\}:\omega\in\Omega\}$ corresponds to complete knowledge.
 
-## Probability Spaces
+### Measurablity
 
-A triple $\langle \Omega, P, \mathcal{A}\rangle$ where $\Omega$ is a set, $P$ is
-a probability measure with domain $\mathcal{A}$ is called a _probability space_.
-A _random variable_ is a function $X\colon\Omega\to\mathbf{R}$ that is $\mathcal{A}$
-measureable: the sets $X^{-1}((-\infty, x]) = \{\omega\in\Omega:X(\omega)\le x\}$
+A function $X\colon\Omega\to\mathbf{R}$ is $\mathcal{A}$-_measureable_ if the sets
+$X^{-1}((-\infty, x]) = \{\omega\in\Omega:X(\omega)\le x\}$
 belong to $\mathcal{A}$ for $x\in\mathbf{R}$.
 
 Exercise: If $\mathcal{A}$ is finite, show that a function is measurable if and only if it
@@ -99,7 +104,10 @@ symbol that can be used in place of a number, with additional information,
 the probability of the values it can take on. The _cumulative distribution
 function_ is $F(x) = F^X(x) = P(X\le x)$
 It tells you everything there is to know about $X$. For example,
-$P(a < X \le b) = F(b) - F(a)$.  In general, $P(X\in A) = E1_A = \int
+$P(a < X \le b) = F(b) - F(a)$. A nice subset of $\mathbf{R}$
+can be approximated by a disjoint union of intervals.
+
+In general, $P(X\in A) = E1_A = \int
 1_A(x)\,dF(x)$ for sufficiently nice $A\subset\mathcal{R}$.
 Here we use the [Riemann–Stieltjes integral](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral).
 
@@ -111,10 +119,11 @@ $X\colon\mathbf{R}\to\mathbf{R}$ to be the
 identity function and let $P$ be the probability measure defined by $F$:
 $P(A) = \int 1_A(x)\,dF(x)$. 
 
-Two random variables, $X$ and $Y$, are defined by their _joint distribution_,
-$F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.
-
-$P((X,Y) \in square).
+Two random variables, $X$ and $Y$, are defined by their _joint
+distribution_, $F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.  For example $(X,Y)$ is
+in the square $(a,b]\times (c,d]$ with probability
+$P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
+A nice subset of $\mathbf{R}^2$ can be approximated by a disjoint union of squares.
 
 This is where the mathematician's definition is ???
 
@@ -132,24 +141,18 @@ The _moments_ of a random variable, $X$, are $m_n = E[X^n]$, $n = 0,1,2,\ldots$.
 They don't necessarily exist for all $n$, except for $n = 0$.
 They also cannot be an arbitrary sequence of values.
 
-Suppose all moments of $X$ exist, then for any numbers, $(c_i)$, $0 \le E|\sum_i c_i X^i|^2 =
+Suppose all moments of $X$ exist, then for any complex numbers, $(c_i)$, $0 \le E|\sum_i c_i X^i|^2 =
 E\sum_{j,k} c_j\bar{c_k} X^{j+k} = \sum_{j,k} c_j \bar{c_k} m_{j+k}$.
 This says the Hankel matrix, $M = [m_{j+k}]_{j,k}$, is positive definite.
-The converse is sometimes true: if the Hankel matrix is positive definite there
+The converse is true: if the Hankel matrix is positive definite there
 exists a random variable with the corresponding moments.
 
-This is a special case of interpolation. Suppose you have linear functionals on 
-a Hilbert space, $f_j\colon\mathcal{H}\to\mathbf{C}$...
+% Dunford Schwartz Volume 2 pg 1251.
+% Extending unbounded symmetric operators. Deficiency index.
  
-Let $\ell^2$ be the vector space $\{(c_j): \sum_{j=0}^\infty |c_j|^2 < \infty\}$ where
-$c_j$ are complex numbers. It has a basis, $(e_j)$, where $(e_j)_k = \delta_{j,k}$.
-Define the unilateral shift operator $S:\ell^2\to\ell^2$ by $S(c_0,c_1,\ldots) = (0,c_0,c_1,\ldots)$.
-
-Spectral measure ...
-
 ### Cumulants
 
-The _cumulant_ of a random variable, $X$, is $\kappa(s) = \kappa^X(s) = \exp(sX)$.
+The _cumulant_ of a random variable, $X$, is $\kappa(s) = \kappa^X(s) = \log E\exp(sX)$.
 The _cumulants_, $\kappa_n$, are defined by $\kappa(s) = \sum_{n>0}\kappa_n s^n/n!$.
 
 It is easy to see $\kappa_1 = E X$ and $\kappa_2 = \Var X$. The third and fourth cumulants
@@ -158,6 +161,14 @@ are related to skew and kurtosis. We will see the exact relationship below.
 If $c$ is a constant then $\kappa^{cX}(s) = \kappa^X(cs)$ so $\kappa^{cX}_n = c^n\kappa^X_n$.
 If $X$ and $Y$ are independent then $\kappa^{X + Y}(s) = \kappa^X(s) + \kappa^Y(s)$ so
 $\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
+
+### Characteristic Function
+
+The _characteristic function_ of a random variable, $X$, is $\xi(t) = \kappa(it)$.
+
+The _Fourier transform_ is $\psi(t) = \xi(-t) = \kappa(-it)$.
+
+Fourier Transform.
 
 #### Examples
 
