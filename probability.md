@@ -135,7 +135,7 @@ They also cannot be an arbitrary sequence of values.
 Suppose all moments of $X$ exist, then for any numbers, $(c_i)$, $0 \le E|\sum_i c_i X^i|^2 =
 E\sum_{j,k} c_j\bar{c_k} X^{j+k} = \sum_{j,k} c_j \bar{c_k} m_{j+k}$.
 This says the Hankel matrix, $M = [m_{j+k}]_{j,k}$, is positive definite.
-The converse is sometimes true: if the Hankel matrix is positive definite there
+The converse is also true: if the Hankel matrix is positive definite there
 exists a random variable with the corresponding moments.
 
 This is a special case of interpolation. Suppose you have linear functionals on 
@@ -146,6 +146,8 @@ $c_j$ are complex numbers. It has a basis, $(e_j)$, where $(e_j)_k = \delta_{j,k
 Define the unilateral shift operator $S:\ell^2\to\ell^2$ by $S(c_0,c_1,\ldots) = (0,c_0,c_1,\ldots)$.
 
 Spectral measure ...
+
+Copulas
 
 ### Cumulants
 
@@ -233,7 +235,7 @@ A _stochastic process_ is ...
 
 reflection
 
-### Le'vy Processes
+### L\'evy Processes
 
 
 
