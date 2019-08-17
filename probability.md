@@ -14,10 +14,21 @@ All probabilities are based on information and
 different people may have different degrees of belief.
 However, as the amount of information increases, probabilities should converge.
 
+# Probability Model
+
 A _probability model_ specifies a _sample space_ and a _probability measure_.
 The sample space is just a set of what can possibly happen: heads or tails as the outcome
-of a coin toss, the numbers 1 through 6 as the outcomes of rolling a singled die,
+of a coin toss, the integers from 1 to 6 as the outcomes of rolling a single die,
 the set of all sequences of not more than 280 characters as a model of possible Twitter tweets.
+
+Assuming the characters are upper and lower case letters, space, and
+3 punctuation marks then there are $30^280$ possible messages. This
+is approximately $10^1374$. The number of elementary particles in the
+universe has been estimated to be $10^80$.  The world population is a
+bit under 8 billion. Assuming everyone posts a Trumpian 10 tweets a day
+and uses all of their 280 character allotment, that comes to $8\times
+10^9 \times 10 \times 280 = 2.24\times 10^44$. The universe is 14 billion years.
+That means...
 
 People seem to be surprised probabilities are modeled using sets.
 Sets have no structure, they are just a bag of things (_elements_). 
@@ -47,91 +58,48 @@ Exercise. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
 
 Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
 
-Exercise. (Inclusion-Exclusion principal) Let $S$ be a finite set and
-let $f$ be any function defined on subsets of $S$.
-Define $\phi f(T) = \sum_{U\supseteq T} f(U)$ and
-$\psi g(T) = \sum_{U\supseteq T} (-1)^{|U| - |T|} g(T)$.
-These are both operators from $2^S\to\mathbf{R}$.
-Show $\phi\psi g = g$ and $\psi\phi f = f$.
+%Exercise. (Inclusion-Exclusion principal) Let $S$ be a finite set and
+%let $f$ be any function defined on subsets of $S$.
+%Define $\phi f(T) = \sum_{U\supseteq T} f(U)$ and
+%$\psi g(T) = \sum_{U\supseteq T} (-1)^{|U| - |T|} g(T)$.
+%These are both operators from $2^S\to\mathbf{R}$.
+%Show $\phi\psi g = g$ and $\psi\phi f = f$.
 
-Hint: Group the sum by $|Y| - |T|$.
-
-## Algebras of Sets
-
-An _algebra of sets_ on $\Omega$ is a collection of subsets,
-$\mathcal{A}$, that is closed under complement and union. We also assume
-the empty set belongs to $\mathcal{A}$. By De Morgan's Laws an algebra
-is also closed under intersection and $\Omega$ belongs to $\mathcal{A}$.
-The _power set_ of $\Omega$, $2^\Omega = \{E\subseteq\Omega\}$, clearly
-satisfies these conditions.
-
-An _atom_ of an algebra is a member, $A$, of the algebra such that if
-$B\subseteq A$ and $B$ is in the algebra, then either $B = A$ or $B$
-is the empty set.
-
-A _partition_ of a set is a collection of pairwise disjoint subsets who's union is equal to the set.
-
-Exercise. If an algebra on $\Omega$ is finite its atoms form a partition of $\Omega$.
-
-Hint: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$, $\omega\in\Omega$, is an atom 
-
-This shows there is a one-to-one correspondence between finite partitions
-and finite algebras of sets.  A partition is the mathematical way of
-specifying partial information. Knowing the outcome, $\omega\in\Omega$,
-corresponds to complete knowledge. Knowing which atom the outcome
-belongs to corresponds to partial knowledge. For example, the partition
-$\{\{1,3,5\},\{2,4,6\}\}$ corresponds to knowing whether the roll of a
-die is odd or even.
-
-The coarsest partition $\{\Omega\}$ corresponds to no knowledge while the finest partition
-$\{\{\omega\}:\omega\in\Omega\}$ corresponds to complete knowledge.
-
-### Measurablity
-
-A function $X\colon\Omega\to\mathbf{R}$ is $\mathcal{A}$-_measureable_ if the sets
-$X^{-1}((-\infty, x]) = \{\omega\in\Omega:X(\omega)\le x\}$
-belong to $\mathcal{A}$ for $x\in\mathbf{R}$.
-
-Exercise: If $\mathcal{A}$ is finite, show that a function is measurable if and only if it
-is constant on atoms of $\mathcal{A}$.
-
-In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
+%Hint: Group the sum by $|Y| - |T|$.
 
 ## Random Variables
 
-The physicist's definition of a random variable that it is a variable, a
-symbol that can be used in place of a number, with additional information,
+A _random variable_ is a variable, a
+symbol that can be used in place of a number, with additional information:
 the probability of the values it can take on. The _cumulative distribution
-function_ is $F(x) = F^X(x) = P(X\le x)$
+function_ is $F(x) = F^X(x) = P(X\le x)$.
 It tells you everything there is to know about $X$. For example,
-<<<<<<< HEAD
-$P(a < X \le b) = F(b) - F(a)$. A nice subset of $\mathbf{R}$
-can be approximated by a disjoint union of intervals.
+$P(a < X \le b) = F(b) - F(a)$. 
 
-In general, $P(X\in A) = E1_A = \int
-$P(a < X \le b) = F(b) - F(a)$.  In general, $P(X\in A) = E 1_A = \int
-1_A(x)\,dF(x)$ for sufficiently nice $A\subset\mathcal{R}$.
-Here we use the [Riemann–Stieltjes integral](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral).
+Exercise. Show $P(a\le X\le b) = lim_{x\uparrow a} F(b) - F(x)$.
 
-The mathematician's definition of a random variable is that it is
-a measurable function $X\colon\Omega\to\mathbf{R}$. Its cumulative
-distribution function is $F(x) = P(X\le x) = P(\{\omega\in\Omega\mid X(\omega) \le x\})$.
-Given a cdf $F$ we can define recover the physicists random variable by defining
-$X\colon\mathbf{R}\to\mathbf{R}$ to be the
-identity function and let $P$ be the probability measure defined by $F$:
-$P(A) = \int 1_A(x)\,dF(x)$. 
+Hint: $[a,b] = \cap_n (a - 1/n, b]$.
 
-Two random variables, $X$ and $Y$, are defined by their _joint
-distribution_, $F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.  For example $(X,Y)$ is
-in the square $(a,b]\times (c,d]$ with probability
-$P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
-A nice subset of $\mathbf{R}^2$ can be approximated by a disjoint union of squares.
-Two random variables, $X$ and $Y$, are defined by their _joint distribution_,
-$F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.
+In general, $P(X\in A) = E 1_A = \int 1_A(x)\,dF(x)$ for sufficiently nice $A\subset\mathcal{R}$.
 
-This is where the mathematician's definition is ???
+Since $(-\infty,x] \subseteq (-\infty,x']$ if $x\le x'$, $F$ is non-decreasing: $F(x) \le F(x')$.
+$\lim_{x\to -\infty} F(x) = 0$ 
+$\lim_{x\to\infty} F(x) = 1$.
+$F$ is right continous with left limits.
 
-One probablity measure, and two (or any number) of function.
+The random variable, $U$, that is _uniformly distributed_ on the _unit
+inverval_, $[0,1]$, has cdf $F(x) = x$ if $0\le x\le 1$, $=0$ if $x <
+0$, and $= 1$ if $x > 1$.
+
+Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
+
+Exercise. If $X$ has cdf $F$, then $X$ and $F^{-1}(U)$ have the same law.
+
+Exercise. If $X$ has cdf $F$, then $F(X)$ is uniformly distributed on the unit interval.
+
+This shows a uniformly distributed random variable has sufficient randomness to
+generate any random variable. There are no random, random variables.
+
 
 ### Expected Value
 
@@ -200,10 +168,80 @@ $\kappa_1$ is the mean and $\kappa_2$ is the variance. If the mean is 0 and
 the variance is 1, then $\kappa_3$ is the skew and $\kappa$ is the
 excess kurtosis.
 
-## Examples
-### Uniform
 
-every rv comes from uniform
+### Joint Distribution
+
+Two random variables, $X$ and $Y$, are defined by their _joint
+distribution_, $F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.  For example $(X,Y)$ is
+in the square $(a,b]\times (c,d]$ with probability
+$P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
+
+### Copulas
+
+A _copula_ is the joint distribution of uniform random variables. (On the unit interval)
+Let $U$ and $V$ be two uniformly distributed random variables.
+
+If $V=U$ then their joint distribution is
+$C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u,v\} = M(u,v)$.
+
+If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
+= P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
+
+For every copula, $W \le C \le M$.
+
+Let $X$ and $Y$ be random variables with cdfs $F$
+and $G$ respectively, and joint distribution $H$.
+Define the cumulant, $C = C^{X,Y}$, to be the joint distribution of $F(X)$ and $G(Y)$.
+
+
+## Algebras of Sets
+
+An _algebra of sets_ on $\Omega$ is a collection of subsets,
+$\mathcal{A}$, that is closed under complement and union. We also assume
+the empty set belongs to $\mathcal{A}$. By De Morgan's Laws an algebra
+is also closed under intersection and $\Omega$ belongs to $\mathcal{A}$.
+The _power set_ of $\Omega$, $2^\Omega = \{E\subseteq\Omega\}$, clearly
+satisfies these conditions.
+
+An _atom_ of an algebra is a member, $A$, of the algebra such that if
+$B\subseteq A$ and $B$ is in the algebra, then either $B = A$ or $B$
+is the empty set.
+
+A _partition_ of a set is a collection of pairwise disjoint subsets who's union is equal to the set.
+
+Exercise. If an algebra on $\Omega$ is finite its atoms form a partition of $\Omega$.
+
+Hint: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$, $\omega\in\Omega$, is an atom 
+
+This shows there is a one-to-one correspondence between finite partitions
+and finite algebras of sets.  A partition is the mathematical way of
+specifying partial information. Knowing the outcome, $\omega\in\Omega$,
+corresponds to complete knowledge. Knowing which atom the outcome
+belongs to corresponds to partial knowledge. For example, the partition
+$\{\{1,3,5\},\{2,4,6\}\}$ corresponds to knowing whether the roll of a
+die is odd or even.
+
+The coarsest partition $\{\Omega\}$ corresponds to no knowledge while the finest partition
+$\{\{\omega\}:\omega\in\Omega\}$ corresponds to complete knowledge.
+
+### Measurablity
+
+A function $X\colon\Omega\to\mathbf{R}$ is $\mathcal{A}$-_measureable_ if the sets
+$X^{-1}((-\infty, x]) = \{\omega\in\Omega:X(\omega)\le x\}$
+belong to $\mathcal{A}$ for $x\in\mathbf{R}$.
+
+Exercise: If $\mathcal{A}$ is finite, show that a function is measurable if and only if it
+is constant on atoms of $\mathcal{A}$.
+
+In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
+
+The mathematician's definition of a random variable is that it is
+a measurable function $X\colon\Omega\to\mathbf{R}$. Its cumulative
+distribution function is $F(x) = P(X\le x) = P(\{\omega\in\Omega\mid X(\omega) \le x\})$.
+Given a cdf $F$ we can define recover the physicists random variable by defining
+$X\colon\mathbf{R}\to\mathbf{R}$ to be the
+identity function and let $P$ be the probability measure defined by $F$:
+$P(A) = \int 1_A(x)\,dF(x)$. 
 
 ### Normal
 
