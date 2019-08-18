@@ -198,6 +198,20 @@ by $R_t = \exp(f_t\,dt)$. The _canonical deflator_ is $D_t =
 (non-risky) fixed income
 securites are determined by the deflator.
 
+### Forward
+
+A _forward_ contract on underlying $S$ pays $A_t = S_t - f$ at $t$. The _par forward_ is defined
+so that $V_0 = 0$ so $0 = E(S_t - f)D_t$ and $S_0 = fED_t$. This formula is
+called the _cost of carry_.
+
+### Put-Call Parity
+
+The first thing every trader checks when using a new model is _put-call parity_.
+A (European) _put option_ pays $A^p_t = \max\{k - S_t,0\}$ at $t$ and a _call option_ pays
+$A^c_t = \max\{S_t - k, 0\}$ at $t$. Since $A^c_t - A^p_t = S_t - k$
+we have $V^c_0 - V^p_0 = c - p = S_0 - k ED_t$, where $c$ and $p$ are the value
+of the call and put at time 0.
+
 ### Zero Coupon Bond
 
 A _zero coupon bond_ pays one unit at maturity $u$ so
