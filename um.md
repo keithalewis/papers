@@ -107,12 +107,15 @@ $$\begin{matrix}
 X_{t}D_{t} = E_t[X_v D_v + \sum_{t < u \leq v} C_u D_u].\label{eq:1} \\
 \end{matrix}$$
 
-We can assume $D_0 = 1$. If $(D'_t)$ is a deflator then so is $(D'_t/D'_0)$.
+We can assume $D_0 = 1$. If $(D_t)$ is a deflator then so is $(D_t/D_0)$.
 
-Note that if $C_t = 0$ for all $t \in T$, this says $X_tD_t$ is a
-martingale. If the prices are eventually 0, this says the current price
-is the expected price of discounted future cash flows.  A consequence
-of the above and the definition of value and amount is
+Note that if there are no cash flows, $C_t = 0$ for all $t \in T$,
+this says $X_tD_t$ is a martingale. For an infinite time horizon where
+the price times the deflator goes to 0, this says the current price is
+the expected price of discounted future cash flows, just as in Dodd and
+Graham valuation.
+
+A consequence of the above and the definition of value and amount is
 
 \begin{align*}
 V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u].\label{eq:2} \\
@@ -121,6 +124,7 @@ V_t D_t = E_t[V_v D_v + \sum_{t < u \leq v}A_u D_u].\label{eq:2} \\
 Note the similarity to the previous displayed equation. Value
 corresponds to price and amount corresponds to cash flow.
 This equation is the skeleton key for valuing derivative securities.
+It shows how dynamic trading can create synthetic market instruments.
 
 If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
 and $V_t D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t = \Delta_u\cdot
@@ -147,7 +151,7 @@ $X_{v}D_{v} = M_v - \sum_{s\le v} C_s D_s$ in the first displayed equation.
 
 If a derivative security pays amounts $B_j$ at times $\upsilon_j$ and there is
 a hedge, $(\Gamma_t)_{t\in T}$, that replicates these amounts, the value
-of the derivative is the cost of setting up the initial hedge: $\Gamma_0\cdot X_0$.
+of the derivative is the cost of setting up the initial hedge: $V_0 = \Gamma_0\cdot X_0$.
 The hedge must satisfy $A_t = 0$ if $t\not=\upsilon_j$ for all $j$ (_self financing_)
 and $A_t = B_j$ if $t = \upsilon_j$ for some $j$.
 
@@ -157,14 +161,11 @@ derivative security payments and the deflator.
 
 An European option has a single payment, $B_T$, at a fixed time $T$
 and has value $V_0 = E B_T D_T$. Sometimes it is useful to compute this
-as $E B_T D_T = E^* B_T E D_T$, where $E^*$ is the expected value under
-the Esscher transform of the probability measure defined by $dP^*/dP =
-D_T/E D_T$. $P^*$ is called the _forward measure_.
-
-The only problem with this is ... Not only is it impossible to trade in continuous time, it leads to absured results.
+as $E B_T D_T = E^{D_T} B_T E D_T$, where $E^{D_T}$ is the expected value under
+the Esscher transform of the probability measure defined by $dP^{D_T}/dP =
+D_T/E D_T$. $P^{D_T}$ is called the _forward measure_ at time $T$.
 
 ## Hedging
-
 
 The trades at time $t$ are similarly determined by $\Delta_t + \Gamma_t =
 dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
@@ -190,43 +191,57 @@ the Hahn-Banach theorem.
 
 There is a canonical choice for a deflator if repurchase agreements are available.
 
-A _repurchase agreement_ at time $t$, $R_t$, has price $X^{R_t}_t = 1$
-and cash flow $C^{R_t}_{t + dt} = R_t$ so for any arbitrage free model
-$D_t = E_t[R_tD_{t+dt}]$.  Define the _forward repo rate_, $f_t$,
-by $R_t = \exp(f_t\,dt)$. The _canonical deflator_ is $D_t =
-\exp(-\int_0^t f_s\,ds)$.  As we will see below, the prices of all
-(non-risky) fixed income
-securites are determined by the deflator.
+### Repurchase Agreements
+
+Assume trades occur at discrete times, like they actually do, so $T = \{t_j\}$ where $t_0 < t_1 < \cdots$. 
+
+A _repurchase agreement_ at time $t_j$, $R_j$, has price $X^{R_j}_{t_j}
+= 1$ and cash flow $C^{R_j}_{t_{j+1}} = R_j$ so for any arbitrage free
+model $D_{t_j} = E_{t_j}[R_j D_{t_{j+1}}]$. We can, and do, assume $D_{t_{j+1}}$ is $\mathcal{A}_{t_j}$
+measurable so $D_{t_j} = R_j D_{t_{j+1}}$ and $D_{t_j} = \Pi_{j<n} R_j^{-1}$.
+
+Define _the _forward repo rate_, $f_j$, by $R_j = \exp(f_j\,\Delta t_j)$
+where $\Delta t_j = t_{j+1} - t_j$, so $D_{t_j} = \exp(-\sum_{j<n} f_j \Delta_{t_j})$.
+The continuous time version of the _canonical deflator_ is
+$D_t = \exp(-\int_0^t f_s\,ds)$.
+
+As we will see below, the prices of all
+(non-risky) fixed income securites are determined by the deflator.
 
 ### Forward
 
-A _forward_ contract on underlying $S$ pays $A_t = S_t - f$ at $t$. The _par forward_ is defined
-so that $V_0 = 0$ so $0 = E(S_t - f)D_t$ and $S_0 = fED_t$. This formula is
+A _forward_ contract on underlying $S$ with stike $k$ expiring at time $t$ 
+pays $A_t = S_t - k$ at $t$. It has initial value $V_0 = E[(S_t - k)D_t]
+= S_0 - kE D_t$.
+The _par forward_, $f$, is the strike that makes the initial value equal to zero:
+$0 = V_0 = E(S_t - f)D_t$ so $S_0 = fED_t$. This formula is
 called the _cost of carry_.
 
 ### Put-Call Parity
 
 The first thing every trader checks when using a new model is _put-call parity_.
-A (European) _put option_ pays $A^p_t = \max\{k - S_t,0\}$ at $t$ and a _call option_ pays
-$A^c_t = \max\{S_t - k, 0\}$ at $t$. Since $A^c_t - A^p_t = S_t - k$
-we have $V^c_0 - V^p_0 = c - p = S_0 - k ED_t$, where $c$ and $p$ are the value
+A (European) _put option_ on underlying $S$ with strike $k$ expiring at time $t$
+pays $A^p_t = \max\{k - S_t,0\}$ at $t$.
+A _call option_ on underlying $S$ with strike $k$ expiring at time $t$
+pays $A^c_t = \max\{S_t - k, 0\}$ at $t$.
+Since $A^c_t - A^p_t = S_t - k$ we have $V^c_0 - V^p_0 = c - p = S_0 - k ED_t$, where $c$ and $p$ are the value
 of the call and put at time 0.
 
 ### Zero Coupon Bond
 
-A _zero coupon bond_ pays one unit at maturity $u$ so
-it has a cash flow of 1 unit at time $u$.
+A _zero coupon bond_ pays one unit at maturity $u$.
 An arbitrage free model requires the price at time $t$, $Z_t(u)$, to
 satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = E_t\exp(-\int_t^u f_s\,ds)$.
 
 ### Forward Rate Agreement
 
-A _forward rate agreement_ pays $-1$ unit at the
+A _forward rate agreement_ from time $u$ to time $v$ with coupon $f$ and
+day count basis $\delta$ pays $-1$ unit at the
 _effective date_ $u$, and $1 + f\delta(u,v)$ at the
-_termination date_ $v$, where $f$ is the _coupon_ and $\delta(u,v)$ is the [_day count
+_termination date_ $v$, where $\delta(u,v)$ is the [_day count
 fraction_](https://en.wikipedia.org/wiki/Day_count_convention) for the
 interval $[u,v]$.  The day count fraction is approximately equal to the time in years from
-$u$ to $v$ for any _day count basis_.
+$u$ to $v$ for any day count basis.
 
 The _par coupon_ at time $t$, $F_t(u,v;\delta)$ is the coupon that makes the price at
 time $t\le u$ equal to $0$, $0 = E_t -D_u + (1 + F_t\delta(u,v))D_v$.
@@ -238,15 +253,19 @@ There are also forward rate agreements not involving the exchange of notional. A
 A _receiver_ has the negative of this cash flow. The value at any time $t \le u$ is
 determined by
 
+% f delta - F delta' if different day count basis
+
 \begin{align*}
-X_t D_t &= E_t (f - F_u(u,v;\delta))\delta(u,v) D_v \\
-        &= E_t f\delta(u,v) D_v - E_u[D_u - D_v]  \\
-        &= E_t f\delta(u,v) D_v - D_u + D_v  \\
-        &= E_t -D_u + (1 + f\delta(u,v)) D_v \\
+X_t D_t &= E_t[(f - F_u(u,v;\delta))\delta(u,v) D_v] \\
+        &= E_t[f\delta(u,v) D_v - E_u[D_u - D_v]]  \\
+        &= E_t[f\delta(u,v) D_v - D_u + D_v]  \\
+        &= E_t[-D_u + (1 + f\delta(u,v)) D_v] \\
 \end{align*}
 
 which is the same as for a forward rate agreement that does exchange notional.
 These two types of FRAS's have very different risk characteristics.
+If either counterparty defaults when notionals are exchanged the loss can
+be much larger than when the payment is only the difference of the fixed and floating rate.
 
 
 ## Remarks

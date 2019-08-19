@@ -118,13 +118,29 @@ E\sum_{j,k} c_j\bar{c_k} X^{j+k} = \sum_{j,k} c_j \bar{c_k} m_{j+k}$.
 This says the Hankel matrix, $M = [m_{j+k}]_{j,k}$, is positive definite.
 The converse is also true: if the Hankel matrix is positive definite there
 exists a random variable with the corresponding moments.
+This is not a trivial result and the random variable might not be unique.
 
 % Dunford Schwartz Volume 2 pg 1251.
 % Extending unbounded symmetric operators. Deficiency index.
  
 Spectral measure ...
 
-Copulas
+### Copulas
+
+A _copula_ is the joint distribution of random variables uniformly distributed on the unit interval.
+Let $U$ and $V$ be two uniformly distributed random variables.
+
+If $V=U$ then their joint distribution is
+$C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u,v\} = M(u,v)$.
+
+If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
+= P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
+
+For every copula, $W \le C \le M$.
+
+Let $X$ and $Y$ be random variables with cdfs $F$
+and $G$ respectively, and joint distribution $H$.
+Define the cumulant, $C = C^{X,Y}$, to be the joint distribution of $F(X)$ and $G(Y)$.
 
 ### Cumulants
 
@@ -142,9 +158,10 @@ $\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
 
 The _characteristic function_ of a random variable, $X$, is $\xi(t) = \kappa(it)$.
 
+### Fourier Transform
+
 The _Fourier transform_ is $\psi(t) = \xi(-t) = \kappa(-it)$.
 
-Fourier Transform.
 
 #### Examples
 
@@ -175,24 +192,6 @@ Two random variables, $X$ and $Y$, are defined by their _joint
 distribution_, $F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.  For example $(X,Y)$ is
 in the square $(a,b]\times (c,d]$ with probability
 $P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
-
-### Copulas
-
-A _copula_ is the joint distribution of uniform random variables. (On the unit interval)
-Let $U$ and $V$ be two uniformly distributed random variables.
-
-If $V=U$ then their joint distribution is
-$C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u,v\} = M(u,v)$.
-
-If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
-= P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
-
-For every copula, $W \le C \le M$.
-
-Let $X$ and $Y$ be random variables with cdfs $F$
-and $G$ respectively, and joint distribution $H$.
-Define the cumulant, $C = C^{X,Y}$, to be the joint distribution of $F(X)$ and $G(Y)$.
-
 
 ## Algebras of Sets
 
