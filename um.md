@@ -149,19 +149,19 @@ $X_{v}D_{v} = M_v - \sum_{s\le v} C_s D_s$ in the first displayed equation.
 
 ## Valuing
 
-If a derivative security pays amounts $B_j$ at times $\upsilon_j$ and there is
+If a derivative security pays amounts $\bar{A_j}$ at times $\bar{\tau_j}$ and there is
 a hedge, $(\Gamma_t)_{t\in T}$, that replicates these amounts, the value
 of the derivative is the cost of setting up the initial hedge: $V_0 = \Gamma_0\cdot X_0$.
-The hedge must satisfy $A_t = 0$ if $t\not=\upsilon_j$ for all $j$ (_self financing_)
-and $A_t = B_j$ if $t = \upsilon_j$ for some $j$.
+The hedge must satisfy $A_t = 0$ if $t\not=\bar{\tau_j}$ for all $j$ (_self financing_)
+and $A_t = \hat{A_j}$ if $t = \bar{\tau_j}$ for some $j$.
 
-The formula $V_0 = E[\sum_j B_j D_{\upsilon_j}]$ is the
+The formula $V_0 = E[\sum_j \hat{A_j} D_{\hat{\tau_j}}]$ is the
 value of the initial hedge, $\Gamma_0\cdot X_0$. It can be computed using the
-derivative security payments and the deflator.
+derivative security payments, $\bar{A_j}$, and the deflator.
 
-An European option has a single payment, $B_T$, at a fixed time $T$
-and has value $V_0 = E B_T D_T$. Sometimes it is useful to compute this
-as $E B_T D_T = E^{D_T} B_T E D_T$, where $E^{D_T}$ is the expected value under
+An European option has a single payment, $\hat{A_T}$, at a fixed time $T$
+and has value $V_0 = E \hat{A_T} D_T$. Sometimes it is useful to compute this
+as $E \hat{A_T} D_T = E^{D_T} \hat{A_T} E D_T$, where $E^{D_T}$ is the expected value under
 the Esscher transform of the probability measure defined by $dP^{D_T}/dP =
 D_T/E D_T$. $P^{D_T}$ is called the _forward measure_ at time $T$.
 
@@ -169,7 +169,7 @@ D_T/E D_T$. $P^{D_T}$ is called the _forward measure_ at time $T$.
 
 The trades at time $t$ are similarly determined by $\Delta_t + \Gamma_t =
 dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
-know the position, $\Delta_t$, at time $t$ this determines the trades,
+know the position, $\Delta_t$, at time $t$ this determines the trades:
 $\Gamma_t = dV_t/dX_t - \Delta_t$.
 
 In the continuous time case where stocks are modelled by geometric
@@ -182,8 +182,8 @@ There is still research to be done on when to hedge and how to mangage this risk
 
 ## Examples
 
-The Black-Scholes/Merton model is specified by
-$M_t = (r, s\exp(\sigma B_t - \sigma^2t/2))$ and $D_t = \exp(-\rho t)$.
+The Black-Scholes/Merton model is specified by the exponential martingale
+$M_t = (r, s\exp(\sigma B_t - \sigma^2t/2))$ and deflator $D_t = \exp(-\rho t)$.
 No need for Ito's lemma, self-financing conditions, or PDE's, much less
 the Hahn-Banach theorem.
 
@@ -197,10 +197,10 @@ Assume trades occur at discrete times, like they actually do, so $T = \{t_j\}$ w
 
 A _repurchase agreement_ at time $t_j$, $R_j$, has price $X^{R_j}_{t_j}
 = 1$ and cash flow $C^{R_j}_{t_{j+1}} = R_j$ so for any arbitrage free
-model $D_{t_j} = E_{t_j}[R_j D_{t_{j+1}}]$. We can, and do, assume $D_{t_{j+1}}$ is $\mathcal{A}_{t_j}$
+model $D_{t_j} = E_{t_j}[R_j D_{t_{j+1}}]$. We assume $D_{t_{j+1}}$ is $\mathcal{A}_{t_j}$
 measurable so $D_{t_j} = R_j D_{t_{j+1}}$ and $D_{t_j} = \Pi_{j<n} R_j^{-1}$.
 
-Define _the _forward repo rate_, $f_j$, by $R_j = \exp(f_j\,\Delta t_j)$
+Define the _forward repo rate_, $f_j$, by $R_j = \exp(f_j\,\Delta t_j)$
 where $\Delta t_j = t_{j+1} - t_j$, so $D_{t_j} = \exp(-\sum_{j<n} f_j \Delta_{t_j})$.
 The continuous time version of the _canonical deflator_ is
 $D_t = \exp(-\int_0^t f_s\,ds)$.
@@ -225,26 +225,26 @@ pays $A^p_t = \max\{k - S_t,0\}$ at $t$.
 A _call option_ on underlying $S$ with strike $k$ expiring at time $t$
 pays $A^c_t = \max\{S_t - k, 0\}$ at $t$.
 Since $A^c_t - A^p_t = S_t - k$ we have $V^c_0 - V^p_0 = c - p = S_0 - k ED_t$, where $c$ and $p$ are the value
-of the call and put at time 0.
+of the call and put at time 0. This result is independent of any (arbitrage-free) model.
 
 ### Zero Coupon Bond
 
 A _zero coupon bond_ pays one unit at maturity $u$.
 An arbitrage free model requires the price at time $t$, $Z_t(u)$, to
-satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = E_t\exp(-\int_t^u f_s\,ds)$.
+satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = E_t D_u/D_t = E_t\exp(-\int_t^u f_s\,ds)$.
 
 ### Forward Rate Agreement
 
-A _forward rate agreement_ from time $u$ to time $v$ with coupon $f$ and
+A _forward rate agreement_ over the period $[u$, v]$ with coupon $f$ and
 day count basis $\delta$ pays $-1$ unit at the
 _effective date_ $u$, and $1 + f\delta(u,v)$ at the
 _termination date_ $v$, where $\delta(u,v)$ is the [_day count
 fraction_](https://en.wikipedia.org/wiki/Day_count_convention) for the
-interval $[u,v]$.  The day count fraction is approximately equal to the time in years from
+interval.  The day count fraction is approximately equal to the time in years from
 $u$ to $v$ for any day count basis.
 
-The _par coupon_ at time $t$, $F_t(u,v;\delta)$ is the coupon that makes the price at
-time $t\le u$ equal to $0$, $0 = E_t -D_u + (1 + F_t\delta(u,v))D_v$.
+The _forward par coupon_ at time $t$, $F_t(u,v;\delta)$ is the coupon that makes the price at
+time $t\le u$ equal to $0$: $0 = E_t -D_u + (1 + F_t\delta(u,v))D_v$.
 Hence $F_t(u,v;\delta) = (Z_t(u)/Z_t(v) - 1)/\delta(u,v)$ is determined by zero coupon
 bond prices. Note $F_t\delta E_t D_v = E_t[D_u - D_v]$.
 
@@ -264,9 +264,31 @@ X_t D_t &= E_t[(f - F_u(u,v;\delta))\delta(u,v) D_v] \\
 
 which is the same as for a forward rate agreement that does exchange notional.
 These two types of FRAS's have very different risk characteristics.
-If either counterparty defaults when notionals are exchanged the loss can
+If either counterparty defaults during the time notionals are exchanged the loss can
 be much larger than when the payment is only the difference of the fixed and floating rate.
 
+# Interest Rate Swap
+
+An _interest rate swap_ with _calculation dates_ $(t_j)_{j=0}^n$ with coupon $c$, and
+day count basis $\delta$ pays $-1$ unit at the effective date $t_0$, $c\delta(t_{j-1},t_j)$
+at $t_j$, $0 < j < n$, and $1 + c\delta(t_{n-1},t_n)$ at _termination_ $t_n$.
+
+The _swap par coupon_ at time $t$, $F_t(t_0,\ldots,t_n;\delta)$,
+ is the coupon that makes the price at
+time $t\le {t_0}$ equal to $0$:
+$0 = E_t -D_{t_0} + \sum_{0<j<n} F_t\delta(t_{j-1},t_j) D_{t_j} + (1 + F_t\delta(t_{n-1},t_n) D_{t_n}$.
+Hence $F_t(t_0,\ldots,t_n;\delta) = (Z_t(t_0) - Z_t(t_n))/\sum_{0<j\le n}\delta(t_{j-1},t_j) Z_t(t_j)$
+is determined by zero coupon bond prices.
+
+Note that if $n = 1$ this is identical to a forward rate agreement.
+
+There are also interest rate swaps not involving the exchange of notional. A
+(fixed rate) _payer_ has the cash flows $(c - F_{t_j}(t_{j-1},t_j;\delta))\delta(t_{j-1},t_j)$ at times $t_j$,
+$0 < j \le n$.
+A _receiver_ has the negative of these cash flow.
+
+As with forward rate agreements, the coupon making the value at time $t$ equal to zero is
+the swap par coupon.
 
 ## Remarks
 
@@ -283,6 +305,21 @@ _Price_ is a function $X\colon T\times A\times I\times C\times I\times C\to \mat
 where $T$ is the set of trading times, $A$ the set of amounts that can be traded,
 $I$ is the set of market instruments, and $C$ is the set of legal trading entities.
 
-There is no need for a probability measure. The _dual_ of the space of bounded
+There is no need for probability measures. The Fundamental Theorem of
+Asset Pricing is a geometic result. In the one period case where $T =
+\{t_0,t_1\}$ the no arbitrage condition is there does not exist $\Gamma_0$
+with $A_0 = -\Gamma_0\cdot X_0 > 0$ and $A_1 = \Gamma_0\cdot X_1\ge 0$.
+Let's assume $X_1\in B(\Omega,\mathbf{R}^I)$, the set of bounded functions from
+$\Omega$ to $\mathbf{R}^I$. Consider the map $A\colon B$,
+where $B = \mathbf{R} \oplus B(\Omega)$,
+defined by $\Gamma \mapsto (-\Gamma_0\cdot X_0, \Gamma_0\cdot X_1)$. No arbitrage
+says the range of $A$ does not intersect the cone $\{p \oplus P):p > 0, P\ge 0\}$.
+Since the cone has an interior point, the Hahn-Banach theorem implies there exists
+a hyperplane that does not intersect the cone. The hyperplane is the kernel of
+an element in the dual space $B^* = \mathbf{R}\oplus ba(\Omega)$, where
+$ba(\Omega)$ is the space of finitely additive measures. Call this element
+$\pi\oplus\Pi$. We may assume $\pi = 1$.
+
+The _dual_ of the space of bounded
 functions on a set $\Omega$, $B(\Omega)$, is the space of finitely additive
 measures on $\Omega$, $ba(\Omega)$.
