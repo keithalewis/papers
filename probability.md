@@ -5,12 +5,12 @@ institution: KALX, LLC
 email: kal@kalx.net
 classoption: fleqn
 abstract: |
-	This short note collects salient facts about probability theory.
+	This note collects salient facts about probability theory.
 ...
 
 Probability is an extension of logic. Instead of propositions being
 either true or false a degree of belief can be specified for events occurring.
-All probabilities are based on information and
+All probabilities are based on models of available information and
 different people may have different degrees of belief.
 However, as the amount of information increases, probabilities should converge.
 
@@ -49,7 +49,9 @@ Let $1_A(\omega) = 1$ if $\omega\in A$ and $= 0$ if $\omega\not\in A$.
 If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
 Define the _expected value_ of $X$ by $EX = \sum_i a_i P(A_i)$.
 
-Exercise. Show that if $\sum_i a_i A_i = 0$ then $\sum_i a_i P(A_i) = 0$.
+Exercise. Show that if $\sum_i a_i 1_{A_i} = 0$ then $\sum_i a_i P(A_i) = 0$.
+
+Hint: Replace the $A_i$ by disjoint $B_j$ so $b_j = 0$ for all $j$.
 
 This shows expected value is [well-defined](https://en.wikipedia.org/wiki/Well-defined).
 
@@ -58,6 +60,7 @@ Exercise. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
 
 Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
 
+<!--
 %Exercise. (Inclusion-Exclusion principal) Let $S$ be a finite set and
 %let $f$ be any function defined on subsets of $S$.
 %Define $\phi f(T) = \sum_{U\supseteq T} f(U)$ and
@@ -66,8 +69,54 @@ Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A
 %Show $\phi\psi g = g$ and $\psi\phi f = f$.
 
 %Hint: Group the sum by $|Y| - |T|$.
+-->
 
-## Random Variables
+# Algebras of Sets
+
+An _algebra of sets_ on $\Omega$ is a collection of subsets (events),
+$\mathcal{A}$, that is closed under complement and union. We also assume
+the empty set belongs to $\mathcal{A}$. By De Morgan's Laws an algebra
+is also closed under intersection and $\Omega$ belongs to $\mathcal{A}$.
+The _power set_ of $\Omega$, $2^\Omega = \{E\subseteq\Omega\}$, clearly
+satisfies these conditions.
+
+An _atom_ of an algebra is a member, $A$, of the algebra such that if
+$B\subseteq A$ and $B$ is in the algebra, then either $B = A$ or $B$
+is the empty set.
+
+## Partition
+
+A _partition_ of a set is a collection of pairwise disjoint subsets who's union is equal to the set.
+
+Exercise. If an algebra on $\Omega$ is finite its atoms form a partition of $\Omega$.
+
+Hint: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$, $\omega\in\Omega$, is an atom 
+
+This shows there is a one-to-one correspondence between finite partitions
+and finite algebras of sets.  A partition is the mathematical way of
+specifying partial information. Knowing the outcome, $\omega\in\Omega$,
+corresponds to complete knowledge. Knowing which atom the outcome
+belongs to corresponds to partial knowledge. For example, the partition
+$\{\{1,3,5\},\{2,4,6\}\}$ corresponds to knowing whether the roll of a
+die is odd or even.
+
+The coarsest partition $\{\Omega\}$ corresponds to no knowledge while the finest partition
+$\{\{\omega\}:\omega\in\Omega\}$ corresponds to complete knowledge.
+
+## Measurable
+
+A function $X\colon\Omega\to\mathbf{R}$ is $\mathcal{A}$-_measureable_ if the sets
+$X^{-1}((-\infty, x]) = \{\omega\in\Omega:X(\omega)\le x\}$
+belong to $\mathcal{A}$ for $x\in\mathbf{R}$.
+
+Exercise: If $\mathcal{A}$ is finite, show that a function is measurable if and only if it
+is constant on atoms of $\mathcal{A}$.
+
+In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
+
+
+
+# Random Variable
 
 A _random variable_ is a variable, a
 symbol that can be used in place of a number, with additional information:
@@ -76,20 +125,34 @@ function_ is $F(x) = F^X(x) = P(X\le x)$.
 It tells you everything there is to know about $X$. For example,
 $P(a < X \le b) = F(b) - F(a)$. 
 
-Exercise. Show $P(a\le X\le b) = lim_{x\uparrow a} F(b) - F(x)$.
+Exercise. Show $P(a\le X\le b) = \lim_{x\uparrow a} F(b) - F(x)$.
 
 Hint: $[a,b] = \cap_n (a - 1/n, b]$.
 
-In general, $P(X\in A) = E 1_A = \int 1_A(x)\,dF(x)$ for sufficiently nice $A\subset\mathcal{R}$.
+In general, $P(X\in A) = E 1_A = \int 1_A(x)\,dF(x)$ for sufficiently nice $A\subset\mathbf{R}$.
 
 Since $(-\infty,x] \subseteq (-\infty,x']$ if $x\le x'$, $F$ is non-decreasing: $F(x) \le F(x')$.
 $\lim_{x\to -\infty} F(x) = 0$ 
 $\lim_{x\to\infty} F(x) = 1$.
-$F$ is right continous with left limits.
+$F$ is right continuous with left limits.
+
+## Examples
+
+### Discrete
+
+A _discrete_ random variable is defined by
+$x_i\in\mathbf{R}$ and $p_i > 0$ with $\sum p_i = 1$.
+The probability the random variable takes on value $x_i$ is $p_i$.
+
+Bernoulli, Binomial
+
+### Uniform
 
 The random variable, $U$, that is _uniformly distributed_ on the _unit
-inverval_, $[0,1]$, has cdf $F(x) = x$ if $0\le x\le 1$, $=0$ if $x <
+interval_, $[0,1]$, has cdf $F(x) = x$ if $0\le x\le 1$, $=0$ if $x <
 0$, and $= 1$ if $x > 1$.
+
+### Normal
 
 Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
 
@@ -100,8 +163,15 @@ Exercise. If $X$ has cdf $F$, then $F(X)$ is uniformly distributed on the unit i
 This shows a uniformly distributed random variable has sufficient randomness to
 generate any random variable. There are no random, random variables.
 
+The mathematician's definition of a random variable is that it is
+a measurable function $X\colon\Omega\to\mathbf{R}$. Its cumulative
+distribution function is $F(x) = P(X\le x) = P(\{\omega\in\Omega\mid X(\omega) \le x\})$.
+Given a cdf $F$ we can define
+$X\colon\mathbf{R}\to\mathbf{R}$ to be the
+identity function and let $P$ be the probability measure defined by $F$:
+$P(A) = \int 1_A(x)\,dF(x)$. 
 
-### Expected Value
+## Expected Value
 
 The _expected value_ of a random variable is defined by the
 $E X = \int_{-\infty}^\infty x\,dF(x)$. The expected value of any function of
@@ -113,34 +183,20 @@ The _moments_ of a random variable, $X$, are $m_n = E[X^n]$, $n = 0,1,2,\ldots$.
 They don't necessarily exist for all $n$, except for $n = 0$.
 They also cannot be an arbitrary sequence of values.
 
-Suppose all moments of $X$ exist, then for any complex numbers, $(c_i)$, $0 \le E|\sum_i c_i X^i|^2 =
-E\sum_{j,k} c_j\bar{c_k} X^{j+k} = \sum_{j,k} c_j \bar{c_k} m_{j+k}$.
-This says the Hankel matrix, $M = [m_{j+k}]_{j,k}$, is positive definite.
-The converse is also true: if the Hankel matrix is positive definite there
-exists a random variable with the corresponding moments.
-This is not a trivial result and the random variable might not be unique.
+Suppose all moments of $X$ exist, then for any complex numbers,
+$(c_i)$, $0 \le E|\sum_i c_i X^i|^2 = E\sum_{j,k} c_j\bar{c_k} X^{j+k}
+= \sum_{j,k} c_j \bar{c_k} m_{j+k}$.  This says the Hankel matrix, $M =
+[m_{j+k}]_{j,k}$, is positive definite.  The converse is also true: if
+the Hankel matrix is positive definite there exists a random variable
+with the corresponding moments.  This is not a trivial result and the
+random variable might not be unique.
 
+<!--
 % Dunford Schwartz Volume 2 pg 1251.
 % Extending unbounded symmetric operators. Deficiency index.
+-->
  
 Spectral measure ...
-
-### Copulas
-
-A _copula_ is the joint distribution of random variables uniformly distributed on the unit interval.
-Let $U$ and $V$ be two uniformly distributed random variables.
-
-If $V=U$ then their joint distribution is
-$C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u,v\} = M(u,v)$.
-
-If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
-= P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
-
-For every copula, $W \le C \le M$.
-
-Let $X$ and $Y$ be random variables with cdfs $F$
-and $G$ respectively, and joint distribution $H$.
-Define the cumulant, $C = C^{X,Y}$, to be the joint distribution of $F(X)$ and $G(Y)$.
 
 ### Cumulants
 
@@ -161,6 +217,10 @@ The _characteristic function_ of a random variable, $X$, is $\xi(t) = \kappa(it)
 ### Fourier Transform
 
 The _Fourier transform_ is $\psi(t) = \xi(-t) = \kappa(-it)$.
+These can be used to prove the _central limit theorem_:
+if $X_j$ are independent, identically distributed random variables with mean zero
+and variance one, then $(X_1 + \cdots X_n)/sqrt{n}$ converges to a standard
+normal random variable.
 
 
 #### Examples
@@ -193,54 +253,23 @@ distribution_, $F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.  For example $(X,Y)$
 in the square $(a,b]\times (c,d]$ with probability
 $P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
 
-## Algebras of Sets
+### Copulas
 
-An _algebra of sets_ on $\Omega$ is a collection of subsets,
-$\mathcal{A}$, that is closed under complement and union. We also assume
-the empty set belongs to $\mathcal{A}$. By De Morgan's Laws an algebra
-is also closed under intersection and $\Omega$ belongs to $\mathcal{A}$.
-The _power set_ of $\Omega$, $2^\Omega = \{E\subseteq\Omega\}$, clearly
-satisfies these conditions.
+A _copula_ is the joint distribution of random variables uniformly distributed on the unit interval.
+Let $U$ and $V$ be two uniformly distributed random variables.
 
-An _atom_ of an algebra is a member, $A$, of the algebra such that if
-$B\subseteq A$ and $B$ is in the algebra, then either $B = A$ or $B$
-is the empty set.
+If $V=U$ then their joint distribution is
+$C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u,v\} = M(u,v)$.
 
-A _partition_ of a set is a collection of pairwise disjoint subsets who's union is equal to the set.
+If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
+= P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
 
-Exercise. If an algebra on $\Omega$ is finite its atoms form a partition of $\Omega$.
+For every copula, $W \le C \le M$.
 
-Hint: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$, $\omega\in\Omega$, is an atom 
+Let $X$ and $Y$ be random variables with cdfs $F$
+and $G$ respectively, and joint distribution $H$.
+Define the cumulant, $C = C^{X,Y}$, to be the joint distribution of $F(X)$ and $G(Y)$.
 
-This shows there is a one-to-one correspondence between finite partitions
-and finite algebras of sets.  A partition is the mathematical way of
-specifying partial information. Knowing the outcome, $\omega\in\Omega$,
-corresponds to complete knowledge. Knowing which atom the outcome
-belongs to corresponds to partial knowledge. For example, the partition
-$\{\{1,3,5\},\{2,4,6\}\}$ corresponds to knowing whether the roll of a
-die is odd or even.
-
-The coarsest partition $\{\Omega\}$ corresponds to no knowledge while the finest partition
-$\{\{\omega\}:\omega\in\Omega\}$ corresponds to complete knowledge.
-
-### Measurablity
-
-A function $X\colon\Omega\to\mathbf{R}$ is $\mathcal{A}$-_measureable_ if the sets
-$X^{-1}((-\infty, x]) = \{\omega\in\Omega:X(\omega)\le x\}$
-belong to $\mathcal{A}$ for $x\in\mathbf{R}$.
-
-Exercise: If $\mathcal{A}$ is finite, show that a function is measurable if and only if it
-is constant on atoms of $\mathcal{A}$.
-
-In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
-
-The mathematician's definition of a random variable is that it is
-a measurable function $X\colon\Omega\to\mathbf{R}$. Its cumulative
-distribution function is $F(x) = P(X\le x) = P(\{\omega\in\Omega\mid X(\omega) \le x\})$.
-Given a cdf $F$ we can define recover the physicists random variable by defining
-$X\colon\mathbf{R}\to\mathbf{R}$ to be the
-identity function and let $P$ be the probability measure defined by $F$:
-$P(A) = \int 1_A(x)\,dF(x)$. 
 
 ### Normal
 
