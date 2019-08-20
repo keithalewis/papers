@@ -208,6 +208,16 @@ $D_t = \exp(-\int_0^t f_s\,ds)$.
 As we will see below, the prices of all
 (non-risky) fixed income securites are determined by the deflator.
 
+### Futures
+
+A _futures_ on underlying $S$ expiring at $t_n$ has price $X_{t_j} = 0$ for all $j$,
+cash flows $C_{t_j} = \Phi_{t_j} - \Phi_{t_{j-1}}$ for $0 < j <\le n$, where
+$\Phi_{t_j}$ is the futures _quote_ at time $t_j$, and $\Phi_{t_n} = S_{t_n}$
+at expiration. Since $0 = E_{t_j} (\Phi_{t_{j+1}} - \Phi_{t_j}) D_{t_j}$, we
+have $\Phi_{t_j} = E_{t_j} \Phi_{t_{j+1}}$ when $D_{t_j} > 0$ is $t_j$ measurable.
+
+This shows futures quotes are a martingale.
+
 ### Forward
 
 A _forward_ contract on underlying $S$ with stike $k$ expiring at time $t$ 
@@ -244,9 +254,16 @@ interval.  The day count fraction is approximately equal to the time in years fr
 $u$ to $v$ for any day count basis.
 
 The _forward par coupon_ at time $t$, $F_t(u,v;\delta)$ is the coupon that makes the price at
-time $t\le u$ equal to $0$: $0 = E_t -D_u + (1 + F_t\delta(u,v))D_v$.
-Hence $F_t(u,v;\delta) = (Z_t(u)/Z_t(v) - 1)/\delta(u,v)$ is determined by zero coupon
-bond prices. Note $F_t\delta E_t D_v = E_t[D_u - D_v]$.
+time $t\le u$ equal to $0$: $0 = E_t -D_u + (1 + F_t(u,v;\delta)\delta(u,v))D_v$.
+Hence the par coupon
+$$
+F_t(u,v;\delta) = (Z_t(u)/Z_t(v) - 1)/\delta(u,v)
+$$
+is determined by zero coupon bond prices. Note, writing $F_t = F_t(u,v;\delta)$
+and $\delta = \delta(u,v)$,
+$$
+E_t F_t\delta D_v = F_t\delta E_t D_v = E_t[D_u - D_v].
+$$
 
 There are also forward rate agreements not involving the exchange of notional. A
 (fixed rate) _payer_ has the single cash flow $(f - F_u(u,v;\delta))\delta(u,v)$ at time $v$.
@@ -256,7 +273,7 @@ determined by
 % f delta - F delta' if different day count basis
 
 \begin{align*}
-X_t D_t &= E_t[(f - F_u(u,v;\delta))\delta(u,v) D_v] \\
+V_t D_t &= E_t[(f - F_u(u,v;\delta))\delta(u,v) D_v] \\
         &= E_t[f\delta(u,v) D_v - E_u[D_u - D_v]]  \\
         &= E_t[f\delta(u,v) D_v - D_u + D_v]  \\
         &= E_t[-D_u + (1 + f\delta(u,v)) D_v] \\
@@ -276,8 +293,11 @@ at $t_j$, $0 < j < n$, and $1 + c\delta(t_{n-1},t_n)$ at _termination_ $t_n$.
 The _swap par coupon_ at time $t$, $F_t(t_0,\ldots,t_n;\delta)$,
  is the coupon that makes the price at
 time $t\le {t_0}$ equal to $0$:
-$0 = E_t -D_{t_0} + \sum_{0<j<n} F_t\delta(t_{j-1},t_j) D_{t_j} + (1 + F_t\delta(t_{n-1},t_n) D_{t_n}$.
-Hence $F_t(t_0,\ldots,t_n;\delta) = (Z_t(t_0) - Z_t(t_n))/\sum_{0<j\le n}\delta(t_{j-1},t_j) Z_t(t_j)$
+$$
+0 = E_t -D_{t_0} + \sum_{0<j<n} F_t\delta(t_{j-1},t_j) D_{t_j} + (1 + F_t\delta(t_{n-1},t_n) D_{t_n}.
+$$
+Hence the par coupon,
+$F_t(t_0,\ldots,t_n;\delta) = (Z_t(t_0) - Z_t(t_n))/\sum_{0<j\le n}\delta(t_{j-1},t_j) Z_t(t_j)$,
 is determined by zero coupon bond prices.
 
 Note that if $n = 1$ this is identical to a forward rate agreement.
@@ -290,6 +310,24 @@ A _receiver_ has the negative of these cash flow.
 As with forward rate agreements, the coupon making the value at time $t$ equal to zero is
 the swap par coupon.
 
+### Floorlet
+
+A _floorlet_ is a put option on an at-the-money _forward rate agreement_.
+It pays $\max\{k - F_u(u,v),0\}\delta(u,v)$ at time $v$.
+Its value at time $t < u$ is determined by $V_t D_t = E_t \max\{k - F_u(u,v),0\}\delta(u,v) D_u$.
+Writing $F_u = F_u(u,v)$ and $\delta = \delta(u,v)$ we have
+
+\begin{align*}
+V_t D_t &= E_t[max\{k - F_u,0\}\delta D_v] \\
+        &= E_t[max\{k\delta - (1/Z_u(v) - 1),0\} D_v] \\
+        &= E_t[max\{1 + k\delta - 1/Z_u(v),0\} D_v] \\
+        &= E^*_t[max\{1 + k\delta - 1/Z_u(v),0\}] E_tD_v \\
+        &= E^*_t[max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)D_t \\
+\end{align*}
+where $E^*$ is the Esscher transform with $dP^*/dP = D_v/E_t D_v$.
+The shows the value at $t$ of a caplet is
+$V_t = E^*_t[max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)$.
+
 ## Remarks
 
 The price of an instrument is not a number. Not only does it
@@ -299,7 +337,8 @@ purchased, and the counterparties involved, determine the price.
 The atoms of finance are _exchanges_: $(t;a,i,c;a',i',c')$,
 where $t$ is the time of the exchange, $a$ is the amount
 of instrument $i$ the _buyer_, $c$, decides to obtain for the amount
-$a'$ in instrument $i'$ the _seller_, $c'$, charges.
+$a'$ in instrument $i'$ from the _seller_, $c'$.
+$a'$ in instrument $i'$ from the _seller_, $c'$.
 
 _Price_ is a function $X\colon T\times A\times I\times C\times I\times C\to \mathbf{R}$,
 where $T$ is the set of trading times, $A$ the set of amounts that can be traded,
