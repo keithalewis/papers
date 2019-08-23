@@ -10,8 +10,9 @@ abstract: |
 
 Probability is an extension of logic. Instead of propositions being
 either true or false a degree of belief can be specified for events occurring.
-All probabilities are based on models of available information and
+All probabilities are conditional on models of available information and
 different people may have different degrees of belief.
+
 However, as the amount of information increases, probabilities should converge.
 
 # Probability Model
