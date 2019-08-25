@@ -8,20 +8,25 @@ abstract: |
 	This note collects salient facts about probability theory.
 ...
 
-Probability is an extension of logic. Instead of propositions being
-either true or false a degree of belief can be specified for events occurring.
-All probabilities are conditional on models of available information and
-different people may have different degrees of belief.
-
-However, as the amount of information increases, probabilities should converge.
+Probability is an extension of logic. Instead of propositions being either
+true or false a degree of belief can be specified for events occurring.
+All probabilities are conditional on models of available information
+and different people may have different degrees of belief.
 
 # Probability Model
 
-A _probability model_ specifies a _sample space_ and a _probability measure_.
-The sample space is just a set of what can possibly happen: heads or tails as the outcome
-of a coin toss, the integers from 1 to 6 as the outcomes of rolling a single die,
-the set of all sequences of not more than 280 characters as a model of possible Twitter tweets.
+A _probability model_ specifies a _sample space_ and a _probability
+measure_.
 
+## Sample Space
+A sample space is just a set of what can possibly happen:
+heads or tails as the outcome of a coin toss, the integers from 1 to
+6 as the outcomes of rolling a single die, the set of all sequences of
+not more than 280 characters as a model of possible Twitter tweets.
+
+An _event_ is a subset of a sample space.
+
+<!--
 Assuming the characters are upper and lower case letters, space, and
 3 punctuation marks then there are $30^280$ possible messages. This
 is approximately $10^1374$. The number of elementary particles in the
@@ -30,11 +35,14 @@ bit under 8 billion. Assuming everyone posts a Trumpian 10 tweets a day
 and uses all of their 280 character allotment, that comes to $8\times
 10^9 \times 10 \times 280 = 2.24\times 10^44$. The universe is 14 billion years.
 That means...
+-->
 
 People seem to be surprised probabilities are modeled using sets.
 Sets have no structure, they are just a bag of things (_elements_). 
 
-An _event_ is a subset of a sample space. A _probability measure_ assigns
+## Probability Measure
+
+A _probability measure_ assigns
 a number between 0 and 1 to events. If $\Omega$ is a sample space and $P$
 is a probability measure then the measure of the union of sets is the
 sum of the measure of each set minus the measure of the intersection:
@@ -45,6 +53,8 @@ A probability measure must also satisfy $P(\emptyset) = 0$ and $P(\Omega) = 1$.
 
 Exercise. If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$,
 show $(Q - a)/(b - a)$ is a probability measure.
+
+## Expected Value
 
 Let $1_A(\omega) = 1$ if $\omega\in A$ and $= 0$ if $\omega\not\in A$.
 If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
@@ -72,14 +82,17 @@ Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A
 %Hint: Group the sum by $|Y| - |T|$.
 -->
 
-# Algebras of Sets
+## Algebras of Sets
 
 An _algebra of sets_ on $\Omega$ is a collection of subsets (events),
-$\mathcal{A}$, that is closed under complement and union. We also assume
-the empty set belongs to $\mathcal{A}$. By De Morgan's Laws an algebra
-is also closed under intersection and $\Omega$ belongs to $\mathcal{A}$.
-The _power set_ of $\Omega$, $2^\Omega = \{E\subseteq\Omega\}$, clearly
-satisfies these conditions.
+$\mathcal{A}$, that is closed under complement and union.
+This lets us talk about and event not happening and whether
+event $A$ or $B$ occured.
+
+We also assume the empty set belongs to $\mathcal{A}$. By De Morgan's
+Laws an algebra is also closed under intersection and $\Omega$
+belongs to $\mathcal{A}$.  The _power set_ of $\Omega$, $2^\Omega =
+\{E\subseteq\Omega\}$, clearly satisfies these conditions.
 
 An _atom_ of an algebra is a member, $A$, of the algebra such that if
 $B\subseteq A$ and $B$ is in the algebra, then either $B = A$ or $B$
@@ -87,7 +100,8 @@ is the empty set.
 
 ## Partition
 
-A _partition_ of a set is a collection of pairwise disjoint subsets who's union is equal to the set.
+A _partition_ of a set is a collection of pairwise disjoint subsets
+who's union is equal to the set.
 
 Exercise. If an algebra on $\Omega$ is finite its atoms form a partition of $\Omega$.
 
@@ -114,8 +128,6 @@ Exercise: If $\mathcal{A}$ is finite, show that a function is measurable if and 
 is constant on atoms of $\mathcal{A}$.
 
 In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
-
-
 
 # Random Variable
 
@@ -145,7 +157,13 @@ A _discrete_ random variable is defined by
 $x_i\in\mathbf{R}$ and $p_i > 0$ with $\sum p_i = 1$.
 The probability the random variable takes on value $x_i$ is $p_i$.
 
-Bernoulli, Binomial
+#### Bernoulli
+
+A _Bernoulli_ random variable has $P(X = 1) = p$, $P(X = 0) = 1 - p$.
+
+#### Binomial
+
+A _Binomial_ random variable ... $P(X = k) = \binom{n}{k}/2^n$.
 
 ### Uniform
 
