@@ -56,7 +56,7 @@ show $(Q - a)/(b - a)$ is a probability measure.
 
 ## Expected Value
 
-Let $1_A(\omega) = 1$ if $\omega\in A$ and $= 0$ if $\omega\not\in A$.
+The _indicator_ (or _characteristic_) function $1_A(\omega)$ is 1 if $\omega\in A$ and 0 if $\omega\not\in A$.
 If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
 Define the _expected value_ of $X$ by $EX = \sum_i a_i P(A_i)$.
 
@@ -82,17 +82,18 @@ Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A
 %Hint: Group the sum by $|Y| - |T|$.
 -->
 
-## Algebras of Sets
+## Algebra
 
-An _algebra of sets_ on $\Omega$ is a collection of subsets (events),
-$\mathcal{A}$, that is closed under complement and union.
-This lets us talk about and event not happening and whether
-event $A$ or $B$ occured.
+An _algebra of sets_, or _algebra_, on $\Omega$ is a collection of subsets
+(events), $\mathcal{A}$, that is closed under complement and union.
+This lets us talk about and event not happening and whether event $A$
+or $B$ occured.
 
-We also assume the empty set belongs to $\mathcal{A}$. By De Morgan's
-Laws an algebra is also closed under intersection and $\Omega$
-belongs to $\mathcal{A}$.  The _power set_ of $\Omega$, $2^\Omega =
-\{E\subseteq\Omega\}$, clearly satisfies these conditions.
+We also assume the empty set belongs to $\mathcal{A}$, hence also $\Omega$.
+By [De Morgan's Laws](https://en.wikipedia.org/wiki/De_Morgan's_laws)
+an algebra is also closed under intersection.
+The _power set_ of $\Omega$, $2^\Omega =
+\{E:E\subseteq\Omega\}$, clearly satisfies these conditions.
 
 An _atom_ of an algebra is a member, $A$, of the algebra such that if
 $B\subseteq A$ and $B$ is in the algebra, then either $B = A$ or $B$
@@ -142,24 +143,25 @@ Exercise. Show $P(a\le X\le b) = \lim_{x\uparrow a} F(b) - F(x)$.
 
 Hint: $[a,b] = \cap_n (a - 1/n, b]$.
 
-In general, $P(X\in A) = E 1_A = \int 1_A(x)\,dF(x)$ for sufficiently nice $A\subset\mathbf{R}$
-where we are using (Riemann–Stieltjes)[https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral]
+In general, $P(X\in A) = E 1_A = \int 1_A(x)\,dF(x)$
+for sufficiently nice $A\subset\mathbf{R}$ where we are using
+[Riemann–Stieltjes](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral)
 integration.
 
-Since $(-\infty,x] \subseteq (-\infty,x']$ if $x\le x'$, $F$ is non-decreasing: $F(x) \le F(x')$.
-$\lim_{x\to -\infty} F(x) = 0$ 
-$\lim_{x\to\infty} F(x) = 1$.
-$F$ is right continuous with left limits.
+Exercise: Show for any cumulative distribution function, $F$, that
+$F$ is non-decreasing, $\lim_{x\to -\infty} F(x) = 0$,
+$\lim_{x\to\infty} F(x) = 1$ and $F$ is right continuous with left limits.
+
+Every such function defines a random variable.
 
 The cdf $F(x) = \max\{0,\min\{1,x\}\}$ defines the uniformly distributed random variable $U$.
 For $0\le a < b\le 1$, $P(a < U < b) = b - a$.
-
 
 Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
 
 Exercise. If $X$ has cdf $F$, then $X$ and $F^{-1}(U)$ have the same law.
 
-Exercise. If $X$ has cdf $F$, then $F(X)$ is uniformly distributed on the unit interval.
+Exercise. If $X$ has cdf $F$, then $F(X)$ and $U$ have the same law.
 
 This shows a uniformly distributed random variable has sufficient randomness to
 generate any random variable. There are no random, random variables.
@@ -177,6 +179,40 @@ $P(A) = \int 1_A(x)\,dF(x)$.
 The _expected value_ of a random variable is defined by the
 $E X = \int_{-\infty}^\infty x\,dF(x)$. The expected value of any function of
 a random variable is $E f(X) = \int_{-\infty}^\infty f(x)\,dF(x)$.
+
+## Joint Distribution
+
+Two random variables, $X$ and $Y$, are defined by their _joint
+distribution_, $F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.  For example $(X,Y)$ is
+in the square $(a,b]\times (c,d]$ with probability
+$P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
+
+The _marginal distbutions_ are $F^X(x) = F^{X,Y}(x,\infty)$ and $F^Y(y) =  F^{X,Y}(\infty,y)$
+
+### Independent
+
+The random variables $X$ and $Y$ are _independent_ if $F^{X,Y}(x,y) = F^X(x)F^Y(y)$ for all $x$ and $y$.
+This is equivalent to $P(X\in A,Y\in B) = P(X\in A)P(Y\in B)$ for any sets $A$ and $B$.
+
+We also have that $Ef(X)g(Y) = Ef(X) Eg(Y)$ for and functions $f$ and $g$ whenever all expected
+values exist.
+
+Exercise: Prove this for the case $f = \sum_i a_i 1_{A_i}$ and $g = \sum_j b_j 1_{B_j}$.
+
+## Conditional Expectation
+
+The _conditional expectation_ of an event $B$ given an event $A$ is
+$P(B|A) = P(B\cap A)/P(A)$. In some sense, this reduces the sample space to $A$.
+In particular, $P(A|A) = 1$.
+Since $P(A|B) = P(A\cap B)/P(B)$ we have $P(A|B) = P(B|A)P(A)/P(B)$. 
+This is the simplest form of Bayes Theorem. It shows how to update your degree
+of belief based on new information. Every probability is conditional on given information.
+
+Define $E[X|A] = E[X 1_A]/P(A)$ for any random variable $X$. If $X = 1_B$ then this
+coincides with the definition of conditional expectation above.
+
+If we write this as $E[X|A]P(A) = E[X 1_A]$ then defining $E[X|\mathcal{A}]$ by
+$E[X|\mathcal{A}]P|_\mathcal{A} = (XP)_\mathcal{A}$ agree on atoms of $\mathcal{A}$.
 
 ### Moments
 
@@ -197,8 +233,6 @@ random variable might not be unique.
 % Extending unbounded symmetric operators. Deficiency index.
 -->
  
-Spectral measure ...
-
 ### Cumulants
 
 The _cumulant_ of a random variable, $X$, is $\kappa(s) = \kappa^X(s) = \log E\exp(sX)$.
@@ -218,16 +252,62 @@ The _characteristic function_ of a random variable, $X$, is $\xi(t) = \kappa(it)
 ### Fourier Transform
 
 The _Fourier transform_ is $\psi(t) = \xi(-t) = \kappa(-it)$.
+Clearly $\psi(t) = \xi(-t)$.
+
+### Bell Polynomial
+
+The relationship between moments and cumulants is given by _Bell polynomials_.
+They are defined by $\exp(\sum_1^infty a_n s^n/n!) = \sum_0^\infty B_n(a_1,\ldots,a_n) s^n/n!$.
+Taking the derivative with respect to $s$ and equating powers of $s$ shows
+$B_0 = 1$ and $B_{n+1}(a_1,\ldots,a_{n+1} = \sum_{k=0}^n \binom{n}{k} B_{n-k}(a_1,\ldots,a_{n-k}) a_{k+1}$.
+
+Bell polynomials show the connection between the moments and the cumulants
+of a random variable since $E \exp(sX) = \sum_0^\infty E X^n s^n/n! =
+\sum_0^\infty m_n s^n/n!$ where $m_n$ is the $n$-th moment and $E \exp(sX)
+= \exp(\kappa(s)) = \exp(\sum_{n=1}^\infty \kappa_n s^n/n!)$.
+
+Excercise: Show $m_n = \sum_{k=1}^n B_k(\kappa_1,\ldots,\kappa_n)$.
+
+Exercise: Find the first five Bell polynomials.
+
+In particular $m_1 = \kappa_1$ and $m_2 = \kappa_1^2 + \kappa_2$ so
+$\kappa_1$ is the mean and $\kappa_2$ is the variance. If the mean is 0 and
+the variance is 1, then $\kappa_3$ is the skew and $\kappa_4$ is the
+[excess kurtosis](https://en.wikipedia.org/wiki/Kurtosis#Excess_kurtosis).
+
+### Copulas
+
+A _copula_ is the joint distribution of uniformly distributed random variables on the unit interval.
+Let $U$ and $V$ be two uniformly distributed random variables.
+The copula of $X$ and $Y$ is the joint distribution of $F^{-1}(X)$ and $G^{-1}(Y)$ where
+$F$ and $G$ are the cumulative distributions of $X$ and $Y$ respectively:
+$C^{X,Y=}(u,v) = P(F^{-1}(X) \le u, G^{-1}(Y) \le v)$.
+
+Exercise: Show $C^{X,Y}(u,v) = H(F(u),G(v))$ where $C^{X,Y}$ is the copula of $X$ and $Y$,
+and $H$ is the joint distribution of $X$ and $Y$.
+
+Exercise: Show $H(x,y) = C(F^{-1}(x), G^{-1}(y))$
+
+This shows how to use the copula and marginal distributions to get the joint distribution.
+
+If $V=U$ then their joint distribution is
+$C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u,v\} = M(u,v)$.
+
+If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
+= P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
+
+Exercise: For every copula, $W \le C \le M$.
+
+### Examples
+
+Move!!!
 These can be used to prove the _central limit theorem_:
 if $X_j$ are independent, identically distributed random variables with mean zero
 and variance one, then $(X_1 + \cdots X_n)/sqrt{n}$ converges to a standard
 normal random variable.
 
-
-#### Examples
-
-If $X$ is normal then $E\exp(X) = \exp(EX + \Var(X)/2)$ so $\kappa_1 = EX$, $\kappa_2 = \Var(X)$,
-and $\kappa_n = 0$ for $n > 2$.
+If $X$ is normal then $E\exp(X) = \exp(EX + \Var(X)/2)$ so the cumulants satisfy
+$\kappa_n = 0$ for $n > 2$.
 
 If $X$ is Poisson with parameter $\lambda$ then 
 \begin{align*}
@@ -236,42 +316,6 @@ Ee^{sX} &= \sum_{k=0}^\infty e^{sk} e^{-\lambda}\lambda^k/k!\\
 		&= \exp(\lambda(e^s - 1))
 \end{align*}
 so $\kappa(s) = \lambda(e^s - 1)$ and $\kappa_n = \lambda$ for all $n$.
-
-### Bell Polynomials
-
-The relationship between moments and cumulants is given by Bell polynomials.
-
-In particular $m_1 = \kappa_1$ and $m_2 = \kappa_1^2 + \kappa_2$ so
-$\kappa_1$ is the mean and $\kappa_2$ is the variance. If the mean is 0 and
-the variance is 1, then $\kappa_3$ is the skew and $\kappa$ is the
-excess kurtosis.
-
-
-### Joint Distribution
-
-Two random variables, $X$ and $Y$, are defined by their _joint
-distribution_, $F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.  For example $(X,Y)$ is
-in the square $(a,b]\times (c,d]$ with probability
-$P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
-
-### Copulas
-
-A _copula_ is the joint distribution of random variables uniformly distributed on the unit interval.
-Let $U$ and $V$ be two uniformly distributed random variables.
-
-If $V=U$ then their joint distribution is
-$C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u,v\} = M(u,v)$.
-
-If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
-= P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
-
-For every copula, $W \le C \le M$.
-
-Let $X$ and $Y$ be random variables with cdfs $F$
-and $G$ respectively, and joint distribution $H$.
-Define the cumulant, $C = C^{X,Y}$, to be the joint distribution of $F(X)$ and $G(Y)$.
-
-
 ### Normal
 
 ### Poisson
@@ -283,22 +327,6 @@ there exist independent, identically distributed random variables $X_1$,\ldots,$
 such that $X_1 + \cdots + X_n$ has the same law as $X$.
 
 Characteristic function ...
-
-## Conditional Expectation
-
-The _conditional expectation_ of an event $B$ given an event $A$ is
-$P(B|A) = P(B\cap A)/P(A)$. In some sense, this reduces the sample space to $A$.
-In particular, $P(A|A) = 1$.
-Since $P(A|B) = P(A\cap B)/P(B)$ we have $P(A|B) = P(B|A)P(A)/P(B)$. 
-This is the simplest form of Bayes Theorem. It shows how to update your degree
-of belief based on new information. Every probability is conditional on given information.
-
-Define $E[X|A] = E[X 1_A]/P(A)$ for any random variable $X$. If $X = 1_B$ then this
-coincides with the definition of conditional expectation above.
-
-If we write this as $E[X|A]P(A) = E[X 1_A]$ then defining $E[X|\mathcal{A}]$ by
-$E[X|\mathcal{A}]P|_\mathcal{A} = (XP)_\mathcal{A}$ agrees on atoms of $\mathcal{A}$.
-
 
 moments, Hamburger moment problem.
 
