@@ -10,8 +10,7 @@ abstract: |
 
 Probability is an extension of logic. Instead of propositions being either
 true or false a degree of belief can be specified for events occurring.
-All probabilities are conditional on models of available information
-and different people may have different degrees of belief.
+All probabilities are conditional on models of available information.
 
 # Probability Model
 
@@ -19,7 +18,8 @@ A _probability model_ specifies a _sample space_ and a _probability
 measure_.
 
 ## Sample Space
-A sample space is just a set of what can possibly happen:
+
+A sample space is what can happen:
 heads or tails as the outcome of a coin toss, the integers from 1 to
 6 as the outcomes of rolling a single die, the set of all sequences of
 not more than 280 characters as a model of possible Twitter tweets.
@@ -129,7 +129,7 @@ is constant on atoms of $\mathcal{A}$.
 
 In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
 
-# Random Variable
+# Cumulative Distribution
 
 A _random variable_ is a variable, a
 symbol that can be used in place of a number, with additional information:
@@ -142,36 +142,18 @@ Exercise. Show $P(a\le X\le b) = \lim_{x\uparrow a} F(b) - F(x)$.
 
 Hint: $[a,b] = \cap_n (a - 1/n, b]$.
 
-In general, $P(X\in A) = E 1_A = \int 1_A(x)\,dF(x)$ for sufficiently nice $A\subset\mathbf{R}$.
+In general, $P(X\in A) = E 1_A = \int 1_A(x)\,dF(x)$ for sufficiently nice $A\subset\mathbf{R}$
+where we are using (Riemann–Stieltjes)[https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral]
+integration.
 
 Since $(-\infty,x] \subseteq (-\infty,x']$ if $x\le x'$, $F$ is non-decreasing: $F(x) \le F(x')$.
 $\lim_{x\to -\infty} F(x) = 0$ 
 $\lim_{x\to\infty} F(x) = 1$.
 $F$ is right continuous with left limits.
 
-## Examples
+The cdf $F(x) = \max\{0,\min\{1,x\}\}$ defines the uniformly distributed random variable $U$.
+For $0\le a < b\le 1$, $P(a < U < b) = b - a$.
 
-### Discrete
-
-A _discrete_ random variable is defined by
-$x_i\in\mathbf{R}$ and $p_i > 0$ with $\sum p_i = 1$.
-The probability the random variable takes on value $x_i$ is $p_i$.
-
-#### Bernoulli
-
-A _Bernoulli_ random variable has $P(X = 1) = p$, $P(X = 0) = 1 - p$.
-
-#### Binomial
-
-A _Binomial_ random variable ... $P(X = k) = \binom{n}{k}/2^n$.
-
-### Uniform
-
-The random variable, $U$, that is _uniformly distributed_ on the _unit
-interval_, $[0,1]$, has cdf $F(x) = x$ if $0\le x\le 1$, $=0$ if $x <
-0$, and $= 1$ if $x > 1$.
-
-### Normal
 
 Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
 
@@ -352,3 +334,27 @@ Bernoulli(s)
 Kolmogorov
 
 Willy Feller
+
+## Examples
+
+### Discrete
+
+A _discrete_ random variable is defined by
+$x_i\in\mathbf{R}$ and $p_i > 0$ with $\sum p_i = 1$.
+The probability the random variable takes on value $x_i$ is $p_i$.
+
+#### Bernoulli
+
+A _Bernoulli_ random variable has $P(X = 1) = p$, $P(X = 0) = 1 - p$.
+
+#### Binomial
+
+A _Binomial_ random variable ... $P(X = k) = \binom{n}{k}/2^n$.
+
+### Uniform
+
+The random variable, $U$, that is _uniformly distributed_ on the _unit
+interval_, $[0,1]$, has cdf $F(x) = x$ if $0\le x\le 1$, $=0$ if $x <
+0$, and $= 1$ if $x > 1$.
+
+### Normal
