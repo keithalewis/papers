@@ -284,7 +284,7 @@ These two types of FRAS's have very different risk characteristics.
 If either counterparty defaults during the time notionals are exchanged the loss can
 be much larger than when the payment is only the difference of the fixed and floating rate.
 
-# Interest Rate Swap
+### Interest Rate Swap
 
 An _interest rate swap_ with _calculation dates_ $(t_j)_{j=0}^n$ with coupon $c$, and
 day count basis $\delta$ pays $-1$ unit at the effective date $t_0$, $c\delta(t_{j-1},t_j)$
@@ -318,15 +318,15 @@ Its value at time $t < u$ is determined by $V_t D_t = E_t \max\{k - F_u(u,v),0\}
 Writing $F_u = F_u(u,v)$ and $\delta = \delta(u,v)$ we have
 
 \begin{align*}
-V_t D_t &= E_t[max\{k - F_u,0\}\delta D_v] \\
-        &= E_t[max\{k\delta - (1/Z_u(v) - 1),0\} D_v] \\
-        &= E_t[max\{1 + k\delta - 1/Z_u(v),0\} D_v] \\
-        &= E^*_t[max\{1 + k\delta - 1/Z_u(v),0\}] E_tD_v \\
-        &= E^*_t[max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)D_t \\
+V_t D_t &= E_t[\max\{k - F_u,0\}\delta D_v] \\
+        &= E_t[\max\{k\delta - (1/Z_u(v) - 1),0\} D_v] \\
+        &= E_t[\max\{1 + k\delta - 1/Z_u(v),0\} D_v] \\
+        &= E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] E_tD_v \\
+        &= E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)D_t \\
 \end{align*}
-where $E^*$ is the Esscher transform with $dP^*/dP = D_v/E_t D_v$.
+where $E_t^*$ is the Esscher transform with $dP_t^*/dP_t = D_v/E_t D_v$.
 The shows the value at $t$ of a caplet is
-$V_t = E^*_t[max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)$.
+$V_t = E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)$.
 
 ## Remarks
 
@@ -344,10 +344,42 @@ _Price_ is a function $X\colon T\times A\times I\times C\times I\times C\to \mat
 where $T$ is the set of trading times, $A$ the set of amounts that can be traded,
 $I$ is the set of market instruments, and $C$ is the set of legal trading entities.
 
+### One Period Model
+
 There is no need for probability measures. The Fundamental Theorem of
 Asset Pricing is a geometic result. In the one period case where $T =
 \{t_0,t_1\}$ the no arbitrage condition is there does not exist $\Gamma_0$
 with $A_0 = -\Gamma_0\cdot X_0 > 0$ and $A_1 = \Gamma_0\cdot X_1\ge 0$.
+
+In this case the FTAP states there is no arbitrage if and only if there
+exists a positive measure, $\Pi$, on $\Omega$ with $X_0 = \int_\Omega X_1\,d\Pi$.
+
+If $X_0$ belongs to the smallest closed cone containing the range of $X_1$,
+then there exists a positive measure, $\Pi$, with $X_0 = \int_\Omega X_1\,d\Pi$.
+For any $\gamma\in\mathbf{R}^I$ such that $\gamma\cdot X_1\ge0$ we have
+$\gamma\cdot X_0  = \int_\Omega \gamma\cdot X_1\,d\Pi \ge0$ hence there
+can be no arbitrage.
+
+If $X_0$ does not belong to the smallest closed cone containing the range of $X_1$,
+then there exists a hyperplane through the origin separating $X_0$ from the cone.
+E.g., if $x$ is the closest point in the cone to $X_0$ then $\gamma = x - X_0$ will
+do the job.
+Let $\gamma$ be a vector in $\mathbf{R}$ normal to the hyperplane. We can choose $\gamma$
+such that $\gamma\cdot X_0 < 0$ and $\gamma\cdot X_1(\omega) \ge0$ for all $\omega\in\Omega$.
+This shows arbitrage exists.
+
+If a zero coupon bond exists, i.e., there is a $\zeta\in\mathbf{R}^I$ with
+$\zeta\cdot X_1(\omega) = 1$ for all $\omega\in\Omega$, then
+$\zeta\cdot X_0 = \int_\Omega \zeta\cdot X_1\,d\Pi = ||\Pi|| = z$ is the price
+of the zero coupon bond and $P = \Pi/z$ is a probability measure.
+
+### Multi Period Model
+
+Recall the _dual_ of the space of bounded
+functions on a set $\Omega$, $B(\Omega)$, is the space of finitely additive
+measures on $\Omega$, $ba(\Omega)$.
+<!-- cite Dunford Schwartz -->
+
 Let's assume $X_1\in B(\Omega,\mathbf{R}^I)$, the set of bounded functions from
 $\Omega$ to $\mathbf{R}^I$. Consider the map $A\colon B$,
 where $B = \mathbf{R} \oplus B(\Omega)$,
@@ -359,6 +391,3 @@ an element in the dual space $B^* = \mathbf{R}\oplus ba(\Omega)$, where
 $ba(\Omega)$ is the space of finitely additive measures. Call this element
 $\pi\oplus\Pi$. We may assume $\pi = 1$.
 
-The _dual_ of the space of bounded
-functions on a set $\Omega$, $B(\Omega)$, is the space of finitely additive
-measures on $\Omega$, $ba(\Omega)$.
