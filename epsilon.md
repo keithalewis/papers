@@ -88,8 +88,14 @@ $\alpha! = \alpha_1!\cdots\alpha_n!$,
 and $\epsilon^\alpha = \epsilon_1^{\alpha_1}\cdots\epsilon_n^{\alpha_n}$,
 a triumph of mathematical notation if there ever was one.
 
-In order to compute mixed derivatives of orders $m_j$ of $x_j$, $1\le j \le n,
-let $\epsilon = \oplus_{j=1}^n\epsilon_j$ be the direct sum of $\epsilon_j$ each having order $m_j$.
+In order to compute mixed derivatives of orders $m_j$ of $x_j$, $1\le j
+\le n$, let $\epsilon_j = I\oplus\dots\oplus\epsilon\oplus\dots\oplus
+I$ be the direct of identity operators with $\epsilon$
+of order $m_j$ in the $j$-th position. To compute mixed
+partial derivatives at $x\in\mathbf{R}^n$ evaluate
+$f(x_1 I + \epsilon_1,\ldots,x_n I + \epsilon_n)$. The coefficient of
+$\epsilon_1^{\alpha_1}\cdots\epsilon_n^{\alpha_n}$ is the mixed partial
+corresponding to $\alpha$.
 
 ## Computer Implementaton
 
