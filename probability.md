@@ -54,34 +54,6 @@ A probability measure must also satisfy $P(\emptyset) = 0$ and $P(\Omega) = 1$.
 Exercise. If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$,
 show $(Q - a)/(b - a)$ is a probability measure.
 
-## Expected Value
-
-The _indicator_ (or _characteristic_) function $1_A(\omega)$ is 1 if $\omega\in A$ and 0 if $\omega\not\in A$.
-If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
-Define the _expected value_ of $X$ by $EX = \sum_i a_i P(A_i)$.
-
-Exercise. Show that if $\sum_i a_i 1_{A_i} = 0$ then $\sum_i a_i P(A_i) = 0$.
-
-Hint: Replace the $A_i$ by disjoint $B_j$ so $b_j = 0$ for all $j$.
-
-This shows expected value is [well-defined](https://en.wikipedia.org/wiki/Well-defined).
-
-Exercise. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
-+ \sum_{i < j < k} P(A_i\cap A_j\cap A_k) \cdots$.
-
-Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
-
-<!--
-%Exercise. (Inclusion-Exclusion principal) Let $S$ be a finite set and
-%let $f$ be any function defined on subsets of $S$.
-%Define $\phi f(T) = \sum_{U\supseteq T} f(U)$ and
-%$\psi g(T) = \sum_{U\supseteq T} (-1)^{|U| - |T|} g(T)$.
-%These are both operators from $2^S\to\mathbf{R}$.
-%Show $\phi\psi g = g$ and $\psi\phi f = f$.
-
-%Hint: Group the sum by $|Y| - |T|$.
--->
-
 ## Algebra
 
 An _algebra of sets_, or _algebra_, on $\Omega$ is a collection of subsets
@@ -130,7 +102,7 @@ is constant on atoms of $\mathcal{A}$.
 
 In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
 
-# Cumulative Distribution
+# Random Variable
 
 A _random variable_ is a variable, a
 symbol that can be used in place of a number, with additional information:
@@ -180,39 +152,20 @@ The _expected value_ of a random variable is defined by the
 $E X = \int_{-\infty}^\infty x\,dF(x)$. The expected value of any function of
 a random variable is $E f(X) = \int_{-\infty}^\infty f(x)\,dF(x)$.
 
-## Joint Distribution
+The _indicator_ (or _characteristic_) function $1_A(\omega)$ is 1 if $\omega\in A$ and 0 if $\omega\not\in A$.
+If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
+Define the _expected value_ of $X$ by $EX = \sum_i a_i P(A_i)$.
 
-Two random variables, $X$ and $Y$, are defined by their _joint
-distribution_, $F(x,y) = F^{X,Y}(x,y) = P(X\le x, Y\le y)$.  For example $(X,Y)$ is
-in the square $(a,b]\times (c,d]$ with probability
-$P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
+Exercise. Show that if $\sum_i a_i 1_{A_i} = 0$ then $\sum_i a_i P(A_i) = 0$.
 
-The _marginal distbutions_ are $F^X(x) = F^{X,Y}(x,\infty)$ and $F^Y(y) =  F^{X,Y}(\infty,y)$
+Hint: Replace the $A_i$ by disjoint $B_j$ so $b_j = 0$ for all $j$.
 
-### Independent
+This shows expected value is [well-defined](https://en.wikipedia.org/wiki/Well-defined).
 
-The random variables $X$ and $Y$ are _independent_ if $F^{X,Y}(x,y) = F^X(x)F^Y(y)$ for all $x$ and $y$.
-This is equivalent to $P(X\in A,Y\in B) = P(X\in A)P(Y\in B)$ for any sets $A$ and $B$.
+Exercise. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
++ \sum_{i < j < k} P(A_i\cap A_j\cap A_k) \cdots$.
 
-We also have that $Ef(X)g(Y) = Ef(X) Eg(Y)$ for and functions $f$ and $g$ whenever all expected
-values exist.
-
-Exercise: Prove this for the case $f = \sum_i a_i 1_{A_i}$ and $g = \sum_j b_j 1_{B_j}$.
-
-## Conditional Expectation
-
-The _conditional expectation_ of an event $B$ given an event $A$ is
-$P(B|A) = P(B\cap A)/P(A)$. In some sense, this reduces the sample space to $A$.
-In particular, $P(A|A) = 1$.
-Since $P(A|B) = P(A\cap B)/P(B)$ we have $P(A|B) = P(B|A)P(A)/P(B)$. 
-This is the simplest form of Bayes Theorem. It shows how to update your degree
-of belief based on new information. Every probability is conditional on given information.
-
-Define $E[X|A] = E[X 1_A]/P(A)$ for any random variable $X$. If $X = 1_B$ then this
-coincides with the definition of conditional expectation above.
-
-If we write this as $E[X|A]P(A) = E[X 1_A]$ then defining $E[X|\mathcal{A}]$ by
-$E[X|\mathcal{A}]P|_\mathcal{A} = (XP)_\mathcal{A}$ agree on atoms of $\mathcal{A}$.
+Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
 
 ### Moments
 
@@ -245,16 +198,7 @@ If $c$ is a constant then $\kappa^{cX}(s) = \kappa^X(cs)$ so $\kappa^{cX}_n = c^
 If $X$ and $Y$ are independent then $\kappa^{X + Y}(s) = \kappa^X(s) + \kappa^Y(s)$ so
 $\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
 
-### Characteristic Function
-
-The _characteristic function_ of a random variable, $X$, is $\xi(t) = \kappa(it)$.
-
-### Fourier Transform
-
-The _Fourier transform_ is $\psi(t) = \xi(-t) = \kappa(-it)$.
-Clearly $\psi(t) = \xi(-t)$.
-
-### Bell Polynomial
+#### Bell Polynomial
 
 The relationship between moments and cumulants is given by _Bell polynomials_.
 They are defined by $\exp(\sum_1^infty a_n s^n/n!) = \sum_0^\infty B_n(a_1,\ldots,a_n) s^n/n!$.
@@ -275,6 +219,58 @@ $\kappa_1$ is the mean and $\kappa_2$ is the variance. If the mean is 0 and
 the variance is 1, then $\kappa_3$ is the skew and $\kappa_4$ is the
 [excess kurtosis](https://en.wikipedia.org/wiki/Kurtosis#Excess_kurtosis).
 
+
+<!--
+%Exercise. (Inclusion-Exclusion principal) Let $S$ be a finite set and
+%let $f$ be any function defined on subsets of $S$.
+%Define $\phi f(T) = \sum_{U\supseteq T} f(U)$ and
+%$\psi g(T) = \sum_{U\supseteq T} (-1)^{|U| - |T|} g(T)$.
+%These are both operators from $2^S\to\mathbf{R}$.
+%Show $\phi\psi g = g$ and $\psi\phi f = f$.
+
+%Hint: Group the sum by $|Y| - |T|$.
+-->
+
+## Conditional Expectation
+
+The _conditional expectation_ of an event $B$ given an event $A$ is
+$P(B|A) = P(B\cap A)/P(A)$. In some sense, this reduces the sample space to $A$.
+In particular, $P(A|A) = 1$.
+Since $P(A|B) = P(A\cap B)/P(B)$ we have $P(A|B) = P(B|A)P(A)/P(B)$. 
+This is the simplest form of Bayes Theorem. It shows how to update your degree
+of belief based on new information. Every probability is conditional on given information.
+
+Define $E[X|A] = E[X 1_A]/P(A)$ for any random variable $X$. If $X = 1_B$ then this
+coincides with the definition of conditional expectation above.
+
+This is how we define $E[X|\mathcal{A}]:\mathcal{A}\to\mathbf{R}$ on atoms of $\mathcal{A}$.
+
+## Joint Distribution
+
+Two random variables, $X$ and $Y$, are defined by their _joint
+distribution_, $H(x,y) = P(X\le x, Y\le y)$.  For example, the point $(X,Y)$ is
+in the square $(a,b]\times (c,d]$ with probability
+$P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
+
+The _marginal distbutions_ are $F(x) = H(x,\infty)$ and $G(y) =  H(\infty,y)$,
+where $F$ and $G$ are the cumulative distributions of $X$ and $Y$ respectively.
+
+In general, the joint distribution of $X_1$, \ldots, $X_n$ is
+$F(x_1,\ldots,x_n) = P(X_1\le x_1,\ldots, X_n\le x_n$).
+
+### Independent
+
+The random variables $X$ and $Y$ are _independent_ if $F^{X,Y}(x,y) = F^X(x)F^Y(y)$ for all $x$ and $y$.
+This is equivalent to $P(X\in A,Y\in B) = P(X\in A)P(Y\in B)$ for any sets $A$ and $B$.
+
+We also have that $Ef(X)g(Y) = Ef(X) Eg(Y)$ for and functions $f$ and $g$ whenever all expected
+values exist.
+
+Exercise: Prove this for the case $f = \sum_i a_i 1_{A_i}$ and $g = \sum_j b_j 1_{B_j}$.
+
+In general, $X_1$, \ldots, $X_n$ are independent if
+$F(x_1,\ldots,x_n) = F_1(x_1)\cdots F_n(x_n)$, where $F_j$ is the law of $X_j$.
+
 ### Copulas
 
 A _copula_ is the joint distribution of uniformly distributed random variables on the unit interval.
@@ -290,13 +286,25 @@ Exercise: Show $H(x,y) = C(F^{-1}(x), G^{-1}(y))$
 
 This shows how to use the copula and marginal distributions to get the joint distribution.
 
+If $U$ and $V$ are independent, uniformly distributed random variables on the unit interval
+then $C(u,v) = uv$.
+
 If $V=U$ then their joint distribution is
 $C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u,v\} = M(u,v)$.
 
 If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
 = P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
 
-Exercise: For every copula, $W \le C \le M$.
+Exercise: (Frechet-Hoeffding) For every copula, $W \le C \le M$.
+
+### Characteristic Function
+
+The _characteristic function_ of a random variable, $X$, is $\xi(t) = \kappa(it)$.
+
+### Fourier Transform
+
+The _Fourier transform_ is $\psi(t) = \xi(-t) = \kappa(-it)$.
+Clearly $\psi(t) = \xi(-t)$.
 
 ### Examples
 
