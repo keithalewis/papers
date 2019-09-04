@@ -1,5 +1,5 @@
 ---
-title: Probability
+title: Probability Refresher
 author: Keith A. Lewis
 institution: KALX, LLC
 email: kal@kalx.net
