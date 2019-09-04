@@ -379,18 +379,24 @@ A _discrete_ random variable is defined by
 $x_i\in\mathbf{R}$ and $p_i > 0$ with $\sum p_i = 1$.
 The probability the random variable takes on value $x_i$ is $p_i$.
 
+If a discrete random variable takes on a finite number of values, $n$, then
+if $p_i = 1/n$ for all $i$ the variable is called _discrete uniform_.
+
 #### Bernoulli
 
-A _Bernoulli_ random variable has $P(X = 1) = p$, $P(X = 0) = 1 - p$.
+A _Bernoulli_ random variable is a discrete random variable with $P(X = 1) = p$, $P(X = 0) = 1 - p$.
 
 #### Binomial
 
-A _Binomial_ random variable ... $P(X = k) = \binom{n}{k}/2^n$.
+A _Binomial_ random variable is a discrete random variable with
+$P(X = k) = \binom{n}{k}/2^n$, $k = 0$, \ldots, $n$.
 
 ### Uniform
 
-The random variable, $U$, that is _uniformly distributed_ on the _unit
-interval_, $[0,1]$, has cdf $F(x) = x$ if $0\le x\le 1$, $=0$ if $x <
-0$, and $= 1$ if $x > 1$.
+A _continuous uniform_ random variable on the interval $[a,b]$ has density
+$f(x) = 1_{[a,b]}/(b - a)$.
+
 
 ### Normal
+
+The _standard normal_ random variable, $Z$, has density function $\phi(x) = \exp(-x^2/2)/\sqrt{2\pi}$.
