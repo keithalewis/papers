@@ -344,6 +344,7 @@ _Price_ is a function $X\colon T\times A\times I\times C\times I\times C\to \mat
 where $T$ is the set of trading times, $A$ the set of amounts that can be traded,
 $I$ is the set of market instruments, and $C$ is the set of legal trading entities.
 
+<!--
 ### One Period Model
 
 There is no need for probability measures. The Fundamental Theorem of
@@ -390,4 +391,4 @@ a hyperplane that does not intersect the cone. The hyperplane is the kernel of
 an element in the dual space $B^* = \mathbf{R}\oplus ba(\Omega)$, where
 $ba(\Omega)$ is the space of finitely additive measures. Call this element
 $\pi\oplus\Pi$. We may assume $\pi = 1$.
-
+-->

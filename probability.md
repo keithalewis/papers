@@ -149,13 +149,13 @@ $P(A) = \int 1_A(x)\,dF(x)$.
 
 ## Expected Value
 
-The _expected value_ of a random variable is defined by the
+The _expected value_ of a random variable is defined by
 $E X = \int_{-\infty}^\infty x\,dF(x)$. The expected value of any function of
 a random variable is $E f(X) = \int_{-\infty}^\infty f(x)\,dF(x)$.
 
 The _indicator_ (or _characteristic_) function $1_A(\omega)$ is 1 if $\omega\in A$ and 0 if $\omega\not\in A$.
 If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
-Define the _expected value_ of $X$ by $EX = \sum_i a_i P(A_i)$.
+The _expected value_ of $X$ by $EX = \sum_i a_i P(A_i)$.
 
 Exercise. Show that if $\sum_i a_i 1_{A_i} = 0$ then $\sum_i a_i P(A_i) = 0$.
 
@@ -291,6 +291,11 @@ Exercise: Show $H(x,y) = C(F^{-1}(x), G^{-1}(y))$
 
 This shows how to use the copula and marginal distributions to recover the joint distribution.
 
+An equivalent definition is a copula is a probability measure on $[0,1]^2$ with uniform
+marginals. 
+
+Exercise: Prove this.
+
 If $U$ and $V$ are independent, uniformly distributed random variables on the unit interval
 then $C(u,v) = uv$.
 
@@ -300,85 +305,15 @@ $C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u
 If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
 = P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
 
-Exercise: (Frechet-Hoeffding) For every copula, $W \le C \le M$.
+Exercise: (Fr&#233;chet-Hoeffding) For every (2-dimensional) copula, $W \le C \le M$.
 
-### Characteristic Function
-
-The _characteristic function_ of a random variable, $X$, is $\xi(t) = \kappa(it)$.
-
-### Fourier Transform
-
-The _Fourier transform_ is $\psi(t) = \xi(-t) = \kappa(-it)$.
-Clearly $\psi(t) = \xi(-t)$.
+Hint: For the upper bound use $H(x,y) \le F(x)$ and $H(x,y) \le G(y)$.
+For the lower bound note $0\le C(u_1,v_1) - C(u_1, v_2) - C(u_2, v_1) + C(u_2, v_2)$
+for $u_1 \ge u_2$ and $v_1 \ge v_2$.
 
 ### Examples
 
-Move!!!
-These can be used to prove the _central limit theorem_:
-if $X_j$ are independent, identically distributed random variables with mean zero
-and variance one, then $(X_1 + \cdots X_n)/sqrt{n}$ converges to a standard
-normal random variable.
-
-If $X$ is normal then $E\exp(X) = \exp(EX + \Var(X)/2)$ so the cumulants satisfy
-$\kappa_n = 0$ for $n > 2$.
-
-If $X$ is Poisson with parameter $\lambda$ then 
-\begin{align*}
-Ee^{sX} &= \sum_{k=0}^\infty e^{sk} e^{-\lambda}\lambda^k/k!\\
-        &= \sum_{k=0}^\infty  (e^s\lambda)^ke^{-\lambda}/k!\\
-		&= \exp(\lambda(e^s - 1))
-\end{align*}
-so $\kappa(s) = \lambda(e^s - 1)$ and $\kappa_n = \lambda$ for all $n$.
-### Normal
-
-### Poisson
-
-### Infinitely Divisible
-
-A random variable, $X$, is _infinitely divisible_ if for any positive integer, $n$,
-there exist independent, identically distributed random variables $X_1$,\ldots,$X_n$
-such that $X_1 + \cdots + X_n$ has the same law as $X$.
-
-Characteristic function ...
-
-moments, Hamburger moment problem.
-
-cumulants, Bell polynomials
-
-
-### Normal
-
-### Poisson
-
-### Infinitely Divisible
-
-## Stochastic Processes
-
-A _stochastic process_ is ...
-
-### Brownian Motion
-
-reflection
-
-### L\'evy Processes
-
-
-
-## Remarks
-
-Cheval de Mere
-
-Pascal
-
-Bernoulli(s)
-
-Kolmogorov
-
-Willy Feller
-
-## Examples
-
-### Discrete
+#### Discrete
 
 A _discrete_ random variable is defined by
 $x_i\in\mathbf{R}$ and $p_i > 0$ with $\sum p_i = 1$.
@@ -401,7 +336,63 @@ $P(X = k) = \binom{n}{k}/2^n$, $k = 0$, \ldots, $n$.
 A _continuous uniform_ random variable on the interval $[a,b]$ has density
 $f(x) = 1_{[a,b]}/(b - a)$.
 
-
 ### Normal
 
 The _standard normal_ random variable, $Z$, has density function $\phi(x) = \exp(-x^2/2)/\sqrt{2\pi}$.
+
+If $X$ is normal then $E\exp(X) = \exp(EX + \Var(X)/2)$ so the cumulants satisfy
+$\kappa_n = 0$ for $n > 2$.
+
+If $X$ is Poisson with parameter $\lambda$ then 
+\begin{align*}
+Ee^{sX} &= \sum_{k=0}^\infty e^{sk} e^{-\lambda}\lambda^k/k!\\
+        &= \sum_{k=0}^\infty  (e^s\lambda)^ke^{-\lambda}/k!\\
+		&= \exp(\lambda(e^s - 1))
+\end{align*}
+so $\kappa(s) = \lambda(e^s - 1)$ and $\kappa_n = \lambda$ for all $n$.
+
+### Infinitely Divisible
+
+A random variable, $X$, is _infinitely divisible_ if for any positive integer, $n$,
+there exist independent, identically distributed random variables $X_1$,\ldots,$X_n$
+such that $X_1 + \cdots + X_n$ has the same law as $X$.
+
+A theorem of Kolmogorov states for every infinitely divisible random variable the exists
+a number $\gamma$ and a non-decreasing function $G$ with
+$$
+\log E e^{sX} = \gamma a + \int_{-\infty}^\infty K_s(x)\,dG(x)$,
+$$
+where $K_s(x) = (e^{sx} - 1 - sx)/x^2$.
+Note if $G(x) = 1_{(-\infty,0]}$ then the random variable is normal and if
+$G(x) = 1_{(-\infty,a]}$ for $a\not=0$ the readom variable is Poisson.
+This theorem states every infinitely divisible random variable is a normal plus
+a linear combination of independent Poisson random variables.
+
+## Unsorted
+
+### Characteristic Function
+
+The _characteristic function_ of a random variable, $X$, is $\xi(t) = \kappa(it)$.
+
+### Fourier Transform
+
+The _Fourier transform_ is $\psi(t) = \xi(-t) = \kappa(-it)$.
+Clearly $\psi(t) = \xi(-t)$.
+
+
+## Remarks
+
+Cheval de Mere
+
+Pascal
+
+Bernoulli(s)
+
+Kolmogorov
+
+Willy Feller
+
+These can be used to prove the _central limit theorem_:
+if $X_j$ are independent, identically distributed random variables with mean zero
+and variance one, then $(X_1 + \cdots X_n)/sqrt{n}$ converges to a standard
+normal random variable.
