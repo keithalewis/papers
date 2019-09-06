@@ -54,7 +54,7 @@ A probability measure must also satisfy $P(\emptyset) = 0$ and $P(\Omega) = 1$.
 Exercise. If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$,
 show $(Q - a)/(b - a)$ is a probability measure.
 
-## Algebra
+# Algebra
 
 An _algebra of sets_, or _algebra_, on $\Omega$ is a collection of subsets
 (events), $\mathcal{A}$, that is closed under complement and union.
@@ -146,6 +146,7 @@ $X\colon\mathbf{R}\to\mathbf{R}$ to be the
 identity function and let $P$ be the probability measure defined by $F$:
 $P(A) = \int 1_A(x)\,dF(x)$. 
 
+
 ## Expected Value
 
 The _expected value_ of a random variable is defined by the
@@ -167,7 +168,7 @@ Exercise. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
 
 Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
 
-### Moments
+## Moments
 
 The _moments_ of a random variable, $X$, are $m_n = E[X^n]$, $n = 0,1,2,\ldots$.
 They don't necessarily exist for all $n$, except for $n = 0$.
@@ -186,7 +187,7 @@ random variable might not be unique.
 % Extending unbounded symmetric operators. Deficiency index.
 -->
  
-### Cumulants
+## Cumulants
 
 The _cumulant_ of a random variable, $X$, is $\kappa(s) = \kappa^X(s) = \log E\exp(sX)$.
 The _cumulants_, $\kappa_n$, are defined by $\kappa(s) = \sum_{n>0}\kappa_n s^n/n!$.
@@ -198,19 +199,21 @@ If $c$ is a constant then $\kappa^{cX}(s) = \kappa^X(cs)$ so $\kappa^{cX}_n = c^
 If $X$ and $Y$ are independent then $\kappa^{X + Y}(s) = \kappa^X(s) + \kappa^Y(s)$ so
 $\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
 
-#### Bell Polynomial
+### Bell Polynomial
 
-The relationship between moments and cumulants is given by _Bell polynomials_.
-They are defined by $\exp(\sum_1^infty a_n s^n/n!) = \sum_0^\infty B_n(a_1,\ldots,a_n) s^n/n!$.
-Taking the derivative with respect to $s$ and equating powers of $s$ shows
-$B_0 = 1$ and $B_{n+1}(a_1,\ldots,a_{n+1} = \sum_{k=0}^n \binom{n}{k} B_{n-k}(a_1,\ldots,a_{n-k}) a_{k+1}$.
+The relationship between moments and cumulants is given by _Bell
+polynomials_.  They are defined by $\exp(\sum_1^infty a_n s^n/n!) =
+\sum_0^\infty B_n(a_1,\ldots,a_n) s^n/n!$.  Taking the derivative
+with respect to $s$ and equating powers of $s$ shows $B_0 =
+1$ and $B_{n+1}(a_1,\ldots,a_{n+1} = \sum_{k=0}^n \binom{n}{k}
+B_{n-k}(a_1,\ldots,a_{n-k}) a_{k+1}$.
 
 Bell polynomials show the connection between the moments and the cumulants
 of a random variable since $E \exp(sX) = \sum_0^\infty E X^n s^n/n! =
 \sum_0^\infty m_n s^n/n!$ where $m_n$ is the $n$-th moment and $E \exp(sX)
 = \exp(\kappa(s)) = \exp(\sum_{n=1}^\infty \kappa_n s^n/n!)$.
 
-Excercise: Show $m_n = \sum_{k=1}^n B_k(\kappa_1,\ldots,\kappa_n)$.
+Exercise: Show $m_n = \sum_{k=1}^n B_k(\kappa_1,\ldots,\kappa_n)$.
 
 Exercise: Find the first five Bell polynomials.
 
@@ -240,12 +243,15 @@ Since $P(A|B) = P(A\cap B)/P(B)$ we have $P(A|B) = P(B|A)P(A)/P(B)$.
 This is the simplest form of Bayes Theorem. It shows how to update your degree
 of belief based on new information. Every probability is conditional on given information.
 
-Define $E[X|A] = E[X 1_A]/P(A)$ for any random variable $X$. If $X = 1_B$ then this
-coincides with the definition of conditional expectation above.
+Define the conditional expectation of the random variable $X$ with respect
+to the set (event) $A$ by $E[X|A] = E[X 1_A]/P(A)$.  If $X = 1_B$ then
+this coincides with the definition of conditional expectation above.
 
-This is how we define $E[X|\mathcal{A}]:\mathcal{A}\to\mathbf{R}$ on atoms of $\mathcal{A}$.
+Define the conditional expectation of $X$ with respect to the algebra
+$\mathcal{A}$, $E[X|\mathcal{A}]:\mathcal{A}\to\mathbf{R}$, by
+$E[X|\mathcal{A}](A) = E[X|A]$ for $A$ an atom of $\mathcal{A}$.
 
-## Joint Distribution
+# Joint Distribution
 
 Two random variables, $X$ and $Y$, are defined by their _joint
 distribution_, $H(x,y) = P(X\le x, Y\le y)$.  For example, the point $(X,Y)$ is
@@ -258,12 +264,12 @@ where $F$ and $G$ are the cumulative distributions of $X$ and $Y$ respectively.
 In general, the joint distribution of $X_1$, \ldots, $X_n$ is
 $F(x_1,\ldots,x_n) = P(X_1\le x_1,\ldots, X_n\le x_n$).
 
-### Independent
+## Independent
 
-The random variables $X$ and $Y$ are _independent_ if $F^{X,Y}(x,y) = F^X(x)F^Y(y)$ for all $x$ and $y$.
+The random variables $X$ and $Y$ are _independent_ if $H(x,y) = F(x)G(y)$ for all $x$ and $y$.
 This is equivalent to $P(X\in A,Y\in B) = P(X\in A)P(Y\in B)$ for any sets $A$ and $B$.
 
-We also have that $Ef(X)g(Y) = Ef(X) Eg(Y)$ for and functions $f$ and $g$ whenever all expected
+We also have that $Ef(X)g(Y) = Ef(X) Eg(Y)$ for any functions $f$ and $g$ whenever all expected
 values exist.
 
 Exercise: Prove this for the case $f = \sum_i a_i 1_{A_i}$ and $g = \sum_j b_j 1_{B_j}$.
@@ -274,17 +280,16 @@ $F(x_1,\ldots,x_n) = F_1(x_1)\cdots F_n(x_n)$, where $F_j$ is the law of $X_j$.
 ### Copulas
 
 A _copula_ is the joint distribution of uniformly distributed random variables on the unit interval.
-Let $U$ and $V$ be two uniformly distributed random variables.
 The copula of $X$ and $Y$ is the joint distribution of $F^{-1}(X)$ and $G^{-1}(Y)$ where
 $F$ and $G$ are the cumulative distributions of $X$ and $Y$ respectively:
-$C^{X,Y=}(u,v) = P(F^{-1}(X) \le u, G^{-1}(Y) \le v)$.
+$C^{X,Y}(u,v) = P(F^{-1}(X) \le u, G^{-1}(Y) \le v)$.
 
 Exercise: Show $C^{X,Y}(u,v) = H(F(u),G(v))$ where $C^{X,Y}$ is the copula of $X$ and $Y$,
 and $H$ is the joint distribution of $X$ and $Y$.
 
 Exercise: Show $H(x,y) = C(F^{-1}(x), G^{-1}(y))$
 
-This shows how to use the copula and marginal distributions to get the joint distribution.
+This shows how to use the copula and marginal distributions to recover the joint distribution.
 
 If $U$ and $V$ are independent, uniformly distributed random variables on the unit interval
 then $C(u,v) = uv$.
