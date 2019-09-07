@@ -14,12 +14,12 @@ All probabilities are conditional on models of available information.
 
 # Probability Model
 
-A _probability model_ specifies a _sample space_ and a _probability
-measure_.
+A probability model specifies a sample space and a probability
+measure. Algebras of events model partial information.
 
 ## Sample Space
 
-A sample space is what can happen:
+A sample space is what can happen in a model:
 heads or tails as the outcome of a coin toss, the integers from 1 to
 6 as the outcomes of rolling a single die, the set of all sequences of
 not more than 280 characters as a model of possible Twitter tweets.
@@ -58,14 +58,19 @@ show $(Q - a)/(b - a)$ is a probability measure.
 
 An _algebra of sets_, or _algebra_, on $\Omega$ is a collection of subsets
 (events), $\mathcal{A}$, that is closed under complement and union.
-This lets us talk about and event not happening and whether event $A$
+This lets us talk about an event not happening and whether event $A$
 or $B$ occured.
 
 We also assume the empty set belongs to $\mathcal{A}$, hence also $\Omega$.
 By [De Morgan's Laws](https://en.wikipedia.org/wiki/De_Morgan's_laws)
 an algebra is also closed under intersection.
-The _power set_ of $\Omega$, $2^\Omega =
+The _power set_ of $\Omega$, $\mathcal{P}\Omega =
 \{E:E\subseteq\Omega\}$, clearly satisfies these conditions.
+
+The set $2^\Omega = \{\xi:\Omega\to\{0,1\}\}$ is isomomorphic to the power set.
+The function $1_A$ selects subsets of $\Omega$: the set $A\subset\Omega$
+corresponds to the function $1_A(\omega)$ where $1_A(\omega)$ is 1 if
+$\omega\in A$ and 0 if $\omega\not\in A$.
 
 An _atom_ of an algebra is a member, $A$, of the algebra such that if
 $B\subseteq A$ and $B$ is in the algebra, then either $B = A$ or $B$
@@ -74,11 +79,11 @@ is the empty set.
 ## Partition
 
 A _partition_ of a set is a collection of pairwise disjoint subsets
-who's union is equal to the set.
+who's union is the entire set.
 
-Exercise. If an algebra on $\Omega$ is finite its atoms form a partition of $\Omega$.
+Exercise. If an algebra is finite its atoms are a partition.
 
-Hint: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$, $\omega\in\Omega$, is an atom 
+Hint: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$ is an atom for all $\omega\in\Omega$. 
 
 This shows there is a one-to-one correspondence between finite partitions
 and finite algebras of sets.  A partition is the mathematical way of
@@ -107,7 +112,7 @@ In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms
 A _random variable_ is a variable, a
 symbol that can be used in place of a number, with additional information:
 the probability of the values it can take on. The _cumulative distribution
-function_ is $F(x) = F^X(x) = P(X\le x)$.
+function_ of the random variable $X$ is $F(x) = F^X(x) = P(X\le x)$.
 It tells you everything there is to know about $X$. For example,
 $P(a < X \le b) = F(b) - F(a)$. 
 
@@ -122,12 +127,13 @@ integration.
 
 Exercise: Show for any cumulative distribution function, $F$, that
 $F$ is non-decreasing, $\lim_{x\to -\infty} F(x) = 0$,
-$\lim_{x\to\infty} F(x) = 1$ and $F$ is right continuous with left limits.
+$\lim_{x\to\infty} F(x) = 1$, and $F$ is right continuous with left limits.
 
-Every such function defines a random variable.
+Every such function is the cumulative distribution function of a random variable.
 
-The cdf $F(x) = \max\{0,\min\{1,x\}\}$ defines the uniformly distributed random variable $U$.
-For $0\le a < b\le 1$, $P(a < U < b) = b - a$.
+The cdf $F(x) = \max\{0,\min\{1,x\}\}$ defines the uniformly distributed
+random variable, $U$, on the interval $[0,1]$.  For $0\le a < b\le 1$,
+$P(a < U < b) = b - a$.
 
 Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
 
@@ -153,9 +159,8 @@ The _expected value_ of a random variable is defined by
 $E X = \int_{-\infty}^\infty x\,dF(x)$. The expected value of any function of
 a random variable is $E f(X) = \int_{-\infty}^\infty f(x)\,dF(x)$.
 
-The _indicator_ (or _characteristic_) function $1_A(\omega)$ is 1 if $\omega\in A$ and 0 if $\omega\not\in A$.
 If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
-The _expected value_ of $X$ by $EX = \sum_i a_i P(A_i)$.
+the _expected value_ of $X$ is $EX = \sum_i a_i P(A_i)$.
 
 Exercise. Show that if $\sum_i a_i 1_{A_i} = 0$ then $\sum_i a_i P(A_i) = 0$.
 
@@ -202,14 +207,14 @@ $\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
 ### Bell Polynomial
 
 The relationship between moments and cumulants is given by _Bell
-polynomials_.  They are defined by $\exp(\sum_1^infty a_n s^n/n!) =
+polynomials_.  They are defined by $\exp(\sum_{n=1}^\infty a_n s^n/n!) =
 \sum_0^\infty B_n(a_1,\ldots,a_n) s^n/n!$.  Taking the derivative
 with respect to $s$ and equating powers of $s$ shows $B_0 =
 1$ and $B_{n+1}(a_1,\ldots,a_{n+1} = \sum_{k=0}^n \binom{n}{k}
 B_{n-k}(a_1,\ldots,a_{n-k}) a_{k+1}$.
 
-Bell polynomials show the connection between the moments and the cumulants
-of a random variable since $E \exp(sX) = \sum_0^\infty E X^n s^n/n! =
+Bell polynomials connect moments and cumulants of a random variable.
+Since $E \exp(sX) = \sum_0^\infty E X^n s^n/n! =
 \sum_0^\infty m_n s^n/n!$ where $m_n$ is the $n$-th moment and $E \exp(sX)
 = \exp(\kappa(s)) = \exp(\sum_{n=1}^\infty \kappa_n s^n/n!)$.
 
@@ -328,6 +333,7 @@ A _Bernoulli_ random variable is a discrete random variable with $P(X = 1) = p$,
 
 #### Binomial
 
+
 A _Binomial_ random variable is a discrete random variable with
 $P(X = k) = \binom{n}{k}/2^n$, $k = 0$, \ldots, $n$.
 
@@ -359,15 +365,18 @@ such that $X_1 + \cdots + X_n$ has the same law as $X$.
 
 A theorem of Kolmogorov states for every infinitely divisible random variable the exists
 a number $\gamma$ and a non-decreasing function $G$ with
+
 $$
-\log E e^{sX} = \gamma a + \int_{-\infty}^\infty K_s(x)\,dG(x)$,
+\log E e^{sX} = \gamma s + \int_{-\infty}^\infty K_s(x)\,dG(x),
 $$
+
 where $K_s(x) = (e^{sx} - 1 - sx)/x^2$.
 Note if $G(x) = 1_{(-\infty,0]}$ then the random variable is normal and if
 $G(x) = 1_{(-\infty,a]}$ for $a\not=0$ the readom variable is Poisson.
 This theorem states every infinitely divisible random variable is a normal plus
 a linear combination of independent Poisson random variables.
 
+<!--
 ## Unsorted
 
 ### Characteristic Function
@@ -396,3 +405,4 @@ These can be used to prove the _central limit theorem_:
 if $X_j$ are independent, identically distributed random variables with mean zero
 and variance one, then $(X_1 + \cdots X_n)/sqrt{n}$ converges to a standard
 normal random variable.
+-->
