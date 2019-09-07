@@ -152,7 +152,6 @@ $X\colon\mathbf{R}\to\mathbf{R}$ to be the
 identity function and let $P$ be the probability measure defined by $F$:
 $P(A) = \int 1_A(x)\,dF(x)$. 
 
-
 ## Expected Value
 
 The _expected value_ of a random variable is defined by
@@ -282,7 +281,7 @@ Exercise: Prove this for the case $f = \sum_i a_i 1_{A_i}$ and $g = \sum_j b_j 1
 In general, $X_1$, \ldots, $X_n$ are independent if
 $F(x_1,\ldots,x_n) = F_1(x_1)\cdots F_n(x_n)$, where $F_j$ is the law of $X_j$.
 
-### Copulas
+## Copulas
 
 A _copula_ is the joint distribution of uniformly distributed random variables on the unit interval.
 The copula of $X$ and $Y$ is the joint distribution of $F^{-1}(X)$ and $G^{-1}(Y)$ where
@@ -316,9 +315,9 @@ Hint: For the upper bound use $H(x,y) \le F(x)$ and $H(x,y) \le G(y)$.
 For the lower bound note $0\le C(u_1,v_1) - C(u_1, v_2) - C(u_2, v_1) + C(u_2, v_2)$
 for $u_1 \ge u_2$ and $v_1 \ge v_2$.
 
-### Examples
+# Examples
 
-#### Discrete
+## Discrete
 
 A _discrete_ random variable is defined by
 $x_i\in\mathbf{R}$ and $p_i > 0$ with $\sum p_i = 1$.
@@ -327,27 +326,28 @@ The probability the random variable takes on value $x_i$ is $p_i$.
 If a discrete random variable takes on a finite number of values, $n$, then
 if $p_i = 1/n$ for all $i$ the variable is called _discrete uniform_.
 
-#### Bernoulli
+## Bernoulli
 
 A _Bernoulli_ random variable is a discrete random variable with $P(X = 1) = p$, $P(X = 0) = 1 - p$.
 
-#### Binomial
-
+## Binomial
 
 A _Binomial_ random variable is a discrete random variable with
 $P(X = k) = \binom{n}{k}/2^n$, $k = 0$, \ldots, $n$.
 
-### Uniform
+## Uniform
 
 A _continuous uniform_ random variable on the interval $[a,b]$ has density
 $f(x) = 1_{[a,b]}/(b - a)$.
 
-### Normal
+## Normal
 
 The _standard normal_ random variable, $Z$, has density function $\phi(x) = \exp(-x^2/2)/\sqrt{2\pi}$.
 
 If $X$ is normal then $E\exp(X) = \exp(EX + \Var(X)/2)$ so the cumulants satisfy
 $\kappa_n = 0$ for $n > 2$.
+
+## Poisson
 
 If $X$ is Poisson with parameter $\lambda$ then 
 \begin{align*}
@@ -357,7 +357,7 @@ Ee^{sX} &= \sum_{k=0}^\infty e^{sk} e^{-\lambda}\lambda^k/k!\\
 \end{align*}
 so $\kappa(s) = \lambda(e^s - 1)$ and $\kappa_n = \lambda$ for all $n$.
 
-### Infinitely Divisible
+## Infinitely Divisible
 
 A random variable, $X$, is _infinitely divisible_ if for any positive integer, $n$,
 there exist independent, identically distributed random variables $X_1$,\ldots,$X_n$
