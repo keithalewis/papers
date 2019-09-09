@@ -191,7 +191,7 @@ random variable might not be unique.
 % Extending unbounded symmetric operators. Deficiency index.
 -->
  
-## Cumulants
+## Cumulant
 
 The _cumulant_ of a random variable, $X$, is $\kappa(s) = \kappa^X(s) = \log E\exp(sX)$.
 The _cumulants_, $\kappa_n$, are defined by $\kappa(s) = \sum_{n>0}\kappa_n s^n/n!$.
@@ -281,7 +281,7 @@ Exercise: Prove this for the case $f = \sum_i a_i 1_{A_i}$ and $g = \sum_j b_j 1
 In general, $X_1$, \ldots, $X_n$ are independent if
 $F(x_1,\ldots,x_n) = F_1(x_1)\cdots F_n(x_n)$, where $F_j$ is the law of $X_j$.
 
-## Copulas
+## Copula
 
 A _copula_ is the joint distribution of uniformly distributed random variables on the unit interval.
 The copula of $X$ and $Y$ is the joint distribution of $F^{-1}(X)$ and $G^{-1}(Y)$ where
@@ -309,7 +309,7 @@ $C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u
 If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
 = P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
 
-Exercise: (Fr&#233;chet-Hoeffding) For every (2-dimensional) copula, $W \le C \le M$.
+Exercise: (Fr&#233;chet-Hoeffding) For every copula, $C$, $W \le C \le M$.
 
 Hint: For the upper bound use $H(x,y) \le F(x)$ and $H(x,y) \le G(y)$.
 For the lower bound note $0\le C(u_1,v_1) - C(u_1, v_2) - C(u_2, v_1) + C(u_2, v_2)$
@@ -348,6 +348,10 @@ If $X$ is normal then $E\exp(X) = \exp(EX + \Var(X)/2)$ so the cumulants satisfy
 $\kappa_n = 0$ for $n > 2$.
 
 ## Poisson
+
+A _Poisson_ random variable with hazard rate $\lambda$ has the property
+$P(X > x + h|X > x) = \lambda h + o(h)$: The probability it occurs
+in the 
 
 If $X$ is Poisson with parameter $\lambda$ then 
 \begin{align*}
