@@ -111,7 +111,11 @@ In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms
 
 A _random variable_ is a variable, a
 symbol that can be used in place of a number, with additional information:
-the probability of the values it can take on. The _cumulative distribution
+the probability of the values it can take on.
+
+## Cumulative Distribution Function
+
+The _cumulative distribution
 function_ of the random variable $X$ is $F(x) = F^X(x) = P(X\le x)$.
 It tells you everything there is to know about $X$. For example,
 $P(a < X \le b) = F(b) - F(a)$. 
@@ -194,14 +198,15 @@ random variable might not be unique.
 ## Cumulant
 
 The _cumulant_ of a random variable, $X$, is $\kappa(s) = \kappa^X(s) = \log E\exp(sX)$.
-The _cumulants_, $\kappa_n$, are defined by $\kappa(s) = \sum_{n>0}\kappa_n s^n/n!$.
+The _cumulants_, $(\kappa_n)$, are defined by $\kappa(s) = \sum_{n>0}\kappa_n s^n/n!$.
 
 It is easy to see $\kappa_1 = E X$ and $\kappa_2 = \Var X$. The third and fourth cumulants
 are related to skew and kurtosis. We will see the exact relationship below.
 
-If $c$ is a constant then $\kappa^{cX}(s) = \kappa^X(cs)$ so $\kappa^{cX}_n = c^n\kappa^X_n$.
-If $X$ and $Y$ are independent then $\kappa^{X + Y}(s) = \kappa^X(s) + \kappa^Y(s)$ so
-$\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
+If $c$ is a constant then $\kappa^{cX}(s) = \kappa^X(cs)$ so
+$\kappa^{cX}_n = c^n\kappa^X_n$.  If $X$ and $Y$ satisfy $Ee^{sX}e^{sY}
+= Ee^{sX}E^{sY}$ then $\kappa^{X + Y}(s) = \kappa^X(s) + \kappa^Y(s)$
+so $\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
 
 ### Bell Polynomial
 
@@ -241,9 +246,9 @@ the variance is 1, then $\kappa_3$ is the skew and $\kappa_4$ is the
 ## Conditional Expectation
 
 The _conditional expectation_ of an event $B$ given an event $A$ is
-$P(B|A) = P(B\cap A)/P(A)$. In some sense, this reduces the sample space to $A$.
-In particular, $P(A|A) = 1$.
-Since $P(A|B) = P(A\cap B)/P(B)$ we have $P(A|B) = P(B|A)P(A)/P(B)$. 
+$P(B|A) = P(B\cap A)/P(A)$. In some sense, this reduces the sample space to $A$
+since $P(A|A) = 1$.
+We also have $P(A|B) = P(A\cap B)/P(B)$ so $P(A|B) = P(B|A)P(A)/P(B)$. 
 This is the simplest form of Bayes Theorem. It shows how to update your degree
 of belief based on new information. Every probability is conditional on given information.
 
@@ -286,10 +291,11 @@ $F(x_1,\ldots,x_n) = F_1(x_1)\cdots F_n(x_n)$, where $F_j$ is the law of $X_j$.
 A _copula_ is the joint distribution of uniformly distributed random variables on the unit interval.
 The copula of $X$ and $Y$ is the joint distribution of $F^{-1}(X)$ and $G^{-1}(Y)$ where
 $F$ and $G$ are the cumulative distributions of $X$ and $Y$ respectively:
-$C^{X,Y}(u,v) = P(F^{-1}(X) \le u, G^{-1}(Y) \le v)$.
+$C(u,v) = C^{X,Y}(u,v) = P(F^{-1}(X) \le u, G^{-1}(Y) \le v)$.
 
-Exercise: Show $C^{X,Y}(u,v) = H(F(u),G(v))$ where $C^{X,Y}$ is the copula of $X$ and $Y$,
-and $H$ is the joint distribution of $X$ and $Y$.
+Exercise: Show $C(u,v) = H(F(u),G(v))$ where
+and $H$ is the joint distribution of $X$ and $Y$ and $F$ and $G$ are the cumulative
+distribution of $X$, and $Y$.
 
 Exercise: Show $H(x,y) = C(F^{-1}(x), G^{-1}(y))$
 
@@ -328,12 +334,12 @@ if $p_i = 1/n$ for all $i$ the variable is called _discrete uniform_.
 
 ## Bernoulli
 
-A _Bernoulli_ random variable is a discrete random variable with $P(X = 1) = p$, $P(X = 0) = 1 - p$.
+A _Bernoulli_ random variable is a discrete random variable with $P(X = 0) = p$, $P(X = 1) = 1 - p$.
 
 ## Binomial
 
 A _Binomial_ random variable is a discrete random variable with
-$P(X = k) = \binom{n}{k}/2^n$, $k = 0$, \ldots, $n$.
+$P(X = k) = \binom{n}{k}p^k(1-p)^{n-k}/2^n$, $k = 0$, \ldots, $n$.
 
 ## Uniform
 
@@ -349,7 +355,8 @@ $\kappa_n = 0$ for $n > 2$.
 
 ## Poisson
 
-A _Poisson_ random variable with hazard rate $\lambda$ has the property
+A _Poisson_ random variable with parameter $\lambda$ is defined by
+$P(X = k) = e^{-\lambda}\lambda^k/k!$ for $k = 0, 1, ...$
 $P(X > x + h|X > x) = \lambda h + o(h)$: The probability it occurs
 in the 
 
