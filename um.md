@@ -7,9 +7,10 @@ classoption: fleqn
 abstract: |
 	Market instruments can be bought or sold at a price and entail cash flows.
 	Every arbitrage-free model of prices and cash flows
-	is parameterized by a positive, adapted process and
+	is parameterized by
 	a vector-valued martingale whose components are
-	indexed by market instruments.
+	indexed by market instruments and
+	a positive, adapted process.
 	This can be used to value, hedge, and manage the
 	risk of derivative securities.
 ...
@@ -180,7 +181,7 @@ Under their mathematical assumptions, the hedge perfectly replicates the derivat
 In the real world, it is not possible to perfectly replicate the derivative security.
 There is still research to be done on when to hedge and how to mangage this risk.
 
-## Examples
+## Black-Scholes/Merton
 
 The Black-Scholes/Merton model is specified by the exponential martingale
 $M_t = (r, s\exp(\sigma B_t - \sigma^2t/2))$ and deflator $D_t = \exp(-\rho t)$.
@@ -193,7 +194,8 @@ There is a canonical choice for a deflator if repurchase agreements are availabl
 
 ### Repurchase Agreements
 
-Assume trades occur at discrete times, like they actually do, so $T = \{t_j\}$ where $t_0 < t_1 < \cdots$. 
+Assume trades occur at discrete times, like they actually do, so $T = \{t_j\}$ where $t_i < t_j$
+if $i < j$.
 
 A _repurchase agreement_ at time $t_j$, $R_j$, has price $X^{R_j}_{t_j}
 = 1$ and cash flow $C^{R_j}_{t_{j+1}} = R_j$ so for any arbitrage free
@@ -262,7 +264,7 @@ $$
 is determined by zero coupon bond prices. Note, writing $F_t = F_t(u,v;\delta)$
 and $\delta = \delta(u,v)$,
 $$
-E_t F_t\delta D_v = F_t\delta E_t D_v = E_t[D_u - D_v].
+E_t F_t\delta D_v = F_t\delta E_t D_v = E_t[D_u - D_v] = Z_t(u) - Z_t(v)
 $$
 
 There are also forward rate agreements not involving the exchange of notional. A
@@ -270,7 +272,9 @@ There are also forward rate agreements not involving the exchange of notional. A
 A _receiver_ has the negative of this cash flow. The value at any time $t \le u$ is
 determined by
 
-% f delta - F delta' if different day count basis
+<!--
+f delta - F delta' if different day count basis
+-->
 
 \begin{align*}
 V_t D_t &= E_t[(f - F_u(u,v;\delta))\delta(u,v) D_v] \\
@@ -294,7 +298,7 @@ The _swap par coupon_ at time $t$, $F_t(t_0,\ldots,t_n;\delta)$,
  is the coupon that makes the price at
 time $t\le {t_0}$ equal to $0$:
 $$
-0 = E_t -D_{t_0} + \sum_{0<j<n} F_t\delta(t_{j-1},t_j) D_{t_j} + (1 + F_t\delta(t_{n-1},t_n) D_{t_n}.
+0 = E_t[-D_{t_0} + \sum_{0<j<n} F_t\delta(t_{j-1},t_j) D_{t_j} + (1 + F_t\delta(t_{n-1},t_n) D_{t_n}].
 $$
 Hence the par coupon,
 $F_t(t_0,\ldots,t_n;\delta) = (Z_t(t_0) - Z_t(t_n))/\sum_{0<j\le n}\delta(t_{j-1},t_j) Z_t(t_j)$,
@@ -328,6 +332,22 @@ where $E_t^*$ is the Esscher transform with $dP_t^*/dP_t = D_v/E_t D_v$.
 The shows the value at $t$ of a caplet is
 $V_t = E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)$.
 
+### Caplet
+
+A _caplet is a call option on an at-the-money _forward rate agreement_.
+It pays $\max\{F_u(u,v) - k,0\}\delta(u,v)$ at time $v$.
+Its value at time $t < u$ is determined by $V_t D_t = E_t \max\{F_u(u,v) - k,0\}\delta(u,v) D_u$.
+Similar to floorlets, the value at $t$ of a caplet is
+$V_t = E^*_t[\max\{1/Z_u(v) - (1 + k\delta),0\}] Z_t(v)$
+
+### Floor, Cap
+
+A _floor_ and a _cap_ are just a sequence of back-to-back floorlets or caplets.
+
+### Swaption
+
+A _swaption_ is an option on a swap.
+
 ## Remarks
 
 The price of an instrument is not a number. Not only does it
@@ -347,7 +367,7 @@ $I$ is the set of market instruments, and $C$ is the set of legal trading entiti
 <!--
 ### One Period Model
 
-There is no need for probability measures. The Fundamental Theorem of
+There is no need for probability measures: the Fundamental Theorem of
 Asset Pricing is a geometic result. In the one period case where $T =
 \{t_0,t_1\}$ the no arbitrage condition is there does not exist $\Gamma_0$
 with $A_0 = -\Gamma_0\cdot X_0 > 0$ and $A_1 = \Gamma_0\cdot X_1\ge 0$.
@@ -382,13 +402,12 @@ measures on $\Omega$, $ba(\Omega)$.
 <!-- cite Dunford Schwartz -->
 
 Let's assume $X_1\in B(\Omega,\mathbf{R}^I)$, the set of bounded functions from
-$\Omega$ to $\mathbf{R}^I$. Consider the map $A\colon B$,
+$\Omega$ to $\mathbf{R}^I$. Consider the map $A\colon B\to\mathbf{R}$,
 where $B = \mathbf{R} \oplus B(\Omega)$,
-defined by $\Gamma \mapsto (-\Gamma_0\cdot X_0, \Gamma_0\cdot X_1)$. No arbitrage
+defined by $\Gamma \mapsto (-\Gamma\cdot X_0, \Gamma\cdot X_1)$. No arbitrage
 says the range of $A$ does not intersect the cone $\{p \oplus P):p > 0, P\ge 0\}$.
 Since the cone has an interior point, the Hahn-Banach theorem implies there exists
 a hyperplane that does not intersect the cone. The hyperplane is the kernel of
 an element in the dual space $B^* = \mathbf{R}\oplus ba(\Omega)$, where
 $ba(\Omega)$ is the space of finitely additive measures. Call this element
 $\pi\oplus\Pi$. We may assume $\pi = 1$.
--->
