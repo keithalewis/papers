@@ -1,6 +1,6 @@
 # One dimensional root finding
 
-Given a function $f\colon\mathbf{R}\to\mathbr{R}$ the _one dimensional root finding_ problem is
+Given a function $f\colon\mathbf{R}\to\mathbf{R}$ the _one dimensional root finding_ problem is
 to find $x\in\mathbf{R}$ with $f(x) = 0$. If we want to find $x$ such that $f(x) = a$ we can
 reduce this to finding the root of $g(x) = f(x) - a$. In particular this can be used to
 find the inverse of a function at a given value.
