@@ -16,8 +16,8 @@ and a criterion for when to stop.
 Knowing something about the function is crucial for deciding on where to start looking.
 This is why you should plot the function as the first step.
 
-If a function is continuous and $f(x)$ and $f(x')$ have different signs then the
-Intermediate Value Theorem guarentees there is a root between $x$ and $x'$.
+If a function is continuous and $f(x_0)$ and $f(x_1)$ have different signs then the
+Intermediate Value Theorem guarentees there is a root between $x_0$ and $x_1$.
 These values _bracket_ the root.
 
 ## Improving Guesses
@@ -26,8 +26,8 @@ There are many algorithms for improving initial guesses of roots.
 
 #### Bisection
 
-Given $x < x'$ that bracket the root, the bisection method uses $x'' = (x + x')/2$
-to get a tighter bracket. Either $x$ and $x''$ or $x''$ and $x'$ bracket the root.
+Given $x_0 < x_1$ that bracket the root, the bisection method uses $x_2 = (x_0 + x_1)/2$
+to get a tighter bracket. Either $x_0$ and $x_2$ or $x_2$ and $x_1$ bracket the root.
 This method sure but slow. It improves the solution by only one binary digit with
 each step.
 
@@ -42,10 +42,10 @@ A simple calculation shows $x = (x_0 y_1 - x_1 y_0)/(y_1 - y_0)$.
 
 It has faster convergence than the bisection method. If $\Delta x$ is the difference of
 the previous guesses, the difference of the next guesses is approximately $(\Delta x)^{1.6}$.
-This is called convergence of order 1.6. Of course this is only meaningful if
+This is called convergence of order 1.6. Of course this is only useful if
 $\Delta x < 1$.
 
-### False Position
+### False Position (Regula Falsi)
 
 Given $x_0 < x_1$ that bracket the root, use the secant method but take the guesses that
 keep the root bracketed. In some cases this can be slower than bisection.
@@ -74,4 +74,8 @@ cx^2$ through the three points but there may be no solution for $y = 0$.
 If the derivative at the root of $f$, $x$, is not 0 then the best criteria
 is simple: are the next floating point numbers less than and greater
 than $x$ a worse approximation?  This is the best possible floating
-point approximation.
+point approximation. It is also the best possible approximation if
+$f'(x) = 0$ and $f(x) = 0$.
+
+If this is too slow, then the algorithm can be stopped when the
+number of iterations exceeds the computational budget.

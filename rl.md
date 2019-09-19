@@ -31,14 +31,27 @@ A _policy_, $\pi(a|s)$, specifies the probability of taking action $a$
 given the agent is in state $s$. This results in the sequence of random
 variables $S_{t + k + 1}$, $R_{t + k + 1}$, $k\ge0$, given $S_t = s$.
 
-A _gain_ (or _loss_) function is any function of future rewards, $G_t =
-g_t(R_{t+1}, R_{t+2}, \ldots)$. Common choices are are average rewards
-$G_t = (1/k) \sum_{j=1}^k R_{t + j + 1}$ and exponential decay $G_t =
-\sum_{k\ge0} \gamma^k R_{t + k + 1}$, where $0<\gamma<1$ is the _discount
+Reinforcement learning is the study of how to find the optimal policy
+for a given definition of optimal.
+
+A _gain_ (or _loss_) function is any function of future rewards,
+$$
+G_t = g_t(R_{t+1}, R_{t+2}, \ldots)$.
+$$
+Common choices are are average rewards
+$$
+G_t = (1/k) \sum_{j=1}^k R_{t + j + 1}
+$$
+and exponential decay 
+$$
+G_t = \sum_{k\ge0} \gamma^k R_{t + k + 1},
+$$
+where $0<\gamma<1$ is the _discount
 factor_.
 
-The _state-value function_ for policy $\pi$ is $V_\pi(s) = E[G_t\mid
-S_t = s]$.  (Note that, by the Markov property, it does not depend on $t$.)
+The _state-value function_ for policy $\pi$ is
+$V_\pi(s) = E[G_t\mid S_t = s]$.
+(Note that, by the Markov property, it does not depend on $t$.)
 We want to
 find $V^*(s) = \max_\pi V_\pi(s)$.
 Note
@@ -49,7 +62,7 @@ for exponential decay and
 $$
 V^*(s) = \max_{a\in A_s} \sum_{s',r'} p(s',r'|s,a)[r + \gamma V^*(s')],
 $$
-the _Bellman optimality equation_.
+is called the _Bellman optimality equation_.
 
 The _action-value function_ for $\pi$ is
 $Q_\pi(s,a) = E[G_t\mid S_t = s, A_t = a]$.
@@ -78,7 +91,7 @@ on the observed reward.
 
 The _first visit_ Monte Carlo prediction approximates the state-value function for a given policy.
 Choose an initial state-value function $V(s)$. Generate a run using policy $\pi$. For each
-state in the run $V(s)$ is the average of the returns following $s$.
+state in the run, $V(s)$ is the average of the returns following $s$.
 
 ## Temporal Distance Learning
 
