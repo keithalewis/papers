@@ -4,7 +4,9 @@ The least you need to know to use git.
 
 ## Clone
 
-This creates a copy of a git repository on your local filesytem.
+> git clone _repository_
+
+This creates a copy of a git _repository_ on your local filesytem.
 
 ## Commit
 
