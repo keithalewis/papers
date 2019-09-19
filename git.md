@@ -42,6 +42,9 @@ information about changes that have been made in the original repository.
 > git merge
 
 Fetch followed by `merge` is the same thing as `pull`.
+You can also merge all differences from a branch of a repository by
+
+> get merge _repositoy_ _branch_
 
 ## Remote
 
@@ -83,4 +86,3 @@ branch you can get back to that by
 > git checkout _branch_
 
 The `-b` flag is only needed if you are creating an new branch.
-
