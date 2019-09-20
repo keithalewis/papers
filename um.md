@@ -360,9 +360,11 @@ of instrument $i$ the _buyer_, $c$, decides to obtain for the amount
 $a'$ in instrument $i'$ from the _seller_, $c'$.
 $a'$ in instrument $i'$ from the _seller_, $c'$.
 
-_Price_ is a function $X\colon T\times A\times I\times C\times I\times C\to \mathbf{R}$,
-where $T$ is the set of trading times, $A$ the set of amounts that can be traded,
-$I$ is the set of market instruments, and $C$ is the set of legal trading entities.
+We can incorporate more realistic features by defining _price_ to
+be a function $X\colon T\times A\times I\times C\times I\times C\to
+\mathbf{R}$, where $T$ is the set of trading times, $A$ the set of
+amounts that can be traded, $I$ is the set of market instruments, and $C$
+is the set of legal trading entities.
 
 <!--
 ### One Period Model
