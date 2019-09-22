@@ -35,7 +35,8 @@ It will be permenently stored in the repository.
 Each commit creates a new key associated with
 this collection of files that becomes the new `HEAD`.
 
-Every commit command will output a message telling you what the key is.
+Every commit command will output a message telling you what the key is
+in case you are interested.
 
 ## master
 
@@ -54,6 +55,11 @@ is called `HEAD`.
 
 This creates a copy of a git _repository_. The repository can be the
 path to a repository on a filesystem or a URL to another computer.
+
+If you are using [GitHub](https://github.com) the repository URL will look something
+like `https://github.com/_accountname_/_repostory_.git, where _accountname_ is
+the name of the github account and _repository_ is the name of a repository
+in the account.
 
 The clone is completely independent of the original repository but
 git makes it possible to synchronize changes between repositories.
