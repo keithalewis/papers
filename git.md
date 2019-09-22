@@ -57,7 +57,7 @@ This creates a copy of a git _repository_. The repository can be the
 path to a repository on a filesystem or a URL to another computer.
 
 If you are using [GitHub](https://github.com) the repository URL will look something
-like `https://github.com/`_account_`/`_repostory_`.git, where _account_ is
+like `https://github.com/`_account_`/`_repostory_`.git`, where _account_ is
 the name of the github account and _repository_ is the name of a repository
 in the account.
 
