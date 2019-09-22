@@ -1,24 +1,33 @@
 ---
-title: Option Pricing
+title: European Option Pricing
 author: Keith A. Lewis
 copyright: © 2019 Keith A. Lewis
 abstract: |
-	There is a simple formula for pricing European puts and calls 
-	in terms of cumulants.
+	There is a simple formula for pricing European options using cumulants.
 ...
 
-Let $F$ be the (random) value of an instrument at option expiration.  The
-(forward) value of a put option is the expected value of the payoff
+An European option pays some function of the underlying instrument value at expiration.
+Let $F$ be the (random) value of an instrument at option expiration and $g$ be the
+payoff function. The forward value of the option is $E[g(F)]$.
+
+If $F$ is lognormal then the standard Black-Scholes/Merton theory can be used to
+value this. If $F$ is a perturbation of a lognormal random variable there is
+an explicit formula for computing the option value using the cumulants of the perturbation.
+
+Valuation formulas depend on the cumulative distribution function of $F$. The (forward) value
+of a digital put paying $1(F\le k)$ is $P(F\le k)$.
+
+The forward value of a put option is the expected value of the payoff
 \begin{align*}
 E[\max\{k - F,0\}] &= E[(k - F)1(k - F\ge 0)]\\
 	&= E[(k - F)1(F\le k)]\\
 	&= kP(F\le k) - E[F 1(F\le k)]\\
 	&= kP(F\le k) - E[F] E[1(F\le k) F/E[F]]\\
-	&= kP(F\le k) - E[F] P^*(F\le k)\\
+	&= kP(F\le k) - E[F] P^F(F\le k)\\
 \end{align*}
 
-where $P^*$ is the Esscher transform of the probability measure, i.e.,
-its Radon-Nikodym derivative is $dP^*/dP = F/E[F]$.
+where $P^F$ is the measure defined by $dP^F/dP = F/E[F]$.
+I.e., $E^F[X] = E[X F/E[F]]$.
 
 The _cumulant_ of a random variable $X$ is $\kappa^X(s) = \log E[\exp(sX)]$
 and the _cumulants_ are the coefficients in the power series expansion
@@ -46,7 +55,7 @@ $$
 $$
 for $n > 0$. They satisfy
 $$
-	\exp(\sum_{n>0}\kappa_n s^n/n!) = \sum_{n\ge0} B_n(\kappa_1,\ldots,\kappa_n)
+	e^{\sum_{n>0}\kappa_n s^n/n!} = \sum_{n\ge0} B_n(\kappa_1,\ldots,\kappa_n)
 		s^n/n!
 $$
 Differentiation both sides with respect to $s$
@@ -58,7 +67,7 @@ The (probabalists') Hermite polynomials are defined by $H_0(x)
 = 1$, $H_1(x) = x$, and $H_{n+1}(x) = x H_n(x) - n H_{n-1}(x)$ for $n \ge 1$.
 They satisfy
 $$
-H_n(x) = (-1)^n e^{x^2/2} \frac{d^n}{dx^n} e^{-x^2/2}(x)
+frac{d^n}{dx^n} e^{-x^2/2}(x) = (-1)^n H_n(x) e^{x^2/2} 
 $$
 
 Let $\phi(x) = \exp(-x^2/2)/\sqrt{2\pi}$ be the standard normal density
@@ -100,3 +109,8 @@ The Hermite polynomials can be expressed using Bell polynomials, $H_n(x) = B_n(x
 	B_6(0,0,\kappa_3,\kappa_4,\kappa_5,\kappa_6) &= 10\kappa_3^2 + \kappa_6\\
 	B_7(0,0,\kappa_3,\kappa_4,\kappa_5,\kappa_6,\kappa_7) &= 35\kappa_3\kappa_4 + \kappa_7\\
 \end{align*}
+
+If $f\colon\mathbf{R}\to\mathbf{R}$ has a piecewise continuous second derivatve, then
+$$
+f(x) = f(a) + f'(a)(x-a) + \int_{-\infty}^a (k - x)^+ f''(k)\,dk + \int_a^\infty (x - k)^+ f''(k)\,dk.
+$$
