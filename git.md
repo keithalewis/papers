@@ -2,6 +2,9 @@
 
 > All git clones are alike; each clone gets messed up in its own way.
 
+If you are cloning an existing repository you can skip to the Clone section but it
+is useful to know how git repositories are created.
+
 ## Init
 
 > git init
