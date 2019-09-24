@@ -4,7 +4,9 @@ author: Keith A. Lewis
 classoption: fleqn
 copyright: © 2019 Keith A. Lewis
 abstract: |
-	There is an explicit formula for pricing European options using cumulants.
+	We demonstrate an explicit formula for pricing any European option
+	in terms of the standard normal distribution and cumulants
+	that uses Bell and Hermite polynomials.
 ...
 
 An European option pays some function of the underlying instrument value at expiration.
@@ -13,7 +15,7 @@ payoff function. The forward value of the option is $E[g(F)]$.
 Any piecewise linear, continuous function can be approximated by a cash position,
 a forward contract and a linear combination of puts and calls.
 We demonstrate an explicit formula for puts and calls in terms of the standard
-normal distribution and cumulants.
+normal distribution and cumulants that uses Bell and Hermite polynomials.
 
 ## Puts and Calls
 
@@ -41,6 +43,23 @@ I.e., $E^*[X] = E[X F/E[F]]$. Similarly, the value of a
 call is $E[(F - k)^+] = E[F] P^*(F\ge k) - k P(F\ge k)$.
 
 _Exercise_. Derive this formula.
+
+The Black model uses $F = f\exp(\sigma B_t - \sigma^2 t/2)$ where $B_t$ is standard
+Brownian motion. Note $F \le k$ is equivalent to
+$B_t/\sqrt{t} \le (\sigma^2 t/2 + \log k/f)/\sigma\sqrt{t}$.
+The right-hand side of the last inequality is often called $-d_2$
+and the probability that the inequality holds is $\Phi(d_2)$ where $\Phi$ is the standard
+normal cumulative density function.
+For any normally distributed random variable, $N$, we have
+$E[\exp(N) f(N)] = E[\exp(N)] E[f(N + \Var(N))]$ and
+$E[\exp(N)] = \exp(E[N] + \Var(N)/2)$.
+
+_Exercise._ Show $P^*(F\le k) = E[e^{\sigma B_t - \sigma^2 t/2}1(F\le k)]
+= P(Fe^{\sigma^2 t} \le k)$.
+
+_Exercise_. Show $P^*(F\le k) = \Psi(-d_1)$
+where $d_1 = d_2 + \sigma\sqrt{t}$.
+
 
 ## Cumulant
 
@@ -93,14 +112,18 @@ In particular, $E[X^*] = \kappa'(s)$ and $\Var(X^*) = \kappa''(s)$.
 
 The (complete) Bell polynomials $B_n(\kappa_1,\ldots,\kappa_n)$
 are defined by $B_0 = 1$ and
-$$
+
+\begin{align*}
 	B_{n+1}(\kappa_1,\ldots,\kappa_{n+1})
 		= \sum_{k=0}^n {{n}\choose{k}}B_{n-k}(\kappa_1,\ldots,\kappa_{n-k}) \kappa_{k+1}
-$$
+\end{align*}
+
 for $n > 0$. They satisfy
-$$
-	\exp({\sum_{n>0}\kappa_n s^n/n!) = \sum_{n\ge0} B_n(\kappa_1,\ldots,\kappa_n) s^n/n!
-$$
+
+\begin{align*}
+	\exp\bigl(\sum_{n>0}\kappa_n s^n/n!\bigr) = \sum_{n\ge0} B_n(\kappa_1,\ldots,\kappa_n) s^n/n!
+\end{align*}
+
 Differentiation both sides with respect to $s$
 and and equating terms of equal power gives the recursive definition.
 
@@ -108,10 +131,13 @@ Note $B_1(\kappa_1) = \kappa_1$ and $B_2(\kappa_1,\kappa_2) = \kappa_1^2 + \kapp
 
 The _reduced Bell polynomials_, $b_n(\kappa_1,\ldots,\kappa_n) = B_n(\kappa_1,\ldots,\kappa_n)/n!$
 satisfy the recursion
-$$
+
+_Excercise_. Prove this.
+
+\begin{align*}
 	b_{n+1}(\kappa_1,\ldots,\kappa_{n+1})
 		= \frac{1}{n + 1}\sum_{k=0}^n b_{n-k}(\kappa_1,\ldots,\kappa_{n-k}) \kappa_{k+1}/k!
-$$
+\end{align*}
 
 ## Hermite polynomials
 
@@ -167,7 +193,7 @@ $\kappa_n$ replaced with $\kappa_n^*$.
 
 The Hermite polynomials can be expressed using Bell polynomials, $H_n(x) = B_n(x,1,0,\ldots,0)$.
 
-The first seven Bell polynomials with $k_1 = k_2 = 0$ are
+The first seven Bell polynomials with $\kappa_1 = \kappa_2 = 0$ are
 \begin{align*}
 	B_1(0) &= 0\\
 	B_2(0,0) &= 0\\
@@ -179,9 +205,20 @@ The first seven Bell polynomials with $k_1 = k_2 = 0$ are
 \end{align*}
 
 If $f\colon\mathbf{R}\to\mathbf{R}$ has a piecewise continuous second derivatve, then
-$$
+\begin{align*}
 f(x) = f(a) + f'(a)(x-a) + \int_{-\infty}^a (k - x)^+ f''(k)\,dk + \int_a^\infty (x - k)^+ f''(k)\,dk.
-$$
+\end{align*}
+Note this formula holds for $x = a$. Taking a derivative with respect to $x$ yields
+\begin{align*}
+f'(x) &= f'(a) + \int_{-\infty}^a -1(x \le k) f''(k)\,dk + \int_a^\infty 1(x \ge k) f''(k)\,dk\\
+      &= f'(a) - \int_{\min\{x, a\}}^a f''(k)\,dk + \int_a^{\max\{x,a\}} f''(k)\,dk\\
+\end{align*}
+Note this formula holds for $x = a$. Taking a derivative with respect to $x$ yields
+\begin{align*}
+f''(x) = f''(x)1(x < a) + f''(x)1(x > a)(k)
+\end{align*}
+for $x\not= a$. Note the left and right limits as $x\to a$ equal $f''(a)$.
+This proves the original formula is valid.
 
 ## Remarks
 
