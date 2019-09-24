@@ -57,21 +57,21 @@ This creates a copy of a git _repository_. The repository can be the
 path to a repository on a filesystem or a URL to another computer.
 
 If you are using [GitHub](https://github.com) the repository URL will look something
-like `https://github.com/`_account_`/`_repostory_`.git`, where _account_ is
+like `https://github.com/`_account_`/`_repository_`.git`, where _account_ is
 the name of the github account and _repository_ is the name of a repository
 in the account.
 
 The clone is completely independent of the original repository but
 git makes it possible to synchronize changes between repositories.
 
-It s `origin` to refer to the original repository.
-
+Git uses the name `origin` to refer to the original repository that
+you have cloned from.
 
 ## Push
 
 > git push
 
-After cloning a repository and making local local changes you can
+After cloning a repository and adding files or making local local changes you can
 `push` them back to the original repository.
 
 When you are ready to move your local commits to the original repository

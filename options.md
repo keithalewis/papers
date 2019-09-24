@@ -12,6 +12,8 @@ Let $F$ be the (random) value of an instrument at option expiration and $g$ be t
 payoff function. The forward value of the option is $E[g(F)]$.
 Any piecewise linear, continuous function can be approximated by a cash position,
 a forward contract and a linear combination of puts and calls.
+We demonstrate an explicit formula for puts and calls in terms of the standard
+normal distribution and cumulants.
 
 ## Puts and Calls
 
