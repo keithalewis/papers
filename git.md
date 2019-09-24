@@ -64,7 +64,7 @@ in the account.
 The clone is completely independent of the original repository but
 git makes it possible to synchronize changes between repositories.
 
-It s `origin` to refer to the original repository.
+Git uses `origin` to refer to the original repository.
 
 
 ## Push
