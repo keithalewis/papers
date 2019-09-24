@@ -79,9 +79,7 @@ that you cloned use `push`. This command is equivalent to
 
 > git push origin master
 
-It merges your changes into the master branch of the original repository.
-
-If there are conflicts you will get a message indicating the push failed.
+This merges your commits into the master branch of the original repository.  
 
 ## Pull
 
@@ -92,11 +90,6 @@ can merge them using `pull`.
 
 If there are conficts in the files you have changed or commited
 then you will be unable to pull until you you resolve the conflicts.
-
-If you have changed files but haven't commited them you have two options:
-commit them if you want to keep your changes, or stash them to move
-them out of the way. The command `git stash` moves your changes to temporary
-storage and undoes the changes you made locally.
 
 ## Fetch
 
@@ -116,6 +109,16 @@ You can also merge all differences from a branch of a repository using
 
 A naked `git merge` is equivalent to `git merge origin master`.
 
+This is where things can get messed up. If there are conflicting
+edits you have to tell git what you want to keep, what you
+want to throw out, and what you want to modify.
+
+The original reposity does not change, only the branch you are
+merging to does. Once you have fixed things up, you will need to
+do another commit to tell git to keep the changes. You will
+also have to do a push if you want the original repository
+to pick up your changes.
+
 ## Fork
 
 This is not minimal git, but a common worklow on GitHub is to `fork`
@@ -126,6 +129,8 @@ want to merge your changes by issuing a _Pull Request_.
 
 If your changes get approved then others who have forked the repository
 can pull your code.
+
+They should pull the code to their fork first, then pull to their clone.
 
 ## Remote
 
@@ -205,7 +210,7 @@ These changes can be _merge_d back into master at any time, but master
 might have changed too in the meantime.
 
 If there are no _conficts_ then the merge is the union of all the changes.
-If overlaping changes occurred (a conflict) then you will have to _resolve_
+If overlapping changes occurred (a conflict) then you will have to _resolve_
 the changes.
 
 The merge has no effect on the branch you are merging from. It creates a
