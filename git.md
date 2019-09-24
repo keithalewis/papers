@@ -81,11 +81,6 @@ that you cloned use `push`. This command is equivalent to
 
 This merges your commits into the master branch of the original repository.  
 
-If you have changed files but haven't commited them you have two options:
-commit them if you want to keep your changes, or stash them to move
-them out of the way. The command `git stash` moves your changes to temporary
-storage and undoes the changes you made locally.
-
 ## Pull
 
 > git pull
