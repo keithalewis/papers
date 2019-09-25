@@ -6,7 +6,7 @@ copyright: © 2019 Keith A. Lewis
 abstract: |
 	We demonstrate an explicit formula for pricing any European option
 	in terms of the standard normal distribution and cumulants
-	that uses Bell and Hermite polynomials.
+	using Bell and Hermite polynomials.
 ...
 
 An European option pays some function of the underlying instrument value at expiration.
@@ -15,13 +15,12 @@ payoff function. The forward value of the option is $E[g(F)]$.
 Any piecewise linear, continuous function can be approximated by a cash position,
 a forward contract and a linear combination of puts and calls.
 We demonstrate an explicit formula for puts and calls in terms of the standard
-normal distribution and cumulants that uses Bell and Hermite polynomials.
+normal distribution and cumulants using Bell and Hermite polynomials.
 
 ## Puts and Calls
 
 A put has payoff $p(x) = \max\{k - x, 0\} = (k - x)^+$ and a call has payoff
-$c(x) = (x - k)^+$. Since $c(x) - p(x) = x - k$ we can calculate the call value
-using the put value and a forward contract having the same strike.
+$c(x) = (x - k)^+$.
 
 If $F$ is lognormal then the standard Black-Scholes/Merton theory can be used to
 value puts and calls. If $F$ is a perturbation of a lognormal random variable there is
@@ -48,11 +47,11 @@ The Black model uses $F = f\exp(\sigma B_t - \sigma^2 t/2)$ where $B_t$ is stand
 Brownian motion. Note $F \le k$ is equivalent to
 $B_t/\sqrt{t} \le (\sigma^2 t/2 + \log k/f)/\sigma\sqrt{t}$.
 The right-hand side of the last inequality is often called $-d_2$
-and the probability that the inequality holds is $\Phi(d_2)$ where $\Phi$ is the standard
+and the probability that the inequality holds is $\Phi(-d_2)$ where $\Phi$ is the standard
 normal cumulative density function.
 For any normally distributed random variable, $N$, we have
-$E[\exp(N) f(N)] = E[\exp(N)] E[f(N + \Var(N))]$ and
-$E[\exp(N)] = \exp(E[N] + \Var(N)/2)$.
+$E[\exp(N)] = \exp(E[N] + \Var(N)/2)$ and
+$E[\exp(N) f(N)] = E[\exp(N)] E[f(N + \Var(N))]$.
 
 _Exercise._ Show $P^*(F\le k) = E[e^{\sigma B_t - \sigma^2 t/2}1(F\le k)]
 = P(Fe^{\sigma^2 t} \le k)$.
@@ -81,7 +80,7 @@ $F = f\exp(sX - \kappa(s))$.  Note $E[F] = f$ and $\Var(\log F) = s^2\Var(X)$.
 
 _Exercise_. Prove this.
 
-The Black model has $X$
+The Black model takes $X$
 standard normal and $s = \sigma\sqrt{t}$. In this case the cumulant of $X$
 is $s^2/2$ so all cumulants are zero except the second $\kappa_2 = 1$.
 
@@ -108,9 +107,10 @@ _Exercise_. Show the cumulants of $X^*$ are $\kappa^*_n = \sum_{k = 0}^\infty \k
 
 In particular, $E[X^*] = \kappa'(s)$ and $\Var(X^*) = \kappa''(s)$.
 
-$X ~ N(0,1)$ then $X^* ~ N(s, 1)$.
+_Exercise_. Show that if $X$ is stanard normal then $X^*$ is normal with mean $s$ and variance 1.
 
-$X ~ Poisson(\lambda)$ then $X^* ~ Poisson(\lambda e^s)$.
+_Exercise_. Show that if $X$ is Poisson with parameter $\lambda$ then $X^*$ 
+is Poisson with parameter $\lambda e^s$.
 
 ## Bell polynomials
 
@@ -136,12 +136,12 @@ Note $B_1(\kappa_1) = \kappa_1$ and $B_2(\kappa_1,\kappa_2) = \kappa_1^2 + \kapp
 The _reduced Bell polynomials_, $b_n(\kappa_1,\ldots,\kappa_n) = B_n(\kappa_1,\ldots,\kappa_n)/n!$
 satisfy the recursion
 
-_Excercise_. Prove this.
-
 \begin{align*}
 	b_{n+1}(\kappa_1,\ldots,\kappa_{n+1})
 		= \frac{1}{n + 1}\sum_{k=0}^n b_{n-k}(\kappa_1,\ldots,\kappa_{n-k}) \kappa_{k+1}/k!
 \end{align*}
+
+_Excercise_. Prove this.
 
 ## Hermite polynomials
 
@@ -159,6 +159,8 @@ It is a general property of
 Fourier transforms that $\widehat{\psi'}(u) = iu\hat{\psi}(u)$.
 
 _Exercise_. Prove this.
+
+By induction, $\widehat{\psi^{(n)}}(u) = (iu)^n\hat{\psi}(u)$.
 
 Let $\phi(x) = \exp(-x^2/2)/\sqrt{2\pi}$ be the standard normal density
 function and let $\psi(x)$ be the probability density function of $X$.
@@ -208,6 +210,8 @@ The first seven Bell polynomials with $\kappa_1 = \kappa_2 = 0$ are
 	B_7(0,0,\kappa_3,\kappa_4,\kappa_5,\kappa_6,\kappa_7) &= 35\kappa_3\kappa_4 + \kappa_7\\
 \end{align*}
 
+## Carr-Madan Formuls
+
 If $f\colon\mathbf{R}\to\mathbf{R}$ has a piecewise continuous second derivatve, then
 \begin{align*}
 f(x) = f(a) + f'(a)(x-a) + \int_{-\infty}^a (k - x)^+ f''(k)\,dk + \int_a^\infty (x - k)^+ f''(k)\,dk.
@@ -224,6 +228,9 @@ f''(x) = f''(x)1(x < a) + f''(x)1(x > a)(k)
 for $x\not= a$. Note the left and right limits as $x\to a$ equal $f''(a)$.
 This proves the original formula is valid.
 
+The formula show how to approximate any continuous payoff with a cash position, a forward
+contract, a portfolio of puts, and a portfolio of calls.
+
 ## Remarks
 
-If the payoff function has jumps, digital options can be used to replicate it.
+If the payoff function has jumps, digital options can be used to replicate.
