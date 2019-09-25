@@ -213,7 +213,7 @@ As we will see below, the prices of all
 ### Futures
 
 A _futures_ on underlying $S$ expiring at $t_n$ has price $X_{t_j} = 0$ for all $j$,
-cash flows $C_{t_j} = \Phi_{t_j} - \Phi_{t_{j-1}}$ for $0 < j <\le n$, where
+cash flows $C_{t_j} = \Phi_{t_j} - \Phi_{t_{j-1}}$ for $0 < j \le n$, where
 $\Phi_{t_j}$ is the futures _quote_ at time $t_j$, and $\Phi_{t_n} = S_{t_n}$
 at expiration. Since $0 = E_{t_j} (\Phi_{t_{j+1}} - \Phi_{t_j}) D_{t_j}$, we
 have $\Phi_{t_j} = E_{t_j} \Phi_{t_{j+1}}$ when $D_{t_j} > 0$ is $t_j$ measurable.
@@ -334,7 +334,7 @@ $V_t = E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)$.
 
 ### Caplet
 
-A _caplet is a call option on an at-the-money _forward rate agreement_.
+A _caplet_ is a call option on an at-the-money _forward rate agreement_.
 It pays $\max\{F_u(u,v) - k,0\}\delta(u,v)$ at time $v$.
 Its value at time $t < u$ is determined by $V_t D_t = E_t \max\{F_u(u,v) - k,0\}\delta(u,v) D_u$.
 Similar to floorlets, the value at $t$ of a caplet is
@@ -366,7 +366,6 @@ be a function $X\colon T\times A\times I\times C\times I\times C\to
 amounts that can be traded, $I$ is the set of market instruments, and $C$
 is the set of legal trading entities.
 
-<!--
 ### One Period Model
 
 There is no need for probability measures: the Fundamental Theorem of
@@ -396,7 +395,7 @@ $\zeta\cdot X_1(\omega) = 1$ for all $\omega\in\Omega$, then
 $\zeta\cdot X_0 = \int_\Omega \zeta\cdot X_1\,d\Pi = ||\Pi|| = z$ is the price
 of the zero coupon bond and $P = \Pi/z$ is a probability measure.
 
-### Multi Period Model
+### One Period Model Again
 
 Recall the _dual_ of the space of bounded
 functions on a set $\Omega$, $B(\Omega)$, is the space of finitely additive
@@ -404,8 +403,7 @@ measures on $\Omega$, $ba(\Omega)$.
 <!-- cite Dunford Schwartz -->
 
 Let's assume $X_1\in B(\Omega,\mathbf{R}^I)$, the set of bounded functions from
-$\Omega$ to $\mathbf{R}^I$. Consider the map $A\colon B\to\mathbf{R}$,
-where $B = \mathbf{R} \oplus B(\Omega)$,
+$\Omega$ to $\mathbf{R}^I$. Consider the map $A\colon \mathbf{R} \oplus B(\Omega)\to\mathbf{R}^2$
 defined by $\Gamma \mapsto (-\Gamma\cdot X_0, \Gamma\cdot X_1)$. No arbitrage
 says the range of $A$ does not intersect the cone $\{p \oplus P):p > 0, P\ge 0\}$.
 Since the cone has an interior point, the Hahn-Banach theorem implies there exists
@@ -413,3 +411,9 @@ a hyperplane that does not intersect the cone. The hyperplane is the kernel of
 an element in the dual space $B^* = \mathbf{R}\oplus ba(\Omega)$, where
 $ba(\Omega)$ is the space of finitely additive measures. Call this element
 $\pi\oplus\Pi$. We may assume $\pi = 1$.
+
+The adjoint of $A$, $A^*\colon 
+
+### Multi Period Model
+
+The proof above generalizes to the multi-period case...

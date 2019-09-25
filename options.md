@@ -108,6 +108,10 @@ _Exercise_. Show the cumulants of $X^*$ are $\kappa^*_n = \sum_{k = 0}^\infty \k
 
 In particular, $E[X^*] = \kappa'(s)$ and $\Var(X^*) = \kappa''(s)$.
 
+$X ~ N(0,1)$ then $X^* ~ N(s, 1)$.
+
+$X ~ Poisson(\lambda)$ then $X^* ~ Poisson(\lambda e^s)$.
+
 ## Bell polynomials
 
 The (complete) Bell polynomials $B_n(\kappa_1,\ldots,\kappa_n)$
