@@ -9,7 +9,8 @@ abstract: |
 ...
 
 Probability is an extension of logic. Instead of propositions being either
-true or false a degree of belief can be specified for events occurring.
+true or false a degree of belief can be specified for events occurring,
+or not occuring.
 All probabilities are conditional on models of available information.
 
 # Probability Model
@@ -79,7 +80,7 @@ is the empty set.
 ## Partition
 
 A _partition_ of a set is a collection of pairwise disjoint subsets
-who's union is the entire set.
+whos union is the entire set.
 
 Exercise. If an algebra is finite its atoms are a partition.
 
@@ -93,7 +94,7 @@ belongs to corresponds to partial knowledge. For example, the partition
 $\{\{1,3,5\},\{2,4,6\}\}$ corresponds to knowing whether the roll of a
 die is odd or even.
 
-The coarsest partition $\{\Omega\}$ corresponds to no knowledge while the finest partition
+The coarsest partition, $\{\Omega\}$, corresponds to no knowledge while the finest partition
 $\{\{\omega\}:\omega\in\Omega\}$ corresponds to complete knowledge.
 
 ## Measurable
@@ -124,7 +125,7 @@ Exercise. Show $P(a\le X\le b) = \lim_{x\uparrow a} F(b) - F(x)$.
 
 Hint: $[a,b] = \cap_n (a - 1/n, b]$.
 
-In general, $P(X\in A) = E 1_A = \int 1_A(x)\,dF(x)$
+In general, $P(X\in A) = \int_A dF(x)$
 for sufficiently nice $A\subset\mathbf{R}$ where we are using
 [Riemann–Stieltjes](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral)
 integration.
@@ -137,7 +138,7 @@ Every such function is the cumulative distribution function of a random variable
 
 The cdf $F(x) = \max\{0,\min\{1,x\}\}$ defines the uniformly distributed
 random variable, $U$, on the interval $[0,1]$.  For $0\le a < b\le 1$,
-$P(a < U < b) = b - a$.
+$P(a < U \le b) = b - a$.
 
 Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
 
@@ -154,7 +155,7 @@ distribution function is $F(x) = P(X\le x) = P(\{\omega\in\Omega\mid X(\omega) \
 Given a cdf $F$ we can define
 $X\colon\mathbf{R}\to\mathbf{R}$ to be the
 identity function and let $P$ be the probability measure defined by $F$:
-$P(A) = \int 1_A(x)\,dF(x)$. 
+$P(A) = \int_A dF(x)$. 
 
 ## Expected Value
 
@@ -198,7 +199,8 @@ random variable might not be unique.
 ## Cumulant
 
 The _cumulant_ of a random variable, $X$, is $\kappa(s) = \kappa^X(s) = \log E\exp(sX)$.
-The _cumulants_, $(\kappa_n)$, are defined by $\kappa(s) = \sum_{n>0}\kappa_n s^n/n!$.
+The _cumulants_, $(\kappa_n)$, are the coefficients of the power series expansion
+$\kappa(s) = \sum_{n>0}\kappa_n s^n/n!$.
 
 It is easy to see $\kappa_1 = E X$ and $\kappa_2 = \Var X$. The third and fourth cumulants
 are related to skew and kurtosis. We will see the exact relationship below.
@@ -206,7 +208,7 @@ are related to skew and kurtosis. We will see the exact relationship below.
 If $c$ is a constant then $\kappa^{cX}(s) = \kappa^X(cs)$ so
 $\kappa^{cX}_n = c^n\kappa^X_n$.  If $X$ and $Y$ satisfy $Ee^{sX}e^{sY}
 = Ee^{sX}E^{sY}$ then $\kappa^{X + Y}(s) = \kappa^X(s) + \kappa^Y(s)$
-so $\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
+and $\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
 
 ### Bell Polynomial
 
@@ -253,7 +255,7 @@ This is the simplest form of Bayes Theorem. It shows how to update your degree
 of belief based on new information. Every probability is conditional on given information.
 
 Define the conditional expectation of the random variable $X$ with respect
-to the set (event) $A$ by $E[X|A] = E[X 1_A]/P(A)$.  If $X = 1_B$ then
+to the event $A$ by $E[X|A] = E[X 1_A]/P(A)$.  If $X = 1_B$ then
 this coincides with the definition of conditional expectation above.
 
 Define the conditional expectation of $X$ with respect to the algebra
@@ -325,9 +327,9 @@ for $u_1 \ge u_2$ and $v_1 \ge v_2$.
 
 ## Discrete
 
-A _discrete_ random variable is defined by
+A _discrete_ random variable, $X$, is defined by
 $x_i\in\mathbf{R}$ and $p_i > 0$ with $\sum p_i = 1$.
-The probability the random variable takes on value $x_i$ is $p_i$.
+The probability the random variable takes on value $x_i$ is P(X = x_i) = $p_i$.
 
 If a discrete random variable takes on a finite number of values, $n$, then
 if $p_i = 1/n$ for all $i$ the variable is called _discrete uniform_.
@@ -339,7 +341,7 @@ A _Bernoulli_ random variable is a discrete random variable with $P(X = 0) = p$,
 ## Binomial
 
 A _Binomial_ random variable is a discrete random variable with
-$P(X = k) = \binom{n}{k}p^k(1-p)^{n-k}/2^n$, $k = 0$, \ldots, $n$.
+$P(X = k) = \binom{n}{k}p^k(1-p)^{n-k}$, $k = 0$, \ldots, $n$.
 
 ## Uniform
 
@@ -353,12 +355,15 @@ The _standard normal_ random variable, $Z$, has density function $\phi(x) = \exp
 If $X$ is normal then $E\exp(X) = \exp(EX + \Var(X)/2)$ so the cumulants satisfy
 $\kappa_n = 0$ for $n > 2$.
 
+For any normal random variable, $N$, $E[e^N f(N)] = E[e^N] E[f(N + \Var(N)]$.
+
+If $N$, $N_1$, \ldots, are jointly normal then
+$E[e^N f(N_1,\ldots)] = E[e^N] E[f(N_1 + \Cov(N,N_1),\ldots)]$.
+
 ## Poisson
 
 A _Poisson_ random variable with parameter $\lambda$ is defined by
-$P(X = k) = e^{-\lambda}\lambda^k/k!$ for $k = 0, 1, ...$
-$P(X > x + h|X > x) = \lambda h + o(h)$: The probability it occurs
-in the 
+$P(X = k) = e^{-\lambda}\lambda^k/k!$ for $k = 0, 1, \ldots$.
 
 If $X$ is Poisson with parameter $\lambda$ then 
 \begin{align*}
@@ -378,14 +383,33 @@ A theorem of Kolmogorov states for every infinitely divisible random variable th
 a number $\gamma$ and a non-decreasing function $G$ with
 
 $$
-\log E e^{sX} = \gamma s + \int_{-\infty}^\infty K_s(x)\,dG(x),
+\kappa(s) = \log E e^{sX} = \gamma s + \int_{-\infty}^\infty K_s(x)\,dG(x),
 $$
 
-where $K_s(x) = (e^{sx} - 1 - sx)/x^2$.
-Note if $G(x) = 1_{(-\infty,0]}$ then the random variable is normal and if
-$G(x) = 1_{(-\infty,a]}$ for $a\not=0$ the readom variable is Poisson.
-This theorem states every infinitely divisible random variable is a normal plus
-a linear combination of independent Poisson random variables.
+where $K_s(x) = (e^{sx} - 1 - sx)/x^2 = \sum_{n=2}^\infty x^{n-2}s^n/n!$.
+Note if $G(x) = 1_{(-\infty,0]}$ then $\kappa(s) = \gamma s + K_s(0) = \gamma s + s^2/2$
+so the random variable is normal.
+If $G(x) = a^2 1_{(-\infty,a]}$ for $a\not=0$ then
+
+\begin{align*}
+\kappa(s) &= \gamma s + a^2 K_s(a)\\ 
+          &= \gamma s + a^2 \sum_{n=2}^\infty a^{n-2}s^n/n!\\ 
+          &= \gamma s + \sum_{n=2}^\infty a^n s^n/n!\\ 
+          &= \gamma s - as + \sum_{n=1}^\infty a^n s^n/n!\\ 
+          &= (\gamma - a)s + \sum_{n=1}^\infty a^n s^n/n!\\ 
+\end{align*}
+
+so the random variable is Poisson with parameter $a$ plus the constant $\gamma - a$.
+
+This theorem states every infinitely divisible random variable can be
+approximated by a normal plus a linear combination of independent Poisson
+random variables.
+
+If $X = \mu + \sigma Z + \sum_j \alpha_j a_j^2 P_j$ where $P_j$ is Poisson
+with parameter $a_j$, then
+$$
+\kappa(s) = \mu s + \sigma s^2/2 + \sum_j \alpha_j (e^{a_j s} - 1) - \alpha_j s
+$$
 
 <!--
 ## Unsorted
