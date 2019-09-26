@@ -156,13 +156,13 @@ of the derivative is the cost of setting up the initial hedge: $V_0 = \Gamma_0\c
 The hedge must satisfy $A_t = 0$ if $t\not=\bar{\tau_j}$ for all $j$ (_self financing_)
 and $A_t = \hat{A_j}$ if $t = \bar{\tau_j}$ for some $j$.
 
-The formula $V_0 = E[\sum_j \hat{A_j} D_{\hat{\tau_j}}]$ is the
+The formula $V_0 = E[\sum_j \bar{A_j} D_{\bar{\tau_j}}]$ is the
 value of the initial hedge, $\Gamma_0\cdot X_0$. It can be computed using the
 derivative security payments, $\bar{A_j}$, and the deflator.
 
-An European option has a single payment, $\hat{A_T}$, at a fixed time $T$
-and has value $V_0 = E \hat{A_T} D_T$. Sometimes it is useful to compute this
-as $E \hat{A_T} D_T = E^{D_T} \hat{A_T} E D_T$, where $E^{D_T}$ is the expected value under
+An European option has a single payment, $\bar{A_T}$, at a fixed time $T$
+and has value $V_0 = E \bar{A_T} D_T$. Sometimes it is useful to compute this
+as $E \bar{A_T} D_T = E^{D_T} \bar{A_T} E D_T$, where $E^{D_T}$ is the expected value under
 the Esscher transform of the probability measure defined by $dP^{D_T}/dP =
 D_T/E D_T$. $P^{D_T}$ is called the _forward measure_ at time $T$.
 
@@ -395,12 +395,15 @@ $\zeta\cdot X_1(\omega) = 1$ for all $\omega\in\Omega$, then
 $\zeta\cdot X_0 = \int_\Omega \zeta\cdot X_1\,d\Pi = ||\Pi|| = z$ is the price
 of the zero coupon bond and $P = \Pi/z$ is a probability measure.
 
+<!--
 ### One Period Model Again
 
 Recall the _dual_ of the space of bounded
 functions on a set $\Omega$, $B(\Omega)$, is the space of finitely additive
 measures on $\Omega$, $ba(\Omega)$.
+-->
 <!-- cite Dunford Schwartz -->
+<!--
 
 Let's assume $X_1\in B(\Omega,\mathbf{R}^I)$, the set of bounded functions from
 $\Omega$ to $\mathbf{R}^I$. Consider the map $A\colon \mathbf{R} \oplus B(\Omega)\to\mathbf{R}^2$
@@ -417,3 +420,4 @@ The adjoint of $A$, $A^*\colon
 ### Multi Period Model
 
 The proof above generalizes to the multi-period case...
+-->
