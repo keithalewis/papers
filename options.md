@@ -41,7 +41,7 @@ where $P^*$ is the measure defined by $dP^*/dP = F/E[F]$.
 I.e., $E^*[X] = E[X F/E[F]]$. Similarly, the value of a
 call is $E[(F - k)^+] = E[F] P^*(F\ge k) - k P(F\ge k)$.
 
-_Exercise_. Derive this formula.
+__Exercise__. Derive this formula.
 
 The Black model uses $F = f\exp(\sigma B_t - \sigma^2 t/2)$ where $B_t$ is standard
 Brownian motion. Note $F \le k$ is equivalent to
@@ -56,60 +56,60 @@ $E[\exp(N) f(N)] = E[\exp(N)] E[f(N + \Var(N))]$.
 _Exercise._ Show $P^*(F\le k) = E[e^{\sigma B_t - \sigma^2 t/2}1(F\le k)]
 = P(Fe^{\sigma^2 t} \le k)$.
 
-_Exercise_. Show $P^*(F\le k) = \Psi(-d_1)$
+__Exercise__. Show $P^*(F\le k) = \Psi(-d_1)$
 where $d_1 = d_2 + \sigma\sqrt{t}$.
 
 
 ## Cumulant
 
-The _cumulant_ of a random variable $X$ is $\kappa^X(s) = \log E[\exp(sX)]$
+The _cumulant_ of a random variable $X$ is $\kappa^X(s) = \kappa(s) = \log E[\exp(sX)]$
 and the _cumulants_ are the coefficients in the power series expansion
-$\kappa^X(s) = \kappa(s) = \sum_{n>0} \kappa_n s^n/n!$.
+$\kappa(s) = \sum_{n>0} \kappa_n s^n/n!$.
 
 Note $\kappa(0) = 0$, $\kappa'(0) = \kappa_1 = E[X]$,
 and $\kappa''(0) = \kappa_2 = \Var X$.
 
-_Exercise_. Prove this.
+__Exercise__. Prove this.
 
-_Exercise_. If $c$ is constant show $\kappa_n^{cX} = c^n\kappa_n$.
+__Exercise__. If $c$ is constant show $\kappa_n^{cX} = c^n\kappa_n$.
 
-_Exercise_. If $X$ and $Y$ are independent show $\kappa_n^{X+Y} = \kappa_n^X + \kappa_n^Y$.
+__Exercise__. If $X$ and $Y$ are independent show $\kappa_n^{X+Y} = \kappa_n^X + \kappa_n^Y$.
 
 Define $X = z(F) = (\kappa(s) + \log F/f)/s$, so
 $F = f\exp(sX - \kappa(s))$.  Note $E[F] = f$ and $\Var(\log F) = s^2\Var(X)$.
 
-_Exercise_. Prove this.
+__Exercise__. Prove this.
 
 The Black model takes $X$
 standard normal and $s = \sigma\sqrt{t}$. In this case the cumulant of $X$
 is $s^2/2$ so all cumulants are zero except the second $\kappa_2 = 1$.
 
-_Exercise_. Use $E\exp(N) = \exp(E[N] + \Var(N)/2)$ for any normally distributed
+__Exercise__. Use $E\exp(N) = \exp(E[N] + \Var(N)/2)$ for any normally distributed
 random variable $N$ to prove this.
 
 We can and do assume $X$ has mean $0$ and variance $1$ as in the Black model.
 
-_Exercise_. Show $f\exp(s(\sigma X + \mu) - \kappa^{\sigma X+\mu}(s))
+__Exercise__. Show $f\exp(s(\sigma X + \mu) - \kappa^{\sigma X+\mu}(s))
 = f\exp(s^*X - \kappa^X(s^*))$ where $s^* = \sigma s$.
 
-_Exercise_. Show if $X$ is Poisson with parameter $\lambda$, i.e.,
+__Exercise__. Show if $X$ is Poisson with parameter $\lambda$, i.e.,
 $P(X = k) = e^{-\lambda} \lambda^k/k!$, $k = 0, 1$, \ldots, then
 $\kappa_n = \lambda$ for all $n$.
 
 Note $F/E[F] = e^{sX - \kappa(s)}$ and define $P^*$ as above by $dP^*/dP = e^{sX - \kappa(s)}$.
 
-_Exercise_. If $X^*$ is the random variable defined by $P(X^*\le x) = P^*(X\le x)$ show
+__Exercise__. If $X^*$ is the random variable defined by $P(X^*\le x) = P^*(X\le x)$ show
 the cumulant of $X^*$ is $\kappa^*(u) = \kappa(u + s) - \kappa(s)$.
 
-_Exercise_. Show $(\kappa^*)^{(n)}(0) = \kappa^n(s)$ for derivatives $n > 0$.
+__Exercise__. Show $(\kappa^*)^{(n)}(0) = \kappa^n(s)$ for derivatives $n > 0$.
 
-_Exercise_. Show the cumulants of $X^*$ are $\kappa^*_n = \sum_{k = 0}^\infty \kappa_{n+k} s^k/k!$.
+__Exercise__. Show the cumulants of $X^*$ are $\kappa^*_n = \sum_{k = 0}^\infty \kappa_{n+k} s^k/k!$.
 
 In particular, $E[X^*] = \kappa'(s)$ and $\Var(X^*) = \kappa''(s)$.
 
-_Exercise_. Show that if $X$ is stanard normal then $X^*$ is normal with mean $s$ and variance 1.
+__Exercise__. Show that if $X$ is stanard normal then $X^*$ is normal with mean $s$ and variance 1.
 
-_Exercise_. Show that if $X$ is Poisson with parameter $\lambda$ then $X^*$ 
+__Exercise__. Show that if $X$ is Poisson with parameter $\lambda$ then $X^*$ 
 is Poisson with parameter $\lambda e^s$.
 
 ## Bell polynomials
@@ -141,7 +141,7 @@ satisfy the recursion
 		= \frac{1}{n + 1}\sum_{k=0}^n b_{n-k}(\kappa_1,\ldots,\kappa_{n-k}) \kappa_{k+1}/k!
 \end{align*}
 
-_Excercise_. Prove this.
+__Exercise__. Prove this.
 
 ## Hermite polynomials
 
@@ -158,7 +158,7 @@ The Fourier transform of $\psi$ is $\hat{\psi}(u) = E[\exp(-iuX)]$.
 It is a general property of
 Fourier transforms that $\widehat{\psi'}(u) = iu\hat{\psi}(u)$.
 
-_Exercise_. Prove this.
+__Exercise__. Prove this.
 
 By induction, $\widehat{\psi^{(n)}}(u) = (iu)^n\hat{\psi}(u)$.
 
@@ -166,7 +166,7 @@ Let $\phi(x) = \exp(-x^2/2)/\sqrt{2\pi}$ be the standard normal density
 function and let $\psi(x)$ be the probability density function of $X$.
 Note $\hat{\phi}(u) = \phi(u)$.
 
-## Cumulative distribuiton
+## Cumulative distribution
 
 This section shows how to compute the cumulative distribution of a perturbation
 of a standard normal random variable.
@@ -192,23 +192,8 @@ Integrating gives
 \end{align*}
 
 The value of a put is $E[(k - F)^+] = k\Psi(z) - f\Psi^*(z)$ where
-$z = (\kappa(s) + \log(f/F))/s$ and $\Phi^*$ is the formula above with
+$z = (\kappa(s) + \log(k/f))/s$ and $\Phi^*$ is the formula above with
 $\kappa_n$ replaced with $\kappa_n^*$.
-
-## Remarks
-
-The Hermite polynomials can be expressed using Bell polynomials, $H_n(x) = B_n(x,1,0,\ldots,0)$.
-
-The first seven Bell polynomials with $\kappa_1 = \kappa_2 = 0$ are
-\begin{align*}
-	B_1(0) &= 0\\
-	B_2(0,0) &= 0\\
-	B_3(0,0,\kappa_3) &= \kappa_3\\
-	B_4(0,0,\kappa_3,\kappa_4) &= \kappa_4\\
-	B_5(0,0,\kappa_3,\kappa_4,\kappa_5) &= \kappa_5\\
-	B_6(0,0,\kappa_3,\kappa_4,\kappa_5,\kappa_6) &= 10\kappa_3^2 + \kappa_6\\
-	B_7(0,0,\kappa_3,\kappa_4,\kappa_5,\kappa_6,\kappa_7) &= 35\kappa_3\kappa_4 + \kappa_7\\
-\end{align*}
 
 ## Carr-Madan Formuls
 
@@ -228,9 +213,23 @@ f''(x) = f''(x)1(x < a) + f''(x)1(x > a)(k)
 for $x\not= a$. Note the left and right limits as $x\to a$ equal $f''(a)$.
 This proves the original formula is valid.
 
-The formula show how to approximate any continuous payoff with a cash position, a forward
+The formula shows how to approximate any continuous payoff with a cash position, a forward
 contract, a portfolio of puts, and a portfolio of calls.
 
 ## Remarks
 
 If the payoff function has jumps, digital options can be used to replicate.
+
+The Hermite polynomials can be expressed using Bell polynomials, $H_n(x) = B_n(x,1,0,\ldots,0)$.
+
+The first seven Bell polynomials with $\kappa_1 = \kappa_2 = 0$ are
+\begin{align*}
+	B_1(0) &= 0\\
+	B_2(0,0) &= 0\\
+	B_3(0,0,\kappa_3) &= \kappa_3\\
+	B_4(0,0,\kappa_3,\kappa_4) &= \kappa_4\\
+	B_5(0,0,\kappa_3,\kappa_4,\kappa_5) &= \kappa_5\\
+	B_6(0,0,\kappa_3,\kappa_4,\kappa_5,\kappa_6) &= 10\kappa_3^2 + \kappa_6\\
+	B_7(0,0,\kappa_3,\kappa_4,\kappa_5,\kappa_6,\kappa_7) &= 35\kappa_3\kappa_4 + \kappa_7\\
+\end{align*}
+
