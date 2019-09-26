@@ -52,7 +52,7 @@ the mathematical way to say measures do not double count.
 
 A probability measure must also satisfy $P(\emptyset) = 0$ and $P(\Omega) = 1$.
 
-Exercise. If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$,
+__Exercise__. If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$,
 show $(Q - a)/(b - a)$ is a probability measure.
 
 # Algebra
@@ -82,7 +82,7 @@ is the empty set.
 A _partition_ of a set is a collection of pairwise disjoint subsets
 whos union is the entire set.
 
-Exercise. If an algebra is finite its atoms are a partition.
+__Exercise__. If an algebra is finite its atoms are a partition.
 
 Hint: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$ is an atom for all $\omega\in\Omega$. 
 
@@ -103,7 +103,7 @@ A function $X\colon\Omega\to\mathbf{R}$ is $\mathcal{A}$-_measureable_ if the se
 $X^{-1}((-\infty, x]) = \{\omega\in\Omega:X(\omega)\le x\}$
 belong to $\mathcal{A}$ for $x\in\mathbf{R}$.
 
-Exercise: If $\mathcal{A}$ is finite, show that a function is measurable if and only if it
+__Exercise__: If $\mathcal{A}$ is finite, show that a function is measurable if and only if it
 is constant on atoms of $\mathcal{A}$.
 
 In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
@@ -121,7 +121,7 @@ function_ of the random variable $X$ is $F(x) = F^X(x) = P(X\le x)$.
 It tells you everything there is to know about $X$. For example,
 $P(a < X \le b) = F(b) - F(a)$. 
 
-Exercise. Show $P(a\le X\le b) = \lim_{x\uparrow a} F(b) - F(x)$.
+__Exercise__. Show $P(a\le X\le b) = \lim_{x\uparrow a} F(b) - F(x)$.
 
 Hint: $[a,b] = \cap_n (a - 1/n, b]$.
 
@@ -130,7 +130,7 @@ for sufficiently nice $A\subset\mathbf{R}$ where we are using
 [Riemann–Stieltjes](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral)
 integration.
 
-Exercise: Show for any cumulative distribution function, $F$, that
+__Exercise__: Show for any cumulative distribution function, $F$, that
 $F$ is non-decreasing, $\lim_{x\to -\infty} F(x) = 0$,
 $\lim_{x\to\infty} F(x) = 1$, and $F$ is right continuous with left limits.
 
@@ -142,9 +142,9 @@ $P(a < U \le b) = b - a$.
 
 Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
 
-Exercise. If $X$ has cdf $F$, then $X$ and $F^{-1}(U)$ have the same law.
+__Exercise__. If $X$ has cdf $F$, then $X$ and $F^{-1}(U)$ have the same law.
 
-Exercise. If $X$ has cdf $F$, then $F(X)$ and $U$ have the same law.
+__Exercise__. If $X$ has cdf $F$, then $F(X)$ and $U$ have the same law.
 
 This shows a uniformly distributed random variable has sufficient randomness to
 generate any random variable. There are no random, random variables.
@@ -166,13 +166,13 @@ a random variable is $E f(X) = \int_{-\infty}^\infty f(x)\,dF(x)$.
 If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
 the _expected value_ of $X$ is $EX = \sum_i a_i P(A_i)$.
 
-Exercise. Show that if $\sum_i a_i 1_{A_i} = 0$ then $\sum_i a_i P(A_i) = 0$.
+__Exercise__. Show that if $\sum_i a_i 1_{A_i} = 0$ then $\sum_i a_i P(A_i) = 0$.
 
 Hint: Replace the $A_i$ by disjoint $B_j$ so $b_j = 0$ for all $j$.
 
 This shows expected value is [well-defined](https://en.wikipedia.org/wiki/Well-defined).
 
-Exercise. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
+__Exercise__. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
 + \sum_{i < j < k} P(A_i\cap A_j\cap A_k) \cdots$.
 
 Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
@@ -224,9 +224,9 @@ Since $E \exp(sX) = \sum_0^\infty E X^n s^n/n! =
 \sum_0^\infty m_n s^n/n!$ where $m_n$ is the $n$-th moment and $E \exp(sX)
 = \exp(\kappa(s)) = \exp(\sum_{n=1}^\infty \kappa_n s^n/n!)$.
 
-Exercise: Show $m_n = \sum_{k=1}^n B_k(\kappa_1,\ldots,\kappa_n)$.
+__Exercise__: Show $m_n = \sum_{k=1}^n B_k(\kappa_1,\ldots,\kappa_n)$.
 
-Exercise: Find the first five Bell polynomials.
+__Exercise__: Find the first five Bell polynomials.
 
 In particular $m_1 = \kappa_1$ and $m_2 = \kappa_1^2 + \kappa_2$ so
 $\kappa_1$ is the mean and $\kappa_2$ is the variance. If the mean is 0 and
@@ -283,7 +283,7 @@ This is equivalent to $P(X\in A,Y\in B) = P(X\in A)P(Y\in B)$ for any sets $A$ a
 We also have that $Ef(X)g(Y) = Ef(X) Eg(Y)$ for any functions $f$ and $g$ whenever all expected
 values exist.
 
-Exercise: Prove this for the case $f = \sum_i a_i 1_{A_i}$ and $g = \sum_j b_j 1_{B_j}$.
+__Exercise__: Prove this for the case $f = \sum_i a_i 1_{A_i}$ and $g = \sum_j b_j 1_{B_j}$.
 
 In general, $X_1$, \ldots, $X_n$ are independent if
 $F(x_1,\ldots,x_n) = F_1(x_1)\cdots F_n(x_n)$, where $F_j$ is the law of $X_j$.
@@ -295,18 +295,18 @@ The copula of $X$ and $Y$ is the joint distribution of $F^{-1}(X)$ and $G^{-1}(Y
 $F$ and $G$ are the cumulative distributions of $X$ and $Y$ respectively:
 $C(u,v) = C^{X,Y}(u,v) = P(F^{-1}(X) \le u, G^{-1}(Y) \le v)$.
 
-Exercise: Show $C(u,v) = H(F(u),G(v))$ where
+__Exercise__: Show $C(u,v) = H(F(u),G(v))$ where
 and $H$ is the joint distribution of $X$ and $Y$ and $F$ and $G$ are the cumulative
 distribution of $X$, and $Y$.
 
-Exercise: Show $H(x,y) = C(F^{-1}(x), G^{-1}(y))$
+__Exercise__: Show $H(x,y) = C(F^{-1}(x), G^{-1}(y))$
 
 This shows how to use the copula and marginal distributions to recover the joint distribution.
 
 An equivalent definition is a copula is a probability measure on $[0,1]^2$ with uniform
 marginals. 
 
-Exercise: Prove this.
+__Exercise__: Prove this.
 
 If $U$ and $V$ are independent, uniformly distributed random variables on the unit interval
 then $C(u,v) = uv$.
@@ -317,7 +317,7 @@ $C(u,v) = P(U\le u, V\le v) = P(U\le u, U\le v) = P(U\le \min\{u, v\}) = \min\{u
 If $V=1-U$ then their joint distribution is $C(u,v) = P(U\le u, V\le v) = P(U\le u, 1-U\le v)
 = P(1-v\le U\le u) = \max\{u - (1 -v), 0\} = \max\{u + v - 1, 0\} = W(u,v)$
 
-Exercise: (Fr&#233;chet-Hoeffding) For every copula, $C$, $W \le C \le M$.
+__Exercise__: (Fr&#233;chet-Hoeffding) For every copula, $C$, $W \le C \le M$.
 
 Hint: For the upper bound use $H(x,y) \le F(x)$ and $H(x,y) \le G(y)$.
 For the lower bound note $0\le C(u_1,v_1) - C(u_1, v_2) - C(u_2, v_1) + C(u_2, v_2)$
@@ -352,10 +352,21 @@ $f(x) = 1_{[a,b]}/(b - a)$.
 
 The _standard normal_ random variable, $Z$, has density function $\phi(x) = \exp(-x^2/2)/\sqrt{2\pi}$.
 
-If $X$ is normal then $E\exp(X) = \exp(EX + \Var(X)/2)$ so the cumulants satisfy
+If $X$ is normal then $E\exp(N) = \exp(E[N] + \Var(N)/2)$ so the cumulants satisfy
 $\kappa_n = 0$ for $n > 2$.
 
+This follows from 
+\begin{align*}
+E[e^N] &= E[e^{\mu + \sigma Z}] \\
+       &= \int_{-\infty}^\infty e^{\mu + \sigma z} e^{-z^2/2}\,dz/\sqrt{2\pi}\\
+	   &= e^{\mu + \sigma^2/2} \int_{-\infty}^\infty e^{-(z - \sigma)^2/2}\,dz/\sqrt{2\pi}\\
+	   &= e^{\mu + \sigma^2/2} \int_{-\infty}^\infty e^{-z^2/2}\,dz/\sqrt{2\pi}\\
+	   &= e^{\mu + \sigma^2/2}
+\end{align*}
+
 For any normal random variable, $N$, $E[e^N f(N)] = E[e^N] E[f(N + \Var(N)]$.
+
+__Exercise__. Prove this by first showing $E[e^{\sigma Z} f(Z)] = e^{\sigma^2/2} E[f(Z + \sigma)]$.
 
 If $N$, $N_1$, \ldots, are jointly normal then
 $E[e^N f(N_1,\ldots)] = E[e^N] E[f(N_1 + \Cov(N,N_1),\ldots)]$.
