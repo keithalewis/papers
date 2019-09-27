@@ -191,9 +191,17 @@ Integrating gives
 	    &= \Phi(x) - \phi(x)\sum_{n\ge 3} B_n(0,0,\kappa_3,\ldots,\kappa_n)H_{n-1}(x)/n!\\
 \end{align*}
 
-The value of a put is $E[(k - F)^+] = k\Psi(z) - f\Psi^*(z)$ where
-$z = (\kappa(s) + \log(k/f))/s$ and $\Phi^*$ is the formula above with
-$\kappa_n$ replaced with $\kappa_n^*$.
+The value of a put is $E[(k - F)^+] = kP(X \le z) - fP^*(X \le z)$ where
+$z = (\kappa(s) + \log(k/f))/s$, and $\kappa$ is the cumulant of $X$.
+We can use the formula above to calculate $P(X\le z) = \Psi(z)$.
+
+To compute $P^*(X\le z) = P(X^* \le z)$ we need to normalize $X^*$ to have mean 0
+and variance 1. As we have shown above,
+$E[X^*] = (\kappa^*)'(0) = \kappa'(s) = \mu$ and
+$\Var(X^*) = (\kappa^*)''(0) = \kappa''(s) = \sigma^2$.
+Since $P(X^* \le z) = P((X^* - \mu)/\sigma \le (z - \mu)/\sigma)$
+we need to calculate the cumulants
+of $(X^* - \mu)/\sigma$.
 
 ## Carr-Madan Formuls
 
