@@ -30,56 +30,33 @@ be synthesized by trading market instruments and turns the spotlight on
 what may be the next Nobel prize winning problem: how should you hedge
 if you can't do it continuously?
 
-## Notation
-
-If $\AA$ is an
-[_algebra_](https://en.wikipedia.org/wiki/Algebra_of_sets)
-on the set $\Omega$ we write
-$X\colon\AA\to\mathbf{R}$ to indicate $X\colon\Omega\to\mathbf{R}$
-is $\AA$-[_measurable_](https://en.wikipedia.org/wiki/Measurable_function).
-If $\AA$ is finite then the
-[_atoms_](https://en.wikipedia.org/wiki/Atom_(measure_theory))
-of $\AA$ form a
-[_partition_](https://en.wikipedia.org/wiki/Partition_of_a_set)
-of $\Omega$ and being measurable is
-equivalent to being constant on atoms. In this case $X$ is indeed a function
-on the atoms.
-
-If $\AA$ is an algebra of sets, the
-[_conditional expectation_](https://en.wikipedia.org/wiki/Conditional_expectation)
-of $X$ given
-$\AA$ is defined by $Y = E\left\lbrack X | \AA\right\rbrack$ if and only
-if $Y$ is $\AA$ measurable and $\int_A Y\,dP = \int_A X\,dP$
-for all $A\in\AA$. This is equivalent to $Y(P|_\AA)
-= (XP)|_\AA$ where the vertical bar indicates restriction of a measure.
-
-A _filtration_ indexed by $T\subseteq [0,\infty)$ is an increasing
-collection of algebras, $(\AA_t)_{t\in T}$.  A process
-$M_{t}\colon\AA_{t} \rightarrow \mathbf{R}$, $t\in T$, is
-a _martingale_ if $M_t = E[M_u | \AA_t] = E_t[M_u]$ for $t\le u$.
-
-A _stopping time_ is a function $\tau\colon\Omega\to T$ such that
-$\{\omega\in\Omega\mid \tau(\omega) \le t\}$ belongs to $\AA_t$, $t\in T$.
-
 ## Market Model
+
+We assume the usual setup, $\langle\Omega, P, (\AA_t)_{t\in T}\rangle$,
+of a sample space $\Omega$, a probability measure $P$, and an
+increasing filtration of algebras $(\AA_t)$ over the set of trading
+times $T$.
 
 Every _instrument_ has a _price_, $X_t$, and a _cash flow_, $C_t$, at any
 trading time, $t\in T$.  Instruments are assumed to be perfectly liquid:
 they can be bought or sold at the given price in any amount. Cash flows
 are associated with owning an instrument and are almost always 0, e.g., stocks
 have dividends, bonds have coupons, European options have exactly one
-cash flow at expiration, futures always have price 0.
+cash flow at expiration. Futures always have price 0.
 
 A _market model_ specifies _prices_
-$X_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, and _cash flows_
-$C_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$, where $I$ are the
+$X_{t}\colon\AA_{t} \rightarrow \RR^{I}$, and _cash flows_
+$C_{t}\colon\AA_{t} \rightarrow \RR^{I}$, where $I$ are the
 available market instruments.
+
+We use the notation $X\colon\AA\to\RR$ to indicate $X\colon\Omega\to\RR$
+is $\AA$-measurable.
 
 ## Trading
 
 A _trading strategy_ is a finite collection of strictly increasing
 stopping times, $\tau_{j}$, and trades, $\Gamma_{j}:\AA_{\tau_{j}}
-\rightarrow \mathbf{R}^{I}$ indicating the number of shares to trade
+\rightarrow \RR^{I}$ indicating the number of shares to trade
 in each instrument. Trades accumulate to a _position_, $\Delta_{t} =
 \sum_{\tau_{j} < t}\Gamma_{j} = \sum_{s < t}\Gamma_{s}$ where $\Gamma_{s}
 = \Gamma_{j}$ when $s = \tau_{j}$.  Note the trade at time $t$ is not
@@ -127,7 +104,7 @@ corresponds to price and amount corresponds to cash flow.
 This equation is the skeleton key for valuing derivative securities.
 It shows how dynamic trading can create synthetic market instruments.
 
-If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
+__Proof__. If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
 and $V_t D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t = \Delta_u\cdot
 E_t[(X_u + C_u) D_u]$.  Since $\Delta_u\cdot C_u = \Gamma_u\cdot X_u +
 A_u$ we have $V_t D_t = E_t[(\Delta_u\cdot X_u + \Gamma_u\cdot X_u +
@@ -143,28 +120,28 @@ This proves the "easy" direction of the FTAP.
 There is no need to prove the "hard" direction since we have a large supply of arbitrage free models:
 every arbitrage-free model has the form
 $X_{t}D_{t} = M_{t} - \sum_{s \leq t}{C_{s}D_{s}}$ where
-$M_{t}:\AA_{t} \rightarrow \mathbf{R}^{I}$ is a martingale and
+$M_{t}:\AA_{t} \rightarrow \RR^{I}$ is a martingale and
 $D_{t}:\AA_{t} \rightarrow (0,\infty)$.
 This is immediate by substituting
 $X_{v}D_{v} = M_v - \sum_{s\le v} C_s D_s$ in the first displayed equation.
 
 ## Valuing
 
-If a derivative security pays amounts $\bar{A_j}$ at times $\bar{\tau_j}$ and there is
+If a derivative security pays amounts $\bar{A}_j$ at times $\bar{\tau}_j$ and there is
 a hedge, $(\Gamma_t)_{t\in T}$, that replicates these amounts, the value
 of the derivative is the cost of setting up the initial hedge: $V_0 = \Gamma_0\cdot X_0$.
-The hedge must satisfy $A_t = 0$ if $t\not=\bar{\tau_j}$ for all $j$ (_self financing_)
-and $A_t = \hat{A_j}$ if $t = \bar{\tau_j}$ for some $j$.
+The hedge must satisfy $A_t = 0$ if $t\not=\bar{\tau}_j$ for all $j$ (_self financing_)
+and $A_t = \bar{A}_j$ if $t = \bar{\tau}_j$ for some $j$.
 
-The formula $V_0 = E[\sum_j \bar{A_j} D_{\bar{\tau_j}}]$ is the
+The formula $V_0 = E[\sum_j \bar{A}_j D_{\bar{\tau}_j}]$ is the
 value of the initial hedge, $\Gamma_0\cdot X_0$. It can be computed using the
-derivative security payments, $\bar{A_j}$, and the deflator.
+derivative security payments, $\bar{A}_j$, and the deflator.
 
-An European option has a single payment, $\bar{A_T}$, at a fixed time $T$
-and has value $V_0 = E \bar{A_T} D_T$. Sometimes it is useful to compute this
-as $E \bar{A_T} D_T = E^{D_T} \bar{A_T} E D_T$, where $E^{D_T}$ is the expected value under
-the Esscher transform of the probability measure defined by $dP^{D_T}/dP =
-D_T/E D_T$. $P^{D_T}$ is called the _forward measure_ at time $T$.
+An European option has a single payment, $\bar{A}_T$, at a fixed time $T$
+and has value $V_0 = E \bar{A}_T D_T$. Sometimes it is useful to compute this
+as $E \bar{A}_T D_T = E^* \bar{A}_T E D_T$, where $E^*$ is the expected value under
+the probability measure defined by $dP^*/dP =
+D_T/E D_T$. $P^*$ is called the _forward measure_ at time $T$.
 
 ## Hedging
 
@@ -179,11 +156,12 @@ delta hedging where delta is $\Delta$ and gamma is $\Gamma$.
 Under their mathematical assumptions, the hedge perfectly replicates the derivative.
 
 In the real world, it is not possible to perfectly replicate the derivative security.
-There is still research to be done on when to hedge and how to mangage this risk.
+There is still research to be done on when to hedge and how to mangage the risk
+of imperfect replication.
 
 ## Black-Scholes/Merton
 
-The Black-Scholes/Merton model is specified by the exponential martingale
+The Black-Scholes/Merton model is specified by the martingale
 $M_t = (r, s\exp(\sigma B_t - \sigma^2t/2))$ and deflator $D_t = \exp(-\rho t)$.
 No need for Ito's lemma, self-financing conditions, or PDE's, much less
 the Hahn-Banach theorem.
@@ -216,9 +194,9 @@ A _futures_ on underlying $S$ expiring at $t_n$ has price $X_{t_j} = 0$ for all 
 cash flows $C_{t_j} = \Phi_{t_j} - \Phi_{t_{j-1}}$ for $0 < j \le n$, where
 $\Phi_{t_j}$ is the futures _quote_ at time $t_j$, and $\Phi_{t_n} = S_{t_n}$
 at expiration. Since $0 = E_{t_j} (\Phi_{t_{j+1}} - \Phi_{t_j}) D_{t_j}$, we
-have $\Phi_{t_j} = E_{t_j} \Phi_{t_{j+1}}$ when $D_{t_j} > 0$ is $t_j$ measurable.
+have $\Phi_{t_j} = E_{t_j} \Phi_{t_{j+1}}$ since $D_{t_j} > 0$ is $t_j$ measurable.
 
-This shows futures quotes are a martingale.
+This shows futures quotes are a martingales.
 
 ### Forward
 
@@ -247,7 +225,7 @@ satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = E_t D_u/D_t = E_t\exp(-\int_t^u f_s\
 
 ### Forward Rate Agreement
 
-A _forward rate agreement_ over the period $[u$, v]$ with coupon $f$ and
+A _forward rate agreement_ over the period $[u, v]$ with coupon $f$ and
 day count basis $\delta$ pays $-1$ unit at the
 _effective date_ $u$, and $1 + f\delta(u,v)$ at the
 _termination date_ $v$, where $\delta(u,v)$ is the [_day count
@@ -256,7 +234,7 @@ interval.  The day count fraction is approximately equal to the time in years fr
 $u$ to $v$ for any day count basis.
 
 The _forward par coupon_ at time $t$, $F_t(u,v;\delta)$ is the coupon that makes the price at
-time $t\le u$ equal to $0$: $0 = E_t -D_u + (1 + F_t(u,v;\delta)\delta(u,v))D_v$.
+time $t\le u$ equal to $0$: $0 = E_t[-D_u + (1 + F_t(u,v;\delta)\delta(u,v))D_v]$.
 Hence the par coupon
 $$
 F_t(u,v;\delta) = (Z_t(u)/Z_t(v) - 1)/\delta(u,v)
@@ -328,8 +306,9 @@ V_t D_t &= E_t[\max\{k - F_u,0\}\delta D_v] \\
         &= E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] E_tD_v \\
         &= E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)D_t \\
 \end{align*}
-where $E_t^*$ is the Esscher transform with $dP_t^*/dP_t = D_v/E_t D_v$.
-The shows the value at $t$ of a caplet is
+where $E_t^*$ is the expectation under the measure $P^*$ defined
+by $dP_t^*/dP_t = D_v/E_t D_v$: the forward measure.
+The shows the value at $t$ of a floorlet is
 $V_t = E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)$.
 
 ### Caplet
@@ -347,6 +326,8 @@ A _floor_ and a _cap_ are just a sequence of back-to-back floorlets or caplets.
 ### Swaption
 
 A _swaption_ is an option on a swap.
+It has a single cash flow $\max{k - F_{t_0}(t_0,\ldots,t_n;\delta)$ at the
+effective date of the swap, $t_0$.
 
 ## Remarks
 
@@ -362,9 +343,11 @@ $a'$ in instrument $i'$ from the _seller_, $c'$.
 
 We can incorporate more realistic features by defining _price_ to
 be a function $X\colon T\times A\times I\times C\times I\times C\to
-\mathbf{R}$, where $T$ is the set of trading times, $A$ the set of
+\RR$, where $T$ is the set of trading times, $A$ the set of
 amounts that can be traded, $I$ is the set of market instruments, and $C$
 is the set of legal trading entities.
+The exchanges available to the buyer at any time $t$ are
+$(t;a,i,c;aX(t;a,i;i',c'),i',c')$
 
 ### One Period Model
 
@@ -378,7 +361,7 @@ exists a positive measure, $\Pi$, on $\Omega$ with $X_0 = \int_\Omega X_1\,d\Pi$
 
 If $X_0$ belongs to the smallest closed cone containing the range of $X_1$,
 then there exists a positive measure, $\Pi$, with $X_0 = \int_\Omega X_1\,d\Pi$.
-For any $\gamma\in\mathbf{R}^I$ such that $\gamma\cdot X_1\ge0$ we have
+For any $\gamma\in\RR^I$ such that $\gamma\cdot X_1\ge0$ we have
 $\gamma\cdot X_0  = \int_\Omega \gamma\cdot X_1\,d\Pi \ge0$ hence there
 can be no arbitrage.
 
@@ -386,11 +369,11 @@ If $X_0$ does not belong to the smallest closed cone containing the range of $X_
 then there exists a hyperplane through the origin separating $X_0$ from the cone.
 E.g., if $x$ is the closest point in the cone to $X_0$ then $\gamma = x - X_0$ will
 do the job.
-Let $\gamma$ be a vector in $\mathbf{R}$ normal to the hyperplane. We can choose $\gamma$
+Let $\gamma$ be a vector in $\RR$ normal to the hyperplane. We can choose $\gamma$
 such that $\gamma\cdot X_0 < 0$ and $\gamma\cdot X_1(\omega) \ge0$ for all $\omega\in\Omega$.
 This shows arbitrage exists.
 
-If a zero coupon bond exists, i.e., there is a $\zeta\in\mathbf{R}^I$ with
+If a zero coupon bond exists, i.e., there is a $\zeta\in\RR^I$ with
 $\zeta\cdot X_1(\omega) = 1$ for all $\omega\in\Omega$, then
 $\zeta\cdot X_0 = \int_\Omega \zeta\cdot X_1\,d\Pi = ||\Pi|| = z$ is the price
 of the zero coupon bond and $P = \Pi/z$ is a probability measure.
@@ -405,13 +388,13 @@ measures on $\Omega$, $ba(\Omega)$.
 <!-- cite Dunford Schwartz -->
 <!--
 
-Let's assume $X_1\in B(\Omega,\mathbf{R}^I)$, the set of bounded functions from
-$\Omega$ to $\mathbf{R}^I$. Consider the map $A\colon \mathbf{R} \oplus B(\Omega)\to\mathbf{R}^2$
+Let's assume $X_1\in B(\Omega,\RR^I)$, the set of bounded functions from
+$\Omega$ to $\RR^I$. Consider the map $A\colon \RR \oplus B(\Omega)\to\RR^2$
 defined by $\Gamma \mapsto (-\Gamma\cdot X_0, \Gamma\cdot X_1)$. No arbitrage
 says the range of $A$ does not intersect the cone $\{p \oplus P):p > 0, P\ge 0\}$.
 Since the cone has an interior point, the Hahn-Banach theorem implies there exists
 a hyperplane that does not intersect the cone. The hyperplane is the kernel of
-an element in the dual space $B^* = \mathbf{R}\oplus ba(\Omega)$, where
+an element in the dual space $B^* = \RR\oplus ba(\Omega)$, where
 $ba(\Omega)$ is the space of finitely additive measures. Call this element
 $\pi\oplus\Pi$. We may assume $\pi = 1$.
 
@@ -421,3 +404,34 @@ The adjoint of $A$, $A^*\colon
 
 The proof above generalizes to the multi-period case...
 -->
+## Notation
+
+If $\AA$ is an
+[_algebra_](https://en.wikipedia.org/wiki/Algebra_of_sets)
+on the set $\Omega$ we write
+$X\colon\AA\to\RR$ to indicate $X\colon\Omega\to\RR$
+is $\AA$-[_measurable_](https://en.wikipedia.org/wiki/Measurable_function).
+If $\AA$ is finite then the
+[_atoms_](https://en.wikipedia.org/wiki/Atom_(measure_theory))
+of $\AA$ form a
+[_partition_](https://en.wikipedia.org/wiki/Partition_of_a_set)
+of $\Omega$ and being measurable is
+equivalent to being constant on atoms. In this case $X$ is indeed a function
+on the atoms.
+
+If $\AA$ is an algebra of sets, the
+[_conditional expectation_](https://en.wikipedia.org/wiki/Conditional_expectation)
+of $X$ given
+$\AA$ is defined by $Y = E\left\lbrack X | \AA\right\rbrack$ if and only
+if $Y$ is $\AA$ measurable and $\int_A Y\,dP = \int_A X\,dP$
+for all $A\in\AA$. This is equivalent to $Y(P|_\AA)
+= (XP)|_\AA$ where the vertical bar indicates restriction of a measure.
+
+A _filtration_ indexed by $T\subseteq [0,\infty)$ is an increasing
+collection of algebras, $(\AA_t)_{t\in T}$.  A process
+$M_{t}\colon\AA_{t} \rightarrow \RR$, $t\in T$, is
+a _martingale_ if $M_t = E[M_u | \AA_t] = E_t[M_u]$ for $t\le u$.
+
+A _stopping time_ is a function $\tau\colon\Omega\to T$ such that
+$\{\omega\in\Omega\mid \tau(\omega) \le t\}$ belongs to $\AA_t$, $t\in T$.
+

@@ -195,15 +195,24 @@ The value of a put is $E[(k - F)^+] = kP(X \le z) - fP^*(X \le z)$ where
 $z = (\kappa(s) + \log(k/f))/s$, and $\kappa$ is the cumulant of $X$.
 We can use the formula above to calculate $P(X\le z) = \Psi(z)$.
 
-To compute $P^*(X\le z) = P(X^* \le z)$ we need to normalize $X^*$ to have mean 0
+To compute $P^*(X\le z) = P(X^* \le z)$ we normalize $X^*$ to have mean 0
 and variance 1. As we have shown above,
 $E[X^*] = (\kappa^*)'(0) = \kappa'(s) = \mu$ and
 $\Var(X^*) = (\kappa^*)''(0) = \kappa''(s) = \sigma^2$.
-Since $P(X^* \le z) = P((X^* - \mu)/\sigma \le (z - \mu)/\sigma)$
-we need to calculate the cumulants
-of $(X^* - \mu)/\sigma$.
+Let $\bar{X} = (X^* - \mu)/\sigma$ then
+$\bar{\kappa}(u) = \kappa^*(u/\sigma)  - \mu s/\sigma
+= \kappa(u/\sigma + s) - \kappa(s)  - \mu s/\sigma$.
 
-## Carr-Madan Formuls
+Note $\bar{\kappa}_1 = \kappa'(s)/\sigma - \mu/\sigma = 0$
+and $\bar{\kappa}_2 = \kappa''(s)/\sigma^2 = 1$, as expected.
+For $n > 2$, $\bar{\kappa}_n = \kappa_n^*/\sigma^n$.
+Using these to compute $\bar{\Psi}$ as above,
+$P^*(X\le z) = \bar{\Psi}((z - \mu)/\sigma)$.
+
+We can now value puts and calls using the standard normal distribution, cumulants,
+Bell, and Hermite polynomials.
+
+## Carr-Madan Formula
 
 If $f\colon\mathbf{R}\to\mathbf{R}$ has a piecewise continuous second derivatve, then
 \begin{align*}
