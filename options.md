@@ -56,7 +56,7 @@ $E[\exp(N) f(N)] = E[\exp(N)] E[f(N + \Var(N))]$.
 _Exercise._ Show $P^*(F\le k) = E[e^{\sigma B_t - \sigma^2 t/2}1(F\le k)]
 = P(Fe^{\sigma^2 t} \le k)$.
 
-__Exercise__. Show $P^*(F\le k) = \Psi(-d_1)$
+__Exercise__. Show $P^*(F\le k) = \Phi(-d_1)$
 where $d_1 = d_2 + \sigma\sqrt{t}$.
 
 
