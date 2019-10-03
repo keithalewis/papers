@@ -216,6 +216,15 @@ pays $A^c_t = \max\{S_t - k, 0\}$ at $t$.
 Since $A^c_t - A^p_t = S_t - k$ we have $V^c_0 - V^p_0 = c - p = S_0 - k ED_t$, where $c$ and $p$ are the value
 of the call and put at time 0. This result is independent of any (arbitrage-free) model.
 
+An American option with strike $k$ and expiration $t$ pays $A_\tau$ at a stopping time $\tau\le t$
+at the discretion of the option holder. In the unified model this is represented by extending the
+sample space $\Omega$ to $\Omega\times (0,t]$. The point $(\omega,\tau)$ represents exercising
+at time $\tau$ when $\omega$ occurs. Note that the model does not assume the option is exercised
+at the "optimal" time. In practice, not every market paricipant does this.
+
+American options do not satisfy put-call parity in general. The exercise time of the put and
+the call are usually different.
+
 ### Zero Coupon Bond
 
 A _zero coupon bond_ pays one unit at maturity $u$.
