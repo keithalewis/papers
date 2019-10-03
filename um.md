@@ -90,8 +90,8 @@ We can assume $D_0 = 1$. If $(D_t)$ is a deflator then so is $(D_t/D_0)$.
 Note that if there are no cash flows, $C_t = 0$ for all $t \in T$,
 this says $X_tD_t$ is a martingale. For an infinite time horizon where
 the price times the deflator goes to 0, this says the current price is
-the expected price of discounted future cash flows, just as in Dodd and
-Graham valuation.
+the expected price of discounted future cash flows, just as in
+Graham and Dodd valuation.
 
 A consequence of the above and the definition of value and amount is
 
@@ -156,15 +156,14 @@ delta hedging where delta is $\Delta$ and gamma is $\Gamma$.
 Under their mathematical assumptions, the hedge perfectly replicates the derivative.
 
 In the real world, it is not possible to perfectly replicate the derivative security.
-There is still research to be done on when to hedge and how to mangage the risk
+There is still research to be done on when to hedge and how to mangage the associated risk
 of imperfect replication.
 
 ## Black-Scholes/Merton
 
-The Black-Scholes/Merton model is specified by the martingale
+The Black-Scholes/Merton model of a stock with no dividents is specified by the martingale
 $M_t = (r, s\exp(\sigma B_t - \sigma^2t/2))$ and deflator $D_t = \exp(-\rho t)$.
-No need for Ito's lemma, self-financing conditions, or PDE's, much less
-the Hahn-Banach theorem.
+No need for Ito's lemma, partial differential equations, or the Hahn-Banach theorem.
 
 ## Canonical Deflator
 
@@ -196,7 +195,7 @@ $\Phi_{t_j}$ is the futures _quote_ at time $t_j$, and $\Phi_{t_n} = S_{t_n}$
 at expiration. Since $0 = E_{t_j} (\Phi_{t_{j+1}} - \Phi_{t_j}) D_{t_j}$, we
 have $\Phi_{t_j} = E_{t_j} \Phi_{t_{j+1}}$ since $D_{t_j} > 0$ is $t_j$ measurable.
 
-This shows futures quotes are a martingales.
+This shows futures quotes are martingales.
 
 ### Forward
 
@@ -306,9 +305,9 @@ V_t D_t &= E_t[\max\{k - F_u,0\}\delta D_v] \\
         &= E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] E_tD_v \\
         &= E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)D_t \\
 \end{align*}
-where $E_t^*$ is the expectation under the measure $P^*$ defined
-by $dP_t^*/dP_t = D_v/E_t D_v$: the forward measure.
-The shows the value at $t$ of a floorlet is
+where $E_t^*$ is the expectation under the forward measure $P^*$ defined
+by $dP_t^*/dP_t = D_v/E_t D_v$.
+This shows the value at $t$ of a floorlet is
 $V_t = E^*_t[\max\{1 + k\delta - 1/Z_u(v),0\}] Z_t(v)$.
 
 ### Caplet
@@ -326,7 +325,7 @@ A _floor_ and a _cap_ are just a sequence of back-to-back floorlets or caplets.
 ### Swaption
 
 A _swaption_ is an option on a swap.
-It has a single cash flow $\max{k - F_{t_0}(t_0,\ldots,t_n;\delta)$ at the
+It has a single cash flow $\max\{k - F_{t_0}(t_0,\ldots,t_n;\delta), 0\}$ at the
 effective date of the swap, $t_0$.
 
 ## Remarks
