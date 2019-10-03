@@ -35,7 +35,7 @@ if you can't do it continuously?
 We assume the usual setup, $\langle\Omega, P, (\AA_t)_{t\in T}\rangle$,
 of a sample space $\Omega$, a probability measure $P$, and an
 increasing filtration of algebras $(\AA_t)$ over the set of trading
-times $T$.
+times $T$. If you are not familiar with this see the Notation section below.
 
 Every _instrument_ has a _price_, $X_t$, and a _cash flow_, $C_t$, at any
 trading time, $t\in T$.  Instruments are assumed to be perfectly liquid:
