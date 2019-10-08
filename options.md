@@ -182,9 +182,11 @@ of a standard normal random variable.
 	&= \hat{\phi}(u) + \sum_{n\ge 3} B_n(\kappa_1,\ldots,\kappa_n)(-1)^n\widehat{\phi^{(n)}}(u)/n!\\
 \end{align*}
 Taking inverse Fourier transforms yields
-$$
-\psi(x) = \phi(x) + \sum_{n\ge 3} B_n(0,0,\kappa_3,\ldots,\kappa_n)(-1)^n{\phi}^{(n)}(x)/n!.
-$$
+\begin{align*}
+\psi(x) &= \phi(x) + \sum_{n\ge 3} B_n(0,0,\kappa_3,\ldots,\kappa_n)(-1)^n{\phi}^{(n)}(x)/n!\\
+        &= \phi(x)\sum_{n\ge 0} B_n(0,0,\kappa_3,\ldots,\kappa_n)H_n(x)/n!\\
+\end{align*}
+Since $B_0 = 1$ and $B_1 = B_2 = 0$ when $\kappa_1 = \kappa_2 = 0$.
 Integrating gives
 \begin{align*}
 \Psi(x) &= \Phi(x) + \sum_{n\ge 3} B_n(0,0,\kappa_3,\ldots,\kappa_n)(-1)^n{\phi}^{(n-1)}(x)/n!\\
