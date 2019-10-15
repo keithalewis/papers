@@ -400,6 +400,10 @@ $$
 where $K_s(x) = (e^{sx} - 1 - sx)/x^2 = \sum_{n=2}^\infty x^{n-2}s^n/n!$.
 Note if $G(x) = 1_{(-\infty,0]}$ then $\kappa(s) = \gamma s + K_s(0) = \gamma s + s^2/2$
 so the random variable is normal.
+
+Note the cumulants of the random variable are $\kappa_1 = \gamma$ and
+$\kappa_n = \int_{-\infty}^\infty x^{n - 2}\,dG(x)$ for $n \ge 2$.
+
 If $G(x) = a^2 1_{(-\infty,a]}$ for $a\not=0$ then
 
 \begin{align*}
