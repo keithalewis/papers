@@ -19,16 +19,21 @@ abstract: |
 A _derivative security_ is a contract between two parties: I will
 give you this on these dates if you will give me that on those dates.
 Derivatives must have existed since before recorded history.  The Nobel
-prize winning breakthrough of Black, Scholes, and Merton was to show
+prize winning breakthrough of Black, Scholes, and Merton was
 how to synthesize derivatives by dynamically trading market instruments
 based on the borrowing cost used to fund the hedge instead of trying to
-estimate the the actual growth rate of the underlying securities.
+estimate the actual growth rate of the underlying securities.
 
 This short note provides a unified model for valuing, hedging, and
 managing the risk of any derivative security. It shows how they can
 be synthesized by trading market instruments and turns the spotlight on
 what may be the next Nobel prize winning problem: how should you hedge
 if you can't do it continuously?
+
+It can also be used for any portfolio of stocks, bonds, convertible bonds,
+structured products, foreign exchange currencies. commodities, and even
+other derivatives in the portfolio.
+
 
 ## Market Model
 
@@ -59,8 +64,8 @@ stopping times, $\tau_{j}$, and trades, $\Gamma_{j}:\AA_{\tau_{j}}
 \rightarrow \RR^{I}$ indicating the number of shares to trade
 in each instrument. Trades accumulate to a _position_, $\Delta_{t} =
 \sum_{\tau_{j} < t}\Gamma_{j} = \sum_{s < t}\Gamma_{s}$ where $\Gamma_{s}
-= \Gamma_{j}$ when $s = \tau_{j}$.  Note the trade at time $t$ is not
-included in the position at time $t$: it takes some time for trades
+= \Gamma_{j}$ when $s = \tau_{j}$.  Note a trade at time $t$ is not
+included in the position at time $t$; it takes some time for trades
 to settle.
 
 The _value_ (or _mark-to-market_) of a position at time $t$ is $V_{t} =
