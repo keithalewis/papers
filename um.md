@@ -5,14 +5,12 @@ institution: KALX, LLC
 email: kal@kalx.net
 classoption: fleqn
 abstract: |
-	Market instruments can be bought or sold at a price and entail cash flows.
-	Every arbitrage-free model of prices and cash flows
-	is parameterized by
-	a vector-valued martingale whose components are
-	indexed by market instruments and
-	a positive, adapted process.
-	This can be used to value, hedge, and manage the
-	risk of derivative securities.
+	Market instruments can be bought or sold at a price and ownership
+	entails cash flows.  Every arbitrage-free model of prices and
+	cash flows is parameterized by a vector-valued martingale whose
+	components are indexed by market instruments and a positive,
+	adapted process called a deflator.  The model can be used to
+	value, hedge, and manage the risk of any portfolio of instruments.
 ...
 
 
@@ -24,16 +22,15 @@ how to synthesize derivatives by dynamically trading market instruments
 based on the borrowing cost used to fund the hedge instead of trying to
 estimate the actual growth rate of the underlying securities.
 
-This short note provides a unified model for valuing, hedging, and
+This paper provides a unified model for valuing, hedging, and
 managing the risk of any derivative security. It shows how they can
 be synthesized by trading market instruments and turns the spotlight on
 what may be the next Nobel prize winning problem: how should you hedge
 if you can't do it continuously?
 
-It can also be used for any portfolio of stocks, bonds, convertible bonds,
-structured products, foreign exchange currencies. commodities, and even
-other derivatives in the portfolio.
-
+The Unified Model can also be used for any portfolio of stocks, bonds,
+convertible bonds, structured products, currencies, commodities, and
+even other derivatives in the portfolio.
 
 ## Market Model
 
