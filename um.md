@@ -104,23 +104,23 @@ $$
 V_t D_t = E_t\bigl[V_v D_v + \sum_{t < u \leq v}A_u D_u\bigr].\label{eq:2} \\
 $$
 
-Note the similarity to the previous displayed equation. Value
+Note the similarity of the two displayed equations above -- value
 corresponds to price and amount corresponds to cash flow.
-This equation is the skeleton key to valuing derivative securities.
+This is the skeleton key for valuing derivative securities.
 It shows how dynamic trading can create synthetic market instruments.
 
 __Proof__. If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
 and $V_t D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t = \Delta_u\cdot
 E_t[(X_u + C_u) D_u]$.  Since $\Delta_u\cdot C_u = \Gamma_u\cdot X_u +
 A_u$ we have $V_t D_t = E_t[(\Delta_u\cdot X_u + \Gamma_u\cdot X_u +
-A_u) D_u] = E_t[(V_u + A_u)D_u]$. The formula above follows by induction.
+A_u) D_u] = E_t[(V_u + A_u)D_u]$. The displayed formula above follows by induction.
 
 For a trading strategy that closes out,
 $V_{\tau_0} D_{\tau_0} = E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$. 
 Since $V_{\tau_0} =
 \Gamma_{\tau_0} \cdot X_{\tau_0}$, $A_{\tau_0} = - \Gamma_{\tau_0} \cdot X_{\tau_0}$, and $D_{\tau_0} > 0$ we have
 $A_{\tau_0} \leq 0$.
-This proves the "easy" direction of the FTAP.
+This proves the "easy" direction of the Fundamental Theorem of Asset Pricing (FTAP).
 
 There is no need to prove the "hard" direction since we have a large supply of arbitrage free models
 -- every arbitrage-free model has the form
@@ -152,7 +152,7 @@ D_T/E D_T$. $P^*$ is called the _forward measure_ at time $T$.
 
 The trades at time $t$ are similarly determined by $\Delta_t + \Gamma_t =
 dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
-know the position, $\Delta_t$, at time $t$ this determines the trades:
+know the position ($\Delta_t$) at time $t$ this determines the trades:
 $\Gamma_t = dV_t/dX_t - \Delta_t$.
 
 In the continuous time case where stocks are modelled by geometric
@@ -160,7 +160,7 @@ Brownian motion, this becomes classical Black-Scholes/Merton
 delta hedging where delta is $\Delta$ and gamma is $\Gamma$. 
 Under their mathematical assumptions, the hedge perfectly replicates the derivative.
 
-In the real world, it is not possible to perfectly replicate the derivative security.
+In the real world it is not possible to perfectly replicate the derivative security.
 There is still research to be done on when to hedge and how to mangage the associated risk
 of imperfect replication.
 
@@ -424,6 +424,7 @@ The adjoint of $A$, $A^*\colon
 
 The proof above generalizes to the multi-period case...
 -->
+
 ## Notation
 
 If $\AA$ is an
