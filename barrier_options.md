@@ -17,8 +17,8 @@ A put option with strike $k$ expiring at time $t$ has payoff $(k - X_t)^+$ at $t
 
 A call option with strike $k$ expiring at time $t$ has payoff $(X_t - k)^+$ at $t$.
 
-_Barrier options_ with barrier $h$ and strike $k$ expiring at $t$
- come in eight forms; put/call, in/out, up/down.
+_Barrier options_ with strike $k$ and barrier $h$ expiring at $t$
+come in eight forms: put/call, in/out, up/down.
 A put or call option can knock in or out if the running max or min hits the barrier
 as it goes up or down.
 
@@ -66,3 +66,35 @@ $c(X_t - k)^+ 1(eX^d_t > eh)$.
 __Exercise__. How does the initial price, $X_0$, affect these formulas?
 
 __Exercise__. What are the corresponding formulas for early ending barrier options?
+
+## Notes
+
+These can be priced using the _reflection principal_ for Brownian motion and _Girsanov's Theorem_.
+
+One form of the reflectiona principal for Brownian motion is
+$$
+E[f(B_t) 1(\overline{B}_t > a)] = E[f(B_t) 1(B_t > a)] + E[f(2a - B_t) 1(B_t > a)].
+$$
+
+Note the right hand side depends only on Brownian motion at time $t$. If $f(x) = 1$ this
+formula says $P(\overline{B}_t > a) = 2P(B_t > a)$.
+
+The proof involves _reflected Brownain motion_. Define $B'_t = B_t$ if $\overline{B}_t < a$ and
+$B'_t = 2a - B_t$ if $\overline{B}_t \ge a$. Both $B'_t$ and $B_t$ are standard Brownian motions.
+
+\begin{align*}
+E[f(B_t) 1(\overline{B}_t > a)] &= E[f(B_t) 1(\overline{B}_t > a, B_t > a)]
+			         + E[f(B_t) 1(\overline{B}_t > a, B_t \le a)]\\
+E[f(B_t) 1(\overline{B}_t > a)] &= E[f(B_t) 1(\overline{B}_t > a, B_t > a)]
+			         + E[f(B'_t) 1(\overline{B'}_t > a, B'_t \le a)]\\
+E[f(B_t) 1(\overline{B}_t > a)] &= E[f(B_t) 1(B_t > a)]
+			         + E[f(2a - B_t) 1(\overline{B'}_t > a, 2a - B_t \le a)\\
+E[f(B_t) 1(\overline{B}_t > a)] &= E[f(B_t) 1(B_t > a)]
+			         + E[f(2a - B_t) 1(\overline{B'}_t > a, B_t \ge a)]\\
+E[f(B_t) 1(\overline{B}_t > a)] &= E[f(B_t) 1(B_t > a)]
+			         + E[f(2a - B_t) 1(B_t \ge a)]\\
+\end{align*}
+
+Girsanov's theorem states that for any number $\alpha$, $B_t - \alpha t$ is Brownian motion under
+the measure $dP^\alpha/dP = e^{\alpha B_t - \alpha^2 t/2}$, where $P$ is Wiener measure.
+This and the above can be used to price barrier options.
