@@ -10,16 +10,17 @@ are good, but the world has moved on. It makes no sense spending time,
 money, and brain-power developing a Crank-Nicholson PDE solver when
 computing power is a commodity.
 
-A trinomial model is just an explict backward technique of solving
-PDEs. Why deal with delicate convergence issues with 
+A trinomial model is just a special case of Crank-Nicholson for solving
+PDEs.
 
-It is identical to a two step binomial model.
+Let $\Omega = \{0,1\}^n$ represent a sequence of $n$ fair coin flips.
 
-Find processes that allow for what can happen in the real world.
+Define $V_n(\omega) = \omega_1 + \cdots + \omega_n$.
 
-In the Bachelier model we have $s \mapsto s \pm \delta$. in
-the Black-Scholes/Merton model we have $s \mapsto s(1 \pm \delta)$.
-This can be generalized to $s \mapsto s \pm (1 - \alpha + \alpha s)\delta$
-where $0\le\alpha\le1$.
+Define $A_n(\omega) = \{\omega'\in\Omega:\omega'_j = \omega_j, 1\le j\le n\}$.
 
-$s_{k,j}\mapsto s_{k,j} \pm (1 + \alpha_{k,j}(s_{k,j} - 1))\delta$
+Define $\mathcal{A}_n = \{A_n(\omega): \omega\in\Omega\}$.
+
+Define $B_n(k) = \{\omega\in\Omega:V_n(\omega) = k\}$.
+
+Define $\mathcal{B}_n = \{B_n(k): 0\le k\le n\}$.
