@@ -210,6 +210,8 @@ An arbitrage free model requires the price at time $t$, $Z_t(u)$, to
 satisfy $Z_t(u)D_t = E_t D_u$, so $Z_t(u) = E_t D_u/D_t$. In the continuous time
 case $Z_t(u) = E_t\exp(-\int_t^u f_s\,ds)$.
 
+The forward curve, $f(u)$, is defined by $Z_0(u) = \exp(-\int_0^u f(s)\,ds)$.
+The forward curve at time $t$, $f_t(u)$, is defined by $Z_t(u) = \exp(-\int_t^u f_t(s)\,ds)$.
 
 ### Futures
 
@@ -219,7 +221,8 @@ $\Phi_{t_j}$ is the futures _quote_ at time $t_j$, and $\Phi_{t_n} = S_{t_n}$
 at expiration. Since $0 = E_{t_j} (\Phi_{t_{j+1}} - \Phi_{t_j}) D_{t_j}$, we
 have $\Phi_{t_j} = E_{t_j} \Phi_{t_{j+1}}$ since $D_{t_j} > 0$ is $t_j$ measurable.
 
-This shows futures quotes are martingales.
+This shows futures quotes are martingales. In particular, the futures quote at $t$ on
+the underlying $X$ expiring at $u$ is $\Phi_t(u) = E_t X_u$.
 
 ### Forward
 
@@ -250,6 +253,33 @@ at the "optimal" time. In practice, not every market paricipant does this.
 
 American options do not satisfy put-call parity in general. The exercise time of the put and
 the call are usually different.
+
+## Fixed Income
+
+A _fixed income_ instrument is specifed by cash flows $(c_j)$ at times $(u_j)$.
+This is just a portfolio of zero coupon bonds so its _present value_ is
+$p = \sum_j c_j Z(u_j$.
+The present value at time $t$ is $p_t = \sum_j c_j Z_t(u_j)$.
+
+### LIBOR Market Model
+
+Assuming discrete times $(t_j)$, the deflator is determined by the joint distribution of
+the repo rates $f_j = f_{t_j}$ over $[t_j, t_{j+1})$. 
+
+The LIBOR Market model assumes the forwards are jointly lognormal,
+$$
+	f_j = \phi(t_j)\exp(\Sigma_j\dot B_j - ||\Sigma_j||^2 t_j/2),
+$$
+where $\phi(t_j) = E f_j$ is the futures quote, $\sigma_j$ is a vector with norm
+equal to the at-the-money caplet volatility, and $B_t$ is vector-valued Brownian motion.
+A nice feature of this model is that the forward curve and at-the-money caplet prices
+are not affected by the individual components of the volatility vectors.
+
+A common parameteration for the volatilities is $\Sigma(t) = \sigma(t)(\cos\alpha t, \sin\alpha t)$
+for some parameter $\alpha$. Clealy $||\Sigma(t)|| = sigma(t)$. This can be used to fit, e.g., one
+swaption price.
+
+The futures are determined by the forwards and volatilities; $\phi(t) = f(t) + \sigma(t)^2 t^2/2$.
 
 ### Forward Rate Agreement
 
