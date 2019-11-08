@@ -277,7 +277,8 @@ are not affected by the individual components of the volatility vectors.
 
 A common parameteration for the volatilities is $\Sigma(t) = \sigma(t)(\cos\alpha t, \sin\alpha t)$
 for some parameter $\alpha$. Clealy $||\Sigma(t)|| = sigma(t)$. This can be used to fit, e.g., one
-swaption price.
+swaption price. Note $\Sigma\cdot B_t = \sigma(B_t^0\cos(\alpha t) + B_t^1\sin(\alpha t)$ and
+$\Cov(B_t,B_u) = t\cos(\alpha(u-t))$ for $t < u$.
 
 The futures are determined by the forwards and volatilities; $\phi(t) = f(t) + \sigma(t)^2 t^2/2$.
 
