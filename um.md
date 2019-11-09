@@ -272,21 +272,17 @@ The LIBOR Market model assumes the forwards are jointly lognormal,
 $$
 	F_j = \phi(t_j)\exp(\Sigma_j\cdot B_{t_j} - ||\Sigma_j||^2 t_j/2),
 $$
-where $\phi(t_j) = E f_j$ is the futures quote, $\Sigma_j$ is a vector
-with norm equal to the at-the-money caplet volatility, and $B_t = (B_t^0,
-B_t^1, \dots)$ is vector-valued Brownian motion.  A nice feature of this
-model is that the forward curve and at-the-money caplet prices are not
-affected by the individual components of the volatility vectors since
-$\Sigma\cdot B_t$ is one-dimensional Brownian motion with standard
-deviation $||\Sigma||$.
+where $\phi(t_j) = E f_j$ is the futures quote, $\sigma_j$ is a vector with norm
+equal to the at-the-money caplet volatility, and $B_t$ is vector-valued Brownian motion.
+A nice feature of this model is that the forward curve and at-the-money caplet prices
+are not affected by the individual components of the volatility vectors.
 
-A common parameterization for the volatilities is $\Sigma(t) = \sigma(t)(\cos\alpha t, \sin\alpha t)$
-for some parameter $\alpha$.
-We have $\Sigma(t)\cdot B_t = \sigma(t)(B_t^0 \cos\alpha t + B_t^1 \sin\alpha t)$
-and $||\Sigma(t)|| = \sigma(t)$.
-This can be used to fit, e.g., one swaption price.
+A common parameteration for the volatilities is $\Sigma(t) = \sigma(t)(\cos\alpha t, \sin\alpha t)$
+for some parameter $\alpha$. Clealy $||\Sigma(t)|| = sigma(t)$. This can be used to fit, e.g., one
+swaption price. Note $\Sigma\cdot B_t = \sigma(B_t^0\cos(\alpha t) + B_t^1\sin(\alpha t)$ and
+$\Cov(B_t,B_u) = t\cos(\alpha(u-t))$ for $t < u$.
 
-The futures and forwards are related by $\phi(t) = f(t) + \sigma(t)^2 t^2/2$.
+The futures are determined by the forwards and volatilities; $\phi(t) = f(t) + \sigma(t)^2 t^2/2$.
 
 ### Forward Rate Agreement
 

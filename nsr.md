@@ -7,9 +7,9 @@ classoption: fleqn
 ...
 
 If $f_t$ is the short rate process, 1 invested at $t$ returns $e^{f\,dt}$
-at $t + dt$, then the price at time $t$ of a zero coupon bond maturing at time $u$ is
-$D_t(u) = E_t \exp(-\int_t^u f_s\,ds)$,
-where $E_t$ denotes conditional expectation at time $t$.
+at $t + dt$, then the price at time $t$ of a zero coupon bond maturing
+at time $u$ is $D_t(u) = E_t \exp(-\int_t^u f_s\,ds)$, where $E_t$
+denotes conditional expectation at time $t$.
 
 Let $(B_t)_{t\ge0}$ be standard brownian motion.
 The _normal interest rate model_ specifies the short rate process
@@ -44,11 +44,10 @@ $$
     -\log D_t(u) = \int_t^u [\phi(s) - \sigma^2(u - s)^2/2]\,ds
             +  \sigma(u - t) B_t
 $$
-Since $D_0(u) = D(u) = \exp(-\int_0^u f(s)\,ds)$ is today’s discount curve
-we have $\int_0^u f(s)\,ds = \int_0^u \phi(s)\,ds - \sigma^2 u^3/6$ and so $f(t) = \phi(t) - \sigma^2 u^2/2$.
-In terms of the forward the equation above becomes
+Since $D_0(u) = D(u) = \exp(-\int_0^u f(s)\,ds)$ is today’s discount
+curve we have $\int_0^u f(s)\,ds = \int_0^u \phi(s)\,ds - \sigma^2 u^3/6$
+and so $f(u) = \phi(u) - \sigma^2 u^2/2$.  In terms of the forward the
+equation above becomes
 $$
-    -\log D_t(u)
-    = \int_t^u f(s)\, ds + \sigma^2ut(u - t)/2
-            +  \sigma(u - t) B_t
+    -\log D_t(u) = \int_t^u f(s)\, ds + \sigma^2ut(u - t)/2 +  \sigma(u - t) B_t
 $$
