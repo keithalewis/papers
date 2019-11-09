@@ -8,7 +8,7 @@ abstract: |
 	Market instruments can be bought or sold at a price and ownership
 	entails cash flows. Shares of instruments can be traded based on
 	available information that accrue to positions. The mark-to-market
-	value and amounts invovled with trading correspond to price
+	value and amounts involved with trading correspond to price
 	and cash flows. The Unified Model demonstrates the connection
 	between dynamic trading and how to value, hedge, and manage the
 	risk of a derivative security.
@@ -20,9 +20,7 @@ abstract: |
 	indexed by market instruments and a positive, adapted process
 	called a deflator. If repurchase agreements are available they
 	determine a canonical deflator.
-
 ...
-
 
 A _derivative security_ is a contract between two parties: I will
 give you this on these dates if you will give me that on those dates.
@@ -103,7 +101,7 @@ We can assume $D_0 = 1$. If $(D_t)$ is a deflator then so is $(D_t/D_0)$.
 Note that if there are no cash flows, $C_t = 0$ for all $t \in T$
 $X_tD_t$ is a martingale. For an infinite time horizon where
 the price times the deflator goes to 0, the current price is
-the expected price of discounted future cash flows, just as in
+the expected value of discounted future cash flows, just as in
 Graham and Dodd valuation.
 
 A consequence of the above and the definition of value and amount is
@@ -117,11 +115,14 @@ corresponds to price and amount corresponds to cash flow.
 This is the skeleton key for valuing derivative securities.
 It shows how dynamic trading can create synthetic market instruments.
 
-__Proof__. If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
-and $V_t D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t = \Delta_u\cdot
-E_t[(X_u + C_u) D_u]$.  Since $\Delta_u\cdot C_u = \Gamma_u\cdot X_u +
-A_u$ we have $V_t D_t = E_t[(\Delta_u\cdot X_u + \Gamma_u\cdot X_u +
-A_u) D_u] = E_t[(V_u + A_u)D_u]$. The displayed formula above follows by induction.
+__Proof__. If $u > t$ is sufficiently small then
+$X_t D_t = E_t[(X_u + C_u) D_u]$
+and
+$V_t D_t = (\Delta{t} + \Gamma)\cdot X_{t} D_t
+= \Delta_u\cdot E_t[(X_u + C_u) D_u]$.
+Since $\Delta_u\cdot C_u = \Gamma_u\cdot X_u + A_u$ we have
+$V_t D_t = E_t[(\Delta_u\cdot X_u + \Gamma_u\cdot X_u + A_u) D_u] = E_t[(V_u + A_u)D_u]$.
+The displayed formula above follows by induction.
 
 For a trading strategy that closes out,
 $V_{\tau_0} D_{\tau_0} = E_{\tau_0}[\sum_{t > \tau_{0}}{A_{t}D_{t}] \geq 0}$. 
@@ -163,13 +164,13 @@ dV_t/dX_t$, where the last term is the Fr&#233;chet derivative.  Since we
 know the position ($\Delta_t$) at time $t$ this determines the trades:
 $\Gamma_t = dV_t/dX_t - \Delta_t$.
 
-In the continuous time case where stocks are modelled by geometric
+In the continuous time case where stocks are modeled by geometric
 Brownian motion, this becomes classical Black-Scholes/Merton
 delta hedging where delta is $\Delta$ and gamma is $\Gamma$. 
 Under their mathematical assumptions, the hedge perfectly replicates the derivative.
 
 In the real world it is not possible to perfectly replicate the derivative security.
-There is still research to be done on when to hedge and how to mangage the associated risk
+There is still research to be done on when to hedge and how to manage the associated risk
 of imperfect replication.
 
 Cites - Derman, Dupire, etc.
@@ -201,7 +202,7 @@ The continuous time version of the _canonical deflator_ is
 $D_t = \exp(-\int_0^t f_s\,ds)$.
 
 As we will see below, the prices of all
-(non-risky) fixed income securites are determined by the deflator.
+(non-risky) fixed income securities are determined by the deflator.
 
 ### Zero Coupon Bond
 
@@ -226,7 +227,7 @@ the underlying $X$ expiring at $u$ is $\Phi_t(u) = E_t X_u$.
 
 ### Forward
 
-A _forward_ contract on underlying $S$ with stike $k$ expiring at time $t$ 
+A _forward_ contract on underlying $S$ with strike $k$ expiring at time $t$ 
 pays $A_t = S_t - k$ at $t$. It has initial value $V_0 = E[(S_t - k)D_t]
 = S_0 - kE D_t$.
 The _par forward_, $f$, is the strike that makes the initial value equal to zero:
@@ -249,37 +250,43 @@ An American option with strike $k$ and expiration $t$ pays $A_\tau$ at a stoppin
 at the discretion of the option holder. In the unified model this is represented by extending the
 sample space $\Omega$ to $\Omega\times (0,t]$. The point $(\omega,\tau)$ represents exercising
 at time $\tau$ when $\omega$ occurs. Note that the model does not assume the option is exercised
-at the "optimal" time. In practice, not every market paricipant does this.
+at the "optimal" time. In practice, not every market participant does this.
 
 American options do not satisfy put-call parity in general. The exercise time of the put and
 the call are usually different.
 
 ## Fixed Income
 
-A _fixed income_ instrument is specifed by cash flows $(c_j)$ at times $(u_j)$.
+A _fixed income_ instrument is specified by cash flows $(c_j)$ at times $(u_j)$.
 This is just a portfolio of zero coupon bonds so its _present value_ is
-$p = \sum_j c_j Z(u_j$.
+$p = \sum_j c_j Z(u_j)$.
 The present value at time $t$ is $p_t = \sum_j c_j Z_t(u_j)$.
 
 ### LIBOR Market Model
 
 Assuming discrete times $(t_j)$, the deflator is determined by the joint distribution of
-the repo rates $f_j = f_{t_j}$ over $[t_j, t_{j+1})$. 
+the repo rates $F_j = F_{t_j}$ over $[t_j, t_{j+1})$. (We use capital $F$ instead of
+lower case $f$ to indicate it is a random variable.)
 
 The LIBOR Market model assumes the forwards are jointly lognormal,
 $$
-	f_j = \phi(t_j)\exp(\Sigma_j\dot B_j - ||\Sigma_j||^2 t_j/2),
+	F_j = \phi(t_j)\exp(\Sigma_j\cdot B_{t_j} - ||\Sigma_j||^2 t_j/2),
 $$
-where $\phi(t_j) = E f_j$ is the futures quote, $\sigma_j$ is a vector with norm
-equal to the at-the-money caplet volatility, and $B_t$ is vector-valued Brownian motion.
-A nice feature of this model is that the forward curve and at-the-money caplet prices
-are not affected by the individual components of the volatility vectors.
+where $\phi(t_j) = E f_j$ is the futures quote, $\Sigma_j$ is a vector
+with norm equal to the at-the-money caplet volatility, and $B_t = (B_t^0,
+B_t^1, \dots)$ is vector-valued Brownian motion.  A nice feature of this
+model is that the forward curve and at-the-money caplet prices are not
+affected by the individual components of the volatility vectors since
+$\Sigma\cdot B_t$ is one-dimensional Brownian motion with standard
+deviation $||\Sigma||$.
 
-A common parameteration for the volatilities is $\Sigma(t) = \sigma(t)(\cos\alpha t, \sin\alpha t)$
-for some parameter $\alpha$. Clealy $||\Sigma(t)|| = sigma(t)$. This can be used to fit, e.g., one
-swaption price.
+A common parameterization for the volatilities is $\Sigma(t) = \sigma(t)(\cos\alpha t, \sin\alpha t)$
+for some parameter $\alpha$.
+We have $\Sigma(t)\cdot B_t = \sigma(t)(B_t^0 \cos\alpha t + B_t^1 \sin\alpha t)$
+and $||\Sigma(t)|| = \sigma(t)$.
+This can be used to fit, e.g., one swaption price.
 
-The futures are determined by the forwards and volatilities; $\phi(t) = f(t) + \sigma(t)^2 t^2/2$.
+The futures and forwards are related by $\phi(t) = f(t) + \sigma(t)^2 t^2/2$.
 
 ### Forward Rate Agreement
 
@@ -321,7 +328,7 @@ V_t D_t &= E_t[(f - F_u(u,v;\delta))\delta(u,v) D_v] \\
 
 which is the same as for a forward rate agreement that does exchange notional.
 These two types of FRAS's have very different risk characteristics.
-If either counterparty defaults during the time notionals are exchanged the loss can
+If either counter-party defaults during the time notionals are exchanged the loss can
 be much larger than when the payment is only the difference of the fixed and floating rate.
 
 ### Interest Rate Swap
@@ -391,7 +398,7 @@ effective date of the swap, $t_0$.
 
 The price of an instrument is not a number. Not only does it
 depend on whether you are buying or selling, the amount being
-purchased, and the counterparties involved, determine the price.
+purchased, and the counter-parties involved, determine the price.
 
 The atoms of finance are _exchanges_: $(t;a,i,c;a',i',c')$,
 where $t$ is the time of the exchange, $a$ is the amount
@@ -410,7 +417,7 @@ $(t;a,i,c;aX(t;a,i;i',c'),i',c')$
 ### One Period Model
 
 There is no need for probability measures: the Fundamental Theorem of
-Asset Pricing is a geometic result. In the one period case where $T =
+Asset Pricing is a geometric result. In the one period case where $T =
 \{t_0,t_1\}$ the no arbitrage condition is there does not exist $\Gamma_0$
 with $A_0 = -\Gamma_0\cdot X_0 > 0$ and $A_1 = \Gamma_0\cdot X_1\ge 0$.
 
