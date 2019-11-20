@@ -17,6 +17,9 @@ FLAGS += -H header.html
 um:
 	pandoc --css reveal-ftap.css -s -f markdown -t revealjs --katex -V revealjs-url=https://revealjs.com um_slides.md -o um_slides.html
 
+umsync:
+	rcp um_slides.html reveal-ftap.css kal@web626.webfaction.com:webapps/kalx/
+
 cme:
 	rcp kal@web626.webfaction.com:cme/stleqt/stleqt.20171109.tgz .
 

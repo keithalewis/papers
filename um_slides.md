@@ -1,21 +1,24 @@
 ---
 title: The Unified Model
-subtitle: The right way to model derivative securities
+subtitle: How to model derivative securities
 theme: white
 previewLinks: true
-transition: 'zoom'
+transition: 'fade'
+hash: true
 
 ---
 
-##  What's wrong with the current model?
+##  Quo vadis status quo?
 
 * Valuing is only the first step.
 
-* How (and when) do you hedge?
-
 * Continuous hedging is impossible.
 
-* Current theory gives wrong answers.
+* How and when do you hedge?
+
+* How good is the hedge?
+
+* Current theory gives the wrong answers.
 
 ---
 
@@ -26,30 +29,94 @@ knocks in/out the _second_ time it hits the barrier?
 
 * Same as a barrier option that knocks in/out the first time.
 
-* Same as a barrier option that knocks in/out the millionth time.
+* Same as a barrier option that knocks in/out the millionth time
+it hits the barrier.
+
+* __MATHEMATICALLY TRUE BUT WRONG.__
 
 ---
 
+## Derivative Securities
 
-## Unified Model
+* A _derivative security_ is a contract between two parties.
+
+* _I will give you this on these dates if you will give me that on those dates._
+
+* These have existed since before recorded history.
+
+* Korg no longer trades bearskins with Grok for arrowheads.
+
+---
+
+## Mapping Finance to Math
+
+* Black-Scholes/Merton showed how to value a derivative.
+
+* The latter two won Nobel prizes for that assuming continuous hedging.
+
+* A Nobel prize awaits someone who comes up with a practical theory not assuming that.  
+
+---
+
+## Price and Cash Flow
 
 Prices $(X_t)$
-: vector of prices at $t$ indexed by available market instruments
+: Vector of prices at time $t$ indexed by available market instruments.
 
 Cash Flows $(C_t)$
-: vector of cash flows associated with holding instruments, e.g.,
+: Vector of cash flows associated with holding instruments, e.g.,
 stock dividends, bond coupons.
 
 ---
 
-## Trades, Position
+## Trades and Position
 
 Trades $(\tau_j,\Gamma_j)$
-: increasing stopping times and corresponding vector
+: Increasing stopping times and corresponding vector
 of shares traded in each instrument at $\tau_j$.
 
 Position $(\Delta_t$)
-: accumulated shares traded $\Delta_t = \sum_{\tau_j < t} \Gamma_j = \sum_{s < t} \Gamma_s$.
+: Trades accumulate to a position $\Delta_t = \sum_{\tau_j < t} \Gamma_j = \sum_{s < t} \Gamma_s$.
+
+---
+
+## Value and Amount
+
+Value $(V_t)$
+: The marked-to-market value of position and the last trade $V_t = (\Delta_t + \Gamma_t)\cdot X_t$.  
+The last trade is not included in the position.
+
+Amount $(A_t)$
+: Trading costs $A_t = \Delta_t\cdot C_t - \Gamma_t\cdot X_t$.  
+You receive the cash flows from the existing position and pay for last trade.
+
+---
+
+## Arbitrage
+
+Arbitrage exists if there are trades $(\tau_j,\Gamma_j)$ that eventually close out ,$\sum_j \Gamma_j = 0$,
+with $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > \tau_0$.
+
+The first trade makes money and no money is lost after that.
+
+---
+
+## FTAP
+
+The _Fundamental Theorem of Asset Pricing_ states there is no arbitrage if and only if there
+exist positive _deflators_ $(D_t)$ such that price and cash flow satisfy
+$$
+	X_t D_t = E_t[X_u D_u + \sum_{t < s \le u} C_s D_s].
+$$
+
+__Lemma__.  With value and amount as defined above,
+$$
+	V_t D_t = E_t[V_u D_u + \sum_{t < s \le u} A_s D_s].
+$$
+
+---
+
+Note how value corresponds to price and amount corresponds to cash flow.
 
 ---
 
@@ -124,5 +191,9 @@ Partial information is know what atom $\omega\in\Omega$ belongs to.
 $\Omega = [0,1)$.
 
 $\Omega = C[0,\infty)$ $A_\omega$ is ...
+
+---
+
+## Mapping Math to Software
 
 ---
