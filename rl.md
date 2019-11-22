@@ -4,7 +4,7 @@ author: Keith A. Lewis
 copyright: © 2019 Keith A. Lewis
 date: Apr 14 2019
 abstract: |
-	Notes based on Sutton and Barto's book.
+	Notes based on [Sutton and Barto's book](http://incompleteideas.net/book/RLbook2018.pdf).
 ...
 # Reinforcement Learning
 
@@ -18,7 +18,7 @@ A MDP is defined by states, $S$, actions, $A$, rewards,
 $R\subseteq\bold{R}$, and transition probabilities, $p(s',r'|s,a) =
 P(S_{t+1} = s', R_{t+1} = r'\mid S_t = s, A_t = a)$, the probability
 of moving to state $s'$ and receive reward $r'$ given the agent is in
-state $s$ and takes action $a$ at time $t$.
+state $s$ and takes action $a$ at time $t$, $s\stackrel{a/r'}{\rightarrow}s'$.
 
 Some models specify $A_s\subseteq A$, for $s\in S$, the set of possible
 actions when in state $s$.
@@ -36,7 +36,7 @@ for a given definition of optimal.
 
 A _gain_ (or _loss_) function is any function of future rewards,
 $$
-G_t = g_t(R_{t+1}, R_{t+2}, \ldots)$.
+G_t = g_t(R_{t+1}, R_{t+2}, \ldots).
 $$
 Common choices are are average rewards
 $$
@@ -95,8 +95,7 @@ state in the run, $V(s)$ is the average of the returns following $s$.
 
 ## Temporal Distance Learning
 
-p(s',r'|s,a) s -- a/r' --> s'
 
-p(a|s) only works because Markov
+## NOTES
 
-MDP is MAB conditioned on state
+p(a|s) only works because of the Markov property.

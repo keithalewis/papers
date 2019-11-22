@@ -12,13 +12,11 @@ hash: true
 
 * Valuing is only the first step.
 
-* Continuous hedging is impossible.
+* Since continuous hedging is impossible...
 
-* How and when do you hedge?
+* ...how and when do you hedge?
 
-* How good is the hedge?
-
-* Current theory gives the wrong answers.
+* Current theory gives wrong answers.
 
 ---
 
@@ -32,7 +30,7 @@ knocks in/out the _second_ time it hits the barrier?
 * Same as a barrier option that knocks in/out the millionth time
 it hits the barrier.
 
-* __MATHEMATICALLY TRUE BUT WRONG.__
+* __CORRECT, BUT USELESS__
 
 ---
 
@@ -44,7 +42,7 @@ it hits the barrier.
 
 * These have existed since before recorded history.
 
-* Korg no longer trades bearskins with Grok for arrowheads.
+* Korg no longer trades 10 arrowheads today with Grok for 1 bearskin at the next full moon.
 
 ---
 
