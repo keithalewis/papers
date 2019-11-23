@@ -1,6 +1,6 @@
 ---
 title: The Unified Model
-subtitle: How to model derivative securities
+subtitle: How to model **all** derivative securities
 theme: white
 previewLinks: true
 transition: 'fade'
@@ -16,7 +16,7 @@ hash: true
 
 * ...how and when do you hedge?
 
-* Current theory gives wrong answers.
+* Current theory gives *wrong* answers.
 
 ---
 
@@ -40,17 +40,15 @@ it hits the barrier.
 
 * _I will give you this on these dates if you will give me that on those dates._
 
-* These have existed since before recorded history.
-
-* Korg no longer trades 10 arrowheads today with Grok for 1 bearskin at the next full moon.
+* Derivatives must have existed since before recorded history.
 
 ---
 
 ## Mapping Finance to Math
 
-* Black-Scholes/Merton showed how to value a derivative.
+* Black-Scholes/Merton showed how to value a option.
 
-* The latter two won Nobel prizes for that assuming continuous hedging.
+* The latter two won Nobel prizes for that _assuming continuous hedging_.
 
 * A Nobel prize awaits someone who comes up with a practical theory not assuming that.  
 
@@ -67,7 +65,7 @@ stock dividends, bond coupons.
 
 ---
 
-## Trades and Position
+## Trading and Position
 
 Trades $(\tau_j,\Gamma_j)$
 : Increasing stopping times and corresponding vector
@@ -92,29 +90,68 @@ You receive the cash flows from the existing position and pay for last trade.
 
 ## Arbitrage
 
-Arbitrage exists if there are trades $(\tau_j,\Gamma_j)$ that eventually close out ,$\sum_j \Gamma_j = 0$,
+Arbitrage exists if there are trades $(\tau_j,\Gamma_j)$ that eventually close out ,
+i.e. $\sum_j \Gamma_j = 0$,  
 with $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > \tau_0$.
 
 The first trade makes money and no money is lost after that.
 
 ---
 
-## FTAP
+## Asset Pricing
 
-The _Fundamental Theorem of Asset Pricing_ states there is no arbitrage if and only if there
-exist positive _deflators_ $(D_t)$ such that price and cash flow satisfy
-$$
-	X_t D_t = E_t[X_u D_u + \sum_{t < s \le u} C_s D_s].
-$$
+There is no arbitrage if and only if there
+exist a positive, adapted _deflator_ $(D_t)$ such that price and cash flow satisfy
 
-__Lemma__.  With value and amount as defined above,
-$$
-	V_t D_t = E_t[V_u D_u + \sum_{t < s \le u} A_s D_s].
-$$
+>  $X_t D_t = E_t[X_u D_u + \sum_{t < s \le u} C_s D_s].$
+
+* If $C_t = 0$ then $X_tD_t$ is a martingale.
+
+* For $u\to\infty$ price is discounted future cash flows.
 
 ---
 
-Note how value corresponds to price and amount corresponds to cash flow.
+## Derivative Pricing
+
+With value and amount as defined above,
+
+> $V_t D_t = E_t[V_u D_u + \sum_{t < s \le u} A_s D_s].$
+
+* Note how value corresponds to price and amount corresponds to cash flow.
+
+<!--
+[text]{.class key="value"}
+-->
+
+---
+
+## Discrete Time
+
+Trading times are discrete $T = \{t_0, t_1, \ldots\}$.  
+Price and cash flow satisfy
+
+> $X_j D_j = E_j[(X_{j+1} + C_{j+1}) D_{j+1}]$
+
+for all $j$ where $X_j = X_{t_j}$, etc.  
+Value and amount satisfy
+
+> $V_j D_j = E_j[(V_{j+1} + A_{j+1}) D_{j+1}]$
+
+
+---
+
+## Proof
+
+Let $V = V_j$, $V' = V_{j+1}$, etc.
+so $\Delta + \Gamma = \Delta'$,
+$V = (\Delta + \Gamma)\cdot X$, $A' = \Delta'\cdot C' - \Gamma'\cdot X'$,
+and $XD = E[(X' + C')D']$
+
+$V D = (\Delta + \Gamma)\cdot X D$  
+$\ \ \ \ \ \ \ = \Delta'\cdot E[(X' + C') D']$  
+$\ \ \ \ \ \ \ = E[(\Delta'\cdot X' + \Delta'\cdot C') D']$  
+$\ \ \ \ \ \ \ = E[(\Delta'\cdot X' + \Gamma'\cdot X' + A') D']$  
+$\ \ \ \ \ \ \ = E[(V'+ A') D']$  
 
 ---
 
