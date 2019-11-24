@@ -191,7 +191,8 @@ $(B_t)$ is standard Brownian motion.
 
 $(Y_t)$ is a Levy process if it has independent increments and is stationary.
 
-The _cumulant_ of $(Y_t)$ is $\kappa_t(s) = \log E[\exp(sY_t)]$.
+The _cumulant_ of $Y_t$ is $\kappa_t(s) = \log E[\exp(s Y_t)]$
+and $e^{\sigma Y_t - \kappa_t(\sigma)}$ si a martingale.
 
 Let $D_t = e^{-\rho t}$ and $M_t = (r, se^{\sigma Y_t - \kappa_t(\sigma)})$.
 
