@@ -46,7 +46,7 @@ it hits the barrier.
 
 ## Mapping Finance to Math
 
-* Black-Scholes/Merton showed how to value a option.
+* Black-Scholes/Merton showed how to value an option.
 
 * The latter two won Nobel prizes for that _assuming continuous hedging_.
 
@@ -140,7 +140,7 @@ Value and amount satisfy
 
 ---
 
-## Proof
+## Lemma.
 
 Let $V = V_j$, $V' = V_{j+1}$, etc.
 so $\Delta + \Gamma = \Delta'$,
@@ -154,6 +154,54 @@ $\ \ \ \ \ \ \ = E[(\Delta'\cdot X' + \Gamma'\cdot X' + A') D']$
 $\ \ \ \ \ \ \ = E[(V'+ A') D']$  
 
 ---
+
+## Models
+
+Every arbitrage-free model is parameterized by a positive, adapted deflator $(D_t)$ and
+a vector-valued martingale $(M_t)$.
+
+> $X_t = (M_t - \sum_{s\le t} C_s D_s)/D_t$
+
+> $E_t[X_u D_u + \sum_{t < s \le u} C_s D_s]$
+> $\ \ = E_t[(M_u - \sum_{s\le u} C_s D_s) + \sum_{t < s \le u} C_s D_s]$
+> $\ \ = E_t[M_u - \sum_{s\le t} C_s D_s]$
+> $\ \ = M_t - \sum_{s\le t} C_s D_s = X_t D_t$
+
+
+---
+
+## Black-Scholes/Merton
+
+Let $D_t = e^{-\rho t}$ and $M_t = (r, se^{\sigma B_t - \sigma^2 t/2})$ where
+$(B_t)$ is standard Brownian motion.
+
+* No need for Ito's formula.
+
+* No need for partial differential equations.
+
+* No need for change of measure.
+
+* No need for self-financing.
+
+* No need for the Hahn-Banach theorm.
+
+---
+
+## Levy Processes
+
+$(Y_t)$ is a Levy process if it has independent increments and is stationary.
+
+The _cumulant_ of $(Y_t)$ is $\kappa_t(s) = \log E[\exp(sY_t)]$.
+
+Let $D_t = e^{-\rho t}$ and $M_t = (r, se^{\sigma Y_t - \kappa_t(\sigma)})$.
+
+Examples:
+
+* Merton's jump diffusion
+
+* Carr and Madan's Variance Gamma
+
+* Kou's double exponential model.
 
 # Algebras of Sets
 
