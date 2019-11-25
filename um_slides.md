@@ -204,6 +204,20 @@ Examples:
 
 * Kou's double exponential model.
 
+---
+
+## Canonical Deflator
+
+Let $(f_t)$ be the _instantaneous forward rate_ process. The _canonical deflator_
+is $D_t = \exp(-\int_0^t f_s\,ds)$.  
+
+A repurchase agreement over the interval
+has price $X_t = 1$ and cash flow $C_{t+dt} = R_t$. 
+
+We have $R_t = \exp(f_t\,dt)$.
+
+---
+
 # Algebras of Sets
 
 * An _algebra_ is a collection of subsets of a set.
