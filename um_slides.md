@@ -90,11 +90,13 @@ You receive the cash flows from the existing position and pay for last trade.
 
 ## Arbitrage
 
-Arbitrage exists if there are trades $(\tau_j,\Gamma_j)$ that eventually close out ,
-i.e. $\sum_j \Gamma_j = 0$,  
-with $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > \tau_0$.
+* Trades $(\tau_j,\Gamma_j)$
 
-The first trade makes money and no money is lost after that.
+* $\sum_j \Gamma_j = 0$, must close out
+
+* $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > \tau_0$.
+
+* The first trade makes money and no money is lost after that.
 
 ---
 
@@ -107,7 +109,7 @@ exist a positive, adapted _deflator_ $(D_t)$ such that price and cash flow satis
 
 * If $C_t = 0$ then $X_tD_t$ is a martingale.
 
-* For $u\to\infty$ price is discounted future cash flows.
+* As $u\to\infty$ price is discounted future cash flows.
 
 ---
 
@@ -167,7 +169,6 @@ a vector-valued martingale $(M_t)$.
 > $\ \ = E_t[M_u - \sum_{s\le t} C_s D_s]$
 > $\ \ = M_t - \sum_{s\le t} C_s D_s = X_t D_t$
 
-
 ---
 
 ## Black-Scholes/Merton
@@ -185,8 +186,7 @@ $(B_t)$ is standard Brownian motion.
 
 * No need for the Hahn-Banach theorm.
 
----
-
+<!--
 ## Levy Processes
 
 $(Y_t)$ is a Levy process if it has independent increments and is stationary.
@@ -204,17 +204,43 @@ Examples:
 
 * Kou's double exponential model.
 
+-->
 ---
+
 
 ## Canonical Deflator
 
-Let $(f_t)$ be the _instantaneous forward rate_ process. The _canonical deflator_
-is $D_t = \exp(-\int_0^t f_s\,ds)$.  
+* _Instantaneous forward rate_ process $(f_t)$
 
-A repurchase agreement over the interval
-has price $X_t = 1$ and cash flow $C_{t+dt} = R_t$. 
+* _Canonical deflator_ $D_t = \exp(-\int_0^t f_s\,ds)$.  
 
-We have $R_t = \exp(f_t\,dt)$.
+* Repurchase agreement: $X_t = 1$, $C_{t+dt} = R_t$. 
+
+* Hence $R_t = \exp(f_t\,dt) \approx 1 + f_t\,dt$.
+
+---
+
+## Zero Coupon Bonds
+
+* $Z(u)$ has one non-zero cash flow $C_u = 1$
+* Price at $t$ satisfies $Z_t(u) D_t = E_t D_u$
+* $Z_t(u) = \exp(-\int_t^u f_s\,ds)$
+* Now we can price any fixed-income instrument.
+
+---
+
+## Risky Zero Coupon Bonds
+
+* Default at $T$ with recovery $R$
+* Cash flow $C_t = 1(T > u) + R1(T = u, t \le u)$
+* Sample space $\Omega\times T$
+* Algebras $\mathcal{A} \time \{\{t_0\}, \ldots, \{t_{j-1}\},\{t_j,\ldots\}\}$.
+
+## Cash Deposits
+
+* $CD(r,u)$ has price $X_0 =1$ and $C_u = 1 + ru$.
+* It is a zero coupon bond a with different quoting convention.
+* $r = (1/D_0(u) - 1)/u$
 
 ---
 
