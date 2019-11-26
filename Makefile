@@ -15,7 +15,7 @@ FLAGS += -H header.html
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
 
 um:
-	pandoc --css um_slides.css -s -f markdown -t revealjs --katex -V revealjs-url=https://revealjs.com um_slides.md -o um_slides.html -V hash="true"
+	pandoc --css um_slides.css -s -f markdown -t revealjs --katex -V revealjs-url=https://revealjs.com um_slides.md -o um_slides.html
 
 umsync:
 	rcp um_slides.html reveal-ftap.css kal@web626.webfaction.com:webapps/kalx/

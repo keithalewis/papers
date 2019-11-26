@@ -2,9 +2,8 @@
 title: The Unified Model
 subtitle: How to model **all** derivative securities
 theme: white
-previewLinks: true
-transition: 'fade'
 hash: true
+transition: 'fade'
 
 ---
 
@@ -71,7 +70,7 @@ Trades $(\tau_j,\Gamma_j)$
 : Increasing stopping times and corresponding vector
 of shares traded in each instrument at $\tau_j$.
 
-Position $(\Delta_t$)
+Position $(\Delta_t)$
 : Trades accumulate to a position $\Delta_t = \sum_{\tau_j < t} \Gamma_j = \sum_{s < t} \Gamma_s$.
 
 ---
@@ -103,9 +102,13 @@ You receive the cash flows from the existing position and pay for last trade.
 ## Asset Pricing
 
 There is no arbitrage if and only if there
-exist a positive, adapted _deflator_ $(D_t)$ such that price and cash flow satisfy
+exist a positive, adapted _deflator_ $(D_t)$
+on $\langle \Omega, P, (\mathcal{A}_t)_{t\in T}\rangle$
+such that price and cash flow satisfy
 
->  $X_t D_t = E_t[X_u D_u + \sum_{t < s \le u} C_s D_s].$
+$$
+X_t D_t = E[X_u D_u + \sum_{t < s \le u} C_s D_s | \mathcal{A}_t].
+$$
 
 * If $C_t = 0$ then $X_tD_t$ is a martingale.
 
@@ -117,7 +120,9 @@ exist a positive, adapted _deflator_ $(D_t)$ such that price and cash flow satis
 
 With value and amount as defined above,
 
-> $V_t D_t = E_t[V_u D_u + \sum_{t < s \le u} A_s D_s].$
+$$
+V_t D_t = E_t[V_u D_u + \sum_{t < s \le u} A_s D_s].
+$$
 
 * Note how value corresponds to price and amount corresponds to cash flow.
 
@@ -132,12 +137,16 @@ With value and amount as defined above,
 Trading times are discrete $T = \{t_0, t_1, \ldots\}$.  
 Price and cash flow satisfy
 
-> $X_j D_j = E_j[(X_{j+1} + C_{j+1}) D_{j+1}]$
+$$
+X_j D_j = E_{t_j}[(X_{j+1} + C_{j+1}) D_{j+1}]
+$$
 
 for all $j$ where $X_j = X_{t_j}$, etc.  
 Value and amount satisfy
 
-> $V_j D_j = E_j[(V_{j+1} + A_{j+1}) D_{j+1}]$
+$$
+V_j D_j = E_{t_j}[(V_{j+1} + A_{j+1}) D_{j+1}]
+$$
 
 
 ---
@@ -147,13 +156,18 @@ Value and amount satisfy
 Let $V = V_j$, $V' = V_{j+1}$, etc.
 so $\Delta + \Gamma = \Delta'$,
 $V = (\Delta + \Gamma)\cdot X$, $A' = \Delta'\cdot C' - \Gamma'\cdot X'$,
-and $XD = E[(X' + C')D']$
+and $XD = E[(X' + C')D']$. We have
 
-$V D = (\Delta + \Gamma)\cdot X D$  
-$\ \ \ \ \ \ \ = \Delta'\cdot E[(X' + C') D']$  
-$\ \ \ \ \ \ \ = E[(\Delta'\cdot X' + \Delta'\cdot C') D']$  
-$\ \ \ \ \ \ \ = E[(\Delta'\cdot X' + \Gamma'\cdot X' + A') D']$  
-$\ \ \ \ \ \ \ = E[(V'+ A') D']$  
+$$
+\begin{aligned}
+V D &= (\Delta + \Gamma)\cdot X D\\
+ &= \Delta'\cdot E[(X' + C') D']\\
+ &= E[(\Delta'\cdot X' + \Delta'\cdot C') D']\\  
+ &= E[(\Delta'\cdot X' + \Gamma'\cdot X' + A') D']\\
+ &= E[(\Delta' + \Gamma')\cdot X' + A') D']\\
+ &= E[(V'+ A') D']\\
+\end{aligned}
+$$
 
 ---
 
@@ -161,13 +175,15 @@ $\ \ \ \ \ \ \ = E[(V'+ A') D']$
 
 Every arbitrage-free model is parameterized by a positive, adapted deflator $(D_t)$ and
 a vector-valued martingale $(M_t)$.
-
-> $X_t = (M_t - \sum_{s\le t} C_s D_s)/D_t$
-
-> $E_t[X_u D_u + \sum_{t < s \le u} C_s D_s]$
-> $\ \ = E_t[(M_u - \sum_{s\le u} C_s D_s) + \sum_{t < s \le u} C_s D_s]$
-> $\ \ = E_t[M_u - \sum_{s\le t} C_s D_s]$
-> $\ \ = M_t - \sum_{s\le t} C_s D_s = X_t D_t$
+Since $X_t D_t = (M_t - \sum_{s\le t} C_s D_s)$
+$$
+\begin{aligned}
+E_t[&X_u D_u + \sum_{t < s \le u} C_s D_s]\\
+&= E_t[(M_u - \sum_{s\le u} C_s D_s) + \sum_{t < s \le u} C_s D_s]\\
+&= E_t[M_u - \sum_{s\le t} C_s D_s]\\
+&= M_t - \sum_{s\le t} C_s D_s = X_t D_t\\
+\end{aligned}
+$$
 
 ---
 
@@ -232,9 +248,20 @@ Examples:
 ## Risky Zero Coupon Bonds
 
 * Default at $T$ with recovery $R$
-* Cash flow $C_t = 1(T > u) + R1(T = u, t \le u)$
-* Sample space $\Omega\times T$
-* Algebras $\mathcal{A} \time \{\{t_0\}, \ldots, \{t_{j-1}\},\{t_j,\ldots\}\}$.
+* Sample space $\Omega\times [0, \infty)$
+* Algebras $\mathcal{A}_{t_j} \times \{\{t_0\}, \ldots, \{t_{j-1}\},\{t_j,\ldots\}\}$.
+
+$$
+C_t = (1(t = u, T > u) + R1(t = T, t \le u))1(T > t).
+$$
+
+If $R$ is constant and $Z_t(u) = 1$ then
+
+$$
+Z_t^{T,R}(u) = (P(T > u) + R P(t < T \le u)) 1(T > t)/P(T > t)
+$$
+
+---
 
 ## Cash Deposits
 
