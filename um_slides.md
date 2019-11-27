@@ -60,7 +60,7 @@ Prices $(X_t)$
 
 Cash Flows $(C_t)$
 : Vector of cash flows associated with holding instruments, e.g.,
-stock dividends, bond coupons.
+stock dividends, bond coupons, futures margin adjustments.
 
 ---
 
@@ -73,13 +73,14 @@ of shares traded in each instrument at $\tau_j$.
 Position $(\Delta_t)$
 : Trades accumulate to a position $\Delta_t = \sum_{\tau_j < t} \Gamma_j = \sum_{s < t} \Gamma_s$.
 
+* The trade just executed is not included in the position.
+
 ---
 
 ## Value and Amount
 
 Value $(V_t)$
-: The marked-to-market value of position and the last trade $V_t = (\Delta_t + \Gamma_t)\cdot X_t$.  
-The last trade is not included in the position.
+: The marked-to-market value of position and last trade $V_t = (\Delta_t + \Gamma_t)\cdot X_t$.  
 
 Amount $(A_t)$
 : Trading costs $A_t = \Delta_t\cdot C_t - \Gamma_t\cdot X_t$.  
@@ -112,7 +113,7 @@ $$
 
 * If $C_t = 0$ then $X_tD_t$ is a martingale.
 
-* As $u\to\infty$ price is discounted future cash flows.
+* As $u\to\infty$, the price is discounted future cash flows.
 
 ---
 
@@ -134,8 +135,8 @@ $$
 
 ## Discrete Time
 
-Trading times are discrete $T = \{t_0, t_1, \ldots\}$.  
-Price and cash flow satisfy
+If trading times are discrete $T = \{t_0, t_1, \ldots\}$,  
+price and cash flow satisfy
 
 $$
 X_j D_j = E_{t_j}[(X_{j+1} + C_{j+1}) D_{j+1}]
@@ -151,7 +152,7 @@ $$
 
 ---
 
-## Lemma.
+## Lemma
 
 Let $V = V_j$, $V' = V_{j+1}$, etc.
 so $\Delta + \Gamma = \Delta'$,
@@ -174,8 +175,7 @@ $$
 ## Models
 
 Every arbitrage-free model is parameterized by a positive, adapted deflator $(D_t)$ and
-a vector-valued martingale $(M_t)$.
-Since $X_t D_t = (M_t - \sum_{s\le t} C_s D_s)$
+a vector-valued martingale $(M_t)$: $X_t = (M_t - \sum_{s\le t} C_s D_s)/D_t$
 $$
 \begin{aligned}
 E_t[&X_u D_u + \sum_{t < s \le u} C_s D_s]\\
@@ -223,7 +223,6 @@ Examples:
 -->
 ---
 
-
 ## Canonical Deflator
 
 * _Instantaneous forward rate_ process $(f_t)$
@@ -240,8 +239,8 @@ Examples:
 
 * $Z(u)$ has one non-zero cash flow $C_u = 1$
 * Price at $t$ satisfies $Z_t(u) D_t = E_t D_u$
-* $Z_t(u) = \exp(-\int_t^u f_s\,ds)$
-* Now we can price any fixed-income instrument.
+* $Z_t(u) = E_t[\exp(-\int_t^u f_s\,ds)]$
+* Fixed-income instruments are a portfolio of zero coupon bonds
 
 ---
 
@@ -252,14 +251,60 @@ Examples:
 * Algebras $\mathcal{A}_{t_j} \times \{\{t_0\}, \ldots, \{t_{j-1}\},\{t_j,\ldots\}\}$.
 
 $$
-C_t = (1(t = u, T > u) + R1(t = T, t \le u))1(T > t).
+C_t = \bigl(1(t = u, T > u) + R1(t = T, t \le u)\bigr)1(T > t).
 $$
 
-If $R$ is constant and $Z_t(u) = 1$ then
+* If $R$ is constant and $Z_t(u) = 1$ then
 
 $$
-Z_t^{T,R}(u) = (P(T > u) + R P(t < T \le u)) 1(T > t)/P(T > t)
+Z_t^{T,R}(u) = \bigl(P(T > u) + R\,P(t < T \le u)\bigr) 1(T > t)/P(T > t)
 $$
+
+---
+
+## American Options
+
+* Owner chooses stopping time $\tau$
+* Sample space $\Omega\times [0,\infty)$
+* Algebras $\mathcal{A}_{t_j} \times \{\{t_0\}, \ldots, \{t_{j}\},\{t_{j+1},\ldots\}\}$
+
+$$
+C_t = \phi(X_t) 1(t = \tau)
+$$
+
+* Allow for non-optimal exercise
+* Don't make implicit assumptions
+
+---
+
+## Hedging
+
+* Derivative pays $(\bar{A}_k)$ at $(\bar{\tau}_k)$
+* Find $(\tau_j, \Gamma_j)$ with $\sum_j \Gamma_j = 0$ and
+
+$$
+\begin{aligned}
+A_t =
+\begin{cases}
+\bar{A}_k, &t = \bar{\tau}_k\mathrm{\ for\ some\ } k\\
+0, &t \ne \bar{\tau}_k\mathrm{\ for\ all\ } k
+\end{cases}
+\end{aligned}
+$$
+
+* The second case is called &#8220;self-financing&#8221;
+
+---
+
+## Initial Hedge
+
+Assume discrete time and option pays $\bar{A}$ at $t_n$.
+
+* $V_0 = E\bar{A}D_n$.
+
+* V_0 = (\Delta_0 + \Gamma_0)\cdot X_0 = \Gamma_0)\cdot X_0$
+
+* Initial hedge is $\Gamma_0 = dV_0/dX_0$.
 
 ---
 
