@@ -3,6 +3,7 @@ title: The Unified Model
 subtitle: How to model **all** derivative securities
 theme: white
 hash: true
+history: true
 transition: 'fade'
 
 ---
@@ -24,12 +25,12 @@ transition: 'fade'
 * What is the value of a barrier option that
 knocks in/out the _second_ time it hits the barrier?
 
-* Same as a barrier option that knocks in/out the first time.
+* Current theory says same as a barrier option that knocks in/out the first time.
 
-* Same as a barrier option that knocks in/out the millionth time
+* Also same as a barrier option that knocks in/out the millionth time
 it hits the barrier.
 
-* __CORRECT, BUT USELESS__
+* __MATHEMATICALLY CORRECT, BUT USELESS__
 
 ---
 
@@ -127,6 +128,14 @@ $$
 
 * Note how value corresponds to price and amount corresponds to cash flow.
 
+There is no arbitrage since if $A_t\ge 0$ for $t>\tau_0$
+
+$$
+-A_{\tau_0} = V_{\tau_0} = E_{\tau_0}[\sum_{t>\tau_0} A_t D_t]/D_{\tau_0} \ge 0
+$$
+
+
+
 <!--
 [text]{.class key="value"}
 -->
@@ -135,8 +144,8 @@ $$
 
 ## Discrete Time
 
-If trading times are discrete $T = \{t_0, t_1, \ldots\}$,  
-price and cash flow satisfy
+If trading times are discrete $T = \{t_0, t_1, \ldots\}$
+then price and cash flow satisfy
 
 $$
 X_j D_j = E_{t_j}[(X_{j+1} + C_{j+1}) D_{j+1}]
@@ -189,7 +198,7 @@ $$
 
 ## Black-Scholes/Merton
 
-Let $D_t = e^{-\rho t}$ and $M_t = (r, se^{\sigma B_t - \sigma^2 t/2})$ where
+Let $D_t = e^{-\rho t}$ and $M_t = (r, s\exp(\sigma B_t - \sigma^2 t/2))$ where
 $(B_t)$ is standard Brownian motion.
 
 * No need for Ito's formula.
@@ -272,8 +281,8 @@ $$
 C_t = \phi(X_t) 1(t = \tau)
 $$
 
-* Allow for non-optimal exercise
-* Don't make implicit assumptions
+* Allow for non-optimal exercise.
+* Don't make implicit assumptions.
 
 ---
 
@@ -300,11 +309,29 @@ $$
 
 Assume discrete time and option pays $\bar{A}$ at $t_n$.
 
-* $V_0 = E\bar{A}D_n$.
+* $V_0 = E[\bar{A}D_n]$.
 
-* V_0 = (\Delta_0 + \Gamma_0)\cdot X_0 = \Gamma_0)\cdot X_0$
+* $V_0 = (\Delta_0 + \Gamma_0)\cdot X_0 = \Gamma_0\cdot X_0$
 
 * Initial hedge is $\Gamma_0 = dV_0/dX_0$.
+
+---
+
+## Intermediate Hedge
+
+* $V_j = E_j[\bar{A}D_n]/D_j$.
+
+* $V_j = (\Delta_j + \Gamma_j)\cdot X_j$
+
+* Intermediate hedge is $\Gamma_j = dV_j/dX_j - \Delta_j$.
+
+---
+
+## Final Hedge
+
+* Since $\Delta_n = 0$
+
+* Final hedge is $\Gamma_n = -\Delta_{n-1}$
 
 ---
 
