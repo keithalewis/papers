@@ -73,8 +73,7 @@ of shares traded in each instrument at $\tau_j$.
 
 Position $(\Delta_t)$
 : Trades accumulate to a position $\Delta_t = \sum_{\tau_j < t} \Gamma_j = \sum_{s < t} \Gamma_s$.
-
-* The trade just executed is not included in the position.
+The trade just executed is not included in the position.
 
 ---
 
@@ -109,7 +108,7 @@ on $\langle \Omega, P, (\mathcal{A}_t)_{t\in T}\rangle$
 such that price and cash flow satisfy
 
 $$
-X_t D_t = E[X_u D_u + \sum_{t < s \le u} C_s D_s | \mathcal{A}_t].
+X_t D_t = E[X_u D_u + \sum_{t < s \le u} C_s D_s\mid\mathcal{A}_t].
 $$
 
 * If $C_t = 0$ then $X_tD_t$ is a martingale.
@@ -184,7 +183,7 @@ $$
 ## Models
 
 Every arbitrage-free model is parameterized by a positive, adapted deflator $(D_t)$ and
-a vector-valued martingale $(M_t)$: $X_t = (M_t - \sum_{s\le t} C_s D_s)/D_t$
+a vector-valued martingale $(M_t)$, $X_t = (M_t - \sum_{s\le t} C_s D_s)/D_t$
 $$
 \begin{aligned}
 E_t[&X_u D_u + \sum_{t < s \le u} C_s D_s]\\
@@ -198,7 +197,7 @@ $$
 
 ## Black-Scholes/Merton
 
-Let $D_t = e^{-\rho t}$ and $M_t = (r, s\exp(\sigma B_t - \sigma^2 t/2))$ where
+Let $D_t = \exp(-\rho t)$ and $M_t = (r, s\exp(\sigma B_t - \sigma^2 t/2))$ where
 $(B_t)$ is standard Brownian motion.
 
 * No need for Ito's formula.
@@ -240,6 +239,8 @@ Examples:
 
 * Repurchase agreement: $X_t = 1$, $C_{t+dt} = R_t$. 
 
+* _Realized return_ is $R_t$ over $[t, t + dt]$.
+
 * Hence $R_t = \exp(f_t\,dt) \approx 1 + f_t\,dt$.
 
 ---
@@ -248,7 +249,7 @@ Examples:
 
 * $Z(u)$ has one non-zero cash flow $C_u = 1$
 * Price at $t$ satisfies $Z_t(u) D_t = E_t D_u$
-* $Z_t(u) = E_t[\exp(-\int_t^u f_s\,ds)]$
+* Hence $Z_t(u) = E_t[\exp(-\int_t^u f_s\,ds)]$
 * Fixed-income instruments are a portfolio of zero coupon bonds
 
 ---
@@ -307,9 +308,9 @@ $$
 
 ## Initial Hedge
 
-Assume discrete time and option pays $\bar{A}$ at $t_n$.
+Assume discrete time and option pays $\bar{A}_n$ at $t_n$.
 
-* $V_0 = E[\bar{A}D_n]$.
+* $V_0 = E[\bar{A}_nD_n]$.
 
 * $V_0 = (\Delta_0 + \Gamma_0)\cdot X_0 = \Gamma_0\cdot X_0$
 
@@ -319,7 +320,7 @@ Assume discrete time and option pays $\bar{A}$ at $t_n$.
 
 ## Intermediate Hedge
 
-* $V_j = E_j[\bar{A}D_n]/D_j$.
+* $V_j = E_j[\bar{A}_nD_n]/D_j$.
 
 * $V_j = (\Delta_j + \Gamma_j)\cdot X_j$
 
@@ -329,9 +330,24 @@ Assume discrete time and option pays $\bar{A}$ at $t_n$.
 
 ## Final Hedge
 
-* Since $\Delta_n = 0$
+* We require $\Gamma_j = 0$ to close out.
 
-* Final hedge is $\Gamma_n = -\Delta_{n-1}$
+* Final hedge must be $\Gamma_n = -\sum_{0\le j<n}\Gamma_j$
+
+* No guarantee this hedge replicates payoffs.
+
+* How good is this hedge?
+
+---
+
+## Repo $R_j$ Trade Blotter
+
+ $t$        $\Delta$    $\Gamma$   $X$   $C$   $V$   $A$    
+-----      ----------  ---------- ----- ----- ----- -----
+ $t_{j-1}$  $0$         $0$        $0$   $0$   $0$   $0$
+ $t_j$      $0$         $M_j$      $1$   $0$   $M_j$ $-M_j$ 
+ $t_{j+1}$  $M_j$       $-M_j$     $0$   $R_j$ $0$   $M_j R_j$ 
+ $t_{j+2}$  $0$         $0$        $0$   $0$   $0$   $0$
 
 ---
 
