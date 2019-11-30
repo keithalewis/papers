@@ -342,12 +342,12 @@ Assume discrete time and option pays $\bar{A}_n$ at $t_n$.
 
 ## Repo $R_j$ Trade Blotter
 
+* Buy $M_j$ at $t_j$ and unwind at $t_{j+1}$.
+
  $t$        $\Delta$    $\Gamma$   $X$   $C$   $V$   $A$    
 -----      ----------  ---------- ----- ----- ----- -----
- $t_{j-1}$  $0$         $0$        $0$   $0$   $0$   $0$
  $t_j$      $0$         $M_j$      $1$   $0$   $M_j$ $-M_j$ 
  $t_{j+1}$  $M_j$       $-M_j$     $0$   $R_j$ $0$   $M_j R_j$ 
- $t_{j+2}$  $0$         $0$        $0$   $0$   $0$   $0$
 
 ---
 
