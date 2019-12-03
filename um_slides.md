@@ -183,7 +183,7 @@ $$
 ## Models
 
 Every arbitrage-free model is parameterized by a positive, adapted deflator $(D_t)$ and
-a vector-valued martingale $(M_t)$, $X_t = (M_t - \sum_{s\le t} C_s D_s)/D_t$
+a vector-valued martingale $(M_t)$: $X_t = (M_t - \sum_{s\le t} C_s D_s)/D_t$
 $$
 \begin{aligned}
 E_t[&X_u D_u + \sum_{t < s \le u} C_s D_s]\\
@@ -229,6 +229,7 @@ Examples:
 * Kou's double exponential model.
 
 -->
+
 ---
 
 ## Canonical Deflator
@@ -277,11 +278,7 @@ $$
 * Owner chooses stopping time $\tau$
 * Sample space $\Omega\times [0,\infty)$
 * Algebras $\mathcal{A}_{t_j} \times \{\{t_0\}, \ldots, \{t_{j}\},\{t_{j+1},\ldots\}\}$
-
-$$
-C_t = \phi(X_t) 1(t = \tau)
-$$
-
+* Cash flow: $C_t = \phi(X_t) 1(t = \tau)$
 * Allow for non-optimal exercise.
 * Don't make implicit assumptions.
 
@@ -340,14 +337,35 @@ Assume discrete time and option pays $\bar{A}_n$ at $t_n$.
 
 ---
 
-## Repo $R_j$ Trade Blotter
+## Bond and Stock Hedge
 
-* Buy $M_j$ at $t_j$ and unwind at $t_{j+1}$.
+* Martingale $M_j = (1, S_j/D_j)$.
+* Prices $X_j = (1/D_j, S_j)$ and zero cash flows.
+* Trades $\Gamma_j = (M_j, N_j)$
+* First trade $V_0 = M_0 + N_0 S_0$ so $M_0 = V_0 - N_0 S_0$.
+* Amounts $A_j = -\Gamma_j\cdot X_j = -M_j/D_j - N_j S_j$.
+* For $0 < j < n$, $A_j = 0$ so $M_j = -N_j S_j D_j$.
+* $M_n = -\sum_{j<n} M_j$ and $N_n = -\sum_{j<n} N_j$.
 
- $t$        $\Delta$    $\Gamma$   $X$   $C$   $V$   $A$    
------      ----------  ---------- ----- ----- ----- -----
- $t_j$      $0$         $M_j$      $1$   $0$   $M_j$ $-M_j$ 
- $t_{j+1}$  $M_j$       $-M_j$     $0$   $R_j$ $0$   $M_j R_j$ 
+---
+
+## Stochastic Control
+
+* Final amount
+$$
+\begin{aligned}
+A_n &= - M_n/D_n - N_n S_n\\
+    &= (\sum_{j<n} M_j)/D_n + (\sum_{j<n} N_j) S_n\\
+    &=  V_0/D_n + (\sum_{j<n} -N_j S_j D_j)/D_n + (\sum_{j<n} N_j) S_n\\
+    &= V_0/D_n + \sum_{j<n} N_j(S_n - S_j D_j/D_n)\\
+\end{aligned}
+$$
+
+---
+
+
+* Since $V_0 = \Gamma_0\cdot X_0 = M_0 + N_0 S_0$, $M_0 = V_0 - N_0 S_0$.
+* Minimize $E(A - \sum_{1\le j<n} N_j(S_j D_j/D_n - S_n)^2$ over $(N_j)$.
 
 ---
 
