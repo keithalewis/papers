@@ -246,6 +246,18 @@ Examples:
 
 ---
 
+## Futures
+
+* Futures on $S$ expiring at $t_n$ has _quotes_ $\Phi_j$, $j \le n$.
+* At $t_n$, $\Phi_n = S_n$.
+* The price of a futures is always zero.
+* They have cash flows $C_j = \Phi_j - \Phi_{j-1}$ at $t_j$.
+* Since $X_j D_j = E_j C_{j+1} D_{j + 1}$,
+* we have $0 = E_j(\Phi_{j+1} - \Phi_j)/R_j$ and $\Phi_j = E_j\Phi_{j+1}$.
+* Futures quotes are martingales.
+
+---
+
 ## Zero Coupon Bonds
 
 * $Z(u)$ has one non-zero cash flow $C_u = 1$
@@ -349,9 +361,8 @@ Assume discrete time and option pays $\bar{A}_n$ at $t_n$.
 
 ---
 
-## Stochastic Control
+## Final Amount
 
-* Final amount
 $$
 \begin{aligned}
 A_n &= - M_n/D_n - N_n S_n\\
@@ -363,9 +374,14 @@ $$
 
 ---
 
+## Stochastic Control
 
-* Since $V_0 = \Gamma_0\cdot X_0 = M_0 + N_0 S_0$, $M_0 = V_0 - N_0 S_0$.
-* Minimize $E(A - \sum_{1\le j<n} N_j(S_j D_j/D_n - S_n)^2$ over $(N_j)$.
+* Minimize over $(N_j)_{j<n}$
+
+$$
+E[A_n - V_0/D_n - \sum_{j<n} N_j(S_j D_j/D_n - S_n)]^2
+$$
+
 
 ---
 
