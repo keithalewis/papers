@@ -4,6 +4,7 @@ subtitle: How to model **all** derivative securities
 theme: white
 hash: true
 history: true
+controlsTutorial: false
 transition: 'fade'
 
 ---
@@ -57,10 +58,10 @@ it hits the barrier.
 ## Price and Cash Flow
 
 Prices $(X_t)$
-: Vector of prices at time $t$ indexed by available market instruments.
+: Vector of _prices_ at time $t$ indexed by available market instruments.
 
 Cash Flows $(C_t)$
-: Vector of cash flows associated with holding instruments, e.g.,
+: Vector of _cash flows_ associated with holding instruments, e.g.,
 stock dividends, bond coupons, futures margin adjustments.
 
 ---
@@ -69,10 +70,10 @@ stock dividends, bond coupons, futures margin adjustments.
 
 Trades $(\tau_j,\Gamma_j)$
 : Increasing stopping times and corresponding vector
-of shares traded in each instrument at $\tau_j$.
+of shares _traded_ in each instrument at $\tau_j$.
 
 Position $(\Delta_t)$
-: Trades accumulate to a position $\Delta_t = \sum_{\tau_j < t} \Gamma_j = \sum_{s < t} \Gamma_s$.
+: Trades accumulate to a _position_ $\Delta_t = \sum_{\tau_j < t} \Gamma_j = \sum_{s < t} \Gamma_s$.  
 The trade just executed is not included in the position.
 
 ---
@@ -183,7 +184,7 @@ $$
 ## Models
 
 Every arbitrage-free model is parameterized by a positive, adapted deflator $(D_t)$ and
-a vector-valued martingale $(M_t)$: $X_t = (M_t - \sum_{s\le t} C_s D_s)/D_t$
+a vector-valued martingale $(M_t)_{t\in T}$: $X_t = (M_t - \sum_{s\le t} C_s D_s)/D_t$
 $$
 \begin{aligned}
 E_t[&X_u D_u + \sum_{t < s \le u} C_s D_s]\\
@@ -264,6 +265,7 @@ Examples:
 * Price at $t$ satisfies $Z_t(u) D_t = E_t D_u$
 * Hence $Z_t(u) = E_t[\exp(-\int_t^u f_s\,ds)]$
 * Fixed-income instruments are a portfolio of zero coupon bonds
+* Price dynamics are determined by the short rate process.
 
 ---
 
@@ -335,23 +337,25 @@ Assume discrete time and option pays $\bar{A}_n$ at $t_n$.
 
 * Intermediate hedge is $\Gamma_j = dV_j/dX_j - \Delta_j$.
 
+* $\Gamma$ is gamma and $\Delta$ is delta.
+
 ---
 
 ## Final Hedge
 
-* We require $\Gamma_j = 0$ to close out.
+* The position must close out.
 
 * Final hedge must be $\Gamma_n = -\sum_{0\le j<n}\Gamma_j$
 
 * No guarantee this hedge replicates payoffs.
 
-* How good is this hedge?
+* How good is the hedge?
 
 ---
 
 ## Bond and Stock Hedge
 
-* Martingale $M_j = (1, S_j/D_j)$.
+* Martingale $M_j = (1, S_j D_j)$.
 * Prices $X_j = (1/D_j, S_j)$ and zero cash flows.
 * Trades $\Gamma_j = (M_j, N_j)$
 * First trade $V_0 = M_0 + N_0 S_0$ so $M_0 = V_0 - N_0 S_0$.
@@ -367,19 +371,24 @@ $$
 \begin{aligned}
 A_n &= - M_n/D_n - N_n S_n\\
     &= (\sum_{j<n} M_j)/D_n + (\sum_{j<n} N_j) S_n\\
-    &=  V_0/D_n + (\sum_{j<n} -N_j S_j D_j)/D_n + (\sum_{j<n} N_j) S_n\\
+    &= V_0/D_n + (\sum_{j<n} -N_j S_j D_j)/D_n + (\sum_{j<n} N_j) S_n\\
     &= V_0/D_n + \sum_{j<n} N_j(S_n - S_j D_j/D_n)\\
 \end{aligned}
+$$
+* Minimize over $(N_j)_{j<n}$
+
+$$
+E[A_n - V_0/D_n - \sum_{j<n} N_j(S_j D_j/D_n - S_n)]^2
 $$
 
 ---
 
 ## Stochastic Control
 
-* Minimize over $(N_j)_{j<n}$
+* Solution
 
 $$
-E[A_n - V_0/D_n - \sum_{j<n} N_j(S_j D_j/D_n - S_n)]^2
+N_j = E_j(A_n - V_0/D_n)(S_j D_j/D_n - S_n)/E_j(S_j D_j/D_n - S_n)^2
 $$
 
 
