@@ -249,12 +249,12 @@ Examples:
 
 ## Futures
 
-* Futures on $S$ expiring at $t_n$ has _quotes_ $\Phi_j$, $j \le n$.
-* At $t_n$, $\Phi_n = S_n$.
+* Futures on $S$ expiring at $t_n$ have _quotes_ $\Phi_j$, $j \le n$.
+* At $t_n$ $\Phi_n = S_n$.
 * The price of a futures is always zero.
 * They have cash flows $C_j = \Phi_j - \Phi_{j-1}$ at $t_j$.
-* Since $X_j D_j = E_j C_{j+1} D_{j + 1}$,
-* we have $0 = E_j(\Phi_{j+1} - \Phi_j)/R_j$ and $\Phi_j = E_j\Phi_{j+1}$.
+* Since $X_j D_j = E_j C_{j+1} D_{j + 1}$...
+* ...we have $0 = E_j(\Phi_{j+1} - \Phi_j)/R_j$ and $\Phi_j = E_j\Phi_{j+1}$.
 * Futures quotes are martingales.
 
 ---
@@ -375,11 +375,20 @@ A_n &= - M_n/D_n - N_n S_n\\
     &= V_0/D_n + \sum_{j<n} N_j(S_n - S_j D_j/D_n)\\
 \end{aligned}
 $$
-* Minimize over $(N_j)_{j<n}$
+
+* Minimize over $(N_j)_{j<n}\in\oplus_{j \lt n} L^2(\Omega,P,\mathcal{A}_j)$
 
 $$
 E[A_n - V_0/D_n - \sum_{j<n} N_j(S_j D_j/D_n - S_n)]^2
 $$
+
+---
+
+## Least Squares Hedge
+
+* Let $\mathcal{H}$ be a Hilbert space.
+
+* Let $E\colon\mathcal{H}\to[0,\infty)$ be 
 
 ---
 
