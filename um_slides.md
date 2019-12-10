@@ -272,7 +272,7 @@ Examples:
 ## Risky Zero Coupon Bonds
 
 * Default at $T$ with recovery $R$
-* Sample space $\Omega\times [0, \infty)$
+* Sample space $\Omega\times [0, \infty) \times [0,1]$
 * Algebras $\mathcal{A}_{t_j} \times \{\{t_0\}, \ldots, \{t_{j-1}\},\{t_j,\ldots\}\}$.
 
 $$
@@ -376,30 +376,21 @@ A_n &= - M_n/D_n - N_n S_n\\
 \end{aligned}
 $$
 
+---
+
+## Least Squares Hedge
+
 * Minimize over $(N_j)_{j<n}\in\oplus_{j \lt n} L^2(\Omega,P,\mathcal{A}_j)$
 
 $$
 E[A_n - V_0/D_n - \sum_{j<n} N_j(S_j D_j/D_n - S_n)]^2
 $$
 
----
-
-## Least Squares Hedge
-
-* Let $\mathcal{H}$ be a Hilbert space.
-
-* Let $E\colon\mathcal{H}\to[0,\infty)$ be 
-
----
-
-## Stochastic Control
-
-* Solution
+* Solution:
 
 $$
-N_j = E_j(A_n - V_0/D_n)(S_j D_j/D_n - S_n)/E_j(S_j D_j/D_n - S_n)^2
+N_j = E_j[(A_n - V0)(S_j D_j/D_n - S_n)]/E_j[S_j D_j/D_n - S_n]^2
 $$
-
 
 ---
 
