@@ -389,7 +389,13 @@ $$
 * Solution:
 
 $$
-N_j = E_j[(A_n - V0)(S_j D_j/D_n - S_n)]/E_j[S_j D_j/D_n - S_n]^2
+N_j = \frac{E_j[(A_n - V_0/D_n)(S_j D_j/D_n - S_n)]}{E_j(S_j D_j/D_n - S_n)^2}
+$$
+
+* Minimum:
+
+$$
+E(A_n - V_0/D_n)^2 - \sum_{j<n} \frac{E[(A_n - V_0/D_n)(S_j D_j/D_n - S_n)]^2}{E(S_j D_j/D_n - S_n)^2}
 $$
 
 ---
