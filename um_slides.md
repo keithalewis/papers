@@ -353,6 +353,22 @@ Assume discrete time and option pays $\bar{A}_n$ at $t_n$.
 
 ---
 
+## One Period Model
+
+* Payoff $A$ at $t_1$.
+
+* Minimize $\Phi = E(A - A_1)^2$.
+
+$$
+\begin{aligned}
+\Phi(\Gamma_0) &= E(A + \Gamma_1\cdot X_1)^2\\
+    &= E(A - \Gamma_0\cdot X_1)^2\\
+    &= E(A^2) - \Gamma_0^T E[X_1 X_1^T]\Gamma_0\\
+\end{aligned}
+$$
+
+---
+
 ## Bond and Stock Hedge
 
 * Martingale $M_j = (1, S_j D_j)$.
