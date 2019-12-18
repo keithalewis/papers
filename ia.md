@@ -18,10 +18,10 @@ Stand up straight.
 Hold your shoulders back, but be relaxed.  
 Smile, but not too much.  
 Make eye contact, but not too much.  
-Get a good night's sleep before the interview.
+Get a good night's sleep before the interview.  
 You have spent years preparing and there is no way to cram the night before.
 Use search tools to familiarize yourself with the company.  
-Bring paper copies of your resume printed on high quality stock.
+Bring paper copies of your resume printed on high quality stock.  
 
 ## While Interviewing
 
@@ -49,7 +49,7 @@ Ask future colleagues about their work.
 - What technical environment do you use? (Operating system/Software)
 - What is your typical day like?
 - If there is one thing you could change, what would it be?
-Don't ask about salary and benefits until they bring it up.
+- Don't ask about salary and benefits until they bring it up.
 
 ## Final Advice
 
@@ -60,4 +60,4 @@ Walk away and find an employer that is a better fit for you.
 
 Thanks to Scott Dorsey, Grant Edwards, B. Elijah Griffin, Stephen Harris,
 Ted Heise, Dallman Ross, Bradley K. Sherman, and James Wetterau for
-helpful feedback. Any errors or omissions are entirely my fault.
+excellent feedback. Any errors or omissions are entirely on me.
