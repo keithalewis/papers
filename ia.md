@@ -13,7 +13,7 @@ Here is some general advice that never goes out of date I wish I had
 gotten when I was first starting out my career:
 
 Be on time.  
-Dress appropriatley.  
+Dress appropriately.  
 Stand up straight.  
 Hold your shoulders back, but be relaxed.  
 Smile, but not too much.  
@@ -42,16 +42,22 @@ Never get flustered, but that is easier said than done.
 
 ## Ask Questions
 
-After the interview they will probabably ask if you have questions.  
-If they don't, that is a warning bell.
+After the interview they will probably ask if you have questions.  
+If they don't, that is a warning bell.  
 Don't be shy about asking question even if they don't solicit them.  
-Ask future colleagues 
-
-
+Ask future colleagues about their work.
+- What technical environment do you use? (Operating system/Software)
+- What is your typical day like?
+- If there is one thing you could change, what would it be?
+Don't ask about salary and benefits until they bring it up.
 
 ## Final Advice
 
 Sometimes you will find you don't actually want the job.  
 Walk away and find an employer that is a better fit for you.  
 
+## Credits
 
+Thanks to Scott Dorsey, Grant Edwards, B. Elijah Griffin, Stephen Harris,
+Ted Heise, Dallman Ross, Bradley K. Sherman, and James Wetterau for
+helpful feedback. Any errors or omissions are entirely my fault.
