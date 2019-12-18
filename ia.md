@@ -1,6 +1,6 @@
 # Interview Advice
 
-I've been teaching Mathematical Finance for over a decade and I always
+I've been teaching Mathematical Finance for over a decade and always
 have students ask for advice on how to be successful when interviewing
 for a job.
 
