@@ -405,6 +405,13 @@ $$
 
 ---
 
+## Completing the Square
+
+* $a\in\mathcal{H}$, $B\in\mathcal{L}(\mathcal{H},\mathcal{K})$, $\mathcal{M}\subset\mathcal{K}$.
+* $\min_{x\in\mathcal{M}} ||a - Bx||$
+
+---
+
 ## Least Squares Hedge
 
 * Minimize over $(N_j)_{j<n}\in\oplus_{j \lt n} L^2(\Omega,P,\mathcal{A}_j)$

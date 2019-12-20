@@ -86,7 +86,7 @@ $|\alpha| = \alpha_1 + \cdots + \alpha_n$,
 $D^\alpha f(x) = \partial^{|\alpha|}f(x_1,\ldots,x_n)/\partial^{\alpha_1} x_1\cdots\partial^{\alpha_n} x_n$,
 $\alpha! = \alpha_1!\cdots\alpha_n!$,
 and $\epsilon^\alpha = \epsilon_1^{\alpha_1}\cdots\epsilon_n^{\alpha_n}$,
-a triumph of mathematical notation if there ever was one.
+a triumph of mathematical notation.
 
 In order to compute mixed derivatives of orders $m_j$ of $x_j$, $1\le j
 \le n$, let $\epsilon_j = I\oplus\dots\oplus\epsilon\oplus\dots\oplus
