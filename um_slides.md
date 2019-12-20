@@ -55,6 +55,15 @@ it hits the barrier.
 
 ---
 
+## Instruments
+
+* Stocks, bonds, forwards, futures, options, convertible bonds, MBS, ETFs, etc...
+* Sellers set prices
+* Buyers decide how much to buy
+* Owning an instrument entails cash flows
+
+---
+
 ## Price and Cash Flow
 
 Prices $(X_t)$
@@ -95,26 +104,26 @@ You receive the cash flows from the existing position and pay for last trade.
 
 * $\sum_j \Gamma_j = 0$, must close out
 
-* $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > \tau_0$.
+* $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > \tau_0$
 
-* The first trade makes money and no money is lost after that.
+* The first trade makes money and no money is lost 
 
 ---
 
 ## Asset Pricing
 
 There is no arbitrage if and only if there
-exist a positive, adapted _deflator_ $(D_t)$
+exists a positive, adapted _deflator_ $(D_t)_{t\in T}$
 on $\langle \Omega, P, (\mathcal{A}_t)_{t\in T}\rangle$
-such that price and cash flow satisfy
+such that prices and cash flows satisfy
 
 $$
-X_t D_t = E[X_u D_u + \sum_{t < s \le u} C_s D_s\mid\mathcal{A}_t].
+X_t D_t = E[X_u D_u + \sum_{t < s \le u} C_s D_s\mid\mathcal{A}_t]
 $$
 
-* If $C_t = 0$ then $X_tD_t$ is a martingale.
+* If $C_t = 0$ then $X_tD_t$ is a martingale
 
-* As $u\to\infty$, the price is discounted future cash flows.
+* Price is discounted future cash flows as $u\to\infty$
 
 ---
 
@@ -123,7 +132,7 @@ $$
 With value and amount as defined above,
 
 $$
-V_t D_t = E_t[V_u D_u + \sum_{t < s \le u} A_s D_s].
+V_t D_t = E_t[V_u D_u + \sum_{t < s \le u} A_s D_s]
 $$
 
 * Note how value corresponds to price and amount corresponds to cash flow.
@@ -199,17 +208,17 @@ $$
 ## Black-Scholes/Merton
 
 Let $D_t = \exp(-\rho t)$ and $M_t = (r, s\exp(\sigma B_t - \sigma^2 t/2))$ where
-$(B_t)$ is standard Brownian motion.
+$(B_t)$ is standard Brownian motion
 
-* No need for Ito's formula.
+* No need for Ito's formula
 
-* No need for partial differential equations.
+* No need for partial differential equations
 
-* No need for change of measure.
+* No need for change of measure
 
-* No need for self-financing.
+* No need for self-financing
 
-* No need for the Hahn-Banach theorm.
+* No need for the Hahn-Banach theorem
 
 <!--
 ## Levy Processes
@@ -237,25 +246,25 @@ Examples:
 
 * _Instantaneous forward rate_ process $(f_t)$
 
-* _Canonical deflator_ $D_t = \exp(-\int_0^t f_s\,ds)$.  
+* _Canonical deflator_ $D_t = \exp(-\int_0^t f_s\,ds)$
 
-* Repurchase agreement: $X_t = 1$, $C_{t+dt} = R_t$. 
+* Repurchase agreement: $X_t = 1$, $C_{t+dt} = R_t$
 
-* _Realized return_ is $R_t$ over $[t, t + dt]$.
+* _Realized return_ is $R_t$ over $[t, t + dt]$
 
-* Hence $R_t = \exp(f_t\,dt) \approx 1 + f_t\,dt$.
+* Hence $R_t = \exp(f_t\,dt) \approx 1 + f_t\,dt$
 
 ---
 
 ## Futures
 
-* Futures on $S$ expiring at $t_n$ have _quotes_ $\Phi_j$, $j \le n$.
-* At $t_n$ $\Phi_n = S_n$.
-* The price of a futures is always zero.
-* They have cash flows $C_j = \Phi_j - \Phi_{j-1}$ at $t_j$.
+* Futures on $S$ expiring at $t_n$ have _quotes_ $\Phi_j$, $j \le n$
+* At $t_n$, $\Phi_n = S_n$
+* The price of a futures is always zero
+* They have cash flows $C_j = \Phi_j - \Phi_{j-1}$ at $t_j$
 * Since $X_j D_j = E_j C_{j+1} D_{j + 1}$...
-* ...we have $0 = E_j(\Phi_{j+1} - \Phi_j)/R_j$ and $\Phi_j = E_j\Phi_{j+1}$.
-* Futures quotes are martingales.
+* ...we have $0 = E_j(\Phi_{j+1} - \Phi_j)/R_j$ and $\Phi_j = E_j\Phi_{j+1}$
+* Futures quotes are martingales
 
 ---
 
@@ -265,7 +274,7 @@ Examples:
 * Price at $t$ satisfies $Z_t(u) D_t = E_t D_u$
 * Hence $Z_t(u) = E_t[\exp(-\int_t^u f_s\,ds)]$
 * Fixed-income instruments are a portfolio of zero coupon bonds
-* Price dynamics are determined by the short rate process.
+* Price dynamics are determined by the short rate process
 
 ---
 
@@ -273,10 +282,10 @@ Examples:
 
 * Default at $T$ with recovery $R$
 * Sample space $\Omega\times [0, \infty) \times [0,1]$
-* Algebras $\mathcal{A}_{t_j} \times \{\{t_0\}, \ldots, \{t_{j-1}\},\{t_j,\ldots\}\}$.
+* Algebras $\mathcal{A}_{t_j} \times \{\{t_0\}, \ldots, \{t_{j-1}\},\{t_j,\ldots\}\}$
 
 $$
-C_t = \bigl(1(t = u, T > u) + R1(t = T, t \le u)\bigr)1(T > t).
+C_t = \bigl(1(t = u, T > u) + R1(t = T, t \le u)\bigr)1(T > t)
 $$
 
 * If $R$ is constant and $Z_t(u) = 1$ then
@@ -293,8 +302,8 @@ $$
 * Sample space $\Omega\times [0,\infty)$
 * Algebras $\mathcal{A}_{t_j} \times \{\{t_0\}, \ldots, \{t_{j}\},\{t_{j+1},\ldots\}\}$
 * Cash flow: $C_t = \phi(X_t) 1(t = \tau)$
-* Allow for non-optimal exercise.
-* Don't make implicit assumptions.
+* Allow for non-optimal exercise
+* Don't make implicit assumptions
 
 ---
 
@@ -321,29 +330,29 @@ $$
 
 Assume discrete time and option pays $\bar{A}_n$ at $t_n$.
 
-* $V_0 = E[\bar{A}_nD_n]$.
+* $V_0 = E[\bar{A}_nD_n]$
 
 * $V_0 = (\Delta_0 + \Gamma_0)\cdot X_0 = \Gamma_0\cdot X_0$
 
-* Initial hedge is $\Gamma_0 = dV_0/dX_0$.
+* Initial hedge is $\Gamma_0 = dV_0/dX_0$
 
 ---
 
 ## Intermediate Hedge
 
-* $V_j = E_j[\bar{A}_nD_n]/D_j$.
+* $V_j = E_j[\bar{A}_nD_n]/D_j$
 
 * $V_j = (\Delta_j + \Gamma_j)\cdot X_j$
 
-* Intermediate hedge is $\Gamma_j = dV_j/dX_j - \Delta_j$.
+* Intermediate hedge is $\Gamma_j = dV_j/dX_j - \Delta_j$
 
-* $\Gamma$ is gamma and $\Delta$ is delta.
+* $\Gamma$ is gamma and $\Delta$ is delta
 
 ---
 
 ## Final Hedge
 
-* The position must close out.
+* The position must close out
 
 * Final hedge must be $\Gamma_n = -\sum_{0\le j<n}\Gamma_j$
 
@@ -355,16 +364,16 @@ Assume discrete time and option pays $\bar{A}_n$ at $t_n$.
 
 ## One Period Model
 
-* Payoff $A$ at $t_1$
+* Payoff $\bar{A}_1$ at $t_1$
 
-* Minimize $\Phi = E(A - A_1)^2$
+* Minimize $\Phi = E(\bar{A}_1 - A_1)^2$
 
 $$
 \begin{aligned}
-\Phi(\Gamma_0) &= E(A + \Gamma_1\cdot X_1)^2\\
-    &= E(A - \Gamma_0\cdot X_1)^2\\
-    &= E(A^2) - 2 (EAX_1^T)\Gamma_0 + \Gamma_0^T E[X_1 X_1^T]\Gamma_0\\
-    &= E(A^2) - ||\Xi^{-1}EAX_1^T||^2 + ||\Xi^{-1}EAX_1 - \Xi\Gamma_0||^2
+\Phi(\Gamma_0) &= E(\bar{A}_1 + \Gamma_1\cdot X_1)^2\\
+    &= E(\bar{A}_1 - \Gamma_0\cdot X_1)^2\\
+    &= E(\bar{A}_1^2) - 2 (E\bar{A}_1X_1^T)\Gamma_0 + \Gamma_0^T E[X_1 X_1^T]\Gamma_0\\
+    &= E(\bar{A}_1^2) - ||\Xi^{-1}E\bar{A}_1X_1^T||^2 + ||\Xi^{-1}E\bar{A}_1X_1 - \Xi\Gamma_0||^2
 \end{aligned}
 $$
 
@@ -407,8 +416,19 @@ $$
 
 ## Completing the Square
 
-* $a\in\mathcal{H}$, $B\in\mathcal{L}(\mathcal{H},\mathcal{K})$, $\mathcal{M}\subset\mathcal{K}$.
+* $\mathcal{H}$, $\mathcal{K}$ Hilbert spaces
+* $a\in\mathcal{H}$, $B\in\mathcal{L}(\mathcal{K},\mathcal{H})$, $\mathcal{M}\subset\mathcal{K}$
 * $\min_{x\in\mathcal{M}} ||a - Bx||$
+* Let $P$ be the projection from $\mathcal{K}$ to $\mathcal{M}$ and $\Xi = (PB^*BP)^{1/2}$, then
+
+$$
+\begin{aligned}
+||a - Bx||^2 &= ||a - BPx||^2\\
+&= ||a||^2 - ||\Xi^{-1}PB^*a||^2 + ||\Xi^{-1}PB^*a - \Xi x||^2\\
+\end{aligned}
+$$
+
+* so $x = \Xi^{-2} PB^* a$ gives the minimum
 
 ---
 
