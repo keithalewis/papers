@@ -90,7 +90,7 @@ a triumph of mathematical notation.
 
 In order to compute mixed derivatives of orders $m_j$ of $x_j$, $1\le j
 \le n$, let $\epsilon_j = I\oplus\dots\oplus\epsilon\oplus\dots\oplus
-I$ be the direct of identity operators with $\epsilon$
+I$ be the direct sum of identity operators with $\epsilon$
 of order $m_j$ in the $j$-th position. To compute mixed
 partial derivatives at $x\in\mathbf{R}^n$ evaluate
 $f(x_1 I + \epsilon_1,\ldots,x_n I + \epsilon_n)$. The coefficient of
