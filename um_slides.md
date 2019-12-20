@@ -374,6 +374,12 @@ where $\Xi = E(X_1 X_1^T)^{1/2}$
 
 ---
 
+## Bond and Stock
+
+* $X_0 = (1, f)$, $X_1 = (f, F)$
+
+---
+
 ## Bond and Stock Hedge
 
 * Martingale $M_j = (1, S_j D_j)$.

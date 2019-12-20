@@ -9,7 +9,7 @@ usually written by people who were unable to answer the questions they
 were asked when interviewing, and tend to go out of date quickly in our
 fast-paced world.
 
-Here is some general advice that never goes out of date I wish I had
+Here is some general advice that never goes out of date that I wish I had
 gotten when I was first starting out my career:
 
 Be on time.  
