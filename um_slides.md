@@ -379,13 +379,16 @@ $$
 
 where $\Xi = E(X_1 X_1^T)^{1/2}$
 
-* Minimum occurs when $\Gamma_0 = E(X_1 X_1^T)^{-1}EAX_1$
+* Minimum occurs when $\Gamma_0 = E(X_1 X_1^T)^{-1}E\bar{A}_1 X_1$
 
 ---
 
-## Bond and Stock
+## One Period Bond and Stock
 
-* $X_0 = (1, f)$, $X_1 = (f, F)$
+* $X_0 = (1,f)$, $X_1 = (1, F)$, $C_1 = (0,0)$, $A = \bar{A}_1$
+* $\Gamma_0 = (E[F^2] EA - fE[FA], E[FA] - fEA)/\mathrm{Var}(F)$
+* $V_0 = \Gamma_0\cdot X_0 = (E[F^2] EA - f^2 EA)/\mathrm{Var}(F) = EA$
+* Minimum is $EA^2 - E[FA]^2/\mathrm{Var}(F)$
 
 ---
 
@@ -428,7 +431,7 @@ $$
 \end{aligned}
 $$
 
-* so $x = \Xi^{-2} PB^* a$ gives the minimum
+* so $x = (PB^*BP)^{-1} PB^* a$ gives the minimum
 
 ---
 
