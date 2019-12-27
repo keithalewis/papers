@@ -55,12 +55,26 @@ it hits the barrier.
 
 ---
 
+## Transactions
+
+* A _transaction_ is a tuple $(t;a,i,c;a',i',c')$
+* The transation occurs at time $t$
+* The _buyer_, $c$, pays _amount_ $a$ in _instrument_ $i$
+to the _seller_, $c'$, and receives $a'$ in $i'$
+* The seller sets the price $X:T\times A\times I\times I'\to \mathbf{R}$
+* The buyer can get the transaction $(t;a,i;aX(t,a,i,i'), i')$
+
+---
+
 ## Instruments
 
-* Stocks, bonds, forwards, futures, options, convertible bonds, MBS, ETFs, etc...
+* Stocks, bonds, forwards, futures, options, convertible bonds, MBS, ETFs, currencies, commodities, etc...
 * Sellers set prices
 * Buyers decide how much to buy
 * Owning an instrument entails cash flows
+    * Stocks have dividends
+    * Bonds have coupons
+    * Futures have margin adjustments
 
 ---
 
@@ -68,6 +82,7 @@ it hits the barrier.
 
 Prices $(X_t)$
 : Vector of _prices_ at time $t$ indexed by available market instruments.
+We assume $X(t;a,i,c;i',c') = X_t(i,i')$
 
 Cash Flows $(C_t)$
 : Vector of _cash flows_ associated with holding instruments, e.g.,
@@ -218,8 +233,6 @@ $(B_t)$ is standard Brownian motion
 
 * No need for self-financing
 
-* No need for the Hahn-Banach theorem
-
 <!--
 ## Levy Processes
 
@@ -309,27 +322,17 @@ $$
 
 ## Hedging
 
-* Derivative pays $(\bar{A}_k)$ at $(\bar{\tau}_k)$
-* Find $(\tau_j, \Gamma_j)$ with $\sum_j \Gamma_j = 0$ and
-
-$$
-\begin{aligned}
-A_t =
-\begin{cases}
-\bar{A}_k, &t = \bar{\tau}_k\mathrm{\ for\ some\ } k\\
-0, &t \ne \bar{\tau}_k\mathrm{\ for\ all\ } k
-\end{cases}
-\end{aligned}
-$$
-
-* The second case is called &#8220;self-financing&#8221;
+* Derivative pays $(\bar{A}_j)$ at $t_j$
+* Find $(\Gamma_j)_{j=0}^{n-1}$ with $\sum_j \Gamma_j = 0$ and
+$\bar{A}_j = A_j$ at $t_j$
+* When $\bar{A}_j = 0$ the hedge is called _self-financing_
 
 ---
 
 ## Initial Hedge
 
-Assume discrete time and option pays $\bar{A}_n$ at $t_n$.
-
+* European option pays $\bar{A}_n$ at $t_n$
+and $\bar{A}_j = 0$, $j < n$
 * $V_0 = E[\bar{A}_nD_n]$
 
 * $V_0 = (\Delta_0 + \Gamma_0)\cdot X_0 = \Gamma_0\cdot X_0$
@@ -370,25 +373,57 @@ Assume discrete time and option pays $\bar{A}_n$ at $t_n$.
 
 $$
 \begin{aligned}
-\Phi(\Gamma_0) &= E(\bar{A}_1 + \Gamma_1\cdot X_1)^2\\
-    &= E(\bar{A}_1 - \Gamma_0\cdot X_1)^2\\
-    &= E(\bar{A}_1^2) - 2 (E\bar{A}_1X_1^T)\Gamma_0 + \Gamma_0^T E[X_1 X_1^T]\Gamma_0\\
-    &= E(\bar{A}_1^2) - ||\Xi^{-1}E\bar{A}_1X_1^T||^2 + ||\Xi^{-1}E\bar{A}_1X_1 - \Xi\Gamma_0||^2
+\Phi(\Gamma_0) &= E[(\bar{A}_1 + \Gamma_1\cdot X_1)^2]\\
+    &= E[(\bar{A}_1 - \Gamma_0\cdot X_1)^2]\\
+    &= E[\bar{A}_1^2] - 2 E[\bar{A}_1X_1]^T\Gamma_0 + \Gamma_0^T E[X_1 X_1^T]\Gamma_0\\
+    &= E[\bar{A}_1^2] - ||\Xi^{-1}E[\bar{A}_1X_1^T]||^2 + ||\Xi^{-1}E[\bar{A}_1X_1] - \Xi\Gamma_0||^2
 \end{aligned}
 $$
 
-where $\Xi = E(X_1 X_1^T)^{1/2}$
+where $\Xi = E[X_1 X_1^T]^{1/2}$
 
-* Minimum occurs when $\Gamma_0 = E(X_1 X_1^T)^{-1}E\bar{A}_1 X_1$
+* Minimum occurs when $\Gamma_0 = E[X_1 X_1^T]^{-1}E[\bar{A}_1 X_1]$
 
 ---
 
 ## One Period Bond and Stock
 
 * $X_0 = (1,f)$, $X_1 = (1, F)$, $C_1 = (0,0)$, $A = \bar{A}_1$
-* $\Gamma_0 = (E[F^2] EA - fE[FA], E[FA] - fEA)/\mathrm{Var}(F)$
-* $V_0 = \Gamma_0\cdot X_0 = (E[F^2] EA - f^2 EA)/\mathrm{Var}(F) = EA$
-* Minimum is $EA^2 - E[FA]^2/\mathrm{Var}(F)$
+
+$$E[X_1 X_1^T]^{-1}
+= \frac{1}{\mathrm{Var}(F)}
+\left[
+\begin{matrix}
+E[F^2] & -f \\
+-f & 1
+\end{matrix}
+\right]$$
+
+$$\Gamma_0 = E[X_1 X_1^T]^{-1}\left[\begin{matrix} E[A]\\E[FA]\end{matrix}\right] = \frac{1}{\mathrm{Var}(F)} \left[ \begin{matrix} E[F^2] E[A] - f E[FA]\\ - f E[A] + E[FA] \end{matrix} \right]$$
+
+
+$$V_0 = \Gamma_0\cdot X_0 =
+\frac{E[F^2] E[A] - f^2 E[A]}{\mathrm{Var}(F)} = E[A]$$
+
+* Minimum is: $$\mathrm{Var}(A) - \frac{\mathrm{Cov}(F,A)^2}{\mathrm{Var}(F)}$$
+
+---
+
+## Completing the Square
+
+* $\mathcal{H}$, $\mathcal{K}$ Hilbert spaces
+* $a\in\mathcal{H}$, $X\in\mathcal{L}(\mathcal{K},\mathcal{H})$, $\mathcal{M}\subset\mathcal{K}$
+* $\min_{g\in\mathcal{M}} ||a - Xg||$
+* Let $P$ be the projection from $\mathcal{K}$ to $\mathcal{M}$ and $\Xi = (PX^*XP)^{1/2}$, then
+
+$$
+\begin{aligned}
+||a - Xg||^2 &= ||a - XPg||^2\\
+&= ||a||^2 - ||\Xi^{-1}PX^*a||^2 + ||\Xi^{-1}PX^*a - \Xi g||^2\\
+\end{aligned}
+$$
+
+* Minimum occurs when $g = (PX^*XP)^{-1} PX^* a$
 
 ---
 
@@ -414,24 +449,6 @@ A_n &= - M_n/D_n - N_n S_n\\
     &= V_0/D_n + \sum_{j<n} N_j(S_n - S_j D_j/D_n)\\
 \end{aligned}
 $$
-
----
-
-## Completing the Square
-
-* $\mathcal{H}$, $\mathcal{K}$ Hilbert spaces
-* $a\in\mathcal{H}$, $B\in\mathcal{L}(\mathcal{K},\mathcal{H})$, $\mathcal{M}\subset\mathcal{K}$
-* $\min_{x\in\mathcal{M}} ||a - Bx||$
-* Let $P$ be the projection from $\mathcal{K}$ to $\mathcal{M}$ and $\Xi = (PB^*BP)^{1/2}$, then
-
-$$
-\begin{aligned}
-||a - Bx||^2 &= ||a - BPx||^2\\
-&= ||a||^2 - ||\Xi^{-1}PB^*a||^2 + ||\Xi^{-1}PB^*a - \Xi x||^2\\
-\end{aligned}
-$$
-
-* so $x = (PB^*BP)^{-1} PB^* a$ gives the minimum
 
 ---
 
