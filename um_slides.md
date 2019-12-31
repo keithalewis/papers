@@ -19,6 +19,12 @@ transition: 'fade'
 
 * Current theory gives *wrong* answers.
 
+::: notes
+
+These are speaker notes.
+
+:::
+
 ---
 
 ## Barrier Options
