@@ -19,11 +19,13 @@ transition: 'fade'
 
 * Current theory gives *wrong* answers.
 
+<!--
 ::: notes
 
 These are speaker notes.
 
 :::
+-->
 
 ---
 
@@ -53,11 +55,11 @@ it hits the barrier.
 
 ## Mapping Finance to Math
 
-* Black-Scholes/Merton showed how to value an option.
+* Black-Scholes/Merton showed how to value an option
 
-* The latter two won Nobel prizes for that _assuming continuous hedging_.
+* The latter two won Nobel prizes for that _assuming continuous hedging_
 
-* A Nobel prize awaits someone who comes up with a practical theory not assuming that.  
+* A Nobel prize awaits someone who comes up with a practical theory not assuming that
 
 ---
 
@@ -69,6 +71,7 @@ it hits the barrier.
 to the _seller_, $c'$, and receives $a'$ in $i'$
 * The seller sets the price $X:T\times A\times I\times I'\to \mathbf{R}$
 * The buyer can get the transaction $(t;a,i;aX(t,a,i,i'), i')$
+* Transactions are the atoms of finance
 
 ---
 
@@ -92,7 +95,7 @@ We assume $X(t;a,i,c;i',c') = X_t(i,i')$
 
 Cash Flows $(C_t)$
 : Vector of _cash flows_ associated with holding instruments, e.g.,
-stock dividends, bond coupons, futures margin adjustments.
+stock dividends, bond coupons, futures margin adjustments
 
 ---
 
@@ -100,22 +103,22 @@ stock dividends, bond coupons, futures margin adjustments.
 
 Trades $(\tau_j,\Gamma_j)$
 : Increasing stopping times and corresponding vector
-of shares _traded_ in each instrument at $\tau_j$.
+of shares _traded_ in each instrument at $\tau_j$
 
 Position $(\Delta_t)$
-: Trades accumulate to a _position_ $\Delta_t = \sum_{\tau_j < t} \Gamma_j = \sum_{s < t} \Gamma_s$.  
-The trade just executed is not included in the position.
+: Trades accumulate to a _position_ $\Delta_t = \sum_{\tau_j < t} \Gamma_j = \sum_{s < t} \Gamma_s$  
+The trade just executed is not included in the position
 
 ---
 
 ## Value and Amount
 
 Value $(V_t)$
-: The marked-to-market value of position and last trade $V_t = (\Delta_t + \Gamma_t)\cdot X_t$.  
+: The marked-to-market value of position and last trade $V_t = (\Delta_t + \Gamma_t)\cdot X_t$
 
 Amount $(A_t)$
-: Trading costs $A_t = \Delta_t\cdot C_t - \Gamma_t\cdot X_t$.  
-You receive the cash flows from the existing position and pay for last trade.
+: Trading costs $A_t = \Delta_t\cdot C_t - \Gamma_t\cdot X_t$  
+You receive the cash flows from the existing position and pay for last trade
 
 ---
 
@@ -128,6 +131,7 @@ You receive the cash flows from the existing position and pay for last trade.
 * $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > \tau_0$
 
 * The first trade makes money and no money is lost 
+after that
 
 ---
 
@@ -300,7 +304,7 @@ Examples:
 ## Risky Zero Coupon Bonds
 
 * Default at $T$ with recovery $R$
-* Sample space $\Omega\times [0, \infty) \times [0,1]$
+* Sample space $\Omega\times \{t_j\} \times [0,1]$
 * Algebras $\mathcal{A}_{t_j} \times \{\{t_0\}, \ldots, \{t_{j-1}\},\{t_j,\ldots\}\}$
 
 $$
@@ -318,10 +322,10 @@ $$
 ## American Options
 
 * Owner chooses stopping time $\tau$
-* Sample space $\Omega\times [0,\infty)$
+* Sample space $\Omega\times \{t_j\}$
 * Algebras $\mathcal{A}_{t_j} \times \{\{t_0\}, \ldots, \{t_{j}\},\{t_{j+1},\ldots\}\}$
 * Cash flow: $C_t = \phi(X_t) 1(t = \tau)$
-* Allow for non-optimal exercise
+* Allows for non-optimal exercise
 * Don't make implicit assumptions
 
 ---
@@ -329,9 +333,8 @@ $$
 ## Hedging
 
 * Derivative pays $(\bar{A}_j)$ at $t_j$
-* Find $(\Gamma_j)_{j=0}^{n-1}$ with $\sum_j \Gamma_j = 0$ and
-$\bar{A}_j = A_j$ at $t_j$
-* When $\bar{A}_j = 0$ the hedge is called _self-financing_
+* Find $(\Gamma_j)$ with $\sum_j \Gamma_j = 0$ and
+$A_j = \bar{A}_j$ at $t_j$
 
 ---
 
@@ -415,11 +418,28 @@ $$V_0 = \Gamma_0\cdot X_0 =
 
 ---
 
+## Multi Period Model
+
+* Payoff $\bar{A}_j$ at $t_j$ and assume $C_j = 0$
+
+Minimize
+
+$$
+\begin{aligned}
+\Phi(\Gamma_0,\ldots,\Gamma_n) &= \sum_{j=1}^n E(\bar{A}_j - A_j)^2\\
+     &= \sum_{j=1}^n E(\bar{A}_j + \Gamma_j\cdot X_j)^2\\
+\end{aligned}
+$$
+
+where $\sum \Gamma_j = 0$
+
+---
+
 ## Completing the Square
 
 * $\mathcal{H}$, $\mathcal{K}$ Hilbert spaces
 * $a\in\mathcal{H}$, $X\in\mathcal{L}(\mathcal{K},\mathcal{H})$, $\mathcal{M}\subset\mathcal{K}$
-* $\min_{g\in\mathcal{M}} ||a - Xg||$
+* $\min_{g\in\mathcal{M}} ||a - Xg||^2$
 * Let $P$ be the projection from $\mathcal{K}$ to $\mathcal{M}$ and $\Xi = (PX^*XP)^{1/2}$, then
 
 $$
@@ -430,6 +450,20 @@ $$
 $$
 
 * Minimum occurs when $g = (PX^*XP)^{-1} PX^* a$
+
+---
+
+## One Period Model
+
+* $\mathcal{H} = L^2$, $\mathcal{K} = \mathbf{R}^I \oplus L^2(\mathbf{R}^I)$
+* $\mathcal{M} = \{\Gamma_0 \oplus \Gamma_1 \in\mathcal{K} : \Gamma_0 + \Gamma_1 = 0\}$
+* $X\colon\mathcal{K}\to\mathcal{H}$ by $\Gamma_0\oplus\Gamma_1\mapsto -X_1\cdot\Gamma_1$.
+* $X^*\colon\mathcal{H}\to\mathcal{K}$ by $A\mapsto 0\oplus -X_1 A$.
+* $P\colon\mathcal{K}\to\mathcal{M}$ by $\Gamma_0\oplus\Gamma_1\mapsto
+\frac{1}{2}(\Gamma_0 - E\Gamma_1)\oplus
+\frac{1}{2}(E\Gamma_1 - \Gamma_0)$
+* Note $\mathcal{M} = \{1^I\oplus 1^1\}^\perp$ so
+$P = I - e\otimes e/||e\otimes e||^2$ where $e = 1^I\oplus 1^I \in \mathcal{K}$
 
 ---
 
