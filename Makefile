@@ -14,7 +14,7 @@ FLAGS += -H header.html
 #FLAGS += -A footer.html
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
 
-um:
+um_slides: um_slides.md
 	pandoc --css um_slides.css -s -f markdown -t revealjs --katex -V revealjs-url=https://revealjs.com um_slides.md -o um_slides.html
 
 umsync:

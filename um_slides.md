@@ -379,7 +379,6 @@ and $\bar{A}_j = 0$, $j < n$
 * Payoff $\bar{A}_1$ at $t_1$
 
 * Minimize $\Phi = E(\bar{A}_1 - A_1)^2$
-
 $$
 \begin{aligned}
 \Phi(\Gamma_0) &= E[(\bar{A}_1 + \Gamma_1\cdot X_1)^2]\\
@@ -388,7 +387,6 @@ $$
     &= E[\bar{A}_1^2] - ||\Xi^{-1}E[\bar{A}_1X_1^T]||^2 + ||\Xi^{-1}E[\bar{A}_1X_1] - \Xi\Gamma_0||^2
 \end{aligned}
 $$
-
 where $\Xi = E[X_1 X_1^T]^{1/2}$
 
 * Minimum occurs when $\Gamma_0 = E[X_1 X_1^T]^{-1}E[\bar{A}_1 X_1]$
@@ -398,23 +396,21 @@ where $\Xi = E[X_1 X_1^T]^{1/2}$
 ## One Period Bond and Stock
 
 * $X_0 = (1,f)$, $X_1 = (1, F)$, $C_1 = (0,0)$, $A = \bar{A}_1$
-
-$$E[X_1 X_1^T]^{-1}
-= \frac{1}{\mathrm{Var}(F)}
+$$
+\begin{aligned}
+E[X_1 X_1^T]^{-1} &= \frac{1}{\mathrm{Var}(F)}
 \left[
 \begin{matrix}
 E[F^2] & -f \\
 -f & 1
 \end{matrix}
-\right]$$
-
-$$\Gamma_0 = E[X_1 X_1^T]^{-1}\left[\begin{matrix} E[A]\\E[FA]\end{matrix}\right] = \frac{1}{\mathrm{Var}(F)} \left[ \begin{matrix} E[F^2] E[A] - f E[FA]\\ - f E[A] + E[FA] \end{matrix} \right]$$
-
-
-$$V_0 = \Gamma_0\cdot X_0 =
-\frac{E[F^2] E[A] - f^2 E[A]}{\mathrm{Var}(F)} = E[A]$$
-
-* Minimum is: $$\mathrm{Var}(A) - \frac{\mathrm{Cov}(F,A)^2}{\mathrm{Var}(F)}$$
+\right]\\
+\Gamma_0 &= E[X_1 X_1^T]^{-1}\left[\begin{matrix} E[A]\\E[FA]\end{matrix}\right] = \frac{1}{\mathrm{Var}(F)} \left[ \begin{matrix} E[F^2] E[A] - f E[FA]\\ - f E[A] + E[FA] \end{matrix} \right]\\
+V_0 &= \Gamma_0\cdot X_0 =
+\frac{E[F^2] E[A] - f^2 E[A]}{\mathrm{Var}(F)} = E[A]\\
+\end{aligned}
+$$
+* Minimum is: $\mathrm{Var}(A) - \frac{\mathrm{Cov}(F,A)^2}{\mathrm{Var}(F)}$
 
 ---
 
@@ -423,14 +419,12 @@ $$V_0 = \Gamma_0\cdot X_0 =
 * Payoff $\bar{A}_j$ at $t_j$ and assume $C_j = 0$
 
 Minimize
-
 $$
 \begin{aligned}
 \Phi(\Gamma_0,\ldots,\Gamma_n) &= \sum_{j=1}^n E(\bar{A}_j - A_j)^2\\
      &= \sum_{j=1}^n E(\bar{A}_j + \Gamma_j\cdot X_j)^2\\
 \end{aligned}
 $$
-
 where $\sum \Gamma_j = 0$
 
 ---
@@ -441,14 +435,12 @@ where $\sum \Gamma_j = 0$
 * $a\in\mathcal{H}$, $X\in\mathcal{L}(\mathcal{K},\mathcal{H})$, $\mathcal{M}\subset\mathcal{K}$
 * $\min_{g\in\mathcal{M}} ||a - Xg||^2$
 * Let $P$ be the projection from $\mathcal{K}$ to $\mathcal{M}$ and $\Xi = (PX^*XP)^{1/2}$, then
-
 $$
 \begin{aligned}
 ||a - Xg||^2 &= ||a - XPg||^2\\
 &= ||a||^2 - ||\Xi^{-1}PX^*a||^2 + ||\Xi^{-1}PX^*a - \Xi g||^2\\
 \end{aligned}
 $$
-
 * Minimum occurs when $g = (PX^*XP)^{-1} PX^* a$
 
 ---
