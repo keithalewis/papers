@@ -1,0 +1,8 @@
+.katex { font-size: 1em !important; }
+span.katex-display.fleqn {
+    margin-left: 2em;
+}
+body {
+	margin-left: 1em;
+    font-family: "Candara", Helvetica, sans-serif;
+}

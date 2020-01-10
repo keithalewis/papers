@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="alg.css" />
+    <script src="https://kit.fontawesome.com/c69157b4d5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.mjs";
+    renderMathInElement(document.body,
+              { fleqn: true,
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+              }
+            );
+    </script>
+</head>
+<body>
+    <div>
+        They are great for proofs involving
+        $\lim\limits_{n\to\infty}\int f_n\,d\mu = \int\lim\limits_{n\to\infty} f_n\,d\mu$.
+    </div>
+    <div>The formula $a^2+b^2=c^2$ will be rendered inline, but $$a^2+b^2=c^2$$ will be rendered as a block element.</div>
+    <br>
+    <div>The formula \(a^2+b^2=c^2\) will be rendered inline, but \[a^2+b^2=c^2\] will be rendered as a block element.</div>
+
+    <span>
+        <button id='leftArrow' type='button' onclick='leftArrow()'><i class="fas fa-angle-up"></i></button>
+    </span>
+    <span>
+        <button id='toggleInterval' type='button' onclick='toggleInterval()'>0</button>
+    </span>
+    <span>
+        <button id='rightArrow' type='button' onclick='rightArrow()'><i class="fas fa-angle-down"></i></button>
+    </span>
+
+    <script language='javascript'>
+
+        var vendors = ['-moz-', '-webkit-', '-o-', '-ms-', '-khtml-', ''];
+        function toCamelCase(str) {
+            return str.toLowerCase().replace(/(\-[a-z])/g, function ($1) {
+                return $1.toUpperCase().replace('-', '');
+            });
+        };
+        function setCss3Style(el, prop, val) {
+            for (var i = 0, l = vendors.length; i < l; i++) {
+                var p = toCamelCase(vendors[i] + prop);
+                if (p in el.style)
+                    el.style[p] = val;
+            }
+        };
+
+        var length = 0;
+        var counter = 0;
+        var interval;
+        var pause = 1;
+
+        function rightArrow() {
+            var pi = document.getElementById('div' + counter);
+            pi.style.visibility = 'visible';
+            pi.style.display = 'block';
+            pi.style.opacity = 1;
+            setCss3Style(pi, 'transition', 'visibility 1s');
+            setCss3Style(pi, 'transition', 'opacity 1s linear');
+            pi.scrollIntoView(false);
+            window.scrollBy(0, 30);
+            if (counter < length - 1) {
+                ++counter;
+            }
+            document.getElementById('toggleInterval').innerHTML = counter;
+        }
+        function leftArrow() {
+            if (counter > 0)
+                --counter;
+            document.getElementById('toggleInterval').innerHTML = counter;
+            var pi = document.getElementById('div' + counter);
+            pi.style.visibility = 'hidden';
+            pi.style.display = 'none';
+            pi.style.opacity = 0;
+            setCss3Style(pi, 'transition', 'visibility 1s');
+            setCss3Style(pi, 'transition', 'opacity 1s');
+            pi.scrollIntoView(true);
+            window.scrollBy(0, -30);
+            //window.scrollTo(0,document.body.scrollHeight);
+        }
+
+        function pauseInterval() {
+            clearInterval(interval);
+            document.getElementById('toggleInterval').innerHTML = counter;
+            interval = null
+        }
+        function resumeInterval() {
+            rightArrow();
+            interval = setInterval(rightArrow, pause);
+            document.getElementById('toggleInterval').innerHTML = counter;
+        }
+        function toggleInterval() {
+            if (interval) {
+                pauseInterval();
+            }
+            else {
+                resumeInterval();
+            }
+        }
+
+        var db = document.body;
+        db.addEventListener('keydown', function (evt) {
+            if (evt.keyCode == 39) { // right arrow
+                rightArrow();
+                document.getElementById('count').innerHTML = counter;
+            }
+            if (evt.keyCode == 37 && counter > 0) { // left arrow
+                leftArrow();
+            }
+        });
+        window.onload = function (e) {
+            var p = document.getElementsByTagName('div');
+            length = p.length;
+            for (i = 0; i < length; ++i) {
+                p[i].id = 'div' + i;
+                p[i].style.visibility = 'hidden';
+                p[i].style.display = 'none';
+                p[i].style.opacity = 0;
+            }
+        }
+    </script>
+</body>
+</html>
