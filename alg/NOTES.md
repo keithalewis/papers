@@ -1,5 +1,13 @@
 # NOTES
 
+Jump in with RRT.
+
+Countably additive measures are the dual of C(X).
+
+Emphasize technical difficulties.
+
+Baire, Randon C_c(X).
+
 Sigma algebras are overrated.
 
 They are great for proofs involving

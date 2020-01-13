@@ -3,6 +3,10 @@ span.katex-display.fleqn {
     margin-left: 2em;
 }
 body {
-	margin-left: 1em;
+    margin-left: 1em;
     font-family: "Candara", Helvetica, sans-serif;
+    font-size: larger;
+}
+div {
+    margin-bottom: 20px;
 }

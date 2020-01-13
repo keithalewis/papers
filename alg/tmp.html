@@ -19,22 +19,119 @@
     </script>
 </head>
 <body>
-    <div>
-        They are great for proofs involving
-        $\lim\limits_{n\to\infty}\int f_n\,d\mu = \int\lim\limits_{n\to\infty} f_n\,d\mu$.
-    </div>
-    <div>The formula $a^2+b^2=c^2$ will be rendered inline, but $$a^2+b^2=c^2$$ will be rendered as a block element.</div>
-    <br>
-    <div>The formula \(a^2+b^2=c^2\) will be rendered inline, but \[a^2+b^2=c^2\] will be rendered as a block element.</div>
+
+    <h1>The Stigma of Sigma Algebras</h1>
+
+<div>
+$M(X)$ &ndash; countably additive measures on the set $X$.
+</div>
+<div>
+$X$ is a <em>topological</em> space.
+</div>
+<div>
+Topology &ndash; a study of the word <em>near</em>.
+</div>
+<div>
+A topology on a set is a collection of <em>open</em> subsets closed under finite
+intersection and arbitrary union.
+</div>
+<div>
+A topology is <em>Hausdorff</em> if for every point and every open set not
+containing the point there exists an open set containing the point that
+does not intersect the open set.
+</div>
+<div>
+A set is <em>compact</em> if every open covering contains a finite subcovering.
+</div>
+<div>
+Riesz Representation Theorem: If $X$ is a compact Hausdorff space then $M(X) \cong C(X)^*$.
+</div>
+<div>
+$C(X)^*$ &ndash; continuous linear functionals on $C(X)$.
+</div>
+<div>
+They are great for proofs involving
+$\lim\limits_{n\to\infty}\int f_n\,d\mu = \int\lim\limits_{n\to\infty} f_n\,d\mu$.
+</div>
+<div>
+But they involve a lot of machinery.
+</div>
+<div>
+Algebra of sets &ndash; a study of the words <em>not</em> and <em>or</em>.
+</div>
+<div>
+Algebras are closed under complement and union, hence intersection too.
+</div>
+<div>
+Measure &ndash; a study of the word <em>size</em>
+</div>
+<div>
+A <em>measure</em> satisfies $\mu(A\cup B) = \mu(A) + \mu(B) - \mu(A\cap B)$ and $\mu(\emptyset) = 0$.
+[$\mu(\emptyset) = c$]
+</div>
+<div>
+Note $\mu(A\cup B) = \mu(A) + \mu(B)$ if $A\cap B=\emptyset$.
+</div>
+<div>
+A <em>countably additive measure</em> satisfies
+$\mu(\bigcup\{A_i\mid i\in\mathbb{N}\}) = \sum\{\mu(A_i)\mid i\in\mathbb{N}\}$
+if $\{A_i\}$ are pairwise disjoint.
+</div>
+<div>
+$C(X)$ &ndash; continuous functions on $X$.
+</div>
+<div>
+$M(X)$ &ndash; countably additive measures on the sigma-algebra generated
+by the open sets of $X$.
+</div>
+<div>
+The proof is highly techical &ndash; 6 pages in Rudin's <em>Real and Complex Analysis</em>.
+</div>
+<div>
+If $X$ is any set then $B(X)^* \cong ba(X)$.
+</div>
+<div>
+$B(X)$ &ndash; bounded functions on $X$.
+</div>
+<div>
+$ba(X)$ &ndash; finitely additive measures on $X$.
+</div>
+<div>
+$\{\displaystyle\sum_i a_i 1_{A_i}\mid a_i\in\mathbb{R}, A_i\subseteq X\}$ is norm dense in $B(X)$.
+</div>
+<div>
+If $\lambda\in ba(X)$ define $L(\sum_i a_i 1_{A_i}) = \sum_i a_i \lambda(A_i)$.
+</div>
+<div>
+Well-defined since $\sum_i a_i 1_{A_i} = \sum_j b_j 1_{B_j}$ where $\{B_j\}$ are pairwise disjoint.
+</div>
+<div>
+If $L\in B(X)^*$ define $\lambda(A) = L(1_A)$.
+</div>
+<div>
+Norm preserving since ...
+</div>
+<div>
+Same proof for $B(X,\mathcal{A})^* \cong ba(X,\mathcal{A})$ for any algebra $\mathcal{A}$.
+</div>
+<div>
+Let $P\in ba(\Omega)$ be positive with $P(\Omega) = 1$.
+The <em>conditional expectation</em> of $X$ given an algebra $\mathcal{A}$ is $Y = E[X|\mathcal{A}]$
+where $Y$ is $\mathcal{A}$ measurable and $\int_A X\,dP = \int_A Y\,dP$ for all $A\in\mathcal{A}$.
+</div>
+<div>
+This is equivalent to $(XP)|_\mathcal{A} = Y(P|_\mathcal{A})$ where
+$ZP$ is the measure $(ZP)(A) = \int_A Z\,dP$ for $Z\in B(\Omega)$.
+</div>
 
     <span>
-        <button id='leftArrow' type='button' onclick='leftArrow()'><i class="fas fa-angle-up"></i></button>
+        <button id='upArrow' type='button' onclick='upArrow()'><i class="fas fa-angle-up"></i></button>
     </span>
     <span>
         <button id='toggleInterval' type='button' onclick='toggleInterval()'>0</button>
     </span>
     <span>
-        <button id='rightArrow' type='button' onclick='rightArrow()'><i class="fas fa-angle-down"></i></button>
+        <button id='downArrow' type='button' onclick='downArrow()'><i class="fas fa-angle-down"></i></button>
     </span>
 
     <script language='javascript'>
@@ -56,34 +153,45 @@
         var length = 0;
         var counter = 0;
         var interval;
-        var pause = 1;
+        var pause = 2000;
 
-        function rightArrow() {
+	function showElement(e) {
+            e.style.visibility = 'visible';
+            e.style.display = 'block';
+            e.style.opacity = 1;
+	    //e.style.transition = 'visibility 2s';
+	    e.style.transition = 'opacity 2s linear';
+            //setCss3Style(e, 'transition', 'visibility 2s');
+            //setCss3Style(e, 'transition', 'opacity 2s linear');
+            //e.scrollIntoView(false);
+	}
+        function hideElement(e) {
+            e.style.visibility = 'hidden';
+            e.style.display = 'none';
+            e.style.opacity = 0;
+	    //e.style.transition = 'visibility 2s';
+	    e.style.transition = 'opacity 2s linear';
+            //setCss3Style(e, 'transition', 'visibility 2s');
+            //setCss3Style(e, 'transition', 'opacity 2s');
+            //e.scrollIntoView(true);
+        }
+
+        function downArrow() {
             var pi = document.getElementById('div' + counter);
-            pi.style.visibility = 'visible';
-            pi.style.display = 'block';
-            pi.style.opacity = 1;
-            setCss3Style(pi, 'transition', 'visibility 1s');
-            setCss3Style(pi, 'transition', 'opacity 1s linear');
-            pi.scrollIntoView(false);
-            window.scrollBy(0, 30);
+	    showElement(pi);
+            //window.scrollBy(0, 30);
             if (counter < length - 1) {
                 ++counter;
             }
             document.getElementById('toggleInterval').innerHTML = counter;
         }
-        function leftArrow() {
-            if (counter > 0)
-                --counter;
+        function upArrow() {
             document.getElementById('toggleInterval').innerHTML = counter;
             var pi = document.getElementById('div' + counter);
-            pi.style.visibility = 'hidden';
-            pi.style.display = 'none';
-            pi.style.opacity = 0;
-            setCss3Style(pi, 'transition', 'visibility 1s');
-            setCss3Style(pi, 'transition', 'opacity 1s');
-            pi.scrollIntoView(true);
-            window.scrollBy(0, -30);
+	    hideElement(pi);
+            //window.scrollBy(0, -30);
+            if (counter > 0)
+                --counter;
             //window.scrollTo(0,document.body.scrollHeight);
         }
 
@@ -93,8 +201,8 @@
             interval = null
         }
         function resumeInterval() {
-            rightArrow();
-            interval = setInterval(rightArrow, pause);
+            downArrow();
+            interval = setInterval(downArrow, pause);
             document.getElementById('toggleInterval').innerHTML = counter;
         }
         function toggleInterval() {
@@ -109,11 +217,11 @@
         var db = document.body;
         db.addEventListener('keydown', function (evt) {
             if (evt.keyCode == 39) { // right arrow
-                rightArrow();
+                downArrow();
                 document.getElementById('count').innerHTML = counter;
             }
             if (evt.keyCode == 37 && counter > 0) { // left arrow
-                leftArrow();
+                upArrow();
             }
         });
         window.onload = function (e) {
@@ -125,6 +233,7 @@
                 p[i].style.display = 'none';
                 p[i].style.opacity = 0;
             }
+            resumeInterval();
         }
     </script>
 </body>
