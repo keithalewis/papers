@@ -45,9 +45,11 @@ it hits the barrier.
 
 ## Derivative Securities
 
-* A _derivative security_ is a contract between two parties.
+* A _derivative security_ is a contract between a _buyer_ and a _seller_.
 
-* _I will give you this on these dates if you will give me that on those dates._
+* The buyer decides to accept what the seller offers.
+
+* _The buyer will pay this on these dates and receive that on those dates from the seller._
 
 * Derivatives must have existed since before recorded history.
 
