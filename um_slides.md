@@ -168,26 +168,17 @@ $$
 -A_{\tau_0} = V_{\tau_0} = E_{\tau_0}[\sum_{t>\tau_0} A_t D_t]/D_{\tau_0} \ge 0
 $$
 
-
-
-<!--
-[text]{.class key="value"}
--->
-
 ---
 
 ## Discrete Time
 
 If trading times are discrete $T = \{t_0, t_1, \ldots\}$
 then price and cash flow satisfy
-
 $$
 X_j D_j = E_{t_j}[(X_{j+1} + C_{j+1}) D_{j+1}]
 $$
-
 for all $j$ where $X_j = X_{t_j}$, etc.  
 Value and amount satisfy
-
 $$
 V_j D_j = E_{t_j}[(V_{j+1} + A_{j+1}) D_{j+1}]
 $$
@@ -444,6 +435,7 @@ $$
 * Minimum occurs when $g = (PX^*XP)^{-1} PX^* a$
 
 ---
+
 
 ## One Period Model
 
