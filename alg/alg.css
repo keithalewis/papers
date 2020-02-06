@@ -2,10 +2,21 @@
 span.katex-display.fleqn {
     margin-left: 2em;
 }
+.kalx {
+    font-family: "Courier";
+    font-weight: bold;
+    opacity: 20%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    color: blue;
+}
 body {
     margin-left: 1em;
     font-family: "Candara", Helvetica, sans-serif;
     font-size: larger;
+	margin-bottom: 10em;
 }
 div {
 	display: none;
