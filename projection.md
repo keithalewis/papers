@@ -7,9 +7,8 @@ institution: KALX, LLC
 Let $\mathcal{K} = \oplus_j \mathcal{H}$ be the direct sum
 of $n$ copies of $\mathcal{H}$.
 
-Let $\mathcal{M} = \{\oplus_j h_j : \sum_j h_j = 0\}$.
-
-Define $M\colon\mathcal{K}\to\mathcal{H}$ by
+Define $\mathcal{M} = \{\oplus_j h_j : \sum_j h_j = 0\}$
+and $M\colon\mathcal{K}\to\mathcal{H}$ by
 $\oplus_j h_j \mapsto \sum_j h_j$.
 Note $\mathcal{M} = \mathop{\mathrm{ker}} M$.
 
@@ -23,9 +22,18 @@ We have $M^*M\colon\mathcal{K}\to\mathcal{K}$ by
 $\oplus_j h_j \mapsto \oplus_j \sum_{j'} h_{j'}$.
 
 The orthogonal projection from $\mathcal{K}$ to
-$\mathcal{M}^\perp$ is $P = (1/n)M^*M$.
+$\mathcal{M}^\perp$ is $P = (1/n)M^*M$ by
+$$
+	\oplus_j h_j \mapsto (1/n)\oplus_j (\sum_k h_k)
+$$
 
-Define $N = (1/\sqrt{n})M$ so $P = N^*N$.
+Note $P\oplus_j h = (1/n)\oplus_j n h = \oplus_j h$
+so $P$ is the identity on $\mathcal{M}^\perp$.
+
+If $\sum_j h_j = 0$ then this is sent to 0 so
+$P$ is 0 on $\mathcal{M}$.
+
+## Graded Hilbert Space
 
 Let $\mathcal{H}_j$ be increasing subspaces of $\mathcal{H}$
 and define $\hat{\mathcal{K}} = \oplus_j \mathcal{H}_j$.
@@ -36,15 +44,10 @@ to $\hat{\mathcal{K}}$.
 
 Note $Q_iQ_j = Q_{\min{i,j}} = Q_{i\wedge j}$
 
-By von Neumann's alternating projection theorem
-$(QP)^n$ and $(PQ)^n$ converge in the weak operator
-topology to the projection from
-$\mathcal{K}$ to $\hat{\mathcal{K}}\cap\mathcal{M}^\perp$.
+The projection from $\mathcal{K}$ to
+$\hat{\mathcal{K}} \cap \mathcal{M}^\perp$ is
+$\hat{P}(\oplus_j h_j) = \oplus_j (1/n)Q_1\sum_k h_k)$
+or $\hat{P} h = (1/n)\oplus_j Q_1 Mh$.
 
-$QPk = Q(1/n)\oplus_j\sum_{j'}k_{j'}
-     = (1/n)\oplus_j\sum_{j'} Q_j k_{j'}$.
-
-$PQk = P(\oplus_j Q_j k_j)
-     = (1/n)\oplus_j\sum_{j'} Q_{j'} k_{j'})$.
-
+$(H_1 \cap H_2)^\perp = H_1^\perp + H_2^\perp$
 
