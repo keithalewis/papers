@@ -42,12 +42,26 @@ Let $Q_j$ be the projection from $\mathcal{H}$ to $\mathcal{H}_j$
 so $Q = \oplus_j Q_j$ is the projection from $\mathcal{K}$
 to $\hat{\mathcal{K}}$.
 
-Note $Q_iQ_j = Q_{\min{i,j}} = Q_{i\wedge j}$
+Note $Q_iQ_j = Q_{\min{i,j}} = Q_{i\wedge j}$.
+In particular $Q_i Q_i = Q_i$.
 
 The projection from $\mathcal{K}$ to
 $\hat{\mathcal{K}} \cap \mathcal{M}^\perp$ is
 $\hat{P}(\oplus_j h_j) = \oplus_j (1/n)Q_1\sum_k h_k)$
 or $\hat{P} h = (1/n)\oplus_j Q_1 Mh$.
+
+Note $QP = (1/n)[Q_1 \ldots ][I \ldots ]^T$.
+
+Note $(QP)^k = (1/n^k)(\sum_{j=1}^n Q_j)^{k-1}[Q_1 \ldots ][I \ldots ]^T$.
+
+Note $(\sum_{j=1}^n Q_j)^k = \sum_{j=1}^n ((n - j + 1)^k - (n-j)^k) Q_j$.
+
+We need to compute
+\begin{align*}
+(Q(I - P))^k &= (Q - QP)^k \\
+	&= \sum_{j=0}^k \binom{k}{j} Q^{k-j} (QP)^j \\
+	&= Q (\sum_{j=0}^{k-1} \binom{k}{j} (QP)^j) + (QP)^k \\
+\end{align*}
 
 $(H_1 \cap H_2)^\perp = H_1^\perp + H_2^\perp$
 
