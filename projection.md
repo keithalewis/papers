@@ -19,10 +19,10 @@ $\mathcal{M}^\perp
 = \mathop{\mathrm{ran}} M^*$.
 
 We have $M^*M\colon\mathcal{K}\to\mathcal{K}$ by
-$\oplus_j h_j \mapsto \oplus_j \sum_{j'} h_{j'}$.
+$\oplus_j h_j \mapsto \oplus_j \sum_{k} h_{k}$.
 
 The orthogonal projection from $\mathcal{K}$ to
-$\mathcal{M}^\perp$ is $P = (1/n)M^*M$ by
+$\mathcal{M}^\perp$ is $P = (1/n)M^*M$ so
 $$
 	\oplus_j h_j \mapsto (1/n)\oplus_j (\sum_k h_k)
 $$
@@ -54,14 +54,26 @@ Note $QP = (1/n)[Q_1 \ldots ][I \ldots ]^T$.
 
 Note $(QP)^k = (1/n^k)(\sum_{j=1}^n Q_j)^{k-1}[Q_1 \ldots ][I \ldots ]^T$.
 
-Note $(\sum_{j=1}^n Q_j)^k = \sum_{j=1}^n ((n - j + 1)^k - (n-j)^k) Q_j$.
+Note $(\sum_{j=1}^n Q_j)^k
+= \sum_{j=1}^n \bigl((n - j + 1)^k - (n-j)^k\bigr) Q_j$.
+
+The $i$-th row of $(QP)^{k+1}$ is constant and each entry is
+$$
+(1/n^k)\sum_{j=1}^n ((n - j + 1)^k - (n-j)^k) Q_{i\wedge j}.
+$$
+
+Note $\lim_{k\to\infty} (1/n^k) (n - j)^k
+= \lim_{k\to\infty} (1 - j/n)^k = 0$ unless $j = 0$.
+
+This shows $(QP)^k \to Q_1 P$.
 
 We need to compute
 \begin{align*}
 (Q(I - P))^k &= (Q - QP)^k \\
 	&= \sum_{j=0}^k \binom{k}{j} Q^{k-j} (QP)^j \\
-	&= Q (\sum_{j=0}^{k-1} \binom{k}{j} (QP)^j) + (QP)^k \\
+	&= (\sum_{j=0}^{k-1} \binom{k}{j} Q(QP)^j) + (QP)^k \\
 \end{align*}
+since $Q^j = Q$ if $j > 0$ and $Q^j = I$ if $j = 0$.
 
 $(H_1 \cap H_2)^\perp = H_1^\perp + H_2^\perp$
 
