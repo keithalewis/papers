@@ -1,0 +1,11 @@
+\newcommand{\RR}[1]{\mathbf{R}}
+\newcommand{\AA}[1]{\mathcal{A}}
+\newcommand{\BB}[1]{\mathcal{B}}
+\newcommand{\HH}[1]{\mathcal{H}}
+\newcommand{\KK}[1]{\mathcal{K}}
+\newcommand{\TT}[1]{\mathcal{T}}
+\newcommand{\Var}[1]{\mathop{\mathrm{Var}}}
+\newcommand{\Cov}[1]{\mathop{\mathrm{Cov}}}
+\newcommand{\Alg}[1]{\mathop{\mathrm{Alg}}}
+\newcommand{\ker}[1]{\mathop{\mathrm{ker}}}
+\newcommand{\ran}[1]{\mathop{\mathrm{ran}}}
