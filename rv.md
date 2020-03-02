@@ -60,3 +60,13 @@ There are no random random variables.
 A random variable is _exponentially distributed_ with parameter
 $\lambda$ if $P(X > x) = \exp(-\lambda x)$ for $x > 0$.
 Its density is $f(x) = \lambda \exp(-\lambda x)$ for $x > 0$.
+
+**Exercise.** If $P(x < X < x + h\mid X > x) = \lambda h + o(h)$
+then $X$ is exponentially distributed with parameter
+$\lambda$.
+
+_Hint._ $P(x < X < x + h\mid X > x) = (F(x + h) - F(x)/(1 - F(x))$
+so $F'(x) = \lambda(1 - F(x))$. Let $\bar{F}(x) = 1 - F(x)$ so
+$-\bar{F}'(x) = \lambda \bar{F}(x)$.
+
+
