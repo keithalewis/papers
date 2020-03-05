@@ -10,22 +10,14 @@ of $n$ copies of $\mathcal{H}$.
 Let $\mathcal{M} = \{\oplus_j h_j : \sum_j h_j = 0\}$.
 
 Define $M\colon\mathcal{K}\to\mathcal{H}$ by
-$\oplus_j h_j \mapsto \sum_j h_j$.
+$\oplus_j h_j \mapsto (1/n)\sum_j h_j$.
 Note $\mathcal{M} = \mathop{\mathrm{ker}} M$.
 
 We have $M^*\colon\mathcal{H}\to\mathcal{K}$ by
-$h\mapsto\oplus_j h$. Note
+$h\mapsto (1/n)\oplus_j h$. Note
 $\mathcal{M}^\perp
 = (\mathop{\mathrm{ker}} M)^\perp
 = \mathop{\mathrm{ran}} M^*$.
-
-We have $M^*M\colon\mathcal{K}\to\mathcal{K}$ by
-$\oplus_j h_j \mapsto \oplus_j \sum_{j'} h_{j'}$.
-
-The orthogonal projection from $\mathcal{K}$ to
-$\mathcal{M}^\perp$ is $P = (1/n)M^*M$.
-
-Define $N = (1/\sqrt{n})M$ so $P = N^*N$.
 
 Let $\mathcal{H}_j$ be increasing subspaces of $\mathcal{H}$
 and define $\hat{\mathcal{K}} = \oplus_j \mathcal{H}_j$.
@@ -34,17 +26,18 @@ Let $Q_j$ be the projection from $\mathcal{H}$ to $\mathcal{H}_j$
 so $Q = \oplus_j Q_j$ is the projection from $\mathcal{K}$
 to $\hat{\mathcal{K}}$.
 
-Note $Q_iQ_j = Q_{\min{i,j}} = Q_{i\wedge j}$
+The projection from
+$\mathcal{K}$ to $\hat{\mathcal{K}}\cap\mathcal{M}^\perp$
+is $P\oplus_j h_j = \oplus_j Q_1 (1/n)\sum_k h_k$.
 
-By von Neumann's alternating projection theorem
-$(QP)^n$ and $(PQ)^n$ converge in the weak operator
-topology to the projection from
-$\mathcal{K}$ to $\hat{\mathcal{K}}\cap\mathcal{M}^\perp$.
+This clearly belongs to the intersection.
 
-$QPk = Q(1/n)\oplus_j\sum_{j'}k_{j'}
-     = (1/n)\oplus_j\sum_{j'} Q_j k_{j'}$.
+If $\oplus_j h_j$ is in the intersection then $h_j = h_1$ for all $i$
+so 
+$$
+P\oplus_j h_j = \oplus_j Q_1 (1/n)\sum_k h_k
+= \oplus_j Q_1 (1/n)\sum_k h_1 = \oplus_j h_1 = \oplus_j h_j.
+$$
 
-$PQk = P(\oplus_j Q_j k_j)
-     = (1/n)\oplus_j\sum_{j'} Q_{j'} k_{j'})$.
-
-
+If $\oplus_j h_j$ is in the orthogonal complement of the intersection then $\sum_j h_j = 0$
+and $P\oplus_j h_j = 0$.
