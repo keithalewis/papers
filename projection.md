@@ -52,7 +52,7 @@ or $\hat{P} h = (1/n)\oplus_j Q_1 Mh$.
 
 Note $QP = (1/n)[Q_1 \ldots ][I \ldots ]^T$.
 
-Note $(QP)^k = (1/n^k)(\sum_{j=1}^n Q_j)^{k-1}[Q_1 \ldots ][I \ldots ]^T$.
+Note $(QP)^k = (1/n^{k-1})(\sum_{j=1}^n Q_j)^{k-1}QP$.
 
 Note $(\sum_{j=1}^n Q_j)^k
 = \sum_{j=1}^n \bigl((n - j + 1)^k - (n-j)^k\bigr) Q_j$.
@@ -70,10 +70,10 @@ This shows $(QP)^k \to Q_1 P$.
 We need to compute
 \begin{align*}
 (Q(I - P))^k &= (Q - QP)^k \\
-	&= \sum_{j=0}^k \binom{k}{j} Q^{k-j} (QP)^j \\
-	&= (\sum_{j=0}^{k-1} \binom{k}{j} Q(QP)^j) + (QP)^k \\
+	&= \sum_{j=0}^k (-1)^j\binom{k}{j} Q^{k-j} (QP)^j \\
+	&= Q + \sum_{j=1}^k (-1)^j\binom{k}{j} (QP)^j \\
 \end{align*}
-since $Q^j = Q$ if $j > 0$ and $Q^j = I$ if $j = 0$.
+since $Q^i(QP) = Q(QP) = QP$ if $i > 0$.
 
 $(H_1 \cap H_2)^\perp = H_1^\perp + H_2^\perp$
 
