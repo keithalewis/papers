@@ -7,13 +7,17 @@ institution: KALX, LLC
 Let $\mathcal{K} = \oplus_j \mathcal{H}$ be the direct sum
 of $n$ copies of $\mathcal{H}$.
 
+Let $\mathcal{M} = \{\oplus_j h_j : \sum_j h_j = 0\}$.
+
+Define $M\colon\mathcal{K}\to\mathcal{H}$ by
+$\oplus_j h_j \mapsto (1/n)\sum_j h_j$.
 Define $\mathcal{M} = \{\oplus_j h_j : \sum_j h_j = 0\}$
 and $M\colon\mathcal{K}\to\mathcal{H}$ by
 $\oplus_j h_j \mapsto \sum_j h_j$.
 Note $\mathcal{M} = \mathop{\mathrm{ker}} M$.
 
 We have $M^*\colon\mathcal{H}\to\mathcal{K}$ by
-$h\mapsto\oplus_j h$. Note
+$h\mapsto (1/n)\oplus_j h$. Note
 $\mathcal{M}^\perp
 = (\mathop{\mathrm{ker}} M)^\perp
 = \mathop{\mathrm{ran}} M^*$.
@@ -42,6 +46,18 @@ Let $Q_j$ be the projection from $\mathcal{H}$ to $\mathcal{H}_j$
 so $Q = \oplus_j Q_j$ is the projection from $\mathcal{K}$
 to $\hat{\mathcal{K}}$.
 
+The projection from
+$\mathcal{K}$ to $\hat{\mathcal{K}}\cap\mathcal{M}^\perp$
+is $P\oplus_j h_j = \oplus_j Q_1 (1/n)\sum_k h_k$.
+
+This clearly belongs to the intersection.
+
+If $\oplus_j h_j$ is in the intersection then $h_j = h_1$ for all $i$
+so 
+$$
+P\oplus_j h_j = \oplus_j Q_1 (1/n)\sum_k h_k
+= \oplus_j Q_1 (1/n)\sum_k h_1 = \oplus_j h_1 = \oplus_j h_j.
+$$
 Note $Q_iQ_j = Q_{\min{i,j}} = Q_{i\wedge j}$.
 In particular $Q_i Q_i = Q_i$.
 
@@ -77,3 +93,8 @@ since $Q^i(QP) = Q(QP) = QP$ if $i > 0$.
 
 $(H_1 \cap H_2)^\perp = H_1^\perp + H_2^\perp$
 
+If $\oplus_j h_j$ is in the orthogonal complement of the intersection then $\sum_j h_j = 0$
+and $P\oplus_j h_j = 0$.
+
+$\sum_{j=1}^k (-1)^j \binom{k}{j} (1/n^{j-1})
+	[\sum_{i=1}^n [(n - i + 1)^{j-1} - (n - i)^{j-1}]Q_i]QP$
