@@ -3,7 +3,7 @@ HTML = $(MKDN:.md=.html)
 #HTML = grassmann.html
 PDF = $(MKDN:.md=.pdf)
 DOCX = $(MKDN:.md=.docx)
-FLAGS = -s # smart quotes
+#FLAGS = -s # smart quotes
 #FLAGS += --katex
 FLAGS += -t html5
 FLAGS += --mathjax
