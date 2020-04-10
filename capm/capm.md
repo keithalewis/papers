@@ -1,5 +1,5 @@
 ---
-title: CAPM Derivatives
+title: CAPM
 author: Keith A. Lewis
 institute: KALX, LLC
 classoption: fleqn
@@ -56,13 +56,14 @@ There is no arbitrage if and only if there is a positive measure,
 $\Pi$, on $\Omega$ with $x = \int_\Omega X\,d\Pi$.  We call
 $\Pi$ a _deflator_.
 
-A _zero coupon bond_, $\zeta\in\mathbf{R}^I$, has $\zeta\cdot X = 1$ 
-on $\Omega$. Its initial value is $D = \zeta\cdot x$. Let $R = 1/D$.
-Note $Q = \Pi/R$ is a positive measure with mass 1.
+A _zero coupon bond_, $\zeta\in\mathbf{R}^I$, has $\zeta\cdot X = 1$ on
+$\Omega$. Its initial value is $D = \zeta\cdot x = \int_\Omega \zeta\cdot
+X\,d\Pi = \|\Pi\|$. If $R = 1/D$ then $Q = R\Pi$ is a positive
+measure with mass 1 and $x = E^Q[X]/R$.
 
 ## CAPM
 
-The one period Capital Asset Pricing Model assumes there is
+The one period _Capital Asset Pricing Model_ assumes there is
 a probability measure, $P$, on $\Omega$ representing the
 "real-world" probability of possible outcomes.
 
@@ -70,44 +71,87 @@ A _portfolio_ is the number of shares purchased at the beginning
 of the period, $\xi\in\mathbf{R}^I$.
 The _realized return_ over the period is $R(\xi) = \xi\cdot X/\xi\cdot x$.
 
-It also posits a utility function of the form $U_\tau(\xi) = E \xi\cdot X
-- \frac{\tau}{2} \mathrm{Var}(\xi\cdot X)$ where $\tau$ a risk aversion
-parameter.
+Note that if $\Pi$ is a deflator and a zero coupon bond exists then
+setting $Q = R\Pi$ we have $E^Q[R(\xi)] = R$ for all $\xi$.
 
-We wish to maximize $U_\tau(\xi)$ given $\xi\cdot x = 1$.
-
-Let $\Phi(\xi) = U_\tau(\xi) - \lambda(\xi\cdot x - 1)$.
-
-The Fréchet derivative with respect to $\xi$ is
-$D_\xi\Phi(\xi) = E X' - \tau \xi'\Sigma - \lambda x'$, where
-$\Sigma = E[XX'] - E[X]E[X]'$.
-
-If there is an extremum, $\xi^*$, then using $\xi^*\cdot x = 1$
-$0 = E \xi^*\cdot X - \tau \xi^*\cdot\Sigma\xi^* - \lambda$.
-so $\lambda = U(\xi)$.
+The CAPM also posits a utility function of the form 
+\begin{align*}
+U_\tau(\xi) &= E \xi\cdot X - \frac{\tau}{2} \mathrm{Var}(\xi\cdot X)\\
+    &= EX'\xi - \frac{\tau}{2}\xi'\Sigma\xi
+\end{align*}
+where $\tau$ a risk aversion parameter and
+$\Sigma = E[XX'] - E[X]E[X']$.
 
 ## Appendix
 
-The Fréchet derivative of a function $F\colon X\to Y$ where $X$ and
-$Y$ are Banach spaces, $DF\colon X\to\mathcal{B}(X,Y)$, is defined
-by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$. Here $\mathcal{B}(X,Y)$
-is the space of bounded linear operators from $X$ to $Y$.
+### Completing the Square
 
-Note if $Y = \mathbf{R}$ then $DF\colon X\to\mathcal{B}(X, \mathbf{R})$
-and $\mathcal{B}(X, \mathbf{R}) = X^*$ is the dual space of $X$.
+If $A$ is positive definite then
+$$
+\|A^{1/2}x - A^{-1/2}b\|^2 = x'Ax - 2 b'x + b'A^{-1}b
+$$
+so
+$$
+2U(\xi) = 2EX'\xi - \tau\xi'\Sigma\xi
+    = EX'(\tau\Sigma)^{-1}EX
+    - \|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}EX\|^2
+$$
+This is maximized when $\xi = (\tau\Sigma)^{-1}EX$ with
+maximum utility $U(\xi) = \frac{1}{2}EX'(\tau\Sigma)^{-1}EX$.
 
-If $X = \mathbf{R}^n$ we write $X^* = (\mathbf{R}^n)^* = \mathbf{R}_n$.
+#### Two Assets
 
-## Completing the square
+Let $x = (r,s)$ and $X = (R,S)$.
 
-$\|Ax - b\|^2 = x'A'Ax - 2 b'Ax + \|b\|^2$.
+$$
+\Sigma = E[XX'] - E[X] E[X'] =
+    \begin{bmatrix}
+        \mathrm{Var}(R) & \mathrm{Cov}(R,S)\\
+        \mathrm{Cov}(R,S) & \mathrm{Var}(S)\\
+    \end{bmatrix}
+$$
 
-Let $A'A = B$ and $b'A = c'$. If $A' = A$ then $B^{1/2} = A$.
+$$
+\Sigma^{-1}
+= \frac{1}{\mathrm{Var}(R)\mathrm{Var}(S) - \mathrm{Cov}(R,S)^2}
+    \begin{bmatrix}
+        \mathrm{Var}(S) & -\mathrm{Cov}(R,S)\\
+        -\mathrm{Cov}(R,S) & \mathrm{Var}(R)\\
+    \end{bmatrix}
+$$
 
-$x'Bx - 2 c'x = \|B^{1/2}x - B^{-1/2}c\|^2 - \|B^{-1/2}c\|^2$.
+$$
+\tau\xi = \Sigma^{-1}EX
+= \frac{1}{\mathrm{Var}(R)\mathrm{Var}(S) - \mathrm{Cov}(R,S)^2}
+    \begin{bmatrix}
+        ER\,\mathrm{Var}(S)  - ES\,\mathrm{Cov}(R,S)\\
+        -ER\,\mathrm{Cov}(R,S) + ES\,\mathrm{Var}(R)\\
+    \end{bmatrix}
+$$
 
-\begin{align*}
-U(\xi) &= EX'\xi - \frac{\tau}{2} \xi'\Sigma\xi\\
-    &= \|(\frac{\tau}{2}\Sigma)^{-1/2}EX\|^2
-    - \|(\frac{\tau}{2}\Sigma)^{1/2}\xi - (\frac{\tau}{2}\Sigma)^{-1/2}EX\|^2\\
-\end{align*}
+$$
+EX'\Sigma^{-1}EX
+= \frac{1}{V_R V_S - C_{R,S}^2}
+        [(ER)^2 V_S  - 2ER\,ES\,C_{R,S} + (ES)^2 V_R]
+$$
+
+$(ER\sqrt{V_S} - ES\sqrt{V_R})^2
+= (ER)^2 V_S  - 2ER\,ES\sqrt{V_R V_S} + (ES)^2 V_R$
+
+### Fréchet Derivative
+
+The Fréchet derivative of a function $F\colon X\to Y$, $DF\colon
+X\to\mathcal{B}(X,Y)$, where $X$ and $Y$ are Banach spaces is defined
+by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$. Here $\mathcal{B}(X,Y)$ is
+the space of bounded linear operators from $X$ to $Y$.
+
+Note if $Y = \mathbf{R}$ then $DF\colon X\to\mathcal{B}(X, \mathbf{R})
+= X^*$, the dual space of $X$.
+
+If $X = \mathbf{R}^n$ we write $X^* = \mathbf{R}_n$.
+
+If $\mathcal{M}^{n\times m}$ is the set of matrices of real numbers
+having $n$ rows and $m$ columns then $\mathbf{R}^n = \mathcal{M}^{n\times 1}$
+and $\mathbf{R}_m = \mathcal{M}^{1\times m}$.
+
+$E[XX'] - E[X] E[X'] = [Cov(X_i, X_j)]$

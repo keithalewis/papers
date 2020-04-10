@@ -24,21 +24,25 @@ this into account.
 
 Participants trade _instruments_, stocks, bonds, futures, options, to
 name only a small subset. Instruments have _prices_ at which they are
-bought and sold, and ownership (can) entail _cash flows_.
+bought and sold, and ownership often entails _cash flows_.
 
 Stocks have dividends, bonds have coupons and principal, futures always
-have price zero and (usually) daily margin adjustment cash flows,
+have price zero and regular margin adjustment cash flows,
 options are contracts specifying their cash flows.
 
-Usually instruments are traded on _exchanges_ or _over the counter_.
+Instruments can be traded on _exchanges_ or _over the counter_.
 
 An exchange is a mechanism for _liquidity providers_ to advertise
 the prices at which they are willing to buy or sell instruments.
 The _customers_ of the exchange decide what trades they are willing
-to make. Risk?
+to make. The exchange incures very little risk since it can close
+out customer accounts that use up their margin.
 
-Over the counter trades occur between two parties. A buyer contacts
-a seller and agree on the terms of the trade. 
+Over the counter trades occur between two parties. A buyer chooses
+a seller and agrees on the terms of the trade. Unlike an exchange
+where trades happen nearly instantaneously, the negotiation can
+involve an extended period of time. They often involve _collateral
+agreements_ between the two parties to mitigate risk.
 
 
 The atoms of finance are _transactions_.
