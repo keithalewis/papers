@@ -3,6 +3,7 @@ HTML = $(MKDN:.md=.html)
 #HTML = grassmann.html
 PDF = $(MKDN:.md=.pdf)
 DOCX = $(MKDN:.md=.docx)
+KATEX=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/
 #FLAGS = -s # smart quotes
 #FLAGS += --katex
 FLAGS += -t html5
@@ -15,7 +16,7 @@ FLAGS += -H header.html
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
 
 $(HTML): %.html: %.md
-	pandoc $(FLAGS) $< -o $@
+	pandoc -t html5 -s --katex=$(KATEX) $< -o $@
 
 $(PDF): %.pdf: %.md
 	pandoc -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@

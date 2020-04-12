@@ -3,6 +3,7 @@ title: CAPM
 author: Keith A. Lewis
 institute: KALX, LLC
 classoption: fleqn
+fleqn: true
 ---
 
 Let $I$ be the set of _market instruments_.
@@ -80,7 +81,7 @@ U_\tau(\xi) &= E \xi\cdot X - \frac{\tau}{2} \mathrm{Var}(\xi\cdot X)\\
     &= EX'\xi - \frac{\tau}{2}\xi'\Sigma\xi
 \end{align*}
 where $\tau$ a risk aversion parameter and
-$\Sigma = E[XX'] - E[X]E[X']$.
+$\Sigma = E[XX'] - E[X]E[X]'$.
 
 ## Appendix
 
@@ -94,7 +95,7 @@ so
 $$
 2U(\xi) = 2EX'\xi - \tau\xi'\Sigma\xi
     = EX'(\tau\Sigma)^{-1}EX
-    - \|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}EX\|^2
+    - \|(\tau\Sigma)^{-1/2}\xi - (\tau\Sigma)^{-1/2}EX\|^2
 $$
 This is maximized when $\xi = (\tau\Sigma)^{-1}EX$ with
 maximum utility $U(\xi) = \frac{1}{2}EX'(\tau\Sigma)^{-1}EX$.
@@ -107,7 +108,7 @@ $$
 \Sigma = E[XX'] - E[X] E[X'] =
     \begin{bmatrix}
         \mathrm{Var}(R) & \mathrm{Cov}(R,S)\\
-        \mathrm{Cov}(R,S) & \mathrm{Var}(S)\\
+        \mathrm{Cov}(R,S) & \mathrm{Var}(R)\\
     \end{bmatrix}
 $$
 
@@ -121,7 +122,7 @@ $$
 $$
 
 $$
-\tau\xi = \Sigma^{-1}EX
+\Sigma^{-1}EX
 = \frac{1}{\mathrm{Var}(R)\mathrm{Var}(S) - \mathrm{Cov}(R,S)^2}
     \begin{bmatrix}
         ER\,\mathrm{Var}(S)  - ES\,\mathrm{Cov}(R,S)\\
@@ -132,18 +133,83 @@ $$
 $$
 EX'\Sigma^{-1}EX
 = \frac{1}{V_R V_S - C_{R,S}^2}
-        [(ER)^2 V_S  - 2ER\,ES\,C_{R,S} + (ES)^2 V_R]
+        [(ER)^2 V_S  - 2ER\,ES C_{R,S} + (ES)^2 V_R]
 $$
 
-$(ER\sqrt{V_S} - ES\sqrt{V_R})^2
-= (ER)^2 V_S  - 2ER\,ES\sqrt{V_R V_S} + (ES)^2 V_R$
+### Block Matrix Inversion
+
+$$
+\begin{bmatrix}
+A & B\\
+C & D\\
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1} & -\Delta^{-1}BD^{-1}\\
+-D^{-1}C\Delta^{-1} & D^{-1} + D^{-1}C\Delta^{-1}BD^{-1}\\
+\end{bmatrix}
+$$
+where $\Delta = A - BD^{-1}C$.
+so
+$$
+\begin{bmatrix}
+A & c\\
+c'& \epsilon\\
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1} & -\Delta^{-1}c/\epsilon\\
+-c'C\Delta^{-1}/\epsilon & (\epsilon + c'\Delta^{-1}c)/\epsilon^2\\
+\end{bmatrix}
+$$
+where $\Delta = A - cc'/\epsilon$.
+
+Since
+$$
+    (A + UCV)^{-1} = A^{-1}
+        + A^{-1}U(C^{-1} + VA^{-1}U)^{-1}VA^{-1}
+$$
+we have (taking $C = -1/\epsilon$)
+\begin{align*}
+    (A - cc'/\epsilon)^{-1} &= A^{-1}
+        + A^{-1}c(-\epsilon + c'A^{-1}c)^{-1}c'A^{-1}\\
+    &= A^{-1} + A^{-1}cc'A^{-1}/(-\epsilon + c'A^{-1}c)\\
+\end{align*}
+
+
+### Quadratic Optimization with Linear Constraint
+
+Minimize $b'x - \frac{1}{2} x'Ax$ subject to $c'x = 1$.
+
+Using Lagrangian multiplier $\lambda$
+
+\begin{align*}
+    0 &= b - Ax - \lambda c\\
+    1 &= c'x\\
+\end{align*}
+so
+$$
+\begin{bmatrix}
+    A & c\\
+    c' & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+    x\\
+    \lambda\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+    b\\
+    1\\
+\end{bmatrix}
+$$
 
 ### Fréchet Derivative
 
-The Fréchet derivative of a function $F\colon X\to Y$, $DF\colon
-X\to\mathcal{B}(X,Y)$, where $X$ and $Y$ are Banach spaces is defined
-by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$. Here $\mathcal{B}(X,Y)$ is
-the space of bounded linear operators from $X$ to $Y$.
+The Fréchet derivative of a function $F\colon X\to Y$ where $X$ and
+$Y$ are Banach spaces, $DF\colon X\to\mathcal{B}(X,Y)$, is defined
+by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$. Here $\mathcal{B}(X,Y)$
+is the space of bounded linear operators from $X$ to $Y$.
 
 Note if $Y = \mathbf{R}$ then $DF\colon X\to\mathcal{B}(X, \mathbf{R})
 = X^*$, the dual space of $X$.
@@ -153,5 +219,3 @@ If $X = \mathbf{R}^n$ we write $X^* = \mathbf{R}_n$.
 If $\mathcal{M}^{n\times m}$ is the set of matrices of real numbers
 having $n$ rows and $m$ columns then $\mathbf{R}^n = \mathcal{M}^{n\times 1}$
 and $\mathbf{R}_m = \mathcal{M}^{1\times m}$.
-
-$E[XX'] - E[X] E[X'] = [Cov(X_i, X_j)]$

@@ -1,8 +1,7 @@
 # Vocabulary
 
-Fischer Black emphasized the importance of vocabulary...
-
-This is how human beings communicate.
+Fischer Black emphasized the importance of vocabulary.
+It is how human beings communicate.
 
 Each entry provides a definition in plain English and assigns mathematical
 names for the concepts. These are immediately followed by an exegesis
