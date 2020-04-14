@@ -6,6 +6,10 @@ classoption: fleqn
 fleqn: true
 ---
 
+# Capital Asset Pricing Model
+
+## Unified Model
+
 Let $I$ be the set of _market instruments_.
 
 Let $T$ be the totally ordered set of _trading times_.
@@ -81,25 +85,29 @@ a probability measure, $P$, on $\Omega$ representing the
 
 The CAPM also posits a utility function of the form 
 $$
-U_\tau(\xi) = E \xi\cdot X - \frac{\tau}{2} \mathrm{Var}(\xi\cdot X)
-    = \xi' EX - \frac{\tau}{2}\xi'\Sigma\xi
+U_\tau(\xi) = E[\xi\cdot X] - \frac{\tau}{2} \mathrm{Var}(\xi\cdot X)
+    = \xi' E[X] - \frac{\tau}{2}\xi'\Sigma\xi
 $$
 where $\tau$ a risk aversion parameter and
-$\Sigma = E[XX'] - E[X]E[X']$.
+$\Sigma = E[XX'] - E[X]E[X']$ is positive semi-definite.
 Note if $\zeta$ is a zero coupon bond then $\Sigma\zeta = 0$ so
 $\Sigma$ is not invertible.
+
+Since $\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2 =
+\xi'(\tau\Sigma)\xi - 2 \xi'E[X] + E[X'](\tau\Sigma)^{-1}E[X]$
+the unconstrained maximum utility is
+$\hat{U} = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]$ when $\hat{\xi} = (\tau\Sigma)^{-1}E[X]$.
+Note $\hat{U} = \frac{1}{2}\hat{\xi}'(\tau\Sigma)\hat{\xi}$.
 
 We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
 Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
 We have
-
 $$
 \begin{aligned}
 	D_\xi\Phi &= E[X] - \tau\Sigma\xi - \lambda x\\
 	D_\lambda\Phi &= \xi'x - 1\\
 \end{aligned}
 $$
-
 so
 
 $$
@@ -135,8 +143,12 @@ where $\Delta = \tau\Sigma - xx'/\epsilon$.
 
 By the  Sherman-Morrison formula
 $$
-	(\tau\Sigma - cc'/\epsilon){-1} = (\tau\Sigma)^{-1}
-	+ ((\tau\Sigma)^{-1}xx'(\tau\Sigma)^{-1}/\epsilon)/(1 - x'(\tau\Sigma)^{-1}x/\epsilon)
+\begin{aligned}
+	(\tau\Sigma - cc'/\epsilon)^{-1} &= (\tau\Sigma)^{-1}
+	+ ((\tau\Sigma)^{-1}xx'(\tau\Sigma)^{-1}/\epsilon)/(1 - x'(\tau\Sigma)^{-1}x/\epsilon)\\
+	&= (\tau\Sigma)^{-1}
+	- (\tau\Sigma)^{-1}xx'(\tau\Sigma)^{-1}/(x'(\tau\Sigma)^{-1}x - \epsilon)\\
+\end{aligned}
 $$
 
 ## Appendix
@@ -226,11 +238,14 @@ $$
         + A^{-1}U(C^{-1} + VA^{-1}U)^{-1}VA^{-1}
 $$
 we have (taking $C = -1/\epsilon$)
-\begin{aligned*}
+
+$$
+\begin{aligned}
     (A - cc'/\epsilon)^{-1} &= A^{-1}
         + A^{-1}c(-\epsilon + c'A^{-1}c)^{-1}c'A^{-1}\\
     &= A^{-1} + A^{-1}cc'A^{-1}/(-\epsilon + c'A^{-1}c)\\
-\end{aligned*}
+\end{aligned}
+$$
 
 
 ### Quadratic Optimization with Linear Constraint
@@ -239,10 +254,13 @@ Minimize $b'x - \frac{1}{2} x'Ax$ subject to $c'x = 1$.
 
 Using Lagrangian multiplier $\lambda$
 
-\begin{aligned*}
+$$
+\begin{aligned}
     0 &= b - Ax - \lambda c\\
     1 &= c'x\\
-\end{aligned*}
+\end{aligned}
+$$
+
 so
 $$
 \begin{bmatrix}
