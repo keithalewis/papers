@@ -24,7 +24,7 @@ instruments at time $t$ that have been acquired prior to time $t$.
 Let $\Gamma_t\colon\mathcal{A}_t\to\mathbf{R}^I$ be the number of
 _shares_ traded in each instruments at time $t$.
 
-Let $\Delta_t = \sum_{s<t} \Gamma_s$ be the _position_ at time $t$.
+Define $\Delta_t = \sum_{s<t} \Gamma_s$ be the _position_ at time $t$.
 
 Define $V_t = (\Delta_t + \Gamma_t)\cdot X_t$ to be the _value_ of the
 position at time $t$.
@@ -44,23 +44,34 @@ $u > t$.
 
 ## One Period Model
 
-In this case $T = \{t_0,t_1\}$ and $\Gamma_{t_0} = \Gamma$,
-$\Gamma_{t_1} = -\Gamma$ for closed out strategies.
+In this case $T = \{t_0,t_1\}$ and $\Gamma_{t_0} = \Gamma_0 = \Gamma$,
+$\Gamma_{t_1} = \Gamma_1 = -\Gamma$ for closed out strategies.
 
-Using the definitions above, the initial amount is $A_{t_0} = -\Gamma\cdot
-X_{t_0}$ and the final amount is $A_{t_1} = \Gamma\cdot (C_{t_1} +
-X_{t_1})$.
+Using the definitions above, the initial amount is $A_0
+= \Delta_0\cdot C_0 - \Gamma_0\cdot X_0
+= - \Gamma\cdot X_0$
+and the final amount is $A_1
+= \Delta_1\cdot C_1 - \Gamma_1\cdot X_1
+= \Gamma\cdot (C_1 + X_1)$.
 
-Let $x = X_{t_0}$ and $X = C_{t_1} + X_{t_1}$.
+Let $x = X_0$ and $X = C_1 + X_1$ so $A_0 = -\Gamma\cdot x$
+and $A_1 = \Gamma\cdot X$.
 
 There is no arbitrage if and only if there is a positive measure,
 $\Pi$, on $\Omega$ with $x = \int_\Omega X\,d\Pi$.  We call
-$\Pi$ a _deflator_.
+any such $\Pi$ a _deflator_ or a _risk-neutral_ measure.
+
+Let $Q = R\Pi$ where $1/R = \|\Pi\|$. Note $Q$ is a positive measure with mass 1
+and $x = E^Q[X]/R$.
+
+A _portfolio_, $\xi\in\mathbf{R}^I$, is the number of shares purchased at
+the beginning of the period.  The _realized return_ over the period is
+$R(\xi) = \xi\cdot X/\xi\cdot x$.  Note $E^Q[R(\xi)] = R$ for all $\xi$
+with $\xi\cdot x \not= 0$.
 
 A _zero coupon bond_, $\zeta\in\mathbf{R}^I$, has $\zeta\cdot X = 1$ on
 $\Omega$. Its initial value is $D = \zeta\cdot x = \int_\Omega \zeta\cdot
-X\,d\Pi = \|\Pi\|$. If $R = 1/D$ then $Q = R\Pi$ is a positive
-measure with mass 1 and $x = E^Q[X]/R$.
+X\,d\Pi = \|\Pi\| = 1/R$.
 
 ## CAPM
 
@@ -68,20 +79,65 @@ The one period _Capital Asset Pricing Model_ assumes there is
 a probability measure, $P$, on $\Omega$ representing the
 "real-world" probability of possible outcomes.
 
-A _portfolio_ is the number of shares purchased at the beginning
-of the period, $\xi\in\mathbf{R}^I$.
-The _realized return_ over the period is $R(\xi) = \xi\cdot X/\xi\cdot x$.
-
-Note that if $\Pi$ is a deflator and a zero coupon bond exists then
-setting $Q = R\Pi$ we have $E^Q[R(\xi)] = R$ for all $\xi$.
-
 The CAPM also posits a utility function of the form 
-\begin{align*}
-U_\tau(\xi) &= E \xi\cdot X - \frac{\tau}{2} \mathrm{Var}(\xi\cdot X)\\
-    &= EX'\xi - \frac{\tau}{2}\xi'\Sigma\xi
-\end{align*}
+$$
+U_\tau(\xi) = E \xi\cdot X - \frac{\tau}{2} \mathrm{Var}(\xi\cdot X)
+    = \xi' EX - \frac{\tau}{2}\xi'\Sigma\xi
+$$
 where $\tau$ a risk aversion parameter and
-$\Sigma = E[XX'] - E[X]E[X]'$.
+$\Sigma = E[XX'] - E[X]E[X']$.
+Note if $\zeta$ is a zero coupon bond then $\Sigma\zeta = 0$ so
+$\Sigma$ is not invertible.
+
+We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
+Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
+We have
+
+$$
+\begin{aligned}
+	D_\xi\Phi &= E[X] - \tau\Sigma\xi - \lambda x\\
+	D_\lambda\Phi &= \xi'x - 1\\
+\end{aligned}
+$$
+
+so
+
+$$
+	\begin{bmatrix}
+		\tau\Sigma & x \\
+		x' & 0 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\xi \\
+		\lambda \\
+	\end{bmatrix}
+	= 
+	\begin{bmatrix}
+		E[X] \\
+		1 \\
+	\end{bmatrix}
+$$
+
+The matrix is not invertable however
+
+$$
+\begin{bmatrix}
+\tau\Sigma & x\\
+x'& \epsilon\\
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1} & -\Delta^{-1}x/\epsilon\\
+-x'\Delta^{-1}/\epsilon & (\epsilon + x'\Delta^{-1}x)/\epsilon^2\\
+\end{bmatrix}
+$$
+where $\Delta = \tau\Sigma - xx'/\epsilon$.
+
+By the  Sherman-Morrison formula
+$$
+	(\tau\Sigma - cc'/\epsilon){-1} = (\tau\Sigma)^{-1}
+	+ ((\tau\Sigma)^{-1}xx'(\tau\Sigma)^{-1}/\epsilon)/(1 - x'(\tau\Sigma)^{-1}x/\epsilon)
+$$
 
 ## Appendix
 
@@ -170,11 +226,11 @@ $$
         + A^{-1}U(C^{-1} + VA^{-1}U)^{-1}VA^{-1}
 $$
 we have (taking $C = -1/\epsilon$)
-\begin{align*}
+\begin{aligned*}
     (A - cc'/\epsilon)^{-1} &= A^{-1}
         + A^{-1}c(-\epsilon + c'A^{-1}c)^{-1}c'A^{-1}\\
     &= A^{-1} + A^{-1}cc'A^{-1}/(-\epsilon + c'A^{-1}c)\\
-\end{align*}
+\end{aligned*}
 
 
 ### Quadratic Optimization with Linear Constraint
@@ -183,10 +239,10 @@ Minimize $b'x - \frac{1}{2} x'Ax$ subject to $c'x = 1$.
 
 Using Lagrangian multiplier $\lambda$
 
-\begin{align*}
+\begin{aligned*}
     0 &= b - Ax - \lambda c\\
     1 &= c'x\\
-\end{align*}
+\end{aligned*}
 so
 $$
 \begin{bmatrix}
