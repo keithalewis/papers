@@ -153,22 +153,7 @@ $$
 
 ## Appendix
 
-### Completing the Square
-
-If $A$ is positive definite then
-$$
-\|A^{1/2}x - A^{-1/2}b\|^2 = x'Ax - 2 b'x + b'A^{-1}b
-$$
-so
-$$
-2U(\xi) = 2EX'\xi - \tau\xi'\Sigma\xi
-    = EX'(\tau\Sigma)^{-1}EX
-    - \|(\tau\Sigma)^{-1/2}\xi - (\tau\Sigma)^{-1/2}EX\|^2
-$$
-This is maximized when $\xi = (\tau\Sigma)^{-1}EX$ with
-maximum utility $U(\xi) = \frac{1}{2}EX'(\tau\Sigma)^{-1}EX$.
-
-#### Two Assets
+### Two Assets
 
 Let $x = (r,s)$ and $X = (R,S)$.
 
