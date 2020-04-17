@@ -96,10 +96,33 @@ $\Sigma$ is not invertible.
 Since $\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2 =
 \xi'(\tau\Sigma)\xi - 2 \xi'E[X] + E[X'](\tau\Sigma)^{-1}E[X]$
 the unconstrained maximum utility is
-$\hat{U} = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]$ when $\hat{\xi} = (\tau\Sigma)^{-1}E[X]$.
+$$
+\hat{U} = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
+$$
+when 
+$$
+\hat{\xi} = (\tau\Sigma)^{-1}E[X].
+$$
 Note $\hat{U} = \frac{1}{2}\hat{\xi}'(\tau\Sigma)\hat{\xi}$.
 
 We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
+
+Assume $\|x\| = 1$ and let $\eta = P\xi + x$ where $P = 1 - xx'$ is
+the orthogonal projection onto $\{x\}^\perp$. Note $\eta\cdot x = 1$
+for all $\xi$.
+
+$$
+\begin{aligned}
+	U_\tau(\xi) &= (P\eta + x)'E[X] - \frac{\tau}{2}(P\eta + x)'\Sigma(P\eta + x)\\
+	&= \eta'P E[X] + x'E[X]
+	   - \frac{\tau}{2}(\eta'P\Sigma P\eta + 2\eta'P\Sigma x + x'P\Sigma Px)\\
+	&= \eta'(P E[X] - \tau P\Sigma x)
+	   - \frac{\tau}{2}\eta'P\Sigma P\eta
+	   + x'(E[X] - \frac{\tau}{2} P\Sigma Px)\\
+\end{aligned}
+$$
+
+
 Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
 We have
 $$

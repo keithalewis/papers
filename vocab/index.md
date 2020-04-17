@@ -11,6 +11,14 @@ to model the real world.
 The real world is big, complicated, and messy. Mathematics can be used
 to bring some order and rationality but will always remain a poor shadow.[1]
 
+## Fundamentals
+
+[Transactions](transaction.md) are the atoms of finance. A buyer and
+seller exchange [amounts](amount.md) of [instruments](instrument.md) at a
+given date and time. The ratio of the amounts is the [price](price.md). A
+[model](model.md) specifies the prices and cash flows associated with
+instruments.
+
 (who, what, when, where, why)
 
 Parties in financial markets trade [instruments](instrument.md).
