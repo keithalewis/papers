@@ -3,7 +3,7 @@ html {
 	padding: 0;
 }
 body {
-	font-family: 'Vesper Libre', serif;
+	font-family: Georgia, Cambria, 'Vesper Libre', serif;
 	font-size: medium;
 	background: #F0F0F0;
 	background: linear-gradient(to right, #FFF, #F0F0F0);

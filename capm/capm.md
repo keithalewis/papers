@@ -141,32 +141,26 @@ x'& \epsilon\\
 $$
 where $\Delta = \tau\Sigma - xx'/\epsilon$.
 
-By the  Sherman-Morrison formula
+By the  Sherman-Morrison formula, $(A + uv')^{-1}
+= A^{-1} - A^{-1}uv'A^{-1}/(1 + v'A^{-1}u)$, we have
 $$
 \begin{aligned}
-	(\tau\Sigma - cc'/\epsilon)^{-1} &= (\tau\Sigma)^{-1}
+	(\tau\Sigma - xx'/\epsilon)^{-1} &= (\tau\Sigma)^{-1}
 	+ ((\tau\Sigma)^{-1}xx'(\tau\Sigma)^{-1}/\epsilon)/(1 - x'(\tau\Sigma)^{-1}x/\epsilon)\\
 	&= (\tau\Sigma)^{-1}
 	- (\tau\Sigma)^{-1}xx'(\tau\Sigma)^{-1}/(x'(\tau\Sigma)^{-1}x - \epsilon)\\
 \end{aligned}
 $$
+Applying the inverse yields
+$$
+\begin{aligned}
+    \xi &= \Delta^{-1}(E[X] - x/\epsilon)\\
+    \lambda &= -x'\Delta^{-1}E[X]/\epsilon
+        + (\epsilon + x'\Delta^{-1}x)/\epsilon^2\\
+\end{aligned}
+$$
 
 ## Appendix
-
-### Completing the Square
-
-If $A$ is positive definite then
-$$
-\|A^{1/2}x - A^{-1/2}b\|^2 = x'Ax - 2 b'x + b'A^{-1}b
-$$
-so
-$$
-2U(\xi) = 2EX'\xi - \tau\xi'\Sigma\xi
-    = EX'(\tau\Sigma)^{-1}EX
-    - \|(\tau\Sigma)^{-1/2}\xi - (\tau\Sigma)^{-1/2}EX\|^2
-$$
-This is maximized when $\xi = (\tau\Sigma)^{-1}EX$ with
-maximum utility $U(\xi) = \frac{1}{2}EX'(\tau\Sigma)^{-1}EX$.
 
 #### Two Assets
 

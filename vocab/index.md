@@ -4,16 +4,38 @@ Fischer Black emphasized the importance of vocabulary.
 It is how human beings communicate.
 
 Each entry provides a definition in plain English and assigns mathematical
-names for the concepts. These are immediately followed by an exegesis
-of the limitations involved in using mathematics to model the real world.
+names for the concepts involved in the definition. These are immediately
+followed by an exegesis of the limitations involved in using mathematics
+to model the real world.
 
 The real world is big, complicated, and messy. Mathematics can be used
 to bring some order and rationality but will always remain a poor shadow.[1]
 
 (who, what, when, where, why)
 
-There are many participants in financial markets trading instruments
-during market hours using the varied mechanisms available.
+Parties in financial markets trade [instruments](instrument.md).
+
+Exchanges provide a nearly instantaneous mechanism for
+liquidity providers to offer standard instruments to
+any customer able to set up a margin account.
+
+More complicated transactions are handled over-the-counter.
+A buyer contacts a seller and negotiates a contract for the
+exchange of cash flows. The buyer is usually a company and
+the seller is usually an investment bank that they have an
+established relationship with. Instead of a margin account
+they have collateral agreements to mitigate the risk of
+of multiple transactions.
+
+Brokers and dealers are intermediaries used to facilitate
+over-the-counter transactions. They are similar to exchanges
+but less efficient.
+
+Investors hope
+to generate better returns than the prevailing riskless interest rate
+by taking on some risk.  Speculators believe they have information that
+might generate even higher returns. Hedgers can use market instruments
+to reduce their risk.
 
 Every participant is a legal entity, either an individual or a
 corporation, that can be held accountable for their actions. They
