@@ -141,19 +141,18 @@ x'& \epsilon\\
 $$
 where $\Delta = \tau\Sigma - xx'/\epsilon$.
 
-By the  Sherman-Morrison formula
+By the  Sherman-Morrison formula, $(A + uv')^{-1}
+= A^{-1} - A^{-1}uv'A^{-1}/(1 + v'A^{-1}u)$, we have
 $$
 \begin{aligned}
-	(\tau\Sigma - cc'/\epsilon)^{-1} &= (\tau\Sigma)^{-1}
+	(\tau\Sigma - xx'/\epsilon)^{-1} &= (\tau\Sigma)^{-1}
 	+ ((\tau\Sigma)^{-1}xx'(\tau\Sigma)^{-1}/\epsilon)/(1 - x'(\tau\Sigma)^{-1}x/\epsilon)\\
 	&= (\tau\Sigma)^{-1}
 	- (\tau\Sigma)^{-1}xx'(\tau\Sigma)^{-1}/(x'(\tau\Sigma)^{-1}x - \epsilon)\\
 \end{aligned}
 $$
 
-## Appendix
-
-### Two Assets
+#### Two Assets
 
 Let $x = (r,s)$ and $X = (R,S)$.
 
