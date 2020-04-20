@@ -1,9 +1,9 @@
 html {
 	margin: 0;
-	padding: 0;
+	padding: 1em;
 }
 body {
-	font-family: Georgia, Cambria, 'Vesper Libre', serif;
+	font-family: "Lucida Bright", "Segoe UI", Georgia, Cambria, 'Vesper Libre', serif;
 	font-size: medium;
 	background: #F0F0F0;
 	background: linear-gradient(to right, #FFF, #F0F0F0);

@@ -70,8 +70,7 @@ and $x = E^Q[X]/R$.
 
 A _portfolio_, $\xi\in\mathbf{R}^I$, is the number of shares purchased at
 the beginning of the period.  The _realized return_ over the period is
-$R(\xi) = \xi\cdot X/\xi\cdot x$.  Note $E^Q[R(\xi)] = R$ for all $\xi$
-with $\xi\cdot x \not= 0$.
+$R(\xi) = \xi\cdot X/\xi\cdot x$ when $\xi\cdot x \not= 0$.  Note $E^Q[R(\xi)] = R$.
 
 A _zero coupon bond_, $\zeta\in\mathbf{R}^I$, has $\zeta\cdot X = 1$ on
 $\Omega$. Its initial value is $D = \zeta\cdot x = \int_\Omega \zeta\cdot
@@ -106,6 +105,16 @@ $$
 Note $\hat{U} = \frac{1}{2}\hat{\xi}'(\tau\Sigma)\hat{\xi}$.
 
 We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
+Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
+We have
+$$
+\begin{aligned}
+	D_\xi\Phi &= E[X] - \tau\Sigma\xi - \lambda x\\
+	D_\lambda\Phi &= \xi'x - 1\\
+\end{aligned}
+$$
+so $\xi = (\tau\Sigma)^{-1}(E[X] - \lambda x)$
+and since $x'\xi = 1$, $\lambda = (x'(\tau\Sigma)^{-1}E[X] - 1)/x'(\tau\Sigma)^{-1}x$.
 
 Assume $\|x\| = 1$ and let $\eta = P\xi + x$ where $P = 1 - xx'$ is
 the orthogonal projection onto $\{x\}^\perp$. Note $\eta\cdot x = 1$
@@ -123,14 +132,6 @@ $$
 $$
 
 
-Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
-We have
-$$
-\begin{aligned}
-	D_\xi\Phi &= E[X] - \tau\Sigma\xi - \lambda x\\
-	D_\lambda\Phi &= \xi'x - 1\\
-\end{aligned}
-$$
 so
 
 $$
@@ -183,7 +184,7 @@ $$
 \Sigma = E[XX'] - E[X] E[X'] =
     \begin{bmatrix}
         \mathrm{Var}(R) & \mathrm{Cov}(R,S)\\
-        \mathrm{Cov}(R,S) & \mathrm{Var}(R)\\
+        \mathrm{Cov}(R,S) & \mathrm{Var}(S)\\
     \end{bmatrix}
 $$
 
@@ -197,18 +198,18 @@ $$
 $$
 
 $$
-\Sigma^{-1}EX
+\Sigma^{-1}E[X]
 = \frac{1}{\mathrm{Var}(R)\mathrm{Var}(S) - \mathrm{Cov}(R,S)^2}
     \begin{bmatrix}
-        ER\,\mathrm{Var}(S)  - ES\,\mathrm{Cov}(R,S)\\
-        -ER\,\mathrm{Cov}(R,S) + ES\,\mathrm{Var}(R)\\
+        \mathrm{Var}(S) E[R]  - \mathrm{Cov}(R,S) E[S]\\
+        -\mathrm{Cov}(R,S) E[R] + \mathrm{Var}(R) E[S]\\
     \end{bmatrix}
 $$
 
 $$
-EX'\Sigma^{-1}EX
+E[X']\Sigma^{-1}E[X]
 = \frac{1}{V_R V_S - C_{R,S}^2}
-        [(ER)^2 V_S  - 2ER\,ES C_{R,S} + (ES)^2 V_R]
+        [V_S (ER)^2 - C_{R,S} E[R] E[S] + V_R (ES)^2]
 $$
 
 ### Block Matrix Inversion
