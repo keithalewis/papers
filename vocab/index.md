@@ -6,7 +6,7 @@ It is how human beings communicate.
 Each entry provides a definition in plain English and assigns mathematical
 names for the concepts involved in the definition. These are immediately
 followed by an exegesis of the limitations involved in using mathematics
-to model the real world.
+to model the real world. Additional notes are sometimes provided.
 
 The real world is big, complicated, and messy. Mathematics can be used
 to bring some order and rationality but will always remain a poor shadow.[1]
