@@ -65,16 +65,17 @@ There is no arbitrage if and only if there is a positive measure,
 $\Pi$, on $\Omega$ with $x = \int_\Omega X\,d\Pi$.  We call
 any such $\Pi$ a _deflator_ or a _risk-neutral_ measure.
 
-Let $Q = R\Pi$ where $1/R = \|\Pi\|$. Note $Q$ is a positive measure with mass 1
-and $x = E^Q[X]/R$.
+Let $Q = R_0\Pi$ where $1/R_0 = \|\Pi\|$. Note $Q$ is a positive measure with mass 1
+and $x = E^Q[X]/R_0$.
 
 A _portfolio_, $\xi\in\mathbf{R}^I$, is the number of shares purchased at
 the beginning of the period.  The _realized return_ over the period is
-$R(\xi) = \xi\cdot X/\xi\cdot x$ when $\xi\cdot x \not= 0$.  Note $E^Q[R(\xi)] = R$.
+$R(\xi) = \xi\cdot X/\xi\cdot x$ when $\xi\cdot x \not= 0$.  Note $E^Q[R(\xi)] = R_0$
+for all $\xi$.
 
 A _zero coupon bond_, $\zeta\in\mathbf{R}^I$, has $\zeta\cdot X = 1$ on
-$\Omega$. Its initial value is $D = \zeta\cdot x = \int_\Omega \zeta\cdot
-X\,d\Pi = \|\Pi\| = 1/R$.
+$\Omega$. Its initial value is $d = \zeta\cdot x = \int_\Omega \zeta\cdot
+X\,d\Pi = \|\Pi\| = 1/R_0$.
 
 ## CAPM
 
