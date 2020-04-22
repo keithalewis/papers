@@ -1,33 +1,47 @@
-# Vocabulary
+# Vocabulary 
 
 Fischer Black emphasized the importance of vocabulary.
-It is how human beings communicate.
+It is, after all, how human beings communicate.
 
 Each entry provides a definition in plain English and assigns mathematical
-names for the concepts involved in the definition. These are immediately
-followed by an exegesis of the limitations involved in using mathematics
+terms for the concepts involved in the definition. These are immediately
+followed by a brief exegesis of the limitations involved in using mathematics
 to model the real world. Additional notes are sometimes provided.
 
-The real world is big, complicated, and messy. Mathematics can be used
-to bring some order and rationality but will always remain a poor shadow.[1]
+The real world is big, complicated, and messy.
+[Mathematics](mathematics.md) can be used to bring some order
+and rationality but will always remain a poor shadow.
 
 ## Fundamentals
 
 [Transactions](transaction.md) are the atoms of finance. A
 [buyer](buyer.md) and [seller](seller.md) exchange [amounts](amount.md)
-of [instruments](instrument.md) at a given date and time. The ratio of
-the amounts is the [price](price.md). A [model](model.md) specifies the
-prices and cash flows associated with instruments.
+of [instruments](instrument.md) at a given date and time. The ratio
+of the buyer amount and the seller amount is the [price](price.md).
+Instruments have [cash flows](cash_flow.md) that accrue to the owner
+proportional to their number of [shares](share.md)
+<!--
+[stocks](stock.md) have
+dividends, [bonds](bond.md) have coupons, [futures](futures.md) have
+margin adjustments.
+-->
 
-(who, what, when, where, why)
+A [model](model.md) specifies the
+future prices and cash flows associated with instruments.
+
+<!-- (who, what, when, where, why) -->
+
+## The Real World
 
 Parties in financial markets trade [instruments](instrument.md).
+An instrument is either a [security](security.md) or [derivative](derivative.md).
 
-Exchanges provide a nearly instantaneous mechanism for
-liquidity providers to offer standard instruments to
-any customer able to set up a margin account.
+[Exchanges](exchange.md) arrange for [liquidity
+providers](liquidity_provider.md) to offer instruments to any customer
+able to set up a margin account.  They provide a nearly instantaneous
+mechanism for buyers and sellers to make transactions.
 
-More complicated transactions are handled over-the-counter.
+More complicated transactions are handled [over-the-counter](otd.md).
 A buyer contacts a seller and negotiates a contract for the
 exchange of cash flows. The buyer is usually a company and
 the seller is usually an investment bank that they have an
@@ -40,7 +54,7 @@ over-the-counter transactions. They are similar to exchanges
 but less efficient.
 
 Investors hope
-to generate better returns than the prevailing riskless interest rate
+to generate better returns than the prevailing risk-less interest rate
 by taking on some risk.  Speculators believe they have information that
 might generate even higher returns. Hedgers can use market instruments
 to reduce their risk.
@@ -64,7 +78,7 @@ Instruments can be traded on _exchanges_ or _over the counter_.
 An exchange is a mechanism for _liquidity providers_ to advertise
 the prices at which they are willing to buy or sell instruments.
 The _customers_ of the exchange decide what trades they are willing
-to make. The exchange incures very little risk since it can close
+to make. The exchange incur very little risk since it can close
 out customer accounts that use up their margin.
 
 Over the counter trades occur between two parties. A buyer chooses
@@ -72,8 +86,3 @@ a seller and agrees on the terms of the trade. Unlike an exchange
 where trades happen nearly instantaneously, the negotiation can
 involve an extended period of time. They often involve _collateral
 agreements_ between the two parties to mitigate risk.
-
-
-The atoms of finance are _transactions_.
-
-[1] Metaproof: The language of mathematics...
