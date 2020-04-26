@@ -95,7 +95,12 @@ $\Sigma$ is not invertible.
 
 Since $\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2 =
 \xi'(\tau\Sigma)\xi - 2 \xi'E[X] + E[X'](\tau\Sigma)^{-1}E[X]$
-the unconstrained maximum utility is
+we have
+$$
+U_\tau(\xi) = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
+	- \frac{1}{2}\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2
+$$
+so the unconstrained maximum utility is
 $$
 \hat{U} = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
 $$
@@ -103,7 +108,6 @@ when
 $$
 \hat{\xi} = (\tau\Sigma)^{-1}E[X].
 $$
-Note $\hat{U} = \frac{1}{2}\hat{\xi}'(\tau\Sigma)\hat{\xi}$.
 
 We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
 Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
@@ -123,12 +127,22 @@ for all $\xi$.
 
 $$
 \begin{aligned}
-	U_\tau(\xi) &= (P\eta + x)'E[X] - \frac{\tau}{2}(P\eta + x)'\Sigma(P\eta + x)\\
-	&= \eta'P E[X] + x'E[X]
-	   - \frac{\tau}{2}(\eta'P\Sigma P\eta + 2\eta'P\Sigma x + x'P\Sigma Px)\\
-	&= \eta'(P E[X] - \tau P\Sigma x)
-	   - \frac{\tau}{2}\eta'P\Sigma P\eta
-	   + x'(E[X] - \frac{\tau}{2} P\Sigma Px)\\
+	U_\tau(\eta) &= (P\xi + x)'E[X] - \frac{\tau}{2}(P\xi + x)'\Sigma(P\xi + x)\\
+	&= \xi'P E[X] + x'E[X]
+	   - \frac{\tau}{2}(\xi'P\Sigma P\xi + 2\xi'P\Sigma x + x'P\Sigma Px)\\
+	&= x'E[X] - \frac{\tau}{2} x'P\Sigma x
+		- \frac{\tau}{2} \bigl(\xi'P\Sigma P\xi - 2\xi'(P E[X]/\tau - P\Sigma x)\bigr)\\
+	&= x'E[X] - \frac{\tau}{2} x'P\Sigma x
+		- \frac{\tau}{2}
+			\bigl(\|(P\Sigma P)^{1/2}\xi - (P\Sigma P)^{-1/2}(P E[X]/\tau - P\Sigma x)\|^2
+			- (P E[X]/\tau - P\Sigma x)'(P\Sigma P)(P E[X]/\tau - P\Sigma x)\bigr)\\
+	&= x'E[X] - \frac{\tau}{2} x'P\Sigma x
+		- \frac{\tau}{2}
+			\bigl(\|(P\Sigma P)^{1/2}\xi - (P\Sigma P)^{-1/2}(P E[X]/\tau - P\Sigma x)\|^2
+			- (E[X]/\tau - \Sigma x)'(P\Sigma P)(E[X]/\tau - \Sigma x)\bigr)\\
+	&= x'E[X] + \frac{\tau}{2}((E[X]/\tau - \Sigma x)'(P\Sigma P)(E[X]/\tau - \Sigma x) - x'P\Sigma x)
+		- \frac{\tau}{2}
+			\|(P\Sigma P)^{1/2}\xi - (P\Sigma P)^{-1/2}(P E[X]/\tau - P\Sigma x)\|^2\\
 \end{aligned}
 $$
 
