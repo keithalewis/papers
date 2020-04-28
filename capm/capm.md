@@ -222,10 +222,14 @@ $$
 $$
 
 $$
+\begin{aligned}
 E[X']\Sigma^{-1}E[X]
-= \frac{1}{V_R V_S - C_{R,S}^2}
-        [V_S (ER)^2 - C_{R,S} E[R] E[S] + V_R (ES)^2]
+	&= \frac{1}{V_R V_S - C_{R,S}^2}
+        [V_S (ER)^2 - C_{R,S} E[R] E[S] + V_R (ES)^2]\\
+	&= \frac{1}{1 - \rho^2}((ER/\sigma_R)^2 - 2\rho(ER/\sigma_R)(ES/\sigma_S) + (ES/\sigma_S)^2)\\
+\end{aligned}
 $$
+where $\rho$ is the correlation of $R$ and $S$.
 
 ### Block Matrix Inversion
 
