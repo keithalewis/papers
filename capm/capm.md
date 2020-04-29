@@ -23,12 +23,18 @@ Let $X_t\colon\mathcal{A}_t\to\mathbf{R}^I$ be the _prices_ of market
 instruments at time $t$.
 
 Let $C_t\colon\mathcal{A}_t\to\mathbf{R}^I$ be the _cash flows_ of market
-instruments at time $t$ that have been acquired prior to time $t$.
+instruments at time $t$.
 
-Let $\Gamma_t\colon\mathcal{A}_t\to\mathbf{R}^I$ be the number of
-_shares_ traded in each instruments at time $t$.
+A _trading strategy_ is a discrete sequence of increasing stopping times
+$\tau_j$ and functions $\Gamma_j\colon\mathcal{A}_{\tau_j}\to\mathbf{R}^I$
+specifing the number of _shares_ traded in each instruments at
+$\tau_j$. For any stopping time $\tau$, $\mathcal{A}_{\tau}
+= \{A_\tau(\omega) : \omega\in\Omega\}$ is the partition with
+$A_\tau(\omega) = \{\omega'\in\Omega : \tau(\omega') = \tau(\omega)\}$.
 
-Define $\Delta_t = \sum_{s<t} \Gamma_s$ be the _position_ at time $t$.
+Define $\Delta_t = \sum_{\tau_j < t} \Gamma_j$ to be the _position_ at time $t$.
+The notation $\Delta_t = \sum_{s<t} \Gamma_s$ means
+$\Delta_t(\omega) = \sum_{\tau_j(\omega) < t} \Gamma_j(\omega)$.
 
 Define $V_t = (\Delta_t + \Gamma_t)\cdot X_t$ to be the _value_ of the
 position at time $t$.
@@ -39,12 +45,14 @@ _amounts_ associated with trading $(\Gamma_t)_{t\in T}$.
 A collection of trades is _closed out_ when the position $\sum_t \Gamma_t = 0$.
 
 There is a _model arbitrage_ if there is a closed out strategy with
-$A_{t_0} > 0$ and $A_t \ge 0$ for $t > t_0$.
+$A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > t_0$.
 
 There is no model arbitrage if and only if there exist positive
 measures $\Pi_t$ on $\mathcal{A}_t$ with
 $X_t\Pi_t = ((C_u + X_u)\Pi_u)|_{\mathcal{A}_t}$ for sufficiently small
 $u > t$.
+
+Such measures are called _deflators_ or _risk-neutral_.
 
 ## One Period Model
 
@@ -63,7 +71,6 @@ and $A_1 = \Gamma\cdot X$.
 
 There is no arbitrage if and only if there is a positive measure,
 $\Pi$, on $\Omega$ with $x = \int_\Omega X\,d\Pi$.  We call
-any such $\Pi$ a _deflator_ or a _risk-neutral_ measure.
 
 Let $Q = R\Pi$ where $1/R = \|\Pi\|$. Note $Q$ is a positive measure with mass 1
 and $x = E^Q[X]/R$.
@@ -89,13 +96,18 @@ U_\tau(\xi) = E[\xi\cdot X] - \frac{\tau}{2} \mathrm{Var}(\xi\cdot X)
     = \xi' E[X] - \frac{\tau}{2}\xi'\Sigma\xi
 $$
 where $\tau$ a risk aversion parameter and
-$\Sigma = E[XX'] - E[X]E[X']$ is positive semi-definite.
+$\Sigma = \mathrm{Var}(X) = E[XX'] - E[X]E[X']$ is positive semi-definite.
+
 Note if $\zeta$ is a zero coupon bond then $\Sigma\zeta = 0$ so
 $\Sigma$ is not invertible.
 
 Since $\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2 =
 \xi'(\tau\Sigma)\xi - 2 \xi'E[X] + E[X'](\tau\Sigma)^{-1}E[X]$
-the unconstrained maximum utility is
+$$
+    U_\tau(\xi) = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
+        - \frac{1}{2}\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2
+$$
+and the unconstrained maximum utility is
 $$
 \hat{U} = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
 $$
@@ -103,7 +115,11 @@ when
 $$
 \hat{\xi} = (\tau\Sigma)^{-1}E[X].
 $$
-Note $\hat{U} = \frac{1}{2}\hat{\xi}'(\tau\Sigma)\hat{\xi}$.
+
+The realized return is $\hat{R} = R(\hat{\xi}) = E[X']\Sigma^{-1}E[X]/x'\Sigma^{-1}E[X]$
+and does not depend on $\tau$.
+
+Note if $P$ is a deflator, so $x = E[X]/R$, then $\hat{R} = R$ as noted above.
 
 We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
 Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.

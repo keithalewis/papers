@@ -53,11 +53,10 @@ Brokers and dealers are intermediaries used to facilitate
 over-the-counter transactions. They are similar to exchanges
 but less efficient.
 
-Investors hope
-to generate better returns than the prevailing risk-less interest rate
-by taking on some risk.  Speculators believe they have information that
-might generate even higher returns. Hedgers can use market instruments
-to reduce their risk.
+Investors hope to generate better returns than the prevailing risk-less
+interest rate by taking on some risk.  Speculators believe they have
+information that might generate even higher returns. Hedgers can use
+market instruments to reduce their risk.
 
 Every participant is a legal entity, either an individual or a
 corporation, that can be held accountable for their actions. They
