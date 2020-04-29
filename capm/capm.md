@@ -103,11 +103,12 @@ $\Sigma$ is not invertible.
 
 Since $\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2 =
 \xi'(\tau\Sigma)\xi - 2 \xi'E[X] + E[X'](\tau\Sigma)^{-1}E[X]$
+we have
 $$
-    U_\tau(\xi) = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
-        - \frac{1}{2}\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2
+U_\tau(\xi) = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
+	- \frac{1}{2}\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2
 $$
-and the unconstrained maximum utility is
+so the unconstrained maximum utility is
 $$
 \hat{U} = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
 $$
@@ -139,12 +140,22 @@ for all $\xi$.
 
 $$
 \begin{aligned}
-	U_\tau(\xi) &= (P\eta + x)'E[X] - \frac{\tau}{2}(P\eta + x)'\Sigma(P\eta + x)\\
-	&= \eta'P E[X] + x'E[X]
-	   - \frac{\tau}{2}(\eta'P\Sigma P\eta + 2\eta'P\Sigma x + x'P\Sigma Px)\\
-	&= \eta'(P E[X] - \tau P\Sigma x)
-	   - \frac{\tau}{2}\eta'P\Sigma P\eta
-	   + x'(E[X] - \frac{\tau}{2} P\Sigma Px)\\
+	U_\tau(\eta) &= (P\xi + x)'E[X] - \frac{\tau}{2}(P\xi + x)'\Sigma(P\xi + x)\\
+	&= \xi'P E[X] + x'E[X]
+	   - \frac{\tau}{2}(\xi'P\Sigma P\xi + 2\xi'P\Sigma x + x'P\Sigma Px)\\
+	&= x'E[X] - \frac{\tau}{2} x'P\Sigma x
+		- \frac{\tau}{2} \bigl(\xi'P\Sigma P\xi - 2\xi'(P E[X]/\tau - P\Sigma x)\bigr)\\
+	&= x'E[X] - \frac{\tau}{2} x'P\Sigma x
+		- \frac{\tau}{2}
+			\bigl(\|(P\Sigma P)^{1/2}\xi - (P\Sigma P)^{-1/2}(P E[X]/\tau - P\Sigma x)\|^2
+			- (P E[X]/\tau - P\Sigma x)'(P\Sigma P)(P E[X]/\tau - P\Sigma x)\bigr)\\
+	&= x'E[X] - \frac{\tau}{2} x'P\Sigma x
+		- \frac{\tau}{2}
+			\bigl(\|(P\Sigma P)^{1/2}\xi - (P\Sigma P)^{-1/2}(P E[X]/\tau - P\Sigma x)\|^2
+			- (E[X]/\tau - \Sigma x)'(P\Sigma P)(E[X]/\tau - \Sigma x)\bigr)\\
+	&= x'E[X] + \frac{\tau}{2}((E[X]/\tau - \Sigma x)'(P\Sigma P)(E[X]/\tau - \Sigma x) - x'P\Sigma x)
+		- \frac{\tau}{2}
+			\|(P\Sigma P)^{1/2}\xi - (P\Sigma P)^{-1/2}(P E[X]/\tau - P\Sigma x)\|^2\\
 \end{aligned}
 $$
 
@@ -224,10 +235,14 @@ $$
 $$
 
 $$
+\begin{aligned}
 E[X']\Sigma^{-1}E[X]
-= \frac{1}{V_R V_S - C_{R,S}^2}
-        [V_S (ER)^2 - C_{R,S} E[R] E[S] + V_R (ES)^2]
+	&= \frac{1}{V_R V_S - C_{R,S}^2}
+        [V_S (ER)^2 - C_{R,S} E[R] E[S] + V_R (ES)^2]\\
+	&= \frac{1}{1 - \rho^2}((ER/\sigma_R)^2 - 2\rho(ER/\sigma_R)(ES/\sigma_S) + (ES/\sigma_S)^2)\\
+\end{aligned}
 $$
+where $\rho$ is the correlation of $R$ and $S$.
 
 ### Block Matrix Inversion
 
