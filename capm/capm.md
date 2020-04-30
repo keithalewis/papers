@@ -8,6 +8,8 @@ fleqn: true
 
 # Capital Asset Pricing Model
 
+Some notes on the Capital Asset Pricing Model.
+
 ## Unified Model
 
 Let $I$ be the set of _market instruments_.
@@ -122,6 +124,8 @@ and does not depend on $\tau$.
 
 Note if $P$ is a deflator, so $x = E[X]/R$, then $\hat{R} = R$ as noted above.
 
+### Fixed Capital
+
 We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
 Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
 We have
@@ -131,8 +135,65 @@ $$
 	D_\lambda\Phi &= \xi'x - 1 = 0\\
 \end{aligned}
 $$
-so $\xi = (\tau\Sigma)^{-1}(E[X] - \lambda x)$
-and since $x'\xi = 1$, $\lambda = (x'(\tau\Sigma)^{-1}E[X] - 1)/x'(\tau\Sigma)^{-1}x$.
+so $\bar{\xi} = (\tau\Sigma)^{-1}(E[X] - \lambda x)$
+and since $x'\bar{\xi} = 1$, $\lambda = (x'(\tau\Sigma)^{-1}E[X] - 1)/x'(\tau\Sigma)^{-1}x
+= (x'\Sigma^{-1}E[X] - \tau)/x'\Sigma^{-1}x$.
+
+Define an inner product on $\mathbf{R}^I$ by $x.y = x'\Sigma^{-1}y$ so
+$\lambda = (x . E[X] - \tau)/x . x$ and $\hat{R} = E[X] . E[X]/x . E[X]$.
+
+Since $x'\bar{\xi} = 1$ the realized return is
+$$
+\begin{aligned}
+\bar{R} &= E[X']\xi\\
+    &= E[X']\Sigma^{-1}(E[X] - \lambda x)\\
+    &= E[X].E[X] - ((x . E[X] - \tau)/x . x)E[X] . x\\
+    &= E[X].x (\hat{R} - ((x . E[X] - \tau)/x . x) \\
+\end{aligned}
+$$
+
+### Two Assets
+
+Let $x = (r,s)$ and $X = (R,S)$.
+
+$$
+\Sigma = E[XX'] - E[X] E[X'] =
+    \begin{bmatrix}
+        \mathrm{Var}(R) & \mathrm{Cov}(R,S)\\
+        \mathrm{Cov}(R,S) & \mathrm{Var}(S)\\
+    \end{bmatrix}
+$$
+
+$$
+\Sigma^{-1}
+= \frac{1}{\mathrm{Var}(R)\mathrm{Var}(S) - \mathrm{Cov}(R,S)^2}
+    \begin{bmatrix}
+        \mathrm{Var}(S) & -\mathrm{Cov}(R,S)\\
+        -\mathrm{Cov}(R,S) & \mathrm{Var}(R)\\
+    \end{bmatrix}
+$$
+
+$$
+\Sigma^{-1}E[X]
+= \frac{1}{\mathrm{Var}(R)\mathrm{Var}(S) - \mathrm{Cov}(R,S)^2}
+    \begin{bmatrix}
+        \mathrm{Var}(S) E[R]  - \mathrm{Cov}(R,S) E[S]\\
+        -\mathrm{Cov}(R,S) E[R] + \mathrm{Var}(R) E[S]\\
+    \end{bmatrix}
+$$
+
+$$
+\begin{aligned}
+E[X']\Sigma^{-1}E[X]
+	&= \frac{1}{V_R V_S - C_{R,S}^2}
+        [V_S (ER)^2 - 2 C_{R,S} E[R] E[S] + V_R (ES)^2]\\
+	&= \frac{1}{1 - \rho^2}((\mu_R/\sigma_R)^2 - 2\rho(\mu_R/\sigma_R)(\mu_S/\sigma_S) + (\mu_S/\sigma_S)^2)\\
+\end{aligned}
+$$
+where $\rho$ is the correlation of $R$ and $S$ and $\mu_X = E[X]$, $\sigma_X^2 = \mathrm{Var}(X)$.
+
+
+## Notes
 
 Assume $\|x\| = 1$ and let $\eta = P\xi + x$ where $P = 1 - xx'$ is
 the orthogonal projection onto $\{x\}^\perp$. Note $\eta\cdot x = 1$
@@ -204,46 +265,6 @@ $$
 \end{aligned}
 $$
 
-#### Two Assets
-
-Let $x = (r,s)$ and $X = (R,S)$.
-
-$$
-\Sigma = E[XX'] - E[X] E[X'] =
-    \begin{bmatrix}
-        \mathrm{Var}(R) & \mathrm{Cov}(R,S)\\
-        \mathrm{Cov}(R,S) & \mathrm{Var}(S)\\
-    \end{bmatrix}
-$$
-
-$$
-\Sigma^{-1}
-= \frac{1}{\mathrm{Var}(R)\mathrm{Var}(S) - \mathrm{Cov}(R,S)^2}
-    \begin{bmatrix}
-        \mathrm{Var}(S) & -\mathrm{Cov}(R,S)\\
-        -\mathrm{Cov}(R,S) & \mathrm{Var}(R)\\
-    \end{bmatrix}
-$$
-
-$$
-\Sigma^{-1}E[X]
-= \frac{1}{\mathrm{Var}(R)\mathrm{Var}(S) - \mathrm{Cov}(R,S)^2}
-    \begin{bmatrix}
-        \mathrm{Var}(S) E[R]  - \mathrm{Cov}(R,S) E[S]\\
-        -\mathrm{Cov}(R,S) E[R] + \mathrm{Var}(R) E[S]\\
-    \end{bmatrix}
-$$
-
-$$
-\begin{aligned}
-E[X']\Sigma^{-1}E[X]
-	&= \frac{1}{V_R V_S - C_{R,S}^2}
-        [V_S (ER)^2 - C_{R,S} E[R] E[S] + V_R (ES)^2]\\
-	&= \frac{1}{1 - \rho^2}((ER/\sigma_R)^2 - 2\rho(ER/\sigma_R)(ES/\sigma_S) + (ES/\sigma_S)^2)\\
-\end{aligned}
-$$
-where $\rho$ is the correlation of $R$ and $S$.
-
 ### Block Matrix Inversion
 
 $$
@@ -285,37 +306,6 @@ $$
         + A^{-1}c(-\epsilon + c'A^{-1}c)^{-1}c'A^{-1}\\
     &= A^{-1} + A^{-1}cc'A^{-1}/(-\epsilon + c'A^{-1}c)\\
 \end{aligned}
-$$
-
-
-### Quadratic Optimization with Linear Constraint
-
-Minimize $b'x - \frac{1}{2} x'Ax$ subject to $c'x = 1$.
-
-Using Lagrangian multiplier $\lambda$
-
-$$
-\begin{aligned}
-    0 &= b - Ax - \lambda c\\
-    1 &= c'x\\
-\end{aligned}
-$$
-
-so
-$$
-\begin{bmatrix}
-    A & c\\
-    c' & 0\\
-\end{bmatrix}
-\begin{bmatrix}
-    x\\
-    \lambda\\
-\end{bmatrix}
-=
-\begin{bmatrix}
-    b\\
-    1\\
-\end{bmatrix}
 $$
 
 ### Fréchet Derivative
