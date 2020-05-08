@@ -6,15 +6,15 @@ A proposition is a statement that is either _true_ or _false_.
 New propositions can be formed using the _logical connectives_: _not_,
 _and_, _or_, _implies_.  
 
-If $P$ is a proposition then _not_ $P$, written either $\lnot P$ or $\neg P$, is true
+If $P$ is a proposition then _not_ $P$, written $&#Not; P$, is true
 when $P$ is false and false when $P$ is true.
 
-If $P$ and $Q$ are propositions then $P$ and $Q$, written $P\land Q$, is true when both $P$ is true
+If $P$ and $Q$ are propositions then $P$ and $Q$, written $P&#and; Q$, is true when both $P$ is true
 and $Q$ is true, otherwise it is false.
 
 These, and the rest of the connecitves, can be summarized by a _truth table_:
 
-| P | Q | $\lnot P$ | $P \land Q$ | $P \lor Q$ | $P\implies Q |
+| P | Q | $&#Not; P$ | $P &#and; Q$ | $P &#or; Q$ | $P&#implies; Q |
 | :---: | :---:| :---:| :---:| :---:| :---: |
 | T | T | F | T | T | T |
 | T | F | F | F | T | F |
@@ -57,4 +57,4 @@ of its validity outside the realm of mathematics.
     Which, if thou follow, this strict court of Venice  
     Must needs give sentence 'gainst the merchant  
     there.  
-    &#endash; Portia, in William Shakespeare, The Merchant of Venice, Act 4, Scene 1.
+    &#ndash; Portia, in William Shakespeare, The Merchant of Venice, Act 4, Scene 1.
