@@ -6,15 +6,33 @@ A proposition is a statement that is either _true_ or _false_.
 New propositions can be formed using the _logical connectives_: _not_,
 _and_, _or_, _implies_.  
 
-If $P$ is a proposition then _not_ $P$, written $&#Not; P$, is true
-when $P$ is false and false when $P$ is true.
+## Well-Formed Formula
 
-If $P$ and $Q$ are propositions then $P$ and $Q$, written $P&#and; Q$, is true when both $P$ is true
-and $Q$ is true, otherwise it is false.
+ 1. Propositional variables are well-formed.
+ 2. If '_P_' is well-formed then '($&Not; _P_)' is well-formed
+ 3. If '_P_' and '_Q_' are well-formed then '(_P_ &#and; _Q_)', '(_P_
+ &#or; _Q_)','(_P_ &#implies; _Q_)', are well formed
+ 4. There are no other well-formed propositions.
 
-These, and the rest of the connecitves, can be summarized by a _truth table_:
+<!-- write a program to detect wffs? -->
 
-| P | Q | $&#Not; P$ | $P &#and; Q$ | $P &#or; Q$ | $P&#implies; Q |
+<!-- notes about parentheses -->
+
+<!-- notes about rpn -->
+
+<!-- notes about functions -->
+
+## Connectives
+
+If _P_ is a proposition then _not_ _P_, written &#Not; _P_, is true
+when _P_ is false and false when _P_ is true.
+
+If _P_ and _Q_ are propositions then _P_ and _Q_, written _P_ &#and; _Q_, is true when both _P_ 
+and _Q_ are true, otherwise it is false.
+
+These, and the connecitves 'or' and 'implies', can be summarized by a _truth table_:
+
+| _P_ | _Q_ | &#Not; _P_ | _P_ &#and; _Q_ | _P_ &#or; _Q_ | _P_ &#implies; _Q_ |
 | :---: | :---:| :---:| :---:| :---:| :---: |
 | T | T | F | T | T | T |
 | T | F | F | F | T | F |
@@ -22,39 +40,3 @@ These, and the rest of the connecitves, can be summarized by a _truth table_:
 | F | F | T | F | F | T |
 
 
-## Remarks
-
-
-George Boole "Laws of Thought, ON WHICH ARE FOUNDED THE MATHEMATICAL THEORIES OF LOGIC AND PROBABILITIES."
-- reduce human thought to calculation
-
-Not every proposition is amenable to mathematical analysis.
-Spinoza was unable to come up with a system of axioms to
-rigorously deduce that the quality of mercy is not strained.
-Nevertheless, it is possible to provide a convincing argument
-of its validity outside the realm of mathematics.
-
-> The quality of mercy is not strained.  
-    It droppeth as the gentle rain from heaven  
-    Upon the place beneath. It is twice blest:  
-    It blesseth him that gives and him that takes.  
-    'Tis mightiest in the mightiest; it becomes  
-    The thronèd monarch better than his crown.  
-    His scepter shows the force of temporal power,  
-    The attribute to awe and majesty  
-    Wherein doth sit the dread and fear of kings;  
-    But mercy is above this sceptered sway.  
-    It is enthronèd in the hearts of kings;  
-    It is an attribute to God Himself;  
-    And earthly power doth then show likest God's  
-    When mercy seasons justice. Therefore, Jew,  
-    Though justice be thy plea, consider this:  
-    That in the course of justice none of us  
-    Should see salvation. We do pray for mercy,  
-    And that same prayer doth teach us all to render  
-    The deeds of mercy. I have spoke thus much  
-    To mitigate the justice of thy plea,  
-    Which, if thou follow, this strict court of Venice  
-    Must needs give sentence 'gainst the merchant  
-    there.  
-    &#ndash; Portia, in William Shakespeare, The Merchant of Venice, Act 4, Scene 1.
