@@ -18,7 +18,7 @@ and _Q_ are true, otherwise it is false.
 
 These, and the connecitves 'or' and 'implies', can be summarized by a _truth table_:
 
-| _P_ | _Q_ | &Not; _P_ | _P_ &and; _Q_ | _P_ &or; _Q_ | _P_ &implies; _Q_ |
+| _P_ | _Q_ | &Not; _P_ | _P_ &and; _Q_ | _P_ &or; _Q_ | _P_ &rArr; _Q_ |
 | :---: | :---:| :---:| :---:| :---:| :---: |
 | T | T | F | T | T | T |
 | T | F | F | F | T | F |
