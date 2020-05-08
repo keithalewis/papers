@@ -1,5 +1,7 @@
 # Propositional Calculus
 
+&#theta;
+
 The _propositional calculus_ defines the rules for manipulating
 _propositions_.  A proposition is a statement that is either _true_
 or _false_.  We use capital Roman letters (_propositional variables_)
@@ -24,6 +26,12 @@ These, and the connecitves 'or' and 'implies', can be summarized by a _truth tab
 | T | F | F | F | T | F |
 | F | T | T | T | T | T |
 | F | F | T | F | F | T |
+
+<!-- redundancy -->
+
+<!-- oddness of 'implies' -->
+
+Truth tables can be used to show the equivalence of propositions.
 
 ## Well-Formed Formula
 
