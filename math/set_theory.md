@@ -21,4 +21,4 @@ such that for C &rarr; A, C &rarr; B there exists C &rarr; A &cap; B.
 
 given C &rarr; A, C &rarr; B exists C &rarr; A &cap; B, C &rarr; A &cap; B ...
 
-x &in; y iff x &rarry y
+x &in; y iff x &rarr; y
