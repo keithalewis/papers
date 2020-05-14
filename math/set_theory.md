@@ -16,9 +16,17 @@ describe set theory.
 ## Musings
 
 Define set theory as a category with objects sets and arrows indicating containment.
-Intersecton A &cap; B  is object with arrows A &cap; B &rarr; A, A &cap; B &rarr; B
-such that for C &rarr; A, C &rarr; B there exists C &rarr; A &cap; B.
+
+There exist _C_ &rarr; _A_ and _C_ &rarr; _B_  iff _C_ &subseteq; _A_ &cap; _B_.
+
+There exist _A_ &rarr; _C_ and _B_ &rarr; _C_  iff _A_ &cup; _B_ &subseteq; _C_.
 
 given C &rarr; A, C &rarr; B exists C &rarr; A &cap; B, C &rarr; A &cap; B ...
 
 x &in; y iff x &rarr; y
+
+### Zermelo-Fraenkel
+
+__Extensionality__ _A_ = _B_ iff _A_ &rarr; _B_ and _B_ &rarr; _A_.
+
+__Null Set__ is an (the) initial element. For all _A_ &emptyset; &rarr; _A_.

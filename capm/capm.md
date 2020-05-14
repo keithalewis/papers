@@ -100,8 +100,12 @@ $$
 where $\tau$ a risk aversion parameter and
 $\Sigma = \mathrm{Var}(X) = E[XX'] - E[X]E[X']$ is positive semi-definite.
 
+Note if $\tau = 0$ then the utility is not bounded.
+
 Note if $\zeta$ is a zero coupon bond then $\Sigma\zeta = 0$ so
 $\Sigma$ is not invertible.
+
+We assume $\tau \not= 0$ and $\Sigma$ is invertible.
 
 Since $\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2 =
 \xi'(\tau\Sigma)\xi - 2 \xi'E[X] + E[X'](\tau\Sigma)^{-1}E[X]$
