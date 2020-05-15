@@ -107,6 +107,8 @@ $\Sigma$ is not invertible.
 
 We assume $\tau \not= 0$ and $\Sigma$ is invertible.
 
+### Unconstrained
+
 Since $\|(\tau\Sigma)^{1/2}\xi - (\tau\Sigma)^{-1/2}E[X]\|^2 =
 \xi'(\tau\Sigma)\xi - 2 \xi'E[X] + E[X'](\tau\Sigma)^{-1}E[X]$
 we have
@@ -116,45 +118,17 @@ U_\tau(\xi) = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
 $$
 so the unconstrained maximum utility is
 $$
-\hat{U} = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
+U_\tau^* = \frac{1}{2}E[X'](\tau\Sigma)^{-1}E[X]
 $$
 when 
 $$
-\hat{\xi} = (\tau\Sigma)^{-1}E[X].
+\xi^* = (\tau\Sigma)^{-1}E[X].
 $$
 
-The realized return is $\hat{R} = R(\hat{\xi}) = E[X']\Sigma^{-1}E[X]/x'\Sigma^{-1}E[X]$
+The realized return is $R^* = R(\xi^*) = E[X']\Sigma^{-1}E[X]/x'\Sigma^{-1}E[X]$
 and does not depend on $\tau$.
 
-Note if $P$ is a deflator, so $x = E[X]/R$, then $\hat{R} = R$ as noted above.
-
-### Fixed Capital
-
-We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
-Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
-We have
-$$
-\begin{aligned}
-	D_\xi\Phi &= E[X] - \tau\Sigma\xi - \lambda x = 0\\
-	D_\lambda\Phi &= \xi'x - 1 = 0\\
-\end{aligned}
-$$
-so $\bar{\xi} = (\tau\Sigma)^{-1}(E[X] - \lambda x)$
-and since $x'\bar{\xi} = 1$, $\lambda = (x'(\tau\Sigma)^{-1}E[X] - 1)/x'(\tau\Sigma)^{-1}x
-= (x'\Sigma^{-1}E[X] - \tau)/x'\Sigma^{-1}x$.
-
-Define an inner product on $\mathbf{R}^I$ by $x.y = x'\Sigma^{-1}y$ so
-$\lambda = (x . E[X] - \tau)/x . x$ and $\hat{R} = E[X] . E[X]/x . E[X]$.
-
-Since $x'\bar{\xi} = 1$ the realized return is
-$$
-\begin{aligned}
-\bar{R} &= E[X']\xi\\
-    &= E[X']\Sigma^{-1}(E[X] - \lambda x)\\
-    &= E[X].E[X] - ((x . E[X] - \tau)/x . x)E[X] . x\\
-    &= E[X].x (\hat{R} - ((x . E[X] - \tau)/x . x) \\
-\end{aligned}
-$$
+Note if $P$ is a deflator, so $x = E[X]/R$, then $R^* = R$ as noted above.
 
 ### Two Assets
 
@@ -196,6 +170,36 @@ E[X']\Sigma^{-1}E[X]
 $$
 where $\rho$ is the correlation of $R$ and $S$ and $\mu_X = E[X]$, $\sigma_X^2 = \mathrm{Var}(X)$.
 
+
+### Fixed Capital
+
+We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
+Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
+We have
+$$
+\begin{aligned}
+	D_\xi\Phi &= E[X] - \tau\Sigma\xi - \lambda x = 0\\
+	D_\lambda\Phi &= \xi'x - 1 = 0\\
+\end{aligned}
+$$
+so $\bar{\xi} = (\tau\Sigma)^{-1}(E[X] - \lambda x)$
+and since $x'\bar{\xi} = 1$, $\lambda = (x'(\tau\Sigma)^{-1}E[X] - 1)/x'(\tau\Sigma)^{-1}x
+= (x'\Sigma^{-1}E[X] - \tau)/x'\Sigma^{-1}x$.
+
+Define an inner product on $\mathbf{R}^I$ by $x.y = x'\Sigma^{-1}y$ so
+$\lambda = (x . E[X] - \tau)/x . x$ and $\hat{R} = E[X] . E[X]/x . E[X]$.
+
+Since $x'\bar{\xi} = 1$ the realized return is
+$$
+\begin{aligned}
+\bar{R} &= E[X']\xi\\
+    &= E[X']\Sigma^{-1}(E[X] - \lambda x)\\
+    &= E[X].E[X] - ((x . E[X] - \tau)/x . x)E[X] . x\\
+    &= E[X].x (\hat{R} - ((x . E[X] - \tau)/x . x) \\
+\end{aligned}
+$$
+
+### Two Assets
 
 ## Notes
 
