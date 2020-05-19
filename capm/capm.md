@@ -135,11 +135,35 @@ Note if $P$ is a deflator, so $x = E[X]/R$, then $R^* = R$ as noted above.
 Let $x = (r,s)$ and $X = (R,S)$.
 
 $$
-\Sigma = E[XX'] - E[X] E[X'] =
-    \begin{bmatrix}
+\Sigma = E[XX'] - E[X] E[X']
+    = \begin{bmatrix}
         \mathrm{Var}(R) & \mathrm{Cov}(R,S)\\
         \mathrm{Cov}(R,S) & \mathrm{Var}(S)\\
     \end{bmatrix}
+    = \begin{bmatrix}
+        \sigma_R^2 & \rho \sigma_R \sigma_S\\
+        \rho \sigma_R \sigma_S & \sigma_S^2\\
+    \end{bmatrix}
+$$
+
+This matrix has eigenvalues
+
+$$
+\lambda_{\pm} = \frac{1}{2}
+\left(
+  \sigma_R^2 + \sigma_S^2
+  \pm\sqrt{(\sigma_R^2 - \sigma_S^2)^2 + 4\rho^2 \sigma_R^2 \sigma_S^2}
+\right)
+$$
+
+with corresponding eigenvectors
+
+$$
+v_{\pm} = 
+\left(
+\frac{\sigma_R^2 - \sigma_S^2 \pm\sqrt{((\sigma_R^2 - \sigma_S^2)^2 + 4\rho^2 \sigma_R^2 \sigma_S^2}}
+{2\rho\sigma_R\sigma_S},1
+\right)
 $$
 
 $$
