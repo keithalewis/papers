@@ -44,7 +44,7 @@ position at time $t$.
 Define $A_t = \Delta_t\cdot C_t - \Gamma_t\cdot X_t$ to be the
 _amounts_ associated with trading $(\Gamma_t)_{t\in T}$.
 
-A collection of trades is _closed out_ when the position $\sum_t \Gamma_t = 0$.
+A collection of trades is _closed out_ if $\sum_j\Gamma_j = 0$.
 
 There is a _model arbitrage_ if there is a closed out strategy with
 $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > t_0$.
@@ -60,6 +60,7 @@ Such measures are called _deflators_ or _risk-neutral_.
 
 In this case $T = \{t_0,t_1\}$ and $\Gamma_{t_0} = \Gamma_0 = \Gamma$,
 $\Gamma_{t_1} = \Gamma_1 = -\Gamma$ for closed out strategies.
+We have $\Delta_0 = 0$ and $\Delta_1 = \Gamma_0 = \Gamma$.
 
 Using the definitions above, the initial amount is $A_0
 = \Delta_0\cdot C_0 - \Gamma_0\cdot X_0
@@ -83,7 +84,7 @@ $R(\xi) = \xi\cdot X/\xi\cdot x$ when $\xi\cdot x \not= 0$.  Note $E^Q[R(\xi)] =
 for all $\xi$.
 
 A _zero coupon bond_, $\zeta\in\mathbf{R}^I$, has $\zeta\cdot X = 1$ on
-$\Omega$. Its initial value is $d = \zeta\cdot x = \int_\Omega \zeta\cdot
+$\Omega$. Its initial value is $\zeta\cdot x = \int_\Omega \zeta\cdot
 X\,d\Pi = \|\Pi\| = 1/R$. Note $R = R(\zeta)$.
 
 ## CAPM
@@ -161,7 +162,7 @@ with corresponding eigenvectors
 $$
 v_{\pm} = 
 \left(
-\frac{\sigma_R^2 - \sigma_S^2 \pm\sqrt{((\sigma_R^2 - \sigma_S^2)^2 + 4\rho^2 \sigma_R^2 \sigma_S^2}}
+\frac{\sigma_R^2 - \sigma_S^2 \pm\sqrt{(\sigma_R^2 - \sigma_S^2)^2 + 4\rho^2 \sigma_R^2 \sigma_S^2}}
 {2\rho\sigma_R\sigma_S},1
 \right)
 $$
