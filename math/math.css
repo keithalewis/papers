@@ -1,0 +1,42 @@
+html {
+	margin: 0;
+	padding: 1em;
+}
+body {
+	font-family: "Lucida Bright", "Segoe UI", Georgia, Cambria, 'Vesper Libre', serif;
+	font-size: large;
+	background: #F0F0F0;
+	background: linear-gradient(to right, #FFF, #F0F0F0);
+	color: #565656;
+}
+h1 {
+	color: #062F4F;
+}
+h2 {
+	color: #264F6F;
+}
+h3 {
+	color: #444;
+}
+h4 {
+	color: #222;
+}
+.katex {
+	font-size: 100% !important;
+	macros: {
+	    "\\RR": "\\mathbb{R}"
+	  }
+}
+.katex-display {
+	margin-left: 2em !important;
+}
+#kalx {
+    font-family: "Courier";
+    font-weight: bold;
+    opacity: 20%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    color: blue;
+}

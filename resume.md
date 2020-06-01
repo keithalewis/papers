@@ -34,10 +34,14 @@ data in order to enhance alpha on the trade flow from a major ECN.
 
 ### _Banc of America Securities_, Principal (1999&mdash;2002)
 
-Developed the Equity Derivatives analytics library for the Equity
-Financial Products group. Delivered production quality libraries to the
-IT group.  Built and supported the Excel add-in library used throughout
-the company.
+Replaced off-the-shelf system (Imagine Software) for the Equity Financial Products group
+with a de novo analytics library covering all product areas including
+yield curves, options (European and American),
+convertible bonds, structured products and generic Monte Carlo pricer/simulator.
+
+The C++ libraries were used directly by IT in their production
+systems including real-time market making for ICE and
+Excel add-ins used throughout the company.
 
 ### _Morgan Stanley Dean Witter &amp; Co._, Vice President (1996&mdash;1999)
 

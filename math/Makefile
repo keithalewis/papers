@@ -7,7 +7,7 @@ KATEX=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/
 #FLAGS += --katex
 FLAGS += -t html5
 FLAGS += --mathjax
-FLAGS += --css ftap.css
+FLAGS += --css math.css
 #FLAGS += --section-divs
 FLAGS += -H header.html
 #FLAGS += -H katex.html
@@ -15,7 +15,7 @@ FLAGS += -H header.html
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
 
 $(HTML): %.html: %.md
-	pandoc -t html5 -s --css capm.css  --katex=$(KATEX) $< -o $@
+	pandoc -t html5 -s --css math.css  --katex=$(KATEX) $< -o $@
 
 $(PDF): %.pdf: %.md
 	pandoc -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
