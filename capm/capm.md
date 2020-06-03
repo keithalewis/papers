@@ -73,7 +73,7 @@ Let $x = X_0$ and $X = C_1 + X_1$ so $A_0 = -\Gamma\cdot x$
 and $A_1 = \Gamma\cdot X$.
 
 There is no arbitrage if and only if there is a positive measure,
-$\Pi$, on $\Omega$ with $x = \int_\Omega X\,d\Pi$.  We call
+$\Pi$, on $\Omega$ with $x = \int_\Omega X\,d\Pi$.
 
 Let $Q = R\Pi$ where $1/R = \|\Pi\|$. Note $Q$ is a positive measure with mass 1
 and $x = E^Q[X]/R$.
@@ -130,6 +130,56 @@ The realized return is $R^* = R(\xi^*) = E[X']\Sigma^{-1}E[X]/x'\Sigma^{-1}E[X]$
 and does not depend on $\tau$.
 
 Note if $P$ is a deflator, so $x = E[X]/R$, then $R^* = R$ as noted above.
+
+
+### Fixed Capital
+
+We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
+Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
+We have
+$$
+\begin{aligned}
+	D_\xi\Phi &= E[X] - \tau\Sigma\xi - \lambda x = 0\\
+	D_\lambda\Phi &= \xi'x - 1 = 0\\
+\end{aligned}
+$$
+so $\bar{\xi} = (\tau\Sigma)^{-1}(E[X] - \lambda x)$
+and since $x'\bar{\xi} = 1$,
+$1 = x'(\tau\Sigma)^{-1}(E[X] - \lambda x)$ and
+$\lambda = (x'(\tau\Sigma)^{-1}E[X] - 1)/x'(\tau\Sigma)^{-1}x
+= (x'\Sigma^{-1}E[X] - \tau)/x'\Sigma^{-1}x$.
+
+Define an inner product on $\mathbf{R}^I$ by $x.y = x'\Sigma^{-1}y$ so
+$\lambda = (x . E[X] - \tau)/x . x$ and $\hat{R} = E[X] . E[X]/x . E[X]$.
+
+Since $x'\bar{\xi} = 1$ the realized return is
+$$
+\begin{aligned}
+\bar{R} &= E[X']\xi\\
+    &= E[X']\Sigma^{-1}(E[X] - \lambda x)\\
+    &= E[X].E[X] - ((x . E[X] - \tau)/x . x)E[X] . x\\
+    &= E[X].x (\hat{R} - ((x . E[X] - \tau)/x . x) \\
+\end{aligned}
+$$
+
+### Fixed Capital and Return
+
+We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$ and $\xi'E[X] = \rho$.
+Since $U_\tau(xi) = \rho - \frac{\tau}{2}\xi'\Sigma\xi$ this is equivalent to
+minimizing $\frac{1}{2}\xi'\Sigma\xi$.
+
+Using Lagrangian multipliers let $\Phi(\xi,\lambda,\mu)
+= \frac{1}{2}\xi'\Sigma\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)$.
+We have
+$$
+\begin{aligned}
+	D_\xi\Phi &= \Sigma\xi - \lambda x - \mu E[X] = 0\\
+	D_\lambda\Phi &= \xi'x - 1 = 0\\
+	D_\mu\Phi &= \xi'E[X] - \rho = 0\\
+\end{aligned}
+$$
+so $\bar{\xi} = \Sigma^{-1}(\lambda x + \mu E[X])$.
+
 
 ### Two Assets
 
@@ -194,37 +244,6 @@ E[X']\Sigma^{-1}E[X]
 \end{aligned}
 $$
 where $\rho$ is the correlation of $R$ and $S$ and $\mu_X = E[X]$, $\sigma_X^2 = \mathrm{Var}(X)$.
-
-
-### Fixed Capital
-
-We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
-Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
-We have
-$$
-\begin{aligned}
-	D_\xi\Phi &= E[X] - \tau\Sigma\xi - \lambda x = 0\\
-	D_\lambda\Phi &= \xi'x - 1 = 0\\
-\end{aligned}
-$$
-so $\bar{\xi} = (\tau\Sigma)^{-1}(E[X] - \lambda x)$
-and since $x'\bar{\xi} = 1$, $\lambda = (x'(\tau\Sigma)^{-1}E[X] - 1)/x'(\tau\Sigma)^{-1}x
-= (x'\Sigma^{-1}E[X] - \tau)/x'\Sigma^{-1}x$.
-
-Define an inner product on $\mathbf{R}^I$ by $x.y = x'\Sigma^{-1}y$ so
-$\lambda = (x . E[X] - \tau)/x . x$ and $\hat{R} = E[X] . E[X]/x . E[X]$.
-
-Since $x'\bar{\xi} = 1$ the realized return is
-$$
-\begin{aligned}
-\bar{R} &= E[X']\xi\\
-    &= E[X']\Sigma^{-1}(E[X] - \lambda x)\\
-    &= E[X].E[X] - ((x . E[X] - \tau)/x . x)E[X] . x\\
-    &= E[X].x (\hat{R} - ((x . E[X] - \tau)/x . x) \\
-\end{aligned}
-$$
-
-### Two Assets
 
 ## Notes
 

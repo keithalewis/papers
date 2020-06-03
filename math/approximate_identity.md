@@ -1,10 +1,12 @@
 # Approximate Identity
 
+_Approximate identities_ provide a rigorous approach to [delta
+functions](delta_function.md).
+
 An _approximate identity_ is a sequence of functions,
 $(k_n)_{n\in\mathbf{N}}$ such that $\lim_{n\to\infty}\int_\mathbf{R}
 f(x)k_n(x)\,dx = f(0)$ for any integrable function $f$ that is
-continuous at $0$. They provide a rigorous approach to [delta
-functions](delta_function.md).
+continuous at $0$.
 
 Note $\lim_n \int f(x)k_n(x - a) = f(a)$ if $f$ is continuous at $a$.
 
