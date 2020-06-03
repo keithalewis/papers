@@ -1,10 +1,8 @@
 # Transaction
 
-A _transaction_ is an exchange at some _time_ between a _buyer_ and a 
-_seller_ of _amounts_ of _instruments_ - $\xi = (t;a,i,c;a',i',c')$.
+A _transaction_ is a pair of entries for a buyer and a seller.
+The transaction _&xi; = (t,a,i,c;t',a',i',c')_ indicates the buyer, _c_, decided
+at $t$ to pay amount _a_ of instrument _i_ to the seller _c'_ and receive
+amount _a'_ of instrument _i'_ at time _t'_.
 
-Let _&xi; = (t; a,ic; a',i',c')_
-
-At time $t$ the buyer, $c$, receives amount $a$ of instrument $i$
-by giving the seller, $c'$, amount $a'$ of instrument $i'$.
 

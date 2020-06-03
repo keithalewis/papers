@@ -144,8 +144,8 @@ $$
 \end{aligned}
 $$
 so $\bar{\xi} = (\tau\Sigma)^{-1}(E[X] - \lambda x)$
-and since $x'\bar{\xi} = 1$,
-$1 = x'(\tau\Sigma)^{-1}(E[X] - \lambda x)$ and
+and since $1 = x'\bar{\xi}
+= x'(\tau\Sigma)^{-1}(E[X] - \lambda x)$ we have
 $\lambda = (x'(\tau\Sigma)^{-1}E[X] - 1)/x'(\tau\Sigma)^{-1}x
 = (x'\Sigma^{-1}E[X] - \tau)/x'\Sigma^{-1}x$.
 
