@@ -166,7 +166,7 @@ $$
 
 We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$ and $\xi'E[X] = \rho$.
 Since $U_\tau(xi) = \rho - \frac{\tau}{2}\xi'\Sigma\xi$ this is equivalent to
-minimizing $\frac{1}{2}\xi'\Sigma\xi$.
+minimizing $\frac{1}{2}\xi'\Sigma\xi$. Note that this does not depend on $\tau$.
 
 Using Lagrangian multipliers let $\Phi(\xi,\lambda,\mu)
 = \frac{1}{2}\xi'\Sigma\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)$.
@@ -178,7 +178,44 @@ $$
 	D_\mu\Phi &= \xi'E[X] - \rho = 0\\
 \end{aligned}
 $$
-so $\bar{\xi} = \Sigma^{-1}(\lambda x + \mu E[X])$.
+so $\bar{\xi} = \Sigma^{-1}(\lambda x + \mu E[X])$ and every optimal
+solution belongs to the (at most) two-dimensional subspace determined by
+$y = \Sigma^{-1}x$ and $Y = \Sigma^{-1}E[X]$.
+
+Using the constraints
+$$
+\begin{aligned}
+    1 &= \lambda y'x + \mu Y'x\\
+    \rho &= \lambda y'E[X] + \mu Y'E[X]\\
+\end{aligned}
+$$
+$$
+    \begin{bmatrix}
+        1 \\ \rho
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    y'x & Y'x\\
+    y'E[X] & Y'E[X]\\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \lambda \\ \mu
+    \end{bmatrix}
+$$
+$$
+    \begin{bmatrix}
+        \lambda \\ \mu
+    \end{bmatrix}
+    =
+    \frac{1}{y'x Y'E[X] - (Y'x)^2}
+    \begin{bmatrix}
+    Y'E[X] & -Y'x\\
+    -Y'x & y'x\\
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\ \rho
+    \end{bmatrix}
+$$
 
 
 ### Two Assets
