@@ -148,3 +148,13 @@ P => Q, P | Q
 Hilbert axioms.
 
 Tableau method. (Raymond Smulyan).
+
+Week 1: Logic
+Well Formed Formulas, Truth Tables, Proofs, Tableau Method.
+
+Week 2: Lambda Calculus
+Definition, Examples, Combinators, Computer use.
+
+Week 5: Application
+Artificial Intelligence, Playing games, Machine Learning, Automated Reasoning
+
