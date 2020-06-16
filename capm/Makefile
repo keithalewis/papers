@@ -15,7 +15,7 @@ FLAGS += -H header.html
 #FLAGS += -A footer.html
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
 
-$(HTML): %.html: %.md
+$(HTML): %.html: %.md capm.css
 	pandoc -t html5 -s --css capm.css  --katex=$(KATEX) $< -o $@
 
 $(PDF): %.pdf: %.md

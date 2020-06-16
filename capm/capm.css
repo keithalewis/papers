@@ -6,20 +6,7 @@ body {
 	font-family: "Lucida Bright", "Segoe UI", Georgia, Cambria, 'Vesper Libre', serif;
 	font-size: large;
 	background: #F0F0F0;
-	background: linear-gradient(to right, #FFF, #F0F0F0);
-	color: #565656;
-}
-h1 {
-	color: #062F4F;
-}
-h2 {
-	color: #264F6F;
-}
-h3 {
-	color: #444;
-}
-h4 {
-	color: #222;
+	color: #262626;
 }
 .katex {
 	font-size: 100% !important;
