@@ -3,10 +3,11 @@ html {
 	padding: 1em;
 }
 body {
-	font-family: "Lucida Bright", "Segoe UI", Georgia, Cambria, 'Vesper Libre', serif;
+	font-family: Cambria, "Lucida Bright", "Segoe UI", Georgia, Cambria, 'Vesper Libre', serif;
 	font-size: large;
 	background: #F0F0F0;
-	color: #262626;
+	/*background: linear-gradient(to right, #FFF, #F0F0F0);*/
+	color: #565656;
 }
 .katex {
 	font-size: 100% !important;
