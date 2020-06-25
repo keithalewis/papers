@@ -6,11 +6,11 @@ DOCX = $(MKDN:.md=.docx)
 #FLAGS = -s # smart quotes
 #FLAGS += --katex
 FLAGS += -t html5
-FLAGS += --mathjax
+#FLAGS += --mathjax
 FLAGS += --css ftap.css
 #FLAGS += --section-divs
 FLAGS += -H header.html
-#FLAGS += -H katex.html
+FLAGS += -H katex.html
 #FLAGS += -A footer.html
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
 

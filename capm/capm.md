@@ -49,6 +49,13 @@ A collection of trades is _closed out_ if $\sum_j\Gamma_j = 0$.
 There is a _model arbitrage_ if there is a closed out strategy with
 $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > t_0$.
 
+We assume all functions are bounded and write $B(\Omega)$ for
+the Banach space of bounded functions on $\Omega$ under the
+norm topology $\|f\| = \sup_{\omega\in\Omega} |f(\omega)|$.
+
+The dual of $B(\Omega)$ is the space of finitely additive
+measures on $\Omega$, $ba(\Omega)$.
+
 There is no model arbitrage if and only if there exist positive
 measures $\Pi_t$ on $\mathcal{A}_t$ with
 $X_t\Pi_t = ((C_u + X_u)\Pi_u)|_{\mathcal{A}_t}$ for sufficiently small
@@ -69,23 +76,26 @@ and the final amount is $A_1
 = \Delta_1\cdot C_1 - \Gamma_1\cdot X_1
 = \Gamma\cdot (C_1 + X_1)$.
 
-Let $x = X_0$ and $X = C_1 + X_1$ so $A_0 = -\Gamma\cdot x$
-and $A_1 = \Gamma\cdot X$.
+Let $x = X_0$, $X = C_1 + X_1$, and $\xi = \Gamma$
+so $A_0 = -\xi\cdot x$ and $A_1 = \xi\cdot X$.
+
+A _portfolio_, $\xi\in\mathbf{R}^I$, is the number of shares purchased
+at the beginning of the period.  The _realized return_ over the
+period is $R(\xi) = \xi\cdot X/\xi\cdot x$ when $\xi\cdot x \not= 0$.
 
 There is no arbitrage if and only if there is a positive measure,
 $\Pi$, on $\Omega$ with $x = \int_\Omega X\,d\Pi$.
 
-Let $Q = R\Pi$ where $1/R = \|\Pi\|$. Note $Q$ is a positive measure with mass 1
-and $x = E^Q[X]/R$.
-
-A _portfolio_, $\xi\in\mathbf{R}^I$, is the number of shares purchased at
-the beginning of the period.  The _realized return_ over the period is
-$R(\xi) = \xi\cdot X/\xi\cdot x$ when $\xi\cdot x \not= 0$.  Note $E^Q[R(\xi)] = R$
-for all $\xi$.
+Let $Q = R\Pi$ where $1/R = \|\Pi\|$. Note $Q$ is a positive measure
+with mass 1, $x = E^Q[X]/R$ and $E^Q[R(\xi)] = R$ for all $\xi$.
 
 A _zero coupon bond_, $\zeta\in\mathbf{R}^I$, has $\zeta\cdot X = 1$ on
 $\Omega$. Its initial value is $\zeta\cdot x = \int_\Omega \zeta\cdot
 X\,d\Pi = \|\Pi\| = 1/R$. Note $R = R(\zeta)$.
+
+
+Define $A\colon\mathbf{R}^I\to\mathcal{R}\times B(\Omega)$.
+
 
 ## CAPM
 
