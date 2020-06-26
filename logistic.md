@@ -1,4 +1,10 @@
-# Logistic Distribution
+---
+title: Logistic Distribution
+author: Keith A. Lewis
+institution: KALX, LLC
+email: kal@kalx.net
+classoption: fleqn
+...
 
 The cumulative logistic distribution is $F(x) = 1/(1 + e^{-x})$,
 $x\in\mathbf{R}$.
