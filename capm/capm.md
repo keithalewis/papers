@@ -45,6 +45,8 @@ Define $A_t = \Delta_t\cdot C_t - \Gamma_t\cdot X_t$ to be the
 _amounts_ associated with trading $(\Gamma_t)_{t\in T}$.
 
 A collection of trades is _closed out_ if $\sum_j\Gamma_j = 0$.
+Note that if a strategy is closed out at time $t$ then
+the value $V_u = 0$ for $u \ge t$.
 
 There is a _model arbitrage_ if there is a closed out strategy with
 $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > t_0$.
@@ -52,9 +54,11 @@ $A_{\tau_0} > 0$ and $A_t \ge 0$ for $t > t_0$.
 We assume all functions are bounded and write $B(\Omega)$ for
 the Banach space of bounded functions on $\Omega$ under the
 norm topology $\|f\| = \sup_{\omega\in\Omega} |f(\omega)|$.
+We write $B(\mathcal{A})$ for the subspace of functions that
+are constant on the atoms of $\mathcal{A}$.
 
-The dual of $B(\Omega)$ is the space of finitely additive
-measures on $\Omega$, $ba(\Omega)$.
+The dual of $B(\mathcal{A})$ is the space of finitely additive
+measures on $\mathcal{A}$, $ba(\mathcal{A})$.
 
 There is no model arbitrage if and only if there exist positive
 measures $\Pi_t$ on $\mathcal{A}_t$ with
@@ -69,15 +73,12 @@ In this case $T = \{t_0,t_1\}$ and $\Gamma_{t_0} = \Gamma_0 = \Gamma$,
 $\Gamma_{t_1} = \Gamma_1 = -\Gamma$ for closed out strategies.
 We have $\Delta_0 = 0$ and $\Delta_1 = \Gamma_0 = \Gamma$.
 
-Using the definitions above, the initial amount is $A_0
-= \Delta_0\cdot C_0 - \Gamma_0\cdot X_0
-= - \Gamma\cdot X_0$
-and the final amount is $A_1
-= \Delta_1\cdot C_1 - \Gamma_1\cdot X_1
-= \Gamma\cdot (C_1 + X_1)$.
+Let $x = X_0$, $X = C_1 + X_1$, and $\xi = \Gamma$.
 
-Let $x = X_0$, $X = C_1 + X_1$, and $\xi = \Gamma$
-so $A_0 = -\xi\cdot x$ and $A_1 = \xi\cdot X$.
+Using the definitions above, the initial amount is
+$A_0 = \Delta_0\cdot C_0 - \Gamma_0\cdot X_0 = - \Gamma\cdot X_0 = -\xi\cdot x$
+and the final amount is
+$A_1 = \Delta_1\cdot C_1 - \Gamma_1\cdot X_1 = \Gamma\cdot (C_1 + X_1) = \xi\cdot X$.
 
 A _portfolio_, $\xi\in\mathbf{R}^I$, is the number of shares purchased
 at the beginning of the period.  The _realized return_ over the
