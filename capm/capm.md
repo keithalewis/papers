@@ -80,7 +80,7 @@ $A_0 = \Delta_0\cdot C_0 - \Gamma_0\cdot X_0 = - \Gamma\cdot X_0 = -\xi\cdot x$
 and the final amount is
 $A_1 = \Delta_1\cdot C_1 - \Gamma_1\cdot X_1 = \Gamma\cdot (C_1 + X_1) = \xi\cdot X$.
 
-A _portfolio_, $\xi\in\mathbf{R}^I$, is the number of shares purchased
+A _portfolio_ $\xi\in\mathbf{R}^I$ is the number of shares purchased
 at the beginning of the period.  The _realized return_ over the
 period is $R(\xi) = \xi\cdot X/\xi\cdot x$ when $\xi\cdot x \not= 0$.
 
