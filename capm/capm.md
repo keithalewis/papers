@@ -107,7 +107,7 @@ a probability measure, $P$, on $\Omega$ representing the
 The CAPM also posits a utility function of the form 
 $$
 U_\tau(\xi) = E[\xi\cdot X] - \frac{\tau}{2} \mathrm{Var}(\xi\cdot X)
-    = \xi' E[X] - \frac{\tau}{2}\xi'V\xi
+    = \xi' E[X] - \frac{\tau}{2}\xi' V\xi
 $$
 where $\tau$ a risk aversion parameter and
 $V = \mathrm{Var}(X) = E[XX'] - E[X]E[X']$ is positive semi-definite.
@@ -116,6 +116,7 @@ Note if $\tau = 0$ then the utility is not bounded.
 
 Note if $\zeta$ is a zero coupon bond then $V\zeta = 0$ so
 $V$ is not invertible.
+However $U_\tau(\zeta) = 1$ so the utility not bounded.
 
 We assume $\tau \not= 0$ and $V$ is invertible.
 
@@ -137,19 +138,22 @@ $$
 \xi^* = (\tau V)^{-1}E[X].
 $$
 
-The realized return is $R^* = R(\xi^*) = E[X'] V^{-1}E[X]/x' V^{-1}E[X]$
+The expected realized return is
+$$
+R^* = R(\xi^*) = E[X'] V^{-1}E[X]/E[X'] V^{-1}x
+$$
 and does not depend on $\tau$.
 
-Note if $P$ is a deflator, so $x = E[X]/R$, then $R^* = R$ as noted above.
-
+If $P$ is a deflator, so $Rx = E[X]$, then $R^* = R$ as noted above.
 
 ### Fixed Capital
 
 We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$.
-Using a Lagrangian multiplier let $\Phi(\xi,\lambda) = U_\tau(\xi) - \lambda(\xi'x - 1)$.
+Using a Lagrangian multiplier let $\Phi(\xi,\alpha) = U_\tau(\xi) - \alpha(\xi'x - 1)$.
 We have
 $$
 \begin{aligned}
+<<<<<<< HEAD
 	D_\xi\Phi &= E[X] - \tau V\xi - \lambda x = 0\\
 	D_\lambda\Phi &= \xi'x - 1 = 0\\
 \end{aligned}
@@ -162,72 +166,135 @@ $\lambda = (x'(\tau V)^{-1}E[X] - 1)/x'(\tau V)^{-1}x
 
 Define an inner product on $\mathbf{R}^I$ by $x.y = x' V^{-1}y$ so
 $\lambda = (x . E[X] - \tau)/x . x$ and $\hat{R} = E[X] . E[X]/x . E[X]$.
+=======
+	D_\xi\Phi &= E[X] - \tau V\xi - \alpha x = 0\\
+	D_\alpha\Phi &= \xi'x - 1 = 0\\
+\end{aligned}
+$$
+This can be written
+$$
+\begin{bmatrix}
+\tau V & x \\
+x'     & 0 \\
+\end{bmatrix}
+\begin{bmatrix}
+\xi \\
+\alpha \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+E[X] \\
+1 \\
+\end{bmatrix}
+$$
+The matrix is not invertible however using the block inversion formula
+$$
+\begin{bmatrix}
+A & B\\
+C & D\\
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1} & -\Delta^{-1}BD^{-1}\\
+-D^{-1}C\Delta^{-1} & D^{-1} + D^{-1}C\Delta^{-1}BD^{-1}\\
+\end{bmatrix}
+$$
+where $\Delta = A - BD^{-1}C$ we have
+$$
+\begin{bmatrix}
+\tau V & x \\
+x'     & \epsilon \\
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1} & -\Delta^{-1}x/\epsilon \\
+-x'\Delta^{-1}/\epsilon & 1/\epsilon + x'\Delta^{-1}x/\epsilon^2 \\
+\end{bmatrix}
+$$
+where $\Delta = \tau V - xx'/\epsilon$. Hence
+$$
+\begin{bmatrix}
+\xi \\
+\alpha \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\Delta^{-1}E[X] - \Delta^{-1}x/\epsilon \\
+-x'\Delta^{-1}E[X]/\epsilon + 1/\epsilon + x'\Delta^{-1}x/\epsilon^2 \\
+\end{bmatrix}
+$$
 
-Since $x'\bar{\xi} = 1$ the realized return is
+By the  Sherman-Morrison formula, $(A + uv')^{-1}
+= A^{-1} - A^{-1}uv'A^{-1}/(1 + v'A^{-1}u)$, we have
+$$
+\Delta^{-1} = (\tau V)^{-1} + (\tau V)^{-1}x x'(\tau V)^{-1}/(\epsilon - x'(\tau V)^{-1}x)
+$$
+and
 $$
 \begin{aligned}
-\bar{R} &= E[X']\xi\\
-    &= E[X'] V^{-1}(E[X] - \lambda x)\\
-    &= E[X].E[X] - ((x . E[X] - \tau)/x . x)E[X] . x\\
-    &= E[X].x (\hat{R} - ((x . E[X] - \tau)/x . x) \\
+\xi &= \Delta^{-1}E[X] - \Delta^{-1}x/\epsilon\\
+	&= (\tau V)^{-1}E[X] + (\tau V)^{-1}x x'(\tau V)^{-1}E[X]/(1 - x'(\tau V)^{-1}x)
+	   - (\tau V)^{-1}x\epsilon - (\tau V)^{-1}x x'(\tau V)^{-1}x/\epsilon(1 - x'(\tau V)^{-1}x)
 \end{aligned}
 $$
 
 ### Fixed Capital and Return
 
-We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$ and $\xi'E[X] = \rho$.
-Since $U_\tau(xi) = \rho - \frac{\tau}{2}\xi' V\xi$ this is equivalent to
-minimizing $\frac{1}{2}\xi' V\xi$. Note that this does not depend on $\tau$.
-
-Using Lagrangian multipliers let $\Phi(\xi,\lambda,\mu)
-= \frac{1}{2}\xi' V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)$.
+We wish to maximize $U_\tau(\xi)$ subject to $\xi' x = 1$ and $\xi'E[X] = \mu$.
+Using Lagrangian multipliers let $\Phi(\xi,\alpha,\beta)
+= \xi'E[X] - \frac{1}{2}\xi' V\xi - \alpha(\xi'x - 1) - \beta(\xi'E[X] - \mu)$.
 We have
 $$
 \begin{aligned}
-	D_\xi\Phi &=  V\xi - \lambda x - \mu E[X] = 0\\
-	D_\lambda\Phi &= \xi'x - 1 = 0\\
-	D_\mu\Phi &= \xi'E[X] - \rho = 0\\
+	D_\xi\Phi &= E[X] - \tau V\xi - \alpha x - \beta E[X] = 0\\
+	D_\alpha\Phi &= \xi'x - 1 = 0\\
+	D_\beta\Phi &= \xi'E[X] - \mu = 0\\
 \end{aligned}
 $$
-so $\bar{\xi} =  V^{-1}(\lambda x + \mu E[X])$ and every optimal
+so $\hat{\xi} = (\tau V)^{-1}((1 - \beta)E[x] - \alpha x)$.
+
+Note every optimal
 solution belongs to the (at most) two-dimensional subspace determined by
 $y =  V^{-1}x$ and $Y =  V^{-1}E[X]$.
 
-Using the constraints
+This can be written as
+
 $$
-\begin{aligned}
-    1 &= \lambda y'x + \mu Y'x\\
-    \rho &= \lambda y'E[X] + \mu Y'E[X]\\
-\end{aligned}
-$$
-$$
-    \begin{bmatrix}
-        1 \\ \rho
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-    y'x & Y'x\\
-    y'E[X] & Y'E[X]\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        \lambda \\ \mu
-    \end{bmatrix}
-$$
-$$
-    \begin{bmatrix}
-        \lambda \\ \mu
-    \end{bmatrix}
-    =
-    \frac{1}{y'x Y'E[X] - (Y'x)^2}
-    \begin{bmatrix}
-    Y'E[X] & -Y'x\\
-    -Y'x & y'x\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        1 \\ \rho
-    \end{bmatrix}
+\begin{bmatrix}
+\tau V & x & E[X]\\
+x'     & 0 & 0\\
+E[X']  & 0 & 0\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\xi\\
+1\\
+\mu\\
+\end{bmatrix}
 $$
 
+The matrix is not invertable but
+$$
+\begin{bmatrix}
+\tau V & x & E[X]\\
+x'     & \epsilon & 0\\
+E[X']  & 0 & \epsilon\\
+\end{bmatrix}
+$$
+is.
+$$
+\begin{bmatrix}
+\tau V & x & E[X]\\
+x'     & \epsilon & 0\\
+E[X']  & 0 & \epsilon\\
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1} & - \Delta^{-1}[x E[X]]\Delta^{-1}\\
+-
+\end{bmatrix}
+$$
+where ...
 
 ### Two Assets
 
