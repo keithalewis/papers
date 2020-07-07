@@ -29,12 +29,9 @@ $$
 	R(\xi) - R(\zeta) = \beta(R(\nu) - R(\zeta))
 $$
 as random variables for any optimal $\zeta$ and $\nu$ when $R(\zeta)$ and $R(\nu)$ are
-not co-linear.
+not co-linear. In this case $\beta =
+\mathrm{Cov}(R(\xi) - R(\zeta),R(\nu) - R(\zeta))/\mathrm{Var}(R(\nu) - R(\zeta))$
 
-
-## Historical Review
-
-CAPM originated from Tobin, Markowitz, Sharpe, ...
 
 ## One-Period Model
 
@@ -43,7 +40,7 @@ the set of available market instruments. The _one-period model_
 specifies $x\in\mathbf{R}^I$ as the initial instrument prices
 and $X\colon\Omega\to\mathbf{R}^I$ as the final instrument
 prices depending on the outcome. We assume, as customary,
-that there are no dividend cash flows, and prices are perfectly
+that there are no dividend cash flows and prices are perfectly
 liquid.
 
 A _portfolio_ $\xi\in\mathbf{R}^I$ represents the number of
@@ -70,7 +67,7 @@ where $V = \mathrm{Var}(X) = E[XX'] - E[X]E[X']$. Every extremum satisfies
 $$
 \begin{aligned}
 	D_\xi\Phi &= E[X] - \tau V\xi - \lambda x = 0\\
-	D_\alpha\Phi &= \xi'x - 1 = 0\\
+	D_\lambda\Phi &= \xi'x - 1 = 0\\
 \end{aligned}
 $$
 so $\xi = (\tau V)^{-1}(E[X] - \lambda x)$.
@@ -89,10 +86,64 @@ where $R_i = R(\xi_i)$. If $\mathrm{Var}(R_0) = 0$ then
 $\beta = \mathrm{Cov}(R(\xi),R_1)/\mathrm{Var}(R_1)$
 and we have a stronger form of the classic CAPM formula
 that holds for any distribution of $X$.
+In general, $\beta = \mathrm{Cov}(R(\xi) - R_0,R_1 - R_0)/\mathrm{Var}(R_1 - R_0)$
 
 Unfortunately, if $V$ is invertible then there is no $\xi$ with $\mathrm{Var}(\xi'X) = 0$.
 If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 = E[XX'\xi] - E[X] E[X'\xi] = E[Xc] - E[X]c = 0$. We rectify this in the next section.
+
+A portfolio $\zeta\in\mathbf{R}^I$ with $\zeta'X = 1$ is called a
+_zero coupon bond_. 
+
+### Singular Variance
+
+The Lagrangian conditions can be written
+
+$$
+\begin{bmatrix}
+\tau V & x \\
+x'     & 0 \\
+\end{bmatrix}
+\begin{bmatrix}
+\xi \\
+\lambda \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+E[X] \\
+1 \\
+\end{bmatrix}
+$$
+Although the matix might not be invertible we can use
+the block matrix inversion formula
+$$
+\begin{bmatrix}
+A & B\\
+C & D\\
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1} & -\Delta^{-1}BD^{-1}\\
+-D^{-1}C\Delta^{-1} & D^{-1} + D^{-1}C\Delta^{-1}BD^{-1}\\
+\end{bmatrix}
+$$
+where $\Delta = A - BD^{-1}C$ to obtain
+$$
+\begin{bmatrix}
+\tau V + \epsilon I & x \\
+x'     & \epsilon \\
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1} & -\Delta^{-1}x/\epsilon \\
+-x'\Delta^{-1}/\epsilon & 1/\epsilon + x'\Delta^{-1}x/\epsilon^2 \\
+\end{bmatrix}
+$$
+where $\Delta = \tau V + \epsilon I - xx'/\epsilon$.
+This gives
+$$
+    \xi = \Delta^{-1}E[X] - \Delta^{-1}x/\epsilon
+$$
 
 <!--
 
@@ -422,14 +473,16 @@ having $n$ rows and $m$ columns then $\mathbf{R}^n = \mathcal{M}^{n\times 1}$
 and $\mathbf{R}_m = \mathcal{M}^{1\times m}$.
 -->
 
-## Model Arbitrage
+## Appendix
+
+### Model Arbitrage
 
 If there exists a portfolio $\xi$ with $\xi'x < 0$ and $\xi'X \ge0$ on $\Omega$ then
 arbitrage exists. You make money on the initial position and never lose money
-no matter what the outcome.
+on any outcome.
 
 The Fundamental Theorem of Asset Pricing
-says there is no _model arbitrage_ if and only if there
+states there is no _model arbitrage_ if and only if there
 exists a positive measure $\Pi$ on $\Omega$ with
 $x = \int_\Omega X(\omega)\,d\Pi(\omega)$.
 We assume $X$ is bounded and $\Pi$ is finitely additive.
@@ -445,11 +498,13 @@ _Proof._ There exists $x^*\in C$ with $||x^* - x|| \le ||y - x||$ for all $y\in 
 Let $\xi = x^* - x$. For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so
 $||\xi|| \le ||ty + \xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.
 Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
+Taking $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ so by similar
+reasoning $\xi\cdot x^*\le 0$ and $\xi\cdot x^* = 0$.  Now $0 < ||\xi||^2 =
+\xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$. ■
 
-We also have $||x^* - x|| \le ||tx^* - x||$ for $t\ge0$.
-Simplifying gives $f(t) = (t^2 - 1)||x^*||^2 - 2(t - 1){x^*}\cdot x\ge 0$.
-Since $f(t)$ is quadratic and vanishes at $t = 1$ we have
-$0 = f'(1) = 2||x^*||^2 - 2x^*\cdot x = 2\xi\cdot x^*$.
-Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ so $\xi\cdot x < 0$. ■
+Since the set of non-negative finitely additive measures is a closed
+cone and $X\mapsto \int_\Omega X\,d\Pi$ is linear and continuous,
+$C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ is also a closed cone.
+The contrapositive follows from the lemma.
 
-Letting $C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ proves the contrapositive.
+The proof also shows how to find an arbitrage when one exists.
