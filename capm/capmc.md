@@ -96,36 +96,6 @@ If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 
 <!--
 
-## Model Arbitrage
-
-If there exists a portfolio $\xi$ with $\xi'x < 0$ and $\xi'X \ge0$ on $\Omega$ then
-arbitrage exists. You make money on the initial position and never lose money
-no matter what the outcome.
-
-The Fundamental Theorem of Asset Pricing
-says there is no _model arbitrage_ if and only if there
-exists a positive measure $\Pi$ on $\Omega$ with
-$x = \int_\Omega X(\omega)\,d\Pi(\omega)$.
-
-If such a measure exists then $\xi'x = \int \xi'X\,d\Pi \ge0$ so arbitrage
-cannot occur. The contrapositive is less trivial.
-
-**Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
-$\mathbf{R}^n$ with $x\not\in C$ then there exists $\xi\in\mathbf{R}^n$
-with $\xi'x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
-
-_Proof._ There exists $x^*\in C$ with $||x^* - x|| \le ||y - x||$ for all $y\in C$.
-Let $\xi = x^* - x$. For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so
-$||\xi|| \le ||ty + \xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.
-Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
-
-We also have $||x^* - x|| \le ||tx^* - x||$ for $t\ge0$.
-Simplifying gives $f(t) = (t^2 - 1)||x^*||^2 - 2(t - 1){x^*}\cdot x\ge 0$.
-Since $f(t)$ is quadratic and vanishes at $t = 1$ we have
-$0 = f'(1) = 2||x^*||^2 - 2x^*\cdot x = 2\xi\cdot x^*$.
-Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ so $\xi\cdot x < 0$. ■
-
-Letting $C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ proves the other direction.
 
 A _zero coupon bond_, $\zeta\in\mathbf{R}^I$, has $\zeta\cdot X = 1$ on
 $\Omega$. Its initial value is $\zeta\cdot x = \int_\Omega \zeta\cdot
@@ -451,3 +421,35 @@ If $\mathcal{M}^{n\times m}$ is the set of matrices of real numbers
 having $n$ rows and $m$ columns then $\mathbf{R}^n = \mathcal{M}^{n\times 1}$
 and $\mathbf{R}_m = \mathcal{M}^{1\times m}$.
 -->
+
+## Model Arbitrage
+
+If there exists a portfolio $\xi$ with $\xi'x < 0$ and $\xi'X \ge0$ on $\Omega$ then
+arbitrage exists. You make money on the initial position and never lose money
+no matter what the outcome.
+
+The Fundamental Theorem of Asset Pricing
+says there is no _model arbitrage_ if and only if there
+exists a positive measure $\Pi$ on $\Omega$ with
+$x = \int_\Omega X(\omega)\,d\Pi(\omega)$.
+We assume $X$ is bounded and $\Pi$ is finitely additive.
+
+If such a measure exists then $\xi'x = \int \xi'X\,d\Pi \ge0$ so arbitrage
+cannot occur. The other direction is less trivial.
+
+**Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
+$\mathbf{R}^n$ with $x\not\in C$ then there exists $\xi\in\mathbf{R}^n$
+with $\xi'x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
+
+_Proof._ There exists $x^*\in C$ with $||x^* - x|| \le ||y - x||$ for all $y\in C$.
+Let $\xi = x^* - x$. For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so
+$||\xi|| \le ||ty + \xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.
+Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
+
+We also have $||x^* - x|| \le ||tx^* - x||$ for $t\ge0$.
+Simplifying gives $f(t) = (t^2 - 1)||x^*||^2 - 2(t - 1){x^*}\cdot x\ge 0$.
+Since $f(t)$ is quadratic and vanishes at $t = 1$ we have
+$0 = f'(1) = 2||x^*||^2 - 2x^*\cdot x = 2\xi\cdot x^*$.
+Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ so $\xi\cdot x < 0$. ■
+
+Letting $C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ proves the contrapositive.
