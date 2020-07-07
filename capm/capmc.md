@@ -114,7 +114,7 @@ E[X] \\
 1 \\
 \end{bmatrix}
 $$
-Although the matix might not be invertible we can use
+The matix is not invertible but a small perturbation is and we can use
 the block matrix inversion formula
 $$
 \begin{bmatrix}
@@ -140,9 +140,27 @@ x'     & \epsilon \\
 \end{bmatrix}
 $$
 where $\Delta = \tau V + \epsilon I - xx'/\epsilon$.
+By the  Sherman-Morrison formula, $(A + uv')^{-1}
+= A^{-1} - A^{-1}uv'A^{-1}/(1 + v'A^{-1}u)$, we have
+$$
+\Delta^{-1} = A^{-1} + A^{-1}x x'A^{-1}/(\epsilon - x'A^{-1}x)
+$$
+where $A = \tau V + \epsilon I$.
 This gives
 $$
-    \xi = \Delta^{-1}E[X] - \Delta^{-1}x/\epsilon
+\begin{aligned}
+	\xi_\epsilon &= \Delta^{-1}E[X] - \Delta^{-1}x/\epsilon \\
+	&= A^{-1}E[X] + A^{-1}x x'A^{-1}E[X]/(\epsilon - x'A^{-1}x)
+	   - A^{-1}x/\epsilon - A^{-1}x x'A^{-1}x/\epsilon(\epsilon - x'A^{-1}x) \\
+	&= A^{-1}E[X] + \frac{1}{\epsilon(\epsilon - x'A^{-1}x)}
+	   \bigl(\epsilon A^{-1}x x'A^{-1}E[X]
+	   - (\epsilon - x'A^{-1}x)A^{-1}x - A^{-1}x x'A^{-1}x\bigr) \\
+	&= A^{-1}E[X] + \frac{1}{\epsilon(\epsilon - x'A^{-1}x)}
+	   \bigl(\epsilon x'A^{-1}E[X]
+	   - (\epsilon - x'A^{-1}x) - x'A^{-1}x\bigr)A^{-1}x \\
+	&= A^{-1}E[X] + \frac{1}{\epsilon - x'A^{-1}x}
+	   \bigl(x'A^{-1}E[X] - 1\bigr)A^{-1}x \\
+\end{aligned}
 $$
 
 <!--
@@ -498,9 +516,9 @@ _Proof._ There exists $x^*\in C$ with $||x^* - x|| \le ||y - x||$ for all $y\in 
 Let $\xi = x^* - x$. For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so
 $||\xi|| \le ||ty + \xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.
 Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
-Taking $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ so by similar
-reasoning $\xi\cdot x^*\le 0$ and $\xi\cdot x^* = 0$.  Now $0 < ||\xi||^2 =
-\xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$. ■
+Taking $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ and by similar
+reasoning with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
+Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$. ■
 
 Since the set of non-negative finitely additive measures is a closed
 cone and $X\mapsto \int_\Omega X\,d\Pi$ is linear and continuous,

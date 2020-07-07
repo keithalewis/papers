@@ -25,4 +25,4 @@ $(DOCX): %.docx: %.md
 	pandoc -H header.tex $< -o $@
 
 rsync:
-	rcp capm.html capm.css kal@web626.webfaction.com:webapps/kalx/capm
+	rcp capmc.html capm.html capm.css kal@web626.webfaction.com:webapps/kalx/capm
