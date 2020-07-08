@@ -96,8 +96,9 @@ and we have a stronger form of the classic CAPM formula.
 It holds for returns, not just their expected value, and
 it holds for any distribution of market prices.
 
-If $x$ and $E[X]$ are co-linear then $Rx = E[X]$ for some $R$ and the optimal subspace
-is one dimensional. We have $\xi = (\tau V)^{-1}((1 - \mu)R + \lambda)x$.
+If $x$ and $E[X]$ are co-linear then $Rx = E[X]$ for some $R$ and
+the only optimal portfolio is $\xi = V^{-1}x/x'V^{-1}x$ with expected return $R$
+and utility $U_\tau = R - \tau/2x'V^{-1}x$.
 
 Unfortunately, if $V$ is invertible then there is no $\xi$ with $\mathrm{Var}(\xi'X) = 0$.
 If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
