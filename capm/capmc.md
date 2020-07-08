@@ -62,7 +62,7 @@ Note $U_\tau(\xi) = U_\tau(a\xi)$
 for any $a\not=0$ since $R(\xi) = R(a\xi)$.
 
 To find a portfolio with return $\rho$ having maximum utility 
-we use Lagrangian multipliers and solve
+we use Lagrangian multipliers to solve
 $$
 \max_\xi E[\xi'X] - \frac{\tau}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)
 $$
@@ -70,8 +70,8 @@ where $V = \mathrm{Var}(X) = E[XX'] - E[X]E[X']$. Every extremum satisfies
 $$
 \begin{aligned}
 	D_\xi\Phi &= E[X] - \tau V\xi - \lambda x - \mu E[X] = 0\\
-	D_\lambda\Phi &= \xi'x - 1 = 0\\
-	D_\mu\Phi = \xi'E[X] - \rho\\
+	D_\lambda\Phi &= \xi'x - 1 = 0 \\
+	D_\mu\Phi &= \xi'E[X] - \rho = 0 \\
 \end{aligned}
 $$
 so $\xi = (\tau V)^{-1}((1 - \mu)E[X] - \lambda x)$.
@@ -79,7 +79,7 @@ If $\tau > 0$ and $V$ is invertible then there is a maximum.
 If $\xi'X = 0$ implies $\xi = 0$ then the maximum is unique.
 If not we can remove redundant market instruments to make it so.
 
-Note every optimal solution belongs to the (at most) two-dimensional
+Note that every optimal solution belongs to the (at most) two-dimensional
 subspace spanned by $V^{-1}x$ and $V^{-1}E[X]$.
 If $\xi_0$ and $\xi_1$ are any two independent optimal solutions
 then $\xi = \beta_0\xi_0 + \beta_1\xi_1$ for some constants $\beta_0$ and $\beta_1$.
@@ -89,21 +89,19 @@ $$
 $$
 where $R_i = R(\xi_i)$ and 
 $\beta = \mathrm{Cov}(R(\xi) - R_0,R_1 - R_0)/\mathrm{Var}(R_1 - R_0)$.
+
 If $\mathrm{Var}(R_0) = 0$ then
 $\beta = \mathrm{Cov}(R(\xi),R_1)/\mathrm{Var}(R_1)$
 and we have a stronger form of the classic CAPM formula.
 It holds for returns, not just their expected value, and
 it holds for any distribution of market prices.
 
+If $x$ and $E[X]$ are co-linear then $Rx = E[X]$ for some $R$ and the optimal subspace
+is one dimensional. We have $\xi = (\tau V)^{-1}((1 - \mu)R + \lambda)x$.
+
 Unfortunately, if $V$ is invertible then there is no $\xi$ with $\mathrm{Var}(\xi'X) = 0$.
 If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 = E[XX'\xi] - E[X] E[X'\xi] = E[Xc] - E[X]c = 0$. We rectify this in the next section.
-
-If $x$ and $E[X]$ are co-linear then $Rx = E[X]$ for some $R$ and the optimal subspace
-is one dimensional. We have $\lambda = R - \tau/x'V^{-1}x$
-and $\xi = V^{-1}x/x'V^{-1}x$. The optimal portfolio does not depend on the risk parameter
-in this case.
-
 
 ### Zero Coupon Bonds
 
@@ -523,9 +521,14 @@ and $\mathbf{R}_m = \mathcal{M}^{1\times m}$.
 
 ### Model Arbitrage
 
+A one-period model specifies initial prices $x\in\mathbf{R}^I$ and
+final prices $X\colon\Omega\to\mathbf{R}^I$ where $\Omega$ is the set
+of possible outcomes.
+
 If there exists a portfolio $\xi$ with $\xi'x < 0$ and $\xi'X \ge0$ on $\Omega$ then
 arbitrage exists. You make money on the initial position and never lose money
 on any outcome.
+This definition does not assume there is a probability measure on $\Omega$.
 
 The Fundamental Theorem of Asset Pricing
 states there is no _model arbitrage_ if and only if there
