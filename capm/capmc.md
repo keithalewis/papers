@@ -108,19 +108,13 @@ If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 
 A portfolio $\zeta\in\mathbf{R}^I$ with $\zeta'X = 1$ is called a
 _zero coupon bond_. It pays one unit on any outcome.
-Let $R = 1/\zeta'x = R(\zeta)$.
 
-A zero coupon bond maximizes utility for any risk aversion parameter
-$\tau$ and any probability measure $P$.
-Consider a small
-pertubation $\eta\in\mathbf{R}^I$ with $\eta'x = 0$.
-Recall $V\zeta = 0 = \zeta'V$ so
-$$
-\begin{aligned}
-U_\tau(R\zeta + \eta) &= E[(R\zeta + \eta)'X] - \frac{\tau}{2}(R\zeta + \eta)'V(R\zeta + \eta) \\
-	&= R + \eta'E[X] - \frac{\tau}{2}\eta'V\eta \\
-\end{aligned}
-$$
+Let $R = 1/\zeta'x = R(\zeta)$. The portfolio $\xi = R\zeta$ is optimal
+only if $Rx = E[X]$ and $\rho = R$ since
+$E[X] - V\xi - \lambda x - \mu E[X] = (R - \lambda - R\mu)x$,
+$\xi'x = R\zeta'x = 1$, $\rho = \xi'E[X] = R$.
+
+<!--
 
 ### Singular Variance
 
@@ -190,7 +184,6 @@ $$
 \end{aligned}
 $$
 
-<!--
 
 
 A _zero coupon bond_, $\zeta\in\mathbf{R}^I$, has $\zeta\cdot X = 1$ on
@@ -550,7 +543,7 @@ $||\xi|| \le ||ty + \xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.
 Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
 Taking $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ and by similar
 reasoning with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
-Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$. ■
+Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
 
 Since the set of non-negative finitely additive measures is a closed
 cone and $X\mapsto \int_\Omega X\,d\Pi$ is linear and continuous,
