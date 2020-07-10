@@ -9,14 +9,14 @@ fleqn: true
 # Capital Asset Pricing Model Revisited
 
 The Capital Asset Pricing Model is a prescriptive theory of portfolio
-investment. It is based on the notion that higher expected returns
+investment based on the notion that higher expected returns
 must be tempered by the risk involved. It uses portfolio variance as
 a measure of risk to specify a utility function. If the utility is a
 linear combination of these two factors then all optimal portfolios lie
 in a two dimensional space. The classical theory uses
 the _risk-free_ and _market_ portfolio as a basis.
 Denoting the _realized return_ of a portfolio $\xi$ by $R(\xi)$,
-an immediate consequence is the formula
+the classical CAPM formula is
 $$
 	E[R(\xi)] - R(\zeta) = \beta(E[R(\nu)] - R(\zeta))
 $$
@@ -30,7 +30,7 @@ $$
 $$
 as random variables for any optimal $\zeta$ and $\nu$ when $R(\zeta)$ and $R(\nu)$ are
 not co-linear. In this case $\beta =
-\mathrm{Cov}(R(\xi) - R(\zeta),R(\nu) - R(\zeta))/\mathrm{Var}(R(\nu) - R(\zeta))$
+\mathrm{Cov}(R(\xi) - R(\zeta),R(\nu) - R(\zeta))/\mathrm{Var}(R(\nu) - R(\zeta))$.
 
 
 ## One-Period Model
@@ -95,10 +95,7 @@ $\beta = \mathrm{Cov}(R(\xi),R_1)/\mathrm{Var}(R_1)$
 and we have a stronger form of the classic CAPM formula.
 It holds for returns, not just their expected value, and
 it holds for any distribution of market prices.
-
-If $x$ and $E[X]$ are co-linear then $Rx = E[X]$ for some $R$ and
-the only optimal portfolio is $\xi = V^{-1}x/x'V^{-1}x$ with expected return $R$
-and utility $U_\tau = R - \tau/2x'V^{-1}x$.
+The risk-free and market portfolio are not special.
 
 Unfortunately, if $V$ is invertible then there is no $\xi$ with $\mathrm{Var}(\xi'X) = 0$.
 If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
@@ -114,6 +111,10 @@ only if $Rx = E[X]$ and $\rho = R$ since
 $E[X] - V\xi - \lambda x - \mu E[X] = (R - \lambda - R\mu)x$,
 $\xi'x = R\zeta'x = 1$, $\rho = \xi'E[X] = R$.
 
+If $x$ and $E[X]$ are co-linear then $Rx = E[X]$ for some $R$ and
+the only optimal portfolio is $\xi = V^{-1}x/x'V^{-1}x$ with expected return $R$
+and utility $U_\tau = R - \tau/2x'V^{-1}x$.
+
 <!--
 
 ### Singular Variance
@@ -123,7 +124,6 @@ The Lagrangian conditions can be written
 $$
 \begin{bmatrix}
 \tau V & x \\
-x'     & 0 \\
 \end{bmatrix}
 \begin{bmatrix}
 \xi \\
@@ -551,3 +551,76 @@ $C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ is also a closed cone.
 The contrapositive follows from the lemma.
 
 The proof also shows how to find an arbitrage when one exists.
+
+### Solution of Maximum Utility
+
+We can write the system as
+$$
+\begin{bmatrix}
+\tau V &x &E[x]\\
+x' & 0 & 0\\
+E[X'] & 0 & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+\xi\\
+\lambda\\
+\mu\\
+\end{bmatrix}
+= 
+\begin{bmatrix}
+E[X]\\
+1\\
+\rho\\
+\end{bmatrix}
+$$
+The matix is not invertible but a small perturbation is and we can use
+the block matrix inversion formula
+$$
+\begin{bmatrix}
+A & B\\
+C & D\\
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1} & -\Delta^{-1}BD^{-1}\\
+-D^{-1}C\Delta^{-1} & D^{-1} + D^{-1}C\Delta^{-1}BD^{-1}\\
+\end{bmatrix}
+$$
+where $\Delta = A - BD^{-1}C$ to obtain
+$$
+\begin{bmatrix}
+\tau V &x        &E[X] \\
+x'     &\epsilon & 0\\
+E[X']  &0        &\epsilon
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1}                &-\Delta^{-1}x/\epsilon                    &-Delta^{-1}E[X]/\epsilon\\
+-x'\Delta^{-1}/\epsilon    &1/\epsilon + x'\Delta^{-1}x/\epsilon^2    &x'\Delta^{-1}E[X]/\epsilon^2 \\
+-E[X']\Delta^{-1}/\epsilon &E[X']\Delta^{-1}x/\epsilon^2              &1/\epsilon + E[X']\Delta^{-1}E[X]/\epsilon^2\\
+\end{bmatrix}
+$$
+where $\Delta = \tau V - xx'/\epsilon - E[X]E[X']/\epsilon$.
+By the  Sherman-Morrison formula, $(A + yz')^{-1}
+= A^{-1} - A^{-1}yz'A^{-1}/(1 + z'A^{-1}y)$, we have
+$$
+\Delta^{-1} = A^{-1} + A^{-1}E[X] E[X']A^{-1}/(\epsilon - E[X']A^{-1}E[X])
+$$
+where $A = \tau V - xx'/\epsilon$.
+This gives
+$$
+\begin{aligned}
+	\xi_\epsilon &= \Delta^{-1}E[X] - \Delta^{-1}x/\epsilon \\
+	&= A^{-1}E[X] + A^{-1}x x'A^{-1}E[X]/(\epsilon - x'A^{-1}x)
+	   - A^{-1}x/\epsilon - A^{-1}x x'A^{-1}x/\epsilon(\epsilon - x'A^{-1}x) \\
+	&= A^{-1}E[X] + \frac{1}{\epsilon(\epsilon - x'A^{-1}x)}
+	   \bigl(\epsilon A^{-1}x x'A^{-1}E[X]
+	   - (\epsilon - x'A^{-1}x)A^{-1}x - A^{-1}x x'A^{-1}x\bigr) \\
+	&= A^{-1}E[X] + \frac{1}{\epsilon(\epsilon - x'A^{-1}x)}
+	   \bigl(\epsilon x'A^{-1}E[X]
+	   - (\epsilon - x'A^{-1}x) - x'A^{-1}x\bigr)A^{-1}x \\
+	&= A^{-1}E[X] + \frac{1}{\epsilon - x'A^{-1}x}
+	   \bigl(x'A^{-1}E[X] - 1\bigr)A^{-1}x \\
+\end{aligned}
+$$
+
