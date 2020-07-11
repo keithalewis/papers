@@ -595,7 +595,7 @@ E[X']  &0        &\epsilon
 \end{bmatrix}^{-1}
 =
 \begin{bmatrix}
-\Delta^{-1}                &-\Delta^{-1}x/\epsilon                    &-Delta^{-1}E[X]/\epsilon\\
+\Delta^{-1}                &-\Delta^{-1}x/\epsilon                    &-\Delta^{-1}E[X]/\epsilon\\
 -x'\Delta^{-1}/\epsilon    &1/\epsilon + x'\Delta^{-1}x/\epsilon^2    &x'\Delta^{-1}E[X]/\epsilon^2 \\
 -E[X']\Delta^{-1}/\epsilon &E[X']\Delta^{-1}x/\epsilon^2              &1/\epsilon + E[X']\Delta^{-1}E[X]/\epsilon^2\\
 \end{bmatrix}
