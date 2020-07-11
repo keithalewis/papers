@@ -59,7 +59,7 @@ with $a > 0$ and $b \le 0$ so that higher returns are
 offset by lower variance.
 
 Note $U_\tau(\xi) = U_\tau(a\xi)$
-for any $a\not=0$ since $R(\xi) = R(a\xi)$.
+for any non-zero $a\in\mathbf{R}$ since $R(\xi) = R(a\xi)$.
 
 To find a portfolio with return $\rho$ having maximum utility 
 we use Lagrangian multipliers to solve
@@ -106,10 +106,15 @@ If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 A portfolio $\zeta\in\mathbf{R}^I$ with $\zeta'X = 1$ is called a
 _zero coupon bond_. It pays one unit on any outcome.
 
-Let $R = 1/\zeta'x = R(\zeta)$. The portfolio $\xi = R\zeta$ is optimal
-only if $Rx = E[X]$ and $\rho = R$ since
-$E[X] - V\xi - \lambda x - \mu E[X] = (R - \lambda - R\mu)x$,
-$\xi'x = R\zeta'x = 1$, $\rho = \xi'E[X] = R$.
+Let $R = 1/\zeta'x = R(\zeta)$. We have $R\zeta'x = 1$ and $R\zeta'E[X] = R$.
+The portfolio $\xi = R\zeta$ is optimal for expected return $\rho = R$
+since $V\zeta = 0$.
+
+Since $\mathbf{R}^I = \mathbf{R}\zeta\oplus\{\zeta\}^\perp$ we can
+define $W$ on $\{\zeta\}^\perp$ by $V(a\zeta\oplus\eta) = W\eta$.
+Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
+so $\{\zeta\}^\perp$ is an invariant subspace of $V$.
+We can assume $W$ is invertable and find other optimal portfolios in $\{\zeta\}^\perp$ as above.
 
 If $x$ and $E[X]$ are co-linear then $Rx = E[X]$ for some $R$ and
 the only optimal portfolio is $\xi = V^{-1}x/x'V^{-1}x$ with expected return $R$
