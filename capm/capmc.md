@@ -64,7 +64,7 @@ for any non-zero $a\in\mathbf{R}$ since $R(\xi) = R(a\xi)$.
 To find a portfolio with return $\rho$ having maximum utility 
 we use Lagrangian multipliers to solve
 $$
-\max_\xi E[\xi'X] - \frac{\tau}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)
+\max_{\xi,\lambda,\mu} E[\xi'X] - \frac{\tau}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)
 $$
 where $V = \mathrm{Var}(X) = E[XX'] - E[X]E[X']$. Every extremum satisfies
 $$
@@ -118,8 +118,189 @@ We can assume $W$ is invertable and find other optimal portfolios in $\{\zeta\}^
 
 If $x$ and $E[X]$ are co-linear then $Rx = E[X]$ for some $R$ and
 the only optimal portfolio is $\xi = V^{-1}x/x'V^{-1}x$ with expected return $R$
-and utility $U_\tau = R - \tau/2x'V^{-1}x$.
+and utility $U_\tau = R - 1/2x'(\tau V)^{-1}x$.
 
+
+## Appendix
+
+### Model Arbitrage
+
+A one-period model specifies initial prices $x\in\mathbf{R}^I$ and
+final prices $X\colon\Omega\to\mathbf{R}^I$ where $\Omega$ is the set
+of possible outcomes.
+
+If there exists a portfolio $\xi$ with $\xi'x < 0$ and $\xi'X \ge0$ on $\Omega$ then
+arbitrage exists. You make money on the initial position and never lose money
+on any outcome.
+This definition does not assume there is a probability measure on $\Omega$.
+
+The Fundamental Theorem of Asset Pricing
+states there is no _model arbitrage_ if and only if there
+exists a positive measure $\Pi$ on $\Omega$ with
+$x = \int_\Omega X(\omega)\,d\Pi(\omega)$.
+We assume $X$ is bounded and $\Pi$ is finitely additive.
+
+If such a measure exists then $\xi'x = \int \xi'X\,d\Pi \ge0$ so arbitrage
+cannot occur. The other direction is less trivial.
+
+**Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
+$\mathbf{R}^n$ with $x\not\in C$ then there exists $\xi\in\mathbf{R}^n$
+with $\xi'x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
+
+_Proof._ There exists $x^*\in C$ with $||x^* - x|| \le ||y - x||$ for all $y\in C$.
+Let $\xi = x^* - x$. For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so
+$||\xi|| \le ||ty + \xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.
+Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
+Taking $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ and by similar
+reasoning with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
+Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
+
+Since the set of non-negative finitely additive measures is a closed
+cone and $X\mapsto \int_\Omega X\,d\Pi$ is linear and continuous,
+$C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ is also a closed cone.
+The contrapositive follows from the lemma.
+
+The proof also shows how to find an arbitrage when one exists.
+
+### Solution of Maximum Utility
+
+Let's solve $EX - \tau V\xi - \lambda(\xi'x - 1) - \mu(\xi' E[X] - \rho) = 0$,
+$\xi'x = 1$, $\xi'E[X] = \rho$ for $\xi$, $\lambda$, and $\mu$.
+
+Since $\xi = (\tau V)^{-1}((1 - \mu) E[X] - \lambda x)$
+we have
+$$
+\begin{aligned}
+1 &= - \lambda x'(\tau V)^{-1}x + (1-\mu)x'(\tau V)^{-1}E[X] \\
+\rho &= - \lambda E[X'](\tau V)^{-1}x + (1-\mu)E[X'](\tau V)^{-1}E[X]\\
+\end{aligned}
+$$
+which can be written
+$$
+\begin{bmatrix}
+1 \\
+\rho \\
+\end{bmatrix}
+= \begin{bmatrix}
+A & B \\
+B & C\\
+\end{bmatrix}
+\begin{bmatrix}-\lambda \\ 1 - \mu\end{bmatrix}
+$$
+with $A = x(\tau V)^{-1}x$, $B = x'(\tau V)^{-1}E[X] = E[X'](\tau V)^{-1}x$, and
+$C = E[X](\tau V)^{-1}E[X]$.
+Inverting gives
+$$
+\begin{bmatrix} -\lambda \\ 1 - \mu \end{bmatrix}
+= \frac{1}{\Delta}
+\begin{bmatrix}
+C & -B \\
+-B & A\\
+\end{bmatrix}
+\begin{bmatrix}1 \\ \rho \end{bmatrix}
+$$
+where $\Delta = AC - B^2$, hence
+$$
+\begin{aligned}
+    \xi &= \begin{bmatrix}(\tau V)^{-1}x & (\tau V)^{-1}E[X]\end{bmatrix}
+		   \begin{bmatrix}-\lambda \\ 1 - \mu\end{bmatrix} \\
+        &= \frac{1}{\Delta}
+            \begin{bmatrix}
+                C(\tau V)^{-1}x - B(\tau V)^{-1}E[X] & -B(\tau V)^{-1}x + A(\tau V)^{-1}E[X]
+            \end{bmatrix}
+            \begin{bmatrix}1 \\ \rho \end{bmatrix} \\
+        &= \frac{1}{\Delta}
+           \bigl(
+           (C - \rho B)(\tau V)^{-1}x + (-B + \rho A)(\tau V)^{-1}E[X]
+           \bigr)
+\end{aligned}
+$$
+Note $\lambda = (\rho B - C)/\Delta$ and $\mu = 1 + (B - \rho A)/\Delta$.
+A straightforward calculation shows the variance is
+$$
+\xi'V\xi = (C - 2B\rho + A\rho^2)/\tau\Delta
+$$
+so the maximum utility is $U_\tau(\xi) = \rho - (C - 2B\rho + A\rho^2)/2\Delta$.
+
+If $Rx = E[X]$ and $\rho = R$ then $B = RA$ and $C = R^2A$ so $\Delta = 0$ and the
+matrix is not invertible.  However if we replace $C$ by $C(1 + \epsilon)$
+for $\epsilon\not=0$ it is and
+$\Delta = R^2A^2\epsilon$, $C - 2BR + AR^2 = R^2A\epsilon$.
+The maximum utilty is $R - 1/2A$ as noted above.
+
+<!--
+
+We can write the system as
+$$
+\begin{bmatrix}
+\tau V &x &E[x]\\
+x' & 0 & 0\\
+E[X'] & 0 & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+\xi\\
+\lambda\\
+\mu\\
+\end{bmatrix}
+= 
+\begin{bmatrix}
+E[X]\\
+1\\
+\rho\\
+\end{bmatrix}
+$$
+The matix is not invertible but a small perturbation is and we can use
+the block matrix inversion formula
+$$
+\begin{bmatrix}
+A & B\\
+C & D\\
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1} & -\Delta^{-1}BD^{-1}\\
+-D^{-1}C\Delta^{-1} & D^{-1} + D^{-1}C\Delta^{-1}BD^{-1}\\
+\end{bmatrix}
+$$
+where $\Delta = A - BD^{-1}C$ to obtain
+$$
+\begin{bmatrix}
+\tau V &x        &E[X] \\
+x'     &\epsilon & 0\\
+E[X']  &0        &\epsilon
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\Delta^{-1}                &-\Delta^{-1}x/\epsilon                    &-\Delta^{-1}E[X]/\epsilon\\
+-x'\Delta^{-1}/\epsilon    &1/\epsilon + x'\Delta^{-1}x/\epsilon^2    &x'\Delta^{-1}E[X]/\epsilon^2 \\
+-E[X']\Delta^{-1}/\epsilon &E[X']\Delta^{-1}x/\epsilon^2              &1/\epsilon + E[X']\Delta^{-1}E[X]/\epsilon^2\\
+\end{bmatrix}
+$$
+where $\Delta = \tau V - xx'/\epsilon - E[X]E[X']/\epsilon$.
+By the  Sherman-Morrison formula, $(A + yz')^{-1}
+= A^{-1} - A^{-1}yz'A^{-1}/(1 + z'A^{-1}y)$, we have
+$$
+\Delta^{-1} = A^{-1} + A^{-1}E[X] E[X']A^{-1}/(\epsilon - E[X']A^{-1}E[X])
+$$
+where $A = \tau V - xx'/\epsilon$.
+This gives
+$$
+\begin{aligned}
+	\xi_\epsilon &= \Delta^{-1}E[X] - \Delta^{-1}x/\epsilon \\
+	&= A^{-1}E[X] + A^{-1}x x'A^{-1}E[X]/(\epsilon - x'A^{-1}x)
+	   - A^{-1}x/\epsilon - A^{-1}x x'A^{-1}x/\epsilon(\epsilon - x'A^{-1}x) \\
+	&= A^{-1}E[X] + \frac{1}{\epsilon(\epsilon - x'A^{-1}x)}
+	   \bigl(\epsilon A^{-1}x x'A^{-1}E[X]
+	   - (\epsilon - x'A^{-1}x)A^{-1}x - A^{-1}x x'A^{-1}x\bigr) \\
+	&= A^{-1}E[X] + \frac{1}{\epsilon(\epsilon - x'A^{-1}x)}
+	   \bigl(\epsilon x'A^{-1}E[X]
+	   - (\epsilon - x'A^{-1}x) - x'A^{-1}x\bigr)A^{-1}x \\
+	&= A^{-1}E[X] + \frac{1}{\epsilon - x'A^{-1}x}
+	   \bigl(x'A^{-1}E[X] - 1\bigr)A^{-1}x \\
+\end{aligned}
+$$
+
+-->
 <!--
 
 ### Singular Variance
@@ -514,220 +695,4 @@ If $X = \mathbf{R}^n$ we write $X^* = \mathbf{R}_n$.
 If $\mathcal{M}^{n\times m}$ is the set of matrices of real numbers
 having $n$ rows and $m$ columns then $\mathbf{R}^n = \mathcal{M}^{n\times 1}$
 and $\mathbf{R}_m = \mathcal{M}^{1\times m}$.
--->
-
-## Appendix
-
-### Model Arbitrage
-
-A one-period model specifies initial prices $x\in\mathbf{R}^I$ and
-final prices $X\colon\Omega\to\mathbf{R}^I$ where $\Omega$ is the set
-of possible outcomes.
-
-If there exists a portfolio $\xi$ with $\xi'x < 0$ and $\xi'X \ge0$ on $\Omega$ then
-arbitrage exists. You make money on the initial position and never lose money
-on any outcome.
-This definition does not assume there is a probability measure on $\Omega$.
-
-The Fundamental Theorem of Asset Pricing
-states there is no _model arbitrage_ if and only if there
-exists a positive measure $\Pi$ on $\Omega$ with
-$x = \int_\Omega X(\omega)\,d\Pi(\omega)$.
-We assume $X$ is bounded and $\Pi$ is finitely additive.
-
-If such a measure exists then $\xi'x = \int \xi'X\,d\Pi \ge0$ so arbitrage
-cannot occur. The other direction is less trivial.
-
-**Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
-$\mathbf{R}^n$ with $x\not\in C$ then there exists $\xi\in\mathbf{R}^n$
-with $\xi'x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
-
-_Proof._ There exists $x^*\in C$ with $||x^* - x|| \le ||y - x||$ for all $y\in C$.
-Let $\xi = x^* - x$. For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so
-$||\xi|| \le ||ty + \xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.
-Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
-Taking $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ and by similar
-reasoning with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
-Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
-
-Since the set of non-negative finitely additive measures is a closed
-cone and $X\mapsto \int_\Omega X\,d\Pi$ is linear and continuous,
-$C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ is also a closed cone.
-The contrapositive follows from the lemma.
-
-The proof also shows how to find an arbitrage when one exists.
-
-### Solution of Maximum Utility
-
-Let's solve $EX - \tau V\xi - \lambda(\xi'x - 1) - \mu(\xi' E[X] - \rho)$,
-$\xi'x = 1$, $\xi'E[X] = \rho$.
-
-Since $\xi = (\tau V)^{-1}((1 - \mu) E[X] - \lambda x)
-= - \lambda y + (1-\mu)Y$ 
-where $y = (\tau V)^{-1}x$ and $Y = (\tau V)^{-1}E[X]$,
-we have
-$$
-\begin{aligned}
-1 &= - \lambda x'y + (1-\mu)x'Y \\
-\rho &= - \lambda E[X']y + (1-\mu)E[X']Y\\
-\end{aligned}
-$$
-which can be written
-$$
-\begin{bmatrix}
-1 \\
-\rho \\
-\end{bmatrix}
-= \begin{bmatrix}
-x'y & x'Y \\
-E[X']y & E[X']Y\\
-\end{bmatrix}
-\begin{bmatrix}-\lambda \\ 1 - \mu\end{bmatrix}
-$$
-Let $A = x'y = x(\tau V)^{-1}x$,
-$B = x'Y = E[X']y = x(\tau V)^{-1}E[X]$, and
-$C = E[X']Y = E[X](\tau V)^{-1}E[X]$.
-Inverting gives
-$$
-\begin{bmatrix} -\lambda \\ 1 - \mu \end{bmatrix}
-= \frac{1}{\Delta}
-\begin{bmatrix}
-C & -B \\
--B & A\\
-\end{bmatrix}
-\begin{bmatrix}1 \\ \rho \end{bmatrix}
-$$
-where $\Delta = AC - B^2$. This gives
-$$
-\begin{aligned}
-    \xi &= \begin{bmatrix}y & Y\end{bmatrix}\begin{bmatrix}-\lambda \\ 1 - \mu\end{bmatrix} \\
-        &= \frac{1}{\Delta}
-            \begin{bmatrix}
-                Cy - BY & -By + AY
-            \end{bmatrix}
-            \begin{bmatrix}1 \\ \rho \end{bmatrix} \\
-        &= \frac{1}{\Delta}
-           \bigl(
-           (C - \rho B)y + (-B + \rho A)Y
-           \bigr)
-\end{aligned}
-$$
-Note $\lambda = (\rho B - C)/\Delta$ and $\mu = 1 + (B - \rho A)/\Delta$.
-Using $Vy = x/\tau$ and $VY = E[X]/\tau$ the variance is
-$$
-\begin{aligned}
-\xi'V\xi &= \frac{1}{\tau\Delta^2}
-    \bigl((C - \rho B)y' + (-B + \rho A)Y'\bigr)
-    \bigl((C - \rho B)x + (-B + \rho A)E[X]\bigr) \\
-        &= \frac{1}{\tau\Delta^2}
-        \bigl(
-            (C - \rho B)^2 A + (C - \rho B)(-B + \rho A) B
-            +
-            (-B + \rho A)(C - \rho B) B + (-B + \rho A)^2 C
-        \bigr) \\
-        &= \frac{1}{\tau\Delta^2}
-        \bigl(
-            (C - \rho B)^2 A + 2(C - \rho B)(-B + \rho A) B + (-B + \rho A)^2 C
-        \bigr) \\
-        &= \frac{1}{\tau\Delta^2}
-        \bigl(
-            C^2A - 2CBB + B^2C
-            + (-2CBA + 2(CA + B^2)B - 2BAC)\rho
-            + (B^2 A - 2BA B + A^2C)\rho^2
-        \bigr) \\
-        &= \frac{1}{\tau\Delta^2}
-        \bigl(
-            AC^2 - B^2C
-            + (-2ABC + 2B^3)\rho
-            + (-AB^2 + A^2C)\rho^2
-        \bigr) \\
-        &= \frac{1}{\tau\Delta^2}
-        \bigl(
-            \Delta C
-            + (-2AC + 2B^2)B\rho
-            + \Delta A\rho^2
-        \bigr) \\
-        &= \frac{1}{\tau\Delta^2}
-        \bigl(
-            \Delta C
-            - 2 \Delta B\rho
-            + \Delta A\rho^2
-        \bigr) \\
-        &= \frac{1}{\tau\Delta}
-        ( C - 2 B\rho + A\rho^2) \\
-\end{aligned}
-$$
-
-<!--
-
-We can write the system as
-$$
-\begin{bmatrix}
-\tau V &x &E[x]\\
-x' & 0 & 0\\
-E[X'] & 0 & 0\\
-\end{bmatrix}
-\begin{bmatrix}
-\xi\\
-\lambda\\
-\mu\\
-\end{bmatrix}
-= 
-\begin{bmatrix}
-E[X]\\
-1\\
-\rho\\
-\end{bmatrix}
-$$
-The matix is not invertible but a small perturbation is and we can use
-the block matrix inversion formula
-$$
-\begin{bmatrix}
-A & B\\
-C & D\\
-\end{bmatrix}^{-1}
-=
-\begin{bmatrix}
-\Delta^{-1} & -\Delta^{-1}BD^{-1}\\
--D^{-1}C\Delta^{-1} & D^{-1} + D^{-1}C\Delta^{-1}BD^{-1}\\
-\end{bmatrix}
-$$
-where $\Delta = A - BD^{-1}C$ to obtain
-$$
-\begin{bmatrix}
-\tau V &x        &E[X] \\
-x'     &\epsilon & 0\\
-E[X']  &0        &\epsilon
-\end{bmatrix}^{-1}
-=
-\begin{bmatrix}
-\Delta^{-1}                &-\Delta^{-1}x/\epsilon                    &-\Delta^{-1}E[X]/\epsilon\\
--x'\Delta^{-1}/\epsilon    &1/\epsilon + x'\Delta^{-1}x/\epsilon^2    &x'\Delta^{-1}E[X]/\epsilon^2 \\
--E[X']\Delta^{-1}/\epsilon &E[X']\Delta^{-1}x/\epsilon^2              &1/\epsilon + E[X']\Delta^{-1}E[X]/\epsilon^2\\
-\end{bmatrix}
-$$
-where $\Delta = \tau V - xx'/\epsilon - E[X]E[X']/\epsilon$.
-By the  Sherman-Morrison formula, $(A + yz')^{-1}
-= A^{-1} - A^{-1}yz'A^{-1}/(1 + z'A^{-1}y)$, we have
-$$
-\Delta^{-1} = A^{-1} + A^{-1}E[X] E[X']A^{-1}/(\epsilon - E[X']A^{-1}E[X])
-$$
-where $A = \tau V - xx'/\epsilon$.
-This gives
-$$
-\begin{aligned}
-	\xi_\epsilon &= \Delta^{-1}E[X] - \Delta^{-1}x/\epsilon \\
-	&= A^{-1}E[X] + A^{-1}x x'A^{-1}E[X]/(\epsilon - x'A^{-1}x)
-	   - A^{-1}x/\epsilon - A^{-1}x x'A^{-1}x/\epsilon(\epsilon - x'A^{-1}x) \\
-	&= A^{-1}E[X] + \frac{1}{\epsilon(\epsilon - x'A^{-1}x)}
-	   \bigl(\epsilon A^{-1}x x'A^{-1}E[X]
-	   - (\epsilon - x'A^{-1}x)A^{-1}x - A^{-1}x x'A^{-1}x\bigr) \\
-	&= A^{-1}E[X] + \frac{1}{\epsilon(\epsilon - x'A^{-1}x)}
-	   \bigl(\epsilon x'A^{-1}E[X]
-	   - (\epsilon - x'A^{-1}x) - x'A^{-1}x\bigr)A^{-1}x \\
-	&= A^{-1}E[X] + \frac{1}{\epsilon - x'A^{-1}x}
-	   \bigl(x'A^{-1}E[X] - 1\bigr)A^{-1}x \\
-\end{aligned}
-$$
-
 -->
