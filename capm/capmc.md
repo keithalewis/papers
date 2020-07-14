@@ -559,6 +559,107 @@ The proof also shows how to find an arbitrage when one exists.
 
 ### Solution of Maximum Utility
 
+Let's solve $EX - \tau V\xi - \lambda(\xi'x - 1) - \mu(\xi' E[X] - \rho)$,
+$\xi'x = 1$, $\xi'E[X] = \rho$.
+
+Since $\xi = (\tau V)^{-1}((1 - \mu) E[X] - \lambda x)
+= - \lambda y + (1-\mu)Y$ 
+where $y = (\tau V)^{-1}x$ and $Y = (\tau V)^{-1}E[X]$,
+we have
+$$
+\begin{aligned}
+1 &= - \lambda x'y + (1-\mu)x'Y \\
+\rho &= - \lambda E[X']y + (1-\mu)E[X']Y\\
+\end{aligned}
+$$
+which can be written
+$$
+\begin{bmatrix}
+1 \\
+\rho \\
+\end{bmatrix}
+= \begin{bmatrix}
+x'y & x'Y \\
+E[X']y & E[X']Y\\
+\end{bmatrix}
+\begin{bmatrix}-\lambda \\ 1 - \mu\end{bmatrix}
+$$
+Let $A = x'y = x(\tau V)^{-1}x$,
+$B = x'Y = E[X']y = x(\tau V)^{-1}E[X]$, and
+$C = E[X']Y = E[X](\tau V)^{-1}E[X]$.
+Inverting gives
+$$
+\begin{bmatrix} -\lambda \\ 1 - \mu \end{bmatrix}
+= \frac{1}{\Delta}
+\begin{bmatrix}
+C & -B \\
+-B & A\\
+\end{bmatrix}
+\begin{bmatrix}1 \\ \rho \end{bmatrix}
+$$
+where $\Delta = AC - B^2$. This gives
+$$
+\begin{aligned}
+    \xi &= \begin{bmatrix}y & Y\end{bmatrix}\begin{bmatrix}-\lambda \\ 1 - \mu\end{bmatrix} \\
+        &= \frac{1}{\Delta}
+            \begin{bmatrix}
+                Cy - BY & -By + AY
+            \end{bmatrix}
+            \begin{bmatrix}1 \\ \rho \end{bmatrix} \\
+        &= \frac{1}{\Delta}
+           \bigl(
+           (C - \rho B)y + (-B + \rho A)Y
+           \bigr)
+\end{aligned}
+$$
+Note $\lambda = (\rho B - C)/\Delta$ and $\mu = 1 + (B - \rho A)/\Delta$.
+Using $Vy = x/\tau$ and $VY = E[X]/\tau$ the variance is
+$$
+\begin{aligned}
+\xi'V\xi &= \frac{1}{\tau\Delta^2}
+    \bigl((C - \rho B)y' + (-B + \rho A)Y'\bigr)
+    \bigl((C - \rho B)x + (-B + \rho A)E[X]\bigr) \\
+        &= \frac{1}{\tau\Delta^2}
+        \bigl(
+            (C - \rho B)^2 A + (C - \rho B)(-B + \rho A) B
+            +
+            (-B + \rho A)(C - \rho B) B + (-B + \rho A)^2 C
+        \bigr) \\
+        &= \frac{1}{\tau\Delta^2}
+        \bigl(
+            (C - \rho B)^2 A + 2(C - \rho B)(-B + \rho A) B + (-B + \rho A)^2 C
+        \bigr) \\
+        &= \frac{1}{\tau\Delta^2}
+        \bigl(
+            C^2A - 2CBB + B^2C
+            + (-2CBA + 2(CA + B^2)B - 2BAC)\rho
+            + (B^2 A - 2BA B + A^2C)\rho^2
+        \bigr) \\
+        &= \frac{1}{\tau\Delta^2}
+        \bigl(
+            AC^2 - B^2C
+            + (-2ABC + 2B^3)\rho
+            + (-AB^2 + A^2C)\rho^2
+        \bigr) \\
+        &= \frac{1}{\tau\Delta^2}
+        \bigl(
+            \Delta C
+            + (-2AC + 2B^2)B\rho
+            + \Delta A\rho^2
+        \bigr) \\
+        &= \frac{1}{\tau\Delta^2}
+        \bigl(
+            \Delta C
+            - 2 \Delta B\rho
+            + \Delta A\rho^2
+        \bigr) \\
+        &= \frac{1}{\tau\Delta}
+        ( C - 2 B\rho + A\rho^2) \\
+\end{aligned}
+$$
+
+<!--
+
 We can write the system as
 $$
 \begin{bmatrix}
@@ -629,3 +730,4 @@ $$
 \end{aligned}
 $$
 
+-->
