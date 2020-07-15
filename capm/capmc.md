@@ -123,45 +123,6 @@ and utility $U_\tau = R - 1/2x'(\tau V)^{-1}x$.
 
 ## Appendix
 
-### Model Arbitrage
-
-A one-period model specifies initial prices $x\in\mathbf{R}^I$ and
-final prices $X\colon\Omega\to\mathbf{R}^I$ where $\Omega$ is the set
-of possible outcomes.
-
-If there exists a portfolio $\xi$ with $\xi'x < 0$ and $\xi'X \ge0$ on $\Omega$ then
-arbitrage exists. You make money on the initial position and never lose money
-on any outcome.
-This definition does not assume there is a probability measure on $\Omega$.
-
-The Fundamental Theorem of Asset Pricing
-states there is no _model arbitrage_ if and only if there
-exists a positive measure $\Pi$ on $\Omega$ with
-$x = \int_\Omega X(\omega)\,d\Pi(\omega)$.
-We assume $X$ is bounded and $\Pi$ is finitely additive.
-
-If such a measure exists then $\xi'x = \int \xi'X\,d\Pi \ge0$ so arbitrage
-cannot occur. The other direction is less trivial.
-
-**Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
-$\mathbf{R}^n$ with $x\not\in C$ then there exists $\xi\in\mathbf{R}^n$
-with $\xi'x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
-
-_Proof._ There exists $x^*\in C$ with $||x^* - x|| \le ||y - x||$ for all $y\in C$.
-Let $\xi = x^* - x$. For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so
-$||\xi|| \le ||ty + \xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.
-Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
-Taking $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ and by similar
-reasoning with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
-Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
-
-Since the set of non-negative finitely additive measures is a closed
-cone and $X\mapsto \int_\Omega X\,d\Pi$ is linear and continuous,
-$C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ is also a closed cone.
-The contrapositive follows from the lemma.
-
-The proof also shows how to find an arbitrage when one exists.
-
 ### Solution of Maximum Utility
 
 Let's solve $EX - \tau V\xi - \lambda(\xi'x - 1) - \mu(\xi' E[X] - \rho) = 0$,
@@ -227,6 +188,44 @@ matrix is not invertible.  However if we replace $C$ by $C(1 + \epsilon)$
 for $\epsilon\not=0$ it is and
 $\Delta = R^2A^2\epsilon$, $C - 2BR + AR^2 = R^2A\epsilon$.
 The maximum utilty is $R - 1/2A$ as noted above.
+
+### Model Arbitrage
+
+A one-period model specifies initial prices $x\in\mathbf{R}^I$ and
+final prices $X\colon\Omega\to\mathbf{R}^I$ where $\Omega$ is the set
+of possible outcomes.
+
+If there exists a portfolio $\xi\in\mathbf{R}^I$ with $\xi'x < 0$ and
+$\xi'X \ge0$ on $\Omega$ then arbitrage exists. You make money on the
+initial position and never lose money on any outcome.  This definition
+does not assume there is a probability measure on $\Omega$.
+
+The Fundamental Theorem of Asset Pricing states there is no _model
+arbitrage_ if and only if there exists a positive measure $\Pi$ on
+$\Omega$ with $x = \int_\Omega X(\omega)\,d\Pi(\omega)$.  We assume $X$
+is bounded and $\Pi$ is finitely additive.
+
+If such a measure exists then $\xi'x = \int \xi'X\,d\Pi \ge0$ so arbitrage
+cannot occur. The other direction is less trivial.
+
+**Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
+$\mathbf{R}^n$ with $x\not\in C$ then there exists $\xi\in\mathbf{R}^n$
+with $\xi'x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
+
+_Proof._ There exists $x^*\in C$ with $||x^* - x|| \le ||y - x||$ for all $y\in C$.
+Let $\xi = x^* - x$. For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so
+$||\xi|| \le ||ty + \xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.
+Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
+Taking $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ and by similar
+reasoning with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
+Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
+
+Since the set of non-negative finitely additive measures is a closed
+cone and $X\mapsto \int_\Omega X\,d\Pi$ is linear and continuous,
+$C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ is also a closed cone.
+The contrapositive follows from the lemma.
+
+The proof also shows how to find an arbitrage when one exists.
 
 <!--
 
