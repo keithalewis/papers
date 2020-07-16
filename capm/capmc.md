@@ -114,7 +114,7 @@ Since $\mathbf{R}^I = \mathbf{R}\zeta\oplus\{\zeta\}^\perp$ we can
 define $W$ on $\{\zeta\}^\perp$ by $V(a\zeta\oplus\eta) = W\eta$.
 Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
 so $\{\zeta\}^\perp$ is an invariant subspace of $V$.
-We can assume $W$ is invertable and find other optimal portfolios in $\{\zeta\}^\perp$ as above.
+We can assume $W$ is invertible and find other optimal portfolios in $\{\zeta\}^\perp$ as above.
 
 If $x$ and $E[X]$ are co-linear then $Rx = E[X]$ for some $R$ and
 the only optimal portfolio is $\xi = V^{-1}x/x'V^{-1}x$ with expected return $R$
@@ -187,7 +187,7 @@ If $Rx = E[X]$ and $\rho = R$ then $B = RA$ and $C = R^2A$ so $\Delta = 0$ and t
 matrix is not invertible.  However if we replace $C$ by $C(1 + \epsilon)$
 for $\epsilon\not=0$ it is and
 $\Delta = R^2A^2\epsilon$, $C - 2BR + AR^2 = R^2A\epsilon$.
-The maximum utilty is $R - 1/2A$ as noted above.
+The maximum utility is $R - 1/2A$ as noted above.
 
 ### Model Arbitrage
 
@@ -205,12 +205,16 @@ arbitrage_ if and only if there exists a positive measure $\Pi$ on
 $\Omega$ with $x = \int_\Omega X(\omega)\,d\Pi(\omega)$.  We assume $X$
 is bounded and $\Pi$ is finitely additive.
 
-If such a measure exists then $\xi'x = \int \xi'X\,d\Pi \ge0$ so arbitrage
+If such a measure exists and $\xi'X\ge0$ then $\xi'x = \int \xi'X\,d\Pi \ge0$ so arbitrage
 cannot occur. The other direction is less trivial.
 
 **Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
 $\mathbf{R}^n$ with $x\not\in C$ then there exists $\xi\in\mathbf{R}^n$
 with $\xi'x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
+
+Recall that a _cone_ is a subset of a vector space closed under addition
+and multiplication by a positive scalar, i.e., $C + C\subseteq C$
+and $tC\subseteq C$ for $t > 0$
 
 _Proof._ There exists $x^*\in C$ with $||x^* - x|| \le ||y - x||$ for all $y\in C$.
 Let $\xi = x^* - x$. For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so
@@ -221,7 +225,7 @@ reasoning with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$.
 Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
 
 Since the set of non-negative finitely additive measures is a closed
-cone and $X\mapsto \int_\Omega X\,d\Pi$ is linear and continuous,
+cone and $X\mapsto \int_\Omega X\,d\Pi$ is positive, linear and continuous,
 $C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ is also a closed cone.
 The contrapositive follows from the lemma.
 
