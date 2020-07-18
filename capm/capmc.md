@@ -28,8 +28,7 @@ We prove a stronger result that holds for any distribution of market prices:
 $$
 	R(\xi) - R(\zeta) = \beta(R(\nu) - R(\zeta))
 $$
-as random variables for any optimal $\zeta$ and $\nu$ when $R(\zeta)$ and $R(\nu)$ are
-not co-linear. In this case $\beta =
+as random variables for any optimal $\zeta$ and $\nu$. In this case $\beta =
 \mathrm{Cov}(R(\xi) - R(\zeta),R(\nu) - R(\zeta))/\mathrm{Var}(R(\nu) - R(\zeta))$.
 
 
@@ -58,8 +57,8 @@ any utility of the form $aE[R(\xi)] + b\mathrm{Var}(R(\xi))$
 with $a > 0$ and $b \le 0$ so that higher returns are
 offset by lower variance.
 
-Note $U_\tau(\xi) = U_\tau(a\xi)$
-for any non-zero $a\in\mathbf{R}$ since $R(\xi) = R(a\xi)$.
+Note $U_\tau(\xi) = U_\tau(t\xi)$ for any non-zero $t\in\mathbf{R}$
+since $R(\xi) = R(t\xi)$.
 
 To find a portfolio with return $\rho$ having maximum utility 
 we use Lagrangian multipliers to solve
@@ -223,6 +222,7 @@ Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
 Taking $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ and by similar
 reasoning with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
 Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
+$\blacksquare$
 
 Since the set of non-negative finitely additive measures is a closed
 cone and $X\mapsto \int_\Omega X\,d\Pi$ is positive, linear and continuous,
