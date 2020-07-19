@@ -215,13 +215,14 @@ Recall that a _cone_ is a subset of a vector space closed under addition
 and multiplication by a positive scalar, i.e., $C + C\subseteq C$
 and $tC\subseteq C$ for $t > 0$
 
-_Proof._ There exists $x^*\in C$ with $||x^* - x|| \le ||y - x||$ for all $y\in C$.
-Let $\xi = x^* - x$. For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so
-$||\xi|| \le ||ty + \xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.
-Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.
-Taking $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ and by similar
-reasoning with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
-Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
+_Proof._ Since $C$ is closed there exists $x^*\in C$ with $||x^* -
+x|| \le ||y - x||$ for all $y\in C$.  Let $\xi = x^* - x$. For any
+$y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so $||\xi|| \le ||ty +
+\xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.  Dividing by
+$t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.  Taking $y
+= x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ and by similar reasoning
+with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$.  Now $0
+< ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
 $\blacksquare$
 
 Since the set of non-negative finitely additive measures is a closed
