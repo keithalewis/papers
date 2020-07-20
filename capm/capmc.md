@@ -141,18 +141,18 @@ $$
 1 \\
 \rho \\
 \end{bmatrix}
-= \begin{bmatrix}
+= \frac{1}{\tau} \begin{bmatrix}
 A & B \\
 B & C\\
 \end{bmatrix}
 \begin{bmatrix}-\lambda \\ 1 - \mu\end{bmatrix}
 $$
-with $A = x(\tau V)^{-1}x$, $B = x'(\tau V)^{-1}E[X] = E[X'](\tau V)^{-1}x$, and
-$C = E[X](\tau V)^{-1}E[X]$.
+with $A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$, and
+$C = E[X]V^{-1}E[X]$.
 Inverting gives
 $$
 \begin{bmatrix} -\lambda \\ 1 - \mu \end{bmatrix}
-= \frac{1}{\Delta}
+= \frac{\tau}{\Delta}
 \begin{bmatrix}
 C & -B \\
 -B & A\\
@@ -162,16 +162,16 @@ $$
 where $\Delta = AC - B^2$, hence
 $$
 \begin{aligned}
-    \xi &= \begin{bmatrix}(\tau V)^{-1}x & (\tau V)^{-1}E[X]\end{bmatrix}
+    \xi &= \frac{1}{\tau}\begin{bmatrix}V^{-1}x & V^{-1}E[X]\end{bmatrix}
 		   \begin{bmatrix}-\lambda \\ 1 - \mu\end{bmatrix} \\
-        &= \frac{1}{\Delta}
+        &= \frac{1}{\tau\Delta}
             \begin{bmatrix}
-                C(\tau V)^{-1}x - B(\tau V)^{-1}E[X] & -B(\tau V)^{-1}x + A(\tau V)^{-1}E[X]
+                CV^{-1}x - BV^{-1}E[X] & -BV^{-1}x + AV^{-1}E[X]
             \end{bmatrix}
             \begin{bmatrix}1 \\ \rho \end{bmatrix} \\
-        &= \frac{1}{\Delta}
+        &= \frac{1}{\tau\Delta}
            \bigl(
-           (C - \rho B)(\tau V)^{-1}x + (-B + \rho A)(\tau V)^{-1}E[X]
+           (C - \rho B)V^{-1}x + (-B + \rho A)V^{-1}E[X]
            \bigr)
 \end{aligned}
 $$
