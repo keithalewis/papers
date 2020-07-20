@@ -109,30 +109,30 @@ Let $R = 1/\zeta'x = R(\zeta)$. We have $R\zeta'x = 1$ and $R\zeta'E[X] = R$.
 The portfolio $\xi = R\zeta$ is optimal for expected return $\rho = R$
 since $V\zeta = 0$.
 
-Since $\mathbf{R}^I = \mathbf{R}\zeta\oplus\{\zeta\}^\perp$ we can
-define $W$ on $\{\zeta\}^\perp$ by $V(a\zeta\oplus\eta) = W\eta$.
+Let $V_\zeta = V|_{\{\zeta\}^\perp}$ where $\{\zeta\}^\perp = \{y\in\mathbf{R}^I:\zeta'y = 0\}$.
 Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
 so $\{\zeta\}^\perp$ is an invariant subspace of $V$.
-We can assume $W$ is invertible and find other optimal portfolios in $\{\zeta\}^\perp$ as above.
+We can assume $V_\zeta$ is invertible and find other optimal portfolios in $\{\zeta\}^\perp$ as above.
 
-If $x$ and $E[X]$ are co-linear then $Rx = E[X]$ for some $R$ and
-the only optimal portfolio is $\xi = V^{-1}x/x'V^{-1}x$ with expected return $R$
-and utility $U_\tau = R - 1/2x'(\tau V)^{-1}x$.
+If $x$ and $E[X]$ are collinear then $Rx = E[X]$ for some $R$ and
+the only optimal portfolio with $\xi'x = 1$ is $\xi = V^{-1}x/x'V^{-1}x$. It has return $R$
+and utility $U_\tau = R - \tau/2x'V^{-1}x$. Note $\xi$ does not depend on $\tau$ and requires
+$\rho = R$.
 
 
 ## Appendix
 
-### Solution of Maximum Utility
+### Maximum Utility Solution
 
-Let's solve $EX - \tau V\xi - \lambda(\xi'x - 1) - \mu(\xi' E[X] - \rho) = 0$,
-$\xi'x = 1$, $\xi'E[X] = \rho$ for $\xi$, $\lambda$, and $\mu$.
+Let's solve $EX - \tau V\xi - \lambda x - \mu E[X] = 0$,
+$\xi'x - 1 = 0$, $\xi'E[X] - \rho = 0$ for $\xi$, $\lambda$, and $\mu$.
 
-Since $\xi = (\tau V)^{-1}((1 - \mu) E[X] - \lambda x)$
-we have
+Since $\xi = -\lambda (\tau V)^{-1} x + (1 - \mu)(\tau V)^{-1} E[X]$
+assuming $\tau > 0$ and $V$ is invertible we have
 $$
 \begin{aligned}
-1 &= - \lambda x'(\tau V)^{-1}x + (1-\mu)x'(\tau V)^{-1}E[X] \\
-\rho &= - \lambda E[X'](\tau V)^{-1}x + (1-\mu)E[X'](\tau V)^{-1}E[X]\\
+1    &= - \lambda x'(\tau V)^{-1}x + (1-\mu)x'(\tau V)^{-1}E[X] \\
+\rho &= - \lambda E[X'](\tau V)^{-1}x + (1-\mu)E[X'](\tau V)^{-1}E[X]
 \end{aligned}
 $$
 which can be written
@@ -158,29 +158,32 @@ C & -B \\
 -B & A\\
 \end{bmatrix}
 \begin{bmatrix}1 \\ \rho \end{bmatrix}
+= \frac{\tau}{\Delta}
+\begin{bmatrix}
+C - \rho B \\
+-B + \rho A\\
+\end{bmatrix}
 $$
-where $\Delta = AC - B^2$, hence
+where $\Delta = AC - B^2$ so
+$\lambda = (\rho B - C)\tau/\Delta$, $\mu = 1 + (B - \rho A)\tau/\Delta$, and
 $$
 \begin{aligned}
     \xi &= \frac{1}{\tau}\begin{bmatrix}V^{-1}x & V^{-1}E[X]\end{bmatrix}
 		   \begin{bmatrix}-\lambda \\ 1 - \mu\end{bmatrix} \\
-        &= \frac{1}{\tau\Delta}
-            \begin{bmatrix}
-                CV^{-1}x - BV^{-1}E[X] & -BV^{-1}x + AV^{-1}E[X]
-            \end{bmatrix}
-            \begin{bmatrix}1 \\ \rho \end{bmatrix} \\
-        &= \frac{1}{\tau\Delta}
+        &= \frac{1}{\Delta} V^{-1}
            \bigl(
-           (C - \rho B)V^{-1}x + (-B + \rho A)V^{-1}E[X]
+           (C - \rho B)x + (-B + \rho A)E[X]
            \bigr)
 \end{aligned}
 $$
-Note $\lambda = (\rho B - C)/\Delta$ and $\mu = 1 + (B - \rho A)/\Delta$.
+Note that $\xi$ does not depend on $\tau$. Since $\xi = aV^{-1}x + bV^{-1}E[X]$ and
+the constraints are $\xi'x = 1$ and $\xi'E[X] = \rho$ this is not surprising.
+
 A straightforward calculation shows the variance is
 $$
-\xi'V\xi = (C - 2B\rho + A\rho^2)/\tau\Delta
+\xi'V\xi = (C - 2B\rho + A\rho^2)/\Delta
 $$
-so the maximum utility is $U_\tau(\xi) = \rho - (C - 2B\rho + A\rho^2)/2\Delta$.
+so the maximum utility is $U_\tau(\xi) = \rho - (C - 2B\rho + A\rho^2)\tau/2\Delta$.
 
 If $Rx = E[X]$ and $\rho = R$ then $B = RA$ and $C = R^2A$ so $\Delta = 0$ and the
 matrix is not invertible.  However if we replace $C$ by $C(1 + \epsilon)$
@@ -194,8 +197,8 @@ A one-period model specifies initial prices $x\in\mathbf{R}^I$ and
 final prices $X\colon\Omega\to\mathbf{R}^I$ where $\Omega$ is the set
 of possible outcomes.
 
-If there exists a portfolio $\xi\in\mathbf{R}^I$ with $\xi'x < 0$ and
-$\xi'X \ge0$ on $\Omega$ then arbitrage exists. You make money on the
+If there exists a portfolio $\xi\in\mathbf{R}^I$ with $\xi\cdot x < 0$ and
+$\xi\cdot X \ge0$ on $\Omega$ then arbitrage exists. You make money on the
 initial position and never lose money on any outcome.  This definition
 does not assume there is a probability measure on $\Omega$.
 
@@ -204,29 +207,30 @@ arbitrage_ if and only if there exists a positive measure $\Pi$ on
 $\Omega$ with $x = \int_\Omega X(\omega)\,d\Pi(\omega)$.  We assume $X$
 is bounded and $\Pi$ is finitely additive.
 
-If such a measure exists and $\xi'X\ge0$ then $\xi'x = \int \xi'X\,d\Pi \ge0$ so arbitrage
+If such a measure exists and $\xi\cdot X\ge0$ then $\xi\cdot x = \int \xi\cdot X\,d\Pi \ge0$ so arbitrage
 cannot occur. The other direction is less trivial.
 
 **Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
 $\mathbf{R}^n$ with $x\not\in C$ then there exists $\xi\in\mathbf{R}^n$
-with $\xi'x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
+with $\xi\cdot x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
 
 Recall that a _cone_ is a subset of a vector space closed under addition
 and multiplication by a positive scalar, i.e., $C + C\subseteq C$
-and $tC\subseteq C$ for $t > 0$
+and $tC\subseteq C$ for $t > 0$. The set of arbitrage
+portfolios is a cone.
 
-_Proof._ Since $C$ is closed there exists $x^*\in C$ with $||x^* -
-x|| \le ||y - x||$ for all $y\in C$.  Let $\xi = x^* - x$. For any
-$y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so $||\xi|| \le ||ty +
-\xi||$. Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$.  Dividing by
-$t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$.  Taking $y
-= x^*$ then $tx^* + x^*\in C$ for $t \ge -1$ and by similar reasoning
-with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$.  Now $0
-< ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
+_Proof._ Since $C$ is closed there exists $x^*\in C$ with
+$||x^* - x|| \le ||y - x||$ for all $y\in C$.  Let $\xi = x^* - x$.
+For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so $||\xi|| \le ||ty + \xi||$. 
+Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$. 
+Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$. 
+Take $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$. By similar reasoning
+with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
+Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
 $\blacksquare$
 
 Since the set of non-negative finitely additive measures is a closed
-cone and $X\mapsto \int_\Omega X\,d\Pi$ is positive, linear and continuous,
+cone and $X\mapsto \int_\Omega X\,d\Pi$ is positive, linear, and continuous
 $C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ is also a closed cone.
 The contrapositive follows from the lemma.
 
