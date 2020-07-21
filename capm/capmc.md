@@ -176,8 +176,10 @@ $$
            \bigr)
 \end{aligned}
 $$
+<!--
 Note that $\xi$ does not depend on $\tau$. Since $\xi = aV^{-1}x + bV^{-1}E[X]$ and
 the constraints are $\xi'x = 1$ and $\xi'E[X] = \rho$ this is not surprising.
+-->
 
 A straightforward calculation shows the variance is
 $$
