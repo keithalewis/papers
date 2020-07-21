@@ -4,6 +4,10 @@ author: Keith A. Lewis
 institute: KALX, LLC
 classoption: fleqn
 fleqn: true
+thanks: |
+	Peter Carr and David Shimko gave insightful feedback to 
+	help make the exposition more accessible to finance professionals.
+	Any remaining infelicities or omissions are my fault.
 ---
 
 <div id="kalx"><a href="mailto:kal@kalx.net">kal@kalx.net</a></div>
@@ -33,7 +37,6 @@ $$
 as random variables for any optimal $\zeta$ and $\nu$. In this case $\beta =
 \mathrm{Cov}(R(\xi) - R(\zeta),R(\nu) - R(\zeta))/\mathrm{Var}(R(\nu) - R(\zeta))$.
 
-
 ## One-Period Model
 
 Let $\Omega$ be the set of possible market outcomes and $I$ be
@@ -43,6 +46,13 @@ and $X\colon\Omega\to\mathbf{R}^I$ as the final instrument
 prices depending on the outcome. We assume, as customary,
 that there are no dividend cash flows and prices are perfectly
 liquid.
+
+It is common in the literature to write $\mathbf{R}^n$ where $n$ is the
+cardinality of $I$. If $A^B = \{f\colon A\to B\}$ is the set of functions
+from $A$ to $B$ then $x\in\mathbf{R}^I$ is the function $x\colon I\to\mathbf{R}$
+where $x(i)\in\mathbf{R}$ is the price of instrument $i\in I$.
+This avoids circumlocutions like $I = \{i_1,\ldots,i_n\}$ and $x = (x_1,\ldots,x_n)$
+where $x_j = x(i_j)$, $j = 1,\ldots, n$.
 
 A _portfolio_ $\xi\in\mathbf{R}^I$ represents the number of
 shares initially purchased in each instrument. The _realized
@@ -239,6 +249,42 @@ $C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ is also a closed cone.
 The contrapositive follows from the lemma.
 
 The proof also shows how to find an arbitrage when one exists.
+
+### Fréchet Derivative
+
+The Fréchet derivative of a function $F\colon X\to Y$ where $X$ and
+$Y$ are Banach spaces is written $DF\colon X\to\mathcal{B}(X,Y)$ and is defined
+by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ where $\mathcal{B}(X,Y)$
+is the space of bounded linear operators from $X$ to $Y$.
+This says $F$ is linear to first order in a neighborhood of $x\in X$.
+
+For example, if $F\colon X\to X$, where $X$ is a (not necessarily
+commutative) Banach algebra, is defined to be
+$F(x) = x^2$ then $(x + h)^2 = x^2 + xh + hx + h^2$.
+The $h^2$ term is $o(\|h\|)$ so $DF(x)h = xh + hx$.
+If we define the linear operators $L_x,R_x\colon X\to X$ by
+$L_x y = xy$ and $R_x y = yx$ then $DF(x) = L_x + R_x$.
+Another way to write this is $D(x^2)dx = x\ dx + dx\ x$.
+
+If $X$ is commutative this reduces to
+$DF(x) = 2M_x$ where $M_x = L_x = R_x$. If we implicitly
+assume $x$ stands for multiplication by $x$, $M_x$, then
+we can write $D(x^2) = 2x$, just as in the case $X = \mathbf{R}$.
+
+A good exercise is to show $D(x^n) = \sum_{j=1}^n R_x^{n - j} L_x^{j - 1}$.
+
+In the case $Y = \mathbf{R}$ we have $DF\colon X\to\mathcal{B}(X,\mathbf{R})$.
+Recall the _dual vector space_ of $X$ is $X^* = \mathcal{B}(X,\mathbf{R})$,
+the set of bounded _linear functionals_ on $X$. The _dual pairing_ is
+$\langle x,x* \rangle = x^*(x)$ for $x\in X$, $x^*\in X^*$.
+
+If $T\colon\mathbf{R}^n\to\mathbf{R}^n$ is a self-adjoint linear
+transformation and $F(x) = x'Tx$ then $DF(x)h = 2h'Tx$. This
+follows from $F(x + h) = (x + h)'T(x + h) = x'Tx + x'Th + h'Tx + h'Th$
+so $DF(x) = x'Th + h'Tx = 2h'Tx$ since $x'Th = h'T'x = h'Tx$.
+Note $DF\colon\mathbf{R}^n\to(\mathbf{R}^n)^*$. The dual space
+is $(\mathbf{R}^n)^* = \{y':y\in\mathbf{R}^n\}$ where $y'$ is
+the linear functional $y'(x) = y'x$. We have $DF(x)h = \langle 2Vx, h\rangle$.
 
 <!--
 
@@ -691,20 +737,4 @@ $$
     &= A^{-1} + A^{-1}cc'A^{-1}/(-\epsilon + c'A^{-1}c)\\
 \end{aligned}
 $$
-
-### Fréchet Derivative
-
-The Fréchet derivative of a function $F\colon X\to Y$ where $X$ and
-$Y$ are Banach spaces, $DF\colon X\to\mathcal{B}(X,Y)$, is defined
-by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$. Here $\mathcal{B}(X,Y)$
-is the space of bounded linear operators from $X$ to $Y$.
-
-Note if $Y = \mathbf{R}$ then $DF\colon X\to\mathcal{B}(X, \mathbf{R})
-= X^*$, the dual space of $X$.
-
-If $X = \mathbf{R}^n$ we write $X^* = \mathbf{R}_n$.
-
-If $\mathcal{M}^{n\times m}$ is the set of matrices of real numbers
-having $n$ rows and $m$ columns then $\mathbf{R}^n = \mathcal{M}^{n\times 1}$
-and $\mathbf{R}_m = \mathcal{M}^{1\times m}$.
 -->

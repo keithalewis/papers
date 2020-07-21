@@ -16,7 +16,7 @@ FLAGS += -H header.html
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
 
 $(HTML): %.html: %.md capm.css
-	pandoc -t html5 -s --css capm.css  --katex=$(KATEX) $< -o $@
+	pandoc --reference-location=block -t html5+auto_identifiers -s --css capm.css  --katex=$(KATEX) $< -o $@
 
 $(PDF): %.pdf: %.md
 	pandoc -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
