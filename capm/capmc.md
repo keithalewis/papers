@@ -6,6 +6,8 @@ classoption: fleqn
 fleqn: true
 ---
 
+<div id="kalx"><a href="mailto:kal@kalx.net">kal@kalx.net</a></div>
+
 # Capital Asset Pricing Model Revisited
 
 The Capital Asset Pricing Model is a prescriptive theory of portfolio
@@ -105,9 +107,9 @@ If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 A portfolio $\zeta\in\mathbf{R}^I$ with $\zeta'X = 1$ is called a
 _zero coupon bond_. It pays one unit on any outcome.
 
-Let $R = 1/\zeta'x = R(\zeta)$. We have $R\zeta'x = 1$ and $R\zeta'E[X] = R$.
+Let $R = 1/\zeta'x = R(\zeta)$ so $R\zeta'x = 1$ and $R\zeta'E[X] = R$.
 The portfolio $\xi = R\zeta$ is optimal for expected return $\rho = R$
-since $V\zeta = 0$.
+since $\Var(R(\zeta)) = \zeta'V\zeta = 0$.
 
 Let $V_\zeta = V|_{\{\zeta\}^\perp}$ where $\{\zeta\}^\perp = \{y\in\mathbf{R}^I:\zeta'y = 0\}$.
 Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
@@ -191,7 +193,7 @@ If $Rx = E[X]$ and $\rho = R$ then $B = RA$ and $C = R^2A$ so $\Delta = 0$ and t
 matrix is not invertible.  However if we replace $C$ by $C(1 + \epsilon)$
 for $\epsilon\not=0$ it is and
 $\Delta = R^2A^2\epsilon$, $C - 2BR + AR^2 = R^2A\epsilon$.
-The maximum utility is $R - 1/2A$ as noted above.
+The maximum utility is $R - \tau/2A$ as noted above.
 
 ### Model Arbitrage
 
