@@ -280,7 +280,7 @@ $\langle x,x* \rangle = x^*(x)$ for $x\in X$, $x^*\in X^*$.
 
 If $T\colon\mathbf{R}^n\to\mathbf{R}^n$ is a self-adjoint linear
 transformation and $F(x) = x'Tx$ then $DF(x)h = 2h'Tx$. This
-follows from $F(x + h) = (x + h)'T(x + h) = x'Tx + x'Th + h'Tx + h'Th$
+follows from $(x + h)'T(x + h) = x'Tx + x'Th + h'Tx + h'Th$
 so $DF(x) = x'Th + h'Tx = 2h'Tx$ since $x'Th = h'T'x = h'Tx$.
 Note $DF\colon\mathbf{R}^n\to(\mathbf{R}^n)^*$. The dual space
 is $(\mathbf{R}^n)^* = \{y':y\in\mathbf{R}^n\}$ where $y'$ is
