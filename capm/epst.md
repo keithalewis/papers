@@ -6,7 +6,7 @@ classoption: fleqn
 fleqn: true
 thanks: |
 	Peter Carr and David Shimko gave insightful feedback to 
-	help make the exposition more accessible to finance professionals.
+	make the exposition more accessible to finance professionals.
 	Any remaining infelicities or omissions are my fault.
 ---
 
@@ -24,12 +24,12 @@ subspace. ...
 
 ## One-Period Model
 
-Let $I$ be the set of market instruments and $\Omega$ be the
-set of possible market outcomes over a single period.  The _one-period
-model_ specifies the initial instrument prices $x\in\mathbf{R}^I$ and
-the final instrument prices $X\colon\Omega\to\mathbf{R}^I$ depending on
-the outcome.  We assume, as customary, that there are no cash flows and
-prices are perfectly liquid.
+Let $I$ be the set of market instruments and $\Omega$ be the set of
+possible market outcomes over a single period.  The _one-period model_
+specifies the initial instrument prices $x\in\mathbf{R}^I$ and the final
+instrument prices $X\colon\Omega\to\mathbf{R}^I$ depending on the outcome.
+We assume, as customary, that there are no cash flows associated with
+the intruments and transactions are perfectly liquid.
 
 It is common in the literature to write $\mathbf{R}^n$ instead of
 $\mathbf{R}^I$ where $n$ is the cardinality of $I$.
@@ -92,7 +92,7 @@ A portfolio $\xi$ is _efficient_ for a given expected realized return
 $\rho$ if $\mathrm{Var}(R(\xi)) \le \mathrm{Var}(R(\eta))$ for every
 portfolio $\eta$ with expected realized return $\rho$.
 
-The [appendix](efficient-portfolios) shows every efficient portfolio
+The [appendix](#efficient-portfolios) shows every efficient portfolio
 has the form
 $$
 \xi = ((C - \rho B)/\Delta)V^{-1}x + ((-B + \rho A)/\Delta)V^{-1}E[X]
@@ -105,11 +105,17 @@ $$
 $$ 
 
 If $\xi_0$ and $\xi_1$ are any two independent efficient portfolios then
-they space the same subspace as $V^{1}x$ and $V^{1}E[X]$. We can assume
+they belong to the subspace spanned by $V^{1}x$ and $V^{1}E[X]$. We can assume
 $\xi_j'x = 1$ for $j = 0,1$ so $R(\xi_j) = \xi_j'X$. Every efficient
 portfolio can be written $\xi = \beta_0\xi_0 + \beta_1\xi_1$ for some
 scalars $\beta_0$ and $\beta_1$. If $\xi'x = 1$ then $\beta_0 + \beta_1 =
-1$ and $\xi = (1 - \beta)\xi_0 + \beta\xi$ where $\beta = \beta_1$.
+1$ and $\xi = (1 - \beta)\xi_0 + \beta\xi_1$ where $\beta = \beta_1$.
+Multiplying both sides by $X$ we have $\xi'X = (1 - \beta)\xi_0'X + \beta\xi_1'X$
+so
+$$
+	R(\xi) - R(\xi_0) = \beta(R(\xi_1) - R(\xi_0))
+$$
+where $\beta = \mathrm{Cov}(R(\xi) - R(\xi_0), R(\xi_1) - R(\xi_0))/\mathrm{Var}(R(\xi_1) - R(\xi_0))$.
 
 ## Appendix
 
