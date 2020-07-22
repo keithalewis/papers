@@ -47,12 +47,13 @@ prices depending on the outcome. We assume, as customary,
 that there are no dividend cash flows and prices are perfectly
 liquid.
 
-It is common in the literature to write $\mathbf{R}^n$ where $n$ is the
-cardinality of $I$. If $A^B = \{f\colon A\to B\}$ is the set of functions
-from $A$ to $B$ then $x\in\mathbf{R}^I$ is the function $x\colon I\to\mathbf{R}$
-where $x(i)\in\mathbf{R}$ is the price of instrument $i\in I$.
-This avoids circumlocutions like $I = \{i_1,\ldots,i_n\}$ and $x = (x_1,\ldots,x_n)$
-where $x_j = x(i_j)$, $j = 1,\ldots, n$.
+It is common in the literature to write $\mathbf{R}^n$ instead of
+$\mathbf{R}^I$ where $n$ is the cardinality of $I$. If $A^B = \{f\colon
+A\to B\}$ is the set of functions from $A$ to $B$ then $x\in\mathbf{R}^I$
+is the function $x\colon I\to\mathbf{R}$ where $x(i)\in\mathbf{R}$ is
+the price of instrument $i\in I$.  This avoids circumlocutions like $I
+= \{i_1,\ldots,i_n\}$ and $x = (x_1,\ldots,x_n)$ where $x_j = x(i_j)$,
+$j = 1,\ldots, n$.
 
 A _portfolio_ $\xi\in\mathbf{R}^I$ represents the number of
 shares initially purchased in each instrument. The _realized
@@ -85,7 +86,7 @@ $$
 	D_\mu\Phi &= \xi'E[X] - \rho = 0 \\
 \end{aligned}
 $$
-so $\xi = (\tau V)^{-1}((1 - \mu)E[X] - \lambda x)$.
+so $\xi = (\tau V)^{-1}(- \lambda x + (1 - \mu)E[X])$.
 If $\tau > 0$ and $V$ is invertible then there is a maximum.
 If $\xi'X = 0$ implies $\xi = 0$ then the maximum is unique.
 If not we can remove redundant market instruments to make it so.
@@ -94,12 +95,12 @@ Note that every optimal solution belongs to the (at most) two-dimensional
 subspace spanned by $V^{-1}x$ and $V^{-1}E[X]$.
 If $\xi_0$ and $\xi_1$ are any two independent optimal solutions
 then $\xi = \beta_0\xi_0 + \beta_1\xi_1$ for some constants $\beta_0$ and $\beta_1$.
-Since $1 = \xi'x = \beta_0 + \beta_1$ we have $\xi = (1 - \beta)\xi_0 + \beta\xi_1$ and
+Since $1 = \xi'x = \beta_0 + \beta_1$ we have $\xi = (1 - \beta)\xi_0 + \beta\xi_1$.
+Note also that $\xi'X = R(\xi)$, likewise $\xi_j'X = R(\xi_j) = R_j$ for $j = 0, 1$ hence
 $$
 	R(\xi) - R_0 = \beta(R_1 - R_0)
 $$
-where $R_i = R(\xi_i)$ and 
-$\beta = \mathrm{Cov}(R(\xi) - R_0,R_1 - R_0)/\mathrm{Var}(R_1 - R_0)$.
+where $\beta = \mathrm{Cov}(R(\xi) - R_0,R_1 - R_0)/\mathrm{Var}(R_1 - R_0)$.
 
 If $\mathrm{Var}(R_0) = 0$ then
 $\beta = \mathrm{Cov}(R(\xi),R_1)/\mathrm{Var}(R_1)$
@@ -112,14 +113,16 @@ Unfortunately, if $V$ is invertible then there is no $\xi$ with $\mathrm{Var}(\x
 If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 = E[XX'\xi] - E[X] E[X'\xi] = E[Xc] - E[X]c = 0$. We rectify this in the next section.
 
-### Zero Coupon Bonds
+### Risk-free Portfolios
 
-A portfolio $\zeta\in\mathbf{R}^I$ with $\zeta'X = 1$ is called a
-_zero coupon bond_. It pays one unit on any outcome.
+A portfolio $\zeta\in\mathbf{R}^I$ with $\zeta'X(\omega) = c$ for some
+constant $c\in\mathbf{R}$ and all $\omega\in\Omega$ is called _risk-free_.
+If $c = 1$ the portfolio is called a _zero coupon bond_ and has constant
+realized return $R = R(\zeta) = 1/\zeta'x$.
 
-Let $R = 1/\zeta'x = R(\zeta)$ so $R\zeta'x = 1$ and $R\zeta'E[X] = R$.
-The portfolio $\xi = R\zeta$ is optimal for expected return $\rho = R$
-since $\Var(R(\zeta)) = \zeta'V\zeta = 0$.
+Note $R\zeta'x = 1$ and $R\zeta'E[X] = R$
+and the portfolio $\xi = R\zeta$ is optimal for expected return $\rho = R$
+since $\Var(R(\zeta)) = 0$.
 
 Let $V_\zeta = V|_{\{\zeta\}^\perp}$ where $\{\zeta\}^\perp = \{y\in\mathbf{R}^I:\zeta'y = 0\}$.
 Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
@@ -235,7 +238,7 @@ portfolios is a cone.
 
 _Proof._ Since $C$ is closed there exists $x^*\in C$ with
 $||x^* - x|| \le ||y - x||$ for all $y\in C$.  Let $\xi = x^* - x$.
-For any $y\in C$ and $t\ge 0$ we have $ty + x^*\in C$ so $||\xi|| \le ||ty + \xi||$. 
+For any $y\in C$ and $t > 0$ we have $ty + x^*\in C$ so $||\xi|| \le ||ty + \xi||$. 
 Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$. 
 Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$. 
 Take $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$. By similar reasoning
@@ -250,30 +253,32 @@ The contrapositive follows from the lemma.
 
 The proof also shows how to find an arbitrage when one exists.
 
-### Fréchet Derivative
+### Fr&eacute;chet Derivative
 
-The Fréchet derivative of a function $F\colon X\to Y$ where $X$ and
-$Y$ are Banach spaces is written $DF\colon X\to\mathcal{B}(X,Y)$ and is defined
-by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ where $\mathcal{B}(X,Y)$
+A function $F\colon X\to Y$ where $X$ and $Y$ are Banach spaces
+has a Fr&eacute;chet derivative at $x\in X$ if it is linear up to first
+order in a neighborhood of $x$.
+The Fréchet derivative, $DF\colon X\to\mathcal{B}(X,Y)$, is defined
+by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ as $h\to 0$ where $\mathcal{B}(X,Y)$
 is the space of bounded linear operators from $X$ to $Y$.
-This says $F$ is linear to first order in a neighborhood of $x\in X$.
 
 For example, if $F\colon X\to X$, where $X$ is a (not necessarily
 commutative) Banach algebra, is defined to be
 $F(x) = x^2$ then $(x + h)^2 = x^2 + xh + hx + h^2$.
 The $h^2$ term is $o(\|h\|)$ so $DF(x)h = xh + hx$.
-If we define the linear operators $L_x,R_x\colon X\to X$ by
+If we define the linear operators of left and right multiplication by $x$,
+$L_x,R_x\colon X\to X$, where
 $L_x y = xy$ and $R_x y = yx$ then $DF(x) = L_x + R_x$.
 Another way to write this is $D(x^2)dx = x\ dx + dx\ x$.
 
-If $X$ is commutative this reduces to
+A good exercise is to show $D(x^n) = \sum_{j=1}^n L_x^{n - j} R_x^{j - 1}$.
+
+If $X$ is commutative the above reduces to
 $DF(x) = 2M_x$ where $M_x = L_x = R_x$. If we implicitly
 assume $x$ stands for multiplication by $x$, $M_x$, then
 we can write $D(x^2) = 2x$, just as in the case $X = \mathbf{R}$.
 
-A good exercise is to show $D(x^n) = \sum_{j=1}^n R_x^{n - j} L_x^{j - 1}$.
-
-In the case $Y = \mathbf{R}$ we have $DF\colon X\to\mathcal{B}(X,\mathbf{R})$.
+If $Y = \mathbf{R}$ we have $DF\colon X\to\mathcal{B}(X,\mathbf{R})$.
 Recall the _dual vector space_ of $X$ is $X^* = \mathcal{B}(X,\mathbf{R})$,
 the set of bounded _linear functionals_ on $X$. The _dual pairing_ is
 $\langle x,x* \rangle = x^*(x)$ for $x\in X$, $x^*\in X^*$.
@@ -281,10 +286,11 @@ $\langle x,x* \rangle = x^*(x)$ for $x\in X$, $x^*\in X^*$.
 If $T\colon\mathbf{R}^n\to\mathbf{R}^n$ is a self-adjoint linear
 transformation and $F(x) = x'Tx$ then $DF(x)h = 2h'Tx$. This
 follows from $(x + h)'T(x + h) = x'Tx + x'Th + h'Tx + h'Th$
-so $DF(x) = x'Th + h'Tx = 2h'Tx$ since $x'Th = h'T'x = h'Tx$.
+so $DF(x)h = x'Th + h'Tx = 2h'Tx$ since $x'Th = h'T'x = h'Tx$.
 Note $DF\colon\mathbf{R}^n\to(\mathbf{R}^n)^*$. The dual space
 is $(\mathbf{R}^n)^* = \{y':y\in\mathbf{R}^n\}$ where $y'$ is
-the linear functional $y'(x) = y'x$. We have $DF(x)h = \langle 2Vx, h\rangle$.
+identified with the linear functional $y'(x) = y'x$. Using the
+dual pairing, $DF(x)h = \langle 2Vx, h\rangle$.
 
 <!--
 
