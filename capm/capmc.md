@@ -258,9 +258,9 @@ The proof also shows how to find an arbitrage when one exists.
 A function $F\colon X\to Y$ where $X$ and $Y$ are Banach spaces
 has a Fr&eacute;chet derivative at $x\in X$ if it is linear up to first
 order in a neighborhood of $x$.
-The Fréchet derivative, $DF\colon X\to\mathcal{B}(X,Y)$, is defined
-by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ as $h\to 0$ where $\mathcal{B}(X,Y)$
-is the space of bounded linear operators from $X$ to $Y$.
+The Fréchet derivative, $DF\colon X\to\mathcal{B}(X,Y)$ where $\mathcal{B}(X,Y)$
+is the space of bounded linear operators from $X$ to $Y$,
+is defined by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ as $h\to 0$
 
 For example, if $F\colon X\to X$, where $X$ is a (not necessarily
 commutative) Banach algebra, is defined to be
