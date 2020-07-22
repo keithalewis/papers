@@ -59,7 +59,8 @@ is the _transpose_ of $y$ considered as a row vector.
 The _value_ of a portfolio $\xi$ given prices $x$ is $\xi'x$.
 It is the cost of attaining the portfolio $\xi$.
 The _realized return_ is $R(\xi) = \xi'X/\xi'x$ when $\xi'x\not=0$.
-Note $R(\xi) = R(t\xi)$ for any non-zero $t\in\mathbf{R}$.
+Note $R(\xi) = R(t\xi)$ for any non-zero $t\in\mathbf{R}$ so
+there is no loss in assuming $\xi'x = 1$ when needed.
 
 There is _model arbitrage_ if there exists a portfolion $\xi$ with
 $\xi'x < 0$ and $\xi'X(\omega) \ge0$ for all $\omega\in\Omega$:
