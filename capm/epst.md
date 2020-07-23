@@ -20,7 +20,7 @@ smaller variance is preferred. A portfolio having variance smaller
 than every portfolio with the same return is called _efficient_.
 
 In the [one-period model](one-period-model) all efficient portfolios lie in a two-dimensional
-subspace. ...
+subspace.
 
 ## One-Period Model
 
