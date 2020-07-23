@@ -18,18 +18,20 @@ the _risk-free_ and _market_ portfolio as a basis.
 Denoting the _realized return_ of a portfolio $\xi$ by $R(\xi)$,
 the classical CAPM formula is
 $$
-	E[R(\xi)] - R(\zeta) = \beta(E[R(\nu)] - R(\zeta))
+	E[R(\xi)] - R(\zeta) = \beta(E[R(\mu)] - R(\zeta))
 $$
 where $\xi$ is any optimal portfolio, $\zeta$ is the risk-free
-portfolio, $\nu$ is the market portfolio, and
-$\beta = \mathrm{Cov}(R(\xi),R(\nu))/\mathrm{Var}(R(\nu))$.
+portfolio, $\mu$ is the market portfolio, and
+$\beta = \mathrm{Cov}(R(\xi),R(\mu))/\mathrm{Var}(R(\mu))$.
 
 We prove a stronger result that holds for any distribution of market prices:
 $$
-	R(\xi) - R(\zeta) = \beta(R(\nu) - R(\zeta))
+	R(\xi) - R(\zeta) = \beta(R(\mu) - R(\zeta))
 $$
-as random variables for any optimal $\zeta$ and $\nu$. In this case $\beta =
-\mathrm{Cov}(R(\xi) - R(\zeta),R(\nu) - R(\zeta))/\mathrm{Var}(R(\nu) - R(\zeta))$.
+as random variables for any optimal $\zeta$ and $\mu$. In this case
+$$
+\beta = \mathrm{Cov}(R(\xi) - R(\zeta),R(\mu) - R(\zeta))/\mathrm{Var}(R(\mu) - R(\zeta)).
+$$
 
 
 ## One-Period Model
@@ -73,7 +75,7 @@ $$
 	D_\mu\Phi &= \xi'E[X] - \rho = 0 \\
 \end{aligned}
 $$
-so $\xi = (\tau V)^{-1}((1 - \mu)E[X] - \lambda x)$.
+so $\xi = (\tau V)^{-1}(- \lambda x + (1 - \mu)E[X])$.
 If $\tau > 0$ and $V$ is invertible then there is a maximum.
 If $\xi'X = 0$ implies $\xi = 0$ then the maximum is unique.
 If not we can remove redundant market instruments to make it so.
@@ -110,15 +112,14 @@ The portfolio $\xi = R\zeta$ is optimal for expected return $\rho = R$
 since $V\zeta = 0$.
 
 Let $V_\zeta = V|_{\{\zeta\}^\perp}$ where $\{\zeta\}^\perp = \{y\in\mathbf{R}^I:\zeta'y = 0\}$.
-Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
-so $\{\zeta\}^\perp$ is an invariant subspace of $V$.
+Since $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
+$\{\zeta\}^\perp$ is an invariant subspace of $V$.
 We can assume $V_\zeta$ is invertible and find other optimal portfolios in $\{\zeta\}^\perp$ as above.
 
 If $x$ and $E[X]$ are collinear then $Rx = E[X]$ for some $R$ and
 the only optimal portfolio with $\xi'x = 1$ is $\xi = V^{-1}x/x'V^{-1}x$. It has return $R$
 and utility $U_\tau = R - \tau/2x'V^{-1}x$. Note $\xi$ does not depend on $\tau$ and requires
 $\rho = R$.
-
 
 ## Appendix
 
@@ -191,7 +192,7 @@ If $Rx = E[X]$ and $\rho = R$ then $B = RA$ and $C = R^2A$ so $\Delta = 0$ and t
 matrix is not invertible.  However if we replace $C$ by $C(1 + \epsilon)$
 for $\epsilon\not=0$ it is and
 $\Delta = R^2A^2\epsilon$, $C - 2BR + AR^2 = R^2A\epsilon$.
-The maximum utility is $R - 1/2A$ as noted above.
+The maximum utility is $R - \tau/2A$ as noted above.
 
 ### Model Arbitrage
 
