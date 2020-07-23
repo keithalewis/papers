@@ -19,7 +19,9 @@ $(HTML): %.html: %.md capm.css
 	pandoc --reference-location=block -t html5+auto_identifiers -s --css capm.css  --katex=$(KATEX) $< -o $@
 
 $(PDF): %.pdf: %.md
-	pandoc -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
+	pandoc -H ../header.tex $< -o $@
+
+#pandoc -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
 
 #	pandoc --pdf-engine=xelatex -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
 

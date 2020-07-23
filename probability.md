@@ -8,23 +8,26 @@ abstract: |
 	This note collects salient facts about probability theory.
 ...
 
-Probability is an extension of logic. Instead of propositions being either
-true or false a degree of belief can be specified for events occurring,
-or not occuring.
-All probabilities are conditional on models of available information.
+# Probability Theory
 
-# Probability Model
+Probability theory is an extension of logic. Instead of propositions being
+either true or false a degree of belief can be specified for events.
 
-A probability model specifies a sample space and a probability
-measure. Algebras of events model partial information.
+In order to understand statistics one must first understand probability theory.
 
-## Sample Space
+## Probability Model
 
-A sample space is what can happen in a model:
+A _probability model_ specifies a _sample space_ and a _probability
+measure_. _Algebras_ of events model partial information.
+
+### Sample Space
+
+A sample space is the set of what can happen in a model:
 heads or tails as the outcome of a coin toss, the integers from 1 to
 6 as the outcomes of rolling a single die, the set of all sequences of
 not more than 280 characters as a model of possible Twitter tweets.
 
+An element of a sample space is called an _outcome_.
 An _event_ is a subset of a sample space.
 
 <!--
@@ -40,22 +43,29 @@ That means...
 
 People seem to be surprised probabilities are modeled using sets.
 Sets have no structure, they are just a bag of things (_elements_). 
+People also seem to be rather cavalier about specifying sample spaces.
+The first step in any probablity model is to specify the possible outcomes.
 
-## Probability Measure
+<!--
+Monte Hall problem
+-->
+
+
+### Probability Measure
 
 A _probability measure_ assigns
 a number between 0 and 1 to events. If $\Omega$ is a sample space and $P$
 is a probability measure then the measure of the union of sets is the
 sum of the measure of each set minus the measure of the intersection:
 $P(E\cup F) = P(E) + P(F) - P(E\cap F)$ for events $E$ and $F$.  This is
-the mathematical way to say measures do not double count.
+the mathematical way of expressing the requirement that measures do not double count.
 
 A probability measure must also satisfy $P(\emptyset) = 0$ and $P(\Omega) = 1$.
 
 __Exercise__. If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$,
 show $(Q - a)/(b - a)$ is a probability measure.
 
-# Algebra
+### Algebra
 
 An _algebra of sets_, or _algebra_, on $\Omega$ is a collection of subsets
 (events), $\mathcal{A}$, that is closed under complement and union.
@@ -77,7 +87,7 @@ An _atom_ of an algebra is a member, $A$, of the algebra such that if
 $B\subseteq A$ and $B$ is in the algebra, then either $B = A$ or $B$
 is the empty set.
 
-## Partition
+#### Partition
 
 A _partition_ of a set is a collection of pairwise disjoint subsets
 whos union is the entire set.
@@ -97,7 +107,7 @@ die is odd or even.
 The coarsest partition, $\{\Omega\}$, corresponds to no knowledge while the finest partition
 $\{\{\omega\}:\omega\in\Omega\}$ corresponds to complete knowledge.
 
-## Measurable
+#### Measurable
 
 A function $X\colon\Omega\to\mathbf{R}$ is $\mathcal{A}$-_measureable_ if the sets
 $X^{-1}((-\infty, x]) = \{\omega\in\Omega:X(\omega)\le x\}$
@@ -108,13 +118,13 @@ is constant on atoms of $\mathcal{A}$.
 
 In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
 
-# Random Variable
+## Random Variable
 
-A _random variable_ is a variable, a
-symbol that can be used in place of a number, with additional information:
-the probability of the values it can take on.
+A _random variable_ is a symbol that can be used in place of a number
+when manipulating equations and inequalities, same as a variable, but
+with additional information: the probability of the values it can take on.
 
-## Cumulative Distribution Function
+### Cumulative Distribution Function
 
 The _cumulative distribution
 function_ of the random variable $X$ is $F(x) = F^X(x) = P(X\le x)$.
@@ -138,7 +148,7 @@ Every such function is the cumulative distribution function of a random variable
 
 The cdf $F(x) = \max\{0,\min\{1,x\}\}$ defines the uniformly distributed
 random variable, $U$, on the interval $[0,1]$.  For $0\le a < b\le 1$,
-$P(a < U \le b) = b - a$.
+$P(a < U \le b) = P(U\in (a,b]) = b - a$.
 
 Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
 
@@ -157,7 +167,7 @@ $X\colon\mathbf{R}\to\mathbf{R}$ to be the
 identity function and let $P$ be the probability measure defined by $F$:
 $P(A) = \int_A dF(x)$. 
 
-## Expected Value
+### Expected Value
 
 The _expected value_ of a random variable is defined by
 $E X = \int_{-\infty}^\infty x\,dF(x)$. The expected value of any function of
@@ -177,7 +187,7 @@ __Exercise__. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
 
 Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
 
-## Moments
+### Moments
 
 The _moments_ of a random variable, $X$, are $m_n = E[X^n]$, $n = 0,1,2,\ldots$.
 They don't necessarily exist for all $n$, except for $n = 0$.
@@ -196,13 +206,13 @@ random variable might not be unique.
 % Extending unbounded symmetric operators. Deficiency index.
 -->
  
-## Cumulant
+### Cumulant
 
 The _cumulant_ of a random variable, $X$, is $\kappa(s) = \kappa^X(s) = \log E\exp(sX)$.
 The _cumulants_, $(\kappa_n)$, are the coefficients of the power series expansion
 $\kappa(s) = \sum_{n>0}\kappa_n s^n/n!$.
 
-It is easy to see $\kappa_1 = E X$ and $\kappa_2 = \Var X$. The third and fourth cumulants
+It is easy to see $\kappa_1 = E[X]$ and $\kappa_2 = \mathrm{Var}(X)$. The third and fourth cumulants
 are related to skew and kurtosis. We will see the exact relationship below.
 
 If $c$ is a constant then $\kappa^{cX}(s) = \kappa^X(cs)$ so
@@ -210,7 +220,7 @@ $\kappa^{cX}_n = c^n\kappa^X_n$.  If $X$ and $Y$ satisfy $Ee^{sX}e^{sY}
 = Ee^{sX}E^{sY}$ then $\kappa^{X + Y}(s) = \kappa^X(s) + \kappa^Y(s)$
 and $\kappa^{X + Y}_n = \kappa^X_n + \kappa^Y_n$$
 
-### Bell Polynomial
+#### Bell Polynomial
 
 The relationship between moments and cumulants is given by _Bell
 polynomials_.  They are defined by $\exp(\sum_{n=1}^\infty a_n s^n/n!) =
@@ -249,10 +259,10 @@ the variance is 1, then $\kappa_3$ is the skew and $\kappa_4$ is the
 
 The _conditional expectation_ of an event $B$ given an event $A$ is
 $P(B|A) = P(B\cap A)/P(A)$. In some sense, this reduces the sample space to $A$
-since $P(A|A) = 1$.
+since $P(A|A) = 1$ and $P(B\cup C|A) = P(B|A) + P(C|A) - P(B\cap C|A)$.
 We also have $P(A|B) = P(A\cap B)/P(B)$ so $P(A|B) = P(B|A)P(A)/P(B)$. 
 This is the simplest form of Bayes Theorem. It shows how to update your degree
-of belief based on new information. Every probability is conditional on given information.
+of belief based on new information. Every probability is conditional on information.
 
 Define the conditional expectation of the random variable $X$ with respect
 to the event $A$ by $E[X|A] = E[X 1_A]/P(A)$.  If $X = 1_B$ then
@@ -262,7 +272,7 @@ Define the conditional expectation of $X$ with respect to the algebra
 $\mathcal{A}$, $E[X|\mathcal{A}]:\mathcal{A}\to\mathbf{R}$, by
 $E[X|\mathcal{A}](A) = E[X|A]$ for $A$ an atom of $\mathcal{A}$.
 
-# Joint Distribution
+## Joint Distribution
 
 Two random variables, $X$ and $Y$, are defined by their _joint
 distribution_, $H(x,y) = P(X\le x, Y\le y)$.  For example, the point $(X,Y)$ is
@@ -323,9 +333,9 @@ Hint: For the upper bound use $H(x,y) \le F(x)$ and $H(x,y) \le G(y)$.
 For the lower bound note $0\le C(u_1,v_1) - C(u_1, v_2) - C(u_2, v_1) + C(u_2, v_2)$
 for $u_1 \ge u_2$ and $v_1 \ge v_2$.
 
-# Examples
+## Examples
 
-## Discrete
+### Discrete
 
 A _discrete_ random variable, $X$, is defined by
 $x_i\in\mathbf{R}$ and $p_i > 0$ with $\sum p_i = 1$.
@@ -334,57 +344,64 @@ The probability the random variable takes on value $x_i$ is P(X = x_i) = $p_i$.
 If a discrete random variable takes on a finite number of values, $n$, then
 if $p_i = 1/n$ for all $i$ the variable is called _discrete uniform_.
 
-## Bernoulli
+### Bernoulli
 
 A _Bernoulli_ random variable is a discrete random variable with $P(X = 0) = p$, $P(X = 1) = 1 - p$.
 
-## Binomial
+### Binomial
 
 A _Binomial_ random variable is a discrete random variable with
 $P(X = k) = \binom{n}{k}p^k(1-p)^{n-k}$, $k = 0$, \ldots, $n$.
 
-## Uniform
+### Uniform
 
 A _continuous uniform_ random variable on the interval $[a,b]$ has density
 $f(x) = 1_{[a,b]}/(b - a)$.
 
-## Normal
+A _discrete uniform_ random variable on $\Omega = \{x_1,\ldots,x_n\}$
+has $P(X = x_j) = 1/n$ for $j = 1,\ldots,n$.
+
+### Normal
 
 The _standard normal_ random variable, $Z$, has density function $\phi(x) = \exp(-x^2/2)/\sqrt{2\pi}$.
 
-If $X$ is normal then $E\exp(N) = \exp(E[N] + \Var(N)/2)$ so the cumulants satisfy
+If $X$ is normal then $E\exp(N) = \exp(E[N] + \mathrm{Var}(N)/2)$ so the cumulants satisfy
 $\kappa_n = 0$ for $n > 2$.
 
 This follows from 
-\begin{align*}
+$$
+\begin{aligned}
 E[e^N] &= E[e^{\mu + \sigma Z}] \\
        &= \int_{-\infty}^\infty e^{\mu + \sigma z} e^{-z^2/2}\,dz/\sqrt{2\pi}\\
 	   &= e^{\mu + \sigma^2/2} \int_{-\infty}^\infty e^{-(z - \sigma)^2/2}\,dz/\sqrt{2\pi}\\
 	   &= e^{\mu + \sigma^2/2} \int_{-\infty}^\infty e^{-z^2/2}\,dz/\sqrt{2\pi}\\
 	   &= e^{\mu + \sigma^2/2}
-\end{align*}
+\end{aligned}
+$$
 
-For any normal random variable, $N$, $E[e^N f(N)] = E[e^N] E[f(N + \Var(N)]$.
+For any normal random variable, $N$, $E[e^N f(N)] = E[e^N] E[f(N + \mathrm{Var}(N)]$.
 
 __Exercise__. Prove this by first showing $E[e^{\sigma Z} f(Z)] = e^{\sigma^2/2} E[f(Z + \sigma)]$.
 
 If $N$, $N_1$, \ldots, are jointly normal then
 $E[e^N f(N_1,\ldots)] = E[e^N] E[f(N_1 + \Cov(N,N_1),\ldots)]$.
 
-## Poisson
+### Poisson
 
 A _Poisson_ random variable with parameter $\lambda$ is defined by
 $P(X = k) = e^{-\lambda}\lambda^k/k!$ for $k = 0, 1, \ldots$.
 
 If $X$ is Poisson with parameter $\lambda$ then 
-\begin{align*}
+$$
+\begin{aligned}
 Ee^{sX} &= \sum_{k=0}^\infty e^{sk} e^{-\lambda}\lambda^k/k!\\
         &= \sum_{k=0}^\infty  (e^s\lambda)^ke^{-\lambda}/k!\\
 		&= \exp(\lambda(e^s - 1))
-\end{align*}
+\end{aligned}
+$$
 so $\kappa(s) = \lambda(e^s - 1)$ and $\kappa_n = \lambda$ for all $n$.
 
-## Infinitely Divisible
+### Infinitely Divisible
 
 A random variable, $X$, is _infinitely divisible_ if for any positive integer, $n$,
 there exist independent, identically distributed random variables $X_1$,\ldots,$X_n$
@@ -405,14 +422,15 @@ Note the cumulants of the random variable are $\kappa_1 = \gamma$ and
 $\kappa_n = \int_{-\infty}^\infty x^{n - 2}\,dG(x)$ for $n \ge 2$.
 
 If $G(x) = a^2 1_{(-\infty,a]}$ for $a\not=0$ then
-
-\begin{align*}
+$$
+\begin{aligned}
 \kappa(s) &= \gamma s + a^2 K_s(a)\\ 
           &= \gamma s + a^2 \sum_{n=2}^\infty a^{n-2}s^n/n!\\ 
           &= \gamma s + \sum_{n=2}^\infty a^n s^n/n!\\ 
           &= \gamma s - as + \sum_{n=1}^\infty a^n s^n/n!\\ 
           &= (\gamma - a)s + \sum_{n=1}^\infty a^n s^n/n!\\ 
-\end{align*}
+\end{aligned}
+$$
 
 so the random variable is Poisson with parameter $a$ plus the constant $\gamma - a$.
 

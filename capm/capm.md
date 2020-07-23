@@ -1,16 +1,12 @@
 ---
-title: CAPM
+title: MPM
 author: Keith A. Lewis
 institute: KALX, LLC
 classoption: fleqn
 fleqn: true
 ---
 
-# Capital Asset Pricing Model
-
-Some notes on the Capital Asset Pricing Model.
-
-## Unified Model
+# Muli-period Model
 
 Let $I$ be the set of _market instruments_.
 
@@ -153,7 +149,6 @@ Using a Lagrangian multiplier let $\Phi(\xi,\alpha) = U_\tau(\xi) - \alpha(\xi'x
 We have
 $$
 \begin{aligned}
-<<<<<<< HEAD
 	D_\xi\Phi &= E[X] - \tau V\xi - \lambda x = 0\\
 	D_\lambda\Phi &= \xi'x - 1 = 0\\
 \end{aligned}
@@ -166,7 +161,6 @@ $\lambda = (x'(\tau V)^{-1}E[X] - 1)/x'(\tau V)^{-1}x
 
 Define an inner product on $\mathbf{R}^I$ by $x.y = x' V^{-1}y$ so
 $\lambda = (x . E[X] - \tau)/x . x$ and $\hat{R} = E[X] . E[X]/x . E[X]$.
-=======
 	D_\xi\Phi &= E[X] - \tau V\xi - \alpha x = 0\\
 	D_\alpha\Phi &= \xi'x - 1 = 0\\
 \end{aligned}
