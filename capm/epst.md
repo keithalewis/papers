@@ -14,7 +14,7 @@ thanks: |
 
 # Abstract
 
-In the worlds of Portfolio Investment and Risk Managment less variance
+In the worlds of Portfolio Investment and Risk Management less variance
 is better. Given two portfolios having the same return the one having
 smaller variance is preferred. A portfolio having variance smaller
 than every portfolio with the same return is called _efficient_.
@@ -29,7 +29,7 @@ possible market outcomes over a single period.  The _one-period model_
 specifies the initial instrument prices $x\in\mathbf{R}^I$ and the final
 instrument prices $X\colon\Omega\to\mathbf{R}^I$ depending on the outcome.
 We assume, as customary, that there are no cash flows associated with
-the intruments and transactions are perfectly liquid.
+the instruments and transactions are perfectly liquid.
 
 It is common in the literature to write $\mathbf{R}^n$ instead of
 $\mathbf{R}^I$ where $n$ is the cardinality of $I$.
@@ -48,13 +48,13 @@ X\to\mathbf{R}$ is $\langle x,x^* \rangle = x^*(x)$ for $x\in X$.
 If $\mathcal{B}(X,Y)$ is the space of bounded linear transformations
 from $X$ to $Y$ then $X^* = \mathcal{B}(X,\mathbf{R})$.
 
-When $I$ is finite dimensional, as it is in the real world, then
+When $I$ is finite dimensional, as it is in the real world, 
 $\mathbf{R}_I$ can be identified with $\mathbf{R}^I$. An element
-$y\in\mathbf{R}^I$ defines a linear functional $y'\in\mathbf{R}_I$
-via $y'(x) = \sum_{i\in I} x(i) y(i) = x\cdot y$, the standard _inner
-product_ of $x$ and $y$. If elements of $\mathbf{R}^I$ are considered as
-column vectors then $y'(x) = y'x$ is the usual matrix product where $y'$
-is the _transpose_ of $y$ considered as a row vector.
+$y\in\mathbf{R}^I$ defines a linear functional $y'\in\mathbf{R}_I$ via
+$y'(x) = \sum_{i\in I} y(i) x(i) = y\cdot x$, the _inner product_
+of $y$ and $x$. If elements of $\mathbf{R}^I$ are considered as column
+vectors then the right hand side of $y'(x) = y'x$ is the usual matrix
+product where $y'$ is the _transpose_ of $y$ considered as a row vector.
 
 The _value_ of a portfolio $\xi$ given prices $x$ is $\xi'x$.
 It is the cost of attaining the portfolio $\xi$.
@@ -62,18 +62,24 @@ The _realized return_ is $R(\xi) = \xi'X/\xi'x$ when $\xi'x\not=0$.
 Note $R(\xi) = R(t\xi)$ for any non-zero $t\in\mathbf{R}$ so
 there is no loss in assuming $\xi'x = 1$ when needed.
 
-There is _model arbitrage_ if there exists a portfolion $\xi$ with
+There is _model arbitrage_ if there exists a portfolio $\xi$ with
 $\xi'x < 0$ and $\xi'X(\omega) \ge0$ for all $\omega\in\Omega$:
 you make money on the initial investment and never lose money
-when unwinding at the end of the period. The one-period fundamental
+when unwinding at the end of the period. This definition does
+not require a measure on $\Omega$.
+
+The one-period fundamental
 theorem of asset pricing states there is no model arbitrage if
-and only if there exists a positive measure $\Pi$ on with
+and only if there exists a positive measure $\Pi$ on $\Omega$ with
 $x = \int_\Omega X(\omega)\,d\Pi(\omega)$. We assume $X$ is
 bounded, as it is in the real world, and $\Pi$ is finitely additive.
-See the [Appendix](#model-arbitrage) for a short, self-contained proof.
+The dual space of bounded functions on $\Omega$ is the space of finitely additive measures
+on $\Omega$
+with the dual pairing $\langle X,\Pi\rangle = \int_\Omega X\,d\Pi$. \cite{Dunford and Schwartz}
+See the [Appendix](#model-arbitrage) for a short, self-contained proof of the FTAP.
 
-If $x = \int X\,d\Pi$ for a positive measure $\Pi$ then all portfolios
-have the same expected realized return $1/\|\Pi\|$ where $\|\Pi\| = \int
+If $x = \int_\Omega X\,d\Pi$ for a positive measure $\Pi$ then all portfolios
+have the same expected realized return $1/\|\Pi\|$ where $\|\Pi\| = \int_\Omega
 1\,d\Pi$ is the mass of $\Pi$ and the expected value is with respect to
 the probability measure $Q = \Pi/\|\Pi\|$.
 This follows from $E[\xi'X] = \xi'x/\|\Pi\|$ for any portfolio $\xi$.
@@ -84,7 +90,7 @@ measure with mass 1. The above statements are geometrical, not probabilistic.
 The one period model also specifies a probability measure $P$ on the
 space of outcomes, but in general $E[X]$ under this measure is
 not a scalar multiple of $x$.
-As we've just seen, that would lead to models where all porfolios have
+As we've just seen, that would lead to models where all portfolios have
 the same expected realized return.
 
 ## Efficient Portfolios
@@ -106,13 +112,15 @@ $$
 $$ 
 
 If $\xi_0$ and $\xi_1$ are any two independent efficient portfolios then
-they belong to the subspace spanned by $V^{1}x$ and $V^{1}E[X]$. We can assume
-$\xi_j'x = 1$ for $j = 0,1$ so $R(\xi_j) = \xi_j'X$. Every efficient
+they belong to the subspace spanned by $V^{-1}x$ and $V^{-1}E[X]$.
+Every efficient
 portfolio can be written $\xi = \beta_0\xi_0 + \beta_1\xi_1$ for some
-scalars $\beta_0$ and $\beta_1$. If $\xi'x = 1$ then $\beta_0 + \beta_1 =
-1$ and $\xi = (1 - \beta)\xi_0 + \beta\xi_1$ where $\beta = \beta_1$.
-Multiplying both sides by $X$ we have $\xi'X = (1 - \beta)\xi_0'X + \beta\xi_1'X$
-so
+scalars $\beta_0$ and $\beta_1$.
+
+We can assume $\xi_j'x = 1$ for $j = 0,1$ so $R(\xi_j) = \xi_j'X$.
+If $\xi'x = 1$ then $\beta_0 + \beta_1 = 1$ and
+$\xi = (1 - \beta)\xi_0 + \beta\xi_1$ where $\beta = \beta_1$.
+Multiplying both sides by $X$ we have $\xi'X = (1 - \beta)\xi_0'X + \beta\xi_1'X$ so
 $$
 	R(\xi) - R(\xi_0) = \beta(R(\xi_1) - R(\xi_0))
 $$
@@ -145,7 +153,7 @@ Assuming $V$ is invertible $\xi = V^{-1}(\lambda x + \mu E[X])$.
 Note every extremum lies in the (at most) two dimensional subspace
 spanned by $V^{-1}x$ and $V^{-1}E[X]$.
     
-The The constraints $1 = x'\xi$ and $\rho = E[X']\xi$ can be written
+The constraints $1 = x'\xi$ and $\rho = E[X']\xi$ can be written
 $$
 \begin{bmatrix}
 1 \\
@@ -200,11 +208,20 @@ $$
 
 A straightforward calculation shows the variance is
 $$
-\xi'V\xi = (C - 2B\rho + A\rho^2)/\Delta
+\xi'V\xi = (C - 2B\rho + A\rho^2)/\Delta.
 $$
 Note that $A$, $B$, $C$, and $\Delta$ only depend on
 $x$, $E[X]$, and $E[XX']$. Classical literature focuses
-mainly on the latter three.
+mainly on the latter three which may explain why prior
+authors failed to note the elementary but stronger result
+$$
+	R(\xi) - R(\xi_0) = \beta(R(\xi_1) - R(\xi_0))
+$$
+as random variables for any efficient $\xi$ given any two
+independent efficient portfolios $\xi_0$ and $\xi_1$.
+Taking expectations on both sides
+yields the classical CAPM formula when $\xi_0$ is the risk-free portfolio
+and $\xi_1$ is the market portfolio.
 
 <!--
 If $Rx = E[X]$ and $\rho = R$ then $B = RA$ and $C = R^2A$ so $\Delta = 0$ and the
@@ -230,7 +247,7 @@ arbitrage_ if and only if there exists a positive measure $\Pi$ on
 $\Omega$ with $x = \int_\Omega X(\omega)\,d\Pi(\omega)$.  We assume $X$
 is bounded and $\Pi$ is finitely additive.
 
-If such a measure exists and $\xi\cdot X\ge0$ then $\xi\cdot x = \int \xi\cdot X\,d\Pi \ge0$ so arbitrage
+If such a measure exists and $\xi\cdot X\ge0$ then $\xi\cdot x = \int_\Omega \xi\cdot X\,d\Pi \ge0$ so arbitrage
 cannot occur. The other direction is less trivial.
 
 **Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
@@ -242,7 +259,7 @@ and multiplication by a positive scalar, i.e., $C + C\subseteq C$
 and $tC\subseteq C$ for $t > 0$. The set of arbitrage
 portfolios is a cone.
 
-_Proof._ Since $C$ is closed there exists $x^*\in C$ with
+_Proof._ Since $C$ is closed and $x\not\in C$ there exists $x^*\in C$ with
 $||x^* - x|| \le ||y - x||$ for all $y\in C$.  Let $\xi = x^* - x$.
 For any $y\in C$ and $t > 0$ we have $ty + x^*\in C$ so $||\xi|| \le ||ty + \xi||$. 
 Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$. 
@@ -264,7 +281,7 @@ The proof also shows how to find an arbitrage when one exists.
 A function $F\colon X\to Y$ where $X$ and $Y$ are Banach spaces
 has a Fr&eacute;chet derivative at $x\in X$ if it is linear up to first
 order in a neighborhood of $x$.
-The Fréchet derivative, $DF\colon X\to\mathcal{B}(X,Y)$ where $\mathcal{B}(X,Y)$
+The Fr&eacute;chet derivative $DF\colon X\to\mathcal{B}(X,Y)$, where $\mathcal{B}(X,Y)$
 is the space of bounded linear operators from $X$ to $Y$,
 is defined by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ as $h\to 0$
 
@@ -284,19 +301,17 @@ $DF(x) = 2M_x$ where $M_x = L_x = R_x$. If we implicitly
 assume $x$ stands for multiplication by $x$, $M_x$, then
 we can write $D(x^2) = 2x$, just as in the case $X = \mathbf{R}$.
 
-If $Y = \mathbf{R}$ we have $DF\colon X\to\mathcal{B}(X,\mathbf{R})$.
-Recall the _dual vector space_ of $X$ is $X^* = \mathcal{B}(X,\mathbf{R})$,
-the set of bounded _linear functionals_ on $X$. The _dual pairing_ is
-$\langle x,x* \rangle = x^*(x)$ for $x\in X$, $x^*\in X^*$.
+The exercise shows $D(x^n) = nM_{x^{n-1}} = nx^{n-1}$.
+
+If $Y = \mathbf{R}$ we have $DF\colon X\to\mathcal{B}(X,\mathbf{R}) = X^*$
+where $X^*$ is the dual space of $X$.
 
 If $T\colon\mathbf{R}^n\to\mathbf{R}^n$ is a self-adjoint linear
 transformation and $F(x) = x'Tx$ then $DF(x)h = 2h'Tx$. This
 follows from $(x + h)'T(x + h) = x'Tx + x'Th + h'Tx + h'Th$
 so $DF(x)h = x'Th + h'Tx = 2h'Tx$ since $x'Th = h'T'x = h'Tx$.
-Note $DF\colon\mathbf{R}^n\to(\mathbf{R}^n)^*$. The dual space
-is $(\mathbf{R}^n)^* = \{y':y\in\mathbf{R}^n\}$ where $y'$ is
-identified with the linear functional $y'(x) = y'x$. Using the
-dual pairing, $DF(x)h = \langle 2Vx, h\rangle$.
+Note $DF\colon\mathbf{R}^n\to(\mathbf{R}^n)^*$.
+Expressed using the dual pairing $DF(x)h = \langle 2Vx, h\rangle$.
 
 
 <!--
