@@ -131,9 +131,15 @@ where $\beta = \mathrm{Cov}(R(\xi) - R(\xi_0), R(\xi_1) - R(\xi_0))/\mathrm{Var}
 
 ### Risk-less Portfolios
 
-A _risk-less portfolio_ $\zeta$ has zero variance realize return so $\zeta'X = c$ for some constant $c$.
-If $c = 1$ we call the portfolio a _zero coupon bond_. Zero coupon bonds have return $R(\zeta) = 1/\zeta'x$.
-Since $V\zeta = E[Xc] - E[X]c = 0$ $V$ is not invertible.
+A _risk-less portfolio_ has realize return with zero variance.
+If $\zeta$ is risk-less then $\zeta'X = c$ for some constant $c$.
+If $c = 1$ we call the portfolio a _zero coupon bond_.
+Zero coupon bonds have constant realized return $R = R(\zeta) = 1/\zeta'x$.
+Since $V\zeta = E[Xc] - E[X]c = 0$ $V$ is not invertible however $R\zeta$
+is an efficient portfolio for realzied return $\rho = R$ since
+$R\zeta'E[X] = R$ and $R(\zeta)$ has variance zero.
+
+From the [Appendix](#efficient-portfolios) ...
 
 ## Appendix
 
