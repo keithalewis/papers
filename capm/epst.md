@@ -24,6 +24,8 @@ subspace. ...
 
 ## One-Period Model
 
+This model is parameterized directly by prices. Returns are defined in terms of these.
+
 Let $I$ be the set of market instruments and $\Omega$ be the set of
 possible market outcomes over a single period.  The _one-period model_
 specifies the initial instrument prices $x\in\mathbf{R}^I$ and the final
@@ -93,7 +95,8 @@ not a scalar multiple of $x$.
 As we've just seen, that would lead to models where all portfolios have
 the same expected realized return.
 
-## Efficient Portfolios
+
+## Efficient Portfolios 
 
 A portfolio $\xi$ is _efficient_ for a given expected realized return
 $\rho$ if $\mathrm{Var}(R(\xi)) \le \mathrm{Var}(R(\eta))$ for every
@@ -125,6 +128,12 @@ $$
 	R(\xi) - R(\xi_0) = \beta(R(\xi_1) - R(\xi_0))
 $$
 where $\beta = \mathrm{Cov}(R(\xi) - R(\xi_0), R(\xi_1) - R(\xi_0))/\mathrm{Var}(R(\xi_1) - R(\xi_0))$.
+
+### Risk-less Portfolios
+
+A _risk-less portfolio_ $\zeta$ has zero variance realize return so $\zeta'X = c$ for some constant $c$.
+If $c = 1$ we call the portfolio a _zero coupon bond_. Zero coupon bonds have return $R(\zeta) = 1/\zeta'x$.
+Since $V\zeta = E[Xc] - E[X]c = 0$ $V$ is not invertible.
 
 ## Appendix
 
@@ -213,7 +222,7 @@ $$
 Note that $A$, $B$, $C$, and $\Delta$ only depend on
 $x$, $E[X]$, and $E[XX']$. Classical literature focuses
 mainly on the latter three which may explain why prior
-authors failed to note the elementary but stronger result
+authors overlooked the elementary but stronger result
 $$
 	R(\xi) - R(\xi_0) = \beta(R(\xi_1) - R(\xi_0))
 $$
@@ -259,8 +268,8 @@ and multiplication by a positive scalar, i.e., $C + C\subseteq C$
 and $tC\subseteq C$ for $t > 0$. The set of arbitrage
 portfolios is a cone.
 
-_Proof._ Since $C$ is closed and $x\not\in C$ there exists $x^*\in C$ with
-$||x^* - x|| \le ||y - x||$ for all $y\in C$.  Let $\xi = x^* - x$.
+_Proof._ Since $C$ is closed there exists $x^*\in C$ with
+$0 < ||x^* - x|| \le ||y - x||$ for all $y\in C$.  Let $\xi = x^* - x$.
 For any $y\in C$ and $t > 0$ we have $ty + x^*\in C$ so $||\xi|| \le ||ty + \xi||$. 
 Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$. 
 Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$. 

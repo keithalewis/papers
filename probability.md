@@ -11,20 +11,21 @@ abstract: |
 Probability is an extension of logic. Instead of propositions being either
 true or false a degree of belief can be specified for events occurring,
 or not occuring.
-All probabilities are conditional on models of available information.
+All probabilities are conditional the model of available information.
 
 # Probability Model
 
-A probability model specifies a sample space and a probability
-measure. Algebras of events model partial information.
+A _probability model_ specifies a _sample space_ and a _probability
+measure_. _Algebras_ of events model partial information.
 
 ## Sample Space
 
-A sample space is what can happen in a model:
+A sample space is the set of what can happen in a model:
 heads or tails as the outcome of a coin toss, the integers from 1 to
 6 as the outcomes of rolling a single die, the set of all sequences of
 not more than 280 characters as a model of possible Twitter tweets.
 
+An element of a sample space is called an _outcome_.
 An _event_ is a subset of a sample space.
 
 <!--
@@ -40,6 +41,13 @@ That means...
 
 People seem to be surprised probabilities are modeled using sets.
 Sets have no structure, they are just a bag of things (_elements_). 
+People also seem to be rather cavalier about specifying sample spaces.
+The first step in any probablity model is to specify the possible outcomes.
+
+<!--
+Monte Hall problem
+-->
+
 
 ## Probability Measure
 
@@ -48,7 +56,7 @@ a number between 0 and 1 to events. If $\Omega$ is a sample space and $P$
 is a probability measure then the measure of the union of sets is the
 sum of the measure of each set minus the measure of the intersection:
 $P(E\cup F) = P(E) + P(F) - P(E\cap F)$ for events $E$ and $F$.  This is
-the mathematical way to say measures do not double count.
+the mathematical way of expressing the requirement that measures do not double count.
 
 A probability measure must also satisfy $P(\emptyset) = 0$ and $P(\Omega) = 1$.
 

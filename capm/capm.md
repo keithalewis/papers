@@ -1,16 +1,12 @@
 ---
-title: CAPM
+title: MPM
 author: Keith A. Lewis
 institute: KALX, LLC
 classoption: fleqn
 fleqn: true
 ---
 
-# Capital Asset Pricing Model
-
-Some notes on the Capital Asset Pricing Model.
-
-## Unified Model
+# Muli-period Model
 
 Let $I$ be the set of _market instruments_.
 
