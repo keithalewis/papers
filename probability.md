@@ -10,8 +10,9 @@ abstract: |
 
 # Probability Theory
 
-Probability theory is an extension of logic. Instead of propositions being
-either true or false a degree of belief can be specified for events.
+Probability theory is an extension of logic.
+A degree of belief between 0 and 1 is specified for events instead of
+propositions being either true or false
 
 In order to understand statistics one must first understand probability theory.
 
@@ -22,13 +23,15 @@ measure_. _Algebras_ of events model partial information.
 
 ### Sample Space
 
-A sample space is the set of what can happen in a model:
+A _sample space_ is the set of what can happen in a model:
 heads or tails as the outcome of a coin toss, the integers from 1 to
 6 as the outcomes of rolling a single die, the set of all sequences of
 not more than 280 characters as a model of possible Twitter tweets.
 
 An element of a sample space is called an _outcome_.
-An _event_ is a subset of a sample space.
+An _event_ is a subset of a sample space. For the die
+example, the event 'an even number was rolled' is the
+set $\{2,4,6\}$.
 
 <!--
 Assuming the characters are upper and lower case letters, space, and

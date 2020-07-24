@@ -1,25 +1,21 @@
 html {
-	margin: 0;
+	margin: 0 1in 0 1in;
 	padding: 0;
 }
 body {
-	font-family: 'Vesper Libre', serif;
+	font-family: Cambria, 'Vesper Libre', serif;
 	font-size: medium;
-	background: #F0F0F0;
-	background: linear-gradient(to right, #FFF, #F0F0F0);
+	background: #F8F8F8;
+	/*background: linear-gradient(to right, #FFF, #F0F0F0);*/
 	color: #565656;
 }
 h1 {
-	color: #062F4F;
 }
 h2 {
-	color: #264F6F;
 }
 h3 {
-	color: #444;
 }
 h4 {
-	color: #222;
 }
 .katex {
 	font-size: 100% !important;
