@@ -53,10 +53,11 @@ from $X$ to $Y$ then $X^* = \mathcal{B}(X,\mathbf{R})$.
 When $I$ is finite dimensional, as it is in the real world, 
 $\mathbf{R}_I$ can be identified with $\mathbf{R}^I$. An element
 $y\in\mathbf{R}^I$ defines a linear functional $y'\in\mathbf{R}_I$ via
-$y'(x) = \sum_{i\in I} y(i) x(i) = y\cdot x$, the _inner product_
-of $y$ and $x$. If elements of $\mathbf{R}^I$ are considered as column
-vectors then the right hand side of $y'(x) = y'x$ is the usual matrix
-product where $y'$ is the _transpose_ of $y$ considered as a row vector.
+$y'(x) = \sum_{i\in I} y(i) x(i) = y\cdot x$ for $x\in\mathbf{R}^I$,
+the _inner product_ of $y$ and $x$. If elements of $\mathbf{R}^I$
+are considered as column vectors then the right hand side of $y'(x) =
+y'x$ is the usual matrix product where $y'$ is the _transpose_ of $y$
+considered as a row vector.
 
 The _value_ of a portfolio $\xi$ given prices $x$ is $\xi'x$.
 It is the cost of attaining the portfolio $\xi$.
@@ -105,13 +106,13 @@ portfolio $\eta$ with expected realized return $\rho$.
 The [appendix](#efficient-portfolios) shows every efficient portfolio
 has the form
 $$
-\xi = ((C - \rho B)/\Delta)V^{-1}x + ((-B + \rho A)/\Delta)V^{-1}E[X]
+\xi = ((C - \rho B)/D)V^{-1}x + ((-B + \rho A)/D)V^{-1}E[X]
 $$
 where $A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$, $C = E[X]V^{-1}E[X]$,
-and $\Delta = AC - B^2$.
+and $D = AC - B^2$.
 The variance of the portfolio is
 $$
-\mathrm{Var}(R(\xi)) = (C - 2B\rho + A\rho^2)/\Delta
+\mathrm{Var}(R(\xi)) = (C - 2B\rho + A\rho^2)/D
 $$ 
 
 If $\xi_0$ and $\xi_1$ are any two independent efficient portfolios then
@@ -193,7 +194,7 @@ $C = E[X]V^{-1}E[X]$.
 Inverting gives
 $$
 \begin{bmatrix} \lambda \\ \mu \end{bmatrix}
-= \frac{1}{\Delta}
+= \frac{1}{D}
 \begin{bmatrix}
 C & -B \\
 -B & A\\
@@ -202,19 +203,19 @@ C & -B \\
 1 \\
 \rho
 \end{bmatrix}
-= \frac{1}{\Delta}
+= \frac{1}{D}
 \begin{bmatrix}
 C - \rho B \\
 -B + \rho A\\
 \end{bmatrix}
 $$
-where $\Delta = AC - B^2$ so
-$\lambda = (C - \rho B)/\Delta$, $\mu = (-B + \rho A)/\Delta$, and
+where $D = AC - B^2$ so
+$\lambda = (C - \rho B)/D$, $\mu = (-B + \rho A)/D$, and
 $$
 \begin{aligned}
     \xi &= V^{-1}\begin{bmatrix}x & E[X]\end{bmatrix}
   \begin{bmatrix}\lambda \\ \mu\end{bmatrix} \\
-        &= \frac{1}{\Delta} V^{-1}
+        &= \frac{1}{D} V^{-1}
            \bigl(
            (C - \rho B)x + (-B + \rho A)E[X]
            \bigr)
@@ -223,9 +224,9 @@ $$
 
 A straightforward calculation shows the variance is
 $$
-\xi'V\xi = (C - 2B\rho + A\rho^2)/\Delta.
+\xi'V\xi = (C - 2B\rho + A\rho^2)/D.
 $$
-Note that $A$, $B$, $C$, and $\Delta$ only depend on
+Note that $A$, $B$, $C$, and $D$ only depend on
 $x$, $E[X]$, and $E[XX']$. Classical literature focuses
 mainly on the latter three which may explain why prior
 authors overlooked the elementary but stronger result
@@ -240,6 +241,7 @@ $\xi_0$ is the risk-less portfolio and $\xi_1$ is the market portfolio.
 If a risk-less portfolio exists then $V$ is not invertible. However
 $V + \epsilon I$ is for small non-zero $\epsilon$.  In this case
 $A_\epsilon = x'(V + \epsilon I)^{-1}x$ ...
+In this case $A_\epsilon = x'V_\epsilon^{-1}x$ ...
 $D_\epsilon = A_\epsilon C_\epsilon - B_\epsilon^2$. 
 
 <!--

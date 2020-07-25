@@ -1,13 +1,16 @@
+header, section, footer, aside, nav, main, article, figure {
+    display: block; 
+} 
 html {
-	margin: 0 1in 0 1in;
+	margin: 1in;
 	padding: 0;
 }
 body {
-	font-family: Cambria, 'Vesper Libre', serif;
-	font-size: medium;
-	background: #F8F8F8;
-	/*background: linear-gradient(to right, #FFF, #F0F0F0);*/
-	color: #565656;
+    /*font-family: Georgia; serif;*/
+	/*font-family: 'Vesper Libre', serif;*/
+	/*font-size: medium;*/
+	font-family: Cambria, serif;
+	/*font-family: Palatino, serif;*/
 }
 h1 {
 }
@@ -26,7 +29,7 @@ h4 {
 #kalx {
     font-family: "Courier";
     font-weight: bold;
-    opacity: 20%;
+    opacity: 50%;
     position: fixed;
     bottom: 0;
     right: 0;
