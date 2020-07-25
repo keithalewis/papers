@@ -5,16 +5,16 @@ institution: KALX, LLC
 email: kal@kalx.net
 classoption: fleqn
 abstract: |
-	This note collects salient facts about probability theory.
+	This note collects salient facts about Probability Theory.
 ...
 
 # Probability Theory
 
-Probability theory is an extension of logic.
-A degree of belief between 0 and 1 is specified for events instead of
-propositions being either true or false
+In order to understand statistics one must first understand _probability theory_.
 
-In order to understand statistics one must first understand probability theory.
+Events are assigned a probability between 0 and 1 representing a degree
+of belief.
+
 
 ## Probability Model
 

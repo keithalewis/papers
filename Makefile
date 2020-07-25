@@ -4,7 +4,7 @@ HTML = $(MKDN:.md=.html)
 PDF = $(MKDN:.md=.pdf)
 DOCX = $(MKDN:.md=.docx)
 #FLAGS = -s # smart quotes
-KATEX=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/
+KATEX=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/
 FLAGS += --katex=$(KATEX)
 FLAGS += -t html5
 #FLAGS += --mathjax
