@@ -8,7 +8,7 @@ KATEX=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/
 FLAGS += --katex=$(KATEX)
 FLAGS += -t html5
 #FLAGS += --mathjax
-FLAGS += --css ftap.css
+FLAGS += --css generic.css
 #FLAGS += --section-divs
 FLAGS += -H header.html
 #FLAGS += -H katex.html

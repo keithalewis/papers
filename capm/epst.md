@@ -237,7 +237,7 @@ independent efficient portfolios $\xi_0$ and $\xi_1$.
 Taking expectations on both sides yields the classical CAPM formula when
 $\xi_0$ is the risk-less portfolio and $\xi_1$ is the market portfolio.
 
-If a risk-less portfolio exists then $V$ is not invertable. However
+If a risk-less portfolio exists then $V$ is not invertible. However
 $V + \epsilon I$ is for small non-zero $\epsilon$.  In this case
 $A_\epsilon = x'(V + \epsilon I)^{-1}x$ ...
 $D_\epsilon = A_\epsilon C_\epsilon - B_\epsilon^2$. 

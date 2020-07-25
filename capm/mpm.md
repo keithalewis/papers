@@ -62,3 +62,7 @@ $X_t\Pi_t = ((C_u + X_u)\Pi_u)|_{\mathcal{A}_t}$ for sufficiently small
 $u > t$.
 
 Such measures are called _deflators_ or _risk-neutral_.
+
+## Appendix
+
+
