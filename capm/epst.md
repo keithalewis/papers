@@ -5,7 +5,7 @@ institute: KALX, LLC
 classoption: fleqn
 fleqn: true
 thanks: |
-	Peter Carr and David Shimko gave insightful feedback to 
+	Peter Carr and David Shimko gave insightful feedback to
 	make the exposition more accessible to finance professionals.
 	Any remaining infelicities or omissions are my fault.
 ---
@@ -189,8 +189,7 @@ B & C\\
 \mu
 \end{bmatrix}
 $$
-with $A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$, and
-$C = E[X]V^{-1}E[X]$.
+with $A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$, and $C = E[X]V^{-1}E[X]$.
 Inverting gives
 $$
 \begin{bmatrix} \lambda \\ \mu \end{bmatrix}
@@ -243,6 +242,110 @@ $V + \epsilon I$ is for small non-zero $\epsilon$.  In this case
 $A_\epsilon = x'(V + \epsilon I)^{-1}x$ ...
 In this case $A_\epsilon = x'V_\epsilon^{-1}x$ ...
 $D_\epsilon = A_\epsilon C_\epsilon - B_\epsilon^2$. 
+
+$A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$, and $C = E[X]V^{-1}E[X]$.
+
+$$
+\begin{aligned}
+((C_\epsilon - \rho B_\epsilon)/D_\epsilon) V_\epsilon^{-1}x
+&= ((C_\epsilon - \rho B_\epsilon)/D_\epsilon) V_\epsilon^{-1}x \\
+&= E \\
+\end{aligned}
+$$
+
+## Two Assets
+
+Let $x = (x_0,x_1)$ and $X = (X_0,X_1)$. We can assume $x_0 = 1$ and $x_1 = 1$
+
+$$
+ V = E[XX'] - E[X] E[X']
+    = \begin{bmatrix}
+        \mathrm{Var}(X_0) & \mathrm{Cov}(X_0,X_1)\\
+        \mathrm{Cov}(X_1,X_0) & \mathrm{Var}(X_1)\\
+    \end{bmatrix}
+    = \begin{bmatrix}
+		V_0 & C \\
+		C & V_1 \\
+    \end{bmatrix}
+$$
+
+The determinant of $V$ is $\Delta = V_0 V_1 - C^2$ and
+
+$$
+ V^{-1}
+= \frac{1}{\Delta}
+    \begin{bmatrix}
+        V_1 & -C\\
+        -C & V_0\\
+    \end{bmatrix}
+$$
+
+$$
+ V^{-1}x
+= \frac{1}{\Delta}
+    \begin{bmatrix}
+        V_1 - C \\
+        -C + V_0 \\
+    \end{bmatrix}
+$$
+
+$$
+ V^{-1}E[X]
+= \frac{1}{\Delta}
+    \begin{bmatrix}
+        V_1 E[R]  - C E[S]\\
+        -C E[R] + V_0 E[S]\\
+    \end{bmatrix}
+$$
+
+$$
+A = x'V^{-1}x
+= \frac{1}{\Delta}(V_1  - 2C + V_0)
+$$
+
+
+$$
+B = x'V^{-1}E[X] = E[X']V^{-1}x
+= \frac{1}{\Delta}(V_1 E[R]  - C(E[S] + E[R]) + V_0 E[S])
+$$
+
+$$
+C = E[X']V^{-1}E[X]
+= \frac{1}{\Delta}(V_1 E[R]^2  - 2C E[S] E[R]  + V_0 E[S]^2)
+$$
+
+Since $\Delta\to 0$ as $Var(X_0)\to 0$,
+$A$, $B, and $C$ tend to infinity assuming $Var(X_1) > 0$ is fixed.
+
+\begin{aligned}
+E[X'] V^{-1}E[X]
+&= \frac{1}{\Delta}
+        [V_S (ER)^2 - 2 C_{R,S} E[R] E[S] + V_R (ES)^2]\\
+	&= \frac{1}{1 - \rho^2}((\mu_R/\sigma_R)^2 - 2\rho(\mu_R/\sigma_R)(\mu_S/\sigma_S) + (\mu_S/\sigma_S)^2)\\
+\end{aligned}
+$$
+where $\rho$ is the correlation of $R$ and $S$ and $\mu_X = E[X]$, $\sigma_X^2 = \mathrm{Var}(X)$.
+
+The variance $V$ has eigenvalues
+
+$$
+\lambda_{\pm} = \frac{1}{2}
+\left(
+  \sigma_R^2 + \sigma_S^2
+  \pm\sqrt{(\sigma_R^2 - \sigma_S^2)^2 + 4\rho^2 \sigma_R^2 \sigma_S^2}
+\right)
+$$
+
+with corresponding eigenvectors
+
+$$
+v_{\pm} = 
+\left(
+\frac{\sigma_R^2 - \sigma_S^2 \pm\sqrt{(\sigma_R^2 - \sigma_S^2)^2 + 4\rho^2 \sigma_R^2 \sigma_S^2}}
+{2\rho\sigma_R\sigma_S},1
+\right)
+$$
+
 
 <!--
 If $Rx = E[X]$ and $\rho = R$ then $B = RA$ and $C = R^2A$ so $\Delta = 0$ and the
@@ -334,6 +437,35 @@ so $DF(x)h = x'Th + h'Tx = 2h'Tx$ since $x'Th = h'T'x = h'Tx$.
 Note $DF\colon\mathbf{R}^n\to(\mathbf{R}^n)^*$.
 Expressed using the dual pairing $DF(x)h = \langle 2Vx, h\rangle$.
 
+### Finitely Additive Measures
+
+A measure $\mu$ on $\Omega$ is _finitely additive_ if $\mu(E\cup F) = \mu(E) + \mu(F)$
+when $E$ and $F$ are disjoint subsets of $\Omega$.
+
+It is easy to prove the dual space of bounded functions on $\Omega$,
+$B(\Omega)$, is the space of finitely additive measures on $\Omega$,
+$ba(\Omega)$.  If $M\in B(\Omega)^*$ define $\mu(E) = M(1_E)$ where
+$1_E$ is the _indicator function_ of $E$ defined by $1_E(\omega)$
+is 1 if $\omega\in E$ and 0 otherwise. Since $1_{E\cup F} = 1_E + 1_F$
+if $E\cap F = \emptyset$ and $M$ is linear this defines a finitely additive measure.
+
+The other direction is only slightly more complicated.
+A _simple function_ is a finite sum
+of the form $e = \sum_i e_i 1_{E_i}$ where $e_i\in\mathbf{R}$ and $E_i\subseteq\Omega$.
+We can and do assume the $(E_i)$ are pairwise disjoint.
+If $\mu\in ba(\Omega)$ define
+$M(\sum_i e_i 1_{E_i}) = \sum_i e_i \mu(E_i)$.
+Since simple functions are uniformly dense in $B(\Omega)$ and $M$ is bounded on
+the space of simple functions we can extend this to a bounded linear functional on $B(\Omega)$.
+
+It is not simple to define $\int_\Omega f\,d\mu$ for $f\in B(\Omega)$ and $\mu\in ba(\Omega)$.
+Consider the case when $\Omega = \mathbf{N}$ is the set of non-negative integers.
+In this case $B(\mathbf{N})$ is called $\mathcal{l}^\infty$.
+Let $\mathcal{L}\subseteq\mathcal{l}^\infty$ be the sequences $x = (x_i)_{i\in\mathbf{N}}$
+for which $Lx = \lim_{i\to\infty} x_i$ converges. This defines a bounded linear functional
+on $\mathcal{L}$. By the Hahn-Banach theorem this can be extended to a bounded linear functional
+on $\mathcal{l}^\infty$. Good luck defining an integral and finding a measure
+$\lambda\in ba(\mathbf{N})$ for which $Lx = \int_{\mathbf{N}} x\,d\lambda$.
 
 <!--
 The model also specifies a probability measure $P$ on the
@@ -682,70 +814,6 @@ E[X']  & 0 & \epsilon\\
 \end{bmatrix}
 $$
 where ...
-
-### Two Assets
-
-Let $x = (r,s)$ and $X = (R,S)$.
-
-$$
- V = E[XX'] - E[X] E[X']
-    = \begin{bmatrix}
-        \mathrm{Var}(R) & \mathrm{Cov}(R,S)\\
-        \mathrm{Cov}(R,S) & \mathrm{Var}(S)\\
-    \end{bmatrix}
-    = \begin{bmatrix}
-        \sigma_R^2 & \rho \sigma_R \sigma_S\\
-        \rho \sigma_R \sigma_S & \sigma_S^2\\
-    \end{bmatrix}
-$$
-
-This matrix has eigenvalues
-
-$$
-\lambda_{\pm} = \frac{1}{2}
-\left(
-  \sigma_R^2 + \sigma_S^2
-  \pm\sqrt{(\sigma_R^2 - \sigma_S^2)^2 + 4\rho^2 \sigma_R^2 \sigma_S^2}
-\right)
-$$
-
-with corresponding eigenvectors
-
-$$
-v_{\pm} = 
-\left(
-\frac{\sigma_R^2 - \sigma_S^2 \pm\sqrt{(\sigma_R^2 - \sigma_S^2)^2 + 4\rho^2 \sigma_R^2 \sigma_S^2}}
-{2\rho\sigma_R\sigma_S},1
-\right)
-$$
-
-$$
- V^{-1}
-= \frac{1}{\mathrm{Var}(R)\mathrm{Var}(S) - \mathrm{Cov}(R,S)^2}
-    \begin{bmatrix}
-        \mathrm{Var}(S) & -\mathrm{Cov}(R,S)\\
-        -\mathrm{Cov}(R,S) & \mathrm{Var}(R)\\
-    \end{bmatrix}
-$$
-
-$$
- V^{-1}E[X]
-= \frac{1}{\mathrm{Var}(R)\mathrm{Var}(S) - \mathrm{Cov}(R,S)^2}
-    \begin{bmatrix}
-        \mathrm{Var}(S) E[R]  - \mathrm{Cov}(R,S) E[S]\\
-        -\mathrm{Cov}(R,S) E[R] + \mathrm{Var}(R) E[S]\\
-    \end{bmatrix}
-$$
-
-$$
-\begin{aligned}
-E[X'] V^{-1}E[X]
-	&= \frac{1}{V_R V_S - C_{R,S}^2}
-        [V_S (ER)^2 - 2 C_{R,S} E[R] E[S] + V_R (ES)^2]\\
-	&= \frac{1}{1 - \rho^2}((\mu_R/\sigma_R)^2 - 2\rho(\mu_R/\sigma_R)(\mu_S/\sigma_S) + (\mu_S/\sigma_S)^2)\\
-\end{aligned}
-$$
-where $\rho$ is the correlation of $R$ and $S$ and $\mu_X = E[X]$, $\sigma_X^2 = \mathrm{Var}(X)$.
 
 ## Notes
 
