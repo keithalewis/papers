@@ -19,21 +19,33 @@ In order to understand statistics one must first understand probability theory.
 ## Probability Model
 
 A _probability model_ specifies a _sample space_ and a _probability
-measure_. _Algebras_ of events model partial information.
+measure_ for the possible _outcomes_. A _partition_ of the sample space
+into _events_ models partial information.
 
 ### Sample Space
 
-A _sample space_ is the set of what can happen in a model:
+A _sample space_ is the set of what can happen in a model.
+An _outcome_ is an element of a sample space.
+An _event_ is a subset of a sample space.
+
+A sample space for flipping a coin can be modelled by $\{H,T\}$
+where $H$ indicates heads and $T$ indicates tails.
+Of course any two element set could be used for this.
+
+A sample space for flipping a coin twice is $\{HH, HT, TH, TT\}$
+where the outcome specifies the individual outcomes of the first
+and second flip. 
+The event 'the first flip was heads' is the subset $\{HH, HT\}$.
+The partition $\{\{HH, HT\},\{TH, TT\}\}$ represents
+the partial information of knowing the outcome of the first coin flip.
+The first event in the partition indicates the first flip was heads.
+The second event in the partition indicates the first flip was tails.
+
+<!--
 heads or tails as the outcome of a coin toss, the integers from 1 to
 6 as the outcomes of rolling a single die, the set of all sequences of
 not more than 280 characters as a model of possible Twitter tweets.
 
-An element of a sample space is called an _outcome_.
-An _event_ is a subset of a sample space. For the die
-example, the event 'an even number was rolled' is the
-set $\{2,4,6\}$.
-
-<!--
 Assuming the characters are upper and lower case letters, space, and
 3 punctuation marks then there are $30^280$ possible messages. This
 is approximately $10^1374$. The number of elementary particles in the
@@ -48,6 +60,9 @@ People seem to be surprised probabilities are modeled using sets.
 Sets have no structure, they are just a bag of things (_elements_). 
 People also seem to be rather cavalier about specifying sample spaces.
 The first step in any probablity model is to specify the possible outcomes.
+The second step is to assign probabilities to the outcomes.
+
+[^monte-hall]
 
 <!--
 Monte Hall problem
@@ -56,24 +71,52 @@ Monte Hall problem
 
 ### Probability Measure
 
-A _probability measure_ assigns
-a number between 0 and 1 to events. If $\Omega$ is a sample space and $P$
-is a probability measure then the measure of the union of sets is the
-sum of the measure of each set minus the measure of the intersection:
-$P(E\cup F) = P(E) + P(F) - P(E\cap F)$ for events $E$ and $F$.  This is
-the mathematical way of expressing the requirement that measures do not double count.
+A _probability measure_ assigns a number between 0 and 1 to events.
+If $\Omega$ is a sample space and $P$ is a probability measure then
+the measure of the union of sets is the sum of the measure of each set
+minus the measure of the intersection
+$$
+P(E\cup F) = P(E) + P(F) - P(E\cap F)
+$$
+for any events $E$ and $F$. 
+This is the mathematical way of expressing the requirement that measures do not double count.
+A probability measure must also satisfy
+$$
+P(\emptyset) = 0 \ \mathrm{and}\ P(\Omega) = 1
+$$
+where $\emptyset$ is the _empty set_ that contains no elements.
+This implies $P(E\cup F) = P(E) + P(F)$ if $E$ and $F$ are _disjoint_ events,
+$E\cap F = \emptyset$.
 
-A probability measure must also satisfy $P(\emptyset) = 0$ and $P(\Omega) = 1$.
+__Exercise__. _If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$
+where $a \not= b$ show $(Q - a)/(b - a)$ is a probability measure._
 
-__Exercise__. If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$,
-show $(Q - a)/(b - a)$ is a probability measure.
+If $\Omega$ consists of a finite number of elements $\{\omega_1,\ldots,\omega_n\}$
+we can define a probabilty measure by $P(\{\omega_i\}) = p_i$ where
+$0 \le p_i \le 1$ and $\sum_i p_i = 1$. Every subset of $\Omega$ corresponds
+to a subset $I\subseteq\{1,\ldots,n\}$. The probability of the event
+$E = \{\omega_i:i\in I\}$ is $P(E) = \sum_{i\in I} p_i$.
 
-### Algebra
+__Exercise__. _Show this defines a probability measure._
 
-An _algebra of sets_, or _algebra_, on $\Omega$ is a collection of subsets
-(events), $\mathcal{A}$, that is closed under complement and union.
-This lets us talk about an event not happening and whether event $A$
-or $B$ occured.
+For the two coin flip model (assuming the coin is fair) we 
+assign equal probability to the oucomes. The probability of
+the first flip being heads is $P(\{HH,HT\})
+= P(\{HH\} \cup \{HT\}) = P(\{HH\} + P(\{HT\}) = 1/4 + 1/4 = 1/2$.
+
+### Partition
+
+A _partition_ of a set $\Omega$ is a collection of subsets (events)
+that are _pairwise disjoint_ with union equal to $\Omega$.
+A partition $\{E_1, ...\}$ satisfies $E_i\subseteq\Omega$ for all $i$,
+$E_i\cap E_j = \emptyset$ if $i \not= j$, and $\cup_i E_i = \Omega$.
+The elements of the partition are called _atoms_.
+
+Partitions represent partial information about outcomes.
+Complete information means knowing what outcome $\omega\in\Omega$ occured. 
+Partial information means knowing what atom $\omega$ belongs to.
+
+<!--
 
 We also assume the empty set belongs to $\mathcal{A}$, hence also $\Omega$.
 By [De Morgan's Laws](https://en.wikipedia.org/wiki/De_Morgan's_laws)
@@ -204,10 +247,8 @@ the Hankel matrix is positive definite there exists a random variable
 with the corresponding moments.  This is not a trivial result and the
 random variable might not be unique.
 
-<!--
 % Dunford Schwartz Volume 2 pg 1251.
 % Extending unbounded symmetric operators. Deficiency index.
--->
  
 ### Cumulant
 
@@ -247,7 +288,6 @@ the variance is 1, then $\kappa_3$ is the skew and $\kappa_4$ is the
 [excess kurtosis](https://en.wikipedia.org/wiki/Kurtosis#Excess_kurtosis).
 
 
-<!--
 %Exercise. (Inclusion-Exclusion principal) Let $S$ be a finite set and
 %let $f$ be any function defined on subsets of $S$.
 %Define $\phi f(T) = \sum_{U\supseteq T} f(U)$ and
@@ -256,7 +296,6 @@ the variance is 1, then $\kappa_3$ is the skew and $\kappa_4$ is the
 %Show $\phi\psi g = g$ and $\psi\phi f = f$.
 
 %Hint: Group the sum by $|Y| - |T|$.
--->
 
 ## Conditional Expectation
 
@@ -446,6 +485,7 @@ with parameter $a_j$, then
 $$
 \kappa(s) = \mu s + \sigma s^2/2 + \sum_j \alpha_j (e^{a_j s} - 1) - \alpha_j s
 $$
+-->
 
 <!--
 ## Unsorted
