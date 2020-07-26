@@ -13,16 +13,17 @@ abstract: |
 In order to understand statistics one must first understand _probability theory_.
 
 Events are assigned a probability between 0 and 1 representing a degree
-of belief.
-
-
-## Probability Model
+of belief that an outcome will belong to an event. Random variables are
+variables in the sense that they are symbols that can be used in place
+of a number in equations and inequalities with additional information
+about the probability of the values it can have.
 
 A _probability model_ specifies a _sample space_ and a _probability
 measure_ for the possible _outcomes_. A _partition_ of the sample space
-into _events_ models partial information.
+into _events_ models partial information. A _random variable_ is
+a function on the sample space.
 
-### Sample Space
+## Sample Space
 
 A _sample space_ is the set of what can happen in a model.
 An _outcome_ is an element of a sample space.
@@ -69,7 +70,7 @@ Monte Hall problem
 -->
 
 
-### Probability Measure
+## Probability Measure
 
 A _probability measure_ assigns a number between 0 and 1 to events.
 If $\Omega$ is a sample space and $P$ is a probability measure then
@@ -85,8 +86,7 @@ $$
 P(\emptyset) = 0 \ \mathrm{and}\ P(\Omega) = 1
 $$
 where $\emptyset$ is the _empty set_ that contains no elements.
-This implies $P(E\cup F) = P(E) + P(F)$ if $E$ and $F$ are _disjoint_ events,
-$E\cap F = \emptyset$.
+This implies $P(E\cup F) = P(E) + P(F)$ if $E$ and $F$ are _disjoint_ ($E\cap F = \emptyset$) events.
 
 __Exercise__. _If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$
 where $a \not= b$ show $(Q - a)/(b - a)$ is a probability measure._
@@ -104,17 +104,105 @@ assign equal probability to the oucomes. The probability of
 the first flip being heads is $P(\{HH,HT\})
 = P(\{HH\} \cup \{HT\}) = P(\{HH\} + P(\{HT\}) = 1/4 + 1/4 = 1/2$.
 
-### Partition
+## Partition
 
 A _partition_ of a set $\Omega$ is a collection of subsets (events)
-that are _pairwise disjoint_ with union equal to $\Omega$.
-A partition $\{E_1, ...\}$ satisfies $E_i\subseteq\Omega$ for all $i$,
-$E_i\cap E_j = \emptyset$ if $i \not= j$, and $\cup_i E_i = \Omega$.
-The elements of the partition are called _atoms_.
+that are _pairwise disjoint_ with union $\Omega$.
+A partition $\mathcal{A} = \{A_i\}_{i\in I}$ satisfies $A_i\subseteq\Omega$ for all $i\in I$,
+$A_i\cap A_j = \emptyset$ if $i \not= j$, and $\cup_{i\in I} A_i = \Omega$.
+The elements $A_i$ of the partition $\mathcal{A}$ are called _atoms_.
 
-Partitions represent partial information about outcomes.
-Complete information means knowing what outcome $\omega\in\Omega$ occured. 
-Partial information means knowing what atom $\omega$ belongs to.
+__Exercise__. _Show $A_i\cap A_j\cap A_k = \emptyset$ if $i$, $j$, and $k$ are distinct._
+
+__Exercise__. _Show $A_i\cap A_j\cap A_k = \emptyset$ if $i$, $j$, and $k$ are not all the same._
+
+__Exercise__. _Show $\cap_{j\in J}A_j = \emptyset$ if $J\subseteq I$ has at least two elements._
+
+Partitions represent partial information. 
+Complete information means knowing what outcome $\omega\in\Omega$ occured.
+This corresponds to the _finest_ partition consisting of singletons
+$\{\{\omega\}:\omega\in\Omega\}$.  Complete lack of information
+corresponds to the _coarsest_ partion consisting of one set $\{\Omega\}$.
+Partial information correponds to knowing what atom of a partition $\omega$ belongs to.
+
+### Algebra of Sets
+
+More advanced texts use an _algebra_ of sets instead of a partition.
+An algebra of sets is a collection of subsets closed under complement and union
+that also contains the empty set.
+
+Since algebras are closed under complement $\Omega = \emptyset^c =
+\Omega\setminus\emptyset = \{\omega\in\Omega:\omega\not\in\emptyset\}$
+is also in the algebra.
+
+By [De Morgan's Laws](https://en.wikipedia.org/wiki/De_Morgan's_laws)
+an algebra is also closed under intersection since
+$A\cap B = (A^c\cup B^c)^c$.
+
+An _atom_ of an algebra $\mathcal{A}$ is an element $A\in\mathcal{A}$ with
+the property $B\subseteq A$ and $B\in\mathcal{A}$ imply $B = \emptyset$
+or $B = A$.
+
+__Exercise__. _If an algebra is finite its atoms form a partition._
+
+_Hint_: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$ is an atom for all $\omega\in\Omega$. 
+
+## Random Variable
+
+A _random variable_ is a symbol that can be used in place of a number
+when manipulating equations and inequalities with
+with additional information about the probability of the values it can take on.
+
+### Cumulative Distribution Function
+
+The _cumulative distribution
+function_ of the random variable $X$ is $F(x) = F^X(x) = P(X\le x)$.
+It tells you everything there is to know about $X$. For example,
+$P(a < X \le b) = F(b) - F(a)$. 
+
+__Exercise__. Show $P(a\le X\le b) = \lim_{x\uparrow a} F(b) - F(x)$.
+
+_Hint_: $[a,b] = \cap_n (a - 1/n, b]$.
+
+In general, $P(X\in A) = \int_A dF(x)$
+for sufficiently nice $A\subset\mathbf{R}$ where we are using
+[Riemann–Stieltjes](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral)
+integration.
+
+__Exercise__: Show for any cumulative distribution function $F$ that
+$F$ is non-decreasing, $\lim_{x\to -\infty} F(x) = 0$,
+$\lim_{x\to\infty} F(x) = 1$, and $F$ is right continuous with left limits.
+
+Every such function is the cumulative distribution function of a random variable.
+
+The cdf $F(x) = \max\{0,\min\{1,x\}\}$ defines the uniformly distributed
+random variable, $U$, on the interval $[0,1]$.  For $0\le a < b\le 1$,
+$P(a < U \le b) = P(U\in (a,b]) = b - a$.
+
+Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
+
+__Exercise__. If $X$ has cdf $F$, then $X$ and $F^{-1}(U)$ have the same law.
+
+__Exercise__. If $X$ has cdf $F$, then $F(X)$ and $U$ have the same law.
+
+This shows a uniformly distributed random variable has sufficient randomness to
+generate any random variable. There are no random, random variables.
+
+The mathematician's definition of a random variable is that it is
+a function $X\colon\Omega\to\mathbf{R}$. Its cumulative
+distribution function is $F(x) = P(X\le x) = P(\{\omega\in\Omega\mid X(\omega) \le x\})$.
+
+Given a cdf $F$ we can define a random variable having that distribution by
+$X\colon\mathbf{R}\to\mathbf{R}$ to be the
+identity function and let $P$ be the probability measure on $\mathbf{R}$ defined by
+$P(A) = \int_A dF(x)$. 
+
+The mathematician's definition is more flexible. ...
+
+### Measurable
+
+
+
 
 <!--
 
@@ -163,55 +251,6 @@ __Exercise__: If $\mathcal{A}$ is finite, show that a function is measurable if 
 is constant on atoms of $\mathcal{A}$.
 
 In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
-
-## Random Variable
-
-A _random variable_ is a symbol that can be used in place of a number
-when manipulating equations and inequalities, same as a variable, but
-with additional information: the probability of the values it can take on.
-
-### Cumulative Distribution Function
-
-The _cumulative distribution
-function_ of the random variable $X$ is $F(x) = F^X(x) = P(X\le x)$.
-It tells you everything there is to know about $X$. For example,
-$P(a < X \le b) = F(b) - F(a)$. 
-
-__Exercise__. Show $P(a\le X\le b) = \lim_{x\uparrow a} F(b) - F(x)$.
-
-Hint: $[a,b] = \cap_n (a - 1/n, b]$.
-
-In general, $P(X\in A) = \int_A dF(x)$
-for sufficiently nice $A\subset\mathbf{R}$ where we are using
-[Riemann–Stieltjes](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral)
-integration.
-
-__Exercise__: Show for any cumulative distribution function, $F$, that
-$F$ is non-decreasing, $\lim_{x\to -\infty} F(x) = 0$,
-$\lim_{x\to\infty} F(x) = 1$, and $F$ is right continuous with left limits.
-
-Every such function is the cumulative distribution function of a random variable.
-
-The cdf $F(x) = \max\{0,\min\{1,x\}\}$ defines the uniformly distributed
-random variable, $U$, on the interval $[0,1]$.  For $0\le a < b\le 1$,
-$P(a < U \le b) = P(U\in (a,b]) = b - a$.
-
-Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
-
-__Exercise__. If $X$ has cdf $F$, then $X$ and $F^{-1}(U)$ have the same law.
-
-__Exercise__. If $X$ has cdf $F$, then $F(X)$ and $U$ have the same law.
-
-This shows a uniformly distributed random variable has sufficient randomness to
-generate any random variable. There are no random, random variables.
-
-The mathematician's definition of a random variable is that it is
-a measurable function $X\colon\Omega\to\mathbf{R}$. Its cumulative
-distribution function is $F(x) = P(X\le x) = P(\{\omega\in\Omega\mid X(\omega) \le x\})$.
-Given a cdf $F$ we can define
-$X\colon\mathbf{R}\to\mathbf{R}$ to be the
-identity function and let $P$ be the probability measure defined by $F$:
-$P(A) = \int_A dF(x)$. 
 
 ### Expected Value
 
