@@ -319,7 +319,7 @@ $A$, $B$, and $C$ tend to infinity assuming $\mathrm{Var}(X_1) > 0$ is fixed.
 
 Some calculation shows
 $$
-D &= AC - B^2 = (\bar{S} - \bar{R})^2/\Delta
+D = AC - B^2 = (\bar{S} - \bar{R})^2/\Delta
 $$
 
 $$
