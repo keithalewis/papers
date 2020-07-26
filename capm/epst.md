@@ -328,49 +328,49 @@ $$
 \begin{aligned}
 \frac{C - \bar{R} B}{D}V^{-1}x
 &= \frac{
-	 V_1 \bar{R}^2  - 2C \bar{S} \bar{R}  + V_0 \bar{S}^2
-     - \bar{R}(V_1 \bar{R}  - C(\bar{S} + \bar{R}) + V_0 \bar{S})}
-	{(\bar{S} - \bar{R})^2(V_0V_1 - C^2)}
+	 V_1 \bar{R}^2  - 2\Gamma \bar{S} \bar{R}  + V_0 \bar{S}^2
+     - \bar{R}(V_1 \bar{R}  - \Gamma(\bar{S} + \bar{R}) + V_0 \bar{S})}
+	{(\bar{S} - \bar{R})^2(V_0 V_1 - \Gamma^2)}
     \begin{bmatrix}
         V_1 - \Gamma \\
         -\Gamma + V_0 \\
     \end{bmatrix}\\
 &= \frac{
-	 - 2C \bar{S} \bar{R}  + V_0 \bar{S}^2
-     - \bar{R}(- C(\bar{S} + \bar{R}) + V_0 \bar{S})}
-	{(\bar{S} - \bar{R})^2(V_0V_1 - C^2)}
+	 - 2\Gamma \bar{S} \bar{R}  + V_0 \bar{S}^2
+     - \bar{R}(- \Gamma(\bar{S} + \bar{R}) + V_0 \bar{S})}
+	{(\bar{S} - \bar{R})^2(V_0 V_1 - \Gamma^2)}
     \begin{bmatrix}
         V_1 - \Gamma \\
         -\Gamma + V_0 \\
     \end{bmatrix}\\
 &= \frac{
-	 C(-2\bar{S}\bar{R} + \bar{R}(\bar{S} + \bar{R}))
+	 \Gamma(-2\bar{S}\bar{R} + \bar{R}(\bar{S} + \bar{R}))
      + V_0(\bar{S}^2 - \bar{S}\bar{R})}
-	{(\bar{S} - \bar{R})^2(V_0V_1 - C^2)}
+	{(\bar{S} - \bar{R})^2(V_0 V_1 - \Gamma^2)}
     \begin{bmatrix}
         V_1 - \Gamma \\
         -\Gamma + V_0 \\
     \end{bmatrix}\\
 &= \frac{
-	 C(-\bar{S}\bar{R} + \bar{R}^2)
+	 \Gamma(-\bar{S}\bar{R} + \bar{R}^2)
      + V_0(\bar{S}^2 - \bar{S}\bar{R})}
-	{(\bar{S} - \bar{R})^2(V_0V_1 - C^2)}
+	{(\bar{S} - \bar{R})^2(V_0 V_1 - \Gamma^2)}
     \begin{bmatrix}
         V_1 - \Gamma \\
         -\Gamma + V_0 \\
     \end{bmatrix}\\
 &= \frac{
-	 C\bar{R}(\bar{R} - \bar{S})
+	 \Gamma\bar{R}(\bar{R} - \bar{S})
      + V_0\bar{S}(\bar{S} - \bar{R})}
-	{(\bar{S} - \bar{R})^2(V_0V_1 - C^2)}
+	{(\bar{S} - \bar{R})^2(V_0 V_1 - \Gamma^2)}
     \begin{bmatrix}
         V_1 - \Gamma \\
         -\Gamma + V_0 \\
     \end{bmatrix}\\
 &= \frac{
      + V_0\bar{S}
-	 - C\bar{R}}
-	{(\bar{S} - \bar{R})(V_0V_1 - C^2)}
+	 - \Gamma\bar{R}}
+	{(\bar{S} - \bar{R})(V_0 V_1 - \Gamma^2)}
     \begin{bmatrix}
         V_1 - \Gamma \\
         -\Gamma + V_0 \\
