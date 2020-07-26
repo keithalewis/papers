@@ -3,6 +3,10 @@ header, section, footer, aside, nav, main, article, figure {
 } 
 html {
 	margin: 0 2em 0 2em;
+	font-size: large;
+	background: #F8F8F8;
+	/*background: linear-gradient(to right, #FFF, #F0F0F0);*/
+	color: #565656;
 	/*padding: 0;*/
 }
 body {

@@ -12,11 +12,11 @@ abstract: |
 
 In order to understand statistics one must first understand _probability theory_.
 
-Events are assigned a probability between 0 and 1 representing a degree
-of belief that an outcome will belong to an event. Random variables are
-variables in the sense that they are symbols that can be used in place
-of a number in equations and inequalities with additional information
-about the probability of the values it can have.
+Events are assigned a probability between 0 and 1 representing a degree of
+belief that an outcome of a random trial will belong to an event. Random
+variables are variables in the sense that they are symbols that can be
+used in place of a number in equations and inequalities with additional
+information about the probability of the values it can have.
 
 A _probability model_ specifies a _sample space_ and a _probability
 measure_ for the possible _outcomes_. A _partition_ of the sample space
@@ -63,9 +63,9 @@ People also seem to be rather cavalier about specifying sample spaces.
 The first step in any probablity model is to specify the possible outcomes.
 The second step is to assign probabilities to the outcomes.
 
-[^monte-hall]
 
 <!--
+[^monte-hall]
 Monte Hall problem
 -->
 
@@ -100,7 +100,7 @@ $E = \{\omega_i:i\in I\}$ is $P(E) = \sum_{i\in I} p_i$.
 __Exercise__. _Show this defines a probability measure._
 
 For the two coin flip model (assuming the coin is fair) we 
-assign equal probability to the oucomes. The probability of
+assign equal probability to the each oucome. The probability of
 the first flip being heads is $P(\{HH,HT\})
 = P(\{HH\} \cup \{HT\}) = P(\{HH\} + P(\{HT\}) = 1/4 + 1/4 = 1/2$.
 
@@ -124,6 +124,11 @@ This corresponds to the _finest_ partition consisting of singletons
 $\{\{\omega\}:\omega\in\Omega\}$.  Complete lack of information
 corresponds to the _coarsest_ partion consisting of one set $\{\Omega\}$.
 Partial information correponds to knowing what atom of a partition $\omega$ belongs to.
+
+Partitions have a _partial ordering_ where $\mathcal{A}\preceq\mathcal{B}$ indicates
+every atom of $\mathcal{A}$ is a union of atoms in $\mathcal{B}$. In this case we say
+$\mathcal{B}$ is a _refinement_ of $\mathcal{A}$ and $\mathcal{B}$ is _finer_ than $\mathcal{A}$
+or $\mathcal{A}$ is _coarser_ than $\mathcal{B}$.
 
 ### Algebra of Sets
 
@@ -177,7 +182,7 @@ Every such function is the cumulative distribution function of a random variable
 
 The cdf $F(x) = \max\{0,\min\{1,x\}\}$ defines the uniformly distributed
 random variable, $U$, on the interval $[0,1]$.  For $0\le a < b\le 1$,
-$P(a < U \le b) = P(U\in (a,b]) = b - a$.
+$P(a < U \le b) = P(U\in (a,b]) = b - a$ and $P(U < 0) = 0 = P(U > 1)$.
 
 Two random variables, $X$ and $Y$, have the same _law_ if they have the same cdf.
 
@@ -197,10 +202,41 @@ $X\colon\mathbf{R}\to\mathbf{R}$ to be the
 identity function and let $P$ be the probability measure on $\mathbf{R}$ defined by
 $P(A) = \int_A dF(x)$. 
 
-The mathematician's definition is more flexible. ...
+The mathematician's definition is more flexible than defining a random variable by its
+cumulative distribution function.
 
 ### Measurable
 
+A function $X\colon\Omega\to\mathbf{R}$ is _measurable_ with respect to the algebra $\mathcal{A}$
+if $\{\omega\in\Omega : X(\omega) \le a\}$ belongs to $\mathcal{A}$ for all $a\in\mathbf{R}$.
+
+__Exercise__. _Show $X$ is measurable if and only if it is constant on atoms of $\mathcal{A}$
+when the algebra has a finite number of elements._
+
+In this case we can write $X\colon\mathcal{A}\to\mathbf{R}$ as a function on the
+atoms of $\mathcal{A}$.
+
+### Expected Value
+
+The _expected value_ of a random variable is defined by
+$E[X] = \int_{-\infty}^\infty x\,dF(x)$. The expected value of any function of
+a random variable is $E[f(X)] = \int_{-\infty}^\infty f(x)\,dF(x)$.
+
+If $X\colon\mathcal{A}\to\mathbf{R}$ we can define expected value by ...
+If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
+the _expected value_ of $X$ is $EX = \sum_i a_i P(A_i)$.
+
+__Exercise__. Show that if $\sum_i a_i 1_{A_i} = 0$ then $\sum_i a_i P(A_i) = 0$.
+
+_Hint_: Replace the $A_i$ by disjoint $B_j$ with $\sum_i a_i 1_{A_i} = \sum_j b_j 1_{B_j}$
+so $b_j = 0$ for all $j$.
+
+This shows expected value is [well-defined](https://en.wikipedia.org/wiki/Well-defined).
+
+__Exercise__. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
++ \sum_{i < j < k} P(A_i\cap A_j\cap A_k) \cdots$.
+
+Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
 
 
 

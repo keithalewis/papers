@@ -316,7 +316,7 @@ C = E[X']V^{-1}E[X]
 = \frac{1}{\Delta}(V_1 \bar{R}^2  - 2\Gamma \bar{S} \bar{R}  + V_0 \bar{S}^2)
 $$
 
-Since $\Delta\to 0$ and $\Gamma\to 0$ as $V_0 = \mathrm{Var}(X_0)\to 0$,
+Since $\Delta$ and $\Gamma$ tend to zero as $V_0 = \mathrm{Var}(X_0)\to 0$,
 $A$, $B$, and $C$ tend to infinity assuming $V_1 = \mathrm{Var}(X_1) > 0$ is fixed.
 
 Some calculation shows
@@ -332,48 +332,48 @@ $$
      - \bar{R}(V_1 \bar{R}  - C(\bar{S} + \bar{R}) + V_0 \bar{S})}
 	{(\bar{S} - \bar{R})^2(V_0V_1 - C^2)}
     \begin{bmatrix}
-        V_1 - C \\
-        -C + V_0 \\
+        V_1 - \Gamma \\
+        -\Gamma + V_0 \\
     \end{bmatrix}\\
 &= \frac{
 	 - 2C \bar{S} \bar{R}  + V_0 \bar{S}^2
      - \bar{R}(- C(\bar{S} + \bar{R}) + V_0 \bar{S})}
 	{(\bar{S} - \bar{R})^2(V_0V_1 - C^2)}
     \begin{bmatrix}
-        V_1 - C \\
-        -C + V_0 \\
+        V_1 - \Gamma \\
+        -\Gamma + V_0 \\
     \end{bmatrix}\\
 &= \frac{
 	 C(-2\bar{S}\bar{R} + \bar{R}(\bar{S} + \bar{R}))
      + V_0(\bar{S}^2 - \bar{S}\bar{R})}
 	{(\bar{S} - \bar{R})^2(V_0V_1 - C^2)}
     \begin{bmatrix}
-        V_1 - C \\
-        -C + V_0 \\
+        V_1 - \Gamma \\
+        -\Gamma + V_0 \\
     \end{bmatrix}\\
 &= \frac{
 	 C(-\bar{S}\bar{R} + \bar{R}^2)
      + V_0(\bar{S}^2 - \bar{S}\bar{R})}
 	{(\bar{S} - \bar{R})^2(V_0V_1 - C^2)}
     \begin{bmatrix}
-        V_1 - C \\
-        -C + V_0 \\
+        V_1 - \Gamma \\
+        -\Gamma + V_0 \\
     \end{bmatrix}\\
 &= \frac{
 	 C\bar{R}(\bar{R} - \bar{S})
      + V_0\bar{S}(\bar{S} - \bar{R})}
 	{(\bar{S} - \bar{R})^2(V_0V_1 - C^2)}
     \begin{bmatrix}
-        V_1 - C \\
-        -C + V_0 \\
+        V_1 - \Gamma \\
+        -\Gamma + V_0 \\
     \end{bmatrix}\\
 &= \frac{
      + V_0\bar{S}
 	 - C\bar{R}}
 	{(\bar{S} - \bar{R})(V_0V_1 - C^2)}
     \begin{bmatrix}
-        V_1 - C \\
-        -C + V_0 \\
+        V_1 - \Gamma \\
+        -\Gamma + V_0 \\
     \end{bmatrix}\\
 \end{aligned}
 $$
