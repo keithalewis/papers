@@ -132,11 +132,11 @@ where $\beta = \mathrm{Cov}(R(\xi) - R(\xi_0), R(\xi_1) - R(\xi_0))/\mathrm{Var}
 
 ### Risk-less Portfolios
 
-A _risk-less portfolio_ has realize return with zero variance.
+A _risk-less portfolio_ has zero variance realized return.
 If $\zeta$ is risk-less then $\zeta'X = c$ for some constant $c$.
 If $c = 1$ we call the portfolio a _zero coupon bond_.
 Zero coupon bonds have constant realized return $R = R(\zeta) = 1/\zeta'x$.
-Since $V\zeta = E[Xc] - E[X]c = 0$ $V$ is not invertible however $R\zeta$
+Since $V\zeta = E[Xc] - E[X]c = 0$ $V$ is not invertible. However $R\zeta$
 is an efficient portfolio for realzied return $\rho = R$ since
 $R\zeta'E[X] = R$ and $R(\zeta)$ has variance zero.
 
@@ -293,38 +293,42 @@ $$
  V^{-1}E[X]
 = \frac{1}{\Delta}
     \begin{bmatrix}
-        V_1 E[R]  - C E[S]\\
-        -C E[R] + V_0 E[S]\\
+        V_1 \bar{R}  - C \bar{S}\\
+        -C \bar{R} + V_0 \bar{S}\\
     \end{bmatrix}
 $$
+
+where $\bar{R} = E[R]$ and $\bar{S} = E[S]$.
 
 $$
 A = x'V^{-1}x
 = \frac{1}{\Delta}(V_1  - 2C + V_0)
 $$
-
-
 $$
 B = x'V^{-1}E[X] = E[X']V^{-1}x
-= \frac{1}{\Delta}(V_1 E[R]  - C(E[S] + E[R]) + V_0 E[S])
+= \frac{1}{\Delta}\bigl(V_1 \bar{R}  - C(\bar{S} + \bar{R}) + V_0 \bar{S}\bigr)
 $$
 
 $$
 C = E[X']V^{-1}E[X]
-= \frac{1}{\Delta}(V_1 E[R]^2  - 2C E[S] E[R]  + V_0 E[S]^2)
+= \frac{1}{\Delta}(V_1 \bar{R}^2  - 2C \bar{S} \bar{R}  + V_0 \bar{S}^2)
 $$
 
-Since $\Delta\to 0$ as $Var(X_0)\to 0$,
-$A$, $B, and $C$ tend to infinity assuming $Var(X_1) > 0$ is fixed.
+Since $\Delta\to 0$ as $\mathrm{Var}(X_0)\to 0$,
+$A$, $B$, and $C$ tend to infinity assuming $\mathrm{Var}(X_1) > 0$ is fixed.
 
+Some calculation shows
+$$
+D &= AC - B^2 = (\bar{S} - \bar{R})^2/\Delta
+$$
+
+$$
 \begin{aligned}
-E[X'] V^{-1}E[X]
-&= \frac{1}{\Delta}
-        [V_S (ER)^2 - 2 C_{R,S} E[R] E[S] + V_R (ES)^2]\\
-	&= \frac{1}{1 - \rho^2}((\mu_R/\sigma_R)^2 - 2\rho(\mu_R/\sigma_R)(\mu_S/\sigma_S) + (\mu_S/\sigma_S)^2)\\
+\frac{B - \rho C}{D}V^{-1}x
+&= 1 \\
+&= 2 \\
 \end{aligned}
 $$
-where $\rho$ is the correlation of $R$ and $S$ and $\mu_X = E[X]$, $\sigma_X^2 = \mathrm{Var}(X)$.
 
 The variance $V$ has eigenvalues
 
@@ -464,7 +468,7 @@ In this case $B(\mathbf{N})$ is called $\mathcal{l}^\infty$.
 Let $\mathcal{L}\subseteq\mathcal{l}^\infty$ be the sequences $x = (x_i)_{i\in\mathbf{N}}$
 for which $Lx = \lim_{i\to\infty} x_i$ converges. This defines a bounded linear functional
 on $\mathcal{L}$. By the Hahn-Banach theorem this can be extended to a bounded linear functional
-on $\mathcal{l}^\infty$. Good luck defining an integral and finding a measure
+on $\mathcal{l}^\infty$. Good luck with defining the integral and finding a measure
 $\lambda\in ba(\mathbf{N})$ for which $Lx = \int_{\mathbf{N}} x\,d\lambda$.
 
 <!--

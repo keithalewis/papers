@@ -3,7 +3,7 @@ HTML = $(MKDN:.md=.html)
 #HTML = grassmann.html
 PDF = $(MKDN:.md=.pdf)
 DOCX = $(MKDN:.md=.docx)
-KATEX=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/
+KATEX=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/
 #FLAGS = -s # smart quotes
 #FLAGS += --katex
 FLAGS += -t html5
