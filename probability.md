@@ -157,7 +157,7 @@ __Exercise__. _If an algebra is finite its atoms form a partition._
 
 _Hint_: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$ is an atom for all $\omega\in\Omega$. 
 
-[...comments on infinite algebras...]
+[...comments on infinite algebras... Borel-Cantelli ...]
 
 ## Random Variable
 
@@ -167,8 +167,8 @@ with additional information about the probability of the values it can take on.
 
 ### Cumulative Distribution Function
 
-The _cumulative distribution
-function_ of the random variable $X$ is $F(x) = F^X(x) = P(X\le x)$.
+A naive way to define a single random variable is by a _cumulative distribution
+function_. The cdf of the random variable $X$ is $F_X(x) = F(x) = P(X\le x)$.
 It tells you everything there is to know about $X$. For example,
 $P(a < X \le b) = F(b) - F(a)$. 
 
@@ -245,6 +245,12 @@ __Exercise__. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
 
 Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
 
+For any $p > 0$ $E[|Y|^p] = \int_\Omega |Y|^p\,dP
+\ge \int_{\{|Y| > \lambda\}} |Y|^p\,dP
+\ge \int_{\{|Y| > \lambda\}} \lambda^p\,dP
+= \lambda^p P(|Y| > \lambda)$.
+Taking $Y = X - E[X]$ and $p = 2$ yields
+$P(|X - E[X]| > \lambda) \le \mathrm{Var}(X)/\lambda^2$.
 
 
 <!--
