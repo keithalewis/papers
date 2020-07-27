@@ -144,6 +144,11 @@ By [De Morgan's Laws](https://en.wikipedia.org/wiki/De_Morgan's_laws)
 an algebra is also closed under intersection since
 $A\cap B = (A^c\cup B^c)^c$.
 
+If $E$ and $F$ are elements of an algebra we can use plain English to
+talk about 'not $E$' ($E^c = \Omega\setminus E$), '$E$ or $F$' ($E\cup F$), and
+'$E$ and $F$' ($E\cap F$). The phrases '$E$ implies $F$' and 'if $E$ then $F$'
+correspond to $E\subseteq F$.
+
 An _atom_ of an algebra $\mathcal{A}$ is an element $A\in\mathcal{A}$ with
 the property $B\subseteq A$ and $B\in\mathcal{A}$ imply $B = \emptyset$
 or $B = A$.
@@ -151,6 +156,8 @@ or $B = A$.
 __Exercise__. _If an algebra is finite its atoms form a partition._
 
 _Hint_: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$ is an atom for all $\omega\in\Omega$. 
+
+[...comments on infinite algebras...]
 
 ## Random Variable
 
@@ -591,4 +598,9 @@ These can be used to prove the _central limit theorem_:
 if $X_j$ are independent, identically distributed random variables with mean zero
 and variance one, then $(X_1 + \cdots X_n)/sqrt{n}$ converges to a standard
 normal random variable.
+
+Probability and Logic (Ramsey)
+
+
 -->
+
