@@ -239,6 +239,7 @@ independent efficient portfolios $\xi_0$ and $\xi_1$.
 Taking expectations on both sides yields the classical CAPM formula when
 $\xi_0$ is the risk-less portfolio and $\xi_1$ is the market portfolio.
 
+<!--
 If a risk-less portfolio exists then $V$ is not invertible. However
 $V + \epsilon I$ is for small non-zero $\epsilon$.  In this case
 $A_\epsilon = x'(V + \epsilon I)^{-1}x$ ...
@@ -397,7 +398,7 @@ v_{\pm} =
 {2\rho\sigma_R\sigma_S},1
 \right)
 $$
-
+-->
 
 <!--
 If $Rx = E[X]$ and $\rho = R$ then $B = RA$ and $C = R^2A$ so $\Delta = 0$ and the
@@ -504,20 +505,25 @@ if $E\cap F = \emptyset$ and $M$ is linear this defines a finitely additive meas
 The other direction is only slightly more complicated.
 A _simple function_ is a finite sum
 of the form $e = \sum_i e_i 1_{E_i}$ where $e_i\in\mathbf{R}$ and $E_i\subseteq\Omega$.
-We can and do assume the $(E_i)$ are pairwise disjoint.
 If $\mu\in ba(\Omega)$ define
 $M(\sum_i e_i 1_{E_i}) = \sum_i e_i \mu(E_i)$.
+We can and do assume the $(E_i)$ are pairwise disjoint, which shows this is well-defined.
 Since simple functions are uniformly dense in $B(\Omega)$ and $M$ is bounded on
 the space of simple functions we can extend this to a bounded linear functional on $B(\Omega)$.
 
-It is not simple to define $\int_\Omega f\,d\mu$ for $f\in B(\Omega)$ and $\mu\in ba(\Omega)$.
+If $\Omega$ is finite then $B(\Omega)$ and $ba(\Omega)$ are isomorphic to $\mathbf{R}^n$ where
+$n$ is the cardinality of $\Omega$. The integral is just the inner product.
+
+It is not simple to define $\int_\Omega f\,d\mu$ for $f\in B(\Omega)$ and $\mu\in ba(\Omega)$
+when the cardinality of $\Omega$ is infinite.
 Consider the case when $\Omega = \mathbf{N}$ is the set of non-negative integers.
 In this case $B(\mathbf{N})$ is called $\mathcal{l}^\infty$.
 Let $\mathcal{L}\subseteq\mathcal{l}^\infty$ be the sequences $x = (x_i)_{i\in\mathbf{N}}$
-for which $Lx = \lim_{i\to\infty} x_i$ converges. This defines a bounded linear functional
+for which $Lx = \lim_{i\to\infty} x_i$ exists. This defines a bounded linear functional
 on $\mathcal{L}$. By the Hahn-Banach theorem this can be extended to a bounded linear functional
-on $\mathcal{l}^\infty$. Good luck with defining the integral and finding a measure
-$\lambda\in ba(\mathbf{N})$ for which $Lx = \int_{\mathbf{N}} x\,d\lambda$.
+on $\mathcal{l}^\infty$ with the same norm (The Banach limit).
+Good luck with finding a measure $\lambda$ and defining the integral with $Lx =
+\int_{\mathbf{N}} x\,d\lambda$.
 
 <!--
 The model also specifies a probability measure $P$ on the

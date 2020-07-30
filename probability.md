@@ -607,6 +607,11 @@ normal random variable.
 
 Probability and Logic (Ramsey)
 
+Littlewood's law P(miracle) is large. 1 event per second, 1/10^6 are miracles, 8 hour days.
+
+Birthday problem.
+
+UUIDs
 
 -->
 
