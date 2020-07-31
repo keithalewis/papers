@@ -19,21 +19,34 @@ is better. Given two portfolios having the same return the one having
 smaller variance is preferred. A portfolio having variance smaller
 than every portfolio with the same return is called _efficient_.
 
-In the [one-period model](one-period-model) all efficient portfolios lie in a two-dimensional
-subspace.
+In the [one-period model](#one-period-model) all efficient portfolios lie in a two-dimensional
+subspace of random variables. Given any two independent efficient portfolios $\zeta$ and $\mu$
+every efficient portfolio $\xi$ satisfies
+$$
+    R(\xi) - R(\zeta) = \beta(R(\mu) - R(\zeta))
+$$
+where $R(\xi)$ is the (random) realized return of $\xi$ and
+$$
+    \beta = \mathrm{Cov}(R(\xi) - R(\zeta), R(\mu) - R(\zeta))/\mathrm{Var}(R(\mu) - R(\zeta)).
+$$
+If $\mathrm{Var}(R(\zeta)) = 0$ then $R(\zeta) = R$ is a constant and
+$R(\xi) - R = \beta(R(\mu) - R)$ where $\beta = \mathrm{Cov}(R(\xi), R(\mu))/\mathrm{Var}(R(\mu))$.
+Taking expected values yields the classical Capital Asset Pricing Model formula.
+In that theory $\mu$ is assumed to be the market portfolio, but any efficient portfolio with
+non-zero variance will do.
 
 ## One-Period Model
 
-This model is parameterized directly by prices. Returns are defined
-in terms of prices and portfolios.  These parameter have a clear
-interpretation in the financal world.
+This model is parameterized directly by instrument prices.  These have a
+clear interpretation in the financal world and all other relevant financial
+quantities can be defined in terms of prices and portfolios.
 
-Let $I$ be the set of market instruments and $\Omega$ be the set of
+Let $I$ be the set of _market instruments_ and $\Omega$ be the set of
 possible market outcomes over a single period.  The _one-period model_
-specifies the initial instrument prices $x\in\mathbf{R}^I$ and the final
+specifies the initial instrument _prices_ $x\in\mathbf{R}^I$ and the final
 instrument prices $X\colon\Omega\to\mathbf{R}^I$ depending on the outcome.
 We assume, as customary, that there are no cash flows associated with
-the instruments and transactions are perfectly liquid.
+the instruments and transactions are perfectly divisible and liquid.
 
 It is common in the literature to write $\mathbf{R}^n$ instead of
 $\mathbf{R}^I$ where $n$ is the cardinality of $I$.
@@ -65,7 +78,7 @@ The _value_ of a portfolio $\xi$ given prices $x$ is $\xi'x$.
 It is the cost of attaining the portfolio $\xi$.
 The _realized return_ is $R(\xi) = \xi'X/\xi'x$ when $\xi'x\not=0$.
 Note $R(\xi) = R(t\xi)$ for any non-zero $t\in\mathbf{R}$ so
-there is no loss in assuming $\xi'x = 1$ when needed.
+there is no loss in assuming $\xi'x = 1$ when considering returns.
 
 There is _model arbitrage_ if there exists a portfolio $\xi$ with
 $\xi'x < 0$ and $\xi'X(\omega) \ge0$ for all $\omega\in\Omega$:
@@ -73,8 +86,8 @@ you make money on the initial investment and never lose money
 when unwinding at the end of the period. This definition does
 not require a measure on $\Omega$.
 
-The one-period fundamental
-theorem of asset pricing states there is no model arbitrage if
+The one-period Fundamental
+Theorem of Asset Pricing states there is no model arbitrage if
 and only if there exists a positive measure $\Pi$ on $\Omega$ with
 $x = \int_\Omega X(\omega)\,d\Pi(\omega)$. We assume $X$ is
 bounded, as it is in the real world, and $\Pi$ is finitely additive.
@@ -123,10 +136,10 @@ Every efficient
 portfolio can be written $\xi = \beta_0\xi_0 + \beta_1\xi_1$ for some
 scalars $\beta_0$ and $\beta_1$.
 
-We can assume $\xi_j'x = 1$ for $j = 0,1$ so $R(\xi_j) = \xi_j'X$.
+Since we are considering returns we can assume $\xi_j'x = 1$ for $j = 0,1$ so $R(\xi_j) = \xi_j'X$.
 If $\xi'x = 1$ then $\beta_0 + \beta_1 = 1$ and
 $\xi = (1 - \beta)\xi_0 + \beta\xi_1$ where $\beta = \beta_1$.
-Multiplying both sides by $X$ we have $\xi'X = (1 - \beta)\xi_0'X + \beta\xi_1'X$ so
+Multiplying both sides by $X$ we have $\xi'X = (1 - \beta)\xi_0'X + \beta\xi_1'X$ hence
 $$
 	R(\xi) - R(\xi_0) = \beta(R(\xi_1) - R(\xi_0))
 $$
@@ -134,12 +147,12 @@ where $\beta = \mathrm{Cov}(R(\xi) - R(\xi_0), R(\xi_1) - R(\xi_0))/\mathrm{Var}
 
 ### Risk-less Portfolios
 
-A _risk-less portfolio_ has zero variance realized return.
+A _risk-less portfolio_ has realize return with zero variance.
 If $\zeta$ is risk-less then $\zeta'X = c$ for some constant $c$.
 If $c = 1$ we call the portfolio a _zero coupon bond_.
 Zero coupon bonds have constant realized return $R = R(\zeta) = 1/\zeta'x$.
-Since $V\zeta = E[Xc] - E[X]c = 0$ $V$ is not invertible. However $R\zeta$
-is an efficient portfolio for realzied return $\rho = R$ since
+In this case $V$ is not invertible since $V\zeta = E[Xc] - E[X]c = 0$.
+However, $R\zeta$ is an efficient portfolio for realzied return $\rho = R$ since
 $R\zeta'E[X] = R$ and $R(\zeta)$ has variance zero.
 
 From the [Appendix](#efficient-portfolios) ...
@@ -204,22 +217,18 @@ C & -B \\
 1 \\
 \rho
 \end{bmatrix}
-= \frac{1}{D}
+=
 \begin{bmatrix}
-C - \rho B \\
--B + \rho A\\
+(C - \rho B)/D \\
+(-B + \rho A)/D\\
 \end{bmatrix}
 $$
-where $D = AC - B^2$ so
+where $D = AC - B^2$. The solution is
 $\lambda = (C - \rho B)/D$, $\mu = (-B + \rho A)/D$, and
 $$
 \begin{aligned}
-    \xi &= V^{-1}\begin{bmatrix}x & E[X]\end{bmatrix}
-  \begin{bmatrix}\lambda \\ \mu\end{bmatrix} \\
-        &= \frac{1}{D} V^{-1}
-           \bigl(
-           (C - \rho B)x + (-B + \rho A)E[X]
-           \bigr)
+    \xi &= V^{-1}(\lambda x + \mu E[X]) \\
+        &= \frac{C - \rho B}{D} V^{-1}x + \frac{-B + \rho A}{D} V^{-1}E[X]
 \end{aligned}
 $$
 
@@ -410,21 +419,22 @@ The maximum utility is $R - \tau/2A$ as noted above.
 
 ### Model Arbitrage
 
-A one-period model specifies initial prices $x\in\mathbf{R}^I$ and
+The one-period model specifies initial prices $x\in\mathbf{R}^I$ and
 final prices $X\colon\Omega\to\mathbf{R}^I$ where $\Omega$ is the set
 of possible outcomes.
 
 If there exists a portfolio $\xi\in\mathbf{R}^I$ with $\xi\cdot x < 0$ and
-$\xi\cdot X \ge0$ on $\Omega$ then arbitrage exists. You make money on the
+$\xi\cdot X \ge0$ on $\Omega$ then _model arbitrage_ exists: you make money on the
 initial position and never lose money on any outcome.  This definition
-does not assume there is a probability measure on $\Omega$.
+does not assume a probability measure on $\Omega$.
 
-The Fundamental Theorem of Asset Pricing states there is no _model
-arbitrage_ if and only if there exists a positive measure $\Pi$ on
+The one-period Fundamental Theorem of Asset Pricing states there is no model
+arbitrage if and only if there exists a positive measure $\Pi$ on
 $\Omega$ with $x = \int_\Omega X(\omega)\,d\Pi(\omega)$.  We assume $X$
 is bounded and $\Pi$ is finitely additive.
 
-If such a measure exists and $\xi\cdot X\ge0$ then $\xi\cdot x = \int_\Omega \xi\cdot X\,d\Pi \ge0$ so arbitrage
+If such a measure exists and $\xi\cdot X\ge0$ then
+$\xi\cdot x = \int_\Omega \xi\cdot X\,d\Pi \ge0$ so arbitrage
 cannot occur. The other direction is less trivial.
 
 **Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
@@ -456,19 +466,19 @@ The proof also shows how to find an arbitrage when one exists.
 ### Fr&eacute;chet Derivative
 
 A function $F\colon X\to Y$ where $X$ and $Y$ are Banach spaces
-has a Fr&eacute;chet derivative at $x\in X$ if it is linear up to first
+has a Fr&eacute;chet derivative at $x\in X$ if it is linear to first
 order in a neighborhood of $x$.
 The Fr&eacute;chet derivative $DF\colon X\to\mathcal{B}(X,Y)$, where $\mathcal{B}(X,Y)$
 is the space of bounded linear operators from $X$ to $Y$,
 is defined by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ as $h\to 0$
 
-For example, if $F\colon X\to X$, where $X$ is a (not necessarily
-commutative) Banach algebra, is defined to be
-$F(x) = x^2$ then $(x + h)^2 = x^2 + xh + hx + h^2$.
-The $h^2$ term is $o(\|h\|)$ so $DF(x)h = xh + hx$.
+For example, define $F\colon X\to X$, where $X$ is a (not necessarily
+commutative) Banach algebra, by $F(x) = x^2$.
+Since $(x + h)^2 = x^2 + xh + hx + h^2$
+and the $h^2$ term is $o(\|h\|)$, $DF(x)h = xh + hx$.
 If we define the linear operators of left and right multiplication by $x$,
 $L_x,R_x\colon X\to X$, where
-$L_x y = xy$ and $R_x y = yx$ then $DF(x) = L_x + R_x$.
+$L_x y = xy$ and $R_x y = yx$, then $DF(x) = D(x^2) = L_x + R_x$.
 Another way to write this is $D(x^2)dx = x\ dx + dx\ x$.
 
 A good exercise is to show $D(x^n) = \sum_{j=1}^n L_x^{n - j} R_x^{j - 1}$.
@@ -480,15 +490,17 @@ we can write $D(x^2) = 2x$, just as in the case $X = \mathbf{R}$.
 
 The exercise shows $D(x^n) = nM_{x^{n-1}} = nx^{n-1}$.
 
+Note that we have computed the derivative without taking a limit of a difference quotient.
+
 If $Y = \mathbf{R}$ we have $DF\colon X\to\mathcal{B}(X,\mathbf{R}) = X^*$
 where $X^*$ is the dual space of $X$.
 
 If $T\colon\mathbf{R}^n\to\mathbf{R}^n$ is a self-adjoint linear
 transformation and $F(x) = x'Tx$ then $DF(x)h = 2h'Tx$. This
 follows from $(x + h)'T(x + h) = x'Tx + x'Th + h'Tx + h'Th$
-so $DF(x)h = x'Th + h'Tx = 2h'Tx$ since $x'Th = h'T'x = h'Tx$.
-Note $DF\colon\mathbf{R}^n\to(\mathbf{R}^n)^*$.
-Expressed using the dual pairing $DF(x)h = \langle 2Vx, h\rangle$.
+so $DF(x)h = x'Th + h'Tx = 2h'Tx$ since $x'Th = h'T'x = h'Tx$ and
+$h'Th$ is $o(\|h\|)$.
+Using the dual pairing $DF(x)h = \langle 2Tx, h\rangle$.
 
 ### Finitely Additive Measures
 
@@ -504,10 +516,10 @@ if $E\cap F = \emptyset$ and $M$ is linear this defines a finitely additive meas
 
 The other direction is only slightly more complicated.
 A _simple function_ is a finite sum
-of the form $e = \sum_i e_i 1_{E_i}$ where $e_i\in\mathbf{R}$ and $E_i\subseteq\Omega$.
+of the form $\sum_i e_i 1_{E_i}$ where $e_i\in\mathbf{R}$ and $E_i\subseteq\Omega$.
 If $\mu\in ba(\Omega)$ define
 $M(\sum_i e_i 1_{E_i}) = \sum_i e_i \mu(E_i)$.
-We can and do assume the $(E_i)$ are pairwise disjoint, which shows this is well-defined.
+We can assume the $(E_i)$ are pairwise disjoint, which shows this is well-defined.
 Since simple functions are uniformly dense in $B(\Omega)$ and $M$ is bounded on
 the space of simple functions we can extend this to a bounded linear functional on $B(\Omega)$.
 
@@ -522,8 +534,8 @@ Let $\mathcal{L}\subseteq\mathcal{l}^\infty$ be the sequences $x = (x_i)_{i\in\m
 for which $Lx = \lim_{i\to\infty} x_i$ exists. This defines a bounded linear functional
 on $\mathcal{L}$. By the Hahn-Banach theorem this can be extended to a bounded linear functional
 on $\mathcal{l}^\infty$ with the same norm (The Banach limit).
-Good luck with finding a measure $\lambda$ and defining the integral with $Lx =
-\int_{\mathbf{N}} x\,d\lambda$.
+Good luck with finding a finitely additive measure $\lambda$ and defining an integral with $Lx =
+\int_{\mathbf{N}} x\,d\lambda$. \cite{DunSch}.
 
 <!--
 The model also specifies a probability measure $P$ on the
