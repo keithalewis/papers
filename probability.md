@@ -20,7 +20,7 @@ information about the probability of the values it can have.
 
 A _probability model_ specifies a _sample space_ and a _probability
 measure_ for the possible _outcomes_. A _partition_ of the sample space
-into _events_ models partial information. A _random variable_ is
+into _events_ represents partial information. A _random variable_ is
 a function on the sample space.
 
 ## Sample Space
@@ -200,7 +200,7 @@ __Exercise__. If $X$ has cdf $F$, then $F(X)$ and $U$ have the same law.
 This shows a uniformly distributed random variable has sufficient randomness to
 generate any random variable. There are no random, random variables.
 
-The mathematician's definition of a random variable is that it is
+The mathematical definition of a random variable is that it is
 a function $X\colon\Omega\to\mathbf{R}$. Its cumulative
 distribution function is $F(x) = P(X\le x) = P(\{\omega\in\Omega\mid X(\omega) \le x\})$.
 
@@ -209,7 +209,7 @@ $X\colon\mathbf{R}\to\mathbf{R}$ to be the
 identity function and let $P$ be the probability measure on $\mathbf{R}$ defined by
 $P(A) = \int_A dF(x)$. 
 
-The mathematician's definition is more flexible than defining a random variable by its
+The mathematical definition is more flexible than defining a random variable by its
 cumulative distribution function.
 
 ### Measurable
@@ -252,74 +252,22 @@ For any $p > 0$ $E[|Y|^p] = \int_\Omega |Y|^p\,dP
 Taking $Y = X - E[X]$ and $p = 2$ yields
 $P(|X - E[X]| > \lambda) \le \mathrm{Var}(X)/\lambda^2$.
 
+## Joint Distribution
+
+Two random variables, $X$ and $Y$, are defined by their _joint
+distribution_, $H(x,y) = P(X\le x, Y\le y)$.  For example, the point $(X,Y)$ is
+in the square $(a,b]\times (c,d]$ with probability
+$P(a < X \le b, c < Y \le d) = P(X \le b, Y \le d) - P(X \le a) - P(Y \le c) + P(X \le a, Y \le c)$.
+
+The _marginal distbutions_ are $F(x) = H(x,\infty)$ and $G(y) =  H(\infty,y)$,
+where $F$ and $G$ are the cumulative distributions of $X$ and $Y$ respectively.
+
+In general, the joint distribution of $X_1$, \ldots, $X_n$ is
+$F(x_1,\ldots,x_n) = P(X_1\le x_1,\ldots, X_n\le x_n$).
+
+
 
 <!--
-
-We also assume the empty set belongs to $\mathcal{A}$, hence also $\Omega$.
-By [De Morgan's Laws](https://en.wikipedia.org/wiki/De_Morgan's_laws)
-an algebra is also closed under intersection.
-The _power set_ of $\Omega$, $\mathcal{P}\Omega =
-\{E:E\subseteq\Omega\}$, clearly satisfies these conditions.
-
-The set $2^\Omega = \{\xi:\Omega\to\{0,1\}\}$ is isomomorphic to the power set.
-The function $1_A$ selects subsets of $\Omega$: the set $A\subset\Omega$
-corresponds to the function $1_A(\omega)$ where $1_A(\omega)$ is 1 if
-$\omega\in A$ and 0 if $\omega\not\in A$.
-
-An _atom_ of an algebra is a member, $A$, of the algebra such that if
-$B\subseteq A$ and $B$ is in the algebra, then either $B = A$ or $B$
-is the empty set.
-
-#### Partition
-
-A _partition_ of a set is a collection of pairwise disjoint subsets
-whos union is the entire set.
-
-__Exercise__. If an algebra is finite its atoms are a partition.
-
-Hint: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$ is an atom for all $\omega\in\Omega$. 
-
-This shows there is a one-to-one correspondence between finite partitions
-and finite algebras of sets.  A partition is the mathematical way of
-specifying partial information. Knowing the outcome, $\omega\in\Omega$,
-corresponds to complete knowledge. Knowing which atom the outcome
-belongs to corresponds to partial knowledge. For example, the partition
-$\{\{1,3,5\},\{2,4,6\}\}$ corresponds to knowing whether the roll of a
-die is odd or even.
-
-The coarsest partition, $\{\Omega\}$, corresponds to no knowledge while the finest partition
-$\{\{\omega\}:\omega\in\Omega\}$ corresponds to complete knowledge.
-
-#### Measurable
-
-A function $X\colon\Omega\to\mathbf{R}$ is $\mathcal{A}$-_measureable_ if the sets
-$X^{-1}((-\infty, x]) = \{\omega\in\Omega:X(\omega)\le x\}$
-belong to $\mathcal{A}$ for $x\in\mathbf{R}$.
-
-__Exercise__: If $\mathcal{A}$ is finite, show that a function is measurable if and only if it
-is constant on atoms of $\mathcal{A}$.
-
-In this case $X\colon\mathcal{A}\to\mathbf{R}$ is indeed a function on the atoms.
-
-### Expected Value
-
-The _expected value_ of a random variable is defined by
-$E X = \int_{-\infty}^\infty x\,dF(x)$. The expected value of any function of
-a random variable is $E f(X) = \int_{-\infty}^\infty f(x)\,dF(x)$.
-
-If $X = \sum a_i 1_{A_i}$ where $a_i\in\mathbf{R}$ and $A_i$ are events,
-the _expected value_ of $X$ is $EX = \sum_i a_i P(A_i)$.
-
-__Exercise__. Show that if $\sum_i a_i 1_{A_i} = 0$ then $\sum_i a_i P(A_i) = 0$.
-
-Hint: Replace the $A_i$ by disjoint $B_j$ so $b_j = 0$ for all $j$.
-
-This shows expected value is [well-defined](https://en.wikipedia.org/wiki/Well-defined).
-
-__Exercise__. Show $P(\cup_i A_i) = \sum_i P(A_i) - \sum_{i < j} P(A_i\cap A_j)
-+ \sum_{i < j < k} P(A_i\cap A_j\cap A_k) \cdots$.
-
-Hint: Use $(1_A - 1_{A_1})\cdots (1_A - 1_{A_n}) = 0$, where $A = \cup_{k=1}^n A_k$.
 
 ### Moments
 
