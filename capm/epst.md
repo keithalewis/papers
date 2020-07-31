@@ -20,7 +20,7 @@ smaller variance is preferred. A portfolio having variance smaller
 than every portfolio with the same return is called _efficient_.
 
 In the [one-period model](#one-period-model) all efficient portfolios lie in a two-dimensional
-subspace of random variables. Given any two independent efficient portfolios $\zeta$ and $\mu$
+subspace. Given any two independent efficient portfolios $\zeta$ and $\mu$
 every efficient portfolio $\xi$ satisfies
 $$
     R(\xi) - R(\zeta) = \beta(R(\mu) - R(\zeta))
