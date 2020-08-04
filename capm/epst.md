@@ -19,8 +19,23 @@ is better. Given two portfolios having the same return the one having
 smaller variance is preferred. A portfolio having variance smaller
 than every portfolio with the same return is called _efficient_.
 
-In the [one-period model](one-period-model) all efficient portfolios lie in a two-dimensional
+In the [one-period model](#one-period-model) all efficient portfolios lie in a two-dimensional
 subspace.
+Denoting the _realized return_ of a portfolio $\xi$ by $R(\xi)$,
+for any independent optimal portfolios $\zeta$ and $\mu$ every optimal
+portfolio $\xi$ satisfies
+$$
+	R(\xi) - R(\zeta) = \beta\bigl(R(\mu) - R(\zeta)\bigr)
+$$
+as random variables where
+$$
+	\beta = \mathrm{Cov}\bigl(R(\xi) - R(\zeta),R(\mu) - R(\zeta)\bigr)/\mathrm{Var}\bigl(R(\mu) - R(\zeta)\bigr).
+$$
+
+The classical CAPM formula follows by taking expected values
+$E[R(\xi)] - R = \beta(E[R(\mu)] - R)$ where $R = R(\zeta)$ is the risk-free
+return, and $\mu$ is the market portfolio.
+In this case $\beta = \mathrm{Cov}(R(\xi),R(\mu))/\mathrm{Var}(R(\mu))$.
 
 ## One-Period Model
 
@@ -132,6 +147,13 @@ $$
 $$
 where $\beta = \mathrm{Cov}(R(\xi) - R(\xi_0), R(\xi_1) - R(\xi_0))/\mathrm{Var}(R(\xi_1) - R(\xi_0))$.
 
+Note that $A$, $B$, $C$, and $D$ depend only on $x$, $E[X]$, and
+$E[XX']$. Classical literature focuses mainly on the latter three which
+may explain why prior authors overlooked this elementary but stronger
+result.  The classical CAPM result follows from taking expected values
+of both sides when $\mu$ is the 'market' portfolio and $\zeta$ is a
+risk-less portfolio.
+
 ### Risk-less Portfolios
 
 A _risk-less portfolio_ has zero variance realized return.
@@ -227,17 +249,6 @@ A straightforward calculation shows the variance is
 $$
 \xi'V\xi = (C - 2B\rho + A\rho^2)/D.
 $$
-Note that $A$, $B$, $C$, and $D$ only depend on
-$x$, $E[X]$, and $E[XX']$. Classical literature focuses
-mainly on the latter three which may explain why prior
-authors overlooked the elementary but stronger result
-$$
-	R(\xi) - R(\xi_0) = \beta(R(\xi_1) - R(\xi_0))
-$$
-as random variables for any efficient $\xi$ given any two
-independent efficient portfolios $\xi_0$ and $\xi_1$.
-Taking expectations on both sides yields the classical CAPM formula when
-$\xi_0$ is the risk-less portfolio and $\xi_1$ is the market portfolio.
 
 <!--
 If a risk-less portfolio exists then $V$ is not invertible. However
