@@ -91,6 +91,12 @@ This implies $P(E\cup F) = P(E) + P(F)$ if $E$ and $F$ are _disjoint_ ($E\cap F 
 __Exercise__. _If $Q$ is a measure with $Q(\emptyset) = a$ and $Q(\Omega) = b$
 where $a \not= b$ show $(Q - a)/(b - a)$ is a probability measure._
 
+__Exercise__. _Show $P(E\cup F) \le P(E) + P(F)$
+for any events $E$ and $F$ when $P$ is a probabilty measure_.
+
+__Exercise__. _Show $P(\cup_{i E_i) \le \sum_i P(E_i)$
+for any events $(E_i)$ when $P$ is a probabilty measure_.
+
 If $\Omega$ consists of a finite number of elements $\{\omega_1,\ldots,\omega_n\}$
 we can define a probabilty measure by $P(\{\omega_i\}) = p_i$ where
 $0 \le p_i \le 1$ and $\sum_i p_i = 1$. Every subset of $\Omega$ corresponds
@@ -112,11 +118,14 @@ A partition $\mathcal{A} = \{A_i\}_{i\in I}$ satisfies $A_i\subseteq\Omega$ for 
 $A_i\cap A_j = \emptyset$ if $i \not= j$, and $\cup_{i\in I} A_i = \Omega$.
 The elements $A_i$ of the partition $\mathcal{A}$ are called _atoms_.
 
-__Exercise__. _Show $A_i\cap A_j\cap A_k = \emptyset$ if $i$, $j$, and $k$ are distinct._
+__Exercise__. _If $\{A_i\}$ are pairwise disjoint show $A_i\cap A_j\cap
+A_k = \emptyset$ if $i$, $j$, and $k$ are distinct._
 
-__Exercise__. _Show $A_i\cap A_j\cap A_k = \emptyset$ if $i$, $j$, and $k$ are not all the same._
+__Exercise__. _If $\{A_i\}$ are pairwise disjoint show $A_i\cap A_j\cap
+A_k = \emptyset$ if $i$, $j$, and $k$ are not all the same._
 
-__Exercise__. _Show $\cap_{j\in J}A_j = \emptyset$ if $J\subseteq I$ has at least two elements._
+__Exercise__. _If $\{A_i\}$ are pairwise disjoint show $\cap_{j\in J}A_j =
+\emptyset$ if $J\subseteq I$ has at least two elements._
 
 Partitions represent partial information. 
 Complete information means knowing what outcome $\omega\in\Omega$ occured.
@@ -157,18 +166,46 @@ __Exercise__. _If an algebra is finite its atoms form a partition._
 
 _Hint_: Show $A_\omega = \cap\{B\in\mathcal{A}:\omega\in B\}$ is an atom for all $\omega\in\Omega$. 
 
-[...comments on infinite algebras... Borel-Cantelli ...]
+If $\mathcal{A}$ is infinite then there is no guarantee the intersection above is still
+in $\mathcal{A}$. A _countably addititve measure_ guarantees the algebra is closed under
+countable unions (and hence countable intersections) and $P(\cup_i E_i) = \sum_i P(E_i)$ if
+$(E_i)_{i\in\mathbf{N}}$ are pairwise disjoint. These conditions are required to prove
+_limit theorems_ about measures.
+
+For example, The Borel-Cantelli lemma states that if $\sum_i P(E_i) <
+\infty$ for any countable collection of events $(E_i)_{i\in\mathbf{N}}$
+then none of the events can occur _infinitely often_. The outcome $\omega$ occurs
+after $k$ if $\omega\in\cup_{k > n} E_k$. If an outcome occurs a finite number
+of times then $\omega\not\in\cup_{k > n} E_k$ for sufficiently large $k$.
+If the outcome occurs in an infinite number of events then
+$\omega\in\cap_n \cup_{k > n} E_k$ and we say $\omega$ occurs _infinitely often_.
+For any $\epsilon > 0$ there exists $n$ such that $\sum_{k > n} P(E_k) < \epsilon$
+since the infinite sum converges to a finite value. 
 
 ## Random Variable
 
-A _random variable_ is a symbol that can be used in place of a number
-when manipulating equations and inequalities with
-with additional information about the probability of the values it can take on.
+A _random variable_ is a symbol that can be used in place of a number when
+manipulating equations and inequalities with with additional information
+about the probability of the values it can take on.
+
+### Discrete Random Variable
+
+A _discretely distributed random variable_ is defined by the values it can take, $(x_i)$,
+together with the probabilities, $(p_i)$, that it takes those values $P(X = x_i) = p_i$.
+The probabilities must satisy $p_i \ge0$ and $\sum_i p_i = 1$.
+
+### Continuous Random Variable
+
+A _continuously distributed random variable_ is defined by a _density function_ $f$ where
+$P(a < X\le b) = \int_a^b F(x)\,dx$.
+The density must satisfy $f\ge 0$ and $\int_\mathcal{R} f(t)\,dt = 1$.
 
 ### Cumulative Distribution Function
 
-A naive way to define a single random variable is by a _cumulative distribution
-function_. The cdf of the random variable $X$ is $F_X(x) = F(x) = P(X\le x)$.
+There are random variables that are neither discrete nor continuous however all random
+variables can be defined using a _cumulative distribution function_.
+
+The cdf of the random variable $X$ is $F_X(x) = F(x) = P(X\le x)$.
 It tells you everything there is to know about $X$. For example,
 $P(a < X \le b) = F(b) - F(a)$. 
 
@@ -182,7 +219,7 @@ for sufficiently nice $A\subset\mathbf{R}$ where we are using
 integration.
 
 __Exercise__: Show for any cumulative distribution function $F$ that
-$F$ is non-decreasing, $\lim_{x\to -\infty} F(x) = 0$,
+$F(x) \le F(y)$ if $x < y$, $\lim_{x\to -\infty} F(x) = 0$,
 $\lim_{x\to\infty} F(x) = 1$, and $F$ is right continuous with left limits.
 
 Every such function is the cumulative distribution function of a random variable.
@@ -206,11 +243,21 @@ distribution function is $F(x) = P(X\le x) = P(\{\omega\in\Omega\mid X(\omega) \
 
 Given a cdf $F$ we can define a random variable having that distribution by
 $X\colon\mathbf{R}\to\mathbf{R}$ to be the
-identity function and let $P$ be the probability measure on $\mathbf{R}$ defined by
+identity function, $X(x) = x$, and let $P$ be the probability measure on $\mathbf{R}$ defined by
 $P(A) = \int_A dF(x)$. 
 
 The mathematical definition is more flexible than defining a random variable by its
 cumulative distribution function.
+
+## Examples
+
+### Uniform
+
+We have already seen the example of a random variable uniformly distributed in the range $[0,1]$.
+A random variable is uniformly distributed on the interval $[a, b]$ has density function
+$f(x) = (x - a)/(b - a)$ if $a \le x \le b$ and $f(x) = 0$ if $x < a$ or $x > b$.
+
+### Normal
 
 ### Measurable
 
