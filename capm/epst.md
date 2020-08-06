@@ -40,7 +40,7 @@ In this case $\beta = \mathrm{Cov}(R(\xi),R(\mu))/\mathrm{Var}(R(\mu))$.
 ## One-Period Model
 
 This model is parameterized directly by instrument prices.  These have a
-clear interpretation in the financal world and all other relevant financial
+clear interpretation in the financial world and all other relevant financial
 quantities can be defined in terms of prices and portfolios.
 
 Let $I$ be the set of _market instruments_ and $\Omega$ be the set of
@@ -48,7 +48,7 @@ possible market outcomes over a single period.  The _one-period model_
 specifies the initial instrument _prices_ $x\in\mathbf{R}^I$ and the final
 instrument prices $X\colon\Omega\to\mathbf{R}^I$ depending on the outcome.
 We assume, as customary, that there are no cash flows associated with
-the instruments and transactions are perfectly divisible and liquid.
+the instruments and transactions are perfectly liquid and divisible.
 
 It is common in the literature to write $\mathbf{R}^n$ instead of
 $\mathbf{R}^I$ where $n$ is the cardinality of $I$.
@@ -61,7 +61,7 @@ and $x = (x_1,\ldots,x_n)$ where $x_j = x(i_j)$, $j = 1,\ldots, n$.
 A _portfolio_ $\xi\in\mathbf{R}_I$ represents the number of
 shares initially purchased in each instrument where $\mathbf{R}_I =
 (\mathbf{R}^I)^*$ is the _dual vector space_ of $\mathbf{R}^I$.  Recall
-the dual space of a vector space $X$ consists of all bounded _linear
+the dual of a vector space $X$ consists of all bounded _linear
 functionals_ on $X$. The _dual pairing_ of a linear functional $x^*\colon
 X\to\mathbf{R}$ is $\langle x,x^* \rangle = x^*(x)$ for $x\in X$.
 If $\mathcal{B}(X,Y)$ is the space of bounded linear transformations
@@ -81,6 +81,7 @@ It is the cost of attaining the portfolio $\xi$.
 The _realized return_ is $R(\xi) = \xi'X/\xi'x$ when $\xi'x\not=0$.
 Note $R(\xi) = R(t\xi)$ for any non-zero $t\in\mathbf{R}$ so
 there is no loss in assuming $\xi'x = 1$ when considering returns.
+In this case $R(\xi) = \xi'X$ is the realized return on the portfolio.
 
 There is _model arbitrage_ if there exists a portfolio $\xi$ with
 $\xi'x < 0$ and $\xi'X(\omega) \ge0$ for all $\omega\in\Omega$:
@@ -113,14 +114,13 @@ not a scalar multiple of $x$.
 As we've just seen, that would lead to models where all portfolios have
 the same expected realized return.
 
-
 ## Efficient Portfolios 
 
-A portfolio $\xi$ is _efficient_ for a given expected realized return
-$\rho$ if $\mathrm{Var}(R(\xi)) \le \mathrm{Var}(R(\eta))$ for every
-portfolio $\eta$ with expected realized return $\rho$.
+A portfolio $\xi$ is _efficient_
+if $\mathrm{Var}(R(\xi)) \le \mathrm{Var}(R(\eta))$ for every
+portfolio $\eta$ having the same expected realized return as $\xi$.
 
-The [appendix](#efficient-portfolios) shows every efficient portfolio
+The [Appendix](#efficient-portfolios) shows every efficient portfolio
 has the form
 $$
 \xi = ((C - \rho B)/D)V^{-1}x + ((-B + \rho A)/D)V^{-1}E[X]
@@ -161,10 +161,35 @@ If $\zeta$ is risk-less then $\zeta'X = c$ for some constant $c$.
 If $c = 1$ we call the portfolio a _zero coupon bond_.
 Zero coupon bonds have constant realized return $R = R(\zeta) = 1/\zeta'x$.
 In this case $V$ is not invertible since $V\zeta = E[Xc] - E[X]c = 0$.
-However, $R\zeta$ is an efficient portfolio for realzied return $\rho = R$ since
+However, $R\zeta$ is an efficient portfolio for realized return $\rho = R$ since
 $R\zeta'E[X] = R$ and $R(\zeta)$ has variance zero.
 
 From the [Appendix](#efficient-portfolios) ...
+
+We can find the risk-less portfolio, if it exists, by minimizing the variance
+subject to the condition $\xi'x = 1$. If $V$ were invertable then
+$\xi = \lambda V^{-1}x$ and $1 = x'\xi = \lambda x'V^{x}$ so $\lambda = 1/x'V^{-1}x$.
+
+$V + \epsilon I$ picks out zero variance portfolio as $\epsilon\to 0$.
+
+
+The solution satisfies
+$$
+\begin{bmatrix}
+V & x \\
+x' & 0 \\
+\end{bmatrix}
+\begin{bmatrix}
+\xi \\
+-\lambda \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\
+1 \\
+\end{bmatrix}
+$$
+
 
 ## Appendix
 
@@ -470,12 +495,12 @@ The Fr&eacute;chet derivative $DF\colon X\to\mathcal{B}(X,Y)$, where $\mathcal{B
 is the space of bounded linear operators from $X$ to $Y$,
 is defined by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ as $h\to 0$
 
-For example, define $F\colon X\to X$, where $X$ is a (not necessarily
-commutative) Banach algebra, by $F(x) = x^2$.
+For example, define $F\colon X\to X$ where $X$ is a (not necessarily
+commutative) Banach algebra by $F(x) = x^2$.
 Since $(x + h)^2 = x^2 + xh + hx + h^2$
-and the $h^2$ term is $o(\|h\|)$, $DF(x)h = xh + hx$.
+and $h^2$ is $o(\|h\|)$, $DF(x)h = xh + hx$.
 If we define the linear operators of left and right multiplication by $x$,
-$L_x,R_x\colon X\to X$, where
+$L_x,R_x\colon X\to X$ where
 $L_x y = xy$ and $R_x y = yx$, then $DF(x) = D(x^2) = L_x + R_x$.
 Another way to write this is $D(x^2)dx = x\ dx + dx\ x$.
 
@@ -488,9 +513,9 @@ we can write $D(x^2) = 2x$, just as in the case $X = \mathbf{R}$.
 
 The exercise shows $D(x^n) = nM_{x^{n-1}} = nx^{n-1}$.
 
-Note that we have computed the derivative without taking a limit of a difference quotient.
+Note that we have computed the derivative without taking the limit of a difference quotient.
 
-If $Y = \mathbf{R}$ we have $DF\colon X\to\mathcal{B}(X,\mathbf{R}) = X^*$
+If $Y = \mathbf{R}$ then $DF\colon X\to\mathcal{B}(X,\mathbf{R}) = X^*$
 where $X^*$ is the dual space of $X$.
 
 If $T\colon\mathbf{R}^n\to\mathbf{R}^n$ is a self-adjoint linear
@@ -526,8 +551,8 @@ $n$ is the cardinality of $\Omega$. The integral is just the inner product.
 
 It is not simple to define $\int_\Omega f\,d\mu$ for $f\in B(\Omega)$ and $\mu\in ba(\Omega)$
 when the cardinality of $\Omega$ is infinite.
-Consider the case when $\Omega = \mathbf{N}$ is the set of non-negative integers.
-In this case $B(\mathbf{N})$ is called $\mathcal{l}^\infty$.
+Consider the case $\Omega = \mathbf{N}$, the set of non-negative integers,
+where $B(\mathbf{N})$ is called $\mathcal{l}^\infty$.
 Let $\mathcal{L}\subseteq\mathcal{l}^\infty$ be the sequences $x = (x_i)_{i\in\mathbf{N}}$
 for which $Lx = \lim_{i\to\infty} x_i$ exists. This defines a bounded linear functional
 on $\mathcal{L}$. By the Hahn-Banach theorem this can be extended to a bounded linear functional
@@ -631,7 +656,7 @@ E[X]\\
 \rho\\
 \end{bmatrix}
 $$
-The matix is not invertible but a small perturbation is and we can use
+The matrix is not invertible but a small perturbation is and we can use
 the block matrix inversion formula
 $$
 \begin{bmatrix}
@@ -683,6 +708,7 @@ $$
 $$
 
 -->
+
 <!--
 
 ### Singular Variance
@@ -703,7 +729,7 @@ E[X] \\
 1 \\
 \end{bmatrix}
 $$
-The matix is not invertible but a small perturbation is and we can use
+The matrix is not invertible but a small perturbation is and we can use
 the block matrix inversion formula
 $$
 \begin{bmatrix}
@@ -860,7 +886,7 @@ E[X']  & 0 & 0\\
 \end{bmatrix}
 $$
 
-The matrix is not invertable but
+The matrix is not invertible but
 $$
 \begin{bmatrix}
 \tau V & x & E[X]\\
