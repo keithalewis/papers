@@ -96,7 +96,7 @@ $x = \int_\Omega X(\omega)\,d\Pi(\omega)$. We assume $X$ is
 bounded, as it is in the real world, and $\Pi$ is finitely additive.
 The dual space of bounded functions on $\Omega$ is the space of finitely additive measures
 on $\Omega$
-with the dual pairing $\langle X,\Pi\rangle = \int_\Omega X\,d\Pi$. \cite{Dunford and Schwartz}
+with the dual pairing $\langle X,\Pi\rangle = \int_\Omega X\,d\Pi$ [@DunSch63].
 See the [Appendix](#model-arbitrage) for a short, self-contained proof of the FTAP.
 
 If $x = \int_\Omega X\,d\Pi$ for a positive measure $\Pi$ then all portfolios
@@ -270,6 +270,37 @@ A straightforward calculation shows the variance is
 $$
 \xi'V\xi = (C - 2B\rho + A\rho^2)/D.
 $$
+
+Let $S$ be the Cholesky decomposition of $V$ with $V = S'S$ so
+$A = \|Sx\|^2$, $B = (SE[X])'Sx$, and $C = \|SE[X]\|^2$.
+
+
+Since $V$ is self-adjoint $V = \sum_j v_j\ e_j e_j'$ where $v_j\in\mathbf{R}$ and
+$(e_)$ are an orthonormal basis. Since $V$ is positive semi-definite $v_j\ge0$.
+
+Let $x_j = x'e_j$ and $X_j = E[X']e_j$ then
+$A = \sum_j v_j x_j^2$, $B = \sum_j v_j x_j X_j$ and $C = \sum_j v_j X_j^2$.
+
+We can solve the system
+$$
+\begin{bmatrix}
+V & x & E[X]\\
+x' & 0 & 0\\
+E[X'] & 0 & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+\xi \\
+-\lambda \\
+-\mu \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\
+1 \\
+\rho \\
+\end{bmatrix}
+$$
+
 
 <!--
 If a risk-less portfolio exists then $V$ is not invertible. However
@@ -454,7 +485,8 @@ does not assume a probability measure on $\Omega$.
 The one-period Fundamental Theorem of Asset Pricing states there is no model
 arbitrage if and only if there exists a positive measure $\Pi$ on
 $\Omega$ with $x = \int_\Omega X(\omega)\,d\Pi(\omega)$.  We assume $X$
-is bounded and $\Pi$ is finitely additive.
+is bounded, as it is in the real world, and $\Pi$ is
+[finitely additive](#finitely-additive-measures).
 
 If such a measure exists and $\xi\cdot X\ge0$ then
 $\xi\cdot x = \int_\Omega \xi\cdot X\,d\Pi \ge0$ so arbitrage
@@ -465,7 +497,7 @@ $\mathbf{R}^n$ with $x\not\in C$ then there exists $\xi\in\mathbf{R}^n$
 with $\xi\cdot x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
 
 Recall that a _cone_ is a subset of a vector space closed under addition
-and multiplication by a positive scalar, i.e., $C + C\subseteq C$
+and multiplication by a positive scalar, that is, $C + C\subseteq C$
 and $tC\subseteq C$ for $t > 0$. The set of arbitrage
 portfolios is a cone.
 
@@ -519,11 +551,12 @@ If $Y = \mathbf{R}$ then $DF\colon X\to\mathcal{B}(X,\mathbf{R}) = X^*$
 where $X^*$ is the dual space of $X$.
 
 If $T\colon\mathbf{R}^n\to\mathbf{R}^n$ is a self-adjoint linear
-transformation and $F(x) = x'Tx$ then $DF(x)h = 2h'Tx$. This
+transformation ($T' = T$) and $F\colon\mathbf{R}^n\to\mathbf{R}$ is
+$F(x) = x'Tx$ then $DF(x)h = 2x'Th$. This
 follows from $(x + h)'T(x + h) = x'Tx + x'Th + h'Tx + h'Th$
-so $DF(x)h = x'Th + h'Tx = 2h'Tx$ since $x'Th = h'T'x = h'Tx$ and
-$h'Th$ is $o(\|h\|)$.
-Using the dual pairing $DF(x)h = \langle 2Tx, h\rangle$.
+so $DF(x)h = x'Th + h'Tx = 2x'Th$ since $h'Tx = x'T'h = x'Th$ and
+$h'Th$ is $o(\|h\|)$. This shows the Fr&eacute;chet derivative of $x'Tx$ is
+$2x'T\in\mathcal{B}(\mathbf{R}^n, \mathbf{R}) = (\mathbf{R}^n)^*$.
 
 ### Finitely Additive Measures
 
@@ -546,6 +579,8 @@ We can assume the $(E_i)$ are pairwise disjoint, which shows this is well-define
 Since simple functions are uniformly dense in $B(\Omega)$ and $M$ is bounded on
 the space of simple functions we can extend this to a bounded linear functional on $B(\Omega)$.
 
+A similar proof shows $B(\mathcal{A})^* = ba(\mathcal{A})$ if $\mathcal{A}$ is an algebra of sets.
+
 If $\Omega$ is finite then $B(\Omega)$ and $ba(\Omega)$ are isomorphic to $\mathbf{R}^n$ where
 $n$ is the cardinality of $\Omega$. The integral is just the inner product.
 
@@ -557,8 +592,8 @@ Let $\mathcal{L}\subseteq\mathcal{l}^\infty$ be the sequences $x = (x_i)_{i\in\m
 for which $Lx = \lim_{i\to\infty} x_i$ exists. This defines a bounded linear functional
 on $\mathcal{L}$. By the Hahn-Banach theorem this can be extended to a bounded linear functional
 on $\mathcal{l}^\infty$ with the same norm (The Banach limit).
-Good luck with finding a finitely additive measure $\lambda$ and defining an integral with $Lx =
-\int_{\mathbf{N}} x\,d\lambda$. \cite{DunSch}.
+Good luck finding a finitely additive measure $\lambda$ and defining an integral with $Lx =
+\int_{\mathbf{N}} x\,d\lambda$. See @DunSch63 for the full details.
 
 <!--
 The model also specifies a probability measure $P$ on the
@@ -1025,3 +1060,4 @@ $$
 $$
 -->
 
+# References

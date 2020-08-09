@@ -14,12 +14,13 @@ FLAGS += -H header.html
 #FLAGS += -H katex.html
 #FLAGS += -A footer.html
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
+BIB = --bibliography epst.json
 
 $(HTML): %.html: %.md capm.css
-	pandoc --reference-location=block -t html5+auto_identifiers -s --css capm.css  --katex=$(KATEX) $< -o $@
+	pandoc $(BIB) --reference-location=block -t html5+auto_identifiers -s --css capm.css  --katex=$(KATEX) $< -o $@
 
 $(PDF): %.pdf: %.md
-	pandoc -H ../header.tex $< -o $@
+	pandoc $(BIB) -H ../header.tex $< -o $@
 
 #pandoc -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
 
