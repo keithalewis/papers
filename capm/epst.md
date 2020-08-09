@@ -520,12 +520,14 @@ The proof also shows how to find an arbitrage when one exists.
 
 ### Fr&eacute;chet Derivative
 
-A function $F\colon X\to Y$ where $X$ and $Y$ are Banach spaces
+A function $F\colon X\to Y$ where $X$ and $Y$ are
+[normed vector spaces](https://en.wikipedia.org/wiki/Normed_vector_space)
 has a Fr&eacute;chet derivative at $x\in X$ if it is linear to first
 order in a neighborhood of $x$.
-The Fr&eacute;chet derivative $DF\colon X\to\mathcal{B}(X,Y)$, where $\mathcal{B}(X,Y)$
-is the space of bounded linear operators from $X$ to $Y$,
-is defined by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ as $h\to 0$
+Let $\mathcal{B}(X,Y)$ be the space of bounded linear operators from $X$ to $Y$.
+The Fr&eacute;chet derivative $DF\colon X\to\mathcal{B}(X,Y)$
+is defined by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ as $h\to 0$.
+(Recall $f(h) = g(h) + o(h)$ if $\lim_{h\to 0} \|f(h) - g(h)\|/\|h\| = 0$.)
 
 For example, define $F\colon X\to X$ where $X$ is a (not necessarily
 commutative) Banach algebra by $F(x) = x^2$.
@@ -543,9 +545,11 @@ $DF(x) = 2M_x$ where $M_x = L_x = R_x$. If we implicitly
 assume $x$ stands for multiplication by $x$, $M_x$, then
 we can write $D(x^2) = 2x$, just as in the case $X = \mathbf{R}$.
 
-The exercise shows $D(x^n) = nM_{x^{n-1}} = nx^{n-1}$.
+The exercise shows $D(x^n) = nM_{x^{n-1}} = nx^{n-1}$ in the commutative case.
 
 Note that we have computed the derivative without taking the limit of a difference quotient.
+We only use the fact $\lim_{h\to 0}\|h^n\|/\|h\| = 0$ if $n > 1$ which follows
+from $\|h^n\| \le \|h\|^n$.
 
 If $Y = \mathbf{R}$ then $DF\colon X\to\mathcal{B}(X,\mathbf{R}) = X^*$
 where $X^*$ is the dual space of $X$.
@@ -555,13 +559,13 @@ transformation ($T' = T$) and $F\colon\mathbf{R}^n\to\mathbf{R}$ is
 $F(x) = x'Tx$ then $DF(x)h = 2x'Th$. This
 follows from $(x + h)'T(x + h) = x'Tx + x'Th + h'Tx + h'Th$
 so $DF(x)h = x'Th + h'Tx = 2x'Th$ since $h'Tx = x'T'h = x'Th$ and
-$h'Th$ is $o(\|h\|)$. This shows the Fr&eacute;chet derivative of $x'Tx$ is
+$h'Th$ is $o(\|h\|)$. The Fr&eacute;chet derivative of $x'Tx$ is
 $2x'T\in\mathcal{B}(\mathbf{R}^n, \mathbf{R}) = (\mathbf{R}^n)^*$.
 
 ### Finitely Additive Measures
 
 A measure $\mu$ on $\Omega$ is _finitely additive_ if $\mu(E\cup F) = \mu(E) + \mu(F)$
-when $E$ and $F$ are disjoint subsets of $\Omega$.
+when $E$ and $F$ are disjoint subsets of $\Omega$ and $\mu(\emptyset) = 0$.
 
 It is easy to prove the dual space of bounded functions on $\Omega$,
 $B(\Omega)$, is the space of finitely additive measures on $\Omega$,
