@@ -17,7 +17,7 @@ FLAGS += -H header.html
 BIB = --bibliography epst.json
 
 $(HTML): %.html: %.md capm.css
-	pandoc $(BIB) --reference-location=block -t html5+auto_identifiers -s --css capm.css  --katex=$(KATEX) $< -o $@
+	pandoc --reference-location=block -t html5+auto_identifiers -s --css capm.css  --katex=$(KATEX) $< -o $@
 
 $(PDF): %.pdf: %.md
 	pandoc $(BIB) -H ../header.tex $< -o $@
