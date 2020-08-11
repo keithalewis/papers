@@ -11,7 +11,7 @@ They are completely classified up to isomorphism by their _dimension_.
 A _vector space_ is an _abelian group_ with a _scalar multiplication_ that satisfies the
 _distributive law_ with respect to the vector space addition.
 A vector is not just a list of numbers, it is a mathematical object that satisfies
-certain conditions. Vectors can be added to get a new vector, or be multiplied
+certain conditions. Vectors can be added to get a new vector or be multiplied
 by a scalar value. For example, functions are vectors and linear transformations
 between vector spaces are also vectors.
 
@@ -72,6 +72,10 @@ a function $T\colon V\to W$ is a _linear transformation_ if $T(a v + w)
 are in $W$. The set of all linear transformations from $V$ to $W$ is
 denoted $\mathcal{L}(V,W)$.
 
+This is also a vector space with addition $T + S$ defined by
+$(T + S)v = Tv + Sv$ and scalar multiplication by
+$(\alpha T)v = \alpha(Tv)$ for $\alpha\in\mathbf{F}$.
+
 __Exercise__. _Show $T(0) = 0$ for $T\in\mathcal{L}(V,W)$_.
 
 _Hint_: The $0$ on the left-hand side is the additive identity of $V$
@@ -130,7 +134,7 @@ and $\mathbf{F}W = \{aw:a\in\mathbf{F}, w\in W\}$.
 __Exercise__. _Show $\mathrm{ker}\,T$ is a subspace of $V$ and $\mathrm{ran}\,T$
 is a subspace of $W$ for $T\in\mathcal{L}(V,W)$_.
 
-Note for any vector $v$ that $\mathbf{F}v$ is a subspace. It is the one-dimensional
+If $v\in V$ then $\mathbf{F}v$ is a subspace. It is the one-dimensional
 subspace _spanned_ by $v$.
 
 More generally, let $U$ be any collection of vectors in $V$.
@@ -190,7 +194,17 @@ the same cardinality.
 If $Tv = \lambda v$ for some $\lambda\in\mathbf{R}$ then $\lambda$ is
 an _eigenvalue_ of $T$ and $v$ is its corresponding _eigenvector_.
 If $I$ is the _identity operator_ defined by $Iv = v$ for all $v$
-and $\lambda$ is an eigenvalue, then $T - \lambda I$ is not invertable.
+and $\lambda$ is an eigenvalue, then $T - \lambda I$ is not invertable
+since $(T - \lambda I)v = 0$.
+
+If the eigenvectors of $T$ are independent ...
+And form a basis... 
+Then $Tv_i = \lambda_i vi_i$ and $TV = \sum \lambda_i v_i$.
+We say $T$ is _diagonalizable_.
+
+If $T$ has only one eigenvalue... (Jordan form)
+
+
 
 ## Functional Calculus
 
