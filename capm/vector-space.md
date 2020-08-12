@@ -16,6 +16,8 @@ that satisfy these conditions.
 For example, _functions_ are vectors and _linear transformations_
 between vector spaces are also vectors.
 
+Let $K = \operatorname{ker}T$ be xxx.
+
 Linear transformations from a finite dimensional vector space to itself
 are categorized up to _similariy_ by a list of _eigenvalues_ together
 with their _multiplicities_.
@@ -37,11 +39,11 @@ Identity
 Inverse  
 : Every vector has an additive inverse $-x$ with $x + (-x) = 0$.  
 
-A vector space also specifies a _field_ of scalars $\mathbf{F}$ (usually
-the real $\mathbf{R}$ or complex $\mathbf{C}$ numbers) and a scalar
+A vector space also specifies a _field_ of scalars $𝑭$ (usually
+the real $𝑹$ or complex $𝑪$ numbers) and a scalar
 multiplication that satisfies the _distributive law_ 
 $$
-	\alpha(x + y) = \alpha x + \alpha y, \mathrm{\ for\ } \alpha\in\mathbf{F} \mathrm{\ and\ } x,y\in V.
+	α(x + y) = α x + α y, \mathrm{\ for\ } α\in𝑭 \mathrm{\ and\ } x,y\in V.
 $$
 
 If $x + x = x$ then $x = 0$ for $x\in V$. Using the axioms
@@ -62,7 +64,7 @@ used for any group, abelian or not.
 
 __Exercise__. _Show $(-1)x = -x$_.
 
-_Hint_. The left hand side is the scalar multiplication of $-1\in\mathbf{F}$ by $x$.
+_Hint_. The left hand side is the scalar multiplication of $-1\in𝑭$ by $x$.
 The right hand side is the additive inverse of $x$. You need to show
 $x + (-1)x = 0$. Use the distributed law.
 
@@ -71,16 +73,16 @@ $x + (-1)x = 0$. Use the distributed law.
 When studying mathematical objects it is useful to study functions
 between them that preserve the structure of the objects.
 
-If $V$ and $W$ are vector spaces over the same field $\mathbf{F}$ then
-a function $T\colon V\to W$ is a _linear transformation_ if $T(\alpha x + y)
-= \alpha Tx + T y$ for $\alpha\in\mathbf{F}$ and $x,y\in V$.  Note $Tx$ and $Ty$
+If $V$ and $W$ are vector spaces over the same field $𝑭$ then
+a function $T\colon V\to W$ is a _linear transformation_ if $T(α x + y)
+= α Tx + T y$ for $α\in𝑭$ and $x,y\in V$.  Note $Tx$ and $Ty$
 are in $W$. The set of all linear transformations from $V$ to $W$ is
 denoted $\mathcal{L}(V,W)$. If $W = V$ we write $\mathcal{L}(V)$
 and call the elements _endomorphisms_ of $V$.
 
 Linear transformations are a vector space with addition $T + S$ defined by
 $(T + S)x = Tx + Sx$ and scalar multiplication by
-$(\alpha T)x = \alpha(Tx)$ for $\alpha\in\mathbf{F}$ and $x\in V$.
+$(αT)x = α(Tx)$ for $α\in𝑭$ and $x\in V$.
 
 __Exercise__. _Show $T(0) = 0$ for $T\in\mathcal{L}(V,W)$_.
 
@@ -88,26 +90,26 @@ _Hint_: The $0$ on the left-hand side is the additive identity of $V$
 and the $0$ on the right-hand side is the additive identity of $W$.
 Use $x + x = x$ implies $x = 0$.
 
-__Exercise__. _Show $T(\alpha x) = \alpha(Tx)$ for $\alpha\in\mathbf{F}$ and $x\in V$.
+__Exercise__. _Show $T(α x) = α(Tx)$ for $α\in𝑭$ and $x\in V$.
 and $v,w\in V$_.
 
 _Hint_: Use $T(0) = 0$.
 
-__Exercise__. _Show $T(\alpha x + \beta y) = \alpha (Tx) + \beta (Ty)$
-for $\alpha ,\beta \in\mathbf{F}$ and $x,y\in V$_.
+__Exercise__. _Show $T(α x + β y) = α (Tx) + β (Ty)$
+for $α ,β \in𝑭$ and $x,y\in V$_.
 
 _Hint_: You don't need a hint if you solved the previous exercises.
 
 The _kernel_ of a linear transformation $T\in\mathcal{L}(V,W)$ is
 $$
-	\mathrm{ker}\,T = \{x\in V:Tx = 0\}\subseteq V
+	\operatorname{ker}\,T = \{x\in V:Tx = 0\}\subseteq V
 $$
 and its _range_ is 
 $$
-	\mathrm{ran}\,T = \{Tx:x\in V\}\subseteq W.
+	\operatorname{ran}T = \{Tx:x\in V\}\subseteq W.
 $$
-If $\mathrm{ker}\,T = \{0\}$ then $T$ is _one-to-one_, or _injective_.
-If $\mathrm{ran}\,T = W$ then $T$ is _onto_, or _surjective_.
+If $\operatorname{ker}T = \{0\}$ then $T$ is _one-to-one_, or _injective_.
+If $\operatorname{ran}T = W$ then $T$ is _onto_, or _surjective_.
 
 __Exercise__. _If $T$ is injective show $Tx = Ty$ implies $x = y$ for all $x,y\in V$_.
 
@@ -133,9 +135,9 @@ _Hint_. $T$ is similar to itself via $S = I$, the identity transformation.
 ### Dual Space
 
 The _dual vector space_ of the vector space $V$ is the space of
-_linear functionals_ $V^* = \mathcal{L}(V,\mathrm{F})$.
+_linear functionals_ $V^* = \mathcal{L}(V,𝑭)$.
 For $v\in V$ and $v^*\in V^*$ we write the _dual pairing_
-$\langle v, v^*\rangle = v*(v)\in\mathbf{F}$.
+$\langle v, v^*\rangle = v*(v)\in𝑭$.
 
 __Exercise__. _Show if $\langle v,v^*\rangle = \langle v',v^*\rangle$
 for all $v^*\in V^*$ then $v = v'$_.
@@ -166,8 +168,8 @@ Composition is associative, the identity is $Ix = x$ for $x\in V$, and
 the distibutive law follows from linearity $R(S+T)x = R(Sx + Tx) = RSx + RTx$.
 
 The prototypical example of a ring is the set of polynomials (having
-coefficients in $\mathbf{F}$) in one variable $\mathbf{F}[t]
-= \{\sum_{n\ge0} \alpha_n t^n\}$, where $\alpha_n\in\mathbf{F}$ are
+coefficients in $𝑭$) in one variable $𝑭[t]
+= \{\sum_{n\ge0} α_n t^n\}$, where $α_n\in𝑭$ are
 non-zero for only a finite number of $n$.
 
 Note: If we replace the requirement that the scalars are a field by
@@ -184,12 +186,12 @@ smaller pieces.
 A subset $U$ of a vector space $V$ is a _subspace_ if it is also a vector space.
 
 __Exercise__. _Show $U$ is a subspace if and only if $U + U\subseteq U$ and
-$\mathbf{F}U\subseteq U$_.
+$𝑭U\subseteq U$_.
 
 We use the notation $U + U = \{x + y:x\in U, y\in U\}$
-and $\mathbf{F}U = \{\alpha x:\alpha\in\mathbf{F}, x\in U\}$.
+and $𝑭U = \{α x:α\in𝑭, x\in U\}$.
 
-__Exercise__. _Show $\mathrm{ker}\,T$ is a subspace of $V$ and $\mathrm{ran}\,T$
+__Exercise__. _Show $\operatorname{ker}\,T$ is a subspace of $V$ and $\operatorname{ran}\,T$
 is a subspace of $W$ for any $T\in\mathcal{L}(V,W)$_.
 
 ### Quotient Space
@@ -199,14 +201,14 @@ $V/U = \{x + U:x\in V\}$ where the _coset_ $x + U = \{x + u:u\in U\}$.
 
 __Lemma__. _If $U$ is a subspace of $V$ then $V/U$ is a vector space_.
 
-__Exercise__. _Show $(x + U) + (y + U) = (x + y) + U$ and $\alpha(x + U) = \alpha x + U$
-for any $\alpha\in\mathbf{F}$ and $x,y\in V$_.
+__Exercise__. _Show $(x + U) + (y + U) = (x + y) + U$ and $α(x + U) = α x + U$
+for any $α\in𝑭$ and $x,y\in V$_.
 
 This shows addition and scalar multiplication is well-defined in the quotient space.
 
 __Exercise__. _Show $0 + U$ is the additive identity of the quotient space_.
 
-__Exercise__. _Show $V/U + V/U\subseteq V/U$ and $\mathbf{F}(V/U)\subseteq V/U$_.
+__Exercise__. _Show $V/U + V/U\subseteq V/U$ and $𝑭(V/U)\subseteq V/U$_.
 
 The lemma is now proved.
 
@@ -221,30 +223,30 @@ _Hint_. Show $w + U = w' + U$ using $0 = v - v = (w - w') + (u - u')$ and $u,u'\
 Show $u = u'$ using $v = u + (v - u)$ so $w = v - u$ and ...
 
 Every $T\in\mathcal{L}(V,W)$ factors into
-$V\to V/\mathrm{ker}\,T\to \mathrm{ran}\,T\to W$ where
-$V\to V/\mathrm{ker}\,T$ sends $v\mapsto v + \mathrm{ker}\,T$,
-$V/\mathrm{ker}\,T\to\mathrm{ran}\,T$ sends $v + \mathrm{ker}\,T\mapsto Tv$,
-and $\mathrm{ran}\,T\to W$ is just inclusion $Tv\mapsto Tv\in W$.
+$V\to V/\operatorname{ker}\,T\to \operatorname{ran}\,T\to W$ where
+$V\to V/\operatorname{ker}\,T$ sends $v\mapsto v + \operatorname{ker}\,T$,
+$V/\operatorname{ker}\,T\to\operatorname{ran}\,T$ sends $v + \operatorname{ker}\,T\mapsto Tv$,
+and $\operatorname{ran}\,T\to W$ is just inclusion $Tv\mapsto Tv\in W$.
 
-We already know $(x + U) + (y + U) = (x + y) + U$ and $\alpha(x + U) = \alpha x + U$
+We already know $(x + U) + (y + U) = (x + y) + U$ and $α(x + U) = α x + U$
 for any subspace $U$ so the first map is linear.
 
-__Exercise__. _Show if $x + \mathrm{ker}\,T = y + \mathrm{ker}\,T$ then $Tx = Ty$._
+__Exercise__. _Show if $x + \operatorname{ker}\,T = y + \operatorname{ker}\,T$ then $Tx = Ty$._
 
 This shows the second map is well-defined.
 
-__Exercise__. _Show $V\to V/\mathrm{ker}\,T$ is surjective_.
+__Exercise__. _Show $V\to V/\operatorname{ker}\,T$ is surjective_.
 
-__Exercise__. _Show $V/\mathrm{ker}\,T\to V$ is injective_.
+__Exercise__. _Show $V/\operatorname{ker}\,T\to V$ is injective_.
 
-__Exercise__. _Show $V/\mathrm{ker}\,T\to\mathrm{ran}\,T$ is bijective_.
+__Exercise__. _Show $V/\operatorname{ker}\,T\to\operatorname{ran}\,T$ is bijective_.
 
 ### External Sum
 
 The _external sum_ of vector spaces $V$ and $W$ is the set $V\times
 W$ with addition $(v,w) + (x, y) = (v + x, w + y)$, where $v,x\in V$
-and $w,y\in W$, and scalar multiplication $\alpha(v, w) = (\alpha v,
-\alpha w)$ for $\alpha\in\mathbf{F}$.  The external sum addition and scalar
+and $w,y\in W$, and scalar multiplication $α(v, w) = (α v,
+α w)$ for $α\in𝑭$.  The external sum addition and scalar
 multiplication are defined in terms of those for $V$ and $W$ in the
 first and second elements (respectively) of the pairs on the right-hand side.
 
@@ -255,15 +257,15 @@ sum of $U$ and $V/U$ for any subspace $U\subseteq V$.
 
 ### Span
 
-If $v\in V$ then $\mathbf{F}\{v\} = \{\alpha v:\alpha\in\mathbf{F}\}$ is a subspace.
+If $v\in V$ then $𝑭\{v\} = \{α v:α\in𝑭\}$ is a subspace.
 It is the one-dimensional subspace _spanned_ by $v$.
 
 More generally, let $X$ be any collection of vectors in $V$.
 The _span_ of the collection is 
 $$
-	\mathrm{span}\,X = \vee X = \{\sum_{x\in X} \alpha_x x\},
+	\operatorname{span}\,X = \vee X = \{\sum_{x\in X} α_x x\},
 $$
-where the sum is over any $\{\alpha_x\}_{x\in X}$
+where the sum is over any $\{α_x\}_{x\in X}$
 
 We could say $X = \{x_i\}_{i\in I}$ where $x_i\in X$ for all $i\in I$
 but it is simpler to
@@ -271,7 +273,7 @@ say $X = \{x\}_{x\in X}$ without dragging in an index set $I$.
 
 __Exercise__. _Show the span of $X$ is the smallest subspace of $V$ containing $X$_.
 
-__Exercise__. _If $U$ and $W$ are subspaces of $V$ then $\mathrm{span}(U\cup V)
+__Exercise__. _If $U$ and $W$ are subspaces of $V$ then $\operatorname{span}(U\cup V)
 = U\vee W = \{u + w: u\in U, w\in W\}$_.
 
 __Exercise__. _If the span of $X\subseteq V$ is $V$ and $T\in\mathcal{L}(V,W)$
@@ -282,9 +284,9 @@ is surjective then the span of $TX = \{Tx:x\in X\}$ is $W$_.
 
 A key property of a collection of vectors is _independence_.  A collection
 of vectors $X\subseteq V$ are independent if every _linear combination_
-$\sum_{x\in X} \alpha_x x = 0$ implies $\alpha_x = 0$ for all $x\in X$.
-If $\alpha_x\not = 0$ for some $x$ then
-$x = -(1/\alpha_x)\sum_{y\not = x} \alpha_y y$ is a linear combination
+$\sum_{x\in X} α_x x = 0$ implies $α_x = 0$ for all $x\in X$.
+If $α_x\not = 0$ for some $x$ then
+$x = -(1/α_x)\sum_{y\not = x} α_y y$ is a linear combination
 of vectors in $X\setminus \{x\}$.
 In this case $X$ is _linearly dependent_ and $X\setminus\{x\}$
 has the same span.
@@ -297,8 +299,8 @@ _Hint_. Zorn's lemma using $Y\preceq X$ if and only if $X\subseteq Y$.
 
 Independence ensures unique representations.
 
-__Exercise__. _If $X$ are independent and the finite sums $\sum_{x\in X}\alpha_x x
-= \sum_{x\in X}\beta_x x$ then $\alpha_x = \beta_x$ for all $x\in X$_.
+__Exercise__. _If $X$ are independent and the finite sums $\sum_{x\in X}α_x x
+= \sum_{x\in X}β_x x$ then $α_x = β_x$ for all $x\in X$_.
 
 Independence is preserved by injective linear transformations.
 
@@ -311,7 +313,7 @@ A collection of vectors $X\subseteq V$ is a _basis_
 of $V$ if they are independent and their span is $V$.
 
 __Exercise__. _Show every vector $v\in V$ can be uniquely written
-as $v = \sum_{x\in X}\alpha_x x$ for some $\alpha_x\in\mathbf{R}$_.
+as $v = \sum_{x\in X}α_x x$ for some $α_x\in𝑹$_.
 
 The _dimension_
 of $V$ is the cardinality of a basis $X$. The fundamental fact about vector
@@ -326,16 +328,14 @@ using the Steinitz exchange lemma. Our proof works for any dimension.
 
 ## Inner Product Space
 
+A function $(.,.)\colon V\times V\to𝑭$ with $y\mapsto (x,y)$
+and $y\mapsto (y,x)$ linear in $y$ for each $x\in V$ is a _bilinear_
+function. If also $(α x,y) = (x, \bar{α} y)$ for $α\in𝑭$ and
+$x,y\in V$ it is _sesquilinear. 
 An _inner product_ on a vector space V is a _sesquilinear_ form
-$(.,.)\colon V\times V\to\mathbf{F}$.
-For each $x\in V$ the functions
-$y\mapsto (x,y)$ and $y\mapsto (y,x)$, $y\in V$, are linear
-and $(\alpha x,y) = (x, \bar{\alpha} y)$ for $\alpha\in\mathbf{F}$
-and $x,y\in V$. 
-In addition it must be reflexive, $(x,y) = (y,x)$,
-and non-singular, $(x, x) = 0$ implies $x = 0$.
+that is also _non-singular_, $(x, x) = 0$ implies $x = 0$.
 
-__Exercise__. _If the inner product is not assumed to be singular
+__Exercise__. _If the inner product is singular
 then $K = \{x:(x,x) = 0\}$ is a subspace of $V$. The inner product on
 $V/K$ defined by $(x + K, y + K) = (x, y)$ is well-defined
 and non-singular_.
@@ -344,9 +344,11 @@ The _norm_ of a vector is $\|x\| = \sqrt{(x,x)}$. The Cauchy-Schwartz
 inequality is $|(x,y)|\le\|x\| \|y\|$ with equality if and only
 if $x$ and $y$ are linearly dependent.
 This follows from
-$0\le \|x - \lambda y\|^2 = \|x\|^2 - 2\mathrm{Re}\,\lambda (x, y) + |\lambda|^2\|y\|^2$
+$0\le \|x - \lambda y\|^2 = \|x\|^2 - 2\operatorname{Re}\,\lambda (x, y) + |\lambda|^2\|y\|^2$
 and taking $\lambda = (x,y)/\|y\|^2$. Equality holds if and only
 if $x = \lambda y$.
+
+If $T\in\mathcal{L}(V,V^*)$ then $(x,y) = \langle x, Ty\rangle$ is bilinear.
 
 Inner products are used to define _adjoints_. If $T\in\mathcal{L}(V,W)$...
 
@@ -357,7 +359,7 @@ $(x,y) = \sum_i x_i y_i$ where $x_i = (x,e_i)$ and $y_i = (y, e_i)$.
 
 ## Eigenvector, Eigenvalue
 
-If $Tv = \lambda v$ for some $\lambda\in\mathbf{R}$ then $\lambda$ is
+If $Tv = \lambda v$ for some $\lambda\in𝑹$ then $\lambda$ is
 an _eigenvalue_ of $T$ and $v$ is its corresponding _eigenvector_.
 If $I$ is the _identity operator_ defined by $Iv = v$ for all $v$
 and $\lambda$ is an eigenvalue, then $T - \lambda I$ is not invertable
@@ -374,7 +376,7 @@ __Theorem__. If $V$ is finite dimensional every operator in $\mathcal{L}(V)$ has
 
 If $T\in\mathcal{L}(V)$ and $Tx = 0$ for some $x\in V$ then $x$ is an eigenvector with eigenvalue $0$
 
-If $(x,y) = \|x\| \|y\|$ then $\alpha x = y$ for some $\alpha\in\mathbf{F}$.
+If $(x,y) = \|x\| \|y\|$ then $α x = y$ for some $α\in𝑭$.
 
 There exists $x^*$ such that $\|x*\| \ge \|T e\|$ for $\|e\| = 1$.
 
@@ -385,7 +387,7 @@ so $Te^* = \lambda x^*$ for some scalar $\lambda$.
 ## Polynomial Functional Calculus
 
 Let $\mathcal{P}$ be the _ring_ of polynomials of one variable over the
-scalar field $\mathbf{F}$. Define $\Phi\mathcal{P}\to \mathcal{L}(V)$
+scalar field $𝑭$. Define $\Phi\mathcal{P}\to \mathcal{L}(V)$
 by $\Phi(p) = p(T)$.
 
 # Remarks
@@ -404,7 +406,7 @@ $[a] = [b]$ by transitivity.
 
 $I\supset R$, $R' = R$, $R^2\subseteq R$.
 
-Infinite sums. What does $\sum_{x\in X} \alpha_x x$ for $\alpha_x\in\mathbf{F}$ mean?
-Define $+\colon \mathbf{F}^I\times V^I\to V$ for any $I$ as follows: ...
+Infinite sums. What does $\sum_{x\in X} α_x x$ for $α_x\in𝑭$ mean?
+Define $+\colon 𝑭^I\times V^I\to V$ for any $I$ as follows: ...
 We introduce $I$ since the scalars and vectors must be indexed by the same set.
-We are really defining $+\colon 2^V\times\mathbf{F}^I\times V^I\to V$...
+We are really defining $+\colon 2^V\times𝑭^I\times V^I\to V$...
