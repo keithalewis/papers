@@ -128,7 +128,8 @@ an isommorphism $S\in\mathcal{L}(V)$ with $R = S^{-1}TS$.
 
 __Exercise__. _Show similarity is an equivalence relation_.
 
-_Hint_. $T$ is similar to itself via $S = I$, the identity transformation.
+_Hint_. $T$ is similar to itself via $S = I$, the identity transformation,
+where $Ix = x$ for $x\in V$.
 
 ### Dual Space
 
@@ -384,9 +385,11 @@ so $Te^* = \lambda x^*$ for some scalar $\lambda$.
 
 ## Polynomial Functional Calculus
 
-Let $\mathcal{P}$ be the _ring_ of polynomials of one variable over the
-scalar field $\mathbf{F}$. Define $\Phi\mathcal{P}\to \mathcal{L}(V)$
-by $\Phi(p) = p(T)$.
+Let $\mathbf{F}[t]$ be the _ring_ of polynomials in the variable $t$ over the
+scalar field $\mathbf{F}$. Define $\Phi\mathbf{F}[t]\to \mathcal{L}(V)$
+by $\Phi(p) = p(T)$ where $p(t) = sum_{n\ge0} \alpha_n t^n$.
+
+__Exercise__. _Show $\Phi$ is a ring homomorphism_.
 
 # Remarks
 
