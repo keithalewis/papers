@@ -3,21 +3,29 @@ HTML = $(MKDN:.md=.html)
 #HTML = grassmann.html
 PDF = $(MKDN:.md=.pdf)
 DOCX = $(MKDN:.md=.docx)
+
 KATEX=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/
-#FLAGS = -s # smart quotes
-#FLAGS += --katex
+
+FLAGS  = -f markdown+definition_lists
 FLAGS += -t html5
-FLAGS += --mathjax
+FLAGS += -s # smart quotes
+FLAGS += --katex=$(KATEX)
 FLAGS += --css capm.css
+FLAGS += --toc
+#FLAGS += -B katex.tex
+#FLAGS += --reference-location=block
+#FLAGS += -t html5
+#FLAGS += --mathjax
+#FLAGS += --css capm.css
 #FLAGS += --section-divs
-FLAGS += -H header.html
+#FLAGS += -H header.html
 #FLAGS += -H katex.html
 #FLAGS += -A footer.html
-#FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers
-BIB = --bibliography epst.json
+#FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers+definition_lists
+#FLAGS += --bibliography epst.json
 
 $(HTML): %.html: %.md capm.css
-	pandoc --reference-location=block -t html5+auto_identifiers -s --css capm.css  --katex=$(KATEX) $< -o $@
+	pandoc $(FLAGS) $< -o $@
 
 $(PDF): %.pdf: %.md
 	pandoc -H ../header.tex $< -o $@
