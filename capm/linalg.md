@@ -515,7 +515,7 @@ $x \sim y$ if $\lim_n x_n = \lim_n y_n$, $x,y\in C$. Show this is an equivalence
 and $\bar{V} = C/\sim$ is a Banach space_.
 
 __Exercise__. _Let $C_V$ be the collection of constant sequences in $V^\NN$ where $V$ is a normed space.
-Show $C_V/~$ is dense in $C/~$_.
+Show $C_V/\sim$ is dense in $C/\sim$_.
 
 The space of linear transformations between normed spaces has a norm.
 Define $\|T\| = \sup_{\|x\|\le 1}\|Tx\|$ for $\mathcal{L}(V, W)$

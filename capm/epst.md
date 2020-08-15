@@ -51,7 +51,7 @@ We assume, as customary, that there are no cash flows associated with
 the instruments and transactions are perfectly liquid and divisible.
 
 It is common in the literature to write $\mathbf{R}^n$ instead of
-$\mathbf{R}^I$ where $n$ is the cardinality of $I$.
+$\mathbf{R}^I$ where $n$ is the cardinality of the set of instruments $I$.
 If $A^B = \{f\colon B\to A\}$ is the set of functions from $B$ to $A$
 then $x\in\mathbf{R}^I$ is a function $x\colon I\to\mathbf{R}$
 where $x(i)\in\mathbf{R}$ is the price of instrument $i\in I$. 
@@ -61,11 +61,11 @@ and $x = (x_1,\ldots,x_n)$ where $x_j = x(i_j)$, $j = 1,\ldots, n$.
 A _portfolio_ $\xi\in\mathbf{R}_I$ represents the number of
 shares initially purchased in each instrument where $\mathbf{R}_I =
 (\mathbf{R}^I)^*$ is the _dual vector space_ of $\mathbf{R}^I$.  Recall
-the dual of a vector space $X$ consists of all bounded _linear
+the dual of a vector space $X$ consists of all _linear
 functionals_ on $X$. The _dual pairing_ of a linear functional $x^*\colon
 X\to\mathbf{R}$ is $\langle x,x^* \rangle = x^*(x)$ for $x\in X$.
-If $\mathcal{B}(X,Y)$ is the space of bounded linear transformations
-from $X$ to $Y$ then $X^* = \mathcal{B}(X,\mathbf{R})$.
+If $\mathcal{L}(X,Y)$ is the space of linear transformations
+from $X$ to $Y$ then $X^* = \mathcal{L}(X,\mathbf{R})$.
 
 When $I$ is finite dimensional, as it is in the real world, 
 $\mathbf{R}_I$ can be identified with $\mathbf{R}^I$. An element
@@ -524,7 +524,8 @@ A function $F\colon X\to Y$ where $X$ and $Y$ are
 [normed vector spaces](https://en.wikipedia.org/wiki/Normed_vector_space)
 has a Fr&eacute;chet derivative at $x\in X$ if it is linear to first
 order in a neighborhood of $x$.
-Let $\mathcal{B}(X,Y)$ be the space of bounded linear operators from $X$ to $Y$.
+Let $\mathcal{B}(X,Y)$ be the space of bounded linear operators from $X$ to $Y$
+where $\|T\| = \sup_{\|x\|\le 1}\|Tx\|$ if finite.
 The Fr&eacute;chet derivative $DF\colon X\to\mathcal{B}(X,Y)$
 is defined by $F(x + h) = F(x) + DF(x)h + o(\|h\|)$ as $h\to 0$.
 (Recall $f(h) = g(h) + o(h)$ if $\lim_{h\to 0} \|f(h) - g(h)\|/\|h\| = 0$.)
@@ -553,14 +554,19 @@ from $\|h^n\| \le \|h\|^n$.
 
 If $Y = \mathbf{R}$ then $DF\colon X\to\mathcal{B}(X,\mathbf{R}) = X^*$
 where $X^*$ is the dual space of $X$.
+When taking Fr&eacute;chet derivatives it is important to recognize
+when a dual space is involved.
 
 If $T\colon\mathbf{R}^n\to\mathbf{R}^n$ is a self-adjoint linear
-transformation ($T' = T$) and $F\colon\mathbf{R}^n\to\mathbf{R}$ is
-$F(x) = x'Tx$ then $DF(x)h = 2x'Th$. This
-follows from $(x + h)'T(x + h) = x'Tx + x'Th + h'Tx + h'Th$
-so $DF(x)h = x'Th + h'Tx = 2x'Th$ since $h'Tx = x'T'h = x'Th$ and
-$h'Th$ is $o(\|h\|)$. The Fr&eacute;chet derivative of $x'Tx$ is
-$2x'T\in\mathcal{B}(\mathbf{R}^n, \mathbf{R}) = (\mathbf{R}^n)^*$.
+transformation ($T' = T$) and $F\colon\mathbf{R}^n\to\mathbf{R}$ is $F(x)
+= x'Tx$ then $DF(x)h = 2x'Th$.
+This follows from $(x + h)'T(x + h) = x'Tx +
+x'Th + h'Tx + h'Th$ so $DF(x)h = x'Th + h'Tx = 2x'Th$ since $h'Tx = x'T'h
+= x'Th$ and $h'Th$ is $o(\|h\|)$.
+Note $DF(x)\in(\mathbf{R}^n)^*$, the dual
+space of $\mathbf{R}^n$.
+The Fr&eacute;chet derivative of $x'Tx$
+is $2x'T\in\mathcal{B}(\mathbf{R}^n, \mathbf{R}) = (\mathbf{R}^n)^*$.
 
 ### Finitely Additive Measures
 
