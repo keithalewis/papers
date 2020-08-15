@@ -660,13 +660,16 @@ constant $c\in\mathbf{R}$ and all $\omega\in\Omega$ is called _risk-free_.
 If $c = 1$ the portfolio is called a _zero coupon bond_ and has constant
 realized return $R = R(\zeta) = 1/\zeta'x$.
 
-Note $R\zeta'x = 1$ and $R\zeta'E[X] = R$
-and the portfolio $\xi = R\zeta$ is optimal for expected return $\rho = R$
-since $\Var(R(\zeta)) = 0$.
+Risk-free portfolios with expected realized return $\rho = R$ are optimal since
+$\Var(R(\zeta)) = 0$. If $\zeta_1$ is another risk-less portfolio we must
+have $R(\zeta) = R(\zeta_)$ if the model is arbtrage free.  By removing
+redundant risk-free portfolios we can assume there is exactly one.
+
+Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
+so $R^I_\perp = \{\zeta\}^\perp = \{y\in\mathbf{R}^I:\zeta'y = 0\}$ is an invariant subspace of $V$.
+Write $V = V_\parallel \oplus V_\perp$ into an orthgonal direct sum
 
 Let $V_\zeta = V|_{\{\zeta\}^\perp}$ where $\{\zeta\}^\perp = \{y\in\mathbf{R}^I:\zeta'y = 0\}$.
-Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
-so $\{\zeta\}^\perp$ is an invariant subspace of $V$.
 We can assume $V_\zeta$ is invertible and find other optimal portfolios in $\{\zeta\}^\perp$ as above.
 
 If $x$ and $E[X]$ are collinear then $Rx = E[X]$ for some $R$ and

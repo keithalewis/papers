@@ -13,6 +13,7 @@ fleqn: true
 \renewcommand{\CC}{\bm{C}}
 \renewcommand{\FF}{\bm{F}}
 \renewcommand{\RR}{\bm{R}}
+\renewcommand{\NN}{\bm{N}}
 
 This is not a beginners guide to linear algebra. It is a breviloquent
 collection of pertinent facts about vector spaces and the linear
@@ -20,7 +21,7 @@ transformations between them.  Although it is complete and self-contained
 you should already be familiar with basic linear algebra before reading
 this. Statements and proofs are brief, so read them twice.  Do the
 exercises to confirm your understanding.  Think of it like the Tao
-Te Ching: this is not an instruction manual, it is a consolidation and
+Te Ching: this is not an instruction manual, it enables the consolidation and
 verification of your pre-existing partial knowledge of linear algebra.
 
 I make no apologies for the shamelessly mathematical exposition and hope
@@ -158,9 +159,9 @@ It is the one-dimensional subspace _spanned_ by $v$.
 More generally, let $X$ be any collection of vectors in $V$.
 The _span_ of the collection is 
 $$
-	\span X = \vee X = \{\sum_{x\in X} \alpha _x x\},
+	\span X = \vee X = \{\sum_{x\in X} \alpha_x x\},
 $$
-where the sum is over any $\{\alpha _x\}_{x\in X}$ where $\alpha _x\in \FF$.
+where the sum is over any $\{\alpha_x\}_{x\in X}$ where $\alpha_x\in \FF$.
 
 We could say $X = \{x_i\}_{i\in I}$ where $x_i\in V$ for all $i\in I$
 but it is simpler to say $X = \{x\}_{x\in X}$ where $x\in V$ without
@@ -172,12 +173,18 @@ __Exercise__. _Show the span of $X$ is the smallest subspace of $V$ containing $
 
 A key property of a collection of vectors is _independence_.  A collection
 of vectors $X\subseteq V$ are independent if every _linear combination_
-$\sum_{x\in X} \alpha _x x = 0$ implies $\alpha _x = 0$ for all $x\in X$.
-If $\alpha _x\not = 0$ for some $x$ then
-$x = -(1/\alpha _x)\sum_{y\not = x} \alpha _y y$ is a linear combination
+$\sum_{x\in X} \alpha_x x = 0$ implies $\alpha_x = 0$ for all $x\in X$.
+Note that the empty set is independent.
+If $\alpha_x\not = 0$ for some $x$ then
+$x = -(1/\alpha_x)\sum_{y\not = x} \alpha_y y$ is a linear combination
 of vectors in $X\setminus \{x\}$.
 In this case $X$ is _linearly dependent_ and $X\setminus\{x\}$
-has the same span. We use _reverse solidus_ $A\setminus B = \{x\in A: x\notin B\}$.
+has the same span. We use _reverse solidus_ for $A\setminus B = \{x\in A: x\notin B\}$.
+
+If $X\subseteq V$ is independent but its span is not $V$ we can find $y\in V$
+such that $X\cup\{y\}$ is independent by choosing any $y\in V$ not in the span.
+
+__Exercise__. _If $X\subseteq V$ is independent and $y\not\in\vee X$ show $X\cup\{y\}$ is independent_.
 
 __Exercise__. _Every $X\subseteq V$ contains a subset $Y\subseteq X$
 that is independent_.
@@ -195,7 +202,15 @@ A collection of vectors $X\subseteq V$ is a _basis_
 of $V$ if they are independent and their span is $V$.
 
 __Exercise__. _If $X$ is a basis show every vector $v\in V$ can be
-uniquely written as $v = \sum_{x\in X}\alpha_x x$ for some $\alpha_x\in\F $_.
+uniquely written as $v = \sum_{x\in X}\alpha_x x$ for some $\alpha_x\in\FF$_.
+
+Every independent set of vectors can be extended to a basis.  If $X$ is
+independent let $\mathcal{P}$ be the collection of supersets of $X$
+that are independent.  If $\mathcal{C}\subseteq\mathcal{P}$ is totally
+order by inclusion then $Y = \cup\mathcal{C}$ is also independent.
+
+Starting with $X = \emptyset$ this shows every vector space has a basis.
+If $U$ is a subspace and $X$ is a basis of $U$
 
 ### Dimension
 
@@ -340,7 +355,7 @@ __Exercise__. _If $T$ is injective show $Tx = Ty$ implies $x = y$ for all $x,y\i
 
 _Hint_: The definition of injective for any function $f$ is usually defined by
 $f(x) = f(y)$ implies $x = y$. Your job is to show this follows from $\ker T = \{0\}$
-when $T$ is a linear operator. 
+when $T$ is a linear transformation. 
 
 __Exercise__. _If $X\subseteq V$ is independent and $T\in\mathcal{L}(V,W)$ is injective
 then $TU\subseteq W$ is independent_.
@@ -383,7 +398,7 @@ __Exercise__. _Show second map $V/\ker T\to\ran T$ is surjective_.
 
 This show $V/\ker T \cong \ran T$.
 
-Two operators $R,T\in\mathcal{L}(V)$ are _similar_ if there exists
+Two transformations $R,T\in\mathcal{L}(V)$ are _similar_ if there exists
 an isomorphism $S\in\mathcal{L}(V)$ with $R = S^{-1}TS$.
 
 __Exercise__. _Show similarity is an equivalence relation on linear transformations_.
@@ -423,7 +438,7 @@ $Ix = x$ for $x\in V$, and the distibutive law follows from linearity
 $R(S+T)x = R(Sx + Tx) = RSx + RTx = (RS + TS)x$.
 
 The integers are the prototypical example of a ring. The set of polynomials
-in one variable $\FF[t] = \{p(t) = \sum_{n\ge0} \alpha _n t^n\}$, where $\alpha
+in one variable $\FF[t] = \{p(t) = \sum_{n\ge0} \alpha_n t^n\}$, where $\alpha
 _n\in\FF$ is a ring.
 
 For any endomorphism $T\in\mathcal{V}$ there is a _functional calculus_
@@ -467,6 +482,107 @@ For $T\in\mathcal{L}(V, W)$ the _adjoint_ $T^*\in\mathcal{L}(W^*, V^*)$ is
 defined by $\langle Tv, w^*\rangle = \langle v, T^*w^*\rangle$
 for $v\in V$ and $w^*\in W^*$.
 
+## Normed Space
+
+A _normed vector space_ is a vector space with a _norm_ $\|.\|\colon V\to [0,\infty)$
+where $\|x + y\| \le \|x\| + \|y\|$, $\|\alpha x\| = |\alpha|\|x\|$,
+and $\|x\| = 0$ implies $x = 0$, $\alpha\in\FF$, $x,y\in V$.
+It provides a _metric_ on $V$ by $d(x,y) = \|x - y\|$.
+
+__Exercies__. _Show $d$ is a metric_.
+
+If a normed space is _complete_ in this topology it is called a _Banach space_.
+We use $X$, $Y$, \ldots for vector spaces that are Banach spaces.
+
+If the norm on $V$ does not satisfy $\|x\| = 0$ implies $x = 0$ we say the
+norm is _singular_. We can mod out by _null_ vectors to get a non-singular norm.
+
+__Exercise__. _If $W$ is a subspace of a (possibly singular) normed space $V$
+show $\|v + W\| = \inf_{w\in W}\|v + w\|$ is a (possibly singular) norm on $V/W$_.
+
+__Exercise__. _Show $Z = \{x\in V\colon \|x\| = 0\}$ is a subspace of $V$ and
+$\|x + Z\| = 0$ implies $x + Z = 0 + Z$ in $V/Z$_.
+
+Every normed space can be _completed_ into a Banach space.
+Let $V^\NN = \{x\colon\NN\to V\} = \{(x_n)_{n\in\NN}:x_n\in V\}$ be the set of
+all sequences of vectors in $V$. Recall $(x_n)_{n\in\NN}$ is a _Cauchy sequence_
+if given $\epsilon > 0$ there exists $N\in\NN$ with
+$d(x_n, x_m) = \|x_n - x_m\| < \epsilon$
+whenever $m,n > N$.
+
+__Exercise__. _Let $C$ be the collection of Cauchy sequences in $V^\NN$ where $V$ is a normed space. Define
+$x \sim y$ if $\lim_n x_n = \lim_n y_n$, $x,y\in C$. Show this is an equivalence relation
+and $\bar{V} = C/\sim$ is a Banach space_.
+
+__Exercise__. _Let $C_V$ be the collection of constant sequences in $V^\NN$ where $V$ is a normed space.
+Show $C_V/~$ is dense in $C/~$_.
+
+The space of linear transformations between normed spaces has a norm.
+Define $\|T\| = \sup_{\|x\|\le 1}\|Tx\|$ for $\mathcal{L}(V, W)$
+if both $V$ and $W$ are normed.
+
+A linear transformation is _bounded_ if $\|T\| < \infty$ for $T\in\mathcal{L}(V,W)$.
+The bounded linear transformations are denoted $\mathcal{B}(V,W)$. In this case
+we call them _linear operators_ or simply _operators_.
+
+__Exercise__. _Show this is a norm on $\mathcal{B}(V,W)$_.
+
+__Exercise__. _Show $\mathcal{B}(V,W)$ is a subspace of $\mathcal{L}(V,W)$_.
+
+Bounded operators are continuous.
+
+__Exercise__. _Show if $T\in\mathcal{B}(V,W)$ then $Tx_n \to 0$ in $W$ as
+$x_n\to 0$ in $V$_.
+
+Continuous operators are bounded.
+
+A convenient way of showing an operator is bounded is
+
+__Exercise__. _Show if $T$ is continuous then $T$ is bounded_.
+
+__Theorem__. (Uniform Boundedness Priciple, Banach-Steinhous) _For $T_n\in\mathcal{B}(V,W)$,
+$\{\|T_nx\|\}$ is bounded all $x\in V$ implies $\{\|T_n\|\}$ is bounded_.
+
+This is a theorem because the proof is non-trivial. It relies on the Baire Category
+Theorem for complete metric spaces. (The intersection of a countable collection of
+open dense sets is dense.)
+
+__Theorem__. (Open Mapping Theorem) _The image of the unit ball under a surjective operator
+contains an open ball centered at the origin_.
+
+The _graph_ of a linear transformation $T\in\mathcal{L}(V,W)$
+is the set $\{(x, Tx):x\in V\}\subseteq V\times W$.
+
+__Theorem__. (Closed Graph Theorem) _An operator is continuous if and only if its graph is closed_.
+
+### Examples
+
+For any set $I$ the set of all functions from $I$ to a field $\FF$
+is $\FF^I = \{x\colon I\to\FF\}$. It is a vector space, the _free vector space_ on
+$I$, and has a basis $\{e_i\}_{i\in I}$ where $e_i(i) = 1$ and $e_i(j) = 0$ for $j\not=i$.
+This is not a normed space.
+
+The vectors $x\in\FF^I$ with $\|x\|_\infty = \sup_{i\in I}|x(i)| < \infty$
+are the Banach space $\mathcal{l}^\infty(I)$.
+
+If $I$ is totally ordered (or a net) define the Banach spaces
+$c(I) = \{x\in\FF^I:\lim_i x(i) \mathrm{\ exists}\}$
+and $c_0(I) = \{x\in\FF^I:\lim_i x(i) = 0\}$.
+
+Clearly $c_0 \subseteq c \subseteq \mathcal{l}^\infty$.
+
+The vectors with $\|x\|_1 = \sum_{i\in I}|x(i)| < \infty$ are the Banach space $\mathcal{l}^1(I)$.
+More generally vectors with $\|x\|_p = \bigl(\sum_{i\in I}|x(i)|^p\bigr)^{1/p} < \infty$ define the
+Banach space $\mathcal{l}^p(I)$, $1\le p < \infty$.
+
+__Exercise__. _Show if $x\in\mathcal{l}^\infty$ then $x\in\mathcal{l}^p$ for $1\le p < \infty$
+and $\lim_{p\to\infty}\|x\|_p = \|x\|_\infty$_.
+
+If $I$ is equipped with a positive measure $\mu$ we can similarly define $L^p(\mu)$ using
+$\|f\|_p = \bigl(\int_I |f|^p\,d\mu\bigr)^{1/p}$.
+
+The case when $p = 2$ is special.
+
 ## Inner Product Space
 
 A function $(.,.)\colon V\times V\to\FF$ with $y\mapsto (x,y)$
@@ -488,6 +604,8 @@ This follows from
 $0\le \|x - \lambda y\|^2 = \|x\|^2 - 2\Re \lambda (x, y) + |\lambda|^2\|y\|^2$
 and taking $\lambda = (x,y)/\|y\|^2$. Equality holds if and only
 if $x = \lambda y$.
+
+### Eigenvectors
 
 The set $\{Tx:\|x\|=1}$ is closed and bounded so there exists
 a unit vector $v$
@@ -541,15 +659,5 @@ Define $+\colon \FF^I\times V^I\to V$ for any $I$ as follows: ...
 We introduce $I$ since the scalars and vectors must be indexed by the same set.
 We are really defining $+\colon 2^V\times\FF^I\times V^I\to V$...
 
-For any set $I$ the set of all functions from $I$ to a field $\FF$
-is $\FF^I = \{x\colon I\to\FF\}$. It is a vector space, the _free vector space_ on
-$I$, and has a basis $\{e_i\}_{i\in I}$ where $e_i(i) = 1$ and $e_i(j) = 0$ for $j\not=i$.
-
-The vectors with $\|x\|_\infty = \sup_{i\in I}|x(i)| < \infty$ comprise $\mathcal{l}^\infty(I)$.
-
-If $I$ is totally ordered (or a net) define $c(I) = \{x\in\FF^I:\lim_i x(i) \mathrm{\ exists}\}$
-and $c_0(I) = \{x\in\FF^I:\lim_i x(i) = 0\}$.
-
-Clearly $c_0 \subseteq c \subseteq \mathcal{l}^\infty$.
 
 [Grobner basis...]
