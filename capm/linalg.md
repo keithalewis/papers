@@ -588,7 +588,7 @@ The case when $p = 2$ is special.
 A function $(.,.)\colon V\times V\to\FF$ with $y\mapsto (x,y)$
 and $y\mapsto (y,x)$ linear in $y$ for each $x\in V$ is a _bilinear_
 function. If also $(\alpha x,y) = (x, \bar{\alpha } y)$ for $\alpha \in\FF$ and
-$x,y\in V$ it is _sesquilinear. 
+$x,y\in V$ it is _sesquilinear_. 
 An _inner product_ on a vector space V is a _sesquilinear_ form
 that is also _non-singular_, $(x, x) = 0$ implies $x = 0$.
 
@@ -605,15 +605,42 @@ $0\le \|x - \lambda y\|^2 = \|x\|^2 - 2\Re \lambda (x, y) + |\lambda|^2\|y\|^2$
 and taking $\lambda = (x,y)/\|y\|^2$. Equality holds if and only
 if $x = \lambda y$.
 
-### Eigenvectors
-
-The set $\{Tx:\|x\|=1}$ is closed and bounded so there exists
-a unit vector $v$
-with $\|Tv\| \ge \|T x\|$ for all $\|x\| = 1$.
-Since $\|Tv\| = |(v, Tv)| \le \|Tv\|$
-
 If $T\in\mathcal{L}(V,V^*)$ then $(x,y) = \langle x, Ty\rangle$ is bilinear.
 
+### Eigenvectors
+
+Every operator on a finite dimensional inner product space has an eigenvector.
+The set $\{Tx:\|x\|=1\}$ is closed and bounded so there exists
+a unit vector $e$ with $x = Te$ and $|\|Tx\|\ge\|Ty\|$ for all unit vectors $y$.
+Since $\|x|\^2 = (Te, x) \le \|Te\| \|x\| = \|x\|^2$
+we have $Te = \lambda x$ for some scalar $\lambda$ since equality holds in
+the Cauchy-Schwartz inequality.
+
+Not every operator on an infinite dimensional inner product
+space has an eigenvector.  Define the _unilateral shift operator_
+$S\colon\mathcal{l}^2\to\mathcal{l}^2$ by $S(x_0, x_1, \ldots) = (0,
+x_0, x_1, \dots)$. If $Sx = \lambda x$ then $0 = \lambda x_0$, $x_1 =
+\lambda x_0$, \ldots, so $x = 0$.
+
+The unilateral shift does have lots of invariant subspaces however.
+If the first $m$ components of $x$ are zero then the first $m+1$
+components of $Sx$ are zero so $\mathcal{M}_m = \{x\in\mathcal{l}^2:x_j =
+0, j < m\}$ are invariant for all $m$.
+
+__Exercise__. _Show $\mathcal{M}_m$ is a subspace of $\mathcal{l}^2$_.
+
+The _unilateral backward shift operator_ is the adjoint of $S$.
+
+__Exercise__. _Show $(S^*x)_j = x_{j + 1}$ for $j\ge 0$_.
+
+__Exercise__. _Show $x = (1,0,0,\ldots)$ is an eigenvector with
+eigenvalue 0_.
+
+__Exercise__. _Show $\mathcal{M}_n^\perp = \{x\in\mathcal{l}^2:x_j = 0, j \ge m\}$
+is an invariant subspace of $S^*$.
+
+All invariant subspaces of the unilateral shift operator are characterized
+by a theorem of Arne Beurling.
 
 ## Eigenvector, Eigenvalue
 
@@ -638,8 +665,6 @@ If $(x,y) = \|x\| \|y\|$ then $\alpha x = y$ for some $\alpha \in\FF$.
 
 There exists $x^*$ such that $\|x*\| \ge \|T e\|$ for $\|e\| = 1$.
 
-Let $x^* = Te^*$. $\|x^*\|^2 = (x^*, Te^*) \le \|x^*\| \|Te^*\| \le \|x^*\|^2$
-so $Te^* = \lambda x^*$ for some scalar $\lambda$.
 
 
 ## Polynomial Functional Calculus
