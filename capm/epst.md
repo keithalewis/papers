@@ -45,33 +45,33 @@ quantities can be defined in terms of prices and portfolios.
 
 Let $I$ be the set of _market instruments_ and $\Omega$ be the set of
 possible market outcomes over a single period.  The _one-period model_
-specifies the initial instrument _prices_ $x\in\mathbf{R}^I$ and the final
-instrument prices $X\colon\Omega\to\mathbf{R}^I$ depending on the outcome.
+specifies the initial instrument _prices_ $x\in\bm{R}^I$ and the final
+instrument prices $X\colon\Omega\to\bm{R}^I$ depending on the outcome.
 We assume, as customary, that there are no cash flows associated with
 the instruments and transactions are perfectly liquid and divisible.
 
-It is common in the literature to write $\mathbf{R}^n$ instead of
-$\mathbf{R}^I$ where $n$ is the cardinality of the set of instruments $I$.
+It is common in the literature to write $\bm{R}^n$ instead of
+$\bm{R}^I$ where $n$ is the cardinality of the set of instruments $I$.
 If $A^B = \{f\colon B\to A\}$ is the set of functions from $B$ to $A$
-then $x\in\mathbf{R}^I$ is a function $x\colon I\to\mathbf{R}$
-where $x(i)\in\mathbf{R}$ is the price of instrument $i\in I$. 
+then $x\in\bm{R}^I$ is a function $x\colon I\to\bm{R}$
+where $x(i)\in\bm{R}$ is the price of instrument $i\in I$. 
 This avoids circumlocutions like let $I = \{i_1,\ldots,i_n\}$
 and $x = (x_1,\ldots,x_n)$ where $x_j = x(i_j)$, $j = 1,\ldots, n$.
 
-A _portfolio_ $\xi\in\mathbf{R}_I$ represents the number of
-shares initially purchased in each instrument where $\mathbf{R}_I =
-(\mathbf{R}^I)^*$ is the _dual vector space_ of $\mathbf{R}^I$.  Recall
+A _portfolio_ $\xi\in\bm{R}_I$ represents the number of
+shares initially purchased in each instrument where $\bm{R}_I =
+(\bm{R}^I)^*$ is the _dual vector space_ of $\bm{R}^I$.  Recall
 the dual of a vector space $X$ consists of all _linear
 functionals_ on $X$. The _dual pairing_ of a linear functional $x^*\colon
-X\to\mathbf{R}$ is $\langle x,x^* \rangle = x^*(x)$ for $x\in X$.
+X\to\bm{R}$ is $\langle x,x^* \rangle = x^*(x)$ for $x\in X$.
 If $\mathcal{L}(X,Y)$ is the space of linear transformations
-from $X$ to $Y$ then $X^* = \mathcal{L}(X,\mathbf{R})$.
+from $X$ to $Y$ then $X^* = \mathcal{L}(X,\bm{R})$.
 
 When $I$ is finite dimensional, as it is in the real world, 
-$\mathbf{R}_I$ can be identified with $\mathbf{R}^I$. An element
-$y\in\mathbf{R}^I$ defines a linear functional $y'\in\mathbf{R}_I$ via
-$y'(x) = \sum_{i\in I} y(i) x(i) = y\cdot x$ for $x\in\mathbf{R}^I$,
-the _inner product_ of $y$ and $x$. If elements of $\mathbf{R}^I$
+$\bm{R}_I$ can be identified with $\bm{R}^I$. An element
+$y\in\bm{R}^I$ defines a linear functional $y'\in\bm{R}_I$ via
+$y'(x) = \sum_{i\in I} y(i) x(i) = y\cdot x$ for $x\in\bm{R}^I$,
+the _inner product_ of $y$ and $x$. If elements of $\bm{R}^I$
 are considered as column vectors then the right hand side of $y'(x) =
 y'x$ is the usual matrix product where $y'$ is the _transpose_ of $y$
 considered as a row vector.
@@ -79,7 +79,7 @@ considered as a row vector.
 The _value_ of a portfolio $\xi$ given prices $x$ is $\xi'x$.
 It is the cost of attaining the portfolio $\xi$.
 The _realized return_ is $R(\xi) = \xi'X/\xi'x$ when $\xi'x\not=0$.
-Note $R(\xi) = R(t\xi)$ for any non-zero $t\in\mathbf{R}$ so
+Note $R(\xi) = R(t\xi)$ for any non-zero $t\in\bm{R}$ so
 there is no loss in assuming $\xi'x = 1$ when considering returns.
 In this case $R(\xi) = \xi'X$ is the realized return on the portfolio.
 
@@ -156,40 +156,54 @@ risk-less portfolio.
 
 ### Risk-less Portfolios
 
-A _risk-less portfolio_ has realize return with zero variance.
+A _risk-less portfolio_ has zero variance realized return.
 If $\zeta$ is risk-less then $\zeta'X = c$ for some constant $c$.
 If $c = 1$ we call the portfolio a _zero coupon bond_.
-Zero coupon bonds have constant realized return $R = R(\zeta) = 1/\zeta'x$.
-In this case $V$ is not invertible since $V\zeta = E[Xc] - E[X]c = 0$.
-However, $R\zeta$ is an efficient portfolio for realized return $\rho = R$ since
-$R\zeta'E[X] = R$ and $R(\zeta)$ has variance zero.
+Risk-less portfiolios have constant realized return $R = R(\zeta) = \zeta'X/\zeta'x$ and
+are efficient for realized return $\rho = R$ since they have zero variance.
+If a risk-less portfolio $\zeta$ exists then $V$ is not invertible since $V\zeta = E[Xc] - E[X]c = 0$.
 
-From the [Appendix](#efficient-portfolios) ...
+If $\zeta_0$ and $\zeta_1$ are both risk-less porfolios and $R(\zeta_0)
+\not= R(\zeta_1)$ then arbitrage exists. Assuming $\zeta_i'x = 1$ and
+letting $R_j = R(\zeta_j) = \zeta_j'X$, if $R_0 < R_1$ then $\xi = (1 -
+\epsilon)\zeta_1 - \zeta_0$ has initial value $\xi'x = -\epsilon$ and
+final value $\xi'X = (1 - \epsilon)R_1 - R_0 = R_1 - R_0 - \epsilon R_1$.
+This is an arbitrage for sufficiently small $\epsilon > 0$.  We can assume
+there is exactly one risk-less portfolio by removing redundant assets.
 
-We can find the risk-less portfolio, if it exists, by minimizing the variance
-subject to the condition $\xi'x = 1$. If $V$ were invertable then
-$\xi = \lambda V^{-1}x$ and $1 = x'\xi = \lambda x'V^{x}$ so $\lambda = 1/x'V^{-1}x$.
+If $\zeta$ is the (unique) risk-less portfolion with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
+then it is an eigenvector of $V$ having eigenvalue $0$. Since $V$ is self-adjoint
+$\{\zeta\}^\perp = \{\xi\in\bm{R}^I:\zeta'\xi = 0\}$ is an invariant subspace of $V$.
+Let $V = V_\parallel\oplus V_\perp$ be the decomposition of $V$ on the
+orthogonal invariant subspaces $\bm{R}\{\zeta\}\oplus\{\zeta\}^\perp$.
+Since all eigenvectors of $V$ other than $\zeta$ have non-zero eigenvalues $V_\perp$ is invertible.
 
-$V + \epsilon I$ picks out zero variance portfolio as $\epsilon\to 0$.
+Let $P_\parallel = \zeta\zeta'/\|\zeta\|^2$ be the orthogonal projection onto the
+subspace spanned by $\zeta$ and $P_\perp = I - P_\parallel$ the projection
+onto its orthoganal complement. The projections commute with $V$ ($VP = PV$)
+and $V = P_\parallel VP_\parallel + P_\perp VP_\perp = VP_\parallel + VP_\perp$.
 
-
-The solution satisfies
+The equation $V\xi = \lambda x + \mu E[X]$ can be written
 $$
-\begin{bmatrix}
-V & x \\
-x' & 0 \\
-\end{bmatrix}
-\begin{bmatrix}
-\xi \\
--\lambda \\
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 \\
-1 \\
-\end{bmatrix}
+\begin{aligned}
+	V\xi_\parallel &= \lambda x_\parallel + \mu E[X_\parallel]\\
+	V\xi_\perp &= \lambda x_\perp + \mu E[X_\perp]\\
+\end{aligned}
 $$
+where $x_\parallel = P_\parallel x$, etc.
 
+Since $\xi_\parallel$ is a multiple of $\zeta$ and $\zeta'x = 1$, $\zeta'X
+= R$ the first equation becomes $0 = \lambda + \mu R$.
+
+Since $V_\perp$ is invertible we have
+$\xi_\perp = \lambda V_\perp^{-1}x_\perp + \mu V_\perp^{-1}E[X_\perp]$ where
+$\lambda = (C_\perp - \rho B_\perp)/D_\perp$, $\mu = (-B_\perp + \rho A_\perp)/D_\perp$
+with $A_\perp = x_\perp V_\perp ^{-1}x_\perp$, etc.
+
+Using $x_\perp = x - x_\parallel$, etc., we have
+$\lambda x_\perp + \mu E[X_\perp]
+= \lambda x + \mu E[X] - (\lambda x_\parallel + \mu E[X_\parallel])
+= \lambda x + \mu E[X]$.
 
 ## Appendix
 
@@ -270,37 +284,6 @@ A straightforward calculation shows the variance is
 $$
 \xi'V\xi = (C - 2B\rho + A\rho^2)/D.
 $$
-
-Let $S$ be the Cholesky decomposition of $V$ with $V = S'S$ so
-$A = \|Sx\|^2$, $B = (SE[X])'Sx$, and $C = \|SE[X]\|^2$.
-
-
-Since $V$ is self-adjoint $V = \sum_j v_j\ e_j e_j'$ where $v_j\in\mathbf{R}$ and
-$(e_)$ are an orthonormal basis. Since $V$ is positive semi-definite $v_j\ge0$.
-
-Let $x_j = x'e_j$ and $X_j = E[X']e_j$ then
-$A = \sum_j v_j x_j^2$, $B = \sum_j v_j x_j X_j$ and $C = \sum_j v_j X_j^2$.
-
-We can solve the system
-$$
-\begin{bmatrix}
-V & x & E[X]\\
-x' & 0 & 0\\
-E[X'] & 0 & 0\\
-\end{bmatrix}
-\begin{bmatrix}
-\xi \\
--\lambda \\
--\mu \\
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 \\
-1 \\
-\rho \\
-\end{bmatrix}
-$$
-
 
 <!--
 If a risk-less portfolio exists then $V$ is not invertible. However
@@ -471,13 +454,63 @@ $\Delta = R^2A^2\epsilon$, $C - 2BR + AR^2 = R^2A\epsilon$.
 The maximum utility is $R - \tau/2A$ as noted above.
 -->
 
+### Linear Algebra
+
+We recall some basic facts about finite-dimensional linear algebra.
+If $T\colon \bm{R}^n\to \bm{R}^n$ is a linear operator and
+$Vx = \lambda x$ for some $x\in \bm{R}^n$ and $\lambda\in\bm{R}$ we say $x$
+is an _eigenvector_ of $T$ having _eigenvalue_ $\lambda$.
+
+If $W\subseteq\bm{R}^n$ is a subspace and $TW = \{Tw:w\in W\}\subseteq W$
+we say $W$ is an _invariant subspace_ of $T$. Note $T|_W\colon W\to W$ is
+a linear operator on $W$.
+Eigenvectors correspond to one-dimensional invariant subspaces.
+
+Let $(x,y) = x\cdot y = x'y = \sum_{i} x_i y_i$ denote the standard inner product
+on $\bm{R}^n$. We say $x,y\in\bm{R}^n$ are _orthogonal_ if $(x,y) = 0$.
+The _adjoint_ of a linerar operator $T$ is denoted $T'$ and is defined by
+$(T'x, y) = (x, Ty)$ for $x,y\in\bm{R}^n$. Note $T'' = T$ since
+$(T''x,y) = (x,T'y) = (T'y,x) = (y,Tx) = (Tx,y)$ for $x,y\in\bm{R}^n$.
+An operator $T$ is _self-adjoint_ if $T' = T$.
+
+Let $W^\perp = \{v\in\bm{R}^n:(v,w) = 0, w\in W\}$ be the _orthogonal complement_
+of $W$ in $\bm{R}^n$. Note $(W^\perp)^\perp = W$ since $w\in (W^\perp)^\perp$ if and only
+if $(w,v) = 0$ for all $v\in W^\perp$.  This is true if $w\in W$. If $w\not\in W$
+then $(w,v) \not= 0$ for some $v\not\in W^\perp$.
+
+If $W$ is an invariant subspace of $T$ then $W^\perp$ is
+an invariant subspace of $T'$.
+
+An operator $T$ is _positive definite_ if it is self-adjoint and $(Tx,x) > 0$ for
+all non-zero $x\in\bm{R}^n$.
+It is _positive semi-definite_ if $(Tx,x)\ge0$ for all $x\in\bm{R}^n$.
+For any linear operator $S\colon\bm{R}^n\to\bm{R}^n$ we have $S'S$ is positive semi-definite.
+Since $(S'Sx, y) = (Sx, Sy) = (x, S'Sy)$ it is self-adoint.
+For any $x\in\bm{R}^n$ we have $(S'S x, x) = (Sx,Sx) = \|Sx\|^2 \ge0$
+so it is positive semi-definite.
+
+The _spectral theorem_ states every self-adjoint linear operator on a finite-dimensional vector space
+has an orthonormal basis of eigenvectors $\{e_i\}_{i=1}^n$,
+$(e_i, e_j) = 0$ if $i\not=j$, $(e_i, e_i) = \|e_i\|^2 = 1$, and the eigenvectors span
+the space.
+
+If $\lambda_i$ is the eigenvalue corresponding to the norm 1 eigenvector $e_i$ then
+$$
+	T = \sum_i \lambda_i e_i\otimes e_i
+$$
+where $x\otimes y$ is the (rank one) linear operator defined by $(x\otimes y)z = (y,z)x$.
+We can also write $x\otimes y = xy'$ where $y'$ is the column vector corresponding to $y$
+and use standard matrix multiplication. Note $I = \sum_i e_i\otimes e_i$ is the
+identity operator for any orthonormal basis $\{e_i\}$.
+
+
 ### Model Arbitrage
 
-The one-period model specifies initial prices $x\in\mathbf{R}^I$ and
-final prices $X\colon\Omega\to\mathbf{R}^I$ where $\Omega$ is the set
+The one-period model specifies initial prices $x\in\bm{R}^I$ and
+final prices $X\colon\Omega\to\bm{R}^I$ where $\Omega$ is the set
 of possible outcomes.
 
-If there exists a portfolio $\xi\in\mathbf{R}^I$ with $\xi\cdot x < 0$ and
+If there exists a portfolio $\xi\in\bm{R}^I$ with $\xi\cdot x < 0$ and
 $\xi\cdot X \ge0$ on $\Omega$ then _model arbitrage_ exists: you make money on the
 initial position and never lose money on any outcome.  This definition
 does not assume a probability measure on $\Omega$.
@@ -492,8 +525,8 @@ If such a measure exists and $\xi\cdot X\ge0$ then
 $\xi\cdot x = \int_\Omega \xi\cdot X\,d\Pi \ge0$ so arbitrage
 cannot occur. The other direction is less trivial.
 
-**Lemma.** _If $x\in\mathbf{R}^n$ and $C$ is a closed cone in
-$\mathbf{R}^n$ with $x\not\in C$ then there exists $\xi\in\mathbf{R}^n$
+**Lemma.** _If $x\in\bm{R}^n$ and $C$ is a closed cone in
+$\bm{R}^n$ with $x\not\in C$ then there exists $\xi\in\bm{R}^n$
 with $\xi\cdot x < 0$ and $\xi\cdot y \ge0$ for $y\in C$._
 
 Recall that a _cone_ is a subset of a vector space closed under addition
@@ -517,6 +550,7 @@ $C = \{\int_\Omega X\,d\Pi : \Pi\ge 0\}$ is also a closed cone.
 The contrapositive follows from the lemma.
 
 The proof also shows how to find an arbitrage when one exists.
+
 
 ### Fr&eacute;chet Derivative
 
@@ -544,7 +578,7 @@ A good exercise is to show $D(x^n) = \sum_{j=1}^n L_x^{n - j} R_x^{j - 1}$.
 If $X$ is commutative the above reduces to
 $DF(x) = 2M_x$ where $M_x = L_x = R_x$. If we implicitly
 assume $x$ stands for multiplication by $x$, $M_x$, then
-we can write $D(x^2) = 2x$, just as in the case $X = \mathbf{R}$.
+we can write $D(x^2) = 2x$, just as in the case $X = \bm{R}$.
 
 The exercise shows $D(x^n) = nM_{x^{n-1}} = nx^{n-1}$ in the commutative case.
 
@@ -552,21 +586,21 @@ Note that we have computed the derivative without taking the limit of a differen
 We only use the fact $\lim_{h\to 0}\|h^n\|/\|h\| = 0$ if $n > 1$ which follows
 from $\|h^n\| \le \|h\|^n$.
 
-If $Y = \mathbf{R}$ then $DF\colon X\to\mathcal{B}(X,\mathbf{R}) = X^*$
+If $Y = \bm{R}$ then $DF\colon X\to\mathcal{B}(X,\bm{R}) = X^*$
 where $X^*$ is the dual space of $X$.
 When taking Fr&eacute;chet derivatives it is important to recognize
 when a dual space is involved.
 
-If $T\colon\mathbf{R}^n\to\mathbf{R}^n$ is a self-adjoint linear
-transformation ($T' = T$) and $F\colon\mathbf{R}^n\to\mathbf{R}$ is $F(x)
+If $T\colon\bm{R}^n\to\bm{R}^n$ is a self-adjoint linear
+transformation ($T' = T$) and $F\colon\bm{R}^n\to\bm{R}$ is $F(x)
 = x'Tx$ then $DF(x)h = 2x'Th$.
 This follows from $(x + h)'T(x + h) = x'Tx +
 x'Th + h'Tx + h'Th$ so $DF(x)h = x'Th + h'Tx = 2x'Th$ since $h'Tx = x'T'h
 = x'Th$ and $h'Th$ is $o(\|h\|)$.
-Note $DF(x)\in(\mathbf{R}^n)^*$, the dual
-space of $\mathbf{R}^n$.
+Note $DF(x)\in(\bm{R}^n)^*$, the dual
+space of $\bm{R}^n$.
 The Fr&eacute;chet derivative of $x'Tx$
-is $2x'T\in\mathcal{B}(\mathbf{R}^n, \mathbf{R}) = (\mathbf{R}^n)^*$.
+is $2x'T\in\mathcal{B}(\bm{R}^n, \bm{R}) = (\bm{R}^n)^*$.
 
 ### Finitely Additive Measures
 
@@ -582,7 +616,7 @@ if $E\cap F = \emptyset$ and $M$ is linear this defines a finitely additive meas
 
 The other direction is only slightly more complicated.
 A _simple function_ is a finite sum
-of the form $\sum_i e_i 1_{E_i}$ where $e_i\in\mathbf{R}$ and $E_i\subseteq\Omega$.
+of the form $\sum_i e_i 1_{E_i}$ where $e_i\in\bm{R}$ and $E_i\subseteq\Omega$.
 If $\mu\in ba(\Omega)$ define
 $M(\sum_i e_i 1_{E_i}) = \sum_i e_i \mu(E_i)$.
 We can assume the $(E_i)$ are pairwise disjoint, which shows this is well-defined.
@@ -591,19 +625,19 @@ the space of simple functions we can extend this to a bounded linear functional 
 
 A similar proof shows $B(\mathcal{A})^* = ba(\mathcal{A})$ if $\mathcal{A}$ is an algebra of sets.
 
-If $\Omega$ is finite then $B(\Omega)$ and $ba(\Omega)$ are isomorphic to $\mathbf{R}^n$ where
+If $\Omega$ is finite then $B(\Omega)$ and $ba(\Omega)$ are isomorphic to $\bm{R}^n$ where
 $n$ is the cardinality of $\Omega$. The integral is just the inner product.
 
 It is not simple to define $\int_\Omega f\,d\mu$ for $f\in B(\Omega)$ and $\mu\in ba(\Omega)$
 when the cardinality of $\Omega$ is infinite.
-Consider the case $\Omega = \mathbf{N}$, the set of non-negative integers,
-where $B(\mathbf{N})$ is called $\mathcal{l}^\infty$.
-Let $\mathcal{L}\subseteq\mathcal{l}^\infty$ be the sequences $x = (x_i)_{i\in\mathbf{N}}$
+Consider the case $\Omega = \bm{N}$, the set of non-negative integers,
+where $B(\bm{N})$ is called $\mathcal{l}^\infty$.
+Let $\mathcal{L}\subseteq\mathcal{l}^\infty$ be the sequences $x = (x_i)_{i\in\bm{N}}$
 for which $Lx = \lim_{i\to\infty} x_i$ exists. This defines a bounded linear functional
 on $\mathcal{L}$. By the Hahn-Banach theorem this can be extended to a bounded linear functional
 on $\mathcal{l}^\infty$ with the same norm (The Banach limit).
 Good luck finding a finitely additive measure $\lambda$ and defining an integral with $Lx =
-\int_{\mathbf{N}} x\,d\lambda$. See @DunSch63 for the full details.
+\int_{\bm{N}} x\,d\lambda$. See @DunSch63 for the full details.
 
 <!--
 The model also specifies a probability measure $P$ on the
@@ -616,7 +650,7 @@ any utility of the form $aE[R(\xi)] + b\mathrm{Var}(R(\xi))$
 with $a > 0$ and $b \le 0$ so that higher returns are
 offset by lower variance.
 
-Note $U_\tau(\xi) = U_\tau(t\xi)$ for any non-zero $t\in\mathbf{R}$
+Note $U_\tau(\xi) = U_\tau(t\xi)$ for any non-zero $t\in\bm{R}$
 since $R(\xi) = R(t\xi)$.
 
 To find a portfolio with return $\rho$ having maximum utility 
@@ -661,8 +695,8 @@ If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 
 ### Risk-free Portfolios
 
-A portfolio $\zeta\in\mathbf{R}^I$ with $\zeta'X(\omega) = c$ for some
-constant $c\in\mathbf{R}$ and all $\omega\in\Omega$ is called _risk-free_.
+A portfolio $\zeta\in\bm{R}^I$ with $\zeta'X(\omega) = c$ for some
+constant $c\in\bm{R}$ and all $\omega\in\Omega$ is called _risk-free_.
 If $c = 1$ the portfolio is called a _zero coupon bond_ and has constant
 realized return $R = R(\zeta) = 1/\zeta'x$.
 
@@ -672,10 +706,10 @@ have $R(\zeta) = R(\zeta_)$ if the model is arbtrage free.  By removing
 redundant risk-free portfolios we can assume there is exactly one.
 
 Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
-so $R^I_\perp = \{\zeta\}^\perp = \{y\in\mathbf{R}^I:\zeta'y = 0\}$ is an invariant subspace of $V$.
+so $R^I_\perp = \{\zeta\}^\perp = \{y\in\bm{R}^I:\zeta'y = 0\}$ is an invariant subspace of $V$.
 Write $V = V_\parallel \oplus V_\perp$ into an orthgonal direct sum
 
-Let $V_\zeta = V|_{\{\zeta\}^\perp}$ where $\{\zeta\}^\perp = \{y\in\mathbf{R}^I:\zeta'y = 0\}$.
+Let $V_\zeta = V|_{\{\zeta\}^\perp}$ where $\{\zeta\}^\perp = \{y\in\bm{R}^I:\zeta'y = 0\}$.
 We can assume $V_\zeta$ is invertible and find other optimal portfolios in $\{\zeta\}^\perp$ as above.
 
 If $x$ and $E[X]$ are collinear then $Rx = E[X]$ for some $R$ and
@@ -828,7 +862,7 @@ $$
 
 
 
-A _zero coupon bond_, $\zeta\in\mathbf{R}^I$, has $\zeta\cdot X = 1$ on
+A _zero coupon bond_, $\zeta\in\bm{R}^I$, has $\zeta\cdot X = 1$ on
 $\Omega$. Its initial value is $\zeta\cdot x = \int_\Omega \zeta\cdot
 X\,d\Pi = \|\Pi\| = 1/R$. Note $R = R(\zeta)$.
 
