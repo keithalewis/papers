@@ -156,55 +156,6 @@ risk-less portfolio.
 
 ### Risk-less Portfolios
 
-A _risk-less portfolio_ has zero variance realized return.
-If $\zeta$ is risk-less then $\zeta'X = c$ for some constant $c$.
-If $c = 1$ we call the portfolio a _zero coupon bond_.
-Risk-less portfiolios have constant realized return $R = R(\zeta) = \zeta'X/\zeta'x$ and
-are efficient for realized return $\rho = R$ since they have zero variance.
-If a risk-less portfolio $\zeta$ exists then $V$ is not invertible since $V\zeta = E[Xc] - E[X]c = 0$.
-
-If $\zeta_0$ and $\zeta_1$ are both risk-less porfolios and $R(\zeta_0)
-\not= R(\zeta_1)$ then arbitrage exists. Assuming $\zeta_i'x = 1$ and
-letting $R_j = R(\zeta_j) = \zeta_j'X$, if $R_0 < R_1$ then $\xi = (1 -
-\epsilon)\zeta_1 - \zeta_0$ has initial value $\xi'x = -\epsilon$ and
-final value $\xi'X = (1 - \epsilon)R_1 - R_0 = R_1 - R_0 - \epsilon R_1$.
-This is an arbitrage for sufficiently small $\epsilon > 0$.  We can assume
-there is exactly one risk-less portfolio by removing redundant assets.
-
-If $\zeta$ is the (unique) risk-less portfolion with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
-then it is an eigenvector of $V$ having eigenvalue $0$. Since $V$ is self-adjoint
-$\{\zeta\}^\perp = \{\xi\in\bm{R}^I:\zeta'\xi = 0\}$ is an invariant subspace of $V$.
-Let $V = V_\parallel\oplus V_\perp$ be the decomposition of $V$ on the
-orthogonal invariant subspaces $\bm{R}\{\zeta\}\oplus\{\zeta\}^\perp$.
-Since all eigenvectors of $V$ other than $\zeta$ have non-zero eigenvalues $V_\perp$ is invertible.
-
-Let $P_\parallel = \zeta\zeta'/\|\zeta\|^2$ be the orthogonal projection onto the
-subspace spanned by $\zeta$ and $P_\perp = I - P_\parallel$ the projection
-onto its orthoganal complement. The projections commute with $V$ ($VP = PV$)
-and $V = P_\parallel VP_\parallel + P_\perp VP_\perp = VP_\parallel + VP_\perp$.
-
-The equation $V\xi = \lambda x + \mu E[X]$ can be written
-$$
-\begin{aligned}
-	V\xi_\parallel &= \lambda x_\parallel + \mu E[X_\parallel]\\
-	V\xi_\perp &= \lambda x_\perp + \mu E[X_\perp]\\
-\end{aligned}
-$$
-where $x_\parallel = P_\parallel x$, etc.
-
-Since $\xi_\parallel$ is a multiple of $\zeta$ and $\zeta'x = 1$, $\zeta'X
-= R$ the first equation becomes $0 = \lambda + \mu R$.
-
-Since $V_\perp$ is invertible we have
-$\xi_\perp = \lambda V_\perp^{-1}x_\perp + \mu V_\perp^{-1}E[X_\perp]$ where
-$\lambda = (C_\perp - \rho B_\perp)/D_\perp$, $\mu = (-B_\perp + \rho A_\perp)/D_\perp$
-with $A_\perp = x_\perp V_\perp ^{-1}x_\perp$, etc.
-
-Using $x_\perp = x - x_\parallel$, etc., we have
-$\lambda x_\perp + \mu E[X_\perp]
-= \lambda x + \mu E[X] - (\lambda x_\parallel + \mu E[X_\parallel])
-= \lambda x + \mu E[X]$.
-
 ## Appendix
 
 ### Efficient Portfolios
@@ -284,6 +235,50 @@ A straightforward calculation shows the variance is
 $$
 \xi'V\xi = (C - 2B\rho + A\rho^2)/D.
 $$
+
+#### Risk-less Portfolios
+
+A _risk-less_ portfolio, $\zeta$, has zero variance realized return.
+If $\zeta'X = c$ is constant then $V\zeta = E[XX']\zeta - E[X]E[X']\zeta =
+E[Xc] - E[X]c = 0$ so $\zeta$ is an eigenvector of $V$ having eigenvalue
+zero. If another risk-less porfolio exists with different realized
+return then arbitarge exists.  By removing redundant assets we can assume
+there is at most one risk-less portfolio.
+
+If $\zeta$ is the (unique) risk-less portfolion with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
+then it is an eigenvector of $V$ having eigenvalue $0$. Since $V$ is self-adjoint
+$\{\zeta\}^\perp = \{\xi\in\bm{R}^I:\zeta'\xi = 0\}$ is an invariant subspace of $V$.
+Let $V = V_\parallel\oplus V_\perp$ be the decomposition of $V$ on the
+orthogonal invariant subspaces $\bm{R}\{\zeta\}\oplus\{\zeta\}^\perp$.
+Since all eigenvectors of $V$ other than $\zeta$ have non-zero eigenvalues $V_\perp$ is invertible.
+
+Let $P_\parallel = \zeta\zeta'/\|\zeta\|^2$ be the orthogonal projection onto the
+subspace spanned by $\zeta$ and $P_\perp = I - P_\parallel$ the projection
+onto its orthoganal complement. The projections commute with $V$ ($VP = PV$)
+and $V = P_\parallel VP_\parallel + P_\perp VP_\perp = VP_\parallel + VP_\perp$.
+
+The equation $V\xi = \lambda x + \mu E[X]$ can be written
+$$
+\begin{aligned}
+	V\xi_\parallel &= \lambda x_\parallel + \mu E[X_\parallel]\\
+	V\xi_\perp &= \lambda x_\perp + \mu E[X_\perp]\\
+\end{aligned}
+$$
+where $x_\parallel = P_\parallel x$, etc.
+
+Since $\xi_\parallel$ is a multiple of $\zeta$ and $\zeta'x = 1$, $\zeta'X
+= R$ the first equation becomes $0 = \lambda + \mu R$.
+
+Since $V_\perp$ is invertible we have
+$\xi_\perp = \lambda V_\perp^{-1}x_\perp + \mu V_\perp^{-1}E[X_\perp]$ where
+$\lambda = (C_\perp - \rho B_\perp)/D_\perp$, $\mu = (-B_\perp + \rho A_\perp)/D_\perp$
+with $A_\perp = x_\perp V_\perp ^{-1}x_\perp$, etc.
+
+Using $x_\perp = x - x_\parallel$, etc., we have
+$\lambda x_\perp + \mu E[X_\perp]
+= \lambda x + \mu E[X] - (\lambda x_\parallel + \mu E[X_\parallel])
+= \lambda x + \mu E[X]$.
+
 
 <!--
 If a risk-less portfolio exists then $V$ is not invertible. However
@@ -457,17 +452,35 @@ The maximum utility is $R - \tau/2A$ as noted above.
 ### Linear Algebra
 
 We recall some basic facts about finite-dimensional linear algebra.
-If $T\colon \bm{R}^n\to \bm{R}^n$ is a linear operator and
-$Vx = \lambda x$ for some $x\in \bm{R}^n$ and $\lambda\in\bm{R}$ we say $x$
-is an _eigenvector_ of $T$ having _eigenvalue_ $\lambda$.
+The space of all _linear operators_ from a vector space $V$ to a vector space $W$
+is denoted $\mathcal{L}(V,W)$. The _dual vector space_ of $V$ is $V^* = \mathcal{L}(V,\bm{R})$
+with _dual pairing_ $\langle v, v^*\rangle = v^*(v)\in\bm{R}$. 
+Every linear operator $T\colon V\to W$ has a dual $T^*\colon W^*\to V^*$ defined by
+$\langle v, T^*w\rangle = \langle Tv, w^*\rangle$, $v\in V$, $w^*\in W^*$.
+If $X\subseteq V$ is any subset its _annhilator_
+is $X^\perp = \{v^*\in V^* : \langle x,v^*\rangle = 0, x\in X\}\subseteq V^*$.
+If $Y^*\subseteq V^*$ is any subset its _pre-annhilator_ is
+$^\perp Y^* = \{v\in V : \langle v,y^*\rangle = 0,y^*\in Y^*\}\subseteq V$.
+The _span_ of $X\subseteq V$ is the smallest subspace of $V$ containing $X$ and equals
+$^\perp(X^\perp)$. The span of $Y^*\subseteq W^*$ is $(^\perp Y^*)^\perp$.
+If $V$ is finite dimensional then $V^*$ has the same dimension as $V$.
+The map $\iota = \iota_V\colon V\to V^{**}$ defined by
+$\langle \iota v, v^*\rangle = \langle v, v^*\rangle$, $v^*\in V^*$
+is a _natural isomorphism_ and for any $T\in\mathcal{L}(V,W)$ we have
+$T^{**}\iota_V = \iota_W T\in\mathcal{L}(V,W^{**})$.
 
-If $W\subseteq\bm{R}^n$ is a subspace and $TW = \{Tw:w\in W\}\subseteq W$
+If $W\subseteq V$ is a subspace and $TW = \{Tw:w\in W\}\subseteq W$
 we say $W$ is an _invariant subspace_ of $T$. Note $T|_W\colon W\to W$ is
 a linear operator on $W$.
-Eigenvectors correspond to one-dimensional invariant subspaces.
+If $T\colon V\to V$ is a linear operator and
+$Vx = \lambda x$ for some $x\in V$ and $\lambda\in\bm{R}$ we say $x$
+is an _eigenvector_ of $T$ having _eigenvalue_ $\lambda$.
+The span of an eigenvector is a one-dimensional invariant subspaces.
 
-Let $(x,y) = x\cdot y = x'y = \sum_{i} x_i y_i$ denote the standard inner product
-on $\bm{R}^n$. We say $x,y\in\bm{R}^n$ are _orthogonal_ if $(x,y) = 0$.
+Let $V = \bm{R}^n$ and $(x,y) = x\cdot y = x'y = \sum_{i} x_i y_i$ denote the standard inner product.
+Given $y\in \bm{R}^n$ define the linear functional $y^*\in (\bm{R}^n)^*$ by $y^*(x) = (x, y)$.
+The inner product provides a _canonical isomorphism_ between $\bm{R}^n$ and $(\bm{R}^n)^*$.
+We say $x,y\in\bm{R}^n$ are _orthogonal_ if $(x,y) = 0$.
 The _adjoint_ of a linerar operator $T$ is denoted $T'$ and is defined by
 $(T'x, y) = (x, Ty)$ for $x,y\in\bm{R}^n$. Note $T'' = T$ since
 $(T''x,y) = (x,T'y) = (T'y,x) = (y,Tx) = (Tx,y)$ for $x,y\in\bm{R}^n$.
