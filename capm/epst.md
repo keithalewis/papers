@@ -125,20 +125,19 @@ has the form
 $$
 \xi = ((C - \rho B)/D)V^{-1}x + ((-B + \rho A)/D)V^{-1}E[X]
 $$
-where $A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$, $C = E[X]V^{-1}E[X]$,
-and $D = AC - B^2$.
-The variance of the portfolio is
+where $V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$, $A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$,
+$C = E[X]V^{-1}E[X]$, and $D = AC - B^2$.
+The variance of the efficient portfolio is
 $$
 \mathrm{Var}(R(\xi)) = (C - 2B\rho + A\rho^2)/D
 $$ 
 
 If $\xi_0$ and $\xi_1$ are any two independent efficient portfolios then
 they belong to the subspace spanned by $V^{-1}x$ and $V^{-1}E[X]$.
-Every efficient
-portfolio can be written $\xi = \beta_0\xi_0 + \beta_1\xi_1$ for some
+Every efficient portfolio can be written $\xi = \beta_0\xi_0 + \beta_1\xi_1$ for some
 scalars $\beta_0$ and $\beta_1$.
 
-Since we are considering returns we can assume $\xi_j'x = 1$ for $j = 0,1$ so $R(\xi_j) = \xi_j'X$.
+Assume $\xi_j'x = 1$ for $j = 0,1$ so $R(\xi_j) = \xi_j'X$.
 If $\xi'x = 1$ then $\beta_0 + \beta_1 = 1$ and
 $\xi = (1 - \beta)\xi_0 + \beta\xi_1$ where $\beta = \beta_1$.
 Multiplying both sides by $X$ we have $\xi'X = (1 - \beta)\xi_0'X + \beta\xi_1'X$ hence
@@ -191,10 +190,9 @@ $$
 \end{aligned}
 $$
 where $x_\parallel = P_\parallel x$, etc.
-
-Since $\xi_\parallel$ is a multiple of $\zeta$ and $\zeta'x = 1$, $\zeta'X
-= R$ the first equation becomes $0 = \lambda + \mu R$.
-
+Since $\xi_\parallel$ is a multiple of $\zeta$ 
+the first equation becomes $0 = \lambda + \mu R$ where $R = R(\zeta)$ is the risk-less
+realized return.
 Since $V_\perp$ is invertible we have
 $\xi_\perp = \lambda V_\perp^{-1}x_\perp + \mu V_\perp^{-1}E[X_\perp]$ where
 $\lambda = (C_\perp - \rho B_\perp)/D_\perp$, $\mu = (-B_\perp + \rho A_\perp)/D_\perp$
