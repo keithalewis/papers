@@ -29,13 +29,13 @@ $$
 $$
 as random variables where
 $$
-	\beta = \mathrm{Cov}\bigl(R(\xi) - R(\zeta),R(\mu) - R(\zeta)\bigr)/\mathrm{Var}\bigl(R(\mu) - R(\zeta)\bigr).
+	\beta = \operatorname{Cov}\bigl(R(\xi) - R(\zeta),R(\mu) - R(\zeta)\bigr)/\operatorname{Var}\bigl(R(\mu) - R(\zeta)\bigr).
 $$
 
 The classical CAPM formula follows by taking expected values
 $E[R(\xi)] - R = \beta(E[R(\mu)] - R)$ where $R = R(\zeta)$ is the risk-free
 return, and $\mu$ is the market portfolio.
-In this case $\beta = \mathrm{Cov}(R(\xi),R(\mu))/\mathrm{Var}(R(\mu))$.
+In this case $\beta = \operatorname{Cov}(R(\xi),R(\mu))/\operatorname{Var}(R(\mu))$.
 
 ## One-Period Model
 
@@ -117,7 +117,7 @@ the same expected realized return.
 ## Efficient Portfolios 
 
 A portfolio $\xi$ is _efficient_
-if $\mathrm{Var}(R(\xi)) \le \mathrm{Var}(R(\eta))$ for every
+if $\operatorname{Var}(R(\xi)) \le \operatorname{Var}(R(\eta))$ for every
 portfolio $\eta$ having the same expected realized return as $\xi$.
 
 The [Appendix](#efficient-portfolios) shows every efficient portfolio
@@ -129,7 +129,7 @@ where $A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$, $C = E[X]V^{-1}E[X]$,
 and $D = AC - B^2$.
 The variance of the portfolio is
 $$
-\mathrm{Var}(R(\xi)) = (C - 2B\rho + A\rho^2)/D
+\operatorname{Var}(R(\xi)) = (C - 2B\rho + A\rho^2)/D
 $$ 
 
 If $\xi_0$ and $\xi_1$ are any two independent efficient portfolios then
@@ -145,7 +145,7 @@ Multiplying both sides by $X$ we have $\xi'X = (1 - \beta)\xi_0'X + \beta\xi_1'X
 $$
 	R(\xi) - R(\xi_0) = \beta(R(\xi_1) - R(\xi_0))
 $$
-where $\beta = \mathrm{Cov}(R(\xi) - R(\xi_0), R(\xi_1) - R(\xi_0))/\mathrm{Var}(R(\xi_1) - R(\xi_0))$.
+where $\beta = \operatorname{Cov}(R(\xi) - R(\xi_0), R(\xi_1) - R(\xi_0))/\operatorname{Var}(R(\xi_1) - R(\xi_0))$.
 
 Note that $A$, $B$, $C$, and $D$ depend only on $x$, $E[X]$, and
 $E[XX']$. Classical literature focuses mainly on the latter three which
@@ -160,9 +160,9 @@ risk-less portfolio.
 
 ### Efficient Portfolios
 
-Let's find the minimum value of $\mathrm{Var}(R(\xi))$ given $E[R(\xi)] =
-\rho$.  If $\xi'x = 1$ then $R(\xi) = \xi'E[X]$ and $\mathrm{Var}(R(\xi))
-= \xi'V\xi$ where $V = \mathrm{Var}(X) = \mathrm{Cov}(X,X) = E[XX']
+Let's find the minimum value of $\operatorname{Var}(R(\xi))$ given $E[R(\xi)] =
+\rho$.  If $\xi'x = 1$ then $R(\xi) = \xi'E[X]$ and $\operatorname{Var}(R(\xi))
+= \xi'V\xi$ where $V = \operatorname{Var}(X) = \operatorname{Cov}(X,X) = E[XX']
 - E[X]E[X']$.
 
 We use Lagrangian multipliers and solve
@@ -241,11 +241,11 @@ $$
 A _risk-less_ portfolio, $\zeta$, has zero variance realized return.
 If $\zeta'X = c$ is constant then $V\zeta = E[XX']\zeta - E[X]E[X']\zeta =
 E[Xc] - E[X]c = 0$ so $\zeta$ is an eigenvector of $V$ having eigenvalue
-zero. If another risk-less porfolio exists with different realized
-return then arbitarge exists.  By removing redundant assets we can assume
+zero. If another risk-less portfolio exists with different realized
+return then arbitrage exists.  By removing redundant assets we can assume
 there is at most one risk-less portfolio.
 
-If $\zeta$ is the (unique) risk-less portfolion with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
+If $\zeta$ is the (unique) risk-less portfolio with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
 then it is an eigenvector of $V$ having eigenvalue $0$. Since $V$ is self-adjoint
 $\{\zeta\}^\perp = \{\xi\in\bm{R}^I:\zeta'\xi = 0\}$ is an invariant subspace of $V$.
 Let $V = V_\parallel\oplus V_\perp$ be the decomposition of $V$ on the
@@ -254,7 +254,7 @@ Since all eigenvectors of $V$ other than $\zeta$ have non-zero eigenvalues $V_\p
 
 Let $P_\parallel = \zeta\zeta'/\|\zeta\|^2$ be the orthogonal projection onto the
 subspace spanned by $\zeta$ and $P_\perp = I - P_\parallel$ the projection
-onto its orthoganal complement. The projections commute with $V$ ($VP = PV$)
+onto its orthogonal complement. The projections commute with $V$ ($VP = PV$)
 and $V = P_\parallel VP_\parallel + P_\perp VP_\perp = VP_\parallel + VP_\perp$.
 
 The equation $V\xi = \lambda x + \mu E[X]$ can be written
@@ -304,8 +304,8 @@ Let $x = (x_0,x_1)$ and $X = (X_0,X_1)$. We can assume $x_0 = 1$ and $x_1 = 1$
 $$
  V = E[XX'] - E[X] E[X']
     = \begin{bmatrix}
-        \mathrm{Var}(X_0) & \mathrm{Cov}(X_0,X_1)\\
-        \mathrm{Cov}(X_1,X_0) & \mathrm{Var}(X_1)\\
+        \operatorname{Var}(X_0) & \operatorname{Cov}(X_0,X_1)\\
+        \operatorname{Cov}(X_1,X_0) & \operatorname{Var}(X_1)\\
     \end{bmatrix}
     = \begin{bmatrix}
 		V_0 & \Gamma \\
@@ -358,8 +358,8 @@ C = E[X']V^{-1}E[X]
 = \frac{1}{\Delta}(V_1 \bar{R}^2  - 2\Gamma \bar{S} \bar{R}  + V_0 \bar{S}^2)
 $$
 
-Since $\Delta$ and $\Gamma$ tend to zero as $V_0 = \mathrm{Var}(X_0)\to 0$,
-$A$, $B$, and $C$ tend to infinity assuming $V_1 = \mathrm{Var}(X_1) > 0$ is fixed.
+Since $\Delta$ and $\Gamma$ tend to zero as $V_0 = \operatorname{Var}(X_0)\to 0$,
+$A$, $B$, and $C$ tend to infinity assuming $V_1 = \operatorname{Var}(X_1) > 0$ is fixed.
 
 Some calculation shows
 $$
@@ -457,9 +457,9 @@ is denoted $\mathcal{L}(V,W)$. The _dual vector space_ of $V$ is $V^* = \mathcal
 with _dual pairing_ $\langle v, v^*\rangle = v^*(v)\in\bm{R}$. 
 Every linear operator $T\colon V\to W$ has a dual $T^*\colon W^*\to V^*$ defined by
 $\langle v, T^*w\rangle = \langle Tv, w^*\rangle$, $v\in V$, $w^*\in W^*$.
-If $X\subseteq V$ is any subset its _annhilator_
+If $X\subseteq V$ is any subset its _annihilator_
 is $X^\perp = \{v^*\in V^* : \langle x,v^*\rangle = 0, x\in X\}\subseteq V^*$.
-If $Y^*\subseteq V^*$ is any subset its _pre-annhilator_ is
+If $Y^*\subseteq V^*$ is any subset its _pre-annihilator_ is
 $^\perp Y^* = \{v\in V : \langle v,y^*\rangle = 0,y^*\in Y^*\}\subseteq V$.
 The _span_ of $X\subseteq V$ is the smallest subspace of $V$ containing $X$ and equals
 $^\perp(X^\perp)$. The span of $Y^*\subseteq W^*$ is $(^\perp Y^*)^\perp$.
@@ -481,7 +481,7 @@ Let $V = \bm{R}^n$ and $(x,y) = x\cdot y = x'y = \sum_{i} x_i y_i$ denote the st
 Given $y\in \bm{R}^n$ define the linear functional $y^*\in (\bm{R}^n)^*$ by $y^*(x) = (x, y)$.
 The inner product provides a _canonical isomorphism_ between $\bm{R}^n$ and $(\bm{R}^n)^*$.
 We say $x,y\in\bm{R}^n$ are _orthogonal_ if $(x,y) = 0$.
-The _adjoint_ of a linerar operator $T$ is denoted $T'$ and is defined by
+The _adjoint_ of a linear operator $T$ is denoted $T'$ and is defined by
 $(T'x, y) = (x, Ty)$ for $x,y\in\bm{R}^n$. Note $T'' = T$ since
 $(T''x,y) = (x,T'y) = (T'y,x) = (y,Tx) = (Tx,y)$ for $x,y\in\bm{R}^n$.
 An operator $T$ is _self-adjoint_ if $T' = T$.
@@ -498,7 +498,7 @@ An operator $T$ is _positive definite_ if it is self-adjoint and $(Tx,x) > 0$ fo
 all non-zero $x\in\bm{R}^n$.
 It is _positive semi-definite_ if $(Tx,x)\ge0$ for all $x\in\bm{R}^n$.
 For any linear operator $S\colon\bm{R}^n\to\bm{R}^n$ we have $S'S$ is positive semi-definite.
-Since $(S'Sx, y) = (Sx, Sy) = (x, S'Sy)$ it is self-adoint.
+Since $(S'Sx, y) = (Sx, Sy) = (x, S'Sy)$ it is self-an.
 For any $x\in\bm{R}^n$ we have $(S'S x, x) = (Sx,Sx) = \|Sx\|^2 \ge0$
 so it is positive semi-definite.
 
@@ -656,10 +656,10 @@ Good luck finding a finitely additive measure $\lambda$ and defining an integral
 The model also specifies a probability measure $P$ on the
 space of outcomes. The _utility_ of $\xi$ is
 $$
-U_\tau(\xi) = E[R(\xi)] - \frac{\tau}{2}\mathrm{Var}(R(\xi))
+U_\tau(\xi) = E[R(\xi)] - \frac{\tau}{2}\operatorname{Var}(R(\xi))
 $$
 where $\tau\ge0$ is a risk aversion parameter. We could use
-any utility of the form $aE[R(\xi)] + b\mathrm{Var}(R(\xi))$
+any utility of the form $aE[R(\xi)] + b\operatorname{Var}(R(\xi))$
 with $a > 0$ and $b \le 0$ so that higher returns are
 offset by lower variance.
 
@@ -671,7 +671,7 @@ we use Lagrangian multipliers to solve
 $$
 \max_{\xi,\lambda,\mu} E[\xi'X] - \frac{\tau}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)
 $$
-where $V = \mathrm{Var}(X) = E[XX'] - E[X]E[X']$. Every extremum satisfies
+where $V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$. Every extremum satisfies
 $$
 \begin{aligned}
 	D_\xi\Phi &= E[X] - \tau V\xi - \lambda x - \mu E[X] = 0\\
@@ -693,16 +693,16 @@ Note also that $\xi'X = R(\xi)$, likewise $\xi_j'X = R(\xi_j) = R_j$ for $j = 0,
 $$
 	R(\xi) - R_0 = \beta(R_1 - R_0)
 $$
-where $\beta = \mathrm{Cov}(R(\xi) - R_0,R_1 - R_0)/\mathrm{Var}(R_1 - R_0)$.
+where $\beta = \operatorname{Cov}(R(\xi) - R_0,R_1 - R_0)/\operatorname{Var}(R_1 - R_0)$.
 
-If $\mathrm{Var}(R_0) = 0$ then
-$\beta = \mathrm{Cov}(R(\xi),R_1)/\mathrm{Var}(R_1)$
+If $\operatorname{Var}(R_0) = 0$ then
+$\beta = \operatorname{Cov}(R(\xi),R_1)/\operatorname{Var}(R_1)$
 and we have a stronger form of the classic CAPM formula.
 It holds for returns, not just their expected value, and
 it holds for any distribution of market prices.
 The risk-free and market portfolio are not special.
 
-Unfortunately, if $V$ is invertible then there is no $\xi$ with $\mathrm{Var}(\xi'X) = 0$.
+Unfortunately, if $V$ is invertible then there is no $\xi$ with $\operatorname{Var}(\xi'X) = 0$.
 If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 = E[XX'\xi] - E[X] E[X'\xi] = E[Xc] - E[X]c = 0$. We rectify this in the next section.
 
@@ -715,12 +715,12 @@ realized return $R = R(\zeta) = 1/\zeta'x$.
 
 Risk-free portfolios with expected realized return $\rho = R$ are optimal since
 $\Var(R(\zeta)) = 0$. If $\zeta_1$ is another risk-less portfolio we must
-have $R(\zeta) = R(\zeta_)$ if the model is arbtrage free.  By removing
+have $R(\zeta) = R(\zeta_)$ if the model is arbitrage free.  By removing
 redundant risk-free portfolios we can assume there is exactly one.
 
 Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
 so $R^I_\perp = \{\zeta\}^\perp = \{y\in\bm{R}^I:\zeta'y = 0\}$ is an invariant subspace of $V$.
-Write $V = V_\parallel \oplus V_\perp$ into an orthgonal direct sum
+Write $V = V_\parallel \oplus V_\perp$ into an orthogonal direct sum
 
 Let $V_\zeta = V|_{\{\zeta\}^\perp}$ where $\{\zeta\}^\perp = \{y\in\bm{R}^I:\zeta'y = 0\}$.
 We can assume $V_\zeta$ is invertible and find other optimal portfolios in $\{\zeta\}^\perp$ as above.
@@ -1050,7 +1050,7 @@ $$
 	\end{bmatrix}
 $$
 
-The matrix is not invertable however
+The matrix is not invertible however
 
 $$
 \begin{bmatrix}
