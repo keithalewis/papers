@@ -497,7 +497,7 @@ The _dual vector space_ of $V$ is $V^* = \mathcal{L}(V,\bm{R})$
 with _dual pairing_ $\langle v, v^*\rangle = v^*(v)\in\bm{R}$. 
 Note that $v\mapsto \langle v, v^*\rangle$, $v\in V$
 determines $v^*\in V^*$ by the definition of what a function is.
-Every linear operator $T\colon V\to W$ has an _adjoint_ $T^*\colon W^*\to V^*$ defined by
+The _adjoint_ of $T\colon V\to W$ is $T^*\colon W^*\to V^*$ defined by
 $\langle v, T^*w\rangle = \langle Tv, w^*\rangle$, $v\in V$, $w^*\in W^*$.
 
 If $X\subseteq V$ is any subset its _annihilator_
@@ -507,7 +507,7 @@ $^\perp Y^* = \{v\in V : \langle v,y^*\rangle = 0,y^*\in Y^*\}\subseteq V$.
 The _span_ of $X\subseteq V$ is the smallest subspace of $V$ containing $X$ and equals
 $^\perp(X^\perp)$. The span of $Y^*\subseteq W^*$ is $(^\perp Y^*)^\perp$.
 
-The map $\nu = \nu\colon V\to V^{**}$ defined by
+The map $\nu_V = \nu\colon V\to V^{**}$ defined by
 $\langle \nu v, v^*\rangle = \langle v, v^*\rangle$, $v^*\in V^*$
 is a _natural isomorphism_ and for any $T\in\mathcal{L}(V,W)$ we have
 $T^{**}\nu_V = \nu_W T\in\mathcal{L}(V,W^{**})$. It is called natural
@@ -531,20 +531,20 @@ We can also define $\iota y\in V^*$ for $y\in V$ given an inner product by
 $\langle x, \iota y\rangle = (x, y)$, $x\in V$. Note that this does not
 depend on choosing a basis for $V$.
 
-Given an inner prodcut we say $x,y\in V$ are _orthogonal_ if $(x,y) = 0$.
+Given an inner product we say $x,y\in V$ are _orthogonal_ if $(x,y) = 0$.
 If $(e,e) = 1$ we call $e$ a _unit vector_. An _orthonormal basis_ is
 a basis of orthogonal unit vectors, $(e_i,e_j) = \delta_{ij}$.
 
-The _adjoint_ of a linear operator $T\in\mathcal{L}(V)$ is denoted $T'$ and is defined by
-$(x, T'y) = (Tx, y)$ for $x,y\in V$. We also use the term adjoint for this even though
-it is not as general as the dual space adjoint defined above. Adjoints in
-inner product spaces are only defined for _endomorphisms_, $T\colon V\to V$.
-Note $T^*\iota = \iota T'$ since
-$\langle x, T^*\iota y\rangle = \langle Tx, \iota y\rangle = (Tx, y) = (x, T'y)
-= \langle x, \iota T'y\rangle$, $x,y\in V$. Since $\iota$ is an isomorphism
-$T' = \iota^{-1}T^*\iota$.
+The _adjoint_ of a linear operator $T\in\mathcal{L}(V,W)$, where $V$ and $W$
+have an inner product is $T'\in\mathcal{L}(W,V)$ and is defined by
+$(x, T'y) = (Tx, y)$ for $x\in V$, $y\in W$. The first inner product is
+that of $V$ and the second that of $W$.
+Note $T^*\iota_V = \iota_W T'$ since
+$\langle v, T^*\iota w\rangle = \langle Tv, \iota w\rangle = (Tv, w) = (v, T'w)
+= \langle v, \iota T'w\rangle$, $v\in V$, $w\in W$. Since $\iota$ is an isomorphism
+$T' = \iota_W^{-1}T^*\iota_V$.
 
-An operator $T$ is _self-adjoint_ if $T' = T$.  Note $T'' = T$ since
+An operator $T\in\mathcal{L}(V)$ is _self-adjoint_ if $T' = T$.  Note $T'' = T$ since
 $(x, T''y) = (T'x, y) = (y, T'x) = (Ty, x) = (x, Ty)$ for $x,y\in V$.
 
 A subspace $U\subseteq V$ is an _invariant subspace_ of $T\in\mathcal{L}(V)$
