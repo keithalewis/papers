@@ -247,7 +247,7 @@ there is exactly one risk-free portfolio.
 If $\zeta$ is the (unique) risk-free portfolio with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
 then it is an eigenvector of $V$ having eigenvalue $0$. Since $V$ is self-adjoint
 $\{\zeta\}^\perp = \{\xi\in\bm{R}^I:\zeta'\xi = 0\}$ is an invariant subspace of $V$.
-Let $V = V_\perp$ \oplus V_\parallel$
+Let $V = V_\perp \oplus V_\parallel$
 be the decomposition of $V$ on the
 orthogonal invariant subspaces $\{\zeta\}^\perp\oplus\bm{R}\{\zeta\}$.
 Since all eigenvectors of $V$ other than $\zeta$ have non-zero eigenvalues $V_\perp$ is invertible.
@@ -265,13 +265,13 @@ $$
 \end{aligned}
 $$
 where $\xi = \xi_\perp + \xi_\parallel$, $x_\perp = P_\perp x$, etc.
-
 Since $\xi_\parallel$ is a multiple of $\zeta$ and $\zeta'x = 1$, $\zeta'X
-= R$ the second equation becomes $0 = \lambda + \mu R$ so $\lambda = -R\mu$.
+= R$ the second equation becomes $0 = \lambda + \mu R$ so $\lambda = -R\mu$
+and $\lambda x_\parallel + \mu E[X_\parallel] = \mu(E[X_\parallel] - Rx_\parallel)$.
 
 Since $V_\perp$ is invertible we have
 $\xi_\perp = \lambda V_\perp^{-1}x_\perp + \mu V_\perp^{-1}E[X_\perp]$
-and $\xi = \xi_\perp + \xi_\parallel = \mu(-R V_\perp^{-1}x_\perp + V_\perp^{-1}E[X_\perp])
+and $\xi = \xi_\perp + \xi_\parallel = \mu(V_\perp^{-1}E[X_\perp] - R V_\perp^{-1}x_\perp)
 + \nu \zeta$ for some $\nu\in\bm{R}$.
 The constraints $\rho = E[X']\xi$ and $1 = x'\xi$ give us
 $$
@@ -281,12 +281,12 @@ $$
 \end{bmatrix}
 =
 \begin{bmatrix}
-\mu(-RA_\perp + B_\perp) + \nu \\
-\mu(-RB_\perp + C_\perp) + R\nu \\
+\mu(C_\perp - R B_\perp) + R\nu \\
+\mu(B_\perp - R A_\perp) + \nu \\
 \end{bmatrix}
 = \begin{bmatrix}
-B_\perp - RA_\perp & 1 \\
-C_\perp - RB_\perp & R\\
+C_\perp - R B_\perp & R \\
+B_\perp - R A_\perp & 1\\
 \end{bmatrix}
 \begin{bmatrix}
 \mu \\
@@ -300,8 +300,8 @@ $$
 \begin{bmatrix} \mu \\ \nu \end{bmatrix}
 = \frac{1}{D_\perp}
 \begin{bmatrix}
-R & -1 \\
-RB_\perp - C_\perp & B_\perp - RA_\perp\\
+1 & -R \\
+R A_\perp - B_\perp & C_\perp - R B_\perp\\
 \end{bmatrix}
 \begin{bmatrix}
 \rho \\
@@ -309,12 +309,12 @@ RB_\perp - C_\perp & B_\perp - RA_\perp\\
 \end{bmatrix}
 =
 \begin{bmatrix}
-(R\rho - 1)/D_\perp \\
-(-\rho C_\perp + (R\rho + 1)B_\perp - RA_\perp)/D_\perp\\
+(\rho - R)/D_\perp \\
+(R \rho A_\perp - (\rho + R)B_\perp + C_\perp)/D_\perp\\
 \end{bmatrix}
 $$
-where $D_\perp = R(B_\perp - RA_\perp) + (RB_\perp - C_\perp) = 
--R^2A_\perp + 2RB_\perp - C_\perp$.
+where $D_\perp = (C_\perp - R B_\perp) + R(R A_\perp - B_\perp)
+= C_\perp - 2R B_\perp + R^2 A_\perp$.
 
 The solution is
 <!--
