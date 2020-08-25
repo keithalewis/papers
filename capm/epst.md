@@ -33,7 +33,7 @@ $$
 $$
 
 The classical CAPM formula follows by taking expected values
-$E[R(\xi)] - R = \beta(E[R(\mu)] - R)$ where $R = R(\zeta)$ is the risk-free
+$E[R(\xi)] - R = \beta(E[R(\mu)] - R)$ where $R = R(\zeta)$ is the riskless
 return, and $\mu$ is the market portfolio.
 In this case $\beta = \operatorname{Cov}(R(\xi),R(\mu))/\operatorname{Var}(R(\mu))$.
 
@@ -153,7 +153,7 @@ result.  The classical CAPM result follows from taking expected values
 of both sides when $\mu$ is the 'market' portfolio and $\zeta$ is a
 risk-fee portfolio.
 
-### Risk-free Portfolios
+### Riskless Portfolios
 
 ## Appendix
 
@@ -235,16 +235,16 @@ $$
 \xi'V\xi = (C - 2B\rho + A\rho^2)/D.
 $$
 
-#### Risk-free Portfolios
+#### Riskless Portfolios
 
 If $V$ is not invertible there exists a portfolio $\zeta\not=0$ with $V\zeta = 0$.
 Since $\operatorname{Var}(R(\zeta)) = \zeta'V\zeta = 0$ we have
-$\zeta'X$ is constant and say $\zeta$ _risk-free_.
-If another risk-free portfolio exists with different realized
+$\zeta'X$ is constant and call $\zeta$ _riskless_.
+If another riskless portfolio exists with different realized
 return then arbitrage exists.  By removing redundant assets we can assume
-there is exactly one risk-free portfolio.
+there is exactly one riskless portfolio.
 
-If $\zeta$ is the (unique) risk-free portfolio with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
+If $\zeta$ is the (unique) riskless portfolio with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
 then it is an eigenvector of $V$ having eigenvalue $0$. Since $V$ is self-adjoint
 $\{\zeta\}^\perp = \{\xi\in\bm{R}^I:\zeta'\xi = 0\}$ is an invariant subspace of $V$.
 Let $V = V_\perp \oplus V_\parallel$
@@ -318,7 +318,7 @@ where $D_\perp = (C_\perp - R B_\perp) + R(R A_\perp - B_\perp)
 
 The solution is
 <!--
-If a risk-free portfolio exists then $V$ is not invertible. However
+If a riskless portfolio exists then $V$ is not invertible. However
 $V + \epsilon I$ is for small non-zero $\epsilon$.  In this case
 $A_\epsilon = x'(V + \epsilon I)^{-1}x$ ...
 In this case $A_\epsilon = x'V_\epsilon^{-1}x$ ...
@@ -770,23 +770,23 @@ $\beta = \operatorname{Cov}(R(\xi),R_1)/\operatorname{Var}(R_1)$
 and we have a stronger form of the classic CAPM formula.
 It holds for returns, not just their expected value, and
 it holds for any distribution of market prices.
-The risk-free and market portfolio are not special.
+The riskless and market portfolio are not special.
 
 Unfortunately, if $V$ is invertible then there is no $\xi$ with $\operatorname{Var}(\xi'X) = 0$.
 If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 = E[XX'\xi] - E[X] E[X'\xi] = E[Xc] - E[X]c = 0$. We rectify this in the next section.
 
-### Risk-free Portfolios
+### Riskless Portfolios
 
 A portfolio $\zeta\in\bm{R}^I$ with $\zeta'X(\omega) = c$ for some
-constant $c\in\bm{R}$ and all $\omega\in\Omega$ is called _risk-free_.
+constant $c\in\bm{R}$ and all $\omega\in\Omega$ is called _riskless_.
 If $c = 1$ the portfolio is called a _zero coupon bond_ and has constant
 realized return $R = R(\zeta) = 1/\zeta'x$.
 
-Risk-free portfolios with expected realized return $\rho = R$ are optimal since
-$\Var(R(\zeta)) = 0$. If $\zeta_1$ is another risk-free portfolio we must
+Riskless portfolios with expected realized return $\rho = R$ are optimal since
+$\Var(R(\zeta)) = 0$. If $\zeta_1$ is another riskless portfolio we must
 have $R(\zeta) = R(\zeta_)$ if the model is arbitrage free.  By removing
-redundant risk-free portfolios we can assume there is exactly one.
+redundant riskless portfolios we can assume there is exactly one.
 
 Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
 so $R^I_\perp = \{\zeta\}^\perp = \{y\in\bm{R}^I:\zeta'y = 0\}$ is an invariant subspace of $V$.
