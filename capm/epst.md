@@ -152,9 +152,9 @@ $E[XX']$. Classical literature focuses mainly on the latter three which
 may explain why prior authors overlooked this elementary but stronger
 result.  The classical CAPM result follows from taking expected values
 of both sides when $\mu$ is the 'market' portfolio and $\zeta$ is a
-risk-less portfolio.
+risk-fee portfolio.
 
-### Risk-less Portfolios
+### Risk-free Portfolios
 
 ## Appendix
 
@@ -236,20 +236,21 @@ $$
 \xi'V\xi = (C - 2B\rho + A\rho^2)/D.
 $$
 
-#### Risk-less Portfolios
+#### Risk-free Portfolios
 
-A _risk-less_ portfolio, $\zeta$, has zero variance realized return.
-If $\zeta'X = c$ is constant then $V\zeta = E[XX']\zeta - E[X]E[X']\zeta =
-E[Xc] - E[X]c = 0$ so $\zeta$ is an eigenvector of $V$ having eigenvalue
-zero. If another risk-less portfolio exists with different realized
+If $V$ is not invertible there exists a portfolio $\zeta\not=0$ with $V\zeta = 0$.
+Since $\operatorname{Var}(R(\zeta)) = \zeta'V\zeta = 0$ we have
+$\zeta'X$ is constant and say $\zeta$ _risk-free_.
+If another risk-free portfolio exists with different realized
 return then arbitrage exists.  By removing redundant assets we can assume
-there is at most one risk-less portfolio.
+there is exactly one risk-free portfolio.
 
-If $\zeta$ is the (unique) risk-less portfolio with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
+If $\zeta$ is the (unique) risk-free portfolio with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
 then it is an eigenvector of $V$ having eigenvalue $0$. Since $V$ is self-adjoint
 $\{\zeta\}^\perp = \{\xi\in\bm{R}^I:\zeta'\xi = 0\}$ is an invariant subspace of $V$.
-Let $V = V_\parallel\oplus V_\perp$ be the decomposition of $V$ on the
-orthogonal invariant subspaces $\bm{R}\{\zeta\}\oplus\{\zeta\}^\perp$.
+Let $V = V_\perp$ \oplus V_\parallel$
+be the decomposition of $V$ on the
+orthogonal invariant subspaces $\{\zeta\}^\perp\oplus\bm{R}\{\zeta\}$.
 Since all eigenvectors of $V$ other than $\zeta$ have non-zero eigenvalues $V_\perp$ is invertible.
 
 Let $P_\parallel = \zeta\zeta'/\|\zeta\|^2$ be the orthogonal projection onto the
@@ -260,28 +261,65 @@ and $V = P_\parallel VP_\parallel + P_\perp VP_\perp = VP_\parallel + VP_\perp$.
 The equation $V\xi = \lambda x + \mu E[X]$ can be written
 $$
 \begin{aligned}
-	V\xi_\parallel &= \lambda x_\parallel + \mu E[X_\parallel]\\
 	V\xi_\perp &= \lambda x_\perp + \mu E[X_\perp]\\
+	V\xi_\parallel &= \lambda x_\parallel + \mu E[X_\parallel]\\
 \end{aligned}
 $$
-where $x_\parallel = P_\parallel x$, etc.
+where $\xi = \xi_\perp + \xi_\parallel$, $x_\perp = P_\perp x$, etc.
 
 Since $\xi_\parallel$ is a multiple of $\zeta$ and $\zeta'x = 1$, $\zeta'X
-= R$ the first equation becomes $0 = \lambda + \mu R$.
+= R$ the second equation becomes $0 = \lambda + \mu R$ so $\lambda = -R\mu$.
 
 Since $V_\perp$ is invertible we have
-$\xi_\perp = \lambda V_\perp^{-1}x_\perp + \mu V_\perp^{-1}E[X_\perp]$ where
-$\lambda = (C_\perp - \rho B_\perp)/D_\perp$, $\mu = (-B_\perp + \rho A_\perp)/D_\perp$
-with $A_\perp = x_\perp V_\perp ^{-1}x_\perp$, etc.
+$\xi_\perp = \lambda V_\perp^{-1}x_\perp + \mu V_\perp^{-1}E[X_\perp]$
+and $\xi = \xi_\perp + \xi_\parallel = \mu(-R V_\perp^{-1}x_\perp + V_\perp^{-1}E[X_\perp])
++ \nu \zeta$ for some $\nu\in\bm{R}$.
+The constraints $\rho = E[X']\xi$ and $1 = x'\xi$ give us
+$$
+\begin{bmatrix}
+\rho \\
+1 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mu(-RA_\perp + B_\perp) + \nu \\
+\mu(-RB_\perp + C_\perp) + R\nu \\
+\end{bmatrix}
+= \begin{bmatrix}
+B_\perp - RA_\perp & 1 \\
+C_\perp - RB_\perp & R\\
+\end{bmatrix}
+\begin{bmatrix}
+\mu \\
+\nu
+\end{bmatrix}
+$$
+where $A_\perp = x_\perp V_\perp^{-1}x_\perp$, etc.
 
-Using $x_\perp = x - x_\parallel$, etc., we have
-$\lambda x_\perp + \mu E[X_\perp]
-= \lambda x + \mu E[X] - (\lambda x_\parallel + \mu E[X_\parallel])
-= \lambda x + \mu E[X]$.
+Inverting gives
+$$
+\begin{bmatrix} \mu \\ \nu \end{bmatrix}
+= \frac{1}{D_\perp}
+\begin{bmatrix}
+R & -1 \\
+RB_\perp - C_\perp & B_\perp - RA_\perp\\
+\end{bmatrix}
+\begin{bmatrix}
+\rho \\
+1
+\end{bmatrix}
+=
+\begin{bmatrix}
+(R\rho - 1)/D_\perp \\
+(-\rho C_\perp + (R\rho + 1)B_\perp - RA_\perp)/D_\perp\\
+\end{bmatrix}
+$$
+where $D_\perp = R(B_\perp - RA_\perp) + (RB_\perp - C_\perp) = 
+-R^2A_\perp + 2RB_\perp - C_\perp$.
 
-
+The solution is
 <!--
-If a risk-less portfolio exists then $V$ is not invertible. However
+If a risk-free portfolio exists then $V$ is not invertible. However
 $V + \epsilon I$ is for small non-zero $\epsilon$.  In this case
 $A_\epsilon = x'(V + \epsilon I)^{-1}x$ ...
 In this case $A_\epsilon = x'V_\epsilon^{-1}x$ ...
@@ -296,6 +334,8 @@ $$
 &= E \\
 \end{aligned}
 $$
+
+The constraints $1 = x'\xi$ and $\rho = E[X']\xi$ can be written
 
 ## Two Assets
 
@@ -453,38 +493,70 @@ The maximum utility is $R - \tau/2A$ as noted above.
 
 We recall some basic facts about finite-dimensional linear algebra.
 The space of all _linear operators_ from a vector space $V$ to a vector space $W$
-is denoted $\mathcal{L}(V,W)$. The _dual vector space_ of $V$ is $V^* = \mathcal{L}(V,\bm{R})$
+is denoted $\mathcal{L}(V,W)$. If $W = V$ we write $\mathcal{L}(V)$.
+The _dual vector space_ of $V$ is $V^* = \mathcal{L}(V,\bm{R})$
 with _dual pairing_ $\langle v, v^*\rangle = v^*(v)\in\bm{R}$. 
-Every linear operator $T\colon V\to W$ has a dual $T^*\colon W^*\to V^*$ defined by
+Note that $v\mapsto \langle v, v^*\rangle$, $v\in V$
+determines $v^*\in V^*$ by the definition of what a function is.
+Every linear operator $T\colon V\to W$ has an _adjoint_ $T^*\colon W^*\to V^*$ defined by
 $\langle v, T^*w\rangle = \langle Tv, w^*\rangle$, $v\in V$, $w^*\in W^*$.
+
 If $X\subseteq V$ is any subset its _annihilator_
 is $X^\perp = \{v^*\in V^* : \langle x,v^*\rangle = 0, x\in X\}\subseteq V^*$.
 If $Y^*\subseteq V^*$ is any subset its _pre-annihilator_ is
 $^\perp Y^* = \{v\in V : \langle v,y^*\rangle = 0,y^*\in Y^*\}\subseteq V$.
 The _span_ of $X\subseteq V$ is the smallest subspace of $V$ containing $X$ and equals
 $^\perp(X^\perp)$. The span of $Y^*\subseteq W^*$ is $(^\perp Y^*)^\perp$.
-If $V$ is finite dimensional then $V^*$ has the same dimension as $V$.
-The map $\iota = \iota_V\colon V\to V^{**}$ defined by
-$\langle \iota v, v^*\rangle = \langle v, v^*\rangle$, $v^*\in V^*$
+
+The map $\nu = \nu\colon V\to V^{**}$ defined by
+$\langle \nu v, v^*\rangle = \langle v, v^*\rangle$, $v^*\in V^*$
 is a _natural isomorphism_ and for any $T\in\mathcal{L}(V,W)$ we have
-$T^{**}\iota_V = \iota_W T\in\mathcal{L}(V,W^{**})$.
+$T^{**}\nu_V = \nu_W T\in\mathcal{L}(V,W^{**})$. It is called natural
+because it does not depend on a basis for $V$.
 
-If $W\subseteq V$ is a subspace and $TW = \{Tw:w\in W\}\subseteq W$
-we say $W$ is an _invariant subspace_ of $T$. Note $T|_W\colon W\to W$ is
-a linear operator on $W$.
-If $T\colon V\to V$ is a linear operator and
-$Vx = \lambda x$ for some $x\in V$ and $\lambda\in\bm{R}$ we say $x$
-is an _eigenvector_ of $T$ having _eigenvalue_ $\lambda$.
+#### Inner Product
+
+If $V$ is finite dimensional then $V^*$ has the same dimension as $V$.
+Let $\{e_i\}$ be any _basis_ of $V$. There exists a unique _dual basis_ $\{e^i\}\subseteq V^*$
+with $\langle e_i, e^j\rangle = \delta_{ij}$, where $\delta_{ij}$ is the Kronecker delta function.
+If $x = \sum_i x_i e_i$ then $x_i = \langle x, e^i\rangle e_i$ so
+$x = \sum_i \langle x, e^i\rangle e_i$.
+Define the isomorphism $\iota_V = \iota\colon V\to V^*$ by $\iota e_i = e^i$ so
+$\iota x = \sum_i \langle x, e^i\rangle e^i$ for any $x\in V$.
+The basis defines an _inner product_ on $V$ by $(x, y) = \langle x, \iota y\rangle$.
+
+For $V = \bm{R}^n$ the _standard basis_ $e_i = (0,\ldots,1_i,\ldots 0)$ gives
+the standard inner-product on $\bm{R}^n$.
+
+We can also define $\iota y\in V^*$ for $y\in V$ given an inner product by
+$\langle x, \iota y\rangle = (x, y)$, $x\in V$. Note that this does not
+depend on choosing a basis for $V$.
+
+Given an inner prodcut we say $x,y\in V$ are _orthogonal_ if $(x,y) = 0$.
+If $(e,e) = 1$ we call $e$ a _unit vector_. An _orthonormal basis_ is
+a basis of orthogonal unit vectors, $(e_i,e_j) = \delta_{ij}$.
+
+The _adjoint_ of a linear operator $T\in\mathcal{L}(V)$ is denoted $T'$ and is defined by
+$(x, T'y) = (Tx, y)$ for $x,y\in V$. We also use the term adjoint for this even though
+it is not as general as the dual space adjoint defined above. Adjoints in
+inner product spaces are only defined for _endomorphisms_, $T\colon V\to V$.
+Note $T^*\iota = \iota T'$ since
+$\langle x, T^*\iota y\rangle = \langle Tx, \iota y\rangle = (Tx, y) = (x, T'y)
+= \langle x, \iota T'y\rangle$, $x,y\in V$. Since $\iota$ is an isomorphism
+$T' = \iota^{-1}T^*\iota$.
+
+An operator $T$ is _self-adjoint_ if $T' = T$.  Note $T'' = T$ since
+$(x, T''y) = (T'x, y) = (y, T'x) = (Ty, x) = (x, Ty)$ for $x,y\in V$.
+
+A subspace $U\subseteq V$ is an _invariant subspace_ of $T\in\mathcal{L}(V)$
+if $TU = \{Tu:u\in U\}\subseteq U$.
+Note the restriction of $T$ to the subspace $U$, $T|_U\in\mathcal{L}(U)$.
+If $T\in\mathcal{L}(V)$ and $Vx = \lambda x$ for some $x\in V$ and $\lambda\in\bm{R}$
+we say $x$ is an _eigenvector_ of $T$ having _eigenvalue_ $\lambda$.
 The span of an eigenvector is a one-dimensional invariant subspaces.
-
-Let $V = \bm{R}^n$ and $(x,y) = x\cdot y = x'y = \sum_{i} x_i y_i$ denote the standard inner product.
-Given $y\in \bm{R}^n$ define the linear functional $y^*\in (\bm{R}^n)^*$ by $y^*(x) = (x, y)$.
-The inner product provides a _canonical isomorphism_ between $\bm{R}^n$ and $(\bm{R}^n)^*$.
-We say $x,y\in\bm{R}^n$ are _orthogonal_ if $(x,y) = 0$.
-The _adjoint_ of a linear operator $T$ is denoted $T'$ and is defined by
-$(T'x, y) = (x, Ty)$ for $x,y\in\bm{R}^n$. Note $T'' = T$ since
-$(T''x,y) = (x,T'y) = (T'y,x) = (y,Tx) = (Tx,y)$ for $x,y\in\bm{R}^n$.
-An operator $T$ is _self-adjoint_ if $T' = T$.
+A basis $\{e_i\}$ of eigenvectors, with corresponding eigenvalues $\{\lambda_i\}$,
+completely determines $T$. Since it is a basis there exist $x_i\in\bm{R}$ with
+$x = \sum_i x_i e_i$ so $Tx = \sum_i \lambda_i x_i e_i$.
 
 Let $W^\perp = \{v\in\bm{R}^n:(v,w) = 0, w\in W\}$ be the _orthogonal complement_
 of $W$ in $\bm{R}^n$. Note $(W^\perp)^\perp = W$ since $w\in (W^\perp)^\perp$ if and only
@@ -584,7 +656,6 @@ and $h^2$ is $o(\|h\|)$, $DF(x)h = xh + hx$.
 If we define the linear operators of left and right multiplication by $x$,
 $L_x,R_x\colon X\to X$ where
 $L_x y = xy$ and $R_x y = yx$, then $DF(x) = D(x^2) = L_x + R_x$.
-Another way to write this is $D(x^2)dx = x\ dx + dx\ x$.
 
 A good exercise is to show $D(x^n) = \sum_{j=1}^n L_x^{n - j} R_x^{j - 1}$.
 
@@ -714,7 +785,7 @@ If $c = 1$ the portfolio is called a _zero coupon bond_ and has constant
 realized return $R = R(\zeta) = 1/\zeta'x$.
 
 Risk-free portfolios with expected realized return $\rho = R$ are optimal since
-$\Var(R(\zeta)) = 0$. If $\zeta_1$ is another risk-less portfolio we must
+$\Var(R(\zeta)) = 0$. If $\zeta_1$ is another risk-free portfolio we must
 have $R(\zeta) = R(\zeta_)$ if the model is arbitrage free.  By removing
 redundant risk-free portfolios we can assume there is exactly one.
 
