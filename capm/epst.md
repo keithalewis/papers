@@ -120,12 +120,13 @@ A portfolio $\xi$ is _efficient_
 if $\operatorname{Var}(R(\xi)) \le \operatorname{Var}(R(\eta))$ for every
 portfolio $\eta$ having the same expected realized return as $\xi$.
 
-The [Appendix](#efficient-portfolios) shows every efficient portfolio
-has the form
+The [Appendix](#efficient-portfolios) shows that if
+$V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$
+is invertible then every efficient portfolio has the form
 $$
-\xi = ((C - \rho B)/D)V^{-1}x + ((-B + \rho A)/D)V^{-1}E[X]
+\xi = \frac{C - \rho B}{D}V^{-1}x + \frac{-B + \rho A}{D}V^{-1}E[X]
 $$
-where $V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$, $A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$,
+where $A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$,
 $C = E[X]V^{-1}E[X]$, and $D = AC - B^2$.
 The variance of the efficient portfolio is
 $$
@@ -151,9 +152,27 @@ $E[XX']$. Classical literature focuses mainly on the latter three which
 may explain why prior authors overlooked this elementary but stronger
 result.  The classical CAPM result follows from taking expected values
 of both sides when $\mu$ is the 'market' portfolio and $\zeta$ is a
-risk-fee portfolio.
+_riskless portfolio_.
 
 ### Riskless Portfolios
+
+A portfolio $\zeta$ is riskless if its return is constant. In this case
+$0 = \operatorname{Var}(R(\zeta)) = \zeta'V\zeta$ assuming, as we may, $\zeta'x = 1$.
+Since $V$ is positive semi-definite this implies $V\zeta = 0$ so
+$V$ is not invertible and the above analysis no longer holds.
+
+As the appendix shows, we can assume there is only one riskless portfolio $\zeta$
+with $\zeta'x = 1$ and every efficient portfolio belongs to the subspace spanned
+by $\alpha = V^\dashv(E[X] - Rx)$ and $\zeta$, where $V^\dashv$ is the generalized
+(Moore-Penrose) inverse of $V$ and $R = R(\zeta) = \zeta'X$ is the riskless realizied return.
+We can and do assume $\alpha'x = 1$.
+If $\xi = \mu \alpha + \nu\zeta$ with $\xi'x = 1$ then
+$1 = \mu + \nu$ so $\xi = \mu \alpha + (1 - \mu)\zeta$.
+Multiplying both sides by $X$ yields
+$$
+	R(\xi) - R = \mu(R(\alpha) - R)).
+$$
+This implies the classical CAPM formula by taking expected values.
 
 ## Appendix
 
@@ -232,7 +251,7 @@ $$
 
 A straightforward calculation shows the variance is
 $$
-\xi'V\xi = (C - 2B\rho + A\rho^2)/D.
+\operatorname{Var}(R(\xi)) = \xi'V\xi = (C - 2B\rho + A\rho^2)/D.
 $$
 
 #### Riskless Portfolios
@@ -242,7 +261,9 @@ Since $\operatorname{Var}(R(\zeta)) = \zeta'V\zeta = 0$ we have
 $\zeta'X$ is constant and call $\zeta$ _riskless_.
 If another riskless portfolio exists with different realized
 return then arbitrage exists.  By removing redundant assets we can assume
-there is exactly one riskless portfolio.
+there is exactly one riskless portfolio $\zeta$ with $\zeta'x = 1$.
+
+Multiplying $V\xi = \lambda x + \mu E[X]$ on the left by $\zeta'$0
 
 If $\zeta$ is the (unique) riskless portfolio with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
 then it is an eigenvector of $V$ having eigenvalue $0$. Since $V$ is self-adjoint
@@ -316,7 +337,6 @@ $$
 where $D_\perp = (C_\perp - R B_\perp) + R(R A_\perp - B_\perp)
 = C_\perp - 2R B_\perp + R^2 A_\perp$.
 
-The solution is
 <!--
 If a riskless portfolio exists then $V$ is not invertible. However
 $V + \epsilon I$ is for small non-zero $\epsilon$.  In this case
@@ -494,18 +514,21 @@ We recall some basic facts about finite-dimensional linear algebra.
 The space of all _linear operators_ from a vector space $V$ to a vector space $W$
 is denoted $\mathcal{L}(V,W)$. If $W = V$ we write $\mathcal{L}(V)$.
 The _dual vector space_ of $V$ is $V^* = \mathcal{L}(V,\bm{R})$
-with _dual pairing_ $\langle v, v^*\rangle = v^*(v)\in\bm{R}$. 
+with _dual pairing_ $\langle v, v^*\rangle = v^*(v)\in\bm{R}$, $v\in V$, $v^*\in V^*$.
 Note that $v\mapsto \langle v, v^*\rangle$, $v\in V$
 determines $v^*\in V^*$ by the definition of what a function is.
+
 The _adjoint_ of $T\colon V\to W$ is $T^*\colon W^*\to V^*$ defined by
 $\langle v, T^*w\rangle = \langle Tv, w^*\rangle$, $v\in V$, $w^*\in W^*$.
 
+<!--
 If $X\subseteq V$ is any subset its _annihilator_
 is $X^\perp = \{v^*\in V^* : \langle x,v^*\rangle = 0, x\in X\}\subseteq V^*$.
 If $Y^*\subseteq V^*$ is any subset its _pre-annihilator_ is
 $^\perp Y^* = \{v\in V : \langle v,y^*\rangle = 0,y^*\in Y^*\}\subseteq V$.
 The _span_ of $X\subseteq V$ is the smallest subspace of $V$ containing $X$ and equals
 $^\perp(X^\perp)$. The span of $Y^*\subseteq W^*$ is $(^\perp Y^*)^\perp$.
+-->
 
 The map $\nu_V = \nu\colon V\to V^{**}$ defined by
 $\langle \nu v, v^*\rangle = \langle v, v^*\rangle$, $v^*\in V^*$
@@ -515,24 +538,14 @@ because it does not depend on a basis for $V$.
 
 #### Inner Product
 
-If $V$ is finite dimensional then $V^*$ has the same dimension as $V$.
-Let $\{e_i\}$ be any _basis_ of $V$. There exists a unique _dual basis_ $\{e^i\}\subseteq V^*$
-with $\langle e_i, e^j\rangle = \delta_{ij}$, where $\delta_{ij}$ is the Kronecker delta function.
-If $x = \sum_i x_i e_i$ then $x_i = \langle x, e^i\rangle e_i$ so
-$x = \sum_i \langle x, e^i\rangle e_i$.
-Define the isomorphism $\iota_V = \iota\colon V\to V^*$ by $\iota e_i = e^i$ so
-$\iota x = \sum_i \langle x, e^i\rangle e^i$ for any $x\in V$.
-The basis defines an _inner product_ on $V$ by $(x, y) = \langle x, \iota y\rangle$.
-
-For $V = \bm{R}^n$ the _standard basis_ $e_i = (0,\ldots,1_i,\ldots 0)$ gives
-the standard inner-product on $\bm{R}^n$.
-
-We can also define $\iota y\in V^*$ for $y\in V$ given an inner product by
-$\langle x, \iota y\rangle = (x, y)$, $x\in V$. Note that this does not
-depend on choosing a basis for $V$.
+An isomorphisms $\iota\colon V\to V^*$ are in one-to-once correspondence
+with inner products on $V$ via $\langle x, \iota y\rangle = (x, y)$, $x,y\in V$. 
+In this case the _orthogonal complement_ of $X\subseteq V$ and we write
+$X^\perp = \iota^{-1}X^\perp\subseteq V = ^\perp(\iota(X))$.
+denote the adjoint $T' = \iota_W^{-1}T*\iota_V$.
 
 Given an inner product we say $x,y\in V$ are _orthogonal_ if $(x,y) = 0$.
-If $(e,e) = 1$ we call $e$ a _unit vector_. An _orthonormal basis_ is
+If $(e,e) = 1$ we call $e$ a _unit vector_. An _orthonormal basis_ $\{e_\}$ is
 a basis of orthogonal unit vectors, $(e_i,e_j) = \delta_{ij}$.
 
 The _adjoint_ of a linear operator $T\in\mathcal{L}(V,W)$, where $V$ and $W$
