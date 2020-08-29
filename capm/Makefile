@@ -22,20 +22,21 @@ FLAGS += --toc
 #FLAGS += -H katex.html
 #FLAGS += -A footer.html
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers+definition_lists
+FLAGS += --filter pandoc-citeproc --metadata link-citations=true
 #FLAGS += --bibliography epst.json
 
 $(HTML): %.html: %.md capm.css
 	pandoc $(FLAGS) $< -o $@
 
 $(PDF): %.pdf: %.md
-	pandoc -H ../header.tex $< -o $@
+	pandoc -H ../header.tex --filter pandoc-citeproc --metadata link-citations=true $< -o $@
 
 #pandoc --pdf-engine=xelatex -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
 
 #	pandoc --pdf-engine=xelatex -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
 
 $(DOCX): %.docx: %.md
-	pandoc -H header.tex $< -o $@
+	pandoc -H ../header.tex $< -o $@
 
 rsync:
 	rcp epst.html capmc.html capm.html capm.css kal@web626.webfaction.com:webapps/kalx/capm

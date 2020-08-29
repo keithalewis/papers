@@ -1,8 +1,9 @@
 ---
-title: Efficient Portfolios and Separation Theorems
+title: Efficient Portfolios
 author: Keith A. Lewis
 institute: KALX, LLC
 classoption: fleqn
+bibliography: epst.json
 fleqn: true
 thanks: |
 	Peter Carr and David Shimko gave insightful feedback to
@@ -32,7 +33,7 @@ $$
 
 The classical CAPM formula follows by taking expected values
 $E[R(\xi)] - R = \beta(E[R(\mu)] - R)$ where $R = R(\zeta)$ is the riskless
-return, and $\mu$ is the market portfolio.
+return, and $\mu$ is the "market portfolio".
 In this case $\beta = \operatorname{Cov}(R(\xi),R(\mu))/\operatorname{Var}(R(\mu))$.
 
 ## One-Period Model
@@ -53,7 +54,7 @@ $\bm{R}^I$ where $n$ is the cardinality of the set of instruments $I$.
 If $A^B = \{f\colon B\to A\}$ is the set of functions from $B$ to $A$
 then $x\in\bm{R}^I$ is a function $x\colon I\to\bm{R}$
 where $x(i)\in\bm{R}$ is the price of instrument $i\in I$. 
-This avoids circumlocutions like let $I = \{i_1,\ldots,i_n\}$
+This avoids circumlocutions such as let $I = \{i_1,\ldots,i_n\}$
 and $x = (x_1,\ldots,x_n)$ where $x_j = x(i_j)$, $j = 1,\ldots, n$.
 
 A _portfolio_ $\xi\in\bm{R}_I$ represents the number of
@@ -76,26 +77,30 @@ considered as a row vector.
 
 The _value_ of a portfolio $\xi$ given prices $x$ is $\xi'x$.
 It is the cost of attaining the portfolio $\xi$.
-The _realized return_ is $R(\xi) = \xi'X/\xi'x$ when $\xi'x\not=0$.
+The _realized return_ is $R(\xi) = \xi'X/\xi'x$ when $\xi'x \not= 0$.
 Note $R(\xi) = R(t\xi)$ for any non-zero $t\in\bm{R}$ so
 there is no loss in assuming $\xi'x = 1$ when considering returns.
 In this case $R(\xi) = \xi'X$ is the realized return on the portfolio.
+It is common in the literature to use _returns_ instead of realized returns
+where the return $r$ is defined by $R = 1 + r\Delta t$ or
+$R = \exp(r\Delta t)$ where $\Delta t$ is the time in years from the
+beginning to the end of the period.
 
-There is _model arbitrage_ if there exists a portfolio $\xi$ with
+There is [_model arbitrage_](#model-arbitrage) if there exists a portfolio $\xi$ with
 $\xi'x < 0$ and $\xi'X(\omega) \ge0$ for all $\omega\in\Omega$:
 you make money on the initial investment and never lose money
 when unwinding at the end of the period. This definition does
 not require a measure on $\Omega$.
 
-The one-period Fundamental
-Theorem of Asset Pricing states there is no model arbitrage if
-and only if there exists a positive measure $\Pi$ on $\Omega$ with
+The one-period
+[Fundamental Theorem of Asset Pricing](#fundamental-theorem-of-asset-pricing)
+states there is no model arbitrage if and only if there exists a positive measure $\Pi$ on $\Omega$ with
 $x = \int_\Omega X(\omega)\,d\Pi(\omega)$. We assume $X$ is
-bounded, as it is in the real world, and $\Pi$ is finitely additive.
+bounded, as it is in the real world, and $\Pi$ is a
+[_finitely additive measure_](#finitely-additive-measure).
 The dual space of bounded functions on $\Omega$ is the space of finitely additive measures
 on $\Omega$
 with the dual pairing $\langle X,\Pi\rangle = \int_\Omega X\,d\Pi$ [@DunSch63].
-See the [Appendix](#model-arbitrage) for a short, self-contained proof of the FTAP.
 
 If $x = \int_\Omega X\,d\Pi$ for a positive measure $\Pi$ then all portfolios
 have the same expected realized return $1/\|\Pi\|$ where $\|\Pi\| = \int_\Omega
@@ -112,7 +117,7 @@ not a scalar multiple of $x$.
 As we've just seen, that would lead to models where all portfolios have
 the same expected realized return.
 
-## Efficient Portfolios 
+## Efficient Portfolios
 
 A portfolio $\xi$ is _efficient_
 if $\operatorname{Var}(R(\xi)) \le \operatorname{Var}(R(\eta))$ for every
@@ -128,7 +133,7 @@ $$
 $$
 The first order conditions for an extremum are
 $V\xi - \lambda x - \mu E[X] = 0$, $\xi'x = 1$, and $\xi'E[X] = \rho$.
-The [Appendix](#efficient-portfolios) shows that if $V$ is invertible then 
+The [Appendix](#efficient-portfolio) shows that if $V$ is invertible then 
 $\lambda = (C - \rho B)/D$, $\mu = (-B + \rho A)/D$, and
 $$
 \xi = \frac{C - \rho B}{D}V^{-1}x + \frac{-B + \rho A}{D}V^{-1}E[X]
@@ -151,18 +156,20 @@ Multiplying both sides by $X$ we have $\xi'X = (1 - \beta)\xi_0'X + \beta\xi_1'X
 $$
 	R(\xi) - R(\xi_0) = \beta(R(\xi_1) - R(\xi_0))
 $$
-where $\beta = \operatorname{Cov}(R(\xi) - R(\xi_0), R(\xi_1) - R(\xi_0))/\operatorname{Var}(R(\xi_1) - R(\xi_0))$.
+as functions on $\Omega$ where 
+$\beta = \operatorname{Cov}(R(\xi) - R(\xi_0), R(\xi_1) - R(\xi_0))/\operatorname{Var}(R(\xi_1) - R(\xi_0))$.
+The classical CAPM formula follows from taking expected values
+of both sides when $\xi_1$ is the "market portfolio" and $\xi_0$ is a
+[_riskless portfolio_](#riskless-portfolio).
 
 Note that $A$, $B$, $C$, and $D$ depend only on $x$, $E[X]$, and
 $E[XX']$. Classical literature focuses mainly on the latter three which
-may explain why prior authors overlooked this elementary but stronger
-result.  The classical CAPM result follows from taking expected values
-of both sides when $\xi_1$ is 'the market' portfolio and $\xi_0$ is a
-_riskless portfolio_.
+may explain why prior authors overlooked our elementary but stronger
+result.
 
-### Riskless Portfolios
+### Riskless Portfolio
 
-A portfolio $\zeta$ is riskless if its return is constant. In this case
+A portfolio $\zeta$ is _riskless_ if its realized return is constant. In this case
 $0 = \operatorname{Var}(R(\zeta)) = \zeta'V\zeta$ assuming, as we may, $\zeta'x = 1$.
 Since $V$ is positive semi-definite this implies $V\zeta = 0$ so
 $V$ is not invertible and the above analysis no longer holds.
@@ -170,13 +177,14 @@ $V$ is not invertible and the above analysis no longer holds.
 If another riskless portfolio exists with different realized
 return then arbitrage exists.  By removing redundant assets we can assume
 there is exactly one riskless portfolio $\zeta$ with $\zeta'x = 1$.
-
 Since $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
 $\{\zeta\}^\perp = \{z\in\bm{R}^I:\zeta'z = 0\}$
-is an invariant subspace of $V$.
-Let $P_\parallel = \zeta\zeta'/\zeta'\zeta$
-denote the orthogonal projection on the the space spanned by $\zeta$ and $P_\perp = I - P_\parallel$
-denote the projection onto the orthogonal complement so
+is an invariant subspace of $V$. $V$ has no other eigenvectors with eigenvalue 0
+so it is invertible when restricted to this subspace.
+
+Let $P_\parallel = \zeta\zeta'/\zeta'\zeta$ denote the orthogonal projection 
+onto the the space spanned by $\zeta$ and $P_\perp = I - P_\parallel$
+denote the projection onto its orthogonal complement so
 $V = VP_\perp + VP_\parallel$. Let $x_\perp = P_\perp x$ etc.
 
 The first order conditon $V\xi = \lambda x + \mu E[X]$ implies
@@ -184,26 +192,27 @@ $V\xi_\parallel = \lambda x_\parallel + \mu E[X]_\parallel$. Since $\xi_\paralle
 is a scalar multiple of $\zeta$ we have $0 = \lambda + \mu R$ so $\lambda = -\mu R$.
 On the orthogonal complement $V\xi_\perp = -\mu R x_\perp + \mu E[X]_\perp$ so
 $\xi_\perp = V^\dashv(E[X] - Rx)$ where $V^\dashv$ is the generalized (Moore-Penrose) inverse of $V$.
-Letting $\alpha = V^\dashv(E[X] - Rx)$, every optimal portfolio has the form
+Letting $\alpha = V^\dashv(E[X] - Rx)$, every efficient portfolio can be written
 $\xi = \mu \alpha + \nu\zeta$.
 We can and do assume $\alpha'x = 1$ so
 $1 = \mu + \nu$ and $\xi = \mu \alpha + (1 - \mu)\zeta$.
-Multiplying both sides by $X$ yields
+Multiplying both sides by $X$ we have $\xi'X = \mu \alpha'X + (1 - \mu)R$ hence
 $$
 	R(\xi) - R = \mu(R(\alpha) - R)).
 $$
-This implies the classical CAPM formula by taking expected values where $\alpha$ is the 'market' portfolio.
+This implies the classical CAPM formula by taking expected values where $\alpha$ is the "market portfolio".
 It also shows the Lagrangian multiplier
-$\mu = \operatorname{Cov}(R(\xi),R(\alpha))/\operatorname{Var}(R(\alpha))$.
+$\mu = \operatorname{Cov}(R(\xi),R(\alpha))/\operatorname{Var}(R(\alpha))$ is the classical beta.
 
 ## Appendix
 
-### Efficient Portfolios
+We collect some proofs and background material.
+
+### Efficient Portfolio
 
 Let's find the minimum value of $\operatorname{Var}(R(\xi))$ given $E[R(\xi)] =
 \rho$.  If $\xi'x = 1$ then $R(\xi) = \xi'E[X]$ and $\operatorname{Var}(R(\xi))
-= \xi'V\xi$ where $V = \operatorname{Var}(X) = \operatorname{Cov}(X,X) = E[XX']
-- E[X]E[X']$.
+= \xi'V\xi$ where $V = E[XX'] - E[X]E[X']$.
 
 We use Lagrangian multipliers and solve
 $$
@@ -272,177 +281,6 @@ A straightforward calculation shows the variance is
 $$
 \operatorname{Var}(R(\xi)) = \xi'V\xi = (C - 2B\rho + A\rho^2)/D.
 $$
-
-<!--
-If a riskless portfolio exists then $V$ is not invertible. However
-$V + \epsilon I$ is for small non-zero $\epsilon$.  In this case
-$A_\epsilon = x'(V + \epsilon I)^{-1}x$ ...
-In this case $A_\epsilon = x'V_\epsilon^{-1}x$ ...
-$D_\epsilon = A_\epsilon C_\epsilon - B_\epsilon^2$. 
-
-$A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$, and $C = E[X]V^{-1}E[X]$.
-
-$$
-\begin{aligned}
-((C_\epsilon - \rho B_\epsilon)/D_\epsilon) V_\epsilon^{-1}x
-&= ((C_\epsilon - \rho B_\epsilon)/D_\epsilon) V_\epsilon^{-1}x \\
-&= E \\
-\end{aligned}
-$$
-
-The constraints $1 = x'\xi$ and $\rho = E[X']\xi$ can be written
-
-## Two Assets
-
-Let $x = (x_0,x_1)$ and $X = (X_0,X_1)$. We can assume $x_0 = 1$ and $x_1 = 1$
-
-$$
- V = E[XX'] - E[X] E[X']
-    = \begin{bmatrix}
-        \operatorname{Var}(X_0) & \operatorname{Cov}(X_0,X_1)\\
-        \operatorname{Cov}(X_1,X_0) & \operatorname{Var}(X_1)\\
-    \end{bmatrix}
-    = \begin{bmatrix}
-		V_0 & \Gamma \\
-		\Gamma & V_1 \\
-    \end{bmatrix}
-$$
-
-The determinant of $V$ is $\Delta = V_0 V_1 - \Gamma^2$ and
-
-$$
- V^{-1}
-= \frac{1}{\Delta}
-    \begin{bmatrix}
-        V_1 & -\Gamma\\
-        -\Gamma & V_0\\
-    \end{bmatrix}
-$$
-
-$$
- V^{-1}x
-= \frac{1}{\Delta}
-    \begin{bmatrix}
-        V_1 - \Gamma \\
-        -\Gamma + V_0 \\
-    \end{bmatrix}
-$$
-
-$$
- V^{-1}E[X]
-= \frac{1}{\Delta}
-    \begin{bmatrix}
-        V_1 \bar{R}  - \Gamma \bar{S}\\
-        -\Gamma \bar{R} + V_0 \bar{S}\\
-    \end{bmatrix}
-$$
-
-where $\bar{R} = E[R]$ and $\bar{S} = E[S]$.
-
-$$
-A = x'V^{-1}x
-= \frac{1}{\Delta}(V_1  - 2\Gamma + V_0)
-$$
-$$
-B = x'V^{-1}E[X] = E[X']V^{-1}x
-= \frac{1}{\Delta}\bigl(V_1 \bar{R}  - \Gamma(\bar{S} + \bar{R}) + V_0 \bar{S}\bigr)
-$$
-
-$$
-C = E[X']V^{-1}E[X]
-= \frac{1}{\Delta}(V_1 \bar{R}^2  - 2\Gamma \bar{S} \bar{R}  + V_0 \bar{S}^2)
-$$
-
-Since $\Delta$ and $\Gamma$ tend to zero as $V_0 = \operatorname{Var}(X_0)\to 0$,
-$A$, $B$, and $C$ tend to infinity assuming $V_1 = \operatorname{Var}(X_1) > 0$ is fixed.
-
-Some calculation shows
-$$
-D = AC - B^2 = (\bar{S} - \bar{R})^2/\Delta
-$$
-so if $\rho = \bar{R}$
-$$
-\begin{aligned}
-\frac{C - \bar{R} B}{D}V^{-1}x
-&= \frac{
-	 V_1 \bar{R}^2  - 2\Gamma \bar{S} \bar{R}  + V_0 \bar{S}^2
-     - \bar{R}(V_1 \bar{R}  - \Gamma(\bar{S} + \bar{R}) + V_0 \bar{S})}
-	{(\bar{S} - \bar{R})^2(V_0 V_1 - \Gamma^2)}
-    \begin{bmatrix}
-        V_1 - \Gamma \\
-        -\Gamma + V_0 \\
-    \end{bmatrix}\\
-&= \frac{
-	 - 2\Gamma \bar{S} \bar{R}  + V_0 \bar{S}^2
-     - \bar{R}(- \Gamma(\bar{S} + \bar{R}) + V_0 \bar{S})}
-	{(\bar{S} - \bar{R})^2(V_0 V_1 - \Gamma^2)}
-    \begin{bmatrix}
-        V_1 - \Gamma \\
-        -\Gamma + V_0 \\
-    \end{bmatrix}\\
-&= \frac{
-	 \Gamma(-2\bar{S}\bar{R} + \bar{R}(\bar{S} + \bar{R}))
-     + V_0(\bar{S}^2 - \bar{S}\bar{R})}
-	{(\bar{S} - \bar{R})^2(V_0 V_1 - \Gamma^2)}
-    \begin{bmatrix}
-        V_1 - \Gamma \\
-        -\Gamma + V_0 \\
-    \end{bmatrix}\\
-&= \frac{
-	 \Gamma(-\bar{S}\bar{R} + \bar{R}^2)
-     + V_0(\bar{S}^2 - \bar{S}\bar{R})}
-	{(\bar{S} - \bar{R})^2(V_0 V_1 - \Gamma^2)}
-    \begin{bmatrix}
-        V_1 - \Gamma \\
-        -\Gamma + V_0 \\
-    \end{bmatrix}\\
-&= \frac{
-	 \Gamma\bar{R}(\bar{R} - \bar{S})
-     + V_0\bar{S}(\bar{S} - \bar{R})}
-	{(\bar{S} - \bar{R})^2(V_0 V_1 - \Gamma^2)}
-    \begin{bmatrix}
-        V_1 - \Gamma \\
-        -\Gamma + V_0 \\
-    \end{bmatrix}\\
-&= \frac{
-     + V_0\bar{S}
-	 - \Gamma\bar{R}}
-	{(\bar{S} - \bar{R})(V_0 V_1 - \Gamma^2)}
-    \begin{bmatrix}
-        V_1 - \Gamma \\
-        -\Gamma + V_0 \\
-    \end{bmatrix}\\
-\end{aligned}
-$$
-
-The variance $V$ has eigenvalues
-
-$$
-\lambda_{\pm} = \frac{1}{2}
-\left(
-  \sigma_R^2 + \sigma_S^2
-  \pm\sqrt{(\sigma_R^2 - \sigma_S^2)^2 + 4\rho^2 \sigma_R^2 \sigma_S^2}
-\right)
-$$
-
-with corresponding eigenvectors
-
-$$
-v_{\pm} = 
-\left(
-\frac{\sigma_R^2 - \sigma_S^2 \pm\sqrt{(\sigma_R^2 - \sigma_S^2)^2 + 4\rho^2 \sigma_R^2 \sigma_S^2}}
-{2\rho\sigma_R\sigma_S},1
-\right)
-$$
--->
-
-<!--
-If $Rx = E[X]$ and $\rho = R$ then $B = RA$ and $C = R^2A$ so $\Delta = 0$ and the
-matrix is not invertible.  However if we replace $C$ by $C(1 + \epsilon)$
-for $\epsilon\not=0$ it is and
-$\Delta = R^2A^2\epsilon$, $C - 2BR + AR^2 = R^2A\epsilon$.
-The maximum utility is $R - \tau/2A$ as noted above.
--->
 
 <!--
 ### Linear Algebra
@@ -548,11 +386,13 @@ $\xi\cdot X \ge0$ on $\Omega$ then _model arbitrage_ exists: you make money on t
 initial position and never lose money on any outcome.  This definition
 does not assume a probability measure on $\Omega$.
 
+#### Fundamental Theorem of Asset Pricing
+
 The one-period Fundamental Theorem of Asset Pricing states there is no model
 arbitrage if and only if there exists a positive measure $\Pi$ on
 $\Omega$ with $x = \int_\Omega X(\omega)\,d\Pi(\omega)$.  We assume $X$
 is bounded, as it is in the real world, and $\Pi$ is
-[finitely additive](#finitely-additive-measures).
+[finitely additive](#finitely-additive-measure).
 
 If such a measure exists and $\xi\cdot X\ge0$ then
 $\xi\cdot x = \int_\Omega \xi\cdot X\,d\Pi \ge0$ so arbitrage
@@ -634,7 +474,7 @@ space of $\bm{R}^n$.
 The Fr&eacute;chet derivative of $x'Tx$
 is $2x'T\in\mathcal{B}(\bm{R}^n, \bm{R}) = (\bm{R}^n)^*$.
 
-### Finitely Additive Measures
+### Finitely Additive Measure
 
 A measure $\mu$ on $\Omega$ is _finitely additive_ if $\mu(E\cup F) = \mu(E) + \mu(F)$
 when $E$ and $F$ are disjoint subsets of $\Omega$ and $\mu(\emptyset) = 0$.
@@ -662,8 +502,7 @@ $n$ is the cardinality of $\Omega$. The integral is just the inner product.
 
 It is not simple to define $\int_\Omega f\,d\mu$ for $f\in B(\Omega)$ and $\mu\in ba(\Omega)$
 when the cardinality of $\Omega$ is infinite.
-Consider the case $\Omega = \bm{N}$, the set of non-negative integers,
-where $B(\bm{N})$ is called $\mathcal{l}^\infty$.
+Consider the case $\Omega = \bm{N}$, the set of non-negative integers.
 Let $\mathcal{L}\subseteq\mathcal{l}^\infty$ be the sequences $x = (x_i)_{i\in\bm{N}}$
 for which $Lx = \lim_{i\to\infty} x_i$ exists. This defines a bounded linear functional
 on $\mathcal{L}$. By the Hahn-Banach theorem this can be extended to a bounded linear functional
@@ -725,7 +564,7 @@ Unfortunately, if $V$ is invertible then there is no $\xi$ with $\operatorname{V
 If $\xi'X = c$ for some constant $c$ then $V\xi = E[XX']\xi - E[X] E[X']\xi
 = E[XX'\xi] - E[X] E[X'\xi] = E[Xc] - E[X]c = 0$. We rectify this in the next section.
 
-### Riskless Portfolios
+### Riskless Portfolio
 
 A portfolio $\zeta\in\bm{R}^I$ with $\zeta'X(\omega) = c$ for some
 constant $c\in\bm{R}$ and all $\omega\in\Omega$ is called _riskless_.
@@ -740,7 +579,6 @@ redundant riskless portfolios we can assume there is exactly one.
 Note $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
 so $R^I_\perp = \{\zeta\}^\perp = \{y\in\bm{R}^I:\zeta'y = 0\}$ is an invariant subspace of $V$.
 Write $V = V_\parallel \oplus V_\perp$ into an orthogonal direct sum
-
 Let $V_\zeta = V|_{\{\zeta\}^\perp}$ where $\{\zeta\}^\perp = \{y\in\bm{R}^I:\zeta'y = 0\}$.
 We can assume $V_\zeta$ is invertible and find other optimal portfolios in $\{\zeta\}^\perp$ as above.
 
