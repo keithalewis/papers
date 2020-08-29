@@ -19,11 +19,9 @@ is better. Given two portfolios having the same return the one having
 smaller variance is preferred. A portfolio having variance smaller
 than every portfolio with the same return is called _efficient_.
 
-In the [one-period model](#one-period-model) all efficient portfolios lie in a two-dimensional
-subspace.
+In the [one-period model](#one-period-model) all efficient portfolios lie in a two-dimensional subspace.
 Denoting the _realized return_ of a portfolio $\xi$ by $R(\xi)$,
-for any independent optimal portfolios $\zeta$ and $\mu$ every optimal
-portfolio $\xi$ satisfies
+for any independent optimal portfolios $\zeta$ and $\mu$ every optimal portfolio $\xi$ satisfies
 $$
 	R(\xi) - R(\zeta) = \beta\bigl(R(\mu) - R(\zeta)\bigr)
 $$
@@ -120,9 +118,18 @@ A portfolio $\xi$ is _efficient_
 if $\operatorname{Var}(R(\xi)) \le \operatorname{Var}(R(\eta))$ for every
 portfolio $\eta$ having the same expected realized return as $\xi$.
 
-The [Appendix](#efficient-portfolios) shows that if
-$V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$
-is invertible then every efficient portfolio has the form
+If $\xi'x = 1$ then $\operatorname{Var}(R(\xi)) = E[(\xi'X)^2] - E[\xi'X]^2
+= E[\xi' X X'\xi] - E[\xi'X] E[X'\xi] = \xi'V\xi$,
+where $V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$.
+We can find efficent portfolios using Lagrangian multipliers.
+For a given realized return $\rho$, solve
+$$
+	\min_{\xi, \lambda, \mu}\frac{1}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho).
+$$
+The first order conditions for an extremum are
+$V\xi - \lambda x - \mu E[X] = 0$, $\xi'x = 1$, and $\xi'E[X] = \rho$.
+The [Appendix](#efficient-portfolios) shows that if $V$ is invertible then 
+$\lambda = (C - \rho B)/D$, $\mu = (-B + \rho A)/D$, and
 $$
 \xi = \frac{C - \rho B}{D}V^{-1}x + \frac{-B + \rho A}{D}V^{-1}E[X]
 $$
@@ -137,9 +144,8 @@ If $\xi_0$ and $\xi_1$ are any two independent efficient portfolios then
 they belong to the subspace spanned by $V^{-1}x$ and $V^{-1}E[X]$.
 Every efficient portfolio can be written $\xi = \beta_0\xi_0 + \beta_1\xi_1$ for some
 scalars $\beta_0$ and $\beta_1$.
-
-Assume $\xi_j'x = 1$ for $j = 0,1$ so $R(\xi_j) = \xi_j'X$.
-If $\xi'x = 1$ then $\beta_0 + \beta_1 = 1$ and
+Assuming $\xi_j'x = 1$ for $j = 0,1$ so $R(\xi_j) = \xi_j'X$ and
+$\xi'x = 1$ so $R(\xi) = \xi'X$ then $\beta_0 + \beta_1 = 1$ and
 $\xi = (1 - \beta)\xi_0 + \beta\xi_1$ where $\beta = \beta_1$.
 Multiplying both sides by $X$ we have $\xi'X = (1 - \beta)\xi_0'X + \beta\xi_1'X$ hence
 $$
@@ -151,7 +157,7 @@ Note that $A$, $B$, $C$, and $D$ depend only on $x$, $E[X]$, and
 $E[XX']$. Classical literature focuses mainly on the latter three which
 may explain why prior authors overlooked this elementary but stronger
 result.  The classical CAPM result follows from taking expected values
-of both sides when $\mu$ is the 'market' portfolio and $\zeta$ is a
+of both sides when $\xi_1$ is 'the market' portfolio and $\xi_0$ is a
 _riskless portfolio_.
 
 ### Riskless Portfolios
@@ -161,8 +167,28 @@ $0 = \operatorname{Var}(R(\zeta)) = \zeta'V\zeta$ assuming, as we may, $\zeta'x 
 Since $V$ is positive semi-definite this implies $V\zeta = 0$ so
 $V$ is not invertible and the above analysis no longer holds.
 
-As the appendix shows, we can assume there is only one riskless portfolio $\zeta$
-with $\zeta'x = 1$ and every efficient portfolio belongs to the subspace spanned
+If another riskless portfolio exists with different realized
+return then arbitrage exists.  By removing redundant assets we can assume
+there is exactly one riskless portfolio $\zeta$ with $\zeta'x = 1$.
+
+Since $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
+the orthogonal complement $\{\zeta\}^\perp$ is an invariant subspace for $V$.
+Let $P_\parallel = \zeta\zeta'/zeta'\zeta$
+denote the projection on the the space spanned by $\zeta$ and $P_\perp = I - P_\parallel$
+denote the projection onto the orthogonal complement.
+
+The first order conditon $V\xi = \lambda x + \mu E[X]$ implies
+$V\xi_\parallel = \lambda x_\parallel + \mu E[X_\parallel]$. Since $\xi_\parallel$
+is a scalar multiple of $\zeta$ we have $0 = \lambda + \mu R$ so $\lambda = -\mu R$.
+
+and $V\xi = V_\parallel \xi_\parallel
++ V_\perp \xi_\perp$ where
+
+Every vector $\xi\in\bm{R}_I$ can be uniquely expressed as $\xi = \xi_\perp + \xi_\parallel$
+where $\zeta'\xi_\perp = 0$ and $\xi_\parallel$ is a scalar multiple of $\zeta$.
+
+This implies $0 = V\zeta = \lambda x + \mu EX$
+
 by $\alpha = V^\dashv(E[X] - Rx)$ and $\zeta$, where $V^\dashv$ is the generalized
 (Moore-Penrose) inverse of $V$ and $R = R(\zeta) = \zeta'X$ is the riskless realizied return.
 We can and do assume $\alpha'x = 1$.
@@ -172,7 +198,7 @@ Multiplying both sides by $X$ yields
 $$
 	R(\xi) - R = \mu(R(\alpha) - R)).
 $$
-This implies the classical CAPM formula by taking expected values.
+This implies the classical CAPM formula by taking expected values where $\alpha$ is the 'market' portfolio.
 
 ## Appendix
 
@@ -243,10 +269,7 @@ $$
 where $D = AC - B^2$. The solution is
 $\lambda = (C - \rho B)/D$, $\mu = (-B + \rho A)/D$, and
 $$
-\begin{aligned}
-    \xi &= V^{-1}(\lambda x + \mu E[X]) \\
-        &= \frac{C - \rho B}{D} V^{-1}x + \frac{-B + \rho A}{D} V^{-1}E[X]
-\end{aligned}
+    \xi = \frac{C - \rho B}{D} V^{-1}x + \frac{-B + \rho A}{D} V^{-1}E[X].
 $$
 
 A straightforward calculation shows the variance is
