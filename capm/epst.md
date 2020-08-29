@@ -172,33 +172,29 @@ return then arbitrage exists.  By removing redundant assets we can assume
 there is exactly one riskless portfolio $\zeta$ with $\zeta'x = 1$.
 
 Since $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
-the orthogonal complement $\{\zeta\}^\perp$ is an invariant subspace for $V$.
-Let $P_\parallel = \zeta\zeta'/zeta'\zeta$
+the orthogonal complement $\{\zeta\}^\perp = \{z\in\bm{R}^I:\zeta'z = 0\}$
+is an invariant subspace of $V$.
+Let $P_\parallel = \zeta\zeta'/\zeta'\zeta$
 denote the projection on the the space spanned by $\zeta$ and $P_\perp = I - P_\parallel$
-denote the projection onto the orthogonal complement.
+denote the projection onto the orthogonal complement. The projections commute with $V$
+and $V = VP_\perp + V_\parallel$. Let $x_\perp = P_\perp x$ etc.
 
 The first order conditon $V\xi = \lambda x + \mu E[X]$ implies
-$V\xi_\parallel = \lambda x_\parallel + \mu E[X_\parallel]$. Since $\xi_\parallel$
+$V\xi_\parallel = \lambda x_\parallel + \mu E[X]_\parallel$. Since $\xi_\parallel$
 is a scalar multiple of $\zeta$ we have $0 = \lambda + \mu R$ so $\lambda = -\mu R$.
-
-and $V\xi = V_\parallel \xi_\parallel
-+ V_\perp \xi_\perp$ where
-
-Every vector $\xi\in\bm{R}_I$ can be uniquely expressed as $\xi = \xi_\perp + \xi_\parallel$
-where $\zeta'\xi_\perp = 0$ and $\xi_\parallel$ is a scalar multiple of $\zeta$.
-
-This implies $0 = V\zeta = \lambda x + \mu EX$
-
-by $\alpha = V^\dashv(E[X] - Rx)$ and $\zeta$, where $V^\dashv$ is the generalized
-(Moore-Penrose) inverse of $V$ and $R = R(\zeta) = \zeta'X$ is the riskless realizied return.
-We can and do assume $\alpha'x = 1$.
-If $\xi = \mu \alpha + \nu\zeta$ with $\xi'x = 1$ then
-$1 = \mu + \nu$ so $\xi = \mu \alpha + (1 - \mu)\zeta$.
+On the orthogonal complement $V\xi_\perp = -\mu R x_\perp + \mu E[X]_\perp$ so
+$\xi_\perp = V^\dashv(E[X] - Rx)$ where $V^\dashv$ is the generalized (Moore-Penrose) inverse of $V$.
+Letting $\alpha = V^\dashv(E[X] - Rx)$, every optimal portfolio has the form
+$\xi = \mu \alpha + \nu\zeta$.
+We can and do assume $\alpha'x = 1$ so
+$1 = \mu + \nu$ and $\xi = \mu \alpha + (1 - \mu)\zeta$.
 Multiplying both sides by $X$ yields
 $$
 	R(\xi) - R = \mu(R(\alpha) - R)).
 $$
 This implies the classical CAPM formula by taking expected values where $\alpha$ is the 'market' portfolio.
+It also shows the Lagrangian multiplier
+$\mu = \operatorname{Cov}(R(\xi),R(\alpha))/\operatorname{Var}(R(\alpha))$.
 
 ## Appendix
 
@@ -276,89 +272,6 @@ A straightforward calculation shows the variance is
 $$
 \operatorname{Var}(R(\xi)) = \xi'V\xi = (C - 2B\rho + A\rho^2)/D.
 $$
-
-#### Riskless Portfolios
-
-If $V$ is not invertible there exists a portfolio $\zeta\not=0$ with $V\zeta = 0$.
-Since $\operatorname{Var}(R(\zeta)) = \zeta'V\zeta = 0$ we have
-$\zeta'X$ is constant and call $\zeta$ _riskless_.
-If another riskless portfolio exists with different realized
-return then arbitrage exists.  By removing redundant assets we can assume
-there is exactly one riskless portfolio $\zeta$ with $\zeta'x = 1$.
-
-Multiplying $V\xi = \lambda x + \mu E[X]$ on the left by $\zeta'$0
-
-If $\zeta$ is the (unique) riskless portfolio with $\zeta'x = 1$ (and $\zeta'X = R(\zeta) = R$)
-then it is an eigenvector of $V$ having eigenvalue $0$. Since $V$ is self-adjoint
-$\{\zeta\}^\perp = \{\xi\in\bm{R}^I:\zeta'\xi = 0\}$ is an invariant subspace of $V$.
-Let $V = V_\perp \oplus V_\parallel$
-be the decomposition of $V$ on the
-orthogonal invariant subspaces $\{\zeta\}^\perp\oplus\bm{R}\{\zeta\}$.
-Since all eigenvectors of $V$ other than $\zeta$ have non-zero eigenvalues $V_\perp$ is invertible.
-
-Let $P_\parallel = \zeta\zeta'/\|\zeta\|^2$ be the orthogonal projection onto the
-subspace spanned by $\zeta$ and $P_\perp = I - P_\parallel$ the projection
-onto its orthogonal complement. The projections commute with $V$ ($VP = PV$)
-and $V = P_\parallel VP_\parallel + P_\perp VP_\perp = VP_\parallel + VP_\perp$.
-
-The equation $V\xi = \lambda x + \mu E[X]$ can be written
-$$
-\begin{aligned}
-	V\xi_\perp &= \lambda x_\perp + \mu E[X_\perp]\\
-	V\xi_\parallel &= \lambda x_\parallel + \mu E[X_\parallel]\\
-\end{aligned}
-$$
-where $\xi = \xi_\perp + \xi_\parallel$, $x_\perp = P_\perp x$, etc.
-Since $\xi_\parallel$ is a multiple of $\zeta$ and $\zeta'x = 1$, $\zeta'X
-= R$ the second equation becomes $0 = \lambda + \mu R$ so $\lambda = -R\mu$
-and $\lambda x_\parallel + \mu E[X_\parallel] = \mu(E[X_\parallel] - Rx_\parallel)$.
-
-Since $V_\perp$ is invertible we have
-$\xi_\perp = \lambda V_\perp^{-1}x_\perp + \mu V_\perp^{-1}E[X_\perp]$
-and $\xi = \xi_\perp + \xi_\parallel = \mu(V_\perp^{-1}E[X_\perp] - R V_\perp^{-1}x_\perp)
-+ \nu \zeta$ for some $\nu\in\bm{R}$.
-The constraints $\rho = E[X']\xi$ and $1 = x'\xi$ give us
-$$
-\begin{bmatrix}
-\rho \\
-1 \\
-\end{bmatrix}
-=
-\begin{bmatrix}
-\mu(C_\perp - R B_\perp) + R\nu \\
-\mu(B_\perp - R A_\perp) + \nu \\
-\end{bmatrix}
-= \begin{bmatrix}
-C_\perp - R B_\perp & R \\
-B_\perp - R A_\perp & 1\\
-\end{bmatrix}
-\begin{bmatrix}
-\mu \\
-\nu
-\end{bmatrix}
-$$
-where $A_\perp = x_\perp V_\perp^{-1}x_\perp$, etc.
-
-Inverting gives
-$$
-\begin{bmatrix} \mu \\ \nu \end{bmatrix}
-= \frac{1}{D_\perp}
-\begin{bmatrix}
-1 & -R \\
-R A_\perp - B_\perp & C_\perp - R B_\perp\\
-\end{bmatrix}
-\begin{bmatrix}
-\rho \\
-1
-\end{bmatrix}
-=
-\begin{bmatrix}
-(\rho - R)/D_\perp \\
-(R \rho A_\perp - (\rho + R)B_\perp + C_\perp)/D_\perp\\
-\end{bmatrix}
-$$
-where $D_\perp = (C_\perp - R B_\perp) + R(R A_\perp - B_\perp)
-= C_\perp - 2R B_\perp + R^2 A_\perp$.
 
 <!--
 If a riskless portfolio exists then $V$ is not invertible. However
@@ -531,6 +444,7 @@ $\Delta = R^2A^2\epsilon$, $C - 2BR + AR^2 = R^2A\epsilon$.
 The maximum utility is $R - \tau/2A$ as noted above.
 -->
 
+<!--
 ### Linear Algebra
 
 We recall some basic facts about finite-dimensional linear algebra.
@@ -544,14 +458,12 @@ determines $v^*\in V^*$ by the definition of what a function is.
 The _adjoint_ of $T\colon V\to W$ is $T^*\colon W^*\to V^*$ defined by
 $\langle v, T^*w\rangle = \langle Tv, w^*\rangle$, $v\in V$, $w^*\in W^*$.
 
-<!--
 If $X\subseteq V$ is any subset its _annihilator_
 is $X^\perp = \{v^*\in V^* : \langle x,v^*\rangle = 0, x\in X\}\subseteq V^*$.
 If $Y^*\subseteq V^*$ is any subset its _pre-annihilator_ is
 $^\perp Y^* = \{v\in V : \langle v,y^*\rangle = 0,y^*\in Y^*\}\subseteq V$.
 The _span_ of $X\subseteq V$ is the smallest subspace of $V$ containing $X$ and equals
 $^\perp(X^\perp)$. The span of $Y^*\subseteq W^*$ is $(^\perp Y^*)^\perp$.
--->
 
 The map $\nu_V = \nu\colon V\to V^{**}$ defined by
 $\langle \nu v, v^*\rangle = \langle v, v^*\rangle$, $v^*\in V^*$
@@ -623,6 +535,7 @@ We can also write $x\otimes y = xy'$ where $y'$ is the column vector correspondi
 and use standard matrix multiplication. Note $I = \sum_i e_i\otimes e_i$ is the
 identity operator for any orthonormal basis $\{e_i\}$.
 
+-->
 
 ### Model Arbitrage
 
