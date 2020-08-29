@@ -118,7 +118,7 @@ A portfolio $\xi$ is _efficient_
 if $\operatorname{Var}(R(\xi)) \le \operatorname{Var}(R(\eta))$ for every
 portfolio $\eta$ having the same expected realized return as $\xi$.
 
-If $\xi'x = 1$ then $\operatorname{Var}(R(\xi)) = E[(\xi'X)^2] - E[\xi'X]^2
+If $\xi'x = 1$ then $\operatorname{Var}(R(\xi)) = E[(\xi'X)^2] - (E[\xi'X])^2
 = E[\xi' X X'\xi] - E[\xi'X] E[X'\xi] = \xi'V\xi$,
 where $V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$.
 We can find efficent portfolios using Lagrangian multipliers.
@@ -172,12 +172,12 @@ return then arbitrage exists.  By removing redundant assets we can assume
 there is exactly one riskless portfolio $\zeta$ with $\zeta'x = 1$.
 
 Since $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
-the orthogonal complement $\{\zeta\}^\perp = \{z\in\bm{R}^I:\zeta'z = 0\}$
+$\{\zeta\}^\perp = \{z\in\bm{R}^I:\zeta'z = 0\}$
 is an invariant subspace of $V$.
 Let $P_\parallel = \zeta\zeta'/\zeta'\zeta$
-denote the projection on the the space spanned by $\zeta$ and $P_\perp = I - P_\parallel$
-denote the projection onto the orthogonal complement. The projections commute with $V$
-and $V = VP_\perp + V_\parallel$. Let $x_\perp = P_\perp x$ etc.
+denote the orthogonal projection on the the space spanned by $\zeta$ and $P_\perp = I - P_\parallel$
+denote the projection onto the orthogonal complement so
+$V = VP_\perp + VP_\parallel$. Let $x_\perp = P_\perp x$ etc.
 
 The first order conditon $V\xi = \lambda x + \mu E[X]$ implies
 $V\xi_\parallel = \lambda x_\parallel + \mu E[X]_\parallel$. Since $\xi_\parallel$
