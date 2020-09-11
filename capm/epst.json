@@ -1,0 +1,29 @@
+[
+	{
+		"id": "DunSch63",
+		"type": "book",
+		"collection-title": "Pure and applied mathematics (John Wiley & Sons)",
+		"event-place": "New York",
+		"publisher": "Interscience Publishers",
+		"publisher-place": "New York",
+		"title": "Linear operators",
+		"author": [
+			{
+				"family": "Dunford",
+				"given": "Nelson"
+			},
+			{
+				"family": "Schwartz",
+				"given": "Jacob"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1963"
+				]
+			]
+			
+		}
+	}
+]
