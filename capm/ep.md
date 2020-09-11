@@ -51,6 +51,8 @@ specifies the initial instrument _prices_ $x\in\bm{R}^I$ and the final
 instrument prices $X\colon\Omega\to\bm{R}^I$ depending on the outcome.
 We assume, as customary, that there are no cash flows associated with
 the instruments and transactions are perfectly liquid and divisible.
+The one period model also specifies a probability measure $P$ on the
+space of outcomes.
 
 It is common in the literature to write $\bm{R}^n$ instead of
 $\bm{R}^I$ where $n$ is the cardinality of the set of instruments $I$.
@@ -81,30 +83,15 @@ If $V$ is any vector space its dual space is $V^* = \mathcal{L}(V,\bm{R})$ where
 $\mathcal{L}(V,W)$ is the space of _linear transformations_ from the vector space $V$ to
 the vector space $W$. If we write $\xi'$ to denote this linear functional corresponding to $\xi$ then
 $\xi'x = \xi\cdot x$ is the linear functional applied to $x$.
+We also write the _dual pairing_ as $\langle x, \xi\rangle = \xi'x$.
 
 Note that $x\xi'$ is a linear transformation from $R^I$ to $R^I$ defined by
 $(x\xi')y = x(\xi'y) = (\xi'y)x$ since $\xi'y\in\bm{R}$ is a scalar.
 Matrix multiplication is just composition of linear operators.
 
-## Efficient Portfolios
+## Model Arbitrage
 
-A portfolio $\xi$ is _efficient_
-if $\operatorname{Var}(R(\xi)) \le \operatorname{Var}(R(\eta))$ for every
-portfolio $\eta$ having the same expected realized return as $\xi$.
-
-If $\xi'x = 1$ then $\operatorname{Var}(R(\xi)) = E[(\xi'X)^2] - (E[\xi'X])^2
-= E[\xi' X X'\xi] - E[\xi'X] E[X'\xi] = \xi'V\xi$,
-where $V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$.
-We can find efficent portfolios using Lagrangian multipliers.
-For a given realized return $\rho$, solve
-$$
-	\min\frac{1}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)
-$$
-for $\xi$, $\lambda$, and $\mu$.
-The first order conditions for an extremum are
-$V\xi - \lambda x - \mu E[X] = 0$, $\xi'x = 1$, and $\xi'E[X] = \rho$.
-
-There is [_model arbitrage_](#model-arbitrage) if there exists a portfolio $\xi$ with
+There is _model arbitrage_ if there exists a portfolio $\xi$ with
 $\xi'x < 0$ and $\xi'X(\omega) \ge0$ for all $\omega\in\Omega$:
 you make money on the initial investment and never lose money
 when unwinding at the end of the period. This definition does
@@ -119,20 +106,34 @@ bounded, as it is in the real world, and $\Pi$ is a
 The dual space of bounded functions on $\Omega$ is the space of finitely additive measures
 on $\Omega$
 with the dual pairing $\langle X,\Pi\rangle = \int_\Omega X\,d\Pi$ [@DunSch63].
+???chapter, page???
 
 If $x = \int_\Omega X\,d\Pi$ for a positive measure $\Pi$ then all portfolios
-have the same expected realized return $1/\|\Pi\|$ where $\|\Pi\| = \int_\Omega
+have the same expected realized return $R = 1/\|\Pi\|$ where $\|\Pi\| = \int_\Omega
 1\,d\Pi$ is the mass of $\Pi$ and the expected value is with respect to
 the probability measure $Q = \Pi/\|\Pi\|$.
-This follows from $E[\xi'X] = \xi'x/\|\Pi\|$ for any portfolio $\xi$.
+This follows from $E[\xi'X] = \xi'x/\|\Pi\| = R\xi'x$ for any portfolio $\xi$.
 
 Note $Q$ is not the probability of anything, it is simply a positive
 measure with mass 1. The above statements are geometrical, not probabilistic.
 
-The one period model also specifies a probability measure $P$ on the
-space of outcomes, but in general $E[X]$ under this measure is
-not a scalar multiple of $x$.
-As we've just seen, that would lead to models where all portfolios have
-the same expected realized return.
+## Efficient Portfolios
+
+A portfolio $\xi$ is _efficient_
+if $\operatorname{Var}(R(\xi)) \le \operatorname{Var}(R(\eta))$ for every
+portfolio $\eta$ having the same expected realized return as $\xi$.
+
+If $\xi'x = 1$ then $\operatorname{Var}(R(\xi)) = E[(\xi'X)^2] - (E[\xi'X])^2
+= E[\xi' X X'\xi] - E[\xi'X] E[X'\xi] = \xi'V\xi$,
+where $V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$.
+We can find efficent portfolios using Lagrangian multipliers.
+For a given realized return $\rho$ we can solve
+$$
+	\min\frac{1}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)
+$$
+for $\xi$, $\lambda$, and $\mu$.
+The first order conditions for an extremum are
+$V\xi - \lambda x - \mu E[X] = 0$, $\xi'x = 1$, and $\xi'E[X] = \rho$.
+
 
 ## References
