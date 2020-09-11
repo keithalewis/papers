@@ -23,7 +23,7 @@ FLAGS += --toc
 #FLAGS += -A footer.html
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers+definition_lists
 FLAGS += --filter pandoc-citeproc --metadata link-citations=true
-#FLAGS += --bibliography epst.json
+FLAGS += --bibliography epst.json
 
 $(HTML): %.html: %.md capm.css
 	pandoc $(FLAGS) $< -o $@
