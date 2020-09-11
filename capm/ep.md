@@ -33,7 +33,11 @@ where $\beta = \operatorname{Cov}(R - R_0, R_1 - R_0)/\operatorname{Var}(R_1 - R
 is efficient.  This generalizes the classical Capital Asset Pricing
 Model formula for the expected realized return of efficient portfolios.
 The classic CAPM formula follows by taking expected values of both sides
-when $\operatorname{Var}(R_0) = 0$ and $R_1$ is the "market" portfolio.
+when $\operatorname{Var}(R_0) = 0$ and $R_1$ is the "market" portfolio
+$$
+	E[R] - R_0 = \beta(E[R_1] - R_0)
+$$
+where $\beta = \operatorname{Cov}(R, R_1)/\operatorname{Var}(R_1)$.
 
 ## One-Period Model
 
@@ -53,8 +57,9 @@ $\bm{R}^I$ where $n$ is the cardinality of the set of instruments $I$.
 If $A^B = \{f\colon B\to A\}$ is the set of functions from $B$ to $A$
 then $x\in\bm{R}^I$ is a function $x\colon I\to\bm{R}$
 where $x(i) = x_i \in\bm{R}$ is the price of instrument $i\in I$. 
-This avoids circumlocutions such as let $I = \{i_1,\ldots,i_n\}$
-and $x = (x_1,\ldots,x_n)$ where $x_j = x(i_j)$, $j = 1,\ldots, n$.
+This avoids circumlocutions such as let $I = \{i_1,\ldots,i_n\}$ be the
+set of instruments
+and $x = (x_1,\ldots,x_n)$ be their corresponding prices $x_j = x(i_j)$, $j = 1,\ldots, n$.
 
 A _portfolio_ $\xi\in\bm{R}^I$ is the number of shares initially purchased in each instrument.
 The _value_ of a portfolio $\xi$ given prices $x$ is
@@ -69,6 +74,18 @@ where the return $r$ is defined by $R = 1 + r\Delta t$ or
 $R = \exp(r\Delta t)$ where $\Delta t$ is the time in years or day count fraction of the period.
 Since we are considering a one period model there is no need to drag $\Delta t$ into consideration.
 
+Although porfolios and prices are both vectors they are not the same. A portfolio turns prices into
+values. The function $\xi\mapsto \xi\cdot x$ is a _linear functional_ from prices to values.
+Mathematically we say $\xi\in(\bm{R}^I)^*$, the _dual space_ of $\bm{R}^I$.
+If $V$ is any vector space its dual space is $V^* = \mathcal{L}(V,\bm{R})$ where 
+$\mathcal{L}(V,W)$ is the space of _linear transformations_ from the vector space $V$ to
+the vector space $W$. If we write $\xi'$ to denote this linear functional corresponding to $\xi$ then
+$\xi'x = \xi\cdot x$ is the linear functional applied to $x$.
+
+Note that $x\xi'$ is a linear transformation from $R^I$ to $R^I$ defined by
+$(x\xi')y = x(\xi'y) = (\xi'y)x$ since $\xi'y\in\bm{R}$ is a scalar.
+Matrix multiplication is just composition of linear operators.
+
 ## Efficient Portfolios
 
 A portfolio $\xi$ is _efficient_
@@ -81,8 +98,9 @@ where $V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$.
 We can find efficent portfolios using Lagrangian multipliers.
 For a given realized return $\rho$, solve
 $$
-	\min_{\xi, \lambda, \mu}\frac{1}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho).
+	\min\frac{1}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)
 $$
+for $\xi$, $\lambda$, and $\mu$.
 The first order conditions for an extremum are
 $V\xi - \lambda x - \mu E[X] = 0$, $\xi'x = 1$, and $\xi'E[X] = \rho$.
 
