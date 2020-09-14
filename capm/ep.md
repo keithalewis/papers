@@ -10,8 +10,6 @@ thanks: |
 	Any remaining infelicities or omissions are my fault.
 ---
 
-# Efficient Portfolios
-
 Given two random realized returns on an investment, which is to
 be preferred?  This is a fundamental problem in finance that has no
 definitive solution except in the case one investment always returns
@@ -23,16 +21,17 @@ having the same expected realized return.
 In the one-period model every efficient portfolio belongs to a two-dimensional
 subspace of the set of all possible realized returns and is uniquely
 determined given its expected realized return.
-We show that if $R_0$ and $R_1$ are the (random) realized returns of two efficient
+We show that if $R$ is the (random) realized return of any efficient portfolio
+and $R_0$ and $R_1$ are the realized returns of any two independent efficient
 portfolios then 
 $$
 	R - R_0 = \beta(R_1 - R_0)
 $$
-where $\beta = \operatorname{Cov}(R - R_0, R_1 - R_0)/\operatorname{Var}(R_1 - R_0)$ if $R$
-is efficient.  This generalizes the classical Capital Asset Pricing
+where $\beta = \operatorname{Cov}(R - R_0, R_1 - R_0)/\operatorname{Var}(R_1 - R_0)$.
+This generalizes the classical Capital Asset Pricing
 Model formula for the expected realized return of efficient portfolios.
-The classic CAPM formula follows by taking expected values of both sides
-when $\operatorname{Var}(R_0) = 0$ and $R_1$ is the "market" portfolio
+Taking expected values of both sides
+when $\operatorname{Var}(R_0) = 0$ and $R_1$ is the "market" portfolio gives
 $$
 	E[R] - R_0 = \beta(E[R_1] - R_0)
 $$
@@ -40,8 +39,8 @@ where $\beta = \operatorname{Cov}(R, R_1)/\operatorname{Var}(R_1)$.
 
 ## One-Period Model
 
-This model is parameterized directly by instrument prices.  These have a
-clear interpretation in the financial world and all other relevant financial
+The one-period model is parameterized directly by instrument prices.  These have a
+clear financial interpretation and all other relevant financial
 quantities can be defined in terms of prices and portfolios.
 
 Let $I$ be the set of _market instruments_ and $\Omega$ be the set of
@@ -72,7 +71,7 @@ there is no loss in assuming $\xi\cdot x = 1$ when considering returns.
 In this case $R(\xi) = \xi\cdot X$ is the realized return on the portfolio.
 It is common in the literature to use _returns_ instead of realized returns
 where the return $r$ is defined by $R = 1 + r\Delta t$ or
-$R = \exp(r\Delta t)$ where $\Delta t$ is the time in years or day count fraction of the period.
+$R = \exp(r\Delta t)$ where $\Delta t$ is the time in years or a day count fraction of the period.
 Since we are considering a one period model there is no need to drag $\Delta t$ into consideration.
 
 Although porfolios and prices are both vectors they are not the same. A portfolio turns prices into
@@ -80,7 +79,7 @@ values. The function $\xi\mapsto \xi\cdot x$ is a _linear functional_ from price
 Mathematically we say $\xi\in(\bm{R}^I)^*$, the _dual space_ of $\bm{R}^I$.
 If $V$ is any vector space its dual space is $V^* = \mathcal{L}(V,\bm{R})$ where 
 $\mathcal{L}(V,W)$ is the space of _linear transformations_ from the vector space $V$ to
-the vector space $W$. If we write $\xi'$ to denote this linear functional corresponding to $\xi$ then
+the vector space $W$. If we write $\xi'$ to denote the linear functional corresponding to $\xi$ then
 $\xi'x = \xi\cdot x$ is the linear functional applied to $x$.
 We also write the _dual pairing_ as $\langle x, \xi\rangle = \xi'x$.
 
@@ -139,23 +138,16 @@ $V\xi - \lambda x - \mu E[X] = 0$, $\xi'x = 1$, and $\xi'E[X] = \rho$.
 
 A portfolio $\zeta$ is _riskless_ if its realized return is constant. In this case
 $0 = \operatorname{Var}(R(\zeta)) = \zeta'V\zeta$ assuming, as we may, $\zeta'x = 1$.
-Since $V$ is positive semi-definite this implies $V\zeta = 0$ so
-$V$ is not invertible and the above analysis no longer holds.
-
 If another riskless portfolio exists with different realized
 return then arbitrage exists.  By removing redundant assets we can assume
 there is exactly one riskless portfolio $\zeta$ with $\zeta'x = 1$.
-Since $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
-$\{\zeta\}^\perp = \{z\in\bm{R}^I:\zeta'z = 0\}$
-is an invariant subspace of $V$. $V$ has no other eigenvectors with eigenvalue 0
-so it is invertible when restricted to this subspace.
 
 Let $P_\parallel = \zeta\zeta'/\zeta'\zeta$. Note $P_\parallel\zeta = \zeta$ and
 $P_\parallel\xi = 0$ if $\zeta'\xi = 0$ so it is the orthogonal projection 
 onto the the space spanned by $\zeta$.
 Let $P_\perp = I - P_\parallel$
 denote the projection onto its orthogonal complement so
-$V = VP_\perp + VP_\parallel$. Let $x_\perp = P_\perp x$ etc.
+$V = VP_\perp + VP_\parallel$. Let $x_\parallel = P_\parallel x$ etc.
 
 The first order conditon $V\xi = \lambda x + \mu E[X]$ implies
 $V\xi_\parallel = \lambda x_\parallel + \mu E[X]_\parallel$. Since $\xi_\parallel$
