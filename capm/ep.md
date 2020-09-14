@@ -23,7 +23,6 @@ having the same expected realized return.
 In the one-period model every efficient portfolio belongs to a two-dimensional
 subspace of the set of all possible realized returns and is uniquely
 determined given its expected realized return.
-
 We show that if $R_0$ and $R_1$ are the (random) realized returns of two efficient
 portfolios then 
 $$
