@@ -10,8 +10,6 @@ thanks: |
 	Any remaining infelicities or omissions are my fault.
 ---
 
-# Efficient Portfolios
-
 Given two random realized returns on an investment, which is to
 be preferred?  This is a fundamental problem in finance that has no
 definitive solution except in the case one investment always returns
@@ -24,16 +22,17 @@ In the one-period model every efficient portfolio belongs to a two-dimensional
 subspace of the set of all possible realized returns and is uniquely
 determined given its expected realized return.
 
-We show that if $R_0$ and $R_1$ are the (random) realized returns of two efficient
+We show that if $R$ is the realized return of any efficient portfolio
+and $R_0$ and $R_1$ are the (random) realized returns of any two independent efficient
 portfolios then 
 $$
 	R - R_0 = \beta(R_1 - R_0)
 $$
-where $\beta = \operatorname{Cov}(R - R_0, R_1 - R_0)/\operatorname{Var}(R_1 - R_0)$ if $R$
-is efficient.  This generalizes the classical Capital Asset Pricing
+where $\beta = \operatorname{Cov}(R - R_0, R_1 - R_0)/\operatorname{Var}(R_1 - R_0)$.
+This generalizes the classical Capital Asset Pricing
 Model formula for the expected realized return of efficient portfolios.
-The classic CAPM formula follows by taking expected values of both sides
-when $\operatorname{Var}(R_0) = 0$ and $R_1$ is the "market" portfolio
+Taking expected values of both sides
+when $\operatorname{Var}(R_0) = 0$ and $R_1$ is the "market" portfolio gives
 $$
 	E[R] - R_0 = \beta(E[R_1] - R_0)
 $$
@@ -41,8 +40,8 @@ where $\beta = \operatorname{Cov}(R, R_1)/\operatorname{Var}(R_1)$.
 
 ## One-Period Model
 
-This model is parameterized directly by instrument prices.  These have a
-clear interpretation in the financial world and all other relevant financial
+The one-period model is parameterized directly by instrument prices.  These have a
+clear financial interpretation and all other relevant financial
 quantities can be defined in terms of prices and portfolios.
 
 Let $I$ be the set of _market instruments_ and $\Omega$ be the set of
@@ -140,16 +139,9 @@ $V\xi - \lambda x - \mu E[X] = 0$, $\xi'x = 1$, and $\xi'E[X] = \rho$.
 
 A portfolio $\zeta$ is _riskless_ if its realized return is constant. In this case
 $0 = \operatorname{Var}(R(\zeta)) = \zeta'V\zeta$ assuming, as we may, $\zeta'x = 1$.
-Since $V$ is positive semi-definite this implies $V\zeta = 0$ so
-$V$ is not invertible and the above analysis no longer holds.
-
 If another riskless portfolio exists with different realized
 return then arbitrage exists.  By removing redundant assets we can assume
 there is exactly one riskless portfolio $\zeta$ with $\zeta'x = 1$.
-Since $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
-$\{\zeta\}^\perp = \{z\in\bm{R}^I:\zeta'z = 0\}$
-is an invariant subspace of $V$. $V$ has no other eigenvectors with eigenvalue 0
-so it is invertible when restricted to this subspace.
 
 Let $P_\parallel = \zeta\zeta'/\zeta'\zeta$. Note $P_\parallel\zeta = \zeta$ and
 $P_\parallel\xi = 0$ if $\zeta'\xi = 0$ so it is the orthogonal projection 
