@@ -148,7 +148,7 @@ $P_\parallel\xi = 0$ if $\zeta'\xi = 0$ so it is the orthogonal projection
 onto the the space spanned by $\zeta$.
 Let $P_\perp = I - P_\parallel$
 denote the projection onto its orthogonal complement so
-$V = VP_\perp + VP_\parallel$. Let $x_\perp = P_\perp x$ etc.
+$V = VP_\perp + VP_\parallel$. Let $x_\parallel = P_\parallel x$ etc.
 
 The first order conditon $V\xi = \lambda x + \mu E[X]$ implies
 $V\xi_\parallel = \lambda x_\parallel + \mu E[X]_\parallel$. Since $\xi_\parallel$
