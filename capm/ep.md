@@ -136,4 +136,45 @@ The first order conditions for an extremum are
 $V\xi - \lambda x - \mu E[X] = 0$, $\xi'x = 1$, and $\xi'E[X] = \rho$.
 
 
+### Riskless Portfolio
+
+A portfolio $\zeta$ is _riskless_ if its realized return is constant. In this case
+$0 = \operatorname{Var}(R(\zeta)) = \zeta'V\zeta$ assuming, as we may, $\zeta'x = 1$.
+Since $V$ is positive semi-definite this implies $V\zeta = 0$ so
+$V$ is not invertible and the above analysis no longer holds.
+
+If another riskless portfolio exists with different realized
+return then arbitrage exists.  By removing redundant assets we can assume
+there is exactly one riskless portfolio $\zeta$ with $\zeta'x = 1$.
+Since $\zeta$ is an eigenvector of $V$ (with eigenvalue 0) and $V$ is self-adjoint
+$\{\zeta\}^\perp = \{z\in\bm{R}^I:\zeta'z = 0\}$
+is an invariant subspace of $V$. $V$ has no other eigenvectors with eigenvalue 0
+so it is invertible when restricted to this subspace.
+
+Let $P_\parallel = \zeta\zeta'/\zeta'\zeta$. Note $P_\parallel\zeta = \zeta$ and
+$P_\parallel\xi = 0$ if $\zeta'\xi = 0$ so it is the orthogonal projection 
+onto the the space spanned by $\zeta$.
+Let $P_\perp = I - P_\parallel$
+denote the projection onto its orthogonal complement so
+$V = VP_\perp + VP_\parallel$. Let $x_\perp = P_\perp x$ etc.
+
+The first order conditon $V\xi = \lambda x + \mu E[X]$ implies
+$V\xi_\parallel = \lambda x_\parallel + \mu E[X]_\parallel$. Since $\xi_\parallel$
+is a scalar multiple of $\zeta$ we have $0 = \lambda + \mu R$ so $\lambda = -\mu R$.
+On the orthogonal complement $V\xi_\perp = -\mu R x_\perp + \mu E[X]_\perp$ so
+$\xi_\perp = V^\dashv(E[X] - Rx)$ where $V^\dashv$ is the generalized (Moore-Penrose) inverse of $V$.
+Letting $\alpha = V^\dashv(E[X] - Rx)$, every efficient portfolio can be written
+$\xi = \mu \alpha + \nu\zeta$.
+We can and do assume $\alpha'x = 1$ so
+$1 = \mu + \nu$ and $\xi = \mu \alpha + (1 - \mu)\zeta$.
+Multiplying both sides by $X$ we have $\xi'X = \mu \alpha'X + (1 - \mu)R$ hence
+$$
+	R(\xi) - R = \mu(R(\alpha) - R)).
+$$
+This implies the classical CAPM formula by taking expected values where $\alpha$ is the "market portfolio".
+It also shows the Lagrangian multiplier
+$\mu = \operatorname{Cov}(R(\xi),R(\alpha))/\operatorname{Var}(R(\alpha))$ is the classical beta.
+
+
+
 ## References
