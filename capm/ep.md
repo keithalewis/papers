@@ -37,6 +37,9 @@ $$
 $$
 where $\beta = \operatorname{Cov}(R, R_1)/\operatorname{Var}(R_1)$.
 
+The primary contribution of this paper is observation that the CAPM formula
+holds for realized returns as random variables, not just their expectations.
+
 ## One-Period Model
 
 The one-period model is parameterized directly by instrument prices.  These have a
