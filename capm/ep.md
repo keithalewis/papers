@@ -292,7 +292,7 @@ The one-period Fundamental Theorem of Asset Pricing states there is no model
 arbitrage if and only if there exists a positive measure $\Pi$ on
 $\Omega$ with $x = \int_\Omega X(\omega)\,d\Pi(\omega)$.  We assume $X$
 is bounded, as it is in the real world, and $\Pi$ is
-[finitely additive](#finitely-additive-measure).
+finitely additive.
 
 If such a measure exists and $\xi\cdot X\ge0$ then
 $\xi\cdot x = \int_\Omega \xi\cdot X\,d\Pi \ge0$ so arbitrage
