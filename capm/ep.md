@@ -16,7 +16,7 @@ definitive solution except in the case one investment always returns
 more than the other. If two portfolios have the same expected realized return
 then one criterion is to prefer the one with smaller variance.
 An _efficient portfolio_ has the least variance among all porfolios
-having the same expected realized return.
+having the same expected realized return. cites...
 
 In the one-period model every efficient portfolio belongs to a two-dimensional
 subspace of the set of all possible realized returns and is uniquely
