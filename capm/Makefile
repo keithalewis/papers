@@ -29,7 +29,7 @@ $(HTML): %.html: %.md capm.css
 	pandoc $(FLAGS) $< -o $@
 
 $(PDF): %.pdf: %.md
-	pandoc -H ../header.tex --filter pandoc-citeproc --metadata link-citations=true $< -o $@
+	pandoc -H ../header.tex --filter pandoc-citeproc --metadata link-citations=true --bibliography epst.json $< -o $@
 
 #pandoc --pdf-engine=xelatex -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
 
