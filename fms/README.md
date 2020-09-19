@@ -1,6 +1,20 @@
 # Finance, Mathematics, Software
 
-Notes on using mathematics to model finance and implement in software.
+Notes on using software to implement mathematics for modeling finance.
+
+## Finance
+
+### Participant
+
+### Instrument
+
+### Market
+
+### Investment
+
+## Mathematics
+
+## Software
 
 ## Overview of Instruments and Markets
 
