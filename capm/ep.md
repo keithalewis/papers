@@ -13,10 +13,13 @@ thanks: |
 Given two random realized returns on an investment, which is to
 be preferred?  This is a fundamental problem in finance that has no
 definitive solution except in the case one investment always returns
-more than the other. If two portfolios have the same expected realized return
-then one criterion is to prefer the one with smaller variance.
+more than the other.
+In 1952 Markowitz introduced the following criterion for risk vs. return
+in portfolio selection to provide a rigourous approach to diversification:
+if two portfolios have the same expected realized return
+then prefer the one with smaller variance.
 An _efficient portfolio_ has the least variance among all porfolios
-having the same expected realized return. cites...
+having the same expected realized return.
 
 In the one-period model every efficient portfolio belongs to a two-dimensional
 subspace of the set of all possible realized returns and is uniquely
@@ -37,7 +40,7 @@ $$
 $$
 where $\beta = \operatorname{Cov}(R, R_1)/\operatorname{Var}(R_1)$.
 
-The primary contribution of this paper is observation that the CAPM formula
+The primary contribution of this short note is observation that the CAPM formula
 holds for realized returns as random variables, not just their expectations.
 This follows directly from writing down a mathematical model for one period investments.
 
@@ -119,10 +122,10 @@ This follows from $E[\xi'X] = \xi'x/\|\Pi\| = R\xi'x$ for any portfolio $\xi$.
 Note $Q$ is not the probability of anything, it is simply a positive
 measure with mass 1. The above statements are geometrical, not probabilistic.
 
-## Efficient Portfolios
+## Efficient Portfolio
 
 A portfolio $\xi$ is _efficient_
-if $\operatorname{Var}(R(\xi)) \le \operatorname{Var}(R(\eta))$ for every
+if its variance $\operatorname{Var}(R(\xi)) \le \operatorname{Var}(R(\eta))$ for every
 portfolio $\eta$ having the same expected realized return as $\xi$.
 
 If $\xi'x = 1$ then $\operatorname{Var}(R(\xi)) = E[(\xi'X)^2] - (E[\xi'X])^2
@@ -150,7 +153,8 @@ Let $P_\parallel = \zeta\zeta'/\zeta'\zeta$. Note $P_\parallel\zeta = \zeta$ and
 $P_\parallel\xi = 0$ if $\zeta'\xi = 0$ so it is the orthogonal projection 
 onto the space spanned by $\zeta$.
 Let $P_\perp = I - P_\parallel$
-denote the projection onto its orthogonal complement so
+be the projection onto its orthogonal complement,
+$\{\zeta\}^perp = \{y\in\bm{R}^I:\zeta'y = 0\}$, so
 $V = VP_\perp + VP_\parallel$. Below we analyse the first order conditions for
 an extremum on each subspace. Note $P_\parallel$ commutes with $V$ so these
 subspaces are invariant under $V$.
@@ -176,7 +180,8 @@ $\mu = \operatorname{Cov}(R(\xi),R(\alpha))/\operatorname{Var}(R(\alpha))$ is th
 
 ### Non-singular Variance
 
-If $V$ is invertable the solution is
+If $V$ is invertable the [Appendix](#lagrange-multiplier-xolution]
+shows solution is
 $\lambda = (C - \rho B)/D$, $\mu = (-B + \rho A)/D$, and
 $$
 \xi = \frac{C - \rho B}{D}V^{-1}x + \frac{-B + \rho A}{D}V^{-1}E[X]
@@ -185,15 +190,15 @@ where $A = xV^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$,
 $C = E[X]V^{-1}E[X]$, and $D = AC - B^2$.
 The variance of the efficient portfolio is
 $$
-\operatorname{Var}(R(\xi)) = (C - 2B\rho + A\rho^2)/D
+\operatorname{Var}(R(\xi)) = (C - 2B\rho + A\rho^2)/D.
 $$ 
 
 If $\xi_0$ and $\xi_1$ are any two independent efficient portfolios then
 they belong to the subspace spanned by $V^{-1}x$ and $V^{-1}E[X]$.
 Every efficient portfolio can be written $\xi = \beta_0\xi_0 + \beta_1\xi_1$ for some
 scalars $\beta_0$ and $\beta_1$.
-Assuming $\xi_j'x = 1$ for $j = 0,1$ so $R(\xi_j) = \xi_j'X$ and
-$\xi'x = 1$ so $R(\xi) = \xi'X$ then $\beta_0 + \beta_1 = 1$ and
+Assuming $\xi_j'x = 1$ for $j = 0,1$ then $R(\xi_j) = \xi_j'X$.
+Assuming $\xi'x = 1$ so $R(\xi) = \xi'X$ then $\beta_0 + \beta_1 = 1$ and
 $\xi = (1 - \beta)\xi_0 + \beta\xi_1$ where $\beta = \beta_1$.
 Multiplying both sides by $X$ we have $\xi'X = (1 - \beta)\xi_0'X + \beta\xi_1'X$ hence
 $$
@@ -218,7 +223,7 @@ Let's find the minimum value of $\operatorname{Var}(R(\xi))$ given $E[R(\xi)] =
 \rho$.  If $\xi'x = 1$ then $R(\xi) = \xi'E[X]$ and $\operatorname{Var}(R(\xi))
 = \xi'V\xi$ where $V = E[XX'] - E[X]E[X']$.
 
-We use Lagrangian multipliers and solve
+We use Lagrange multipliers and solve
 $$
 		\min \frac{1}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)
 $$
@@ -307,13 +312,13 @@ and multiplication by a positive scalar, that is, $C + C\subseteq C$
 and $tC\subseteq C$ for $t > 0$. The set of arbitrage
 portfolios is a cone.
 
-_Proof._ Since $C$ is closed there exists $x^*\in C$ with
+_Proof._ Since $C$ is closed and convex there exists $x^*\in C$ with
 $0 < ||x^* - x|| \le ||y - x||$ for all $y\in C$.  Let $\xi = x^* - x$.
 For any $y\in C$ and $t > 0$ we have $ty + x^*\in C$ so $||\xi|| \le ||ty + \xi||$. 
 Simplifying gives $t^2||y||^2 + 2t\xi\cdot y\ge 0$. 
 Dividing by $t > 0$ and letting $t$ decrease to 0 shows $\xi\cdot y\ge 0$. 
-Take $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$. By similar reasoning
-with $t < 0$ we have $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
+Take $y = x^*$ then $tx^* + x^*\in C$ for $t \ge -1$. By similar reasoning,
+letting $t$ increase to 0 shows $\xi\cdot x^*\le 0$ so $\xi\cdot x^* = 0$. 
 Now $0 < ||\xi||^2 = \xi\cdot (x^* - x) = -\xi\cdot x$ hence $\xi\cdot x < 0$.
 $\blacksquare$
 
