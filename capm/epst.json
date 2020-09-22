@@ -25,5 +25,49 @@
 			]
 			
 		}
+	},
+	{
+		"id": "Mar52",
+		"type": "article-journal",
+		"container-title": "The Journal of Finance",
+		"issue": "1",
+		"page": "77-91",
+		"title": "Portfolio Selection",
+		"volume": "7",
+		"author": [
+			{
+				"family": "Markowitz",
+				"given": "Harry"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1952"
+				]
+			]
+		}
+	},
+	{
+		"id": "Roy52",
+		"type": "article-journal",
+		"title": "Safety First and the Holding of Assets",
+		"author": [
+			{
+				"family": "Roy",
+				"given": "A. D."
+			}
+		],
+ 		"publisher": "Wiley, Econometric Society",
+ 		"container-title": "Econometrica",
+ 		"page": "431-449",
+ 		"issue": "20",
+		"issued": {
+			"date-parts": [
+				[
+					"1952"
+				]
+			]
+		}
 	}
 ]

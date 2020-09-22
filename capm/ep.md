@@ -14,11 +14,11 @@ Given two random realized returns on an investment, which is to
 be preferred?  This is a fundamental problem in finance that has no
 definitive solution except in the case one investment always returns
 more than the other.
-In 1952 Markowitz introduced the following criterion for risk vs. return
-in portfolio selection to provide a rigourous approach to diversification:
+In 1952 Markowitz[@Mar52] and Roy[@Roy52] introduced the following criterion for risk vs. return
+in portfolio selection:
 if two portfolios have the same expected realized return
 then prefer the one with smaller variance.
-An _efficient portfolio_ has the least variance among all porfolios
+An _efficient portfolio_ has the least variance among all portfolios
 having the same expected realized return.
 
 In the one-period model every efficient portfolio belongs to a two-dimensional
@@ -81,8 +81,8 @@ where the return $r$ is defined by $R = 1 + r\Delta t$ or
 $R = \exp(r\Delta t)$ where $\Delta t$ is the time in years or a day count fraction of the period.
 Since we are considering a one period model there is no need to drag $\Delta t$ into consideration.
 
-Although porfolios and prices are both vectors they are not the same. A portfolio turns prices into
-values. The function $\xi\mapsto \xi\cdot x$ is a _linear functional_ from prices to values.
+Although portfolios and prices are both vectors they are not the same. A portfolio turns prices into
+a value. The function $\xi\mapsto \xi\cdot x$ is a _linear functional_ from prices to values.
 Mathematically we say $\xi\in(\bm{R}^I)^*$, the _dual space_ of $\bm{R}^I$.
 If $V$ is any vector space its dual space is $V^* = \mathcal{L}(V,\bm{R})$ where 
 $\mathcal{L}(V,W)$ is the space of _linear transformations_ from the vector space $V$ to
@@ -107,7 +107,7 @@ The one-period
 states there is no model arbitrage if and only if there exists a positive measure $\Pi$ on $\Omega$ with
 $x = \int_\Omega X(\omega)\,d\Pi(\omega)$. We assume $X$ is
 bounded, as it is in the real world, and $\Pi$ is a
-[_finitely additive measure_](#finitely-additive-measure).
+finitely additive measure.
 The dual space of bounded functions on $\Omega$ is the space of finitely additive measures
 on $\Omega$
 with the dual pairing $\langle X,\Pi\rangle = \int_\Omega X\,d\Pi$ [@DunSch63]
@@ -131,7 +131,7 @@ portfolio $\eta$ having the same expected realized return as $\xi$.
 If $\xi'x = 1$ then $\operatorname{Var}(R(\xi)) = E[(\xi'X)^2] - (E[\xi'X])^2
 = E[\xi' X X'\xi] - E[\xi'X] E[X'\xi] = \xi'V\xi$,
 where $V = \operatorname{Var}(X) = E[XX'] - E[X]E[X']$.
-We can find efficent portfolios using Lagrange multipliers.
+We can find efficient portfolios using Lagrange multipliers.
 For a given realized return $\rho$ we can solve
 $$
 	\min\frac{1}{2}\xi'V\xi - \lambda(\xi'x - 1) - \mu(\xi'E[X] - \rho)
@@ -154,14 +154,14 @@ $P_\parallel\xi = 0$ if $\zeta'\xi = 0$ so it is the orthogonal projection
 onto the space spanned by $\zeta$.
 Let $P_\perp = I - P_\parallel$
 be the projection onto its orthogonal complement,
-$\{\zeta\}^perp = \{y\in\bm{R}^I:\zeta'y = 0\}$, so
-$V = VP_\perp + VP_\parallel$. Below we analyse the first order conditions for
+$\{\zeta\}^\perp = \{y\in\bm{R}^I:\zeta'y = 0\}$, so
+$V = VP_\perp + VP_\parallel$. Below we analyze the first order conditions for
 an extremum on each subspace. Note $P_\parallel$ commutes with $V$ so these
 subspaces are invariant under $V$.
 Let $y_\parallel = P_\parallel y$ be the component of $y$ parallel to $\zeta$
 and $y_\perp = P_\perp y$ be the component of $y$ orthogonal to $\zeta$ for $y\in\bm{R}^I$.
 
-The first order conditon $V\xi = \lambda x + \mu E[X]$ implies
+The first order condition $V\xi = \lambda x + \mu E[X]$ implies
 $V\xi_\parallel = \lambda x_\parallel + \mu E[X]_\parallel$. Since $\xi_\parallel$
 is a scalar multiple of $\zeta$ we have $0 = \lambda + \mu R$ so $\lambda = -\mu R$.
 On the orthogonal complement $V\xi_\perp = -\mu R x_\perp + \mu E[X]_\perp$ so
@@ -180,7 +180,7 @@ $\mu = \operatorname{Cov}(R(\xi),R(\alpha))/\operatorname{Var}(R(\alpha))$ is th
 
 ### Non-singular Variance
 
-If $V$ is invertable the [Appendix](#lagrange-multiplier-xolution]
+If $V$ is invertible the [Appendix](#lagrange-multiplier-solution)
 shows solution is
 $\lambda = (C - \rho B)/D$, $\mu = (-B + \rho A)/D$, and
 $$
