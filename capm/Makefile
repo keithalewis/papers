@@ -2,6 +2,7 @@ MKDN = $(wildcard *.md)
 HTML = $(MKDN:.md=.html)
 #HTML = grassmann.html
 PDF = $(MKDN:.md=.pdf)
+TEX = $(MKDN:.md=.tex)
 DOCX = $(MKDN:.md=.docx)
 
 KATEX=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/
@@ -29,8 +30,12 @@ $(HTML): %.html: %.md capm.css
 	pandoc $(FLAGS) $< -o $@
 
 $(PDF): %.pdf: %.md
-	pandoc -H ../header.tex --filter pandoc-citeproc --metadata link-citations=true --bibliography epst.json $< -o $@
+	pandoc -M date="$(shell date "+%B %e, %Y")" -H ../header.tex --filter pandoc-citeproc --metadata link-citations=true --bibliography epst.json $< -o $@
 
+$(TEX): %.tex: %.md
+	pandoc -M date="$(shell date "+%B %e, %Y")" -H ../header.tex --filter pandoc-citeproc --metadata link-citations=true --bibliography epst.json $< -o $@
+
+#pandoc --pdf-engine=xelatex -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
 #pandoc --pdf-engine=xelatex -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
 
 #	pandoc --pdf-engine=xelatex -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
