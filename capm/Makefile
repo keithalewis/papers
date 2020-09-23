@@ -25,23 +25,19 @@ FLAGS += --toc
 #FLAGS += -f markdown+tex_math_single_backslash+auto_identifiers+definition_lists
 FLAGS += --filter pandoc-citeproc --metadata link-citations=true
 FLAGS += --bibliography epst.json
+DATE = $(shell date "+%B %e, %Y")
 
 $(HTML): %.html: %.md capm.css
 	pandoc $(FLAGS) $< -o $@
 
 $(PDF): %.pdf: %.md
-	pandoc -M date="$(shell date "+%B %e, %Y")" -H ../header.tex --filter pandoc-citeproc --metadata link-citations=true --bibliography epst.json $< -o $@
+	pandoc -M date="$(DATE)" -H ../header.tex --filter pandoc-citeproc --metadata link-citations=true --bibliography epst.json $< -o $@
 
 $(TEX): %.tex: %.md
-	pandoc -M date="$(shell date "+%B %e, %Y")" -H ../header.tex --filter pandoc-citeproc --metadata link-citations=true --bibliography epst.json $< -o $@
-
-#pandoc --pdf-engine=xelatex -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
-#pandoc --pdf-engine=xelatex -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
-
-#	pandoc --pdf-engine=xelatex -H ../header.tex -M date="$(shell date "+%B %e, %Y")" $< -o $@
+	pandoc -M date="$(DATE)" -H ../header.tex --filter pandoc-citeproc --metadata link-citations=true --bibliography epst.json $< -o $@
 
 $(DOCX): %.docx: %.md
-	pandoc -H ../header.tex $< -o $@
+	pandoc -H ../header.tex $(FLAGS) $< -o $@
 
 rsync:
 	rcp epst.html capmc.html capm.html capm.css kal@web626.webfaction.com:webapps/kalx/capm

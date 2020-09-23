@@ -40,7 +40,7 @@ $$
 $$
 where $\beta = \operatorname{Cov}(R, R_1)/\operatorname{Var}(R_1)$.
 
-The primary contribution of this short note is observation that the CAPM formula
+The primary contribution of this short note is the observation that the CAPM formula
 holds for realized returns as random variables, not just their expectations.
 This follows directly from writing down a mathematical model for one period investments.
 
