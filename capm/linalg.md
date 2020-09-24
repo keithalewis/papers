@@ -21,7 +21,7 @@ transformations between them.  Although it is complete and self-contained
 you should already be familiar with basic linear algebra before reading
 this. Statements and proofs are brief, so read them twice.  Do the
 exercises to confirm your understanding.  Think of it like the Tao
-Te Ching: this is not an instruction manual, it enables the consolidation and
+Te Ching: this is not an instruction manual, it facilitates the consolidation and
 verification of your pre-existing partial knowledge of linear algebra.
 
 I make no apologies for the shamelessly mathematical exposition and hope
