@@ -6,6 +6,7 @@ classoption: fleqn
 fleqn: true
 ---
 
+\renewcommand{\dim}{\operatorname{dim}}
 \renewcommand{\ker}{\operatorname{ker}}
 \renewcommand{\ran}{\operatorname{ran}}
 \renewcommand{\span}{\operatorname{span}}
@@ -98,12 +99,12 @@ $$
 \end{aligned}
 $$
 
-By _substitution_ we mean that if $P(x)$ is a logical statement
+By _substitution_ we mean that if $P(x)$ is a statement
 containing the symbol $x$ we can replace each occurence of $x$ by any other
-symbol $y$, $x\mapsto y$, as long as $y$ does not occur in $P(x)$.
+expression $y$ as long as $y$ does not occur in $P(x)$.
 Using the true statement $a = b \Rightarrow a + c = b + c$ we make the
-substitutions $a \mapsto x + x$, $b \mapsto x$, and $c \mapsto -x$
-then use modus ponens.
+substitutions $a \mapsto x + x$, $b \mapsto x$, and $c \mapsto (-x)$
+then use modus ponens to obtain $(x + x) + (-x) = x + (-x)$.
 
 __Exercise__. _Show the additive identity is unique_.
 
@@ -122,7 +123,7 @@ __Exercise__. _Show for $x\in V$ that $-(-x) = x$_.
 
 Just as factoring an integer into its prime factors can provide useful
 information about the integer, vector spaces can be usefully broken down into
-smaller subspaces.
+_subspaces_.
 
 A subset $U$ of a vector space $V$ is a _subspace_ if it is also a vector space.
 
@@ -143,25 +144,25 @@ The lattice is also _distributive_.
 __Exercise__. (Distributive laws) _If $U$, $V$, and $W$ are subspaces then
 $U \cap (V + W) = (U \cap V) + (U \cap W)$ and $U + (V\cap W) = (U + V)\cap(U + W)$_.
 
-Either of these implies the other in any lattice. [cite??]
+Either of these implies the other.
+<!--
+Birkhoff, Garrett (1967). Lattice Theory. Colloquium Publications (3rd ed.). American Mathematical Society. p. 11. ISBN 0-8218-1025-1. §6, Theorem 9
+-->
 
 It is also a _bounded lattice_ with _top element_ $V$ and _bottom element_ $\{0\}$.
 $V$ is the identity for the join and $\{0\}$ is the identity element for the meet
 since $U + V = V$ and $U\cap\{0\} = \{0\}$ for any subspace $U\subseteq V$.
 
-[Applications???]
-
 ### Span
 
-If $v\in V$ then $\FF\{v\} = \{\alpha v:\alpha \in\FF\}$ is a subspace.
-It is the one-dimensional subspace _spanned_ by $v$.
+If $x\in V$ then $\FF\{x\} = \{\alpha x:\alpha \in\FF\}$ is a subspace.
+It is the one-dimensional subspace _spanned_ by $x$.
 
 More generally, let $X$ be any collection of vectors in $V$.
 The _span_ of the collection is 
 $$
-	\span X = \vee X = \{\sum_{x\in X} \alpha_x x\},
+	\span X = \vee X = \{\sum_{x\in X} \alpha_x x:\alpha_x\in \FF\}.
 $$
-where the sum is over any $\{\alpha_x\}_{x\in X}$ where $\alpha_x\in \FF$.
 
 We could say $X = \{x_i\}_{i\in I}$ where $x_i\in V$ for all $i\in I$
 but it is simpler to say $X = \{x\}_{x\in X}$ where $x\in V$ without
@@ -171,12 +172,17 @@ __Exercise__. _Show the span of $X$ is the smallest subspace of $V$ containing $
 
 ### Independent
 
-A key property of a collection of vectors is _independence_.  A collection
-of vectors $X\subseteq V$ are independent if every _linear combination_
+A finite collection
+of vectors $X\subseteq V$ are _independent_ if 
 $\sum_{x\in X} \alpha_x x = 0$ implies $\alpha_x = 0$ for all $x\in X$.
 Note that the empty set is independent.
-If $\alpha_x\not = 0$ for some $x$ then
-$x = -(1/\alpha_x)\sum_{y\not = x} \alpha_y y$ is a linear combination
+Independence ensures unique representations.
+
+__Exercise__. _If $X$ are independent and $\sum_{x\in X}\alpha_x x
+= \sum_{x\in X}\beta_x x$ then $\alpha_x = \beta_x$ for all $x\in X$_.
+
+If $\sum_{x\in X} \alpha_x x = 0$ and $\alpha_x\not = 0$ for some $x$ then
+$x = -(1/\alpha_x)\sum_{y\not = x} \alpha_y y$ is a _linear combination_
 of vectors in $X\setminus \{x\}$.
 In this case $X$ is _linearly dependent_ and $X\setminus\{x\}$
 has the same span. We use _reverse solidus_ for $A\setminus B = \{x\in A: x\notin B\}$.
@@ -191,10 +197,6 @@ that is independent_.
 
 _Hint_. Zorn's lemma using $Y\preceq X$ if and only if $X\subseteq Y$.
 
-Independence ensures unique representations.
-
-__Exercise__. _If $X$ are independent and $\sum_{x\in X}\alpha_x x
-= \sum_{x\in X}\beta_x x$ then $\alpha_x = \beta_x$ for all $x\in X$_.
 
 ### Basis
 
@@ -221,7 +223,35 @@ Classical texts prove this for finite dimensional vector spaces
 using the Steinitz exchange lemma. We prove this below for
 vector spaces of any dimension.
 
-### Quotient Space
+### Sum
+
+If $U$ and $W$ are subspaces of $V$ then $U + W$ is also as subspace of $V$.
+If $U\cap W = \{0\}$ it is called an _interal sum_.
+
+__Exercise__. _Let $U$ and $W$ be subspaces of $V$ with $U\cap W = \{0\}$.
+If $u + w = u' + w'$ with $u,u'\in U$ and $w,w'\in W$ show
+$u = u'$ and $w = w'$_.
+
+_Hint_. $u - u'\in U$ and $w' - w\in W$.
+
+This shows every vector $v\in U + W$ has a unique decomposition $v = u + w$
+with $u\in U$ and $w\in W$ when $U\cap W = \{0\}$.
+
+The _external sum_ of vector spaces $U$ and $W$, $U\oplus W$, is the set $U\times W$
+with addition $(u,w) + (x, y) = (u + x, w + y)$, where $u,x\in U$
+and $w,y\in W$, and scalar multiplication $\alpha (u, w) = (\alpha u,
+\alpha w)$ for $\alpha \in\FF$.  The external sum addition and scalar
+multiplication on the left-hand sides are defined in terms of those for $U$
+and $W$ in the first and second elements (respectively) of the pairs on
+the right-hand sides.
+
+Instead of $(u,w)$ it is customary to write $u\oplus w$. The definitions
+above become $(u\oplus w) + (x\oplus y) = (u + x)\oplus(w + y)$ and
+$\alpha (u\oplus w) = \alpha u\oplus \alpha w$.
+
+__Exercise__. _Show the external sum is a vector space_.
+
+### Quotient
 
 If $U\subseteq V$ is a subspace we define the _quotient space_
 $V/U = \{x + U:x\in V\}$ where the _coset_ $x + U = \{x + u:u\in U\}$. 
@@ -247,42 +277,6 @@ Every equivalence relation determines a partition and every partition
 determines an equivalence relation. (Exercise or more exposition???)
 
 Quotient spaces split vector spaces into two _complementary_ vector spaces.
-
-#### External Sum
-
-The _external sum_ of vector spaces $U$ and $W$, $U\oplus W$, is the set $U\times W$
-with addition $(u,w) + (x, y) = (u + x, w + y)$, where $u,x\in U$
-and $w,y\in W$, and scalar multiplication $\alpha (u, w) = (\alpha u,
-\alpha w)$ for $\alpha \in\FF$.  The external sum addition and scalar
-multiplication on the left-hand sides are defined in terms of those for $U$
-and $W$ in the first and second elements (respectively) of the pairs on
-the right-hand sides.
-
-Instead of $(u,w)$ it is customary to write $u\oplus w$. The definitions
-above become $(u\oplus w) + (x\oplus y) = (u + x)\oplus(w + y)$ and
-$\alpha (u\oplus w) = \alpha u\oplus \alpha w$.
-
-__Exercise__. _Show the external sum is a vector space_.
-
-Every vector space $V$ is _isomorphic_ to the external sum of $U$ and
-$V/U$ for any subspace $U\subseteq V$, but we have to define isomorphic
-in terms of invertible _linear transformations_ between vector spaces.
-
-#### Internal Sum
-
-If $U$ and $W$ are subspaces of $V$ then $U + W$ is also as subspace of $V$.
-If $U\cap W = \{0\}$ it is called an _interal sum_.
-
-__Exercise__. _Let $U$ and $W$ be subspaces of $V$ with $U\cap W = \{0\}$.
-If $u + w = u' + w'$ with $u,u'\in U$ and $w,w'\in W$ show
-$u = u'$ and $w = w'$_.
-
-_Hint_. $u - u'\in U$ and $w' - w\in W$.
-
-This shows every vector $v\in U + W$ has a unique decomposition $v = u + w$
-with $u\in U$ and $w\in W$ when $U\cap W = \{0\}$.
-
-Internal sums do not require the notion of isomorphic linear transformations.
 
 ## Linear Transformation
 
@@ -415,6 +409,8 @@ For $v\in V$ and $u\in U$ $v = u + (v - u)$. Define $J$ by...
 __Exercise__. _Show $J$ is surjective_.
 
 __Exercise__. _Show $J$ is injective_.
+
+__Exercise__. Show for every $T\in\mathcal{L}(V,W)$ that $\dim V = \dim\ker T + \dim\ran T
 
 
 ### Ring of Endomorphisms
