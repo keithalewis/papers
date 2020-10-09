@@ -1,21 +1,33 @@
 ---
 author: Keith A. Lewis
 title: The Unified Model 
+classoption: fleqn
+fleqn: true
 abstract: | 
   There is a unified way to value derivative
   securities using market prices.
 keywords: instrumet, price, cash flow, trading, position, value, amount, hedge
 ...
 
-There is a unified way to value derivative
-securities using market prices.
+Every continuous time arbitrage-free model of instrument prices $(X_t)$
+with corresponding cash-flows $(C_t)$ has the form
+$$
+	X_tD_t = M_t - \sum_{s \le t} C_s D_s
+$$
+where $(M_t)$ is a vector-valued martingale indexed by the set
+of instruments and $(D_t)$ are positive functions.
+If the continuously compounded short rate at $t$ is $f_t$ then
+$D_t = \exp(-\int_0^t f_s\,ds)$.
+If trading times are discrete, $T = \{t_j\}$, then
+$D_{t_j} = \exp(-\sum_{i<j} f_i\,\Delta t_i)$ where
+$\Delta t_i = t_{i + 1} - t_i$ and $f_i$ is the repurchase agreement rate over that interval.
 
 ## Notation
 
 If $\mathcal{A}$ is an
 [algebra](https://en.wikipedia.org/wiki/Algebra_of_sets)
 on the set $\Omega$ we write
-$X\colon\mathcal{A}\to\mathbb{R}$ to indicate $X\colon\Omega\to\mathbb{R}$
+$X\colon\mathcal{A}\to\mathbf{R}$ to indicate $X\colon\Omega\to\mathbf{R}$
 is $\mathcal{A}$-[_measurable_](https://en.wikipedia.org/wiki/Measurable_function).
 If $\mathcal{A}$ is finite then the
 [atoms](https://en.wikipedia.org/wiki/Atom_(measure_theory))
@@ -23,119 +35,148 @@ of $\mathcal{A}$ form a
 [partition](https://en.wikipedia.org/wiki/Partition_of_a_set)
 of $\Omega$ and being measurable is
 equivalent to being constant on atoms. In this case $X$ is indeed a function
-on the atoms.
-
-If $X$ is $\mathcal{A}$-measurable and $\mathcal{B}$ is a subalgebra
-of $\mathcal{A}$ then the
-[_conditional expectation_](https://en.wikipedia.org/wiki/Conditional_expectation)
-of _$X$ given
-$\mathcal{A}$_ is defined by $Y = E\left\lbrack X \middle| \mathcal{A}\right\rbrack$ if and only
-if $Y$ is $\mathcal{A}$ measurable and $\int_A Y\,dP = \int_A X\,dP$
-for all $A\in\mathcal{A}$. This is equivalent to $Y(P|_\mathcal{A})
-= (XP)|_\mathcal{A}$ where the vertical bar indicates restriction of a measure to a subalgebra.
+on the atoms of $\mathcal{A}$.
 
 A _filtration_ on $T\subseteq [0,\infty)$ is an increasing
-collection of algebras, $(\mathcal{A})_{t\in T}$.  A process
-$M_{t}\colon\mathcal{A}{t} \rightarrow \mathbb{R}$, $t\in T$, is
-a _martingale_ if $M_t P|_{\mathcal{A}} = M_u P|_{\mathcal{A}}$ for $t\le u$.  If $P$ is
-understood we write this as $M_t = M_u|_{\mathcal{A}}$. The
-usual notation is $M_t = E\left\lbrack M_{u} \middle| \mathcal{A_t}
-\right\rbrack = E_t\left\lbrack M_u\right\rbrack.$
+collection of algebras $(\mathcal{A})_{t\in T}$.  A process
+$M_{t}\colon\mathcal{A}_{t} \rightarrow \mathbf{R}$, $t\in T$, is
+a _martingale_ if $M_t = E[M_u \mid \mathcal{A}_t] = E_t[M_u]$ for $t\le u$,
+where $E[X\mid\mathcal{A}]$ is the conditional expectation of $X$ given the algebra $\mathcal{A}$.
 
-## Instruments
 
-Every _instrument_ has a _price_, $X_t$, and a _cash flow_, $C_t$, at
-any trading time, $t\in T$.  Instruments are assumed to be perfectly liquid:
+## Unified Model
+
+Let $T\subseteq [0,\infty)$ be the set of _trading times_.
+We assume sample space, probability measure, and filtration are given,
+$\langle\Omega,P,(\mathcal{A}_t)_{t\in T}\rangle$.
+
+Let $I$ the set of market _instruments_ available for trading.
+Instrument _prices_ are denoted by $X_t\colon\mathcal{A}_t\to\mathbf{R}^I$ 
+and their correponding cash-flows by $C_t\colon\mathcal{A}_t\to\mathbf{R}^I$, for $t\in T$.
+
+Instruments are assumed to be perfectly liquid and divisible:
 they can be bought or sold at the given price in any amount. Cash flows
 are associated with owning an instrument: stocks have dividends, bonds
-have coupons, European options have exactly one cash flow at expiration.
-
-## Model
-
-The _unified model_ specifies _prices_
-$X_{t}:\mathcal{A}{t} \rightarrow \mathbb{R}^{I}$, and _cash flows_
-$C_{t}:\mathcal{A}{t} \rightarrow \mathbb{R}^{I}$, where $I$ are the
-available market instruments.
+have coupons, futures have margin adjustments and their price is always zero.
 
 A _trading strategy_ is a finite collection of strictly increasing
-stopping times, $\tau_{j}$, and trades,
-$\Gamma_{j}:\mathcal{A}{\tau_{j}} \rightarrow \mathbb{R}^{I}$ indicating
-the number of shares to trade in each instrument. Trades accumulate to a
-_position_,
-$\Delta_{t} = \sum_{\tau_{j} < t}\Gamma_{j} = \sum_{s < t}\Gamma_{s}$
-where $\Gamma_{s} = \Gamma_{j}$ when $s = \tau_{j}$.
+stopping times $(\tau_j)$ and trades
+$\Gamma_j:\mathcal{A}_{\tau_j} \rightarrow \mathbf{R}^I$ indicating
+the number of shares to trade in each instrument. Trades accumulate to a _position_
+$\Delta_t = \sum_{\tau_j < t}\Gamma_j = \sum_{s < t}\Gamma_s$
+where $\Gamma_s = \Gamma_j$ when $s = \tau_j$. Note that trades at time $t$ are
+not included in the position at time $t$. It takes time for trades to settle
+before being included in the position.
 
 The _value_ (or _mark-to-market_) of a position at time $t$ is
-$V_{t} = \left( \Delta_{t} + \Gamma_{t} \right) \cdot X_{t}$:
-what you would get from liquidating
+$V_t = \left( \Delta_t + \Gamma_t \right) \cdot X_t$:
+how much you would get from liquidating
 your existing position and the trades just executed.
 The _amount_ generated by the trading strategy at time $t$ is
-$A_{t} = \Delta_{t} \cdot C_{t} - \Gamma_{t} \cdot X_{t}$: you receive
+$A_t = \Delta_t \cdot C_t - \Gamma_t \cdot X_t$: you receive
 the cash flows associated with your existing position and pay for the
 trades you just executed.
 
 A model is _arbitrage-free_ if there is no trading strategy with
-$\sum_{j}^{}{\Gamma_{j} = 0}$, $A_{\tau_{0}} > 0$ and
-$A_{t} \geq 0$ for $t > \tau_{0}$: it is impossible to make money on
+$\sum_j \Gamma_{j} = 0$, $A_{\tau_0} > 0$, and
+$A_t \geq 0$ for $t > \tau_0$: it is impossible to make money on
 the first trade and never lose until the strategy is closed out.
 
-The Fundamental Theorem of Asset Pricing states this is the case if
-and only if there exists a function,
-$D_{t}:\mathcal{A}{t} \rightarrow \left( 0,\infty \right)$, with
+__Theorem__. (Fundamental Theorem of Asset Pricing)
+_A model is arbitrage-free if and only if
+there exists a positive, adapted function $D_t$, with_
+$$
+X_t D_t = E[X_v D_v + \sum_{t < u \leq v}C_u D_u \mid \mathcal{A}_t].
+$$
 
-$$\begin{matrix}
-X_{t}D_{t} = {(X}_{v}D_{v} + \sum_{t < u \leq v}^{}{C_{u}D_{u}})|_{\mathcal{A}{t}}\label{eq:1} \\
-\end{matrix}$$
+If $C_t = 0$ for all $t\in T$ this says $X_t D_t$ is a martingale.
+We call $D_t$ the _deflator_ and say deflated prices are a martingale
+when there are no cash-flows.
 
-Note that if $C_{t} = 0$ for all $t \in T$ this says $X_{t}D_{t}$ is a
-martingale. A consequence of the above and the definition of value and amount is
+A consequence of the above and the definition of value and amount is
+$$
+V_t D_t = E[V_v D_v + \sum_{t < u \leq v}A_u D_u \mid \mathcal{A}_t].
+$$
+Note how the value of the trading strategy corresponds to price and the
+amount corresponds to cash-flow in the two formulas above.
+The second formula is the key to valuing derivatives. 
+A derivative is a contract specifying amounts at given
+times.  If it is possible to find a trading strategy that produces these
+amounts then its value is given by this formula.  Trading strategies
+are a way to create synthetic market instruments.
 
-$$\begin{matrix}
-V_{t}D_{t} = (V_{v}D_{v} + \sum_{t < u \leq v}A_{u}D_{u})|_{\mathcal{A}{t}}\label{eq:2} \\
-\end{matrix}$$
+_Proof_.  If $u > t$ is sufficiently small then $X_t D_t = E_t[(X_u + C_u) D_u]$
+and $\Delta_u = \Delta_t + \Gamma_t$.
+Using $\Delta_u\cdot C_u = \Gamma_u\cdot X_u + A_u$ and $V_u = (\Delta_u + \Gamma_u)\cdot X_u$
+we have
+$$
+\begin{aligned}
+V_t D_t &= (\Delta_t + \Gamma_t)\cdot X_t D_t \\
+	&= \Delta_u\cdot E_t[(X_u + C_u)D_u] \\
+	&= E_t[(\Delta_u\cdot X_u + \Gamma_u\cdot X_u + A_u) D_u] \\
+	&= E_t[(V_u + A_u)D_u] \\
+\end{aligned}
+$$
+The second formula above follows by induction.
 
-If $u > t$ is sufficiently small then $X_{t} D_{t} = (X_u + C_u) D_u|_{\mathcal{A}}$
-and $V_{t} D_t = (\Delta_{t} + \Gamma_t)\cdot X_{t} D_t
-= \Delta_u\cdot (X_u + C_u)D_u|_{\mathcal{A}}$.
-Since $\Delta_u\cdot C_u = \Gamma_u\cdot X_u + A_u$ we have
-$V_{t} D_t = (\Delta_u\cdot X_u + \Gamma_u\cdot X_u + A_u) D_u|_{\mathcal{A}}
-= (V_u + A_u)D_u|_{\mathcal{A}}$. The formula above follows by induction.
-
-For a strategy as above,
-$V_{\tau_{0}}D_{\tau_{0}} = \sum_{t > \tau_{0}}{A_{t}D_{t}|_{\mathcal{A}{\tau_{0}}} \geq 0}$.
-Since $V_{0} = \Gamma_{0} \cdot X_{0}$,
-$A_{0} = - \Gamma_{0} \cdot X_{0}$, and $D_{0} > 0$ we have
-$A_{0} \leq 0$, where the 0 subscript denotes time $\tau_{0}$.
+Assuming no arbitrage,
+$V_{\tau_0}D_{\tau_0} = E_{\tau_0}[\sum_{t > \tau_0} A_t D_t] \geq 0$.
+Since $D_{\tau_0}$ is positive and $V_{\tau_0} = \Gamma_{\tau_0} \cdot X_{\tau_0} = -A_{\tau_0}$ 
+we have $A_{\tau_0} \leq 0$.
 This proves the "easy" direction of the theorem.
 
-There is no need to prove the "hard" direction since we have a large supply of arbitrage free models:
-every model of the form
-$X_{t}D_{t} = M_{t} - \sum_{s \leq t}{C_{s}D_{s}}$ where
-$M_{t}:\mathcal{A}{t} \rightarrow \mathbb{R}^{I}$ is a martingale and
-$D_{t}:\mathcal{A}{t} \rightarrow (0,\infty)$ 
-is arbitrage-free. This is immediate by substituting
-$X_{u}D_{u}$ in the first displayed equation.
+There is no need to prove the "hard" direction since we have a large supply of arbitrage free models.
+Every model of the form
+$$
+	X_t D_t = M_t - \sum_{s \leq t} C_s D_s
+$$
+where $M_t:\mathcal{A}_t \rightarrow \mathbf{R}^{I}$ is a martingale and
+$D_t:\mathcal{A}_t \rightarrow (0,\infty)$ 
+is arbitrage-free.
+$$
+\begin{aligned}
+E_t[X_v D_v + \sum_{t < u \leq v}C_u D_u]
+&= E_t[M_v - \sum_{s \leq v} C_s D_s + \sum_{t < u \leq v}C_u D_u] \\
+&= E_t[M_v - \sum_{s \leq t} C_s D_s] \\
+&= M_t - \sum_{s \leq t} C_s D_s \\
+&= X_t D_t \\
+\end{aligned}
+$$
 
 ## Examples
 
-A _zero coupon bond_ maturing at time $u$, $D(u)$, has a single cash flow
-$C^{D(u)}_u = 1$ so its price at time $t$ satisfies $X^{D(u)}_t D_t =
-E_t 1 D_u$. We write $X^{D(u)}_t = D_t(u) = E_t D_u/D_t$ for its price at time $t$. In
-particular $D_0(u) = E D_u$. Likewise, instruments that are a portfolio of
-zero coupon bonds (e.g., cash deposits, forward rate agreements, swaps)
-have a price that is determined by the deflator. All options on
-such instruments also have prices determined by the deflator.
+We illustrate the unified model for particular cases.
 
-A _repurchase agreement_ at time $t$, $R_t$, has price $X^{R_t}_t = 1$
-and cash flow $C^{R_t}_{t + dt} = R_t$ so for any arbitrage free model
-$D_t = E_t[R_tD_{t+dt}]$.  Define the _forward repo rate_, $f_t$,
-by $R_t = \exp(f_t\,dt)$ and the _canonical deflator_ to be $D_t =
-\exp(-\int_0^t f_s\,ds)$.  The repos are arbitrage free for any forward
-repo rate process.
+### Black-Scholes/Merton
 
-Let $D_t = e^{-\rho t}$ and $M_t = (r, s e^{\sigma B_t - \sigma^2
-t/2})$. This is the Black-Scholes/Merton model. No need for self-financing
-portfolios, Ito's Lemma, or partial differential equations when using
+Let $D_t = e^{-\rho t}$ and $M_t = (r, s e^{\sigma B_t - \sigma^2 t/2})$.
+This is the Black-Scholes/Merton model. There is no need for self-financing
+portfolios, Ito's Lemma, much less partial differential equations, when using
 the Unified Model.
 
+### Repurchase Agreement
+
+In a discrete time model with $T = \{t_j\}$ a _repurchase agreement_ at time $t_j$, has price $X_{t_j} = 1$
+and cash flow $C_{t_{j+1}} = R_j$ where $R_j = \exp(f_j\Delta t_j)$ is the realized return
+for the _repo rate_ $f_j$. The _canonical deflator_ $D_{t_j} = 1/\Pi_{i < j} R_i = \exp(-\sum_{i<j} f_i\,\Delta_i)$
+provides an arbitrage-free model for repos since
+$D_{t_j} = E_{t_j}[R_j D_{t_{j+1}}]$.
+
+The continuous time analog is $D_t = \exp(-\int_0^t f_s\,ds)$ where $(f_t)$ is
+the _continuously compounded instantaneous forward rate_.
+
+### Zero Coupond Bond
+
+A _zero coupon bond_ maturing at time $u$, $D(u)$, has a single cash flow
+$C^{D(u)}_u = 1$ so its price at time $t$ satisfies $X^{D(u)}_t D_t =
+E_t[1 D_u]$. We write $X^{D(u)}_t = D_t(u) = E_t[D_u/D_t]$ for its price at time $t$. In
+particular $D_0(u) = E D_u$. Likewise, instruments that are a portfolio of
+zero coupon bonds (e.g., cash deposits, forward rate agreements, swaps)
+have a price that is determined by the deflator.
+<!--
+### American Option
+
+<div>
 Keith A. Lewis [kal@kalx.net]
+</div>
+-->
