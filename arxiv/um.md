@@ -235,7 +235,7 @@ option pricing formula which (currently) does not have a closed form.
 ## Remarks
 
 Given a derivative paying $\bar{A}_j$ at times $\bar{t}_j$ how does one find a trading strategy
-$(\tau_j)$ and $\Gamma_j$ with $A_t = \bar{A}_j$ at times $\bar{t}_j$ and zero otherwise?
+$(\tau_j)$ and $\Gamma_j$ with $A_t = \bar{A}_j$ at times $t = \bar{t}_j$ and zero otherwise?
 
 The initial hedge is determined by $V_0 = E[\sum_{\bar{t_j}} \bar{A}_j D_{\bar{t}_j}]$ which
 can be computed using the given derivative payments and the deflators. Since
