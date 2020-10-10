@@ -16,7 +16,7 @@ $$
 $$
 where $(M_t)$ is a vector-valued martingale indexed by the set
 of instruments and $(D_t)$ are positive functions.
-If the continuously compounded short rate at $t$ is $f_t$ then
+If the continuously compounded forward rate at $t$ is $f_t$ then
 $D_t = \exp(-\int_0^t f_s\,ds)$.
 If trading times are discrete, $T = \{t_j\}$, then
 $D_{t_j} = \exp(-\sum_{i<j} f_i\,\Delta t_i)$ where
@@ -47,17 +47,17 @@ where $E[X\mid\mathcal{A}]$ is the conditional expectation of $X$ given the alge
 ## Unified Model
 
 Let $T\subseteq [0,\infty)$ be the set of _trading times_.
-We assume sample space, probability measure, and filtration are given,
+We assume a sample space, probability measure, and filtration are given,
 $\langle\Omega,P,(\mathcal{A}_t)_{t\in T}\rangle$.
 
 Let $I$ the set of market _instruments_ available for trading.
 Instrument _prices_ are denoted by $X_t\colon\mathcal{A}_t\to\mathbf{R}^I$ 
 and their correponding cash-flows by $C_t\colon\mathcal{A}_t\to\mathbf{R}^I$, for $t\in T$.
 
-Instruments are assumed to be perfectly liquid and divisible:
+Instrument trading is assumed to be perfectly liquid and divisible:
 they can be bought or sold at the given price in any amount. Cash flows
 are associated with owning an instrument: stocks have dividends, bonds
-have coupons, futures have margin adjustments and their price is always zero.
+have coupons, futures have margin adjustments. The price of a futures is always zero.
 
 A _trading strategy_ is a finite collection of strictly increasing
 stopping times $(\tau_j)$ and trades
@@ -84,14 +84,14 @@ the first trade and never lose until the strategy is closed out.
 
 __Theorem__. (Fundamental Theorem of Asset Pricing)
 _A model is arbitrage-free if and only if
-there exists a positive, adapted function $D_t$, with_
+there exists a positive, adapted functions $(D_t)_{t\in T}$, with_
 $$
 X_t D_t = E[X_v D_v + \sum_{t < u \leq v}C_u D_u \mid \mathcal{A}_t].
 $$
 
 If $C_t = 0$ for all $t\in T$ this says $X_t D_t$ is a martingale.
-We call $D_t$ the _deflator_ and say deflated prices are a martingale
-when there are no cash-flows.
+We call $(D_t)$ _deflators_. Deflated prices are a martingale
+in the absence of cash-flows.
 
 A consequence of the above and the definition of value and amount is
 $$
@@ -135,11 +135,10 @@ $D_t:\mathcal{A}_t \rightarrow (0,\infty)$
 is arbitrage-free.
 $$
 \begin{aligned}
-E_t[X_v D_v + \sum_{t < u \leq v}C_u D_u]
-&= E_t[M_v - \sum_{s \leq v} C_s D_s + \sum_{t < u \leq v}C_u D_u] \\
+X_t D_t &= M_t - \sum_{s \leq t} C_s D_s \\
 &= E_t[M_v - \sum_{s \leq t} C_s D_s] \\
-&= M_t - \sum_{s \leq t} C_s D_s \\
-&= X_t D_t \\
+&= E_t[M_v - \sum_{s \leq v} C_s D_s + \sum_{t < u \leq v}C_u D_u] \\
+&= E_t[X_v D_v + \sum_{t < u \leq v}C_u D_u]
 \end{aligned}
 $$
 
@@ -148,6 +147,10 @@ $$
 We illustrate the unified model for particular cases.
 
 ### Black-Scholes/Merton
+
+The sample space is $\Omega = C[0,\infty)$, $P$ is Wiener measure, and 
+$\mathcal{A}_t$ is the smallest sigma-algebra for which $\{B_s:s\le t\}$
+are measurable, where $B_t(\omega) = \omega(t)$ is standard Brownian motion.
 
 Let $D_t = e^{-\rho t}$ and $M_t = (r, s e^{\sigma B_t - \sigma^2 t/2})$.
 This is the Black-Scholes/Merton model. There is no need for self-financing
@@ -163,7 +166,7 @@ provides an arbitrage-free model for repos since
 $D_{t_j} = E_{t_j}[R_j D_{t_{j+1}}]$.
 
 The continuous time analog is $D_t = \exp(-\int_0^t f_s\,ds)$ where $(f_t)$ is
-the _continuously compounded instantaneous forward rate_.
+the _continuously compounded forward rate_.
 
 ### Zero Coupond Bond
 
@@ -173,6 +176,84 @@ E_t[1 D_u]$. We write $X^{D(u)}_t = D_t(u) = E_t[D_u/D_t]$ for its price at time
 particular $D_0(u) = E D_u$. Likewise, instruments that are a portfolio of
 zero coupon bonds (e.g., cash deposits, forward rate agreements, swaps)
 have a price that is determined by the deflator.
+
+The forward rate process determines the value of every fixed income security.
+
+### Cost of Carry
+
+A _forward_ on an instrument $S$ _expiring_ at $t$ with _strike_ $k$
+has a single cash-flow $S_t - k$ at expiration. The _at-the-money forward_
+is the strike that makes the initial forward price zero.
+
+Consider any arbitrage-free model with $X_0 = (1, s, 0)$ and
+$X_t = (R, S_t, S_ - f)$.
+We have $(1, s, 0) = E[(R, S_t, S_t - f)D_t]$ for any deflator with $D_0 = 1$.
+Assuming $R$ is a constant, $1 = E[RD_t]$ so $E[D_t] = 1/R$.
+Since $s = E[S_tD_t]$ and $0 = E[(S_t - f)D_t]$ we have $0 = s - f/R$.
+The formula $Rs = f$ is the _cost of carry_ and relates the _spot price_, $s$,
+of $S_t$ to its forward price.
+
+### Put-Call Parity
+
+A _put option_ on an instrument $S$ _expiring_ at $t$ with _strike_ $k$
+has a single cash-flow $\max\{k - S_t, 0\}$ at expiration.
+A _call option_ has a single cash-flow $\max\{S_t - k, 0\}$ at expiration.
+Note $\max\{S_t - k, 0\} - \max\{k - S_t, 0\} = S_t - k$.
+
+Consider any one-period arbitrage-free model with $X_0 = (1, s, p, c)$ and
+$X_1 = (R, S_t, \max\{k - S_t, 0\}, \max\{S_t - k, 0\})$.
+For any deflator with $D_0 = 1$
+We have $(1, s, p, c) = E[(R, S_t, \max\{k - S_t,0\}, \max\{S_t - k,0\})D_t]$
+Assuming $R$ is a constant, $1 = E[RD]$ so $E[D] = 1/R$.
+Since $p = E[\max\{k - S_t,0\}D_t]$ and $c = E[\max\{S_t - k,0\})D_t]$ we have
+$c - p = E[(S_t - k)D_t] = s - k/R$. This formula is referred to as _put-call parity_.
+It holds for every arbitrage-free model and will be the first thing a trader
+tests when presented with a new model.
+
+### American Option
+
+An _American option_ is an option that the holder can exercise at any time up to expiration.
+A call option on $S$ expiring at $t$ with strike $k$
+has a single cash-flow $\max\{S_\tau - k, 0\}$
+where $\tau\le t$ is chosen by the option holder.
+
+The space of outcomes must include this possibility.
+Given a model for the underlying $\langle \Omega, P, (\mathcal{A}_t)\rangle$ let
+$\Omega' = \Omega\times [0,t]$ where $(\omega,\tau)$ indicates the option is
+exercised at time $\tau$ given the underlying determined by $\omega$.
+
+The filtration must also be augmented. Let $\mathcal{B}_s$ be the smallest
+algebra on $[0,t]$ containing the singletons $\{u\}$ for $u\le s$ and the set $(s, t]$.
+If $\tau \le s$ then it is known exactly, otherwise $s < \tau \le t$.
+The algebra $\mathcal{A}_s' = \mathcal{A}_s\times\mathcal{B}_s$ represents the information
+available at time $s$.
+
+Extending the measure $P$ on $\Omega$ to $P'$ on $\Omega'$ while keeping the model
+arbitrage-free is not trivial. It would imply a solution to the American
+option pricing formula which (currently) does not have a closed form.
+
+## Remarks
+
+Given a derivative paying $\bar{A}_j$ at times $\bar{t}_j$ how does one find a trading strategy
+$(\tau_j)$ and $\Gamma_j$ with $A_t = \bar{A}_j$ at times $\bar{t}_j$ and zero otherwise?
+
+The initial hedge is determined by $V_0 = E[\sum_{\bar{t_j}} \bar{A}_j D_{\bar{t}_j}]$ which
+can be computed using the given derivative payments and the deflators. Since
+$V_0 = \Gamma_0\cdot X_0$ we have $\Gamma_0 = dV_0/dX_0$ where the right-hand side is
+the Frechet derivative of $V_0\colon\mathbf{R}^I\to\mathbf{R}$ with
+$X_0\mapsto\Gamma_0\cdot X_0$.
+
+At any time $t$ we have $V_t = E_t[\sum_{\bar{t}_j > t} \bar{A}_j D_{\bar{t}_j}/D_t]$ which
+can be computed using the given derivative payments and the deflators. Since
+$V_t = (\Delta_t + \Gamma_t)\cdot X_t$ we have $\Delta_t + \Gamma_t = dV_t/dX_t$ where the right-hand side is
+the Frechet derivative of $V_t\colon B(\mathcal{A}_t, \mathbf{R}^I)\to B(\mathcal{A}_t)$
+with $X_t \mapsto (\Delta_t + \Gamma_t)\cdot X_t$.
+
+This is similar to Black-Scholes/Merton hedging with $\Delta$ being delta and
+$\Gamma$ being gamma, however there is one major difference: there is no guarantee this
+hedge will replicate the option. As any trader knows after the second day on a trading
+floor, no hedge is perfect.
+
 <!--
 ### American Option
 
