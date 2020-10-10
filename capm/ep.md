@@ -330,3 +330,7 @@ The contrapositive follows from the lemma.
 The proof also shows how to find an arbitrage when one exists.
 
 ## References
+
+# Notes
+
+Realized returns are not just identically distributed, they are equal.
