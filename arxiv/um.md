@@ -226,7 +226,6 @@ A _futures_ on an instrument $S$ _expiring_ at $t$
 has a cash-flow at every _margin calculation date_ $(t_j)_{j=0}^n$.
 The _futures quote_ at expiration $t = t_n$ is $\Phi_n = S_t$. The cash-flow at time
 $t_j$ is $\Phi_j - \Phi_{j - 1}$, $1\le j\le n$, where $\Phi_j$ is the futures quote at $t_j$.
-The initial cash-flow $C_0 = 0$ at $t_0$.
 
 The price of a futures is always zero.
 If the model is arbitrage-free then $0 = E_{t_{j-1}}[(\Phi_j - \Phi_{j - 1})D_{t_j}]$.
