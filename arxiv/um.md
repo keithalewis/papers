@@ -56,8 +56,8 @@ We assume a sample space, probability measure, and filtration are given,
 $\langle\Omega,P,(\mathcal{A}_t)_{t\in T}\rangle$.
 
 Let $I$ the set of market _instruments_ available for trading.
-Instrument _prices_ are denoted by $X_t\colon\mathcal{A}_t\to\mathbf{R}^I$ 
-and their corresponding cash-flows by $C_t\colon\mathcal{A}_t\to\mathbf{R}^I$, for $t\in T$.
+Instrument _prices_ are $X_t\colon\mathcal{A}_t\to\mathbf{R}^I$ 
+and their corresponding cash-flows are $C_t\colon\mathcal{A}_t\to\mathbf{R}^I$, for $t\in T$.
 
 Instrument trading is assumed to be perfectly liquid and divisible:
 they can be bought or sold at the given price in any amount. Cash flows
@@ -107,11 +107,12 @@ $$
 Note how the value corresponds to prices and the
 amount corresponds to cash-flows in the two formulas above.
 The second formula is the key to valuing derivatives. 
-A derivative is a contract specifying amounts at given
+A derivative is a contract specifying payments at given
 times.  If a trading strategy produces these
-amounts then its value is given by this formula.  Trading strategies
-create synthetic market instruments. Synthetic market instruments can
-become actual market instruments that are then included in $I$.
+payments as amounts then its value is given by this formula. 
+Trading strategies create synthetic market instruments.
+Synthetic market instruments can become actual market instruments that
+are then included in $I$. 
 The Unified Model can incorporate those without any changes.
 
 _Proof_.  If $u > t$ is sufficiently small then
@@ -127,7 +128,7 @@ V_t D_t &= (\Delta_t + \Gamma_t)\cdot X_t D_t \\
 \end{aligned}
 $$
 where we use $\Delta_u\cdot C_u = \Gamma_u\cdot X_u + A_u$ and $(\Delta_u + \Gamma_u)\cdot X_u = V_u$
-in the last two equalities.
+in the last two equalities respectively.
 The second displayed formula above follows by induction.
 
 Assuming no arbitrage,
@@ -219,11 +220,25 @@ $c - p = E[(S_t - k)D_t] = s - k/R$. This formula is referred to as _put-call pa
 It holds for every arbitrage-free model and will be the first thing a trader
 tests when presented with a new model.
 
+### Futures
+
+A _futures_ on an instrument $S$ _expiring_ at $t$ 
+has a cash-flow at every _margin calculation date_ $(t_j)_{j=0}^n$.
+The _futures quote_ at expiration $t = t_n$ is $\Phi_n = S_t$. The cash-flow at time
+$t_j$ is $\Phi_j - \Phi_{j - 1}$, $1\le j\le n$, where $\Phi_j$ is the futures quote at $t_j$.
+The initial cash-flow $C_0 = 0$ at $t_0$.
+
+The price of a futures is always zero.
+If the model is arbitrage-free then $0 = E_{t_{j-1}}[(\Phi_j - \Phi_{j - 1})D_{t_j}]$.
+If $D_{t_j}$ is $\mathcal{A}_{t_{j-1}}$ measurable then $\Phi_{j-1} = E_{t_{j-1}}[\Phi_j]$
+so the futures quotes $(\Phi_j)$ are a martingale.
+This is the case if $D_{t_j} = \exp(-\sum_{i<j} f_i\,\Delta_i)$.
+
 ### American Option
 
 An _American option_ is an option that the holder can exercise at any time up to expiration.
 A call option on $S$ expiring at $t$ with strike $k$
-has a single cash-flow $\max\{S_\tau - k, 0\}$
+has a single cash-flow $\max\{S_\tau - k, 0\}$ at time $\tau$
 where $\tau\le t$ is chosen by the option holder.
 
 The space of outcomes must include this possibility.
