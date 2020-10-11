@@ -28,7 +28,7 @@ and $D_t = \exp(-\rho t)$ where $(B_t)$ is standard Brownian motion.
 There is no need for self-financing portfolios, Ito's Lemma, much less
 partial differential equations, when using the Unified Model.
 
-The Unified Model provides a framework for a rigourous mathematical
+The Unified Model provides a framework for a rigorous mathematical
 approach to understanding how to value, hedge, and manage the risk
 involved with trading actual market instruments.
 
@@ -37,7 +37,7 @@ involved with trading actual market instruments.
 The value of a barrier option in the Black-Scholes/Merton model that
 knocks in the _second_ time the underlying hits the barrier is equal to
 the value of the option that knocks in the first time the underlying
-hits the barrier. In fact, the value is the same in that theory if
+hits the barrier. In fact, the value is the same if
 it knocks in on the $n$-th time it hits the barrier for any $n > 0$!
 This is a mathematical artifact of Brownian motion having infinite total
 variation on any interval.
@@ -46,7 +46,7 @@ When a model in mathematical physics does not fit observations it
 indicates there is a flaw in the model. The Unified Model can be
 used to rectify the above flaw in the classical theory of
 mathematical finance. It puts instrument prices and cash-flows on
-eqaul footing to clarify fundamental results like cost-of-carry,
+equal footing to clarify fundamental results like cost-of-carry,
 put-call parity, and the fact futures quotes form a martingale.
 
 
@@ -129,7 +129,7 @@ If $E_t[X_v D_v]\to 0$ as $v\to\infty$ then deflated prices are the
 expected value of deflated future cash-flows, à la Dodd-Graham.
 We can assume $D_0 = 1$ by dividing all deflators by $D_0$.
 
-One consequence of the displated equation above and the definition of value and amount is
+One consequence of the displayed equation above and the definition of value and amount is
 $$
 V_t D_t = E[V_v D_v + \sum_{t < u \leq v}A_u D_u \mid \mathcal{A}_t].
 $$
@@ -171,8 +171,7 @@ $$
 	X_t D_t = M_t - \sum_{s \leq t} C_s D_s
 $$
 where $M_t:\mathcal{A}_t \rightarrow \mathbf{R}^{I}$ is a martingale and
-$D_t:\mathcal{A}_t \rightarrow (0,\infty)$ 
-is arbitrage-free.
+$D_t:\mathcal{A}_t \rightarrow (0,\infty)$ is arbitrage-free.
 $$
 \begin{aligned}
 X_t D_t &= M_t - \sum_{s \leq t} C_s D_s \\
@@ -207,19 +206,18 @@ $1\,D_{t_j} = E_{t_j}[R_j D_{t_{j+1}}]$.
 The continuous time analog is $D_t = \exp(-\int_0^t f_s\,ds)$ where $(f_t)$ is
 the _continuously compounded forward rate_.
 
-### Zero Coupond Bond
+### Zero Coupon Bond
 
-A _zero coupon bond_ maturing at time $u$ has a single cash flow
-$C_u = 1$ so its price at time $t$ satisfies $X_t D_t =
-E_t[1 D_u]$. We write $D_t(u) = E_t[D_u/D_t]$ for its price at time $t$. In
-particular $D_0(u) = E D_u$. Instruments that are a portfolio of
-zero coupon bonds (e.g., cash deposits, forward rate agreements, swaps)
-have a value that is determined by the deflator.
+A _zero coupon bond_ maturing at time $u$ has a single cash flow $C_u = 1$.
+Its price at time, $D_t(u)$, $t$ satisfies $D_t(u) D_t =
+E_t[1 D_u]$ so $D_t(u) = E_t[D_u]/D_t$. In particular $D_0(u) = E D_u$.
+The dynamics of all fixed income instruments are determined by the deflators:
+cash deposits, forward rate agreements, swaps, puts, floors, swaptions, etc.
 
 ### Cost of Carry
 
 A _forward_ on an instrument $S$ _expiring_ at $t$ with _strike_ $k$
-has a single cash-flow $S_t - k$ at expiration. The _at-the-money forward_
+has a single cash-flow $C_t = S_t - k$ at expiration. The _at-the-money forward_
 is the strike $f$ that makes the initial forward price zero.
 
 Consider any arbitrage-free model with $X_0 = (1, s, 0)$ and
@@ -233,8 +231,8 @@ of $S_t$ to its forward price.
 ### Put-Call Parity
 
 A _put option_ on an instrument $S$ _expiring_ at $t$ with _strike_ $k$
-has a single cash-flow $\max\{k - S_t, 0\}$ at expiration.
-A _call option_ has a single cash-flow $\max\{S_t - k, 0\}$ at expiration.
+has a single cash-flow $C_t = \max\{k - S_t, 0\}$ at expiration.
+A _call option_ has a single cash-flow $C_t = \max\{S_t - k, 0\}$ at expiration.
 Note $\max\{S_t - k, 0\} - \max\{k - S_t, 0\} = S_t - k$.
 
 Consider any one-period arbitrage-free model with $X_0 = (1, s, p, c)$ and
@@ -243,7 +241,7 @@ For any deflator with $D_0 = 1$
 We have $(1, s, p, c) = E[(R, S_t, \max\{k - S_t,0\}, \max\{S_t - k,0\})D_t]$.
 Assuming $R$ is a constant, $1 = E[RD]$ so $E[D] = 1/R$.
 Since $p = E[\max\{k - S_t,0\} D_t]$ and $c = E[\max\{S_t - k,0\} D_t]$ we have
-$c - p = E[(S_t - k)D_t] = s - k/R$. This formula is referred to as _put-call parity_.
+$c - p = E[(S_t - k)D_t] = s - k/R$. This formula is called _put-call parity_.
 It holds for every arbitrage-free model and will be the first thing a trader
 tests when presented with a new model.
 
@@ -252,7 +250,7 @@ tests when presented with a new model.
 A _futures_ on an instrument $S$ _expiring_ at $t$ 
 has a cash-flow at every _margin calculation date_ $(t_j)_{j=0}^n$.
 The _futures quote_ at expiration $t = t_n$ is $\Phi_n = S_t$. The cash-flow at time
-$t_j$ is $\Phi_j - \Phi_{j - 1}$, $1\le j\le n$, where $\Phi_j$ is the futures quote at $t_j$.
+$t_j$ is $C_{t_j} = \Phi_j - \Phi_{j - 1}$, $1\le j\le n$, where $\Phi_j$ is the futures quote at $t_j$.
 
 The price of a futures is always zero.
 If the model is arbitrage-free then $0 = E_{t_{j-1}}[(\Phi_j - \Phi_{j - 1})D_{t_j}]$.
@@ -305,7 +303,7 @@ hedge will replicate the option. As any trader knows after the second day on a t
 floor, no hedge is perfect.
 
 The Unified Model brings this real world problem to the forefront. It does
-not provide a solution, only a framework for a rigourous mathematical
+not provide a solution, only a framework for a rigorous mathematical
 approach to understanding how to value, hedge, and manage the risk
 involved with trading actual market instruments.
 
