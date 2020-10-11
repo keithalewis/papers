@@ -13,13 +13,42 @@ with corresponding cash-flows $(C_t)$ has the form
 $$
 	X_tD_t = M_t - \sum_{s \le t} C_s D_s
 $$
-where $(M_t)$ is a vector-valued martingale indexed by the set
-of instruments and $(D_t)$ are positive functions.
+where $(M_t)$ is a vector-valued martingale indexed by the set of
+instruments and $(D_t)$ are positive, adapted functions. 
 If the continuously compounded forward rate at $t$ is $f_t$ then
-$D_t = \exp(-\int_0^t f_s\,ds)$.
+$D_t = \exp(-\int_0^t f_s\,ds)$. 
 If trading times are discrete, $T = \{t_j\}$, then
 $D_{t_j} = \exp(-\sum_{i<j} f_i\,\Delta t_i)$ where
-$\Delta t_i = t_{i + 1} - t_i$ and $f_i$ is the repurchase agreement rate over that interval.
+$\Delta t_i = t_{i + 1} - t_i$ and $f_i$ is the
+repurchase agreement rate over that interval.
+
+For example, the Black-Scholes/Merton model for a bond and stock with
+no dividends is given by $M_t = (r, s\exp(\sigma B_t - \sigma^2 t/2))$
+and $D_t = \exp(-\rho t)$ where $(B_t)$ is standard Brownian motion.
+There is no need for self-financing portfolios, Ito's Lemma, much less
+partial differential equations, when using the Unified Model.
+
+The Unified Model provides a framework for a rigourous mathematical
+approach to understanding how to value, hedge, and manage the risk
+involved with trading actual market instruments.
+
+## Introduction
+
+The value of a barrier option in the Black-Scholes/Merton model that
+knocks in the _second_ time the underlying hits the barrier is equal to
+the value of the option that knocks in the first time the underlying
+hits the barrier. In fact, the value is the same in that theory if
+it knocks in on the $n$-th time it hits the barrier for any $n > 0$!
+This is a mathematical artifact of Brownian motion having infinite total
+variation on any interval.
+
+When a model in mathematical physics does not fit observations it
+indicates there is a flaw in the model. The Unified Model can be
+used to rectify the above flaw in the classical theory of
+mathematical finance. It puts instrument prices and cash-flows on
+eqaul footing to clarify fundamental results like cost-of-carry,
+put-call parity, and the fact futures quotes form a martingale.
+
 
 ## Notation
 
@@ -35,11 +64,7 @@ of $\mathcal{A}$ form a
 of $\Omega$ and being measurable is
 equivalent to being constant on atoms. In this case $X$ is a function
 on the atoms of $\mathcal{A}$.
-
-The vector space of bounded functions on $\Omega$ is denoted $B(\Omega)$. 
-The vector space of bounded $\mathcal{A}$-measurable functions is denoted $B(\mathcal{A})$.
-The vector space of bounded $\mathcal{A}$-measurable functions taking values in a vector space $V$
-is denoted $B(\mathcal{A}, V)$.
+The space of bounded $\mathcal{A}$-measurable functions is denoted $B(\mathcal{A})$.
 
 A _filtration_ on $\Omega$ indexed by $T\subseteq [0,\infty)$ is an increasing
 collection of algebras $(\mathcal{A})_{t\in T}$.  A process
@@ -48,6 +73,9 @@ a _martingale_ if $M_t = E[M_u \mid \mathcal{A}_t] = E_t[M_u]$ for $t\le u$,
 where $E[X\mid\mathcal{A}]$ is the conditional expectation of the random variable $X$
 given the algebra $\mathcal{A}$.
 
+A _stopping time_ is a function $\tau\colon\Omega\to T$ satisfying $\{\tau\le t\}\in\mathcal{A}_t$
+for all $t\in T$. The algebra $\mathcal{A}_\tau$ is the collection of 
+subsets $E\subseteq\Omega$ with $E\cap\{\tau\le t\}\in\mathcal{A}_t$ for all $t\in T$.
 
 ## Unified Model
 
@@ -58,9 +86,10 @@ $\langle\Omega,P,(\mathcal{A}_t)_{t\in T}\rangle$.
 Let $I$ the set of market _instruments_ available for trading.
 Instrument _prices_ are $X_t\colon\mathcal{A}_t\to\mathbf{R}^I$ 
 and their corresponding cash-flows are $C_t\colon\mathcal{A}_t\to\mathbf{R}^I$, for $t\in T$.
+We assume, as is true in the real world, that prices and cash-flows are bounded.
 
 Instrument trading is assumed to be perfectly liquid and divisible:
-they can be bought or sold at the given price in any amount. Cash flows
+every instrument can be bought or sold at the given price in any amount. Cash flows
 are associated with owning an instrument: stocks have dividends, bonds
 have coupons, futures have margin adjustments. The price of a futures is always zero.
 
@@ -100,12 +129,11 @@ If $E_t[X_v D_v]\to 0$ as $v\to\infty$ then deflated prices are the
 expected value of deflated future cash-flows, à la Dodd-Graham.
 We can assume $D_0 = 1$ by dividing all deflators by $D_0$.
 
-One consequence of the above and the definition of value and amount is
+One consequence of the displated equation above and the definition of value and amount is
 $$
 V_t D_t = E[V_v D_v + \sum_{t < u \leq v}A_u D_u \mid \mathcal{A}_t].
 $$
-Note how the value corresponds to prices and the
-amount corresponds to cash-flows in the two formulas above.
+Note how value corresponds to prices and amount corresponds to cash-flows in the two formulas above.
 The second formula is the key to valuing derivatives. 
 A derivative is a contract specifying payments at given
 times.  If a trading strategy produces these
@@ -165,8 +193,7 @@ $\mathcal{A}_t$ is the smallest sigma-algebra for which $\{B_s:s\le t\}$
 are measurable, where $B_t(\omega) = \omega(t)$ is standard Brownian motion.
 
 Let $D_t = e^{-\rho t}$ and $M_t = (r, s e^{\sigma B_t - \sigma^2 t/2})$.
-This is the Black-Scholes/Merton model. There is no need for self-financing
-portfolios, Ito's Lemma, much less partial differential equations, when using
+This is the Black-Scholes/Merton model.
 the Unified Model.
 
 ### Repurchase Agreement
@@ -175,7 +202,7 @@ In a discrete time model with $T = \{t_j\}$ a _repurchase agreement_ at time $t_
 and cash flow $C_{t_{j+1}} = R_j$ where $R_j = \exp(f_j\Delta t_j)$ is the realized return
 for the _repo rate_ $f_j$. The _canonical deflator_ $D_{t_j} = 1/\Pi_{i < j} R_i = \exp(-\sum_{i<j} f_i\,\Delta_i)$
 provides an arbitrage-free model for repos since
-$D_{t_j} = E_{t_j}[R_j D_{t_{j+1}}]$.
+$1\,D_{t_j} = E_{t_j}[R_j D_{t_{j+1}}]$.
 
 The continuous time analog is $D_t = \exp(-\int_0^t f_s\,ds)$ where $(f_t)$ is
 the _continuously compounded forward rate_.
@@ -226,7 +253,6 @@ A _futures_ on an instrument $S$ _expiring_ at $t$
 has a cash-flow at every _margin calculation date_ $(t_j)_{j=0}^n$.
 The _futures quote_ at expiration $t = t_n$ is $\Phi_n = S_t$. The cash-flow at time
 $t_j$ is $\Phi_j - \Phi_{j - 1}$, $1\le j\le n$, where $\Phi_j$ is the futures quote at $t_j$.
-The initial cash-flow $C_0 = 0$ at $t_0$.
 
 The price of a futures is always zero.
 If the model is arbitrage-free then $0 = E_{t_{j-1}}[(\Phi_j - \Phi_{j - 1})D_{t_j}]$.
@@ -238,7 +264,7 @@ This is the case if $D_{t_j} = \exp(-\sum_{i<j} f_i\,\Delta_i)$.
 
 An _American option_ is an option that the holder can exercise at any time up to expiration.
 A call option on $S$ expiring at $t$ with strike $k$
-has a single cash-flow $\max\{S_\tau - k, 0\}$ at time $\tau$
+has a single cash-flow $C_\tau = \max\{S_\tau - k, 0\}$ at time $\tau$
 where $\tau\le t$ is chosen by the option holder.
 
 The space of outcomes must include this possibility.
@@ -248,7 +274,7 @@ exercised at time $\tau$ given the underlying determined by $\omega$.
 
 The filtration must also be augmented. Let $\mathcal{B}_s$ be the smallest
 algebra on $[0,t]$ containing the singletons $\{u\}$ for $u\le s$ and the set $(s, t]$.
-If $\tau \le s$ then it is known exactly, otherwise $s < \tau \le t$.
+If $\tau \le s$ then it is known exactly, otherwise it is only known that $s < \tau \le t$.
 The algebra $\mathcal{A}_s' = \mathcal{A}_s\times\mathcal{B}_s$ represents the information
 available at time $s$.
 
@@ -261,16 +287,16 @@ option pricing formula which (currently) does not have a closed form.
 Given a derivative paying $\bar{A}_j$ at times $\bar{t}_j$ how does one find a trading strategy
 $(\tau_j)$ and $\Gamma_j$ with $A_t = \bar{A}_j$ at times $t = \bar{t}_j$ and zero otherwise?
 
-The initial hedge is determined by $V_0 = E[\sum_{\bar{t_j}} \bar{A}_j D_{\bar{t}_j}]$ which
-can be computed using the given derivative payments and the deflators. Since
-$V_0 = \Gamma_0\cdot X_0$ we have $\Gamma_0 = dV_0/dX_0$ where the right-hand side is
-the Frechet derivative of $V_0\colon\mathbf{R}^I\to\mathbf{R}$ with
+The initial hedge is determined by $V_0 = E[\sum_{\bar{t_j} > 0} \bar{A}_j D_{\bar{t}_j}]$ which
+can be computed using the given derivative payments and the deflators of the model.
+Since $V_0 = \Gamma_0\cdot X_0$ we have $\Gamma_0 = dV_0/dX_0$ where the right-hand side is
+the Fréchet derivative of $V_0\colon\mathbf{R}^I\to\mathbf{R}$ with
 $X_0\mapsto\Gamma_0\cdot X_0$.
 
 At any time $t$ we have $V_t = E_t[\sum_{\bar{t}_j > t} \bar{A}_j D_{\bar{t}_j}]/D_t$ which
 can be computed using the given derivative payments and the deflators. Since
 $V_t = (\Delta_t + \Gamma_t)\cdot X_t$ we have $\Delta_t + \Gamma_t = dV_t/dX_t$ where the right-hand side is
-the Frechet derivative of $V_t\colon B(\mathcal{A}_t, \mathbf{R}^I)\to B(\mathcal{A}_t)$
+the Fréchet derivative of $V_t\colon B(\mathcal{A}_t, \mathbf{R}^I)\to B(\mathcal{A}_t)$
 with $X_t \mapsto (\Delta_t + \Gamma_t)\cdot X_t$.
 
 This is similar to Black-Scholes/Merton hedging with $\Delta$ being delta and
