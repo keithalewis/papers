@@ -301,10 +301,13 @@ $\Gamma$ being gamma, however there is one major difference: there is no guarant
 hedge will replicate the option. As any trader knows after the second day on a trading
 floor, no hedge is perfect.
 
-The Unified Model brings this real world problem to the forefront. It does
-not provide a solution, only a framework for a rigorous mathematical
-approach to understanding how to value, hedge, and manage the risk
-involved with trading actual market instruments.
+The Unified Model brings this real world problem to the forefront. It is
+not possible to hedge continuously. Traders decide when to hedge based on
+available informaton. Mathematical finance practitioners should help them
+figure out when and how to adjust their hedge: $\tau_j$ and $\Gamma_j$.
+This model does not provide a solution, only a framework for a rigorous
+mathematical approach to understanding how to value, hedge, and manage
+the risk involved with trading actual market instruments.
 
 <!--
 ### American Option
