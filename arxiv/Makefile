@@ -7,6 +7,8 @@ FLAGS += --katex
 FLAGS += -t html5
 #FLAGS += --mathjax
 FLAGS += --css arxiv.css
+FLAGS += --filter pandoc-citeproc --metadata link-citations=true
+#FLAGS += --bibliography "$*.json"
 
 #FLAGS += --section-divs
 #FLAGS += -H header.html
