@@ -46,7 +46,7 @@ When a model in mathematical physics does not fit observations it
 indicates there is a flaw in the model. The Unified Model can be
 used to rectify the above flaw in the classical theory of
 mathematical finance. It puts instrument prices and cash-flows on
-eqaul footing to clarify fundamental results like cost-of-carry,
+equal footing to clarify fundamental results like cost-of-carry,
 put-call parity, and the fact futures quotes form a martingale.
 
 
