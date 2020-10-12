@@ -13,8 +13,8 @@ with corresponding cash-flows $(C_t)$ has the form
 $$
 	X_tD_t = M_t - \sum_{s \le t} C_s D_s
 $$
-where $(M_t)$ is a vector-valued martingale indexed by the set of
-instruments and $(D_t)$ are positive, adapted functions. 
+where $(M_t)$ is a vector-valued martingale indexed by
+market instruments and $(D_t)$ are positive, adapted functions. 
 If the continuously compounded forward rate at $t$ is $f_t$ then
 $D_t = \exp(-\int_0^t f_s\,ds)$. 
 If trading times are discrete, $T = \{t_j\}$, then
@@ -26,9 +26,9 @@ For example, the Black-Scholes/Merton model for a bond and stock with
 no dividends is given by $M_t = (r, s\exp(\sigma B_t - \sigma^2 t/2))$
 and $D_t = \exp(-\rho t)$ where $(B_t)$ is standard Brownian motion.
 There is no need for self-financing portfolios, Ito's Lemma, much less
-partial differential equations, when using the Unified Model.
+partial differential equations when using the Unified Model.
 
-The Unified Model provides a framework for a rigourous mathematical
+The Unified Model provides a framework for a rigorous mathematical
 approach to understanding how to value, hedge, and manage the risk
 involved with trading actual market instruments.
 
@@ -37,7 +37,7 @@ involved with trading actual market instruments.
 The value of a barrier option in the Black-Scholes/Merton model that
 knocks in the _second_ time the underlying hits the barrier is equal to
 the value of the option that knocks in the first time the underlying
-hits the barrier. In fact, the value is the same in that theory if
+hits the barrier. In fact, the value is the same if
 it knocks in on the $n$-th time it hits the barrier for any $n > 0$!
 This is a mathematical artifact of Brownian motion having infinite total
 variation on any interval.
@@ -83,15 +83,15 @@ Let $T\subseteq [0,\infty)$ be the set of _trading times_.
 We assume a sample space, probability measure, and filtration are given,
 $\langle\Omega,P,(\mathcal{A}_t)_{t\in T}\rangle$.
 
-Let $I$ the set of market _instruments_ available for trading.
-Instrument _prices_ are $X_t\colon\mathcal{A}_t\to\mathbf{R}^I$ 
-and their corresponding cash-flows are $C_t\colon\mathcal{A}_t\to\mathbf{R}^I$, for $t\in T$.
+Let $I$ be the set of market _instruments_ available for trading.
+Instrument _prices_ are denoted by $X_t\colon\mathcal{A}_t\to\mathbf{R}^I$ 
+and their corresponding cash-flows by $C_t\colon\mathcal{A}_t\to\mathbf{R}^I$, for $t\in T$.
 We assume, as is true in the real world, that prices and cash-flows are bounded.
 
 Instrument trading is assumed to be perfectly liquid and divisible:
 every instrument can be bought or sold at the given price in any amount. Cash flows
 are associated with owning an instrument: stocks have dividends, bonds
-have coupons, futures have margin adjustments. The price of a futures is always zero.
+have coupons, futures have margin adjustments.
 
 A _trading strategy_ is a finite collection of strictly increasing
 stopping times $(\tau_j)$ and trades
@@ -129,7 +129,7 @@ If $E_t[X_v D_v]\to 0$ as $v\to\infty$ then deflated prices are the
 expected value of deflated future cash-flows, à la Dodd-Graham.
 We can assume $D_0 = 1$ by dividing all deflators by $D_0$.
 
-One consequence of the displated equation above and the definition of value and amount is
+One consequence of the displayed equation above and the definition of value and amount is
 $$
 V_t D_t = E[V_v D_v + \sum_{t < u \leq v}A_u D_u \mid \mathcal{A}_t].
 $$
@@ -171,8 +171,7 @@ $$
 	X_t D_t = M_t - \sum_{s \leq t} C_s D_s
 $$
 where $M_t:\mathcal{A}_t \rightarrow \mathbf{R}^{I}$ is a martingale and
-$D_t:\mathcal{A}_t \rightarrow (0,\infty)$ 
-is arbitrage-free.
+$D_t:\mathcal{A}_t \rightarrow (0,\infty)$ is arbitrage-free.
 $$
 \begin{aligned}
 X_t D_t &= M_t - \sum_{s \leq t} C_s D_s \\
@@ -192,9 +191,8 @@ The sample space is $\Omega = C[0,\infty)$, $P$ is Wiener measure, and
 $\mathcal{A}_t$ is the smallest sigma-algebra for which $\{B_s:s\le t\}$
 are measurable, where $B_t(\omega) = \omega(t)$ is standard Brownian motion.
 
-Let $D_t = e^{-\rho t}$ and $M_t = (r, s e^{\sigma B_t - \sigma^2 t/2})$.
-This is the Black-Scholes/Merton model.
-the Unified Model.
+Letting $M_t = (r, s e^{\sigma B_t - \sigma^2 t/2})$
+and $D_t = e^{-\rho t}$ gives the Black-Scholes/Merton model.
 
 ### Repurchase Agreement
 
@@ -207,25 +205,24 @@ $1\,D_{t_j} = E_{t_j}[R_j D_{t_{j+1}}]$.
 The continuous time analog is $D_t = \exp(-\int_0^t f_s\,ds)$ where $(f_t)$ is
 the _continuously compounded forward rate_.
 
-### Zero Coupond Bond
+### Zero Coupon Bond
 
-A _zero coupon bond_ maturing at time $u$ has a single cash flow
-$C_u = 1$ so its price at time $t$ satisfies $X_t D_t =
-E_t[1 D_u]$. We write $D_t(u) = E_t[D_u/D_t]$ for its price at time $t$. In
-particular $D_0(u) = E D_u$. Instruments that are a portfolio of
-zero coupon bonds (e.g., cash deposits, forward rate agreements, swaps)
-have a value that is determined by the deflator.
+A _zero coupon bond_ maturing at time $u$ has a single cash flow $C_u = 1$ at time $u$.
+Its price at time, $D_t(u)$, $t$ satisfies $D_t(u) D_t =
+E_t[1 D_u]$ so $D_t(u) = E_t[D_u]/D_t$.
+The dynamics of all fixed income instruments are determined by the deflators:
+cash deposits, forward rate agreements, swaps, puts, floors, swaptions, etc.
 
 ### Cost of Carry
 
 A _forward_ on an instrument $S$ _expiring_ at $t$ with _strike_ $k$
-has a single cash-flow $S_t - k$ at expiration. The _at-the-money forward_
+has a single cash-flow $C_t = S_t - k$ at expiration. The _at-the-money forward_
 is the strike $f$ that makes the initial forward price zero.
 
 Consider any arbitrage-free model with $X_0 = (1, s, 0)$ and
-$X_t = (R, S_t, S_ - f)$.
-We have $(1, s, 0) = E[(R, S_t, S_t - f)D_t]$ for any deflator with $D_0 = 1$.
-Assuming $R$ is a constant, $1 = E[RD_t]$ so $E[D_t] = 1/R$.
+$X_t = (R, S_t, S_t - f)$.
+We have $(1, s, 0) = E[(R, S_t, S_t - f)D_t]$ assuming $D_0 = 1$.
+If $R$ is a constant, $1 = E[RD_t]$ so $E[D_t] = 1/R$.
 Since $s = E[S_tD_t]$ and $0 = E[(S_t - f)D_t]$ we have $0 = s - f/R$.
 The formula $Rs = f$ is the _cost of carry_ and relates the _spot price_, $s$,
 of $S_t$ to its forward price.
@@ -233,8 +230,8 @@ of $S_t$ to its forward price.
 ### Put-Call Parity
 
 A _put option_ on an instrument $S$ _expiring_ at $t$ with _strike_ $k$
-has a single cash-flow $\max\{k - S_t, 0\}$ at expiration.
-A _call option_ has a single cash-flow $\max\{S_t - k, 0\}$ at expiration.
+has a single cash-flow $C_t = \max\{k - S_t, 0\}$ at expiration.
+A _call option_ has a single cash-flow $C_t = \max\{S_t - k, 0\}$ at expiration.
 Note $\max\{S_t - k, 0\} - \max\{k - S_t, 0\} = S_t - k$.
 
 Consider any one-period arbitrage-free model with $X_0 = (1, s, p, c)$ and
@@ -243,7 +240,7 @@ For any deflator with $D_0 = 1$
 We have $(1, s, p, c) = E[(R, S_t, \max\{k - S_t,0\}, \max\{S_t - k,0\})D_t]$.
 Assuming $R$ is a constant, $1 = E[RD]$ so $E[D] = 1/R$.
 Since $p = E[\max\{k - S_t,0\} D_t]$ and $c = E[\max\{S_t - k,0\} D_t]$ we have
-$c - p = E[(S_t - k)D_t] = s - k/R$. This formula is referred to as _put-call parity_.
+$c - p = E[(S_t - k)D_t] = s - k/R$. This formula is called _put-call parity_.
 It holds for every arbitrage-free model and will be the first thing a trader
 tests when presented with a new model.
 
@@ -252,13 +249,13 @@ tests when presented with a new model.
 A _futures_ on an instrument $S$ _expiring_ at $t$ 
 has a cash-flow at every _margin calculation date_ $(t_j)_{j=0}^n$.
 The _futures quote_ at expiration $t = t_n$ is $\Phi_n = S_t$. The cash-flow at time
-$t_j$ is $\Phi_j - \Phi_{j - 1}$, $1\le j\le n$, where $\Phi_j$ is the futures quote at $t_j$.
+$t_j$ is $C_{t_j} = \Phi_j - \Phi_{j - 1}$, $1\le j\le n$, where $\Phi_j$ is the futures quote at $t_j$.
 
 The price of a futures is always zero.
 If the model is arbitrage-free then $0 = E_{t_{j-1}}[(\Phi_j - \Phi_{j - 1})D_{t_j}]$.
 If $D_{t_j}$ is $\mathcal{A}_{t_{j-1}}$ measurable then $\Phi_{j-1} = E_{t_{j-1}}[\Phi_j]$
 so the futures quotes $(\Phi_j)$ are a martingale.
-This is the case if $D_{t_j} = \exp(-\sum_{i<j} f_i\,\Delta_i)$.
+This holds when $D_{t_j} = \exp(-\sum_{i<j} f_i\,\Delta_i)$.
 
 ### American Option
 
@@ -272,10 +269,10 @@ Given a model for the underlying $\langle \Omega, P, (\mathcal{A}_t)\rangle$ let
 $\Omega' = \Omega\times [0,t]$ where $(\omega,\tau)$ indicates the option is
 exercised at time $\tau$ given the underlying determined by $\omega$.
 
-The filtration must also be augmented. Let $\mathcal{B}_s$ be the smallest
+The filtration must also be augmented. Let $\mathcal{T}_s$ be the smallest
 algebra on $[0,t]$ containing the singletons $\{u\}$ for $u\le s$ and the set $(s, t]$.
 If $\tau \le s$ then it is known exactly, otherwise it is only known that $s < \tau \le t$.
-The algebra $\mathcal{A}_s' = \mathcal{A}_s\times\mathcal{B}_s$ represents the information
+The algebra $\mathcal{A}_s' = \mathcal{A}_s\times\mathcal{T}_s$ represents the information
 available at time $s$.
 
 Extending the measure $P$ on $\Omega$ to $P'$ on $\Omega'$ while keeping the model
@@ -299,13 +296,13 @@ $V_t = (\Delta_t + \Gamma_t)\cdot X_t$ we have $\Delta_t + \Gamma_t = dV_t/dX_t$
 the Fréchet derivative of $V_t\colon B(\mathcal{A}_t, \mathbf{R}^I)\to B(\mathcal{A}_t)$
 with $X_t \mapsto (\Delta_t + \Gamma_t)\cdot X_t$.
 
-This is similar to Black-Scholes/Merton hedging with $\Delta$ being delta and
+This is classical Black-Scholes/Merton hedging with $\Delta$ being delta and
 $\Gamma$ being gamma, however there is one major difference: there is no guarantee this
 hedge will replicate the option. As any trader knows after the second day on a trading
 floor, no hedge is perfect.
 
 The Unified Model brings this real world problem to the forefront. It does
-not provide a solution, only a framework for a rigourous mathematical
+not provide a solution, only a framework for a rigorous mathematical
 approach to understanding how to value, hedge, and manage the risk
 involved with trading actual market instruments.
 
