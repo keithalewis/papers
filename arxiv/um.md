@@ -271,7 +271,7 @@ exercised at time $\tau$ given the underlying determined by $\omega$.
 
 The filtration must also be augmented. Let $\mathcal{T}_s$ be the smallest
 algebra on $[0,t]$ containing the singletons $\{u\}$ for $u\le s$ and the set $(s, t]$.
-If $\tau \le s$ then it is known exactly, otherwise it is only known that $s < \tau \le t$.
+If $\tau \le s$ then $\tau$ is known exactly, otherwise it is only known that $s < \tau \le t$.
 The algebra $\mathcal{A}_s' = \mathcal{A}_s\times\mathcal{T}_s$ represents the information
 available at time $s$.
 
