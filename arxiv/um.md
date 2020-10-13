@@ -300,7 +300,7 @@ Given a derivative paying $\bar{A}_j$ at times $\bar{t}_j$ how does one find a t
 $(\tau_j)$ and $\Gamma_j$ with $A_t = \bar{A}_j$ at times $t = \bar{t}_j$ and zero otherwise?
 
 The initial hedge is determined by $V_0 = E[\sum_{\bar{t_j} > 0} \bar{A}_j
-D_{\bar{t}_j}]$ which can be computed using the given derivative payments
+D_{\bar{t}_j}]$ which can be computed using the derivative payments
 specified in the contract and the deflators of the model.  Since $V_0 =
 \Gamma_0\cdot X_0$ we have $\Gamma_0 = dV_0/dX_0$ where the right-hand
 side is the Fréchet derivative of $V_0\colon\mathbf{R}^I\to\mathbf{R}$
@@ -320,7 +320,7 @@ floor, no hedge is perfect.
 The Unified Model brings this real world problem to the forefront. It is
 not possible to hedge continuously. Traders decide when and how much to hedge based on
 available informaton. The job of mathematical finance practitioners is to help them
-figure out when and how to adjust their hedge: $\tau_j$ and $\Gamma_j$.
+figure out when $(\tau_j)$ and how $(\Gamma_j)$ to adjust their hedge.
 
 This model does not provide a solution, only a framework for a rigorous
 mathematical approach to understanding how to value, hedge, and manage
