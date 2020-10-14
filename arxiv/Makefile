@@ -24,3 +24,6 @@ $(PDF): %.pdf: %.md
 
 $(DOCX): %.docx: %.md
 	pandoc $< -o $@
+
+ep_slides: ep_slides.md
+	pandoc --katex -s $< -t pptx -o ep_slides.pptx
