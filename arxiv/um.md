@@ -81,7 +81,7 @@ given the algebra $\mathcal{A}$.
 A _stopping time_ is a function $\tau\colon\Omega\to T$ satisfying $\{\tau\le t\}\in\mathcal{A}_t$
 for all $t\in T$. The algebra $\mathcal{A}_\tau$ is the collection of 
 subsets $E\subseteq\Omega$ with $E\cap\{\tau\le t\}\in\mathcal{A}_t$ for all $t\in T$.
-A stopping time depends only on the available information for its value.
+Stopping times can't peek into the future.
 
 ## Unified Model
 
@@ -223,7 +223,7 @@ the _continuously compounded forward rate_.
 ### Zero Coupon Bond
 
 A _zero coupon bond_ maturing at time $u$ has a single cash flow $C_u = 1$ at time $u$.
-Its price at time, $D_t(u)$, $t$ satisfies $D_t(u) D_t =
+Its price at time $t$, $D_t(u)$, satisfies $D_t(u) D_t =
 E_t[1 D_u]$ so $D_t(u) = E_t[D_u]/D_t$.
 The dynamics of all fixed income instruments are determined by the deflators:
 cash deposits, forward rate agreements, swaps, puts, floors, swaptions, etc.
@@ -232,15 +232,15 @@ cash deposits, forward rate agreements, swaps, puts, floors, swaptions, etc.
 
 A _forward_ on an instrument $S$ _expiring_ at $t$ with _strike_ $k$
 has a single cash-flow $C_t = S_t - k$ at expiration. The _at-the-money forward_
-is the strike $f$ that makes the initial forward price zero.
+is the strike $f$ that makes the forward price zero.
 
 Consider any arbitrage-free model with $X_0 = (1, s, 0)$ and
 $X_t = (R, S_t, S_t - f)$.
 We have $(1, s, 0) = E[(R, S_t, S_t - f)D_t]$ assuming $D_0 = 1$.
-If $R$ is a constant, $1 = E[RD_t]$ so $E[D_t] = 1/R$.
+If $R$ is constant, $1 = E[RD_t]$ so $E[D_t] = 1/R$.
 Since $s = E[S_tD_t]$ and $0 = E[(S_t - f)D_t]$ we have $0 = s - f/R$.
-The formula $Rs = f$ is the _cost of carry_ and relates the _spot price_, $s$,
-of $S_t$ to its forward price.
+The formula $Rs = f$ is the _cost of carry_ and relates the _spot price_
+of $S$ to its forward.
 
 ### Put-Call Parity
 
@@ -250,10 +250,10 @@ A _call option_ has a single cash-flow $C_t = \max\{S_t - k, 0\}$ at expiration.
 Note $\max\{S_t - k, 0\} - \max\{k - S_t, 0\} = S_t - k$.
 
 Consider any one-period arbitrage-free model with $X_0 = (1, s, p, c)$ and
-$X_t = (R, S_t, \max\{k - S_t, 0\}, \max\{S_t - k, 0\})$.
+$X_t + C_t = (R, S_t, \max\{k - S_t, 0\}, \max\{S_t - k, 0\})$.
 For any deflator with $D_0 = 1$
 we have $(1, s, p, c) = E[(R, S_t, \max\{k - S_t,0\}, \max\{S_t - k,0\})D_t]$.
-Assuming $R$ is a constant, $1 = E[RD_t]$ so $E[D_t] = 1/R$.
+Assuming $R$ is constant, $1 = E[RD_t]$ so $E[D_t] = 1/R$.
 Since $p = E[\max\{k - S_t,0\} D_t]$ and $c = E[\max\{S_t - k,0\} D_t]$ we have
 $c - p = E[(S_t - k)D_t] = s - k/R$. This formula is called _put-call parity_.
 It holds for every arbitrage-free model and will be the first thing a trader
@@ -316,7 +316,7 @@ $$
 	D_t^{\tau,\rho}(u) = (\rho P(t \le \tau < u) + P(\tau \gt u)) D_t(u).
 $$
 
-The usual parameterizaton for the default time distribution is in terms of
+The usual parameterization for the default time distribution is in terms of
 a _hazard rate_ $lambda$ where $P(\tau > t) = \exp(-\lambda t)$.
 
 ### American Option
@@ -345,7 +345,7 @@ option pricing formula which (currently) does not have a closed form.
 ## Remarks
 
 Given a derivative paying $\bar{A}_j$ at times $\bar{t}_j$ how does one find a trading strategy
-$(\tau_j)$ and $\Gamma_j$ with $A_t = \bar{A}_j$ at times $t = \bar{t}_j$ and zero otherwise?
+$(\tau_j)$ and $(\Gamma_j)$ with $A_t = \bar{A}_j$ at times $t = \bar{t}_j$ and zero otherwise?
 
 The initial hedge is determined by $V_0 = E[\sum_{\bar{t_j} > 0} \bar{A}_j
 D_{\bar{t}_j}]$ which can be computed using the derivative payments
@@ -367,7 +367,7 @@ floor, no hedge is perfect.
 
 The Unified Model brings this real world problem to the forefront. It is
 not possible to hedge continuously. Traders decide when and how much to hedge based on
-available informaton. The job of mathematical finance practitioners is to help them
+available information. The job of mathematical finance practitioners is to help them
 figure out when $(\tau_j)$ and how $(\Gamma_j)$ to adjust their hedge.
 
 This model does not provide a solution, only a framework for a rigorous
