@@ -18,7 +18,7 @@ p {
 	    "\\RR": "\\mathbb{R}"
 	  }
 }
-.katex-display {
+span.katex-display {
 	margin-left: 2em !important;
 }
 #kalx {

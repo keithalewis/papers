@@ -29,8 +29,8 @@ There is no need for self-financing portfolios, Ito's Lemma, much less
 partial differential equations when using the Unified Model.
 
 The Unified Model provides a framework for a rigorous mathematical
-approach to understanding how to value, hedge, and manage the risk
-involved with trading actual market instruments.
+approach to understanding how to value, hedge, and manage risk
+using realistic trading conditions.
 
 ## Introduction
 
@@ -272,6 +272,53 @@ If $D_{t_j}$ is $\mathcal{A}_{t_{j-1}}$ measurable then $\Phi_{j-1} = E_{t_{j-1}
 so the futures quotes $(\Phi_j)$ are a martingale.
 This holds when $D_{t_j} = \exp(-\sum_{i<j} f_i\,\Delta_i)$.
 
+### Risky Bonds
+
+It is possible for bond issuers to _default_. Let $\tau$ be the time of default and
+let $\rho$ be the fraction of the risk-less bond value at default that can
+be _recovered_ by the bond holder. A risky zero coupon bond maturing at $u$ has exactly one cash-flow.
+If $\tau > u$ then the holder gets full payment $C_u = 1$ at time $u$. If $\tau\le t$
+then the holder gets $C_\tau = \rho D_\tau(u)$ at default time $\tau$.
+
+The space of outcomes must include the possible default times.
+Given a model $\langle \Omega, P, (\mathcal{A}_t)\rangle$ and deflators $(D_t)$ let
+$\Omega' = \Omega\times [0,\infty)$ where $(\omega,\tau)$ indicates the bond 
+defaults at time $\tau$ given the risk-less outcome $\omega$.
+
+The filtration must also be augmented. Let $\mathcal{T}_t$ be the smallest
+algebra on $[0,\infty)$ containing the singletons $\{s\}$ for $s < t$ and the set $[t, \infty)$.
+If $\tau < t$ then $\tau$ is known exactly, otherwise it is only known that $\tau\ge t$.
+The algebra $\mathcal{A}_t' = \mathcal{A}_t\times\mathcal{T}_t$ represents the information
+available at time $t$. Note that at time $t$ it is not known if $\tau = t$.
+Default is a surprise to the bond holder.
+
+Assuming the deflators and default time are independent we can extend $P$ on $\Omega$
+to $P'$ on $\Omega'$ using the product measure if we know the distribution of $\tau$.
+
+The value at time $t$ of a risky bond maturing at $u$, $D_t^{\tau,\rho}(u)$, satisfies
+$$
+\begin{aligned}
+	D_t^{\tau,\rho}(u) D_t &= E_t'[\rho D_\tau(u)1(t < \tau \le u)D_\tau + 1(\tau \gt u)D_u] \\[0.5em]
+		&= \int_t^u E_t[\rho D_s(u) D_s] f(s)\,ds
+			+ \int_u^\infty E_t[D_u] f(s)\,ds \\[0.5em]
+		&= \rho\int_t^u D_t(u)D_t f(s)\,ds
+			+ P(\tau \gt u) D_t(u)D_t \\[0.5em]
+		&= \rho P(t \lt \tau \le u) D_t(u) D_t
+			+ P(\tau \gt u) D_t(u)D_t \\[0.5em]
+		&= (\rho P(t \le \tau < u) + P(\tau \gt u)) D_t(u) D_t,
+\end{aligned}
+$$
+where $f$ is the density function of $\tau$. The prime indicates the conditional expectation
+using the product measure. We use $E_t[D_s(u)D_s] = E_t[E_s[D_u]]
+= E_t[D_u] = D_t(u) D_t$ for $t < s \le u$ above.
+This shows the price of a risky zero coupon bond is
+$$
+	D_t^{\tau,\rho}(u) = (\rho P(t \le \tau < u) + P(\tau \gt u)) D_t(u).
+$$
+
+The usual parameterizaton for the default time distribution is in terms of
+a _hazard rate_ $lambda$ where $P(\tau > t) = \exp(-\lambda t)$.
+
 ### American Option
 
 An _American option_ is an option that the holder can exercise at any time up to expiration.
@@ -288,7 +335,8 @@ The filtration must also be augmented. Let $\mathcal{T}_s$ be the smallest
 algebra on $[0,t]$ containing the singletons $\{u\}$ for $u\le s$ and the set $(s, t]$.
 If $\tau \le s$ then $\tau$ is known exactly, otherwise it is only known that $s < \tau \le t$.
 The algebra $\mathcal{A}_s' = \mathcal{A}_s\times\mathcal{T}_s$ represents the information
-available at time $s$.
+available at time $s$. Note that at time $s$ it is known if $\tau = s$.
+The option holder decides when to exercise.
 
 Extending the measure $P$ on $\Omega$ to $P'$ on $\Omega'$ while keeping the model
 arbitrage-free is not trivial. It would imply a solution to the American
