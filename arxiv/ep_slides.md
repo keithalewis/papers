@@ -36,8 +36,8 @@ $\Omega$ &ndash; sample space of possible _outcomes_.
 $x\in\bm{R}^I$ &ndash; _prices_ of instruments at the start of the period.  
 Recall $R^I = \{x\colon I\to\bm{R}\}$ so $x(i)\in\bm{R}$ is the price of $i\in I$
 
-$X\colon\Omega\to\bm{R}^I$ &ndash; prices of instruments at the end of the period.     
-Note $X(\omega)\in\bm{R}^I$ are the final prices given $\omega\in\Omega$ occured.
+$X\colon\Omega\to\bm{R}^I$ &ndash; prices of instruments at the end of the period
+where $X(\omega)\in\bm{R}^I$ are the final prices given $\omega\in\Omega$ occured.
 
 # Realized Return
 
@@ -46,7 +46,7 @@ $$
 R(\xi) = \xi' X/\xi' x.
 $$
 
-Note $R(\xi)\colon\Omega\to\bm{R}$ and $R(\alpha\xi) = R(\xi)$ for any non-zero $\alpha\in\bm{R}$.
+Note $R(\xi)\colon\Omega\to\bm{R}$ is a function and $R(\alpha\xi) = R(\xi)$ for any non-zero $\alpha\in\bm{R}$.
 
 Given an expected realized return $\rho$ we want to minimize $\Var(R(\xi))$ given $E[R(\xi)] = \rho$.
 
