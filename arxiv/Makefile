@@ -25,5 +25,10 @@ $(PDF): %.pdf: %.md
 $(DOCX): %.docx: %.md
 	pandoc $< -o $@
 
-ep_slides: ep_slides.md
-	pandoc --katex -s $< -t pptx -o ep_slides.pptx
+pptx: ep_slides.md
+	pandoc --katex -s $< -t $@ -o ep_slides.pptx
+
+TYPE = slidy 
+
+$(TYPE): ep_slides.md
+	pandoc --katex -s $< -t $@ -o ep_slides.html
