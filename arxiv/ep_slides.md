@@ -50,9 +50,9 @@ $R(t\xi) = R(\xi)$ for any non-zero $t\in\bm{R}$ so $R(\xi) = \xi'X$ if $\xi'x =
 
 A portfolio $\xi$ is _efficient_ if
 $$
-\Var(R(\xi)) \le \Var(R(\nu))
+\Var(R(\xi)) \le \Var(R(\eta))
 $$
-for every portfolio $\nu$ with $R(\xi) = R(\nu)$.
+for every portfolio $\eta$ with $R(\xi) = R(\eta)$.
 
 # Efficient
 
@@ -66,7 +66,7 @@ over $\xi\in\bm{R}^I$, $\lambda\in\bm{R}$, and $\mu\in\bm{R}$.
 
 The first-order conditions are
 $$
-0 = V\xi - \lambda x - \mu E[X], \xi'x = 1, \mathrm{\ and\ } \xi'E[X] = \rho.
+0 = V\xi - \lambda x - \mu E[X], \xi'x = 1, \xi'E[X] = \rho.
 $$
 
 # Solution
@@ -76,13 +76,13 @@ $$
 V = \Var(X) = E[XX'] - E[X]E[X'].
 $$
 
-If $V$ is invertible then $\lambda = (C - \rho B)/D$    
-$\mu = (-B + \rho A)/D$ and
+If $V$ is invertible then
 $$
 \xi = \lambda V^{-1}x + \mu V^{-1}E[X]
 $$
-where $A = x'V^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$, $C = E[X]V^{-1}E[X]$,
-and $D = AC - B^2$
+where $\lambda = (C - \rho B)/D$, $\mu = (-B + \rho A)/D$
+and $A = x'V^{-1}x$, $B = x'V^{-1}E[X] = E[X']V^{-1}x$, $C = E[X]V^{-1}E[X]$,
+$D = AC - B^2$
 
 # Consequences
 
