@@ -272,6 +272,7 @@ If $D_{t_j}$ is $\mathcal{A}_{t_{j-1}}$ measurable then $\Phi_{j-1} = E_{t_{j-1}
 so the futures quotes $(\Phi_j)$ are a martingale.
 This holds when $D_{t_j} = \exp(-\sum_{i<j} f_i\,\Delta_i)$.
 
+<!--
 ### Risky Bonds
 
 It is possible for bond issuers to _default_. Let $\tau$ be the time of default and
@@ -318,6 +319,7 @@ $$
 
 The usual parameterization for the default time distribution is in terms of
 a _hazard rate_ $lambda$ where $P(\tau > t) = \exp(-\lambda t)$.
+-->
 
 ### American Option
 

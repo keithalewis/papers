@@ -32,3 +32,6 @@ TYPE = slidy
 
 $(TYPE): ep_slides.md
 	pandoc --katex -s $< -t $@ -o ep_slides.html
+
+umrsync: um.pdf
+	rcp um.pdf kal@web626.webfaction.com:webapps/kalx/
