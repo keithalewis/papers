@@ -13,7 +13,7 @@ abstract: |
 	between dynamic trading and how to value, hedge, and manage the
 	risk of a derivative security.
 
-	It can also be used to do the same for any portfolio of instruments.
+	It can be used for any portfolio of instruments.
 
 	Every arbitrage-free model of prices and cash flows is
 	parameterized by a vector-valued martingale whose components are

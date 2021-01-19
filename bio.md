@@ -1,6 +1,6 @@
 Keith A. Lewis started his professional career as a J. D. Tamarkin
 assistant professor at Brown where he pioneered the use of computers
-as a classroom tool in mathematics. He went on to work on Wall Street
+as a classroom tool in mathematics. He went on to a Wall Street career
 at Bankers Trust, Morgan Stanley, and Banc of America Securities where
 his team built the equity derivative libraries used by the trading desk
 to run their business.
@@ -13,9 +13,4 @@ and municipal bond advance refunding.
 
 He has spun off a number of open source projects based on his experience
 with building tools his clients found useful and has been using them
-in courses he has taught at NYU, Rutgers, Cornell, and will be teaching
-again at Columbia this fall.
-
-Keith is currently involved with a challenging project at Bloomberg to
-replace their core infrastructure used to move the huge amount of data
-required by their enterprise clients.
+in courses he has taught at NYU, Rutgers, Cornell, and Columbia.

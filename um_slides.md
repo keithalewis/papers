@@ -67,12 +67,12 @@ it hits the barrier.
 
 ## Transactions
 
-* A _transaction_ is a tuple $(t;a,i,c;a',i',c')$
-* The transation occurs at time $t$
-* The _buyer_, $c$, pays _amount_ $a$ in _instrument_ $i$
-to the _seller_, $c'$, and receives $a'$ in $i'$
-* The seller sets the price $X:T\times A\times I\times I'\to \mathbf{R}$
-* The buyer can get the transaction $(t;a,i;aX(t,a,i,i'), i')$
+* A _holding_ $(i,a,e)$ is an _instrument_, _amount_, and legal _entity_.
+* A _transaction_ $(t;i,a,e;i',a',e')$ is a transaction time and a pair of holdings.
+* _Buyer_ $e$ pays _amount_ $a$ in _instrument_ $i$
+to _seller_ $e'$ and receives $a'$ in $i'$
+* The seller sets the price $X:T\times I\times A'\times I'\to \mathbf{R}$
+* The buyer decides the transaction $(t;i,a'X(t,i,a,i');i', a')$
 * Transactions are the atoms of finance
 
 ---
@@ -93,7 +93,7 @@ to the _seller_, $c'$, and receives $a'$ in $i'$
 
 Prices $(X_t)$
 : Vector of _prices_ at time $t$ indexed by available market instruments.
-We assume $X(t;a,i,c;i',c') = X_t(i,i')$
+We assume $X(t;i,a,e;i',e') = X_t(i,i')$
 
 Cash Flows $(C_t)$
 : Vector of _cash flows_ associated with holding instruments, e.g.,
@@ -242,7 +242,7 @@ $(B_t)$ is standard Brownian motion
 $(Y_t)$ is a Levy process if it has independent increments and is stationary.
 
 The _cumulant_ of $Y_t$ is $\kappa_t(s) = \log E[\exp(s Y_t)]$
-and $e^{\sigma Y_t - \kappa_t(\sigma)}$ si a martingale.
+and $e^{\sigma Y_t - \kappa_t(\sigma)}$ is a martingale.
 
 Let $D_t = e^{-\rho t}$ and $M_t = (r, se^{\sigma Y_t - \kappa_t(\sigma)})$.
 
@@ -367,6 +367,7 @@ and $\bar{A}_j = 0$, $j < n$
 
 ---
 
+<!--
 ## One Period Model
 
 * Payoff $\bar{A}_1$ at $t_1$
@@ -585,3 +586,5 @@ $\Omega = C[0,\infty)$ $A_\omega$ is ...
 ## Mapping Math to Software
 
 ---
+
+-->

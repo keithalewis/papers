@@ -27,3 +27,12 @@ E e^{tX} &= \int_{-\infty}^\infty e^{tx} e^{-x}/(1 + e^{-x})^2\,dx \\
 \end{aligned}
 $$
 
+Using $u = F(x) = 1/(1 + e^{-x})$, so $e^x = u/(1 - u)$
+$$
+\begin{aligned}
+\int_{-\infty}^a e^{tx} dF(x)
+    &= \int_0^{F(a)} u^t(1 - u)^{-t}\,du \\
+    &= B(F(a); 1 + t, 1 - t) \\
+\end{aligned}
+$$
+
