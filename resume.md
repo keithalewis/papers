@@ -3,6 +3,14 @@
 
 Quant, Technologist, Businessman 
 
+Recent work includes replacing Numerix credit default swap valuation
+code at a top 50 hedge fund, optimizing FX trading strategies for a top
+10 hedge fund, rewritting my open source
+[Excel add-in library](https://github.com/xlladdins/xll/blob/master/README.md),
+and enhancing my product for [Monte Carlo simulation in Excel](https://xllmonte.com)
+built using that. Academic work include a new result on an old topic
+about [efficient portfolios](https://arxiv.org/abs/2009.10852).
+
 ## Business
 
 ### _Bloomberg LP_, Senior Software Engineer (2015&mdash;2018)
