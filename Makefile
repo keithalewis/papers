@@ -41,8 +41,9 @@ rsync: $(HTML)
 lsync:
 	rsync kal@web626.webfaction.com:webapps/kalx/ftapirl.html ftapi.html
 
-resume:
-	rsync resume.md kal@web626.webfaction.com:webapps/kalx/resume2.html
+resume: resume.md
+	pandoc $(FLAGS) $< -o $@.html
+	rsync resume.html kalx@kalx.net:kalx.net/resume.html
 
 clean:
 	rm -f $(HTML)

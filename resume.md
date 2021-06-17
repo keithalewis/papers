@@ -3,13 +3,18 @@
 
 Quant, Technologist, Businessman 
 
-Recent work includes replacing Numerix credit default swap valuation
-code at a top 50 hedge fund, optimizing FX trading strategies for a top
-10 hedge fund, rewritting my open source
+Recent consulting work includes replacing Numerix credit default swap valuation analytics
+at a top 50 hedge fund, optimizing FX trading strategies for a top 10
+hedge fund, municipal bond refunding analysis and tax adjusted valuation,
+construction supply chain financing for a startup.
+
+Technical work: rewriting my open source
 [Excel add-in library](https://github.com/xlladdins/xll/blob/master/README.md),
 and enhancing my product for [Monte Carlo simulation in Excel](https://xllmonte.com)
-built using that. Academic work include a new result on an old topic
-about [efficient portfolios](https://arxiv.org/abs/2009.10852).
+built using that. Academic work includes a new result on an old topic
+concerning [efficient portfolios](https://arxiv.org/abs/2009.10852).
+Foundational research on a [unified framework](https://keithalewis.github.io/math/uf.html)
+for valuing, hedging, and risk management of any portfolio of assets.
 
 ## Business
 
