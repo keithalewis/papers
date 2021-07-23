@@ -1,22 +1,24 @@
 # Order Books
 
-A _limit order_ for an instrument placed at time $t$ has a _level_ $l$ and an _amount_ $a$.
+A _limit order_, $\lambda = (t,l,a)$, for an instrument placed at time $t$ has a _level_ $l$ and an _amount_ $a$.
 The party placing the order agrees to buy (amount < 0) or sell (amount > 0)
-at the level when the market price matches that.
+at that level. They can cancel the Limit order
+at any time before it gets _hit_ or _lifted_ by a market order.
 
-Let $T$ be the trading times, $L$ be the possible prices of an instrument and $A$ be the possible
-amounts that can be bought or sold in the instrument.
-
-A _limit order book_, $O$, is a union of elements of $T\times L\times A$.
-We assume all times are distinct.
-
-The order book at time $u$ is the set of all orders placed (strictly) before $u$.
-
-The _order book snapshot_ of $O$ is a function $o\colon T\times A\mapsto L$ defined by
-$S(u,x) = \sum \{l 1(x\le a):(t,l,a)\in O(u)\}$.
-
-A _market order_ for an instrument executed at time $t$ has an amount. If the amount is positive
+A _market order_ $\mu = (t,a)$, for an instrument executed at time $t$ has an amount. If the amount is positive
 it is a _buy order_. If the amount is negative it is a _sell_ order.
+
+Let $T$ be trading times, $L$ be the levels/prices of an instrument and $A$ be the 
+amounts that can be bought or sold in the instrument. Levels and amounts have
+minimum increments, $\Delta L$ and $\Delta A$, respectively, so we let $l$ and $a$
+be integers, with $l\ge0$, representing $l\Delta L$ and $a\Delta A$.
+
+A _limit order book_, $O = \{\lambda_j\}$, is a set of limit orders.
+Define $O(l) = \sum_{\{l_j < l\}} a_j$ to be the
+cumulative amount of of limit orders below level $l \ge 0$.
+The _bid_ at time $t$ is $b(t) = \min\{l\mid O(t,l) = 0\}$ and the _ask_ at time
+$t$ is $a(t) = \max\{l\mid O(t, l) = 0\}$.
+
 
 The set of limit order books can be supplied with a module structure over the integers.
 The sum of two limit order books is their union.
