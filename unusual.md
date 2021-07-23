@@ -65,3 +65,5 @@ adjusted closing prices that are not available for trading.
 
 The lesson to be drawn is that it is better to work with realized returns $R$ and clearly define
 what return $r$ is being used. For example $R = 1 + r\Delta t$ or $R = e^{r\Delta t}$.
+Or, more importantly, do not assume the outcome of an experiment will match what you
+wish it matched.
