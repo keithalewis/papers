@@ -11,7 +11,7 @@ claims world stock markets have high overnight returns
 and low, or even negative, intraday returns.
 This short note explicates the
 [Python code](https://bruceknuteson.github.io/spy-day-and-night/plot_suspicious_returns.py)
-he wrote to illustrate this.
+he wrote to illustrate this and shows how to correctly calculate returns.
 
 Consider an _intraday_ strategy of buying on market open, selling on market close,
 then reinvesting all capital at the next open. $V_0$ invested at
@@ -63,7 +63,8 @@ Knuteson's overnight returns are not the same as the natural definition above.
 It is not clear what trading strategy can be used to replicate his definition since it involves
 adjusted closing prices that are not available for trading.
 
-The lesson to be drawn is that it is better to work with realized returns $R$ and clearly define
-what return $r$ is being used. For example $R = 1 + r\Delta t$ or $R = e^{r\Delta t}$.
-Or, more importantly, do not assume the outcome of an experiment will match what you
-wish it matched.
+## Yahoo Adjusted Close
+
+Let $d_k$ be the dividend paid on $t_k$. The _Yahoo! adjusted close_
+at time $t_j \le t_n$ is $S^a_j = S^>_j \Pi_{j \le k \e n}(1 - d_k/S^>_k)$.
+Note most $d_k$ are zero.
