@@ -66,5 +66,7 @@ adjusted closing prices that are not available for trading.
 ## Yahoo Adjusted Close
 
 Let $d_k$ be the dividend paid on $t_k$. The _Yahoo! adjusted close_
-at time $t_j \le t_n$ is $S^a_j = S^>_j \Pi_{j \le k \e n}(1 - d_k/S^>_k)$.
-Note most $d_k$ are zero.
+at time $t_j \le t_n$ is $S^a_j = S^>_j \Pi_{j \le k \le n}(1 - d_k/S^>_k)$.
+Note most $d_k$ are zero. Since $S^a{k}/S^a_{k-1} = S^>_k/S^>_{k-1} (1 - d_k/S^>_k)
+= (S^>_k - d_k)/S^>_{k-1}$
+we have $d_k =  S^>_k - S^a{k}S^<_k/S^a_{k-1}$.
