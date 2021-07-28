@@ -63,10 +63,11 @@ Knuteson's overnight returns are not the same as the natural definition above.
 It is not clear what trading strategy can be used to replicate his definition since it involves
 adjusted closing prices that are not available for trading.
 
-## Yahoo Adjusted Close
+## Yahoo! Adjusted Close
 
-Let $d_k$ be the dividend paid on $t_k$. The _Yahoo! adjusted close_
-at time $t_j \le t_n$ is $S^a_j = S^>_j \Pi_{j \le k \le n}(1 - d_k/S^>_k)$.
-Note most $d_k$ are zero. Since $S^a{k}/S^a_{k-1} = S^>_k/S^>_{k-1} (1 - d_k/S^>_k)
-= (S^>_k - d_k)/S^>_{k-1}$
-we have $d_k =  S^>_k - S^a{k}S^<_k/S^a_{k-1}$.
+Let $d_k$ be the dividend paid at $t_k$. The _Yahoo! adjusted close_ at time $t_j \le t_n$ is
+$S^a_j = S^>_j \Pi_{j \le k \le n}(1 - d_k/S^>_k)$.  Note most $d_k$ are zero and
+$S^a_n = S^>n (1 - d_n/S^>_n) = S^n - d_n$ for the most recent prices.
+
+Since $S^a_{k+1}/S^a_k = S^>_{k+1}/S^>_k (1 - d_k/S^>_k) = (S^>_{k+1} - d_k)/S^>_k$
+we have $d_k =  S^>_{k+1} - S^>_k S^a_{k+1}/S^a_k$.
