@@ -80,6 +80,8 @@ $$
 	\alpha (x + y) = \alpha x + \alpha y, \mathrm{\ for\ } \alpha\in\FF \mathrm{\ and\ } x,y\in V.
 $$
 
+#### An Aside on Proofs
+
 To prove '$A$ implies $B$' ($A\Rightarrow B$) start by writing down $A$. On succeeding lines
 write the result of applying an axiom to any previous lines followed
 by the axiom used.
@@ -120,10 +122,6 @@ $x + (-1)x = 0$. Use the distributed law.
 __Exercise__. _Show for $x\in V$ that $-(-x) = x$_.
 
 ### Subspace
-
-Just as factoring an integer into its prime factors can provide useful
-information about the integer, vector spaces can be usefully broken down into
-_subspaces_.
 
 A subset $U$ of a vector space $V$ is a _subspace_ if it is also a vector space.
 
@@ -191,12 +189,6 @@ If $X\subseteq V$ is independent but its span is not $V$ we can find $y\in V$
 such that $X\cup\{y\}$ is independent by choosing any $y\in V$ not in the span.
 
 __Exercise__. _If $X\subseteq V$ is independent and $y\not\in\vee X$ show $X\cup\{y\}$ is independent_.
-
-__Exercise__. _Every $X\subseteq V$ contains a subset $Y\subseteq X$
-that is independent_.
-
-_Hint_. Zorn's lemma using $Y\preceq X$ if and only if $X\subseteq Y$.
-
 
 ### Basis
 
@@ -415,7 +407,7 @@ __Exercise__. Show for every $T\in\mathcal{L}(V,W)$ that $\dim V = \dim\ker T + 
 
 ### Ring of Endomorphisms
 
-The endomorphisms $\mathcal{L}(V)$ are more than just a vector space.
+The endomorphisms $\mathcal{L}(V) = \mathcal{L}(V,V)$ are more than just a vector space.
 They have a _product_ defined by composition $(ST)x = S(Tx)$ for
 $S,T\in\mathcal{L}(V)$ and $x\in V$. This makes them a _ring_.
 Recall a ring is a vector space with a product that satisfies

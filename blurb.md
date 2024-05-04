@@ -3,12 +3,12 @@
 This talk presents a unified approach to mathematical finance models. It
 models the prices and cash flows of all instruments using a consistent
 framework.  Every arbitrage free model is parameterized by a vector
-valued martingale and a positive adapted process: the deflator, or
-stochastic discount.
+valued martingale and a positive adapted process: the deflator.
 
 If the model includes repurchase agreements then there is a canonical
 deflator: the reciprocal of the money market account resulting from
 rolling over an initial unit investment.
+aka stochastic discount.
 
 The Black-Scholes/Merton model is defined by the martingale $M_t = [r,
 s\exp(\sigma B_t - \sigma^2 t/2)]$ and the deflator $D_t = \exp(-\rho

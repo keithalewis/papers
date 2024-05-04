@@ -1,3 +1,7 @@
+---
+title: Interview Advice
+author: Keith A. Lewis
+---
 # Interview Advice
 
 I've been teaching Mathematical Finance for over a decade and always
