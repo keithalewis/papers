@@ -2,7 +2,6 @@
 title: Interview Advice
 author: Keith A. Lewis
 ---
-# Interview Advice
 
 I've been teaching Mathematical Finance for over a decade and always
 have students ask for advice on how to be successful when interviewing
@@ -23,7 +22,7 @@ Hold your shoulders back, but be relaxed.
 Smile, but not too much.  
 Make eye contact, but not too much.  
 Get a good night's sleep before the interview.  
-You have spent years preparing and there is no way to cram the night before.
+You have spent years preparing and there is no way to cram the night before.  
 Use search tools to familiarize yourself with the company.  
 Bring paper copies of your resume printed on high quality stock.  
 
@@ -50,6 +49,7 @@ After the interview they will probably ask if you have questions.
 If they don't, that is a warning bell.  
 Don't be shy about asking question even if they don't solicit them.  
 Ask future colleagues about their work.
+
 - What technical environment do you use? (Operating system/Software)
 - What is your typical day like?
 - If there is one thing you could change, what would it be?

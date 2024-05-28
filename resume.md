@@ -1,22 +1,26 @@
-# Keith A. Lewis
-[kal@kalx.net](mailto:kal@kal.net)
+---
+title: Keith A. Lewis
+date: '[kal@kalx.net](mailto:kal@kalx.net)'
+---
 
-Quant, Technologist, Businessman 
-
-Recent consulting work includes replacing Numerix credit default swap valuation analytics
+Consulting: Municipal bond tax loss harvesting,
+replacing Numerix credit default swap valuation analytics
 at a top 50 hedge fund, optimizing FX trading strategies for a top 10
 hedge fund, municipal bond refunding analysis and tax adjusted valuation,
 construction supply chain financing for a startup.
 
-Technical work: rewriting my open source
-[Excel add-in library](https://github.com/xlladdins/xll/blob/master/README.md),
-and enhancing my product for [Monte Carlo simulation in Excel](https://xllmonte.com)
-built using that. Academic work includes a new result on an old topic
+Technical: Open source
+[Excel add-in library](https://github.com/xlladdins/xll24/blob/master/README.md),
+and enhancing [Monte Carlo simulation in Excel](https://xllmonte.com).
+
+Academic: A new result on an old topic
 concerning [efficient portfolios](https://arxiv.org/abs/2009.10852).
 Foundational research on a [unified framework](https://keithalewis.github.io/math/uf.html)
 for valuing, hedging, and risk management of any portfolio of assets.
 
 ## Business
+
+### _CrossX_, Co-founder of municipal bond tax lost harvesting (2022&mdash;now)
 
 ### _Bloomberg LP_, Senior Software Engineer (2015&mdash;2018)
 
